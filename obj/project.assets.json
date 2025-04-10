@@ -8131,11 +8131,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "/Users/cristianramos/Desktop/Proyectos/AplicativosWeb/CitasEPSEja/CitasEPS/CitasEPS.csproj",
+      "projectUniqueName": "/Users/cristianramos/Desktop/Proyectos/AplicativosWeb/CitasEPS/CitasEPS.csproj",
       "projectName": "CitasEPS",
-      "projectPath": "/Users/cristianramos/Desktop/Proyectos/AplicativosWeb/CitasEPSEja/CitasEPS/CitasEPS.csproj",
+      "projectPath": "/Users/cristianramos/Desktop/Proyectos/AplicativosWeb/CitasEPS/CitasEPS.csproj",
       "packagesPath": "/Users/cristianramos/.nuget/packages/",
-      "outputPath": "/Users/cristianramos/Desktop/Proyectos/AplicativosWeb/CitasEPSEja/CitasEPS/obj/",
+      "outputPath": "/Users/cristianramos/Desktop/Proyectos/AplicativosWeb/CitasEPS/obj/",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "/Users/cristianramos/.nuget/NuGet/NuGet.Config"

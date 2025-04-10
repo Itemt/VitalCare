@@ -4,6 +4,7 @@ using Microsoft.AspNetCore.Identity;
 using CitasEPS.Models;
 using CitasEPS.Services;
 using System.Security.Claims;
+using Microsoft.AspNetCore.Identity.UI.Services;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -17,7 +18,11 @@ builder.Services.AddDbContext<ApplicationDbContext>(options =>
 // Add Identity services
 builder.Services.AddIdentity<User, IdentityRole<int>>(options => options.SignIn.RequireConfirmedAccount = false) // Using our User class and specifying the Role type
     .AddEntityFrameworkStores<ApplicationDbContext>()
+    .AddDefaultTokenProviders()
     .AddClaimsPrincipalFactory<CustomUserClaimsPrincipalFactory>();
+
+// Register IEmailSender
+builder.Services.AddTransient<IEmailSender, EmailSender>();
 
 // Add Authorization policies
 builder.Services.AddAuthorization(options =>
