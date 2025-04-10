@@ -1,0 +1,75 @@
+@page
+@model CitasEPS.Pages.Appointments.CreateModel
+
+@{
+    ViewData["Title"] = "Agendar Nueva Cita";
+}
+
+<h1>@ViewData["Title"]</h1>
+
+<h4>Detalles de la Cita</h4>
+<hr />
+<div class="row">
+    <div class="col-md-6">
+        <form method="post">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+            <div class="form-group mb-3">
+                <label asp-for="Appointment.PatientId" class="control-label"></label>
+                <select asp-for="Appointment.PatientId" class ="form-control" asp-items="Model.PatientNameSL">
+                    <option value="">-- Seleccione Paciente --</option>
+                </select>
+                <span asp-validation-for="Appointment.PatientId" class="text-danger"></span>
+            </div>
+
+            <div class="form-group mb-3">
+                <label asp-for="Appointment.DoctorId" class="control-label"></label>
+                 <select asp-for="Appointment.DoctorId" class ="form-control" asp-items="Model.DoctorNameSL">
+                    <option value="">-- Seleccione Doctor --</option>
+                 </select>
+                <span asp-validation-for="Appointment.DoctorId" class="text-danger"></span>
+            </div>
+
+            <div class="form-group mb-3">
+                <label asp-for="Appointment.AppointmentDateTime" class="control-label"></label>
+                @* Use type="text" and add the class for Flatpickr initialization *@
+                <input asp-for="Appointment.AppointmentDateTime" class="form-control datetimepicker" type="text"/>
+                <span asp-validation-for="Appointment.AppointmentDateTime" class="text-danger"></span>
+                <small class="form-text text-muted">Seleccione la fecha y hora deseada para la cita.</small>
+            </div>
+
+            <div class="form-group mb-3">
+                <label asp-for="Appointment.Notes" class="control-label"></label>
+                <textarea asp-for="Appointment.Notes" class="form-control" rows="3"></textarea>
+                <span asp-validation-for="Appointment.Notes" class="text-danger"></span>
+            </div>
+
+            @* IsConfirmed is false by default, usually confirmed later by admin/staff *@
+            @*<div class="form-group form-check mb-3">
+                <label class="form-check-label">
+                    <input class="form-check-input" asp-for="Appointment.IsConfirmed" /> @Html.DisplayNameFor(model => model.Appointment.IsConfirmed)
+                </label>
+            </div>*@
+
+            <div class="form-group mt-4">
+                <input type="submit" value="Agendar Cita" class="btn btn-success" />
+                <a asp-page="Index" class="btn btn-secondary">Cancelar</a>
+            </div>
+        </form>
+    </div>
+    <div class="col-md-6">
+        @* Placeholder for a more advanced calendar or availability display *@
+        <div class="card">
+            <div class="card-header">Disponibilidad (Próximamente)</div>
+            <div class="card-body">
+                <p>Aquí se podría mostrar un calendario interactivo para seleccionar la fecha/hora y ver la disponibilidad del doctor.</p>
+                <p>Por ahora, por favor use el selector de fecha y hora estándar.</p>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+    @* Add scripts for a JS calendar library here if needed *@
+} 

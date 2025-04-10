@@ -1,0 +1,52 @@
+version: '3.8'
+
+services:
+  sqlserver-db:
+    container_name: citaseps-sqlserver-db
+    image: mcr.microsoft.com/mssql/server:2022-latest
+    environment:
+      - ACCEPT_EULA=Y
+      - "MSSQL_SA_PASSWORD=Password1" # Minimal valid password (8+ chars)
+      - MSSQL_PID=Developer
+      - "MSSQL_ENABLE_HADR=0"
+    ports:
+      - "1433:1433"
+    volumes:
+      - sqlserver-data:/var/opt/mssql
+      - ./init.sql:/var/opt/mssql/init.sql
+    restart: unless-stopped
+    user: root
+    command: 
+      - /bin/bash
+      - -c 
+      - |
+        # Start SQL Server in the background
+        /opt/mssql/bin/sqlservr &
+        
+        # Install required packages
+        apt-get update
+        apt-get install -y curl gnupg
+        
+        # Add Microsoft repository for SQL tools
+        curl https://packages.microsoft.com/keys/microsoft.asc | apt-key add -
+        curl https://packages.microsoft.com/config/ubuntu/22.04/prod.list > /etc/apt/sources.list.d/mssql-release.list
+        apt-get update
+        ACCEPT_EULA=Y apt-get install -y mssql-tools unixodbc-dev
+        
+        # Wait for SQL Server to be ready
+        echo "Waiting for SQL Server to start..."
+        sleep 30s
+        
+        # Add sqlcmd to the path
+        export PATH="$PATH:/opt/mssql-tools/bin"
+        
+        # Execute the initialization script
+        echo "Running initialization script..."
+        sqlcmd -S localhost -U sa -P Password1 -i /var/opt/mssql/init.sql
+        echo "Initialization complete."
+        
+        # Keep the container running by waiting for the SQL Server process
+        wait
+
+volumes:
+  sqlserver-data:

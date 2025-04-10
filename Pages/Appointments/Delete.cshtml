@@ -1,0 +1,51 @@
+@page "{id:int?}"
+@model CitasEPS.Pages.Appointments.DeleteModel
+
+@{
+    ViewData["Title"] = "Eliminar Cita";
+}
+
+<h1>@ViewData["Title"]</h1>
+
+@if (!string.IsNullOrEmpty(Model.ErrorMessage))
+{
+    <p class="text-danger">@Model.ErrorMessage</p>
+}
+
+<h3 class="text-danger">¿Está seguro que desea eliminar esta cita?</h3>
+<div>
+    <h4>Cita #@Model.Appointment.Id</h4>
+    <hr />
+    <dl class="row">
+         <dt class="col-sm-3">
+            @Html.DisplayNameFor(model => model.Appointment.AppointmentDateTime)
+        </dt>
+        <dd class="col-sm-9">
+            @Html.DisplayFor(model => model.Appointment.AppointmentDateTime)
+        </dd>
+        <dt class="col-sm-3">
+            @Html.DisplayNameFor(model => model.Appointment.Patient)
+        </dt>
+        <dd class="col-sm-9">
+            @Html.DisplayFor(model => model.Appointment.Patient.FullName)
+        </dd>
+        <dt class="col-sm-3">
+            @Html.DisplayNameFor(model => model.Appointment.Doctor)
+        </dt>
+        <dd class="col-sm-9">
+            @Html.DisplayFor(model => model.Appointment.Doctor.FullName)
+        </dd>
+         <dt class="col-sm-3">
+            @Html.DisplayNameFor(model => model.Appointment.IsConfirmed)
+        </dt>
+        <dd class="col-sm-9">
+             @(Model.Appointment.IsConfirmed ? "Confirmada" : "Pendiente")
+        </dd>
+    </dl>
+
+    <form method="post">
+        <input type="hidden" asp-for="Appointment.Id" />
+        <input type="submit" value="Eliminar" class="btn btn-danger" /> |
+        <a asp-page="./Index" class="btn btn-secondary">Cancelar</a>
+    </form>
+</div> 

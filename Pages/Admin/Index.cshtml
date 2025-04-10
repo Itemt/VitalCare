@@ -1,0 +1,45 @@
+@page
+@model CitasEPS.Pages.Admin.IndexModel
+@{
+    ViewData["Title"] = "Admin Dashboard";
+}
+
+<h1>@ViewData["Title"]</h1>
+<hr />
+
+<div class="alert alert-info" role="alert">
+    Bienvenido al panel de administración. Aquí podrá gestionar usuarios, doctores, y configuraciones del sistema.
+</div>
+
+<div class="row">
+    <div class="col-md-4">
+        <div class="card">
+            <div class="card-header">Gestión de Usuarios</div>
+            <div class="card-body">
+                <p>Administrar cuentas de usuario y permisos.</p>
+                @* <a asp-page="/Admin/Users/Index" class="btn btn-primary">Gestionar Usuarios</a> *@
+                <a href="#" class="btn btn-primary disabled">Gestionar Usuarios (Próximamente)</a>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-4">
+        <div class="card">
+            <div class="card-header">Gestión de Doctores</div>
+            <div class="card-body">
+                <p>Añadir, editar o eliminar doctores del sistema.</p>
+                @* <a asp-page="/Admin/Doctors/Index" class="btn btn-primary">Gestionar Doctores</a> *@
+                 <a href="#" class="btn btn-primary disabled">Gestionar Doctores (Próximamente)</a>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-4">
+        <div class="card">
+            <div class="card-header">Configuración</div>
+            <div class="card-body">
+                <p>Ajustes generales de la aplicación.</p>
+                 <a href="#" class="btn btn-secondary disabled">Configuración (Próximamente)</a>
+            </div>
+        </div>
+    </div>
+    @* Add more admin cards/links as needed *@
+</div> 
