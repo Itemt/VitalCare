@@ -1,52 +1,47 @@
-version: '3.8'
+# docker-compose.yml (in workspace root)
+version: '3.8' # Specify compose file version
 
 services:
-  sqlserver-db:
+  citaseps-db:
     container_name: citaseps-sqlserver-db
-    image: mcr.microsoft.com/mssql/server:2022-latest
+    image: mcr.microsoft.com/mssql/server:2022-latest # Use the desired SQL Server version
     environment:
-      - ACCEPT_EULA=Y
-      - "MSSQL_SA_PASSWORD=Password1" # Minimal valid password (8+ chars)
-      - MSSQL_PID=Developer
-      - "MSSQL_ENABLE_HADR=0"
+      ACCEPT_EULA: "Y" # Required for SQL Server image
+      MSSQL_SA_PASSWORD: "${MSSQL_SA_PASSWORD}" # Read password from .env file
+      # Optional: Define a default database to be created
+      # MSSQL_DB: CitasEPSDb
+      # MSSQL_USER: your_app_user # Optional: Create a dedicated user
+      # MSSQL_PASSWORD: your_app_user_password # Optional: Password for dedicated user
     ports:
-      - "1433:1433"
+      - "1433:1433" # Map host port 1433 to container port 1433 (default SQL Server)
     volumes:
-      - sqlserver-data:/var/opt/mssql
-      - ./init.sql:/var/opt/mssql/init.sql
-    restart: unless-stopped
-    user: root
-    command: 
-      - /bin/bash
-      - -c 
-      - |
-        # Start SQL Server in the background
-        /opt/mssql/bin/sqlservr &
-        
-        # Install required packages
-        apt-get update
-        apt-get install -y curl gnupg
-        
-        # Add Microsoft repository for SQL tools
-        curl https://packages.microsoft.com/keys/microsoft.asc | apt-key add -
-        curl https://packages.microsoft.com/config/ubuntu/22.04/prod.list > /etc/apt/sources.list.d/mssql-release.list
-        apt-get update
-        ACCEPT_EULA=Y apt-get install -y mssql-tools unixodbc-dev
-        
-        # Wait for SQL Server to be ready
-        echo "Waiting for SQL Server to start..."
-        sleep 30s
-        
-        # Add sqlcmd to the path
-        export PATH="$PATH:/opt/mssql-tools/bin"
-        
-        # Execute the initialization script
-        echo "Running initialization script..."
-        sqlcmd -S localhost -U sa -P Password1 -i /var/opt/mssql/init.sql
-        echo "Initialization complete."
-        
-        # Keep the container running by waiting for the SQL Server process
-        wait
+      - sqlserver_data:/var/opt/mssql # Persist database data
+
+  citaseps-app:
+    container_name: citaseps-web-app
+    build:
+      context: ./CitasEPS # Path to the directory containing the Dockerfile
+      dockerfile: Dockerfile
+    ports:
+      # Map a host port (e.g., 8080 for HTTP) to the container's exposed port 80
+      - "8080:80"
+      # Map a host port (e.g., 8081 for HTTPS) to the container's exposed port 443
+      # You'll need to handle HTTPS certificates for this to work properly in production
+      - "8081:443"
+    environment:
+      # Override the connection string used by the app to point to the DB container
+      # The hostname 'citaseps-db' is automatically resolved by Docker Compose
+      # Make sure 'Database=CitasEPSDb' matches your desired database name
+      ConnectionStrings__DefaultConnection: "Server=citaseps-db,1433;Database=CitasEPSDb;User ID=sa;Password=${MSSQL_SA_PASSWORD};TrustServerCertificate=True;MultipleActiveResultSets=true"
+      # Set ASP.NET Core environment and URLs
+      ASPNETCORE_ENVIRONMENT: Development # Or Production
+      # Tell Kestrel to listen on the exposed ports inside the container
+      ASPNETCORE_URLS: "https://+:443;http://+:80"
+      # Optional: Trust the development certificate if using HTTPS within the container
+      DOTNET_SYSTEM_GLOBALIZATION_INVARIANT: "false" # Adjust if needed for globalization/localization
+    depends_on:
+      - citaseps-db # Ensure the database starts before the app
 
 volumes:
-  sqlserver-data:
+  sqlserver_data: # Define the named volume for data persistence
+    driver: local 
