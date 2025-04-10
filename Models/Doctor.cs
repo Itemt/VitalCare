@@ -24,9 +24,9 @@ namespace CitasEPS.Models
         public string FullName => $"{FirstName} {LastName}";
 
         [Required]
-        [StringLength(50)]
         [Display(Name = "Especialidad")]
-        public string Specialty { get; set; } = string.Empty; // e.g., Medicina General, Pediatría
+        public int SpecialtyId { get; set; } // Foreign key for Specialty
+        public Specialty? Specialty { get; set; } // Navigation property
 
         [StringLength(20)]
         [Display(Name = "Número de Registro Médico")]

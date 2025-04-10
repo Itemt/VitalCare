@@ -16,6 +16,7 @@ namespace CitasEPS.Data
         public DbSet<Appointment> Appointments { get; set; } = default!;
         public DbSet<Patient> Patients { get; set; } = default!;
         public DbSet<Doctor> Doctors { get; set; } = default!;
+        public DbSet<Specialty> Specialties { get; set; } = default!;
         // DbSet<User> is inherited from IdentityDbContext
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)

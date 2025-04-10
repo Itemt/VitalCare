@@ -23,8 +23,15 @@
             </div>
 
             <div class="form-group mb-3">
+                <label asp-for="SelectedSpecialtyId" class="control-label">Especialidad</label>
+                <select id="specialtyDropdown" asp-for="SelectedSpecialtyId" class ="form-control" asp-items="Model.SpecialtySL">
+                    <option value="">-- Seleccione Especialidad --</option>
+                </select>
+            </div>
+
+            <div class="form-group mb-3">
                 <label asp-for="Appointment.DoctorId" class="control-label"></label>
-                 <select asp-for="Appointment.DoctorId" class ="form-control" asp-items="Model.DoctorNameSL">
+                 <select id="doctorDropdown" asp-for="Appointment.DoctorId" class ="form-control" asp-items='ViewData["DoctorNameSL"] as SelectList' disabled>
                     <option value="">-- Seleccione Doctor --</option>
                  </select>
                 <span asp-validation-for="Appointment.DoctorId" class="text-danger"></span>
@@ -71,5 +78,48 @@
 
 @section Scripts {
     @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
-    @* Add scripts for a JS calendar library here if needed *@
+
+    <script>
+        $(document).ready(function () {
+            var initialSpecialtyId = $('#specialtyDropdown').val();
+            if (initialSpecialtyId) {
+                $('#doctorDropdown').prop('disabled', false);
+            }
+
+            $('#specialtyDropdown').on('change', function () {
+                var specialtyId = $(this).val();
+                var doctorDropdown = $('#doctorDropdown');
+
+                doctorDropdown.prop('disabled', true);
+                doctorDropdown.empty();
+                doctorDropdown.append('<option value="">-- Seleccione Doctor --</option>');
+
+                if (specialtyId) {
+                    $.ajax({
+                        url: '?handler=DoctorsBySpecialty&specialtyId=' + specialtyId,
+                        type: 'GET',
+                        dataType: 'json',
+                        success: function (data) {
+                            if (data && data.length > 0) {
+                                $.each(data, function (index, doctor) {
+                                    doctorDropdown.append($('<option>', {
+                                        value: doctor.id,
+                                        text: doctor.fullName
+                                    }));
+                                });
+                                doctorDropdown.prop('disabled', false);
+                            } else {
+                                doctorDropdown.append('<option value="">No hay doctores disponibles</option>');
+                            }
+                        },
+                        error: function (jqXHR, textStatus, errorThrown) {
+                            console.error("Error fetching doctors: ", textStatus, errorThrown);
+                            doctorDropdown.append('<option value="">Error al cargar doctores</option>');
+                        }
+                    });
+                } else {
+                }
+            });
+        });
+    </script>
 } 
