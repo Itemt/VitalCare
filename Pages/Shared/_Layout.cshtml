@@ -33,20 +33,39 @@
                         </li>
                         @if (SignInManager.IsSignedIn(User))
                         {
-                            <li class="nav-item">
-                                <a class="nav-link text-dark" asp-area="" asp-page="/Appointments/Index">Mis Citas</a>
-                            </li>
-                            // Check if the user meets the "Admin" policy
-                            @if ((await AuthorizationService.AuthorizeAsync(User, "Admin")).Succeeded)
+                            @if (User.IsInRole("Admin"))
                             {
                                 <li class="nav-item">
-                                    <a class="nav-link text-danger fw-bold" asp-area="" asp-page="/Admin/Index">Sección Admin</a>
+                                    <a class="nav-link text-danger fw-bold" asp-area="" asp-page="/Admin/Index">Panel Admin</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link text-dark" asp-area="" asp-page="/Admin/ManageDoctors">Gestionar Médicos</a> @* Placeholder - Page needs creation *@
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link text-dark" asp-area="" asp-page="/Admin/ManageSpecialties">Gestionar Especialidades</a> @* Placeholder - Page needs creation *@
+                                </li>
+                                 <li class="nav-item">
+                                    <a class="nav-link text-dark" asp-area="" asp-page="/Admin/ManageAppointments">Gestionar Citas</a> @* Placeholder - Page needs creation *@
                                 </li>
                             }
+                            else if (User.IsInRole("Patient"))
+                            {
+                                <li class="nav-item">
+                                    <a class="nav-link text-dark" asp-area="" asp-page="/Appointments/Index">Mis Citas</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link text-dark" asp-area="" asp-page="/Appointments/Create">Agendar Cita</a>
+                                </li>
+                            }
+                            // Add other roles or a default view if needed
                         }
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-page="/Privacy">Privacidad</a>
-                        </li>
+                        else
+                        {
+                            // Links for non-logged-in users (e.g., Privacy)
+                            <li class="nav-item">
+                                <a class="nav-link text-dark" asp-area="" asp-page="/Privacy">Privacidad</a>
+                            </li>
+                        }
                     </ul>
                     <partial name="_LoginPartial" />
                 </div>

@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "bELN76YVe2k=",
+  "dgSpecHash": "ZWF1Z9ByGug=",
   "success": true,
-  "projectFilePath": "/Users/cristianramos/Desktop/Proyectos/AplicativosWeb/CitasEPS copy/CitasEPS.csproj",
+  "projectFilePath": "/Users/cristianramos/Desktop/Proyectos/AplicativosWeb/CitasEPS/CitasEPS.csproj",
   "expectedPackageFiles": [
     "/Users/cristianramos/.nuget/packages/humanizer/2.14.1/humanizer.2.14.1.nupkg.sha512",
     "/Users/cristianramos/.nuget/packages/humanizer.core/2.14.1/humanizer.core.2.14.1.nupkg.sha512",

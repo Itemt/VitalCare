@@ -1,0 +1,40 @@
+@page
+@model CitasEPS.Pages.Admin.ManageSpecialtiesModel
+@{
+    ViewData["Title"] = "Gestionar Especialidades";
+}
+
+<h1 class="display-4">Gestionar Especialidades</h1>
+
+<p>
+    <a asp-page="CreateSpecialty" class="btn btn-success">Crear Nueva Especialidad</a> @* Placeholder - Page needs creation *@
+</p>
+
+<p>Aquí se mostrará una tabla con las especialidades médicas existentes y opciones para editar/eliminar.</p>
+
+@* Placeholder for table *@
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th>Nombre</th>
+            <th>Acciones</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>Cardiología</td>
+            <td>
+                <a href="#" class="btn btn-sm btn-primary disabled">Editar</a>
+                <a href="#" class="btn btn-sm btn-danger disabled">Eliminar</a>
+            </td>
+        </tr>
+         <tr>
+            <td>Medicina General</td>
+             <td>
+                <a href="#" class="btn btn-sm btn-primary disabled">Editar</a>
+                <a href="#" class="btn btn-sm btn-danger disabled">Eliminar</a>
+            </td>
+        </tr>
+        @* More rows will be generated dynamically *@
+    </tbody>
+</table> 

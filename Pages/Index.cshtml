@@ -16,8 +16,21 @@
         <hr class="my-4 bg-light">
         @if (SignInManager.IsSignedIn(User))
         {
-            <a class="btn btn-light btn-lg me-2" asp-page="/Appointments/Create" role="button">Agendar Nueva Cita</a>
-            <a class="btn btn-outline-light btn-lg" asp-page="/Appointments/Index" role="button">Ver Mis Citas</a>
+            @if (User.IsInRole("Admin"))
+            {
+                <a class="btn btn-light btn-lg me-2" asp-page="/Admin/Index" role="button">Ir al Panel de Admin</a>
+                <a class="btn btn-outline-light btn-lg" asp-page="/Admin/ManageAppointments" role="button">Gestionar Citas</a>
+            }
+            else if (User.IsInRole("Patient"))
+            {
+                <a class="btn btn-light btn-lg me-2" asp-page="/Appointments/Create" role="button">Agendar Nueva Cita</a>
+                <a class="btn btn-outline-light btn-lg" asp-page="/Appointments/Index" role="button">Ver Mis Citas</a>
+            }
+            else
+            {
+                // Fallback for other signed-in roles, if any
+                <p class="text-light">Bienvenido.</p> // Simple message
+            }
         }
         else
         {

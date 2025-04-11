@@ -1,45 +1,40 @@
 @page
 @model CitasEPS.Pages.Admin.IndexModel
 @{
-    ViewData["Title"] = "Admin Dashboard";
+    ViewData["Title"] = "Panel de Administración";
 }
 
-<h1>@ViewData["Title"]</h1>
-<hr />
+<h1 class="display-4">Panel de Administración</h1>
 
-<div class="alert alert-info" role="alert">
-    Bienvenido al panel de administración. Aquí podrá gestionar usuarios, doctores, y configuraciones del sistema.
-</div>
+<p>Bienvenido al panel de administración de VitalCare.</p>
 
-<div class="row">
+@* Contenido futuro del dashboard aquí *@
+<div class="row mt-4">
     <div class="col-md-4">
         <div class="card">
-            <div class="card-header">Gestión de Usuarios</div>
             <div class="card-body">
-                <p>Administrar cuentas de usuario y permisos.</p>
-                @* <a asp-page="/Admin/Users/Index" class="btn btn-primary">Gestionar Usuarios</a> *@
-                <a href="#" class="btn btn-primary disabled">Gestionar Usuarios (Próximamente)</a>
+                <h5 class="card-title">Gestionar Médicos</h5>
+                <p class="card-text">Añadir, editar o eliminar médicos.</p>
+                <a asp-page="/Admin/ManageDoctors" class="btn btn-primary">Ir</a>
             </div>
         </div>
     </div>
     <div class="col-md-4">
         <div class="card">
-            <div class="card-header">Gestión de Doctores</div>
             <div class="card-body">
-                <p>Añadir, editar o eliminar doctores del sistema.</p>
-                @* <a asp-page="/Admin/Doctors/Index" class="btn btn-primary">Gestionar Doctores</a> *@
-                 <a href="#" class="btn btn-primary disabled">Gestionar Doctores (Próximamente)</a>
+                <h5 class="card-title">Gestionar Especialidades</h5>
+                <p class="card-text">Añadir o editar especialidades médicas.</p>
+                <a asp-page="/Admin/ManageSpecialties" class="btn btn-primary">Ir</a>
             </div>
         </div>
     </div>
     <div class="col-md-4">
         <div class="card">
-            <div class="card-header">Configuración</div>
             <div class="card-body">
-                <p>Ajustes generales de la aplicación.</p>
-                 <a href="#" class="btn btn-secondary disabled">Configuración (Próximamente)</a>
+                <h5 class="card-title">Gestionar Citas</h5>
+                <p class="card-text">Ver y administrar todas las citas del sistema.</p>
+                <a asp-page="/Admin/ManageAppointments" class="btn btn-primary">Ir</a>
             </div>
         </div>
     </div>
-    @* Add more admin cards/links as needed *@
 </div> 

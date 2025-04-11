@@ -1,0 +1,49 @@
+@page
+@model CitasEPS.Pages.Admin.ManageDoctorsModel
+@{
+    ViewData["Title"] = "Gestionar Médicos";
+}
+
+<h1 class="display-4">Gestionar Médicos</h1>
+
+<p>
+    <a asp-page="CreateDoctor" class="btn btn-success">Crear Nuevo Médico</a> @* Placeholder - Page needs creation *@
+</p>
+
+<p>Aquí se mostrará una tabla con los médicos existentes y opciones para editar/eliminar.</p>
+
+@* Placeholder for table *@
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th>Nombre</th>
+            <th>Apellido</th>
+            <th>Especialidad</th>
+            <th>Licencia</th>
+            <th>Acciones</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>Dr. Alejandro</td>
+            <td>Guerra</td>
+            <td>Medicina General</td>
+            <td>MG1001</td>
+            <td>
+                <a href="#" class="btn btn-sm btn-primary disabled">Editar</a>
+                <a href="#" class="btn btn-sm btn-danger disabled">Eliminar</a>
+            </td>
+        </tr>
+         <tr>
+            <td>Dra. Sofia</td>
+            <td>Ramirez</td>
+            <td>Cardiología</td>
+            <td>CA2002</td>
+             <td>
+                <a href="#" class="btn btn-sm btn-primary disabled">Editar</a>
+                <a href="#" class="btn btn-sm btn-danger disabled">Eliminar</a>
+            </td>
+        </tr>
+        @* More rows will be generated dynamically *@
+    </tbody>
+</table> 

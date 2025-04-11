@@ -9,23 +9,52 @@ using CitasEPS.Data;
 using CitasEPS.Models;
 using Microsoft.AspNetCore.Authorization; // Add for authorization
 using Microsoft.EntityFrameworkCore; // Required for ToListAsync
+using Microsoft.AspNetCore.Identity; // Required for UserManager
 
 namespace CitasEPS.Pages.Appointments
 {
-    [Authorize] // Require login to create appointments
+    [Authorize(Roles = "Patient")] // Restrict to Patients only
     public class CreateModel : PageModel
     {
         private readonly CitasEPS.Data.ApplicationDbContext _context;
+        private readonly UserManager<User> _userManager; // Inject UserManager
+        private readonly ILogger<CreateModel> _logger;
 
-        public CreateModel(CitasEPS.Data.ApplicationDbContext context)
+        public CreateModel(CitasEPS.Data.ApplicationDbContext context, UserManager<User> userManager, ILogger<CreateModel> logger)
         {
             _context = context;
+            _userManager = userManager;
+            _logger = logger;
         }
+
+        // Store the logged-in patient's ID and name
+        public int LoggedInPatientId { get; set; }
+        public string LoggedInPatientName { get; set; } = "";
 
         // This method runs when the page is requested via GET
         public async Task<IActionResult> OnGetAsync()
         {
-            // Pre-populate dropdown lists for Patients and Doctors
+            var user = await _userManager.GetUserAsync(User);
+            if (user == null)
+            {
+                // Should not happen if Authorize is working, but good practice
+                return Challenge(); // Or redirect to login
+            }
+
+            var patient = await _context.Patients.FirstOrDefaultAsync(p => p.Email == user.Email);
+            if (patient == null)
+            {
+                // Log error and display message to user
+                _logger.LogError($"Could not find Patient record for logged-in user {user.Email}.");
+                TempData["ErrorMessage"] = "No se pudo encontrar su registro de paciente asociado. Por favor, contacte a soporte.";
+                return RedirectToPage("/Index"); // Redirect to a safe page
+            }
+
+            LoggedInPatientId = patient.Id;
+            LoggedInPatientName = patient.FullName;
+            ViewData["PatientName"] = LoggedInPatientName; // Pass name to view
+
+            // Pre-populate dropdown lists for Specialties (Doctors loaded via AJAX)
             await PopulateDropdownsAsync();
             return Page();
         }
@@ -38,7 +67,7 @@ namespace CitasEPS.Pages.Appointments
         public int? SelectedSpecialtyId { get; set; }
 
         // Properties to hold the SelectList data for the dropdowns
-        public SelectList PatientNameSL { get; set; } = default!;
+        // PatientNameSL removed
         public SelectList SpecialtySL { get; set; } = default!;
         // DoctorNameSL will be populated dynamically
 
@@ -46,9 +75,31 @@ namespace CitasEPS.Pages.Appointments
         // This method runs when the form is submitted via POST
         public async Task<IActionResult> OnPostAsync()
         {
+             var user = await _userManager.GetUserAsync(User);
+             if (user == null) return Challenge();
+             var patient = await _context.Patients.FirstOrDefaultAsync(p => p.Email == user.Email);
+             if (patient == null)
+             { // Should have been caught in OnGet, but double check
+                _logger.LogError($"POST Error: Could not find Patient record for logged-in user {user.Email}.");
+                TempData["ErrorMessage"] = "Error al procesar la solicitud. No se encontró su registro de paciente.";
+                return RedirectToPage("/Index");
+             }
+
+             LoggedInPatientId = patient.Id;
+             LoggedInPatientName = patient.FullName;
+             ViewData["PatientName"] = LoggedInPatientName; // Pass name back to view if validation fails
+
+            // Assign patient ID before validation
+            Appointment.PatientId = LoggedInPatientId;
+
             // Remove the invalid Appointment.SpecialtyId references
-            if (!ModelState.IsValid || Appointment.DoctorId == 0 || Appointment.PatientId == 0)
+            // Validate DoctorId specifically
+            if (!ModelState.IsValid || Appointment.DoctorId == 0)
             {
+                 if (Appointment.DoctorId == 0) {
+                     ModelState.AddModelError("Appointment.DoctorId", "Debe seleccionar un doctor.");
+                 }
+
                 // Repopulate using the SelectedSpecialtyId property
                 await PopulateDropdownsAsync(SelectedSpecialtyId);
                 if (SelectedSpecialtyId.HasValue && SelectedSpecialtyId > 0)
@@ -67,7 +118,7 @@ namespace CitasEPS.Pages.Appointments
             _context.Appointments.Add(Appointment);
             await _context.SaveChangesAsync();
 
-            TempData["SuccessMessage"] = "Cita agendada exitosamente.";
+            TempData["SuccessMessage"] = $"Cita para {LoggedInPatientName} agendada exitosamente.";
 
             return RedirectToPage("./Index");
         }
@@ -87,23 +138,14 @@ namespace CitasEPS.Pages.Appointments
         // Helper method to load data for static dropdowns
         private async Task PopulateDropdownsAsync(int? selectedSpecialtyId = null)
         {
-            // Populate Patients
-            var patients = await _context.Patients
-                                        .OrderBy(p => p.LastName)
-                                        .ThenBy(p => p.FirstName)
-                                        .ToListAsync();
-            PatientNameSL = new SelectList(patients, nameof(Patient.Id), nameof(Patient.FullName));
-
             // Populate Specialties, using the passed selectedSpecialtyId
             var specialties = await _context.Specialties
                                         .OrderBy(s => s.Name)
                                         .ToListAsync();
             SpecialtySL = new SelectList(specialties, nameof(Specialty.Id), nameof(Specialty.Name), selectedSpecialtyId);
 
-            // Doctor dropdown is populated dynamically via AJAX, no need to load here initially
-            // unless repopulating after POST error with a specialty already selected (handled in OnPostAsync)
-
-            // Future Enhancement: Pre-select patient based on logged-in user
+            // Doctor dropdown is populated dynamically via AJAX
+            // Patient dropdown removed
         }
     }
 } 

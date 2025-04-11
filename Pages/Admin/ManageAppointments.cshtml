@@ -1,0 +1,48 @@
+@page
+@model CitasEPS.Pages.Admin.ManageAppointmentsModel
+@{
+    ViewData["Title"] = "Gestionar Citas";
+}
+
+<h1 class="display-4">Gestionar Todas las Citas</h1>
+
+<p>Aquí se mostrará una tabla con todas las citas médicas del sistema (pasadas y futuras) y opciones para ver detalles o cancelarlas.</p>
+
+@* Placeholder for table/filtering options *@
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th>Fecha y Hora</th>
+            <th>Paciente</th>
+            <th>Médico</th>
+            <th>Especialidad</th>
+            <th>Confirmada</th>
+            <th>Acciones</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>@DateTime.UtcNow.AddDays(7).ToString("yyyy-MM-dd HH:mm")</td>
+            <td>Juan Perez</td>
+            <td>Dr. Alejandro Guerra</td>
+            <td>Medicina General</td>
+            <td><span class="badge bg-success">Sí</span></td>
+            <td>
+                <a href="#" class="btn btn-sm btn-info disabled">Detalles</a>
+                <a href="#" class="btn btn-sm btn-danger disabled">Cancelar</a>
+            </td>
+        </tr>
+         <tr>
+            <td>@DateTime.UtcNow.AddDays(10).ToString("yyyy-MM-dd HH:mm")</td>
+            <td>Maria Gomez</td>
+            <td>Dra. Sofia Ramirez</td>
+            <td>Cardiología</td>
+            <td><span class="badge bg-warning">No</span></td>
+             <td>
+                <a href="#" class="btn btn-sm btn-info disabled">Detalles</a>
+                <a href="#" class="btn btn-sm btn-danger disabled">Cancelar</a>
+            </td>
+        </tr>
+        @* More rows will be generated dynamically *@
+    </tbody>
+</table> 
