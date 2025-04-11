@@ -107,7 +107,10 @@ namespace CitasEPS.Data
 
         private static async Task SeedSpecialtiesAsync(ApplicationDbContext context, ILogger logger)
         {
-            if (await context.Specialties.AnyAsync()) return; // DB has been seeded
+            if (await context.Specialties.AnyAsync()) {
+                 logger.LogInformation("Specialties already seeded.");
+                 return; // DB has been seeded
+            }
 
             var specialties = new List<Specialty>
             {
@@ -115,7 +118,12 @@ namespace CitasEPS.Data
                 new Specialty { Name = "Dermatología" },
                 new Specialty { Name = "Medicina General" },
                 new Specialty { Name = "Neurología" },
-                new Specialty { Name = "Pediatría" }
+                new Specialty { Name = "Pediatría" },
+                new Specialty { Name = "Ginecología" },
+                new Specialty { Name = "Ortopedia" },
+                new Specialty { Name = "Oftalmología" },
+                new Specialty { Name = "Psicología" },
+                new Specialty { Name = "Endocrinología" }
             };
 
             await context.Specialties.AddRangeAsync(specialties);
@@ -125,22 +133,33 @@ namespace CitasEPS.Data
 
         private static async Task SeedDoctorsAsync(ApplicationDbContext context, ILogger logger)
         {
-            if (await context.Doctors.AnyAsync()) return;
+            if (await context.Doctors.AnyAsync()) {
+                logger.LogInformation("Doctors already seeded.");
+                return;
+            }
             if (!await context.Specialties.AnyAsync()) {
                 logger.LogWarning("Cannot seed doctors because no specialties exist.");
                  return; // Need specialties first
             }
 
-            var generalMed = await context.Specialties.FirstAsync(s => s.Name == "Medicina General");
-            var cardiology = await context.Specialties.FirstAsync(s => s.Name == "Cardiología");
-            var dermatology = await context.Specialties.FirstAsync(s => s.Name == "Dermatología");
+            // Get IDs for various specialties
+            var specialties = await context.Specialties.ToDictionaryAsync(s => s.Name, s => s.Id);
 
             var doctors = new List<Doctor>
             {
-                new Doctor { FirstName = "Alejandro", LastName = "Guerra", SpecialtyId = generalMed.Id, MedicalLicenseNumber = "MG1001", Email="aguerra@vitalcare.com", PhoneNumber="3101234567" },
-                new Doctor { FirstName = "Sofia", LastName = "Ramirez", SpecialtyId = cardiology.Id, MedicalLicenseNumber = "CA2002", Email="sramirez@vitalcare.com", PhoneNumber="3119876543" },
-                new Doctor { FirstName = "Carlos", LastName = "Vega", SpecialtyId = dermatology.Id, MedicalLicenseNumber = "DE3003", Email="cvega@vitalcare.com", PhoneNumber="3125551122" },
-                new Doctor { FirstName = "Laura", LastName = "Mendez", SpecialtyId = generalMed.Id, MedicalLicenseNumber = "MG1004", Email="lmendez@vitalcare.com", PhoneNumber="3134443322" }
+                new Doctor { FirstName = "Alejandro", LastName = "Guerra", SpecialtyId = specialties["Medicina General"], MedicalLicenseNumber = "MG1001", Email="aguerra@vitalcare.com", PhoneNumber="3101234567" },
+                new Doctor { FirstName = "Sofia", LastName = "Ramirez", SpecialtyId = specialties["Cardiología"], MedicalLicenseNumber = "CA2002", Email="sramirez@vitalcare.com", PhoneNumber="3119876543" },
+                new Doctor { FirstName = "Carlos", LastName = "Vega", SpecialtyId = specialties["Dermatología"], MedicalLicenseNumber = "DE3003", Email="cvega@vitalcare.com", PhoneNumber="3125551122" },
+                new Doctor { FirstName = "Laura", LastName = "Mendez", SpecialtyId = specialties["Medicina General"], MedicalLicenseNumber = "MG1004", Email="lmendez@vitalcare.com", PhoneNumber="3134443322" },
+                new Doctor { FirstName = "Ricardo", LastName = "Perez", SpecialtyId = specialties["Pediatría"], MedicalLicenseNumber = "PE4001", Email="rperez@vitalcare.com", PhoneNumber="3141112233" },
+                new Doctor { FirstName = "Ana", LastName = "Martinez", SpecialtyId = specialties["Ginecología"], MedicalLicenseNumber = "GI5002", Email="amartinez@vitalcare.com", PhoneNumber="3153334455" },
+                new Doctor { FirstName = "Jorge", LastName = "Linares", SpecialtyId = specialties["Ortopedia"], MedicalLicenseNumber = "OR6003", Email="jlinares@vitalcare.com", PhoneNumber="3167778899" },
+                new Doctor { FirstName = "Beatriz", LastName = "Alvarez", SpecialtyId = specialties["Neurología"], MedicalLicenseNumber = "NE7004", Email="balvarez@vitalcare.com", PhoneNumber="3176665544" },
+                new Doctor { FirstName = "David", LastName = "Suarez", SpecialtyId = specialties["Oftalmología"], MedicalLicenseNumber = "OF8005", Email="dsuarez@vitalcare.com", PhoneNumber="3189990011" },
+                new Doctor { FirstName = "Elena", LastName = "Rojas", SpecialtyId = specialties["Psicología"], MedicalLicenseNumber = "PS9006", Email="erojas@vitalcare.com", PhoneNumber="3192223344" },
+                new Doctor { FirstName = "Mario", LastName = "Benavides", SpecialtyId = specialties["Endocrinología"], MedicalLicenseNumber = "EN1007", Email="mbenavides@vitalcare.com", PhoneNumber="3205556677" },
+                new Doctor { FirstName = "Lucia", LastName = "Castro", SpecialtyId = specialties["Medicina General"], MedicalLicenseNumber = "MG1008", Email="lcastro@vitalcare.com", PhoneNumber="3218887766" }
+
             };
 
             await context.Doctors.AddRangeAsync(doctors);
@@ -150,92 +169,115 @@ namespace CitasEPS.Data
 
         private static async Task SeedPatientsAsync(ApplicationDbContext context, UserManager<User> userManager, ILogger logger)
         {
-            if (await context.Patients.AnyAsync()) return;
-
-            // Patient 1
-            var patientUser1Email = "juan.perez@email.com";
-            var patientUser1 = await userManager.FindByEmailAsync(patientUser1Email);
-            if (patientUser1 == null)
-            {
-                patientUser1 = new User { UserName = patientUser1Email, Email = patientUser1Email, EmailConfirmed = true };
-                var result = await userManager.CreateAsync(patientUser1, "PatientPass1!");
-                if (result.Succeeded)
-                {
-                    await userManager.AddToRoleAsync(patientUser1, "Patient");
-                     logger.LogInformation($"Patient user '{patientUser1Email}' created.");
-                    var patient1 = new Patient { FirstName = "Juan", LastName = "Perez", DocumentId = "11223344", DateOfBirth = new DateTime(1985, 5, 15, 0, 0, 0, DateTimeKind.Utc), Email = patientUser1Email, PhoneNumber = "3001112233" };
-                    await context.Patients.AddAsync(patient1);
-                    await context.SaveChangesAsync();
-                     logger.LogInformation($"Patient record for '{patientUser1Email}' created.");
-                }
-                 else
-                {
-                     logger.LogError($"Error creating patient user '{patientUser1Email}'. Errors: {string.Join(", ", result.Errors.Select(e => e.Description))}");
-                }
+            // Check if base patients exist to prevent re-seeding everything
+            if (await context.Patients.AnyAsync(p => p.DocumentId == "11223344" || p.DocumentId == "55667788")) {
+                 logger.LogInformation("Base patients already seeded.");
+                 // Optionally check for the others and add if missing, or just return
+                 // return;
             }
 
-            // Patient 2
-            var patientUser2Email = "maria.gomez@email.com";
-            var patientUser2 = await userManager.FindByEmailAsync(patientUser2Email);
-            if (patientUser2 == null)
+            var patientsToAdd = new List<(string FirstName, string LastName, string DocumentId, DateTime Dob, string Email, string Phone, string Password)>
             {
-                patientUser2 = new User { UserName = patientUser2Email, Email = patientUser2Email, EmailConfirmed = true };
-                var result = await userManager.CreateAsync(patientUser2, "PatientPass2!");
-                if (result.Succeeded)
+                ("Juan", "Perez", "11223344", new DateTime(1985, 5, 15, 0, 0, 0, DateTimeKind.Utc), "juan.perez@email.com", "3001112233", "PatientPass1!"),
+                ("Maria", "Gomez", "55667788", new DateTime(1992, 11, 20, 0, 0, 0, DateTimeKind.Utc), "maria.gomez@email.com", "3019998877", "PatientPass2!"),
+                ("Carlos", "Rodriguez", "99887766", new DateTime(1978, 2, 10, 0, 0, 0, DateTimeKind.Utc), "carlos.rodriguez@email.com", "3025556677", "PatientPass3!"),
+                ("Ana", "Lopez", "12312312", new DateTime(2001, 8, 25, 0, 0, 0, DateTimeKind.Utc), "ana.lopez@email.com", "3031231234", "PatientPass4!"),
+                ("Luis", "Martinez", "45645645", new DateTime(1995, 12, 1, 0, 0, 0, DateTimeKind.Utc), "luis.martinez@email.com", "3044564567", "PatientPass5!"),
+                ("Elena", "Sanchez", "78978978", new DateTime(1988, 6, 30, 0, 0, 0, DateTimeKind.Utc), "elena.sanchez@email.com", "3057897890", "PatientPass6!"),
+                ("Miguel", "Ramirez", "10101010", new DateTime(1999, 4, 18, 0, 0, 0, DateTimeKind.Utc), "miguel.ramirez@email.com", "3061010101", "PatientPass7!"),
+                ("Sofia", "Torres", "20202020", new DateTime(1991, 9, 5, 0, 0, 0, DateTimeKind.Utc), "sofia.torres@email.com", "3072020202", "PatientPass8!"),
+                ("Andres", "Diaz", "30303030", new DateTime(1982, 1, 12, 0, 0, 0, DateTimeKind.Utc), "andres.diaz@email.com", "3083030303", "PatientPass9!"),
+                ("Paula", "Vargas", "40404040", new DateTime(2003, 3, 22, 0, 0, 0, DateTimeKind.Utc), "paula.vargas@email.com", "3094040404", "PatientPass10!")
+            };
+
+            int patientsCreatedCount = 0;
+            foreach (var pData in patientsToAdd)
+            {
+                // Check if user or patient already exists before attempting creation
+                var userExists = await userManager.FindByEmailAsync(pData.Email);
+                var patientExists = await context.Patients.AnyAsync(p => p.DocumentId == pData.DocumentId || p.Email == pData.Email);
+
+                if (userExists == null && !patientExists)
                 {
-                    await userManager.AddToRoleAsync(patientUser2, "Patient");
-                    logger.LogInformation($"Patient user '{patientUser2Email}' created.");
-                    var patient2 = new Patient { FirstName = "Maria", LastName = "Gomez", DocumentId = "55667788", DateOfBirth = new DateTime(1992, 11, 20, 0, 0, 0, DateTimeKind.Utc), Email = patientUser2Email, PhoneNumber = "3019998877" };
-                    await context.Patients.AddAsync(patient2);
-                    await context.SaveChangesAsync();
-                    logger.LogInformation($"Patient record for '{patientUser2Email}' created.");
+                    var newUser = new User { UserName = pData.Email, Email = pData.Email, EmailConfirmed = true };
+                    var result = await userManager.CreateAsync(newUser, pData.Password);
+                    if (result.Succeeded)
+                    {
+                        await userManager.AddToRoleAsync(newUser, "Patient");
+                        logger.LogInformation($"Patient user '{pData.Email}' created.");
+                        var newPatient = new Patient
+                        {
+                            FirstName = pData.FirstName,
+                            LastName = pData.LastName,
+                            DocumentId = pData.DocumentId,
+                            DateOfBirth = pData.Dob,
+                            Email = pData.Email,
+                            PhoneNumber = pData.Phone
+                        };
+                        await context.Patients.AddAsync(newPatient);
+                        await context.SaveChangesAsync(); // Save each patient to get ID if needed later, or batch save outside loop
+                        logger.LogInformation($"Patient record for '{pData.Email}' created.");
+                        patientsCreatedCount++;
+                    }
+                    else
+                    {
+                        logger.LogError($"Error creating patient user '{pData.Email}'. Errors: {string.Join(", ", result.Errors.Select(e => e.Description))}");
+                    }
                 }
-                else
-                {
-                     logger.LogError($"Error creating patient user '{patientUser2Email}'. Errors: {string.Join(", ", result.Errors.Select(e => e.Description))}");
+                else {
+                     logger.LogWarning($"Skipping seeding for patient '{pData.Email}' / '{pData.DocumentId}' as user or patient record already exists.");
                 }
             }
+             logger.LogInformation($"Attempted to seed {patientsToAdd.Count} patients, {patientsCreatedCount} new records created.");
         }
 
         private static async Task SeedAppointmentsAsync(ApplicationDbContext context, ILogger logger)
         {
-            if (await context.Appointments.AnyAsync()) return;
-            if (!await context.Patients.AnyAsync() || !await context.Doctors.AnyAsync()) {
+             if (await context.Appointments.AnyAsync()) {
+                 logger.LogInformation("Appointments already seeded.");
+                 return;
+             }
+             if (!await context.Patients.AnyAsync() || !await context.Doctors.AnyAsync()) {
                 logger.LogWarning("Cannot seed appointments because no patients or doctors exist.");
                 return; // Need patients and doctors first
             }
 
-            var patientJuan = await context.Patients.FirstOrDefaultAsync(p => p.DocumentId == "11223344");
-            var patientMaria = await context.Patients.FirstOrDefaultAsync(p => p.DocumentId == "55667788");
-            var drGuerra = await context.Doctors.FirstOrDefaultAsync(d => d.MedicalLicenseNumber == "MG1001");
-            var drRamirez = await context.Doctors.FirstOrDefaultAsync(d => d.MedicalLicenseNumber == "CA2002");
+            // Get all patients and doctors to randomly assign appointments
+            var allPatients = await context.Patients.ToListAsync();
+            var allDoctors = await context.Doctors.ToListAsync();
+            var random = new Random();
 
-            if (patientJuan == null || patientMaria == null || drGuerra == null || drRamirez == null) {
-                logger.LogWarning("Could not find specific patients or doctors required for appointment seeding.");
+            if (allPatients.Count < 5 || allDoctors.Count < 5) {
+                 logger.LogWarning("Not enough patients or doctors available for diverse appointment seeding.");
                  return;
             }
 
-            var appointments = new List<Appointment>
+            var appointments = new List<Appointment>();
+            var startDate = DateTime.UtcNow.Date;
+
+            // Create ~20 appointments spread over the next 2 weeks
+            for (int i = 0; i < 20; i++)
             {
-                new Appointment {
-                    PatientId = patientJuan.Id,
-                    DoctorId = drGuerra.Id,
-                    AppointmentDateTime = DateTime.UtcNow.AddDays(7).Date.AddHours(9), // Next week at 9 AM UTC
-                    IsConfirmed = true,
-                    Notes = "Consulta General - Chequeo anual"
-                },
-                new Appointment {
-                    PatientId = patientMaria.Id,
-                    DoctorId = drRamirez.Id,
-                    AppointmentDateTime = DateTime.UtcNow.AddDays(10).Date.AddHours(14), // 10 days from now at 2 PM UTC
-                    IsConfirmed = false,
-                    Notes = "Evaluación Cardiológica"
-                }
-            };
+                var patient = allPatients[random.Next(allPatients.Count)];
+                var doctor = allDoctors[random.Next(allDoctors.Count)];
+                var appointmentDay = startDate.AddDays(random.Next(1, 15)); // Within next 14 days
+                var appointmentHour = random.Next(8, 17); // Between 8 AM and 4 PM (16:xx)
+                var appointmentTime = appointmentDay.AddHours(appointmentHour).AddMinutes(random.Next(0, 4) * 15); // On 15-min intervals
+                bool isConfirmed = random.Next(0, 2) == 1; // 50% chance confirmed
+
+                appointments.Add(new Appointment
+                {
+                    PatientId = patient.Id,
+                    DoctorId = doctor.Id,
+                    AppointmentDateTime = appointmentTime,
+                    IsConfirmed = isConfirmed,
+                    Notes = $"Cita {i+1}: {patient.FirstName} con Dr(a). {doctor.LastName}. Motivo: {(i % 3 == 0 ? "Control" : (i % 3 == 1 ? "Consulta General" : "Evaluación"))}"
+                });
+            }
 
             await context.Appointments.AddRangeAsync(appointments);
             await context.SaveChangesAsync();
-            logger.LogInformation($"{appointments.Count} appointments seeded.");
+            logger.LogInformation($"{appointments.Count} sample appointments seeded.");
         }
     }
 } 
