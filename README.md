@@ -1,64 +1,64 @@
 # VitalCare (CitasEPS)
 
-A web application for managing medical appointments, built with ASP.NET Core 8 and PostgreSQL.
+Una aplicación web para gestionar citas médicas, construida con ASP.NET Core 8 y PostgreSQL.
 
-## Technology Stack
+## Tecnologías Utilizadas
 
 *   **Framework:** ASP.NET Core 8 (Razor Pages)
-*   **Database:** PostgreSQL
+*   **Base de Datos:** PostgreSQL
 *   **ORM:** Entity Framework Core 8
-*   **Authentication:** ASP.NET Core Identity
+*   **Autenticación:** ASP.NET Core Identity
 
-## Prerequisites
+## Prerrequisitos
 
 *   [.NET 8 SDK](https://dotnet.microsoft.com/download/dotnet/8.0)
-*   [PostgreSQL](https://www.postgresql.org/download/) (ensure the server is running)
+*   [PostgreSQL](https://www.postgresql.org/download/) (asegúrate de que el servidor esté en ejecución)
 
-## Getting Started
+## Cómo Empezar
 
-1.  **Clone the repository:**
+1.  **Clonar el repositorio:**
     ```bash
     git clone https://github.com/itemt/vitalcare.git
     cd vitalcare
     ```
 
-2.  **Configure Database Connection:**
-    *   Open the `appsettings.json` file.
-    *   Locate the `ConnectionStrings` section.
-    *   Update the `DefaultConnection` string with your PostgreSQL server details (Host, Port, Database Name, Username, Password).
+2.  **Configurar la Conexión a la Base de Datos:**
+    *   Abre el archivo `appsettings.json`.
+    *   Localiza la sección `ConnectionStrings`.
+    *   Actualiza la cadena `DefaultConnection` con los detalles de tu servidor PostgreSQL (Host, Puerto, Nombre de la Base de Datos, Usuario, Contraseña).
         ```json
         {
-          // ... other settings
+          // ... otras configuraciones
           "ConnectionStrings": {
-            "DefaultConnection": "Host=localhost;Port=5432;Database=CitasEPSDb;Username=your_username;Password=your_password"
+            "DefaultConnection": "Host=localhost;Port=5432;Database=CitasEPSDb;Username=tu_usuario;Password=tu_contraseña"
           }
         }
         ```
-    *   *Note:* The default database name used during setup was `CitasEPSDb`.
+    *   *Nota:* El nombre de base de datos predeterminado usado durante la configuración inicial fue `CitasEPSDb`.
 
-3.  **Create Database (if it doesn't exist):**
-    *   Connect to your PostgreSQL instance (e.g., using `psql` or a GUI tool).
-    *   Run the command: `CREATE DATABASE "CitasEPSDb";` (Replace `CitasEPSDb` if you used a different name in the connection string).
+3.  **Crear la Base de Datos (si no existe):**
+    *   Conéctate a tu instancia de PostgreSQL (p.ej., usando `psql` o una herramienta gráfica).
+    *   Ejecuta el comando: `CREATE DATABASE "CitasEPSDb";` (Reemplaza `CitasEPSDb` si usaste un nombre diferente en la cadena de conexión).
 
-4.  **Apply Database Migrations:**
-    *   Open a terminal in the project root directory.
-    *   Run the command:
+4.  **Aplicar las Migraciones de Base de Datos:**
+    *   Abre una terminal en el directorio raíz del proyecto.
+    *   Ejecuta el comando:
         ```bash
         dotnet ef database update
         ```
-    *   This will create the necessary tables based on the Entity Framework Core models.
+    *   Esto creará las tablas necesarias basadas en los modelos de Entity Framework Core.
 
-5.  **Run the application:**
-    *   In the terminal, run:
+5.  **Ejecutar la aplicación:**
+    *   En la terminal, ejecuta:
         ```bash
         dotnet run
         ```
-    *   The application should now be running, typically at `https://localhost:xxxx` or `http://localhost:yyyy`.
+    *   La aplicación debería estar ahora en ejecución, típicamente en `https://localhost:xxxx` o `http://localhost:yyyy`.
 
-## Features (Example)
+## Características (Ejemplo)
 
-*   User Registration and Login (Patients, Admins)
-*   Appointment Scheduling and Management
-*   Doctor and Specialty Management
-*   Admin Dashboard
+*   Registro e Inicio de Sesión de Usuarios (Pacientes, Administradores)
+*   Programación y Gestión de Citas
+*   Gestión de Médicos y Especialidades
+*   Panel de Administración
 
