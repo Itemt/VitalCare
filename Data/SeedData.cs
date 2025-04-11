@@ -29,7 +29,7 @@ namespace CitasEPS.Data
             await SeedSpecialtiesAsync(context, logger);
 
             // Inicializar Médicos
-            await SeedDoctorsAsync(context, logger);
+            await SeedDoctorsAsync(context, userManager, logger);
 
             // Inicializar Pacientes
             await SeedPatientsAsync(context, userManager, logger);
@@ -42,7 +42,7 @@ namespace CitasEPS.Data
 
         private static async Task SeedRolesAsync(RoleManager<IdentityRole<int>> roleManager, ILogger logger)
         {
-            string[] roleNames = { "Admin", "Patient" }; // Mantener nombres de roles en inglés por convención
+            string[] roleNames = { "Admin", "Patient", "Doctor" }; // Añadido Rol Doctor
             foreach (var roleName in roleNames)
             {
                 var roleExist = await roleManager.RoleExistsAsync(roleName);
@@ -131,7 +131,7 @@ namespace CitasEPS.Data
             logger.LogInformation($"{specialties.Count} especialidades inicializadas (seed).");
         }
 
-        private static async Task SeedDoctorsAsync(ApplicationDbContext context, ILogger logger)
+        private static async Task SeedDoctorsAsync(ApplicationDbContext context, UserManager<User> userManager, ILogger logger)
         {
             if (await context.Doctors.AnyAsync()) {
                 logger.LogInformation("Médicos ya inicializados (seed).");
@@ -145,26 +145,67 @@ namespace CitasEPS.Data
             // Obtener IDs para varias especialidades
             var specialties = await context.Specialties.ToDictionaryAsync(s => s.Name, s => s.Id);
 
-            var doctors = new List<Doctor>
-            {
-                new Doctor { FirstName = "Alejandro", LastName = "Guerra", SpecialtyId = specialties["Medicina General"], MedicalLicenseNumber = "MG1001", Email="aguerra@vitalcare.com", PhoneNumber="3101234567" },
-                new Doctor { FirstName = "Sofia", LastName = "Ramirez", SpecialtyId = specialties["Cardiología"], MedicalLicenseNumber = "CA2002", Email="sramirez@vitalcare.com", PhoneNumber="3119876543" },
-                new Doctor { FirstName = "Carlos", LastName = "Vega", SpecialtyId = specialties["Dermatología"], MedicalLicenseNumber = "DE3003", Email="cvega@vitalcare.com", PhoneNumber="3125551122" },
-                new Doctor { FirstName = "Laura", LastName = "Mendez", SpecialtyId = specialties["Medicina General"], MedicalLicenseNumber = "MG1004", Email="lmendez@vitalcare.com", PhoneNumber="3134443322" },
-                new Doctor { FirstName = "Ricardo", LastName = "Perez", SpecialtyId = specialties["Pediatría"], MedicalLicenseNumber = "PE4001", Email="rperez@vitalcare.com", PhoneNumber="3141112233" },
-                new Doctor { FirstName = "Ana", LastName = "Martinez", SpecialtyId = specialties["Ginecología"], MedicalLicenseNumber = "GI5002", Email="amartinez@vitalcare.com", PhoneNumber="3153334455" },
-                new Doctor { FirstName = "Jorge", LastName = "Linares", SpecialtyId = specialties["Ortopedia"], MedicalLicenseNumber = "OR6003", Email="jlinares@vitalcare.com", PhoneNumber="3167778899" },
-                new Doctor { FirstName = "Beatriz", LastName = "Alvarez", SpecialtyId = specialties["Neurología"], MedicalLicenseNumber = "NE7004", Email="balvarez@vitalcare.com", PhoneNumber="3176665544" },
-                new Doctor { FirstName = "David", LastName = "Suarez", SpecialtyId = specialties["Oftalmología"], MedicalLicenseNumber = "OF8005", Email="dsuarez@vitalcare.com", PhoneNumber="3189990011" },
-                new Doctor { FirstName = "Elena", LastName = "Rojas", SpecialtyId = specialties["Psicología"], MedicalLicenseNumber = "PS9006", Email="erojas@vitalcare.com", PhoneNumber="3192223344" },
-                new Doctor { FirstName = "Mario", LastName = "Benavides", SpecialtyId = specialties["Endocrinología"], MedicalLicenseNumber = "EN1007", Email="mbenavides@vitalcare.com", PhoneNumber="3205556677" },
-                new Doctor { FirstName = "Lucia", LastName = "Castro", SpecialtyId = specialties["Medicina General"], MedicalLicenseNumber = "MG1008", Email="lcastro@vitalcare.com", PhoneNumber="3218887766" }
-
+            var doctorsData = new List<(string FirstName, string LastName, int SpecialtyId, string MedicalLicense, string Email, string Phone, string Password)>() {
+                ("Alejandro", "Guerra", specialties["Medicina General"], "MG1001", "aguerra@vitalcare.com", "3101234567", "DoctorPass1!"),
+                ("Sofia", "Ramirez", specialties["Cardiología"], "CA2002", "sramirez@vitalcare.com", "3119876543", "DoctorPass2!"),
+                ("Carlos", "Vega", specialties["Dermatología"], "DE3003", "cvega@vitalcare.com", "3125551122", "DoctorPass3!"),
+                ("Laura", "Mendez", specialties["Medicina General"], "MG1004", "lmendez@vitalcare.com", "3134443322", "DoctorPass4!"),
+                ("Ricardo", "Perez", specialties["Pediatría"], "PE4001", "rperez@vitalcare.com", "3141112233", "DoctorPass5!"),
+                ("Ana", "Martinez", specialties["Ginecología"], "GI5002", "amartinez@vitalcare.com", "3153334455", "DoctorPass6!"),
+                ("Jorge", "Linares", specialties["Ortopedia"], "OR6003", "jlinares@vitalcare.com", "3167778899", "DoctorPass7!"),
+                ("Beatriz", "Alvarez", specialties["Neurología"], "NE7004", "balvarez@vitalcare.com", "3176665544", "DoctorPass8!"),
+                ("David", "Suarez", specialties["Oftalmología"], "OF8005", "dsuarez@vitalcare.com", "3189990011", "DoctorPass9!"),
+                ("Elena", "Rojas", specialties["Psicología"], "PS9006", "erojas@vitalcare.com", "3192223344", "DoctorPass10!"),
+                ("Mario", "Benavides", specialties["Endocrinología"], "EN1007", "mbenavides@vitalcare.com", "3205556677", "DoctorPass11!"),
+                ("Lucia", "Castro", specialties["Medicina General"], "MG1008", "lcastro@vitalcare.com", "3218887766", "DoctorPass12!")
             };
 
-            await context.Doctors.AddRangeAsync(doctors);
-            await context.SaveChangesAsync();
-             logger.LogInformation($"{doctors.Count} médicos inicializados (seed).");
+            int doctorsCreatedCount = 0;
+            foreach (var docData in doctorsData)
+            {
+                // Crear el registro Doctor primero
+                var newDoctor = new Doctor
+                {
+                    FirstName = docData.FirstName,
+                    LastName = docData.LastName,
+                    SpecialtyId = docData.SpecialtyId,
+                    MedicalLicenseNumber = docData.MedicalLicense,
+                    Email = docData.Email,
+                    PhoneNumber = docData.Phone
+                };
+                context.Doctors.Add(newDoctor); // Add to context, but don't save yet
+
+                // Ahora crear el User asociado
+                var userExists = await userManager.FindByEmailAsync(docData.Email);
+                if (userExists == null)
+                {
+                    var newUser = new User { UserName = docData.Email, Email = docData.Email, EmailConfirmed = true };
+                    var result = await userManager.CreateAsync(newUser, docData.Password);
+                    if (result.Succeeded)
+                    {
+                        await userManager.AddToRoleAsync(newUser, "Doctor");
+                        logger.LogInformation($"Usuario Doctor '{docData.Email}' creado y añadido al rol Doctor.");
+                        doctorsCreatedCount++;
+                    }
+                    else
+                    {
+                        logger.LogError($"Error creando usuario Doctor '{docData.Email}'. Errores: {string.Join(", ", result.Errors.Select(e => e.Description))}");
+                        // Consider removing the Doctor record if User creation fails?
+                        context.Doctors.Remove(newDoctor);
+                    }
+                }
+                else
+                {
+                     logger.LogWarning($"Usuario '{docData.Email}' ya existe. Se asume que es el Doctor correcto. Asegurando rol Doctor.");
+                      if (!await userManager.IsInRoleAsync(userExists, "Doctor"))
+                      {
+                          await userManager.AddToRoleAsync(userExists, "Doctor"); // Ensure role
+                      }
+                }
+            }
+
+            await context.SaveChangesAsync(); // Save all doctors (and potentially removed ones)
+            logger.LogInformation($"Se intentaron inicializar {doctorsData.Count} doctores, {doctorsCreatedCount} nuevos usuarios Doctor creados.");
         }
 
         private static async Task SeedPatientsAsync(ApplicationDbContext context, UserManager<User> userManager, ILogger logger)

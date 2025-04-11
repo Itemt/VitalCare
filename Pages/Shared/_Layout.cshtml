@@ -57,6 +57,15 @@
                                     <a class="nav-link text-dark" asp-area="" asp-page="/Appointments/Create">Agendar Cita</a>
                                 </li>
                             }
+                            else if (User.IsInRole("Doctor"))
+                            {
+                                <li class="nav-item">
+                                    <a class="nav-link text-info fw-bold" asp-area="" asp-page="/Doctor/Agenda">Mi Agenda</a> @* Placeholder *@
+                                </li>
+                                 <li class="nav-item">
+                                    <a class="nav-link text-dark" asp-area="" asp-page="/Doctor/GeneratePrescription">Generar Fórmula</a> @* Placeholder *@
+                                </li>
+                            }
                             // Add other roles or a default view if needed
                         }
                         else

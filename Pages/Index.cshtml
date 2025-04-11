@@ -26,6 +26,11 @@
                 <a class="btn btn-light btn-lg me-2" asp-page="/Appointments/Create" role="button">Agendar Nueva Cita</a>
                 <a class="btn btn-outline-light btn-lg" asp-page="/Appointments/Index" role="button">Ver Mis Citas</a>
             }
+            else if (User.IsInRole("Doctor"))
+            {
+                <a class="btn btn-light btn-lg me-2" asp-page="/Doctor/Agenda" role="button">Ver Mi Agenda</a>
+                <a class="btn btn-outline-light btn-lg" asp-page="/Doctor/Patients" role="button">Mis Pacientes</a>
+            }
             else
             {
                 // Fallback para otros roles conectados, si los hay
