@@ -13,7 +13,7 @@ var builder = WebApplication.CreateBuilder(args);
 // Add DbContext configuration
 var connectionString = builder.Configuration.GetConnectionString("DefaultConnection") ?? throw new InvalidOperationException("Connection string 'DefaultConnection' not found.");
 builder.Services.AddDbContext<ApplicationDbContext>(options =>
-    options.UseSqlServer(connectionString)); // Use appropriate provider (UseSqlite, UseNpgsql, etc.) if not using SQL Server
+    options.UseNpgsql(connectionString)); // Use appropriate provider (UseSqlite, UseNpgsql, etc.) if not using SQL Server
 
 // Add Identity services
 builder.Services.AddIdentity<User, IdentityRole<int>>(options => options.SignIn.RequireConfirmedAccount = false) // Using our User class and specifying the Role type
