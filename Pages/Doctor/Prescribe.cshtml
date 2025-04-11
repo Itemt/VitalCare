@@ -1,0 +1,80 @@
+@page "{appointmentId:int?}"
+@model CitasEPS.Pages.Doctor.PrescribeModel
+
+@{
+    ViewData["Title"] = "Crear Prescripción";
+}
+
+<h1><i class="bi bi-file-medical-fill"></i> Crear Prescripción</h1>
+
+@if (Model.Appointment != null)
+{
+    <h4>Para Cita:</h4>
+    <hr />
+    <dl class="row">
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Appointment.Patient)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Appointment.Patient.FullName)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Appointment.AppointmentDateTime)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Appointment.AppointmentDateTime)
+        </dd>
+         <dt class="col-sm-2">
+            Médico
+        </dt>
+        <dd class="col-sm-10">
+            Dr(a). @Html.DisplayFor(model => model.Appointment.Doctor.FullName)
+        </dd>
+    </dl>
+
+    <hr />
+    <div class="row">
+        <div class="col-md-6">
+            <form method="post">
+                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                
+                @* Hidden input for AppointmentId *@
+                <input type="hidden" asp-for="Prescription.AppointmentId" />
+
+                <div class="form-group mb-3">
+                    <label asp-for="Prescription.MedicationId" class="control-label"></label>
+                    <select asp-for="Prescription.MedicationId" class="form-control form-select" asp-items="Model.Medications">
+                        <option value="">-- Seleccione Medicamento --</option>
+                    </select>
+                    <span asp-validation-for="Prescription.MedicationId" class="text-danger"></span>
+                </div>
+                <div class="form-group mb-3">
+                    <label asp-for="Prescription.Dosage" class="control-label"></label>
+                    <input asp-for="Prescription.Dosage" class="form-control" />
+                    <span asp-validation-for="Prescription.Dosage" class="text-danger"></span>
+                </div>
+                <div class="form-group mb-3">
+                    <label asp-for="Prescription.Instructions" class="control-label"></label>
+                    <textarea asp-for="Prescription.Instructions" class="form-control" rows="3"></textarea>
+                    <span asp-validation-for="Prescription.Instructions" class="text-danger"></span>
+                </div>
+                
+                @* PrescriptionDate, DoctorId, PatientId son establecidos en el backend *@
+
+                <div class="form-group mt-4">
+                    <button type="submit" class="btn btn-primary me-2"><i class="bi bi-check-circle"></i> Guardar Prescripción</button>
+                    <a asp-page="./Agenda" class="btn btn-secondary"><i class="bi bi-arrow-left-circle"></i> Volver a la Agenda</a>
+                </div>
+            </form>
+        </div>
+    </div>
+}
+else
+{
+    <div class="alert alert-warning">No se pudo cargar la información de la cita para prescribir.</div>
+     <a asp-page="./Agenda" class="btn btn-secondary"><i class="bi bi-arrow-left-circle"></i> Volver a la Agenda</a>
+}
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+} 

@@ -204,6 +204,26 @@ build_metadata.AdditionalFiles.CssScope =
 build_metadata.AdditionalFiles.TargetPath = UGFnZXMvQWRtaW4vTWFuYWdlU3BlY2lhbHRpZXMuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
+[/Users/cristianramos/Desktop/Proyectos/AplicativosWeb/CitasEPS/Pages/Admin/Medications/Create.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXMvQWRtaW4vTWVkaWNhdGlvbnMvQ3JlYXRlLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[/Users/cristianramos/Desktop/Proyectos/AplicativosWeb/CitasEPS/Pages/Admin/Medications/Delete.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXMvQWRtaW4vTWVkaWNhdGlvbnMvRGVsZXRlLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[/Users/cristianramos/Desktop/Proyectos/AplicativosWeb/CitasEPS/Pages/Admin/Medications/Details.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXMvQWRtaW4vTWVkaWNhdGlvbnMvRGV0YWlscy5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[/Users/cristianramos/Desktop/Proyectos/AplicativosWeb/CitasEPS/Pages/Admin/Medications/Edit.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXMvQWRtaW4vTWVkaWNhdGlvbnMvRWRpdC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[/Users/cristianramos/Desktop/Proyectos/AplicativosWeb/CitasEPS/Pages/Admin/Medications/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXMvQWRtaW4vTWVkaWNhdGlvbnMvSW5kZXguY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
 [/Users/cristianramos/Desktop/Proyectos/AplicativosWeb/CitasEPS/Pages/Appointments/Create.cshtml]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXMvQXBwb2ludG1lbnRzL0NyZWF0ZS5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
@@ -222,6 +242,30 @@ build_metadata.AdditionalFiles.CssScope =
 
 [/Users/cristianramos/Desktop/Proyectos/AplicativosWeb/CitasEPS/Pages/Appointments/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXMvQXBwb2ludG1lbnRzL0luZGV4LmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[/Users/cristianramos/Desktop/Proyectos/AplicativosWeb/CitasEPS/Pages/Doctor/Agenda.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXMvRG9jdG9yL0FnZW5kYS5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[/Users/cristianramos/Desktop/Proyectos/AplicativosWeb/CitasEPS/Pages/Doctor/DeletePrescription.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXMvRG9jdG9yL0RlbGV0ZVByZXNjcmlwdGlvbi5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[/Users/cristianramos/Desktop/Proyectos/AplicativosWeb/CitasEPS/Pages/Doctor/EditPrescription.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXMvRG9jdG9yL0VkaXRQcmVzY3JpcHRpb24uY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[/Users/cristianramos/Desktop/Proyectos/AplicativosWeb/CitasEPS/Pages/Doctor/PatientHistory.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXMvRG9jdG9yL1BhdGllbnRIaXN0b3J5LmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[/Users/cristianramos/Desktop/Proyectos/AplicativosWeb/CitasEPS/Pages/Doctor/Patients.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXMvRG9jdG9yL1BhdGllbnRzLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[/Users/cristianramos/Desktop/Proyectos/AplicativosWeb/CitasEPS/Pages/Doctor/Prescribe.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXMvRG9jdG9yL1ByZXNjcmliZS5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
 [/Users/cristianramos/Desktop/Proyectos/AplicativosWeb/CitasEPS/Pages/Error.cshtml]

@@ -42,6 +42,51 @@
             @Html.DisplayFor(model => model.Appointment.Notes)
         </dd>
     </dl>
+
+    @* Sección de Prescripciones *@
+    @if (Model.Appointment.Prescriptions != null && Model.Appointment.Prescriptions.Any())
+    {
+        <h4 class="mt-4">Prescripciones Asociadas</h4>
+        <hr />
+        <table class="table table-sm table-bordered">
+            <thead class="table-light">
+                <tr>
+                    <th>Medicamento</th>
+                    <th>Dosis</th>
+                    <th>Instrucciones</th>
+                    <th>Fecha Prescripción</th>
+                    @* Se podría añadir botón para editar/eliminar prescripción si es necesario *@
+                    @if (User.IsInRole("Doctor"))
+                    {
+                         <th>Acciones</th>
+                    }
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var prescription in Model.Appointment.Prescriptions.OrderByDescending(p => p.PrescriptionDate))
+                {
+                    <tr>
+                        <td>@Html.DisplayFor(modelItem => prescription.Medication.Name)</td>
+                        <td>@Html.DisplayFor(modelItem => prescription.Dosage)</td>
+                        <td>@Html.DisplayFor(modelItem => prescription.Instructions)</td>
+                        <td>@Html.DisplayFor(modelItem => prescription.PrescriptionDate)</td>
+                        @if (User.IsInRole("Doctor"))
+                        {
+                            <td>
+                                <a asp-page="/Doctor/EditPrescription" asp-route-id="@prescription.Id" class="btn btn-warning btn-sm" title="Editar Prescripción"><i class="bi bi-pencil-square"></i></a>
+                                <a asp-page="/Doctor/DeletePrescription" asp-route-id="@prescription.Id" class="btn btn-danger btn-sm" title="Eliminar Prescripción"><i class="bi bi-trash3"></i></a>
+                            </td>
+                        }
+                    </tr>
+                }
+            </tbody>
+        </table>
+    }
+    else
+    {
+        <p class="mt-3"><em>No hay prescripciones asociadas a esta cita.</em></p>
+    }
+
 </div>
 <div class="mt-3">
     <a asp-page="./Edit" asp-route-id="@Model.Appointment.Id" class="btn btn-warning">Editar</a>

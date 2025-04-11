@@ -124,7 +124,7 @@ namespace CitasEPS.Pages.Appointments
                                       .OrderBy(d => d.LastName)
                                       .ThenBy(d => d.FirstName)
                                       .ToListAsync();
-            DoctorNameSL = new SelectList(doctors, nameof(Doctor.Id), nameof(Doctor.FullName), selectedDoctor);
+            DoctorNameSL = new SelectList(doctors, nameof(Models.Doctor.Id), nameof(Models.Doctor.FullName), selectedDoctor);
         }
     }
 } 

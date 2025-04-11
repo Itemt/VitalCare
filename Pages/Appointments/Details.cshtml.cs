@@ -12,7 +12,7 @@ using Microsoft.Extensions.Logging;
 
 namespace CitasEPS.Pages.Appointments
 {
-    [Authorize(Roles = "Patient,Admin")]
+    [Authorize(Roles = "Patient,Admin,Doctor")]
     public class DetailsModel : PageModel
     {
         private readonly ApplicationDbContext _context;
@@ -34,11 +34,13 @@ namespace CitasEPS.Pages.Appointments
                 return NotFound();
             }
 
-            // Obtener la cita incluyendo Paciente y Médico relacionados
+            // Obtener la cita incluyendo Paciente, Médico, Especialidad y Prescripciones
             var appointment = await _context.Appointments
                 .Include(a => a.Doctor)
                     .ThenInclude(d => d.Specialty)
                 .Include(a => a.Patient)
+                .Include(a => a.Prescriptions)
+                    .ThenInclude(p => p.Medication)
                 .AsNoTracking()
                 .FirstOrDefaultAsync(m => m.Id == id);
 

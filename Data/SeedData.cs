@@ -34,6 +34,9 @@ namespace CitasEPS.Data
             // Inicializar Pacientes
             await SeedPatientsAsync(context, userManager, logger);
 
+            // Inicializar Medicamentos
+            await SeedMedicationsAsync(context, logger);
+
             // Inicializar Citas
             await SeedAppointmentsAsync(context, logger);
 
@@ -270,6 +273,33 @@ namespace CitasEPS.Data
                 }
             }
              logger.LogInformation($"Se intentaron inicializar {patientsToAdd.Count} pacientes, {patientsCreatedCount} nuevos registros creados.");
+        }
+
+        private static async Task SeedMedicationsAsync(ApplicationDbContext context, ILogger logger)
+        {
+            if (await context.Medications.AnyAsync())
+            {
+                logger.LogInformation("Medicamentos ya inicializados (seed).");
+                return; // Base de datos ya inicializada
+            }
+
+            var medications = new List<Medication>
+            {
+                new Medication { Name = "Acetaminofén 500mg", Description = "Analgésico y antipirético común." },
+                new Medication { Name = "Ibuprofeno 400mg", Description = "Antiinflamatorio no esteroideo (AINE)." },
+                new Medication { Name = "Amoxicilina 500mg", Description = "Antibiótico betalactámico." },
+                new Medication { Name = "Loratadina 10mg", Description = "Antihistamínico para alergias." },
+                new Medication { Name = "Omeprazol 20mg", Description = "Inhibidor de la bomba de protones para el reflujo ácido." },
+                new Medication { Name = "Salbutamol Inhalador", Description = "Broncodilatador para el asma." },
+                new Medication { Name = "Metformina 500mg", Description = "Antidiabético oral." },
+                new Medication { Name = "Atorvastatina 20mg", Description = "Estatina para reducir el colesterol." },
+                new Medication { Name = "Losartán 50mg", Description = "Antagonista del receptor de angiotensina II para la hipertensión." },
+                new Medication { Name = "Sertralina 50mg", Description = "Inhibidor selectivo de la recaptación de serotonina (ISRS) para la depresión/ansiedad." }
+            };
+
+            await context.Medications.AddRangeAsync(medications);
+            await context.SaveChangesAsync();
+            logger.LogInformation($"{medications.Count} medicamentos inicializados (seed).");
         }
 
         private static async Task SeedAppointmentsAsync(ApplicationDbContext context, ILogger logger)

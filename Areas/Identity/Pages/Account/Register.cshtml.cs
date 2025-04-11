@@ -47,56 +47,56 @@ namespace CitasEPS.Areas.Identity.Pages.Account
         }
 
         /// <summary>
-        ///     This API supports the ASP.NET Core Identity default UI infrastructure and is not intended to be used
-        ///     directly from your code. This API may change or be removed in future releases.
+        ///     Esta API soporta la infraestructura UI por defecto de ASP.NET Core Identity y no está pensada para ser usada
+        ///     directamente desde tu código. Esta API puede cambiar o ser eliminada en futuras versiones.
         /// </summary>
         [BindProperty]
         public InputModel Input { get; set; }
 
         /// <summary>
-        ///     This API supports the ASP.NET Core Identity default UI infrastructure and is not intended to be used
-        ///     directly from your code. This API may change or be removed in future releases.
+        ///     Esta API soporta la infraestructura UI por defecto de ASP.NET Core Identity y no está pensada para ser usada
+        ///     directamente desde tu código. Esta API puede cambiar o ser eliminada en futuras versiones.
         /// </summary>
         public string ReturnUrl { get; set; }
 
         /// <summary>
-        ///     This API supports the ASP.NET Core Identity default UI infrastructure and is not intended to be used
-        ///     directly from your code. This API may change or be removed in future releases.
+        ///     Esta API soporta la infraestructura UI por defecto de ASP.NET Core Identity y no está pensada para ser usada
+        ///     directamente desde tu código. Esta API puede cambiar o ser eliminada en futuras versiones.
         /// </summary>
         public IList<AuthenticationScheme> ExternalLogins { get; set; }
 
         /// <summary>
-        ///     This API supports the ASP.NET Core Identity default UI infrastructure and is not intended to be used
-        ///     directly from your code. This API may change or be removed in future releases.
+        ///     Esta API soporta la infraestructura UI por defecto de ASP.NET Core Identity y no está pensada para ser usada
+        ///     directamente desde tu código. Esta API puede cambiar o ser eliminada en futuras versiones.
         /// </summary>
         public class InputModel
         {
             /// <summary>
-            ///     This API supports the ASP.NET Core Identity default UI infrastructure and is not intended to be used
-            ///     directly from your code. This API may change or be removed in future releases.
+            ///     Esta API soporta la infraestructura UI por defecto de ASP.NET Core Identity y no está pensada para ser usada
+            ///     directamente desde tu código. Esta API puede cambiar o ser eliminada en futuras versiones.
             /// </summary>
-            [Required]
-            [EmailAddress]
-            [Display(Name = "Email")]
+            [Required(ErrorMessage = "El campo Correo Electrónico es obligatorio.")]
+            [EmailAddress(ErrorMessage = "El formato del Correo Electrónico no es válido.")]
+            [Display(Name = "Correo Electrónico")]
             public string Email { get; set; }
 
             /// <summary>
-            ///     This API supports the ASP.NET Core Identity default UI infrastructure and is not intended to be used
-            ///     directly from your code. This API may change or be removed in future releases.
+            ///     Esta API soporta la infraestructura UI por defecto de ASP.NET Core Identity y no está pensada para ser usada
+            ///     directamente desde tu código. Esta API puede cambiar o ser eliminada en futuras versiones.
             /// </summary>
-            [Required]
-            [StringLength(100, ErrorMessage = "The {0} must be at least {2} and at max {1} characters long.", MinimumLength = 6)]
+            [Required(ErrorMessage = "El campo Contraseña es obligatorio.")]
+            [StringLength(100, ErrorMessage = "La {0} debe tener al menos {2} y como máximo {1} caracteres.", MinimumLength = 6)]
             [DataType(DataType.Password)]
-            [Display(Name = "Password")]
+            [Display(Name = "Contraseña")]
             public string Password { get; set; }
 
             /// <summary>
-            ///     This API supports the ASP.NET Core Identity default UI infrastructure and is not intended to be used
-            ///     directly from your code. This API may change or be removed in future releases.
+            ///     Esta API soporta la infraestructura UI por defecto de ASP.NET Core Identity y no está pensada para ser usada
+            ///     directamente desde tu código. Esta API puede cambiar o ser eliminada en futuras versiones.
             /// </summary>
             [DataType(DataType.Password)]
-            [Display(Name = "Confirm password")]
-            [Compare("Password", ErrorMessage = "The password and confirmation password do not match.")]
+            [Display(Name = "Confirmar contraseña")]
+            [Compare("Password", ErrorMessage = "La contraseña y la contraseña de confirmación no coinciden.")]
             public string ConfirmPassword { get; set; }
         }
 
@@ -121,7 +121,7 @@ namespace CitasEPS.Areas.Identity.Pages.Account
 
                 if (result.Succeeded)
                 {
-                    _logger.LogInformation("User created a new account with password.");
+                    _logger.LogInformation("Usuario creó una nueva cuenta con contraseña.");
 
                     var userId = await _userManager.GetUserIdAsync(user);
                     var code = await _userManager.GenerateEmailConfirmationTokenAsync(user);
@@ -132,8 +132,8 @@ namespace CitasEPS.Areas.Identity.Pages.Account
                         values: new { area = "Identity", userId = userId, code = code, returnUrl = returnUrl },
                         protocol: Request.Scheme);
 
-                    await _emailSender.SendEmailAsync(Input.Email, "Confirm your email",
-                        $"Please confirm your account by <a href='{HtmlEncoder.Default.Encode(callbackUrl)}'>clicking here</a>.");
+                    await _emailSender.SendEmailAsync(Input.Email, "Confirma tu correo electrónico",
+                        $"Por favor confirma tu cuenta <a href='{HtmlEncoder.Default.Encode(callbackUrl)}'>haciendo clic aquí</a>.");
 
                     if (_userManager.Options.SignIn.RequireConfirmedAccount)
                     {
@@ -141,17 +141,20 @@ namespace CitasEPS.Areas.Identity.Pages.Account
                     }
                     else
                     {
+                        await _userManager.AddToRoleAsync(user, "Patient");
+                        _logger.LogInformation($"Usuario {user.UserName} asignado al rol 'Patient' por defecto.");
+
                         await _signInManager.SignInAsync(user, isPersistent: false);
                         return LocalRedirect(returnUrl);
                     }
                 }
                 foreach (var error in result.Errors)
                 {
-                    ModelState.AddModelError(string.Empty, error.Description);
+                    ModelState.AddModelError(string.Empty, TranslateIdentityError(error.Description));
                 }
             }
 
-            // If we got this far, something failed, redisplay form
+            // Si llegamos hasta aquí, algo falló, volver a mostrar el formulario
             return Page();
         }
 
@@ -163,9 +166,9 @@ namespace CitasEPS.Areas.Identity.Pages.Account
             }
             catch
             {
-                throw new InvalidOperationException($"Can't create an instance of '{nameof(User)}'. " +
-                    $"Ensure that '{nameof(User)}' is not an abstract class and has a parameterless constructor, or alternatively " +
-                    $"override the register page in /Areas/Identity/Pages/Account/Register.cshtml");
+                throw new InvalidOperationException($"No se puede crear una instancia de '{nameof(User)}'. " +
+                    $"Asegúrese de que '{nameof(User)}' no es una clase abstracta y tiene un constructor sin parámetros, o alternativamente " +
+                    $"sobrescriba la página de registro en /Areas/Identity/Pages/Account/Register.cshtml");
             }
         }
 
@@ -173,9 +176,24 @@ namespace CitasEPS.Areas.Identity.Pages.Account
         {
             if (!_userManager.SupportsUserEmail)
             {
-                throw new NotSupportedException("The default UI requires a user store with email support.");
+                throw new NotSupportedException("La UI por defecto requiere un almacén de usuarios con soporte para correo electrónico.");
             }
             return (IUserEmailStore<User>)_userStore;
+        }
+
+        private string TranslateIdentityError(string englishError)
+        {
+            if (englishError.Contains("Passwords must have at least one digit"))
+                return "Las contraseñas deben tener al menos un dígito ('0'-'9').";
+            if (englishError.Contains("Passwords must have at least one lowercase"))
+                 return "Las contraseñas deben tener al menos una minúscula ('a'-'z').";
+             if (englishError.Contains("Passwords must have at least one uppercase"))
+                 return "Las contraseñas deben tener al menos una mayúscula ('A'-'Z').";
+            if (englishError.Contains("Passwords must have at least one non alphanumeric character"))
+                 return "Las contraseñas deben tener al menos un caracter no alfanumérico.";
+            if (englishError.Contains("is already taken"))
+                 return "El nombre de usuario o correo ya está en uso.";
+            return englishError;
         }
     }
 }
