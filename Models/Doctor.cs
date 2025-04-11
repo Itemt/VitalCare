@@ -9,37 +9,38 @@ namespace CitasEPS.Models
     {
         public int Id { get; set; }
 
-        [Required]
+        [Required(ErrorMessage = "El nombre es requerido.")]
         [StringLength(100)]
         [Display(Name = "Nombres")]
         public string FirstName { get; set; } = string.Empty;
 
-        [Required]
+        [Required(ErrorMessage = "El apellido es requerido.")]
         [StringLength(100)]
         [Display(Name = "Apellidos")]
         public string LastName { get; set; } = string.Empty;
 
-        [NotMapped] // This property is not stored in the database
+        [NotMapped] // Esta propiedad no se almacena en la base de datos
         [Display(Name = "Nombre Completo")]
         public string FullName => $"{FirstName} {LastName}";
 
-        [Required]
+        [Required(ErrorMessage = "La especialidad es requerida.")]
         [Display(Name = "Especialidad")]
-        public int SpecialtyId { get; set; } // Foreign key for Specialty
-        public Specialty? Specialty { get; set; } // Navigation property
+        public int SpecialtyId { get; set; } // Llave foránea para Specialty
+        public Specialty? Specialty { get; set; } // Propiedad de navegación
 
         [StringLength(20)]
         [Display(Name = "Número de Registro Médico")]
         public string? MedicalLicenseNumber { get; set; }
 
-        [Phone]
+        [Phone(ErrorMessage = "El formato del teléfono no es válido.")]
         [Display(Name = "Teléfono")]
         public string? PhoneNumber { get; set; }
 
-        [EmailAddress]
+        [EmailAddress(ErrorMessage = "El formato del correo electrónico no es válido.")]
         [Display(Name = "Correo Electrónico")]
         public string? Email { get; set; }
 
+        // Colección de citas asociadas
         public ICollection<Appointment>? Appointments { get; set; }
     }
 } 

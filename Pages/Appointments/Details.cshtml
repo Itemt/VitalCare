@@ -12,31 +12,31 @@
     <hr />
     <dl class="row">
         <dt class="col-sm-3">
-            @Html.DisplayNameFor(model => model.Appointment.AppointmentDateTime)
+            Fecha y Hora
         </dt>
         <dd class="col-sm-9">
             @Html.DisplayFor(model => model.Appointment.AppointmentDateTime)
         </dd>
         <dt class="col-sm-3">
-            @Html.DisplayNameFor(model => model.Appointment.Patient)
+            Paciente
         </dt>
         <dd class="col-sm-9">
             @Html.DisplayFor(model => model.Appointment.Patient.FullName) <small>(ID: @Html.DisplayFor(model => model.Appointment.Patient.DocumentId))</small>
         </dd>
         <dt class="col-sm-3">
-            @Html.DisplayNameFor(model => model.Appointment.Doctor)
+            Médico
         </dt>
         <dd class="col-sm-9">
-            @Html.DisplayFor(model => model.Appointment.Doctor.FullName) <small>(Especialidad: @Html.DisplayFor(model => model.Appointment.Doctor.Specialty))</small>
+            @Html.DisplayFor(model => model.Appointment.Doctor.FullName) <small>(Especialidad: @Html.DisplayFor(model => model.Appointment.Doctor.Specialty.Name))</small>
         </dd>
         <dt class="col-sm-3">
-            @Html.DisplayNameFor(model => model.Appointment.IsConfirmed)
+            Confirmada
         </dt>
         <dd class="col-sm-9">
              @(Model.Appointment.IsConfirmed ? "Confirmada" : "Pendiente")
         </dd>
         <dt class="col-sm-3">
-            @Html.DisplayNameFor(model => model.Appointment.Notes)
+            Notas / Motivo
         </dt>
         <dd class="col-sm-9">
             @Html.DisplayFor(model => model.Appointment.Notes)
@@ -44,6 +44,6 @@
     </dl>
 </div>
 <div class="mt-3">
-    <a asp-page="./Edit" asp-route-id="@Model.Appointment.Id" class="btn btn-warning">Editar</a> |
+    <a asp-page="./Edit" asp-route-id="@Model.Appointment.Id" class="btn btn-warning">Editar</a>
     <a asp-page="./Index" class="btn btn-secondary">Volver al Listado</a>
 </div> 

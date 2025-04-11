@@ -7,12 +7,12 @@ namespace CitasEPS.Models
     {
         public int Id { get; set; }
 
-        [Required]
+        [Required(ErrorMessage = "El nombre de la especialidad es requerido.")]
         [StringLength(100)]
         [Display(Name = "Nombre Especialidad")]
         public string Name { get; set; } = string.Empty;
 
-        // Navigation property: Collection of Doctors that have this Specialty
+        // Propiedad de navegación: Colección de Médicos que tienen esta Especialidad
         public ICollection<Doctor>? Doctors { get; set; }
     }
 } 

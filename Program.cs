@@ -8,30 +8,30 @@ using Microsoft.AspNetCore.Identity.UI.Services;
 
 var builder = WebApplication.CreateBuilder(args);
 
-// Add services to the container.
+// Añadir servicios al contenedor.
 
-// Add DbContext configuration
-var connectionString = builder.Configuration.GetConnectionString("DefaultConnection") ?? throw new InvalidOperationException("Connection string 'DefaultConnection' not found.");
+// Configuración DbContext
+var connectionString = builder.Configuration.GetConnectionString("DefaultConnection") ?? throw new InvalidOperationException("Cadena de conexión 'DefaultConnection' no encontrada.");
 builder.Services.AddDbContext<ApplicationDbContext>(options =>
-    options.UseNpgsql(connectionString)); // Use appropriate provider (UseSqlite, UseNpgsql, etc.) if not using SQL Server
+    options.UseNpgsql(connectionString)); // Usar proveedor apropiado (UseSqlite, UseNpgsql, etc.) si no es SQL Server
 
-// Add Identity services
-builder.Services.AddIdentity<User, IdentityRole<int>>(options => options.SignIn.RequireConfirmedAccount = false) // Using our User class and specifying the Role type
+// Añadir servicios de Identity
+builder.Services.AddIdentity<User, IdentityRole<int>>(options => options.SignIn.RequireConfirmedAccount = false) // Usando nuestra clase User y especificando el tipo de Rol
     .AddEntityFrameworkStores<ApplicationDbContext>()
     .AddDefaultTokenProviders()
     .AddClaimsPrincipalFactory<CustomUserClaimsPrincipalFactory>();
 
-// Register IEmailSender
+// Registrar IEmailSender
 builder.Services.AddTransient<IEmailSender, EmailSender>();
 
-// Add Authorization policies
+// Añadir políticas de Autorización
 builder.Services.AddAuthorization(options =>
 {
     options.AddPolicy("Admin", policy => policy.RequireClaim("IsAdmin", "true"));
-    // Add other policies here if needed
+    // Añadir otras políticas aquí si es necesario
 });
 
-// Configure Razor Pages options to support Identity areas
+// Configurar opciones de Razor Pages para soportar áreas de Identity
 builder.Services.AddRazorPages(options =>
 {
     options.Conventions.AuthorizeAreaFolder("Identity", "/Account/Manage");
@@ -40,7 +40,7 @@ builder.Services.AddRazorPages(options =>
 
 var app = builder.Build();
 
-// Apply migrations automatically on startup (Development recommended)
+// Aplicar migraciones automáticamente al inicio (recomendado en Desarrollo)
 using (var scope = app.Services.CreateScope())
 {
     var services = scope.ServiceProvider;
@@ -49,9 +49,9 @@ using (var scope = app.Services.CreateScope())
 
     try
     {
-        logger.LogInformation("Attempting to migrate database...");
+        logger.LogInformation("Intentando migrar base de datos...");
 
-        // Retry logic for database connection/migration
+        // Lógica de reintento para conexión/migración de BD
         int maxRetries = 5;
         int delaySeconds = 5;
         for (int i = 0; i < maxRetries; i++)
@@ -59,22 +59,22 @@ using (var scope = app.Services.CreateScope())
             try
             {
                 await context.Database.MigrateAsync();
-                logger.LogInformation("Database migration successful.");
-                break; // Exit loop if successful
+                logger.LogInformation("Migración de base de datos exitosa.");
+                break; // Salir del bucle si es exitoso
             }
             catch (Exception exInner)
             {
-                logger.LogWarning(exInner, "Error migrating DB on attempt {AttemptNumber}. Retrying in {DelaySeconds}s...", i + 1, delaySeconds);
-                if (i == maxRetries - 1) // If last attempt failed, rethrow
+                logger.LogWarning(exInner, "Error migrando BD en intento {AttemptNumber}. Reintentando en {DelaySeconds}s...", i + 1, delaySeconds);
+                if (i == maxRetries - 1) // Si el último intento falló, relanzar
                 {
-                    logger.LogError("Database migration failed after {MaxRetries} attempts.", maxRetries);
+                    logger.LogError("Migración de base de datos falló después de {MaxRetries} intentos.", maxRetries);
                     throw;
                 }
                 await Task.Delay(TimeSpan.FromSeconds(delaySeconds));
             }
         }
 
-        // Seed data after successful migration
+        // Inicializar datos (seed) después de migración exitosa
         var roleManager = services.GetRequiredService<RoleManager<IdentityRole<int>>>();
         var userManager = services.GetRequiredService<UserManager<User>>();
         await SeedData.Initialize(services, context, userManager, roleManager, logger);
@@ -82,18 +82,18 @@ using (var scope = app.Services.CreateScope())
     }
     catch (Exception ex)
     {
-        logger.LogError(ex, "An error occurred setting up the database.");
-        // Decide if the app should stop or continue if setup fails
-        // For Docker, it might be better to let it crash if the DB isn't available
-        throw; // Rethrow to potentially stop the container from running in a bad state
+        logger.LogError(ex, "Ocurrió un error configurando la base de datos.");
+        // Decidir si la app debe detenerse o continuar si la configuración falla
+        // Para Docker, podría ser mejor dejar que falle si la BD no está disponible
+        throw; // Relanzar para potencialmente detener el contenedor en mal estado
     }
 }
 
-// Configure the HTTP request pipeline.
+// Configurar el pipeline de solicitud HTTP.
 if (!app.Environment.IsDevelopment())
 {
     app.UseExceptionHandler("/Error");
-    // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
+    // El valor HSTS predeterminado es 30 días. Puede cambiar esto para escenarios de producción, ver https://aka.ms/aspnetcore-hsts.
     app.UseHsts();
 }
 
@@ -102,7 +102,7 @@ app.UseStaticFiles();
 
 app.UseRouting();
 
-// Add Authentication middleware *before* Authorization
+// Añadir middleware de Autenticación *antes* de Autorización
 app.UseAuthentication();
 app.UseAuthorization();
 

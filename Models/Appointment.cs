@@ -7,21 +7,25 @@ namespace CitasEPS.Models
     {
         public int Id { get; set; }
 
-        [Required]
+        [Required(ErrorMessage = "La fecha y hora de la cita son requeridas.")]
         [Display(Name = "Fecha y Hora")]
         public DateTime AppointmentDateTime { get; set; }
 
-        [Required]
+        [Required(ErrorMessage = "El paciente es requerido.")]
+        [Display(Name = "Paciente")]
         public int PatientId { get; set; }
         public Patient? Patient { get; set; }
 
-        [Required]
+        [Required(ErrorMessage = "El médico es requerido.")]
+        [Display(Name = "Médico")]
         public int DoctorId { get; set; }
         public Doctor? Doctor { get; set; }
 
-        [StringLength(500)]
+        [StringLength(500, ErrorMessage = "Las notas no pueden exceder los 500 caracteres.")]
+        [Display(Name = "Notas / Motivo")]
         public string? Notes { get; set; }
 
+        [Display(Name = "Confirmada")]
         public bool IsConfirmed { get; set; } = false;
     }
 } 

@@ -13,7 +13,7 @@ using System.Security.Claims; // Required for ClaimsPrincipal extension methods 
 
 namespace CitasEPS.Pages.Appointments
 {
-    [Authorize(Roles = "Patient")] // Require Patient role
+    [Authorize(Roles = "Patient")] // Requerir rol Paciente
     public class IndexModel : PageModel
     {
         private readonly ApplicationDbContext _context;
@@ -35,31 +35,31 @@ namespace CitasEPS.Pages.Appointments
             var user = await _userManager.GetUserAsync(User);
             if (user == null)
             {
-                return Challenge(); // Not logged in
+                return Challenge(); // No ha iniciado sesión
             }
 
             var patient = await _context.Patients.FirstOrDefaultAsync(p => p.Email == user.Email);
             if (patient == null)
             {
-                 _logger.LogWarning($"No Patient record found for user {user.Email}.");
-                 // Optionally set an error message
+                 _logger.LogWarning($"No se encontró registro de Paciente para el usuario {user.Email}."); // Changed Log
+                 // Opcionalmente establecer un mensaje de error
                  TempData["ErrorMessage"] = "No se encontró su registro de paciente.";
-                 Appointment = new List<Appointment>(); // Assign empty list
-                 return Page(); // Show the page but with no data
+                 Appointment = new List<Appointment>(); // Asignar lista vacía
+                 return Page(); // Mostrar la página pero sin datos
             }
 
-            PatientName = patient.FullName; // Store patient name if needed in the view
+            PatientName = patient.FullName; // Almacenar nombre del paciente si se necesita en la vista
 
-            // Filter appointments for the logged-in patient
+            // Filtrar citas para el paciente conectado
             Appointment = await _context.Appointments
                 .Where(a => a.PatientId == patient.Id)
-                .Include(a => a.Doctor) // Include Doctor details
-                    .ThenInclude(d => d.Specialty) // Include Doctor's Specialty
-                // .Include(a => a.Patient) // No longer needed as we filter by patient ID
-                .OrderBy(a => a.AppointmentDateTime) // Order by date
+                .Include(a => a.Doctor) // Incluir detalles del Médico
+                    .ThenInclude(d => d.Specialty) // Incluir Especialidad del Médico
+                // .Include(a => a.Patient) // Ya no es necesario porque filtramos por patient ID
+                .OrderBy(a => a.AppointmentDateTime) // Ordenar por fecha
                 .ToListAsync();
 
-             _logger.LogInformation($"Loaded {Appointment.Count} appointments for patient {patient.FullName} (ID: {patient.Id}).");
+             _logger.LogInformation($"Se cargaron {Appointment.Count} citas para el paciente {patient.FullName} (ID: {patient.Id})."); // Changed Log
 
             return Page();
         }

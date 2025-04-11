@@ -3,12 +3,13 @@ using System.ComponentModel.DataAnnotations;
 
 namespace CitasEPS.Models
 {
-    // Inherit from IdentityUser<int> to use int as the key type
+    // Heredar de IdentityUser<int> para usar int como tipo de clave
     public class User : IdentityUser<int>
     {
-        // Id, Email, PasswordHash, UserName, etc., are inherited from IdentityUser
+        // Id, Email, PasswordHash, UserName, etc., son heredados de IdentityUser
 
-        // Custom properties can be added here
+        // Propiedades personalizadas pueden ser añadidas aquí
+        [Display(Name = "Es Administrador")]
         public bool IsAdmin { get; set; } = false;
     }
 } 

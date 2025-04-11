@@ -23,10 +23,10 @@ namespace CitasEPS.Pages.Admin
 
         public async Task OnGetAsync()
         {
-            // Future: Load doctors from database
-             _logger.LogInformation("Loading doctor management page.");
+            // Futuro: Cargar médicos desde la base de datos
+             _logger.LogInformation("Cargando página de gestión de médicos.");
             // Doctors = await _context.Doctors.Include(d => d.Specialty).ToListAsync();
-            Doctors = new List<Doctor>(); // Placeholder
+            Doctors = new List<Doctor>(); // Placeholder / Temporal
         }
     }
 } 

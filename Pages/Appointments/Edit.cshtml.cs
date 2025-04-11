@@ -9,23 +9,28 @@ using Microsoft.EntityFrameworkCore;
 using CitasEPS.Data;
 using CitasEPS.Models;
 using Microsoft.AspNetCore.Authorization;
+using Microsoft.Extensions.Logging;
 
 namespace CitasEPS.Pages.Appointments
 {
-    [Authorize] // Or specific policy like "Admin" if only admins can edit all appointments
+    // [Authorize] // O política específica como "Admin" si solo admins pueden editar todas las citas
+    // Por ahora, asumiremos que el paciente puede editar (quizás con limitaciones)
+    [Authorize(Roles = "Patient,Admin")] // Permitir a ambos editar por ahora
     public class EditModel : PageModel
     {
-        private readonly CitasEPS.Data.ApplicationDbContext _context;
+        private readonly ApplicationDbContext _context;
+        private readonly ILogger<EditModel> _logger;
 
-        public EditModel(CitasEPS.Data.ApplicationDbContext context)
+        public EditModel(ApplicationDbContext context, ILogger<EditModel> logger)
         {
             _context = context;
+            _logger = logger;
         }
 
         [BindProperty]
         public Appointment Appointment { get; set; } = default!;
 
-        // Properties for dropdowns
+        // Propiedades para dropdowns
         public SelectList PatientNameSL { get; set; } = default!;
         public SelectList DoctorNameSL { get; set; } = default!;
 
@@ -36,7 +41,7 @@ namespace CitasEPS.Pages.Appointments
                 return NotFound();
             }
 
-            // Fetch the appointment to edit, without tracking initially
+            // Obtener cita a editar, sin rastreo inicial
             var appointment = await _context.Appointments.AsNoTracking()
                                           .FirstOrDefaultAsync(m => m.Id == id);
 
@@ -46,18 +51,23 @@ namespace CitasEPS.Pages.Appointments
             }
             Appointment = appointment;
 
-            // Populate dropdowns
+            // TODO: Verificar autorización - ¿Este paciente/admin puede editar ESTA cita?
+            // Ejemplo: Si es paciente, verificar que Appointment.PatientId coincida con el ID del paciente logueado.
+
+            // Poblar dropdowns
             await PopulateDropdownsAsync(Appointment.PatientId, Appointment.DoctorId);
             return Page();
         }
 
-        // To protect from overposting attacks, enable the specific properties you want to bind to.
-        // For more details, see https://aka.ms/RazorPagesCRUD.
+        // Para proteger de ataques de sobreposteo, habilite las propiedades específicas a las que desea enlazar.
+        // Para más detalles, vea https://aka.ms/RazorPagesCRUD.
         public async Task<IActionResult> OnPostAsync()
         {
+             // TODO: Verificar autorización antes de guardar - ¿Puede el usuario actual modificar esta cita?
+
             if (!ModelState.IsValid)
             {
-                // Repopulate dropdowns if validation fails
+                // Repoblar dropdowns si la validación falla
                 await PopulateDropdownsAsync(Appointment.PatientId, Appointment.DoctorId);
                 return Page();
             }
@@ -68,20 +78,29 @@ namespace CitasEPS.Pages.Appointments
             {
                 await _context.SaveChangesAsync();
                 TempData["SuccessMessage"] = "Cita actualizada exitosamente.";
+                 _logger.LogInformation("Cita con ID: {AppointmentId} actualizada.", Appointment.Id);
             }
-            catch (DbUpdateConcurrencyException)
+            catch (DbUpdateConcurrencyException ex)
             {
+                _logger.LogWarning(ex, "Error de concurrencia actualizando cita ID: {AppointmentId}", Appointment.Id);
                 if (!AppointmentExists(Appointment.Id))
                 {
                     return NotFound();
                 }
                 else
                 {
-                    // Add concurrency error handling if needed
+                    // Añadir manejo de error de concurrencia si es necesario
                     ModelState.AddModelError(string.Empty, "La cita fue modificada por otro usuario. Por favor, recargue la página e intente de nuevo.");
                     await PopulateDropdownsAsync(Appointment.PatientId, Appointment.DoctorId);
                     return Page();
                 }
+            }
+            catch (Exception ex)
+            {
+                 _logger.LogError(ex, "Error inesperado actualizando cita ID: {AppointmentId}", Appointment.Id);
+                 ModelState.AddModelError(string.Empty, "Ocurrió un error inesperado al guardar los cambios.");
+                 await PopulateDropdownsAsync(Appointment.PatientId, Appointment.DoctorId);
+                 return Page();
             }
 
             return RedirectToPage("./Index");
@@ -92,7 +111,7 @@ namespace CitasEPS.Pages.Appointments
             return _context.Appointments.Any(e => e.Id == id);
         }
 
-        // Helper method to load data for dropdowns, selecting current values
+        // Método auxiliar para cargar datos para dropdowns, seleccionando valores actuales
         private async Task PopulateDropdownsAsync(object? selectedPatient = null, object? selectedDoctor = null)
         {
              var patients = await _context.Patients

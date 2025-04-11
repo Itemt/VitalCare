@@ -14,49 +14,49 @@ namespace CitasEPS.Data
             RoleManager<IdentityRole<int>> roleManager,
             ILogger logger)
         {
-            logger.LogInformation("Attempting to seed data...");
+            logger.LogInformation("Intentando inicializar datos (seed)...");
 
-            // Ensure database is created (should be done by MigrateAsync already)
-            // context.Database.EnsureCreated(); // Not needed if MigrateAsync is used
+            // Asegurar que la base de datos esté creada (debería hacerlo MigrateAsync)
+            // context.Database.EnsureCreated(); // No es necesario si se usa MigrateAsync
 
-            // Seed Roles
+            // Inicializar Roles
             await SeedRolesAsync(roleManager, logger);
 
-            // Seed Admin User
+            // Inicializar Usuario Admin
             await SeedAdminUserAsync(userManager, logger);
 
-            // Seed Specialties
+            // Inicializar Especialidades
             await SeedSpecialtiesAsync(context, logger);
 
-            // Seed Doctors
+            // Inicializar Médicos
             await SeedDoctorsAsync(context, logger);
 
-            // Seed Patients
+            // Inicializar Pacientes
             await SeedPatientsAsync(context, userManager, logger);
 
-            // Seed Appointments
+            // Inicializar Citas
             await SeedAppointmentsAsync(context, logger);
 
-            logger.LogInformation("Data seeding complete.");
+            logger.LogInformation("Inicialización de datos (seed) completada.");
         }
 
         private static async Task SeedRolesAsync(RoleManager<IdentityRole<int>> roleManager, ILogger logger)
         {
-            string[] roleNames = { "Admin", "Patient" };
+            string[] roleNames = { "Admin", "Patient" }; // Mantener nombres de roles en inglés por convención
             foreach (var roleName in roleNames)
             {
                 var roleExist = await roleManager.RoleExistsAsync(roleName);
                 if (!roleExist)
                 {
                     await roleManager.CreateAsync(new IdentityRole<int>(roleName));
-                    logger.LogInformation($"Role '{roleName}' created.");
+                    logger.LogInformation($"Rol '{roleName}' creado.");
                 }
             }
         }
 
         private static async Task SeedAdminUserAsync(UserManager<User> userManager, ILogger logger)
         {
-            // Ensure admin user exists
+            // Asegurar que el usuario admin exista
             var adminEmail = "admin@vitalcare.com";
             var adminUser = await userManager.FindByEmailAsync(adminEmail);
 
@@ -67,40 +67,40 @@ namespace CitasEPS.Data
                     UserName = adminEmail,
                     Email = adminEmail,
                     IsAdmin = true,
-                    EmailConfirmed = true // Typically confirm admin emails manually or via a setup process
+                    EmailConfirmed = true // Normalmente confirmar emails admin manualmente
                 };
-                // IMPORTANT: Set a strong password for the admin user in a real application!
-                // Consider using configuration or secrets management for the initial password.
+                // IMPORTANTE: ¡Establecer una contraseña segura para el admin en una aplicación real!
+                // Considerar usar configuración o gestión de secretos para la contraseña inicial.
                 var result = await userManager.CreateAsync(adminUser, "AdminPass123!");
 
                 if (result.Succeeded)
                 {
-                    logger.LogInformation($"Admin user '{adminEmail}' created successfully.");
-                    // Assign the 'Admin' role
+                    logger.LogInformation($"Usuario admin '{adminEmail}' creado exitosamente.");
+                    // Asignar rol 'Admin'
                     await userManager.AddToRoleAsync(adminUser, "Admin");
-                    // Add IsAdmin claim (redundant if checking role, but follows previous logic)
+                    // Añadir claim IsAdmin (redundante si se chequea el rol, pero sigue lógica anterior)
                     await userManager.AddClaimAsync(adminUser, new Claim("IsAdmin", "true"));
-                    logger.LogInformation($"Admin user '{adminEmail}' assigned to Admin role and given IsAdmin claim.");
+                    logger.LogInformation($"Usuario admin '{adminEmail}' asignado al rol Admin y se le dio el claim IsAdmin.");
                 }
                 else
                 {
-                    logger.LogError($"Error creating admin user '{adminEmail}'. Errors: {string.Join(", ", result.Errors.Select(e => e.Description))}");
+                    logger.LogError($"Error creando usuario admin '{adminEmail}'. Errores: {string.Join(", ", result.Errors.Select(e => e.Description))}");
                 }
             }
             else
             {
-                 logger.LogInformation($"Admin user '{adminEmail}' already exists.");
-                 // Ensure user is in Admin role and has claim, even if they existed before
+                 logger.LogInformation($"Usuario admin '{adminEmail}' ya existe.");
+                 // Asegurar que el usuario tenga rol Admin y claim, incluso si ya existía
                  if (!await userManager.IsInRoleAsync(adminUser, "Admin"))
                  {
                      await userManager.AddToRoleAsync(adminUser, "Admin");
-                     logger.LogInformation($"Existing admin user '{adminEmail}' added to Admin role.");
+                     logger.LogInformation($"Usuario admin existente '{adminEmail}' añadido al rol Admin.");
                  }
                  var claims = await userManager.GetClaimsAsync(adminUser);
                  if (!claims.Any(c => c.Type == "IsAdmin" && c.Value == "true"))
                  {
                      await userManager.AddClaimAsync(adminUser, new Claim("IsAdmin", "true"));
-                      logger.LogInformation($"Existing admin user '{adminEmail}' given IsAdmin claim.");
+                      logger.LogInformation($"Usuario admin existente '{adminEmail}' recibió el claim IsAdmin.");
                  }
             }
         }
@@ -108,8 +108,8 @@ namespace CitasEPS.Data
         private static async Task SeedSpecialtiesAsync(ApplicationDbContext context, ILogger logger)
         {
             if (await context.Specialties.AnyAsync()) {
-                 logger.LogInformation("Specialties already seeded.");
-                 return; // DB has been seeded
+                 logger.LogInformation("Especialidades ya inicializadas (seed).");
+                 return; // Base de datos ya inicializada
             }
 
             var specialties = new List<Specialty>
@@ -128,21 +128,21 @@ namespace CitasEPS.Data
 
             await context.Specialties.AddRangeAsync(specialties);
             await context.SaveChangesAsync();
-            logger.LogInformation($"{specialties.Count} specialties seeded.");
+            logger.LogInformation($"{specialties.Count} especialidades inicializadas (seed).");
         }
 
         private static async Task SeedDoctorsAsync(ApplicationDbContext context, ILogger logger)
         {
             if (await context.Doctors.AnyAsync()) {
-                logger.LogInformation("Doctors already seeded.");
+                logger.LogInformation("Médicos ya inicializados (seed).");
                 return;
             }
             if (!await context.Specialties.AnyAsync()) {
-                logger.LogWarning("Cannot seed doctors because no specialties exist.");
-                 return; // Need specialties first
+                logger.LogWarning("No se pueden inicializar médicos porque no existen especialidades.");
+                 return; // Se necesitan especialidades primero
             }
 
-            // Get IDs for various specialties
+            // Obtener IDs para varias especialidades
             var specialties = await context.Specialties.ToDictionaryAsync(s => s.Name, s => s.Id);
 
             var doctors = new List<Doctor>
@@ -164,15 +164,15 @@ namespace CitasEPS.Data
 
             await context.Doctors.AddRangeAsync(doctors);
             await context.SaveChangesAsync();
-             logger.LogInformation($"{doctors.Count} doctors seeded.");
+             logger.LogInformation($"{doctors.Count} médicos inicializados (seed).");
         }
 
         private static async Task SeedPatientsAsync(ApplicationDbContext context, UserManager<User> userManager, ILogger logger)
         {
-            // Check if base patients exist to prevent re-seeding everything
+            // Verificar si existen pacientes base para prevenir reinicialización completa
             if (await context.Patients.AnyAsync(p => p.DocumentId == "11223344" || p.DocumentId == "55667788")) {
-                 logger.LogInformation("Base patients already seeded.");
-                 // Optionally check for the others and add if missing, or just return
+                 logger.LogInformation("Pacientes base ya inicializados (seed).");
+                 // Opcional: verificar los demás y añadir si faltan, o solo retornar
                  // return;
             }
 
@@ -193,7 +193,7 @@ namespace CitasEPS.Data
             int patientsCreatedCount = 0;
             foreach (var pData in patientsToAdd)
             {
-                // Check if user or patient already exists before attempting creation
+                // Verificar si el usuario o paciente ya existen antes de intentar crear
                 var userExists = await userManager.FindByEmailAsync(pData.Email);
                 var patientExists = await context.Patients.AnyAsync(p => p.DocumentId == pData.DocumentId || p.Email == pData.Email);
 
@@ -204,7 +204,7 @@ namespace CitasEPS.Data
                     if (result.Succeeded)
                     {
                         await userManager.AddToRoleAsync(newUser, "Patient");
-                        logger.LogInformation($"Patient user '{pData.Email}' created.");
+                        logger.LogInformation($"Usuario paciente '{pData.Email}' creado.");
                         var newPatient = new Patient
                         {
                             FirstName = pData.FirstName,
@@ -215,55 +215,55 @@ namespace CitasEPS.Data
                             PhoneNumber = pData.Phone
                         };
                         await context.Patients.AddAsync(newPatient);
-                        await context.SaveChangesAsync(); // Save each patient to get ID if needed later, or batch save outside loop
-                        logger.LogInformation($"Patient record for '{pData.Email}' created.");
+                        await context.SaveChangesAsync(); // Guardar cada paciente o guardar en lote fuera del bucle
+                        logger.LogInformation($"Registro de paciente para '{pData.Email}' creado.");
                         patientsCreatedCount++;
                     }
                     else
                     {
-                        logger.LogError($"Error creating patient user '{pData.Email}'. Errors: {string.Join(", ", result.Errors.Select(e => e.Description))}");
+                        logger.LogError($"Error creando usuario paciente '{pData.Email}'. Errores: {string.Join(", ", result.Errors.Select(e => e.Description))}");
                     }
                 }
                 else {
-                     logger.LogWarning($"Skipping seeding for patient '{pData.Email}' / '{pData.DocumentId}' as user or patient record already exists.");
+                     logger.LogWarning($"Omitiendo inicialización para paciente '{pData.Email}' / '{pData.DocumentId}' porque el usuario o registro de paciente ya existe.");
                 }
             }
-             logger.LogInformation($"Attempted to seed {patientsToAdd.Count} patients, {patientsCreatedCount} new records created.");
+             logger.LogInformation($"Se intentaron inicializar {patientsToAdd.Count} pacientes, {patientsCreatedCount} nuevos registros creados.");
         }
 
         private static async Task SeedAppointmentsAsync(ApplicationDbContext context, ILogger logger)
         {
              if (await context.Appointments.AnyAsync()) {
-                 logger.LogInformation("Appointments already seeded.");
+                 logger.LogInformation("Citas ya inicializadas (seed).");
                  return;
              }
              if (!await context.Patients.AnyAsync() || !await context.Doctors.AnyAsync()) {
-                logger.LogWarning("Cannot seed appointments because no patients or doctors exist.");
-                return; // Need patients and doctors first
+                logger.LogWarning("No se pueden inicializar citas porque no existen pacientes o médicos.");
+                return; // Se necesitan pacientes y médicos primero
             }
 
-            // Get all patients and doctors to randomly assign appointments
+            // Obtener todos los pacientes y médicos para asignar citas aleatoriamente
             var allPatients = await context.Patients.ToListAsync();
             var allDoctors = await context.Doctors.ToListAsync();
             var random = new Random();
 
             if (allPatients.Count < 5 || allDoctors.Count < 5) {
-                 logger.LogWarning("Not enough patients or doctors available for diverse appointment seeding.");
+                 logger.LogWarning("No hay suficientes pacientes o médicos para inicialización diversa de citas.");
                  return;
             }
 
             var appointments = new List<Appointment>();
             var startDate = DateTime.UtcNow.Date;
 
-            // Create ~20 appointments spread over the next 2 weeks
+            // Crear ~20 citas distribuidas en las próximas 2 semanas
             for (int i = 0; i < 20; i++)
             {
                 var patient = allPatients[random.Next(allPatients.Count)];
                 var doctor = allDoctors[random.Next(allDoctors.Count)];
-                var appointmentDay = startDate.AddDays(random.Next(1, 15)); // Within next 14 days
-                var appointmentHour = random.Next(8, 17); // Between 8 AM and 4 PM (16:xx)
-                var appointmentTime = appointmentDay.AddHours(appointmentHour).AddMinutes(random.Next(0, 4) * 15); // On 15-min intervals
-                bool isConfirmed = random.Next(0, 2) == 1; // 50% chance confirmed
+                var appointmentDay = startDate.AddDays(random.Next(1, 15)); // Dentro de los próximos 14 días
+                var appointmentHour = random.Next(8, 17); // Entre 8 AM y 4 PM (16:xx)
+                var appointmentTime = appointmentDay.AddHours(appointmentHour).AddMinutes(random.Next(0, 4) * 15); // En intervalos de 15 min
+                bool isConfirmed = random.Next(0, 2) == 1; // 50% de probabilidad de confirmada
 
                 appointments.Add(new Appointment
                 {
@@ -271,13 +271,13 @@ namespace CitasEPS.Data
                     DoctorId = doctor.Id,
                     AppointmentDateTime = appointmentTime,
                     IsConfirmed = isConfirmed,
-                    Notes = $"Cita {i+1}: {patient.FirstName} con Dr(a). {doctor.LastName}. Motivo: {(i % 3 == 0 ? "Control" : (i % 3 == 1 ? "Consulta General" : "Evaluación"))}"
+                    Notes = $"Cita {i+1}: {patient.FirstName} con Dr(a). {doctor.LastName}. Motivo: {(i % 3 == 0 ? "Control" : (i % 3 == 1 ? "Consulta General" : "Evaluación"))}" // Notas de ejemplo
                 });
             }
 
             await context.Appointments.AddRangeAsync(appointments);
             await context.SaveChangesAsync();
-            logger.LogInformation($"{appointments.Count} sample appointments seeded.");
+            logger.LogInformation($"{appointments.Count} citas de ejemplo inicializadas (seed).");
         }
     }
 } 

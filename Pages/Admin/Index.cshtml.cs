@@ -16,7 +16,8 @@ namespace CitasEPS.Pages.Admin
 
         public void OnGet()
         {
-            // Future logic for dashboard data can go here
+            _logger.LogInformation("Usuario accedió al Panel de Administración.");
+            // Lógica futura para datos del dashboard puede ir aquí
         }
     }
 } 

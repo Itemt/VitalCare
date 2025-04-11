@@ -18,25 +18,25 @@
     <hr />
     <dl class="row">
          <dt class="col-sm-3">
-            @Html.DisplayNameFor(model => model.Appointment.AppointmentDateTime)
+            Fecha y Hora
         </dt>
         <dd class="col-sm-9">
             @Html.DisplayFor(model => model.Appointment.AppointmentDateTime)
         </dd>
         <dt class="col-sm-3">
-            @Html.DisplayNameFor(model => model.Appointment.Patient)
+            Paciente
         </dt>
         <dd class="col-sm-9">
             @Html.DisplayFor(model => model.Appointment.Patient.FullName)
         </dd>
         <dt class="col-sm-3">
-            @Html.DisplayNameFor(model => model.Appointment.Doctor)
+            Médico
         </dt>
         <dd class="col-sm-9">
             @Html.DisplayFor(model => model.Appointment.Doctor.FullName)
         </dd>
          <dt class="col-sm-3">
-            @Html.DisplayNameFor(model => model.Appointment.IsConfirmed)
+            Confirmada
         </dt>
         <dd class="col-sm-9">
              @(Model.Appointment.IsConfirmed ? "Confirmada" : "Pendiente")
@@ -45,7 +45,7 @@
 
     <form method="post">
         <input type="hidden" asp-for="Appointment.Id" />
-        <input type="submit" value="Eliminar" class="btn btn-danger" /> |
+        <input type="submit" value="Eliminar" class="btn btn-danger" />
         <a asp-page="./Index" class="btn btn-secondary">Cancelar</a>
     </form>
 </div> 

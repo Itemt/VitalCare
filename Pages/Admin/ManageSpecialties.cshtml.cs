@@ -23,10 +23,10 @@ namespace CitasEPS.Pages.Admin
 
         public async Task OnGetAsync()
         {
-            _logger.LogInformation("Loading specialty management page.");
-            // Future: Load specialties from database
+            _logger.LogInformation("Cargando página de gestión de especialidades.");
+            // Futuro: Cargar especialidades desde la base de datos
             // Specialties = await _context.Specialties.ToListAsync();
-            Specialties = new List<Specialty>(); // Placeholder
+            Specialties = new List<Specialty>(); // Placeholder / Temporal
         }
     }
 } 

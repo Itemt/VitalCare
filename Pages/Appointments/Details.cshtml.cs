@@ -8,17 +8,20 @@ using Microsoft.EntityFrameworkCore;
 using CitasEPS.Data;
 using CitasEPS.Models;
 using Microsoft.AspNetCore.Authorization;
+using Microsoft.Extensions.Logging;
 
 namespace CitasEPS.Pages.Appointments
 {
-    [Authorize]
+    [Authorize(Roles = "Patient,Admin")]
     public class DetailsModel : PageModel
     {
-        private readonly CitasEPS.Data.ApplicationDbContext _context;
+        private readonly ApplicationDbContext _context;
+        private readonly ILogger<DetailsModel> _logger;
 
-        public DetailsModel(CitasEPS.Data.ApplicationDbContext context)
+        public DetailsModel(ApplicationDbContext context, ILogger<DetailsModel> logger)
         {
             _context = context;
+            _logger = logger;
         }
 
         public Appointment Appointment { get; set; } = default!;
@@ -27,21 +30,26 @@ namespace CitasEPS.Pages.Appointments
         {
             if (id == null)
             {
+                _logger.LogWarning("Intento de ver detalles de cita sin ID.");
                 return NotFound();
             }
 
-            // Fetch the appointment including related Patient and Doctor
+            // Obtener la cita incluyendo Paciente y Médico relacionados
             var appointment = await _context.Appointments
                 .Include(a => a.Doctor)
+                    .ThenInclude(d => d.Specialty)
                 .Include(a => a.Patient)
+                .AsNoTracking()
                 .FirstOrDefaultAsync(m => m.Id == id);
 
             if (appointment == null)
             {
-                return NotFound(); // Appointment with the given ID not found
+                 _logger.LogWarning("No se encontró cita con ID: {AppointmentId} para ver detalles.", id);
+                return NotFound();
             }
 
             Appointment = appointment;
+            _logger.LogInformation("Mostrando detalles para cita ID: {AppointmentId}", id);
             return Page();
         }
     }

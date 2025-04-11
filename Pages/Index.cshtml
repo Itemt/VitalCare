@@ -5,13 +5,13 @@
 @inject SignInManager<User> SignInManager
 
 @{
-    ViewData["Title"] = "Inicio - Portal Citas EPS";
+    ViewData["Title"] = "Inicio - VitalCare";
 }
 
 <!-- Hero Section -->
 <div class="container-fluid bg-primary text-white text-center py-5 mb-4" style="background-image: url('https://images.unsplash.com/photo-1576091160550-2173dba999ef?ixlib=rb-1.2.1&auto=format&fit=crop&w=1950&q=80'); background-size: cover; background-position: center center;">
     <div style="background-color: rgba(0, 86, 179, 0.7); padding: 3rem 1rem; display: inline-block; border-radius: .3rem;">
-        <h1 class="display-4 fw-bold">Bienvenido al Portal de Citas EPS</h1>
+        <h1 class="display-4 fw-bold">Bienvenido a VitalCare</h1>
         <p class="lead fs-4">Su salud es nuestra prioridad. Agende y gestione sus citas médicas de forma fácil y rápida.</p>
         <hr class="my-4 bg-light">
         @if (SignInManager.IsSignedIn(User))
@@ -28,8 +28,8 @@
             }
             else
             {
-                // Fallback for other signed-in roles, if any
-                <p class="text-light">Bienvenido.</p> // Simple message
+                // Fallback para otros roles conectados, si los hay
+                <p class="text-light">Bienvenido.</p>
             }
         }
         else
@@ -83,7 +83,7 @@
                 <div class="card-body">
                     <h5 class="card-title">Recursos de Salud</h5>
                     <p class="card-text">Acceda a información útil, consejos de salud y noticias relevantes para su bienestar.</p>
-                    <a href="#" class="btn btn-secondary disabled">Próximamente</a> @* Placeholder link/button *@
+                    <a href="#" class="btn btn-secondary disabled">Próximamente</a>
                 </div>
             </div>
         </div>

@@ -23,15 +23,15 @@ namespace CitasEPS.Pages.Admin
 
         public async Task OnGetAsync()
         {
-             _logger.LogInformation("Loading appointment management page for admin.");
-            // Future: Load appointments from database, potentially with includes for Patient, Doctor, Doctor.Specialty
+             _logger.LogInformation("Cargando página de gestión de citas para admin.");
+            // Futuro: Cargar citas desde BD, potencialmente con includes para Paciente, Médico, Médico.Especialidad
             // Appointments = await _context.Appointments
             //      .Include(a => a.Patient)
             //      .Include(a => a.Doctor)
-            //          .ThenInclude(d => d.Specialty) // Include doctor's specialty
+            //          .ThenInclude(d => d.Specialty) // Incluir especialidad del médico
             //      .OrderByDescending(a => a.AppointmentDateTime)
             //      .ToListAsync();
-            Appointments = new List<Appointment>(); // Placeholder
+            Appointments = new List<Appointment>(); // Placeholder / Temporal
         }
     }
 } 
