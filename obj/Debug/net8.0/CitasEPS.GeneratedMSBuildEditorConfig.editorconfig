@@ -200,8 +200,16 @@ build_metadata.AdditionalFiles.CssScope =
 build_metadata.AdditionalFiles.TargetPath = UGFnZXMvQWRtaW4vTWFuYWdlRG9jdG9ycy5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
+[/Users/cristianramos/Desktop/Proyectos/AplicativosWeb/CitasEPS/Pages/Admin/ManagePatients.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXMvQWRtaW4vTWFuYWdlUGF0aWVudHMuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
 [/Users/cristianramos/Desktop/Proyectos/AplicativosWeb/CitasEPS/Pages/Admin/ManageSpecialties.cshtml]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXMvQWRtaW4vTWFuYWdlU3BlY2lhbHRpZXMuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[/Users/cristianramos/Desktop/Proyectos/AplicativosWeb/CitasEPS/Pages/Admin/ManageUsers.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXMvQWRtaW4vTWFuYWdlVXNlcnMuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
 [/Users/cristianramos/Desktop/Proyectos/AplicativosWeb/CitasEPS/Pages/Admin/Medications/Create.cshtml]

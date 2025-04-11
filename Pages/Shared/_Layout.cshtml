@@ -49,12 +49,12 @@
                                         <i class="bi bi-person-gear"></i> Administración
                                     </a>
                                     <ul class="dropdown-menu" aria-labelledby="adminDropdown">
-                                        <li><a class="dropdown-item" asp-area="Admin" asp-page="/ManageUsers"><i class="bi bi-people-fill"></i> Gestionar Usuarios</a></li>
-                                        <li><a class="dropdown-item" asp-area="Admin" asp-page="/ManageDoctors"><i class="bi bi-file-medical-fill"></i> Gestionar Médicos</a></li>
-                                        <li><a class="dropdown-item" asp-area="Admin" asp-page="/ManagePatients"><i class="bi bi-person-lines-fill"></i> Gestionar Pacientes</a></li>
-                                        <li><a class="dropdown-item" asp-area="Admin" asp-page="/ManageAppointments"><i class="bi bi-calendar-check-fill"></i> Gestionar Citas</a></li>
-                                        <li><a class="dropdown-item" asp-area="Admin" asp-page="/ManageSpecialties"><i class="bi bi-bookmark-star-fill"></i> Gestionar Especialidades</a></li>
-                                        <li><a class="dropdown-item" asp-area="Admin" asp-page="/ManageMedications"><i class="bi bi-capsule-pill"></i> Gestionar Medicamentos</a></li>
+                                        <li><a class="dropdown-item" asp-page="/Admin/ManageUsers"><i class="bi bi-people-fill"></i> Gestionar Usuarios</a></li>
+                                        <li><a class="dropdown-item" asp-page="/Admin/ManageDoctors"><i class="bi bi-file-medical-fill"></i> Gestionar Médicos</a></li>
+                                        <li><a class="dropdown-item" asp-page="/Admin/ManagePatients"><i class="bi bi-person-lines-fill"></i> Gestionar Pacientes</a></li>
+                                        <li><a class="dropdown-item" asp-page="/Admin/ManageAppointments"><i class="bi bi-calendar-check-fill"></i> Gestionar Citas</a></li>
+                                        <li><a class="dropdown-item" asp-page="/Admin/ManageSpecialties"><i class="bi bi-bookmark-star-fill"></i> Gestionar Especialidades</a></li>
+                                        <li><a class="dropdown-item" asp-page="/Admin/Medications/Index"><i class="bi bi-capsule-pill"></i> Gestionar Medicamentos</a></li>
                                      </ul>
                                 </li>
                             } @* Closing Admin check *@
@@ -65,8 +65,8 @@
                                         <i class="bi bi-clipboard-pulse"></i> Portal Médico
                                     </a>
                                     <ul class="dropdown-menu" aria-labelledby="doctorDropdown">
-                                        <li><a class="dropdown-item" asp-area="Doctor" asp-page="/Agenda"><i class="bi bi-calendar-week-fill"></i> Mi Agenda</a></li>
-                                        <li><a class="dropdown-item" asp-area="Doctor" asp-page="/Patients"><i class="bi bi-person-badge-fill"></i> Mis Pacientes</a></li>
+                                        <li><a class="dropdown-item" asp-page="/Doctor/Agenda"><i class="bi bi-calendar-week-fill"></i> Mi Agenda</a></li>
+                                        <li><a class="dropdown-item" asp-page="/Doctor/Patients"><i class="bi bi-person-badge-fill"></i> Mis Pacientes</a></li>
                                         @* Add other doctor-specific links here, e.g., Prescriptions *@
                                     </ul>
                                 </li>
