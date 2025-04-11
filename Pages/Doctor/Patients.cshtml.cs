@@ -24,7 +24,7 @@ namespace CitasEPS.Pages.Doctor
         }
 
         public IList<Models.Patient> DoctorPatients { get; set; } = new List<Models.Patient>();
-        public Models.Doctor CurrentDoctor { get; set; }
+        public Models.Doctor? CurrentDoctor { get; set; }
 
         public async Task<IActionResult> OnGetAsync()
         {

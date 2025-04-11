@@ -4,6 +4,9 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.EntityFrameworkCore;
+using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
 
 namespace CitasEPS.Pages.Admin
 {
@@ -23,15 +26,13 @@ namespace CitasEPS.Pages.Admin
 
         public async Task OnGetAsync()
         {
-             _logger.LogInformation("Cargando página de gestión de citas para admin.");
-            // Futuro: Cargar citas desde BD, potencialmente con includes para Paciente, Médico, Médico.Especialidad
-            // Appointments = await _context.Appointments
-            //      .Include(a => a.Patient)
-            //      .Include(a => a.Doctor)
-            //          .ThenInclude(d => d.Specialty) // Incluir especialidad del médico
-            //      .OrderByDescending(a => a.AppointmentDateTime)
-            //      .ToListAsync();
-            Appointments = new List<Appointment>(); // Placeholder / Temporal
+            _logger.LogInformation("Cargando página de gestión de citas (Admin).");
+            Appointments = await _context.Appointments
+                                    .Include(a => a.Patient)
+                                    .Include(a => a.Doctor)
+                                        .ThenInclude(d => d.Specialty) // Include specialty via Doctor
+                                    .OrderByDescending(a => a.AppointmentDateTime) // Show recent first
+                                    .ToListAsync();
         }
     }
 } 

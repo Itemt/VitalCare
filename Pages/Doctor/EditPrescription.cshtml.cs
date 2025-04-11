@@ -26,8 +26,8 @@ namespace CitasEPS.Pages.Doctor
 
         [BindProperty]
         public Prescription Prescription { get; set; } = default!;
-        public SelectList Medications { get; set; }
-        public Appointment RelatedAppointment { get; set; }
+        public SelectList? Medications { get; set; }
+        public Appointment? RelatedAppointment { get; set; }
 
         public async Task<IActionResult> OnGetAsync(int? id)
         {

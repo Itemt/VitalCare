@@ -12,8 +12,13 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>@ViewData["Title"] - VitalCare</title>
+    @* Bootswatch Cerulean Theme - Consider using local copy for reliability *@
     <link rel="stylesheet" href="https://bootswatch.com/5/cerulean/bootstrap.min.css" />
+    @* Bootstrap Icons - Requires separate inclusion or project setup *@
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+    @* Flatpickr CSS for date pickers *@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
+    @* Site specific CSS *@
     <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
     <link rel="stylesheet" href="~/CitasEPS.styles.css" asp-append-version="true" />
 </head>
@@ -21,7 +26,7 @@
     <header>
         <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
             <div class="container">
-                <a class="navbar-brand text-primary fw-bold" asp-area="" asp-page="/Index">VitalCare</a>
+                <a class="navbar-brand text-primary fw-bold" asp-area="" asp-page="/Index"><i class="bi bi-heart-pulse"></i> VitalCare</a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target=".navbar-collapse" aria-controls="navbarSupportedContent"
                         aria-expanded="false" aria-label="Navegación">
                     <span class="navbar-toggler-icon"></span>
@@ -29,56 +34,74 @@
                 <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
                     <ul class="navbar-nav flex-grow-1">
                         <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-page="/Index">Inicio</a>
+                            <a class="nav-link text-dark" asp-area="" asp-page="/Index"><i class="bi bi-house-door"></i> Inicio</a>
                         </li>
                         @if (SignInManager.IsSignedIn(User))
                         {
-                            @if (User.IsInRole("Admin"))
+                            var isAdminResult = await AuthorizationService.AuthorizeAsync(User, "RequireAdminRole");
+                            var isDoctorResult = await AuthorizationService.AuthorizeAsync(User, "RequireDoctorRole");
+                            var isPatientResult = await AuthorizationService.AuthorizeAsync(User, "RequirePatientRole");
+
+                            @if (isAdminResult.Succeeded)
                             {
-                                <li class="nav-item">
-                                    <a class="nav-link text-danger fw-bold" asp-area="" asp-page="/Admin/Index">Panel Admin</a>
+                                <li class="nav-item dropdown">
+                                    <a class="nav-link dropdown-toggle text-dark" href="#" id="adminDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                        <i class="bi bi-person-gear"></i> Administración
+                                    </a>
+                                    <ul class="dropdown-menu" aria-labelledby="adminDropdown">
+                                        <li><a class="dropdown-item" asp-area="Admin" asp-page="/ManageUsers"><i class="bi bi-people-fill"></i> Gestionar Usuarios</a></li>
+                                        <li><a class="dropdown-item" asp-area="Admin" asp-page="/ManageDoctors"><i class="bi bi-file-medical-fill"></i> Gestionar Médicos</a></li>
+                                        <li><a class="dropdown-item" asp-area="Admin" asp-page="/ManagePatients"><i class="bi bi-person-lines-fill"></i> Gestionar Pacientes</a></li>
+                                        <li><a class="dropdown-item" asp-area="Admin" asp-page="/ManageAppointments"><i class="bi bi-calendar-check-fill"></i> Gestionar Citas</a></li>
+                                        <li><a class="dropdown-item" asp-area="Admin" asp-page="/ManageSpecialties"><i class="bi bi-bookmark-star-fill"></i> Gestionar Especialidades</a></li>
+                                        <li><a class="dropdown-item" asp-area="Admin" asp-page="/ManageMedications"><i class="bi bi-capsule-pill"></i> Gestionar Medicamentos</a></li>
+                                     </ul>
                                 </li>
-                                <li class="nav-item">
-                                    <a class="nav-link text-dark" asp-area="" asp-page="/Admin/ManageDoctors">Gestionar Médicos</a> @* Placeholder - La página necesita crearse *@
-                                </li>
-                                <li class="nav-item">
-                                    <a class="nav-link text-dark" asp-area="" asp-page="/Admin/ManageSpecialties">Gestionar Especialidades</a> @* Placeholder - La página necesita crearse *@
-                                </li>
-                                 <li class="nav-item">
-                                    <a class="nav-link text-dark" asp-area="" asp-page="/Admin/ManageAppointments">Gestionar Citas</a> @* Placeholder - La página necesita crearse *@
-                                </li>
-                            }
-                            else if (User.IsInRole("Patient"))
+                            } @* Closing Admin check *@
+                            else if (isDoctorResult.Succeeded)
                             {
-                                <li class="nav-item">
-                                    <a class="nav-link text-dark" asp-area="" asp-page="/Appointments/Index">Mis Citas</a>
+                                <li class="nav-item dropdown">
+                                    <a class="nav-link dropdown-toggle text-dark" href="#" id="doctorDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                        <i class="bi bi-clipboard-pulse"></i> Portal Médico
+                                    </a>
+                                    <ul class="dropdown-menu" aria-labelledby="doctorDropdown">
+                                        <li><a class="dropdown-item" asp-area="Doctor" asp-page="/Agenda"><i class="bi bi-calendar-week-fill"></i> Mi Agenda</a></li>
+                                        <li><a class="dropdown-item" asp-area="Doctor" asp-page="/Patients"><i class="bi bi-person-badge-fill"></i> Mis Pacientes</a></li>
+                                        @* Add other doctor-specific links here, e.g., Prescriptions *@
+                                    </ul>
                                 </li>
-                                <li class="nav-item">
-                                    <a class="nav-link text-dark" asp-area="" asp-page="/Appointments/Create">Agendar Cita</a>
-                                </li>
-                            }
-                            else if (User.IsInRole("Doctor"))
+                            } @* Closing Doctor check *@
+                            else if (isPatientResult.Succeeded)
                             {
-                                <li class="nav-item">
-                                    <a class="nav-link text-info fw-bold" asp-area="" asp-page="/Doctor/Agenda">Mi Agenda</a> @* Placeholder *@
+                                <li class="nav-item dropdown">
+                                    <a class="nav-link dropdown-toggle text-dark" href="#" id="patientDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                        <i class="bi bi-person-vcard"></i> Portal Paciente
+                                    </a>
+                                    <ul class="dropdown-menu" aria-labelledby="patientDropdown">
+                                        <li><a class="dropdown-item" asp-page="/Appointments/Create"><i class="bi bi-calendar-plus-fill"></i> Agendar Cita</a></li>
+                                        <li><a class="dropdown-item" asp-page="/Appointments/Index"><i class="bi bi-calendar-event-fill"></i> Mis Citas</a></li>
+                                        <li><a class="dropdown-item" asp-page="/Appointments/MyPrescriptions"><i class="bi bi-journal-medical"></i> Mis Recetas</a></li>
+                                    </ul>
                                 </li>
-                                 <li class="nav-item">
-                                    <a class="nav-link text-dark" asp-area="" asp-page="/Doctor/GeneratePrescription">Generar Fórmula</a> @* Placeholder *@
-                                </li>
-                            }
-                            // Add other roles or a default view if needed
-                        }
+                            } @* Closing Patient check *@
+                        } @* Closing SignIn check *@
                         else
                         {
-                            // Links for non-logged-in users (e.g., Privacy)
+                            @* Show public links for non-logged-in users if needed *@
+                            @* Example:
                             <li class="nav-item">
-                                <a class="nav-link text-dark" asp-area="" asp-page="/Privacy">Privacidad</a>
+                               <a class="nav-link text-dark" asp-area="" asp-page="/PublicInfo">Información</a>
                             </li>
-                        }
+                            *@
+                        } @* Closing not SignedIn check *@
+
+                        <li class="nav-item">
+                            <a class="nav-link text-dark" asp-area="" asp-page="/Privacy"><i class="bi bi-shield-check"></i> Privacidad</a>
+                        </li>
                     </ul>
                     <partial name="_LoginPartial" />
-                </div>
-            </div>
+                </div> @* Closing navbar-collapse *@
+            </div> @* Closing container *@
         </nav>
     </header>
     <div class="container mt-4">
@@ -100,19 +123,21 @@
             }
             @RenderBody()
         </main>
-    </div>
+    </div> @* Closing container mt-4 *@
 
-    <footer class="border-top footer text-muted bg-light fixed-bottom">
-        <div class="container text-center py-3">
+    <footer class="border-top footer text-muted bg-light mt-auto py-3"> @* Removed fixed-bottom, added mt-auto py-3 *@
+        <div class="container text-center">
             &copy; @DateTime.Now.Year - VitalCare - <a asp-area="" asp-page="/Privacy">Política de Privacidad</a>
         </div>
     </footer>
 
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
     <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    @* Flatpickr JS for date pickers *@
     <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+    <script src="https://npmcdn.com/flatpickr/dist/l10n/es.js"></script> @* Spanish locale for Flatpickr *@
     <script src="~/js/site.js" asp-append-version="true"></script>
-    <script src="~/js/site.flatpickr.js" asp-append-version="true"></script>
+    @* Removed site.flatpickr.js, assuming initialization is in site.js or specific pages now *@
 
     @await RenderSectionAsync("Scripts", required: false)
 </body>

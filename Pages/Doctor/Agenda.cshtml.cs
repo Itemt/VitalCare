@@ -24,7 +24,7 @@ namespace CitasEPS.Pages.Doctor
         }
 
         public IList<Models.Appointment> Appointments { get; set; } = new List<Models.Appointment>();
-        public Models.Doctor CurrentDoctor { get; set; }
+        public Models.Doctor? CurrentDoctor { get; set; }
 
         public async Task<IActionResult> OnGetAsync()
         {

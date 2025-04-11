@@ -28,16 +28,16 @@ else
         <thead>
             <tr>
                 <th>
-                    Fecha y Hora
+                    @Html.DisplayNameFor(model => model.Appointment[0].AppointmentDateTime)
                 </th>
                 <th>
-                    Médico
+                    @Html.DisplayNameFor(model => model.Appointment[0].Doctor)
                 </th>
                 <th>
-                    Especialidad
+                    @Html.DisplayNameFor(model => model.Appointment[0].Doctor.Specialty)
                 </th>
                 <th>
-                    Confirmada
+                    @Html.DisplayNameFor(model => model.Appointment[0].IsConfirmed)
                 </th>
                 <th>Acciones</th>
             </tr>

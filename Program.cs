@@ -27,8 +27,11 @@ builder.Services.AddTransient<IEmailSender, EmailSender>();
 // Añadir políticas de Autorización
 builder.Services.AddAuthorization(options =>
 {
+    options.AddPolicy("RequireAdminRole", policy => policy.RequireRole("Admin"));
+    options.AddPolicy("RequireDoctorRole", policy => policy.RequireRole("Doctor"));
+    options.AddPolicy("RequirePatientRole", policy => policy.RequireRole("Patient"));
+    // Mantener la política original "Admin" por si se usa en otro lugar, o eliminarla si es redundante.
     options.AddPolicy("Admin", policy => policy.RequireClaim("IsAdmin", "true"));
-    // Añadir otras políticas aquí si es necesario
 });
 
 // Configurar opciones de Razor Pages para soportar áreas de Identity
