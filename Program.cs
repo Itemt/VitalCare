@@ -74,7 +74,11 @@ using (var scope = app.Services.CreateScope())
             }
         }
 
-        // Optional: Seed data here if needed after successful migration
+        // Seed data after successful migration
+        var roleManager = services.GetRequiredService<RoleManager<IdentityRole<int>>>();
+        var userManager = services.GetRequiredService<UserManager<User>>();
+        await SeedData.Initialize(services, context, userManager, roleManager, logger);
+
     }
     catch (Exception ex)
     {
