@@ -18,18 +18,18 @@
         {
             @if (User.IsInRole("Admin"))
             {
-                <a class="btn btn-light btn-lg me-2" asp-page="/Admin/Index" role="button">Ir al Panel de Admin</a>
-                <a class="btn btn-outline-light btn-lg" asp-page="/Admin/ManageAppointments" role="button">Gestionar Citas</a>
+                <a class="btn btn-light btn-lg me-2" asp-page="/Admin/Index" role="button"><i class="bi bi-speedometer2"></i> Ir al Panel</a>
+                <a class="btn btn-outline-light btn-lg" asp-page="/Admin/ManageAppointments" role="button"><i class="bi bi-calendar-check"></i> Gestionar Citas</a>
             }
             else if (User.IsInRole("Patient"))
             {
-                <a class="btn btn-light btn-lg me-2" asp-page="/Appointments/Create" role="button">Agendar Nueva Cita</a>
-                <a class="btn btn-outline-light btn-lg" asp-page="/Appointments/Index" role="button">Ver Mis Citas</a>
+                <a class="btn btn-light btn-lg me-2" asp-page="/Appointments/Create" role="button"><i class="bi bi-calendar-plus"></i> Agendar Nueva Cita</a>
+                <a class="btn btn-outline-light btn-lg" asp-page="/Appointments/Index" role="button"><i class="bi bi-calendar-event"></i> Ver Mis Citas</a>
             }
             else if (User.IsInRole("Doctor"))
             {
-                <a class="btn btn-light btn-lg me-2" asp-page="/Doctor/Agenda" role="button">Ver Mi Agenda</a>
-                <a class="btn btn-outline-light btn-lg" asp-page="/Doctor/Patients" role="button">Mis Pacientes</a>
+                <a class="btn btn-light btn-lg me-2" asp-page="/Doctor/Agenda" role="button"><i class="bi bi-calendar-week"></i> Ver Mi Agenda</a>
+                <a class="btn btn-outline-light btn-lg" asp-page="/Doctor/Patients" role="button"><i class="bi bi-people"></i> Mis Pacientes</a>
             }
             else
             {
@@ -45,52 +45,192 @@
     </div>
 </div>
 
-<!-- Informational Cards Section -->
+<!-- Main Content Section - Dynamic based on Role -->
 <div class="container mt-5">
-    <div class="row text-center">
-        <div class="col-md-4 mb-4">
-            <div class="card h-100 shadow-sm">
-                 <img src="https://placehold.co/600x400/007bff/ffffff?text=Especialistas" class="card-img-top" alt="Encuentre especialistas" style="height: 200px; object-fit: cover;">
-                <div class="card-body">
-                    <h5 class="card-title">Encuentre Especialistas</h5>
-                    <p class="card-text">Busque y seleccione entre una amplia red de doctores y especialistas disponibles para atenderle.</p>
-                    @if (SignInManager.IsSignedIn(User))
-                    {
-                         <a asp-page="/Appointments/Create" class="btn btn-primary">Buscar Ahora</a>
-                    }
-                    else
-                    {
-                         <a asp-area="Identity" asp-page="/Account/Login" class="btn btn-primary">Iniciar Sesión para Buscar</a>
-                    }
+    @if (SignInManager.IsSignedIn(User))
+    {
+        @if (User.IsInRole("Admin"))
+        {
+            <div class="text-center mb-4">
+                <h2>Panel de Administración</h2>
+                <p>Gestionar entidades clave del sistema.</p>
+            </div>
+            <div class="row justify-content-center text-center">
+                <div class="col-lg-3 col-md-4 col-sm-6 mb-4">
+                    <div class="card h-100 shadow-sm">
+                        <div class="card-body d-flex flex-column">
+                            <i class="bi bi-calendar-check-fill fs-1 text-primary mb-3"></i>
+                            <h5 class="card-title">Gestionar Citas</h5>
+                            <p class="card-text flex-grow-1">Ver y administrar todas las citas del sistema.</p>
+                            <a asp-page="/Admin/ManageAppointments" class="btn btn-primary mt-auto">Ir a Citas</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-4 col-sm-6 mb-4">
+                    <div class="card h-100 shadow-sm">
+                        <div class="card-body d-flex flex-column">
+                             <i class="bi bi-hospital-fill fs-1 text-success mb-3"></i>
+                            <h5 class="card-title">Gestionar Especialidades</h5>
+                            <p class="card-text flex-grow-1">Añadir o editar las especialidades médicas.</p>
+                            <a asp-page="/Admin/ManageSpecialties" class="btn btn-success mt-auto">Ir a Especialidades</a>
+                        </div>
+                    </div>
+                </div>
+                 <div class="col-lg-3 col-md-4 col-sm-6 mb-4">
+                    <div class="card h-100 shadow-sm">
+                        <div class="card-body d-flex flex-column">
+                             <i class="bi bi-file-medical-fill fs-1 text-info mb-3"></i>
+                            <h5 class="card-title">Gestionar Médicos</h5>
+                            <p class="card-text flex-grow-1">Ver, añadir o editar información de médicos.</p>
+                            <a asp-page="/Admin/ManageDoctors" class="btn btn-info mt-auto">Ir a Médicos</a>
+                        </div>
+                    </div>
+                </div>
+                 <div class="col-lg-3 col-md-4 col-sm-6 mb-4">
+                    <div class="card h-100 shadow-sm">
+                        <div class="card-body d-flex flex-column">
+                             <i class="bi bi-capsule-pill fs-1 text-warning mb-3"></i>
+                            <h5 class="card-title">Gestionar Medicamentos</h5>
+                            <p class="card-text flex-grow-1">Añadir o editar los medicamentos disponibles.</p>
+                            <a asp-page="/Admin/Medications/Index" class="btn btn-warning mt-auto">Ir a Medicamentos</a>
+                        </div>
+                    </div>
+                </div>
+                @* Add more Admin specific cards here if needed *@
+            </div>
+        }
+        else if (User.IsInRole("Doctor"))
+        {
+            <div class="text-center mb-4">
+                <h2>Panel de Médico</h2>
+                <p>Acceda a su agenda y gestione pacientes.</p>
+            </div>
+            <div class="row justify-content-center text-center">
+                <div class="col-md-5 mb-4">
+                    <div class="card h-100 shadow-sm">
+                        <div class="card-body d-flex flex-column">
+                            <i class="bi bi-calendar-week-fill fs-1 text-primary mb-3"></i>
+                            <h5 class="card-title">Mi Agenda</h5>
+                            <p class="card-text flex-grow-1">Vea sus citas, detalles y añada prescripciones.</p>
+                            <a asp-page="/Doctor/Agenda" class="btn btn-primary mt-auto">Ver Agenda</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-5 mb-4">
+                    <div class="card h-100 shadow-sm">
+                        <div class="card-body d-flex flex-column">
+                            <i class="bi bi-people-fill fs-1 text-success mb-3"></i>
+                            <h5 class="card-title">Mis Pacientes</h5>
+                            <p class="card-text flex-grow-1">Consulte pacientes atendidos y vea su historial.</p>
+                            <a asp-page="/Doctor/Patients" class="btn btn-success mt-auto">Ver Pacientes</a>
+                        </div>
+                    </div>
+                </div>
+                 @* Add more Doctor specific cards here if needed *@
+            </div>
+        }
+        else if (User.IsInRole("Patient"))
+        {
+            <div class="text-center mb-4">
+                <h2>Panel de Paciente</h2>
+                <p>Agende nuevas citas y consulte las existentes.</p>
+            </div>
+            <div class="row justify-content-center text-center">
+                <div class="col-md-5 mb-4">
+                    <div class="card h-100 shadow-sm">
+                        <div class="card-body d-flex flex-column">
+                             <i class="bi bi-calendar-plus-fill fs-1 text-primary mb-3"></i>
+                            <h5 class="card-title">Agendar Nueva Cita</h5>
+                            <p class="card-text flex-grow-1">Busque disponibilidad y programe una nueva cita.</p>
+                            <a asp-page="/Appointments/Create" class="btn btn-primary mt-auto">Agendar Ahora</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-5 mb-4">
+                    <div class="card h-100 shadow-sm">
+                        <div class="card-body d-flex flex-column">
+                            <i class="bi bi-calendar-check-fill fs-1 text-success mb-3"></i>
+                            <h5 class="card-title">Mis Citas</h5>
+                            <p class="card-text flex-grow-1">Vea sus próximas citas, detalles y confirme.</p>
+                            <a asp-page="/Appointments/Index" class="btn btn-success mt-auto">Ver Mis Citas</a>
+                        </div>
+                    </div>
+                </div>
+                 @* Add more Patient specific cards here if needed *@
+            </div>
+        }
+        else
+        {
+             // Fallback for logged-in users with undefined roles
+             // Display the original generic cards 
+             <div class="row text-center">
+                <div class="col-md-4 mb-4">
+                    <div class="card h-100 shadow-sm">
+                         <img src="https://placehold.co/600x400/007bff/ffffff?text=Especialistas" class="card-img-top" alt="Encuentre especialistas" style="height: 200px; object-fit: cover;">
+                        <div class="card-body d-flex flex-column">
+                            <h5 class="card-title">Encuentre Especialistas</h5>
+                            <p class="card-text flex-grow-1">Busque y seleccione doctores y especialistas.</p>
+                             <a asp-page="/Appointments/Create" class="btn btn-primary mt-auto">Buscar Ahora</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4 mb-4">
+                    <div class="card h-100 shadow-sm">
+                        <img src="https://placehold.co/600x400/17a2b8/ffffff?text=Gestionar+Citas" class="card-img-top" alt="Gestione sus citas" style="height: 200px; object-fit: cover;">
+                        <div class="card-body d-flex flex-column">
+                            <h5 class="card-title">Gestione Sus Citas</h5>
+                            <p class="card-text flex-grow-1">Vea sus próximas citas, reprograme o cancele.</p>
+                             <a asp-page="/Appointments/Index" class="btn btn-primary mt-auto">Ir a Mis Citas</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4 mb-4">
+                    <div class="card h-100 shadow-sm">
+                        <img src="https://images.unsplash.com/photo-1478479405421-ce83c92fb3ba?ixlib=rb-1.2.1&auto=format&fit=crop&w=1050&q=80" class="card-img-top" alt="Recursos de salud" style="height: 200px; object-fit: cover;">
+                        <div class="card-body d-flex flex-column">
+                            <h5 class="card-title">Recursos de Salud</h5>
+                            <p class="card-text flex-grow-1">Acceda a información útil y consejos de salud.</p>
+                            <a href="#" class="btn btn-secondary disabled mt-auto">Próximamente</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        }
+    }
+    else
+    {
+        // Content for non-logged-in users (original generic cards)
+        <div class="row text-center">
+            <div class="col-md-4 mb-4">
+                <div class="card h-100 shadow-sm">
+                     <img src="https://placehold.co/600x400/007bff/ffffff?text=Especialistas" class="card-img-top" alt="Encuentre especialistas" style="height: 200px; object-fit: cover;">
+                    <div class="card-body d-flex flex-column">
+                        <h5 class="card-title">Encuentre Especialistas</h5>
+                        <p class="card-text flex-grow-1">Busque y seleccione doctores y especialistas.</p>
+                         <a asp-area="Identity" asp-page="/Account/Login" class="btn btn-primary mt-auto">Iniciar Sesión para Buscar</a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4 mb-4">
+                <div class="card h-100 shadow-sm">
+                    <img src="https://placehold.co/600x400/17a2b8/ffffff?text=Gestionar+Citas" class="card-img-top" alt="Gestione sus citas" style="height: 200px; object-fit: cover;">
+                    <div class="card-body d-flex flex-column">
+                        <h5 class="card-title">Gestione Sus Citas</h5>
+                        <p class="card-text flex-grow-1">Vea sus próximas citas, reprograme o cancele.</p>
+                         <a asp-area="Identity" asp-page="/Account/Login" class="btn btn-primary mt-auto">Iniciar Sesión para Gestionar</a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4 mb-4">
+                <div class="card h-100 shadow-sm">
+                    <img src="https://images.unsplash.com/photo-1478479405421-ce83c92fb3ba?ixlib=rb-1.2.1&auto=format&fit=crop&w=1050&q=80" class="card-img-top" alt="Recursos de salud" style="height: 200px; object-fit: cover;">
+                    <div class="card-body d-flex flex-column">
+                        <h5 class="card-title">Recursos de Salud</h5>
+                        <p class="card-text flex-grow-1">Acceda a información útil y consejos de salud.</p>
+                        <a href="#" class="btn btn-secondary disabled mt-auto">Próximamente</a>
+                    </div>
                 </div>
             </div>
         </div>
-        <div class="col-md-4 mb-4">
-            <div class="card h-100 shadow-sm">
-                <img src="https://placehold.co/600x400/17a2b8/ffffff?text=Gestionar+Citas" class="card-img-top" alt="Gestione sus citas" style="height: 200px; object-fit: cover;">
-                <div class="card-body">
-                    <h5 class="card-title">Gestione Sus Citas</h5>
-                    <p class="card-text">Vea sus próximas citas, reprograme o cancele según su necesidad, todo desde un solo lugar.</p>
-                     @if (SignInManager.IsSignedIn(User))
-                    {
-                        <a asp-page="/Appointments/Index" class="btn btn-primary">Ir a Mis Citas</a>
-                    }
-                    else
-                    {
-                         <a asp-area="Identity" asp-page="/Account/Login" class="btn btn-primary">Iniciar Sesión para Gestionar</a>
-                    }
-                </div>
-            </div>
-        </div>
-        <div class="col-md-4 mb-4">
-            <div class="card h-100 shadow-sm">
-                <img src="https://images.unsplash.com/photo-1478479405421-ce83c92fb3ba?ixlib=rb-1.2.1&auto=format&fit=crop&w=1050&q=80" class="card-img-top" alt="Recursos de salud" style="height: 200px; object-fit: cover;">
-                <div class="card-body">
-                    <h5 class="card-title">Recursos de Salud</h5>
-                    <p class="card-text">Acceda a información útil, consejos de salud y noticias relevantes para su bienestar.</p>
-                    <a href="#" class="btn btn-secondary disabled">Próximamente</a>
-                </div>
-            </div>
-        </div>
-    </div>
+    }
 </div>
