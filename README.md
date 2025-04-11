@@ -1,97 +1,64 @@
-# VitalCare
+# VitalCare (CitasEPS)
 
-**VitalCare** es una aplicación diseñada para facilitar la gestión de citas médicas en el sistema de salud. Proporciona una plataforma intuitiva para que los usuarios programen, consulten y administren sus citas con facilidad.
+A web application for managing medical appointments, built with ASP.NET Core 8 and PostgreSQL.
 
-## Características
+## Technology Stack
 
-- **Programación de citas**: Permite a los usuarios agendar nuevas citas con profesionales de la salud.
-- **Gestión de citas**: Consulta y modificación de citas existentes.
-- **Notificaciones**: Recordatorios automáticos para próximas citas.
-- **Interfaz amigable**: Diseño intuitivo para una experiencia de usuario óptima.
+*   **Framework:** ASP.NET Core 8 (Razor Pages)
+*   **Database:** PostgreSQL
+*   **ORM:** Entity Framework Core 8
+*   **Authentication:** ASP.NET Core Identity
 
-## Tecnologías utilizadas
+## Prerequisites
 
-- **Backend**: ASP.NET Core
-- **Frontend**: HTML, CSS, JavaScript
-- **Base de datos**: SQL Server
-- **Contenedores**: Docker
+*   [.NET 8 SDK](https://dotnet.microsoft.com/download/dotnet/8.0)
+*   [PostgreSQL](https://www.postgresql.org/download/) (ensure the server is running)
 
-## Requisitos previos
+## Getting Started
 
-Antes de instalar y ejecutar VitalCare, asegúrate de tener instalados:
+1.  **Clone the repository:**
+    ```bash
+    git clone https://github.com/itemt/vitalcare.git
+    cd vitalcare
+    ```
 
-- [.NET 8.0 SDK](https://dotnet.microsoft.com/download/dotnet/8.0)
-- [Docker](https://www.docker.com/get-started)
-- [SQL Server](https://www.microsoft.com/en-us/sql-server/sql-server-downloads)
+2.  **Configure Database Connection:**
+    *   Open the `appsettings.json` file.
+    *   Locate the `ConnectionStrings` section.
+    *   Update the `DefaultConnection` string with your PostgreSQL server details (Host, Port, Database Name, Username, Password).
+        ```json
+        {
+          // ... other settings
+          "ConnectionStrings": {
+            "DefaultConnection": "Host=localhost;Port=5432;Database=CitasEPSDb;Username=your_username;Password=your_password"
+          }
+        }
+        ```
+    *   *Note:* The default database name used during setup was `CitasEPSDb`.
 
-## Instalación
+3.  **Create Database (if it doesn't exist):**
+    *   Connect to your PostgreSQL instance (e.g., using `psql` or a GUI tool).
+    *   Run the command: `CREATE DATABASE "CitasEPSDb";` (Replace `CitasEPSDb` if you used a different name in the connection string).
 
-1. **Clonar el repositorio**:
+4.  **Apply Database Migrations:**
+    *   Open a terminal in the project root directory.
+    *   Run the command:
+        ```bash
+        dotnet ef database update
+        ```
+    *   This will create the necessary tables based on the Entity Framework Core models.
 
-   ```bash
-   git clone https://github.com/Itemt/VitalCare.git
-   ```
+5.  **Run the application:**
+    *   In the terminal, run:
+        ```bash
+        dotnet run
+        ```
+    *   The application should now be running, typically at `https://localhost:xxxx` or `http://localhost:yyyy`.
 
-2. **Navegar al directorio del proyecto**:
+## Features (Example)
 
-   ```bash
-   cd VitalCare
-   ```
+*   User Registration and Login (Patients, Admins)
+*   Appointment Scheduling and Management
+*   Doctor and Specialty Management
+*   Admin Dashboard
 
-3. **Configurar la base de datos**:
-
-   - Asegúrate de que SQL Server esté en funcionamiento.
-   - Ejecuta el script `init.sql` para crear la base de datos necesaria:
-
-     ```bash
-     sqlcmd -S <tu_servidor> -U <tu_usuario> -P <tu_contraseña> -i init.sql
-     ```
-
-4. **Configurar las variables de entorno**:
-
-   Crea un archivo `.env` en la raíz del proyecto con las siguientes variables:
-
-   ```env
-   DB_SERVER=<tu_servidor>
-   DB_USER=<tu_usuario>
-   DB_PASSWORD=<tu_contraseña>
-   DB_NAME=VitalCareDB
-   ```
-
-5. **Construir y ejecutar la aplicación con Docker**:
-
-   - **Construir la imagen**:
-
-     ```bash
-     docker-compose build
-     ```
-
-   - **Ejecutar los contenedores**:
-
-     ```bash
-     docker-compose up
-     ```
-
-   La aplicación estará disponible en `http://localhost:5000`.
-
-## Uso
-
-1. **Registro e inicio de sesión**: Crea una cuenta o inicia sesión con tus credenciales.
-2. **Programar una cita**: Navega a la sección de citas y selecciona "Nueva cita". Completa los detalles requeridos y confirma.
-3. **Ver y gestionar citas**: En la sección "Mis citas", puedes ver, modificar o cancelar tus citas programadas.
-
-## Contribuciones
-
-¡Las contribuciones son bienvenidas! Para contribuir:
-
-1. Haz un fork del repositorio.
-2. Crea una nueva rama (`git checkout -b feature/nueva-funcionalidad`).
-3. Realiza tus cambios y haz commit (`git commit -m 'Añadir nueva funcionalidad'`).
-4. Haz push a la rama (`git push origin feature/nueva-funcionalidad`).
-5. Abre un Pull Request.
-
-## Licencia
-
-Este proyecto está bajo la licencia MIT.
-
----
