@@ -188,6 +188,30 @@ build_metadata.AdditionalFiles.CssScope =
 build_metadata.AdditionalFiles.TargetPath = QXJlYXMvSWRlbnRpdHkvUGFnZXMvX1ZpZXdTdGFydC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
+[/Users/cristianramos/Desktop/Proyectos/AplicativosWeb/CitasEPS/Pages/Admin/Appointments/Cancel.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXMvQWRtaW4vQXBwb2ludG1lbnRzL0NhbmNlbC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[/Users/cristianramos/Desktop/Proyectos/AplicativosWeb/CitasEPS/Pages/Admin/Appointments/Create.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXMvQWRtaW4vQXBwb2ludG1lbnRzL0NyZWF0ZS5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[/Users/cristianramos/Desktop/Proyectos/AplicativosWeb/CitasEPS/Pages/Admin/Appointments/Details.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXMvQWRtaW4vQXBwb2ludG1lbnRzL0RldGFpbHMuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[/Users/cristianramos/Desktop/Proyectos/AplicativosWeb/CitasEPS/Pages/Admin/Doctors/Create.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXMvQWRtaW4vRG9jdG9ycy9DcmVhdGUuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[/Users/cristianramos/Desktop/Proyectos/AplicativosWeb/CitasEPS/Pages/Admin/Doctors/Delete.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXMvQWRtaW4vRG9jdG9ycy9EZWxldGUuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[/Users/cristianramos/Desktop/Proyectos/AplicativosWeb/CitasEPS/Pages/Admin/Doctors/Edit.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXMvQWRtaW4vRG9jdG9ycy9FZGl0LmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
 [/Users/cristianramos/Desktop/Proyectos/AplicativosWeb/CitasEPS/Pages/Admin/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXMvQWRtaW4vSW5kZXguY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
@@ -230,6 +254,42 @@ build_metadata.AdditionalFiles.CssScope =
 
 [/Users/cristianramos/Desktop/Proyectos/AplicativosWeb/CitasEPS/Pages/Admin/Medications/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXMvQWRtaW4vTWVkaWNhdGlvbnMvSW5kZXguY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[/Users/cristianramos/Desktop/Proyectos/AplicativosWeb/CitasEPS/Pages/Admin/Patients/Create.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXMvQWRtaW4vUGF0aWVudHMvQ3JlYXRlLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[/Users/cristianramos/Desktop/Proyectos/AplicativosWeb/CitasEPS/Pages/Admin/Patients/Delete.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXMvQWRtaW4vUGF0aWVudHMvRGVsZXRlLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[/Users/cristianramos/Desktop/Proyectos/AplicativosWeb/CitasEPS/Pages/Admin/Patients/Edit.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXMvQWRtaW4vUGF0aWVudHMvRWRpdC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[/Users/cristianramos/Desktop/Proyectos/AplicativosWeb/CitasEPS/Pages/Admin/Specialties/Create.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXMvQWRtaW4vU3BlY2lhbHRpZXMvQ3JlYXRlLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[/Users/cristianramos/Desktop/Proyectos/AplicativosWeb/CitasEPS/Pages/Admin/Specialties/Delete.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXMvQWRtaW4vU3BlY2lhbHRpZXMvRGVsZXRlLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[/Users/cristianramos/Desktop/Proyectos/AplicativosWeb/CitasEPS/Pages/Admin/Specialties/Edit.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXMvQWRtaW4vU3BlY2lhbHRpZXMvRWRpdC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[/Users/cristianramos/Desktop/Proyectos/AplicativosWeb/CitasEPS/Pages/Admin/Users/Create.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXMvQWRtaW4vVXNlcnMvQ3JlYXRlLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[/Users/cristianramos/Desktop/Proyectos/AplicativosWeb/CitasEPS/Pages/Admin/Users/Delete.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXMvQWRtaW4vVXNlcnMvRGVsZXRlLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[/Users/cristianramos/Desktop/Proyectos/AplicativosWeb/CitasEPS/Pages/Admin/Users/Edit.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXMvQWRtaW4vVXNlcnMvRWRpdC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
 [/Users/cristianramos/Desktop/Proyectos/AplicativosWeb/CitasEPS/Pages/Appointments/Create.cshtml]

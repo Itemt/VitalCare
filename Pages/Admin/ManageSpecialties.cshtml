@@ -4,37 +4,42 @@
     ViewData["Title"] = "Gestionar Especialidades";
 }
 
-<h1 class="display-4">Gestionar Especialidades</h1>
+<h1 class="display-4"><i class="bi bi-star-fill"></i> @ViewData["Title"]</h1>
 
 <p>
-    <a asp-page="CreateSpecialty" class="btn btn-success">Crear Nueva Especialidad</a> @* Placeholder - Página necesita crearse *@
+    <a asp-page="./Specialties/Create" class="btn btn-success mb-3"><i class="bi bi-plus-circle"></i> Crear Nueva Especialidad</a>
 </p>
 
-<p>Aquí se mostrará una tabla con las especialidades médicas existentes y opciones para editar/eliminar.</p>
-
-@* Placeholder para tabla *@
-<table class="table table-striped">
-    <thead>
-        <tr>
-            <th>Nombre</th>
-            <th>Acciones</th>
-        </tr>
-    </thead>
-    <tbody>
-        <tr>
-            <td>Cardiología</td>
-            <td>
-                <a href="#" class="btn btn-sm btn-primary disabled">Editar</a>
-                <a href="#" class="btn btn-sm btn-danger disabled">Eliminar</a>
-            </td>
-        </tr>
-         <tr>
-            <td>Medicina General</td>
-             <td>
-                <a href="#" class="btn btn-sm btn-primary disabled">Editar</a>
-                <a href="#" class="btn btn-sm btn-danger disabled">Eliminar</a>
-            </td>
-        </tr>
-        @* Más filas se generarán dinámicamente *@
-    </tbody>
-</table> 
+@if (!Model.Specialties.Any())
+{
+    <div class="alert alert-info" role="alert">
+        No hay especialidades médicas registradas.
+    </div>
+}
+else
+{
+    <table class="table table-striped table-hover table-sm">
+        <thead class="table-primary">
+            <tr>
+                <th>
+                    @Html.DisplayNameFor(model => model.Specialties[0].Name)
+                </th>
+                <th>Acciones</th>
+            </tr>
+        </thead>
+        <tbody>
+    @foreach (var item in Model.Specialties)
+    {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Name)
+                </td>
+                <td>
+                    <a asp-page="./Specialties/Edit" asp-route-id="@item.Id" class="btn btn-sm btn-primary" title="Editar"><i class="bi bi-pencil-square"></i></a>
+                    <a asp-page="./Specialties/Delete" asp-route-id="@item.Id" class="btn btn-sm btn-danger" title="Eliminar"><i class="bi bi-trash3"></i></a>
+                </td>
+            </tr>
+    }
+        </tbody>
+    </table>
+}

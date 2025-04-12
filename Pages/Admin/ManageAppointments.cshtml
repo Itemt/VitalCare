@@ -4,45 +4,80 @@
     ViewData["Title"] = "Gestionar Citas";
 }
 
-<h1 class="display-4">Gestionar Todas las Citas</h1>
+<h1 class="display-4"><i class="bi bi-calendar2-check-fill"></i> @ViewData["Title"]</h1>
 
-<p>Aquí se mostrará una tabla con todas las citas médicas del sistema (pasadas y futuras) y opciones para ver detalles o cancelarlas.</p>
+<p>
+    <a asp-page="./Appointments/Create" class="btn btn-success mb-3"><i class="bi bi-plus-circle"></i> Crear Nueva Cita</a>
+</p>
 
-@* Placeholder para tabla/opciones de filtrado *@
-<table class="table table-striped">
-    <thead>
-        <tr>
-            <th>Fecha y Hora</th>
-            <th>Paciente</th>
-            <th>Médico</th>
-            <th>Especialidad</th>
-            <th>Confirmada</th>
-            <th>Acciones</th>
-        </tr>
-    </thead>
-    <tbody>
-        <tr>
-            <td>@DateTime.UtcNow.AddDays(7).ToString("yyyy-MM-dd HH:mm")</td>
-            <td>Juan Perez</td>
-            <td>Dr. Alejandro Guerra</td>
-            <td>Medicina General</td>
-            <td><span class="badge bg-success">Sí</span></td>
-            <td>
-                <a href="#" class="btn btn-sm btn-info disabled">Detalles</a>
-                <a href="#" class="btn btn-sm btn-danger disabled">Cancelar</a>
-            </td>
-        </tr>
-         <tr>
-            <td>@DateTime.UtcNow.AddDays(10).ToString("yyyy-MM-dd HH:mm")</td>
-            <td>Maria Gomez</td>
-            <td>Dra. Sofia Ramirez</td>
-            <td>Cardiología</td>
-            <td><span class="badge bg-warning">No</span></td>
-             <td>
-                <a href="#" class="btn btn-sm btn-info disabled">Detalles</a>
-                <a href="#" class="btn btn-sm btn-danger disabled">Cancelar</a>
-            </td>
-        </tr>
-        @* Más filas se generarán dinámicamente *@
-    </tbody>
-</table> 
+@if (!Model.Appointments.Any())
+{
+    <div class="alert alert-info" role="alert">
+        No hay citas registradas en el sistema.
+    </div>
+}
+else
+{
+    <table class="table table-striped table-hover table-sm">
+        <thead class="table-primary">
+            <tr>
+                <th>
+                    @Html.DisplayNameFor(model => model.Appointments[0].AppointmentDateTime)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Appointments[0].Patient)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Appointments[0].Doctor)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Appointments[0].Doctor.Specialty)
+                </th>
+                 <th>
+                    @Html.DisplayNameFor(model => model.Appointments[0].IsConfirmed)
+                </th>
+                <th>Acciones</th>
+            </tr>
+        </thead>
+        <tbody>
+    @foreach (var item in Model.Appointments)
+    {
+            <tr class="@(item.AppointmentDateTime < DateTime.Now ? "table-secondary" : "")"> @* Grey out past appointments *@
+                <td>
+                    @Html.DisplayFor(modelItem => item.AppointmentDateTime)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Patient.FullName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Doctor.FullName)
+                </td>
+                 <td>
+                    @Html.DisplayFor(modelItem => item.Doctor.Specialty.Name)
+                </td>
+                 <td>
+                    @if (item.IsConfirmed)
+                    {
+                        <span class="badge bg-success">Sí</span>
+                    }
+                    else
+                    {
+                        <span class="badge bg-warning text-dark">No</span>
+                    }
+                </td>
+                <td>
+                    <a asp-page="./Appointments/Details" asp-route-id="@item.Id" class="btn btn-sm btn-info" title="Ver Detalles"><i class="bi bi-info-circle"></i></a>
+                    @if (item.AppointmentDateTime >= DateTime.Now) @* Only allow cancel for future appointments *@
+                    {
+                        <a asp-page="./Appointments/Cancel" asp-route-id="@item.Id" class="btn btn-sm btn-danger" title="Cancelar Cita"><i class="bi bi-calendar-x"></i></a>
+                    }
+                    else
+                    {
+                         <span class="btn btn-sm btn-secondary disabled" title="Cita Pasada"><i class="bi bi-check-circle"></i></span>
+                    }
+                </td>
+            </tr>
+    }
+        </tbody>
+    </table>
+}

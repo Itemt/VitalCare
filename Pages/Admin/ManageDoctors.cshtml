@@ -4,46 +4,65 @@
     ViewData["Title"] = "Gestionar Médicos";
 }
 
-<h1 class="display-4">Gestionar Médicos</h1>
+<h1 class="display-4"><i class="bi bi-file-medical-fill"></i> @ViewData["Title"]</h1>
 
 <p>
-    <a asp-page="CreateDoctor" class="btn btn-success">Crear Nuevo Médico</a> @* Placeholder - Página necesita crearse *@
+    <a asp-page="./Doctors/Create" class="btn btn-success mb-3"><i class="bi bi-plus-circle"></i> Crear Nuevo Médico</a>
 </p>
 
-<p>Aquí se mostrará una tabla con los médicos existentes y opciones para editar/eliminar.</p>
-
-@* Placeholder para tabla *@
-<table class="table table-striped">
-    <thead>
-        <tr>
-            <th>Nombre</th>
-            <th>Apellido</th>
-            <th>Especialidad</th>
-            <th>Licencia</th>
-            <th>Acciones</th>
-        </tr>
-    </thead>
-    <tbody>
-        <tr>
-            <td>Dr. Alejandro</td>
-            <td>Guerra</td>
-            <td>Medicina General</td>
-            <td>MG1001</td>
-            <td>
-                <a href="#" class="btn btn-sm btn-primary disabled">Editar</a>
-                <a href="#" class="btn btn-sm btn-danger disabled">Eliminar</a>
-            </td>
-        </tr>
-         <tr>
-            <td>Dra. Sofia</td>
-            <td>Ramirez</td>
-            <td>Cardiología</td>
-            <td>CA2002</td>
-             <td>
-                <a href="#" class="btn btn-sm btn-primary disabled">Editar</a>
-                <a href="#" class="btn btn-sm btn-danger disabled">Eliminar</a>
-            </td>
-        </tr>
-        @* Más filas se generarán dinámicamente *@
-    </tbody>
-</table> 
+@if (!Model.Doctors.Any())
+{
+    <div class="alert alert-info" role="alert">
+        No hay médicos registrados en el sistema.
+    </div>
+}
+else
+{
+    <table class="table table-striped table-hover">
+        <thead class="table-primary">
+            <tr>
+                <th>
+                    @Html.DisplayNameFor(model => model.Doctors[0].FullName)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Doctors[0].Specialty)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Doctors[0].MedicalLicenseNumber)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Doctors[0].Email)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Doctors[0].PhoneNumber)
+                </th>
+                <th>Acciones</th>
+            </tr>
+        </thead>
+        <tbody>
+    @foreach (var item in Model.Doctors) {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.FullName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Specialty!.Name)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.MedicalLicenseNumber)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Email)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.PhoneNumber)
+                </td>
+                <td>
+                    <a asp-page="./Doctors/Edit" asp-route-id="@item.Id" class="btn btn-sm btn-warning" title="Editar Médico"><i class="bi bi-pencil-square"></i></a> 
+                    <a asp-page="./Doctors/Delete" asp-route-id="@item.Id" class="btn btn-sm btn-danger" title="Eliminar Médico"><i class="bi bi-trash"></i></a>
+                </td>
+            </tr>
+    }
+        </tbody>
+    </table>
+}

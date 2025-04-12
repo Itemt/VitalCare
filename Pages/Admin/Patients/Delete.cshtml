@@ -1,0 +1,59 @@
+@page "{id:int}"
+@model CitasEPS.Pages.Admin.Patients.DeleteModel
+
+@{ 
+    ViewData["Title"] = "Eliminar Paciente";
+    Layout = "~/Pages/Shared/_Layout.cshtml"; 
+}
+
+<h1><i class="bi bi-trash-fill text-danger"></i> @ViewData["Title"]</h1>
+
+<div class="alert alert-danger" role="alert">
+    <h3>¿Está seguro de que desea eliminar este paciente?</h3>
+    <p>Esta acción no se puede deshacer.</p>
+</div>
+
+@if (Model.Patient != null)
+{
+    <div>
+        <h4>Paciente</h4>
+        <hr />
+        <dl class="row">
+            <dt class="col-sm-3">
+                @Html.DisplayNameFor(model => model.Patient!.FullName)
+            </dt>
+            <dd class="col-sm-9">
+                @Html.DisplayFor(model => model.Patient!.FullName)
+            </dd>
+            <dt class="col-sm-3">
+                @Html.DisplayNameFor(model => model.Patient!.DocumentId)
+            </dt>
+            <dd class="col-sm-9">
+                @Html.DisplayFor(model => model.Patient!.DocumentId)
+            </dd>
+            <dt class="col-sm-3">
+                @Html.DisplayNameFor(model => model.Patient!.Email)
+            </dt>
+            <dd class="col-sm-9">
+                @Html.DisplayFor(model => model.Patient!.Email)
+            </dd>
+             <dt class="col-sm-3">
+                @Html.DisplayNameFor(model => model.Patient!.DateOfBirth)
+            </dt>
+            <dd class="col-sm-9">
+                @Html.DisplayFor(model => model.Patient!.DateOfBirth)
+            </dd>
+        </dl>
+        
+        <form method="post">
+            <input type="hidden" asp-for="Patient!.Id" />
+            <button type="submit" class="btn btn-danger"><i class="bi bi-trash"></i> Eliminar Definitivamente</button> |
+            <a asp-page="../ManagePatients" class="btn btn-secondary">Cancelar</a>
+        </form>
+    </div>
+}
+else
+{
+    <div class="alert alert-warning">No se encontró el paciente especificado.</div>
+     <a asp-page="../ManagePatients" class="btn btn-secondary">Volver a la Lista</a>
+}

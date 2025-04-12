@@ -5,6 +5,7 @@ using Microsoft.EntityFrameworkCore;
 using CitasEPS.Data;
 using CitasEPS.Models;
 using Microsoft.AspNetCore.Authorization;
+using Microsoft.Extensions.Logging;
 
 namespace CitasEPS.Pages.Admin.Medications
 {
@@ -12,31 +13,35 @@ namespace CitasEPS.Pages.Admin.Medications
     public class DetailsModel : PageModel
     {
         private readonly ApplicationDbContext _context;
+        private readonly ILogger<DetailsModel> _logger;
 
-        public DetailsModel(ApplicationDbContext context)
+        public DetailsModel(ApplicationDbContext context, ILogger<DetailsModel> logger)
         {
             _context = context;
+            _logger = logger;
         }
 
-        public Medication Medication { get; set; } = default!;
+        public Medication? Medication { get; set; }
 
         public async Task<IActionResult> OnGetAsync(int? id)
         {
             if (id == null)
             {
-                return NotFound();
+                _logger.LogWarning("Solicitud de detalles de medicamento con ID nulo.");
+                return Page();
             }
 
-            var medication = await _context.Medications.FirstOrDefaultAsync(m => m.Id == id);
-            if (medication == null)
+            _logger.LogInformation("Cargando detalles para Medicamento ID {MedicationId}.", id.Value);
+            Medication = await _context.Medications
+                                 .AsNoTracking()
+                                 .FirstOrDefaultAsync(m => m.Id == id.Value);
+
+            if (Medication == null)
             {
-                return NotFound();
+                _logger.LogWarning("Detalles de Medicamento ID {MedicationId} no encontrado.", id.Value);
             }
-            else
-            {
-                Medication = medication;
-            }
+            
             return Page();
         }
     }
-} 
+}

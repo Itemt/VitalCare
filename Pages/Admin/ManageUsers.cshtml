@@ -7,6 +7,10 @@
 
 <h2><i class="bi bi-people-fill"></i> @ViewData["Title"]</h2>
 
+<p>
+    <a asp-page="./Users/Create" class="btn btn-success mb-3"><i class="bi bi-plus-circle"></i> Crear Nuevo Usuario</a>
+</p>
+
 @if (!Model.Users.Any())
 {
     <div class="alert alert-info" role="alert">
@@ -35,8 +39,8 @@ else
                     </td>
                     <td>
                         @* Placeholder for Edit/Delete/Manage Roles links/buttons *@
-                        <a asp-page="#" asp-route-id="@user.Id" class="btn btn-sm btn-outline-primary disabled" title="Editar (No implementado)"><i class="bi bi-pencil"></i></a>
-                        <a asp-page="#" asp-route-id="@user.Id" class="btn btn-sm btn-outline-danger disabled" title="Eliminar (No implementado)"><i class="bi bi-trash"></i></a>
+                        <a asp-page="./Users/Edit" asp-route-id="@user.Id" class="btn btn-sm btn-warning" title="Editar Usuario/Roles"><i class="bi bi-pencil-square"></i></a>
+                        <a asp-page="./Users/Delete" asp-route-id="@user.Id" class="btn btn-sm btn-danger" title="Eliminar Usuario"><i class="bi bi-trash"></i></a>
                         <a asp-page="#" asp-route-id="@user.Id" class="btn btn-sm btn-outline-secondary disabled" title="Gestionar Roles (No implementado)"><i class="bi bi-person-rolodex"></i></a>
                     </td>
                 </tr>

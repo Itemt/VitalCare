@@ -8,9 +8,9 @@
 <h2><i class="bi bi-person-lines-fill"></i> @ViewData["Title"]</h2>
 
 @* Optional: Add a button to create new patients? *@
-@* <p>
-    <a asp-page="CreatePatient" class="btn btn-primary disabled">Crear Nuevo Paciente (No implementado)</a>
-</p> *@
+<p>
+    <a asp-page="./Patients/Create" class="btn btn-success mb-3"><i class="bi bi-plus-circle"></i> Crear Nuevo Paciente</a>
+</p>
 
 @if (!Model.Patients.Any())
 {
@@ -55,9 +55,9 @@ else
                 </td>
                 <td>
                     @* Placeholder for Edit/Delete/View Details links/buttons *@
-                    <a asp-page="#" asp-route-id="@item.Id" class="btn btn-sm btn-outline-primary disabled" title="Editar (No implementado)"><i class="bi bi-pencil"></i></a>
-                    <a asp-page="#" asp-route-id="@item.Id" class="btn btn-sm btn-outline-danger disabled" title="Eliminar (No implementado)"><i class="bi bi-trash"></i></a>
-                    <a asp-page="#" asp-route-id="@item.Id" class="btn btn-sm btn-outline-info disabled" title="Detalles (No implementado)"><i class="bi bi-info-circle"></i></a>
+                    <a asp-page="./Patients/Edit" asp-route-id="@item.Id" class="btn btn-sm btn-warning" title="Editar Paciente"><i class="bi bi-pencil-square"></i></a>
+                    <a asp-page="./Patients/Delete" asp-route-id="@item.Id" class="btn btn-sm btn-danger" title="Eliminar Paciente"><i class="bi bi-trash"></i></a>
+                    <a asp-page="./Patients/Details" asp-route-id="@item.Id" class="btn btn-sm btn-info" title="Ver Detalles"><i class="bi bi-info-circle"></i></a>
                 </td>
             </tr>
     }

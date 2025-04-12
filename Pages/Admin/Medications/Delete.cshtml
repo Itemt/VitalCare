@@ -1,12 +1,12 @@
-@page "{id:int?}"
+@page "{id:int}"
 @model CitasEPS.Pages.Admin.Medications.DeleteModel
 
 @{
     ViewData["Title"] = "Eliminar Medicamento";
-    Layout = "~/Pages/Shared/_LayoutAdmin.cshtml"; // Use Admin layout if you have one
+    Layout = "~/Pages/Shared/_Layout.cshtml"; // Ensure this points to the correct main layout
 }
 
-<h1><i class="bi bi-trash3"></i> @ViewData["Title"]</h1>
+<h1><i class="bi bi-trash3-fill text-danger"></i> @ViewData["Title"]</h1>
 
 <h3 class="text-danger">¿Está seguro que desea eliminar este medicamento?</h3>
 <div>
