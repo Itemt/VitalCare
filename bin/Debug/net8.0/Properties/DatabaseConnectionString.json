@@ -1,0 +1,1 @@
+"DefaultConnection": "Server=127.0.0.1,1433;Database=CitasEPSDb;User Id=sa;Password=Password1;TrustServerCertificate=True;MultipleActiveResultSets=true"

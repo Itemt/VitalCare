@@ -1,0 +1,43 @@
+@using Microsoft.AspNetCore.Identity
+@using CitasEPS.Models
+
+@inject SignInManager<User> SignInManager
+@inject UserManager<User> UserManager
+
+@{ 
+    // Determinar el rol del usuario para mostrarlo
+    var userRole = "Desconocido";
+    if (SignInManager.IsSignedIn(User))
+    {
+        if (User.IsInRole("Admin")) { userRole = "Administrador"; }
+        else if (User.IsInRole("Doctor")) { userRole = "Médico"; }
+        else if (User.IsInRole("Patient")) { userRole = "Paciente"; }
+        // Añadir más roles si es necesario
+    }
+}
+
+<ul class="navbar-nav">
+@if (SignInManager.IsSignedIn(User))
+{
+    <li class="nav-item">
+        <a id="manage" class="nav-link text-dark" asp-area="Identity" asp-page="/Account/Manage/Index" title="Gestionar Cuenta">¡Hola @UserManager.GetUserName(User)!</a>
+    </li>
+    <li class="nav-item">
+        <a class="nav-link text-info" asp-area="Identity" asp-page="/Account/Manage/Index" title="Gestionar Cuenta">(@userRole)</a> @* Mostrar Rol como enlace *@
+    </li>
+    <li class="nav-item">
+        <form id="logoutForm" class="form-inline" asp-area="Identity" asp-page="/Account/Logout" asp-route-returnUrl="@Url.Page("/Index", new { area = "" })">
+            <button id="logout" type="submit" class="nav-link btn btn-link text-dark border-0">Cerrar Sesión</button>
+        </form>
+    </li>
+}
+else
+{
+    <li class="nav-item">
+        <a class="nav-link text-dark" id="register" asp-area="Identity" asp-page="/Account/Register">Registrarse</a>
+    </li>
+    <li class="nav-item">
+        <a class="nav-link text-dark" id="login" asp-area="Identity" asp-page="/Account/Login">Iniciar Sesión</a>
+    </li>
+}
+</ul>

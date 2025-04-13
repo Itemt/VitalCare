@@ -1,0 +1,54 @@
+@page "{id:int}"
+@model CitasEPS.Pages.Admin.Doctors.DeleteModel
+
+@{ 
+    ViewData["Title"] = "Eliminar Médico";
+    Layout = "~/Pages/Shared/_Layout.cshtml"; 
+}
+
+<h1><i class="bi bi-trash-fill text-danger"></i> @ViewData["Title"]</h1>
+
+<div class="alert alert-danger" role="alert">
+    <h3>¿Está seguro de que desea eliminar este médico?</h3>
+    <p>Esta acción no se puede deshacer.</p>
+</div>
+
+<div>
+    <h4>Médico</h4>
+    <hr />
+    <dl class="row">
+        <dt class="col-sm-3">
+            @Html.DisplayNameFor(model => model.Doctor.FullName)
+        </dt>
+        <dd class="col-sm-9">
+            @Html.DisplayFor(model => model.Doctor.FullName)
+        </dd>
+        <dt class="col-sm-3">
+            @Html.DisplayNameFor(model => model.Doctor.Specialty)
+        </dt>
+        <dd class="col-sm-9">
+            @Html.DisplayFor(model => model.Doctor!.Specialty!.Name)
+        </dd>
+         <dt class="col-sm-3">
+            @Html.DisplayNameFor(model => model.Doctor.MedicalLicenseNumber)
+        </dt>
+        <dd class="col-sm-9">
+            @Html.DisplayFor(model => model.Doctor!.MedicalLicenseNumber)
+        </dd>
+        @* Add UserId if relevant *
+        @* <dt class="col-sm-3">
+            @Html.DisplayNameFor(model => model.Doctor.User.UserName)
+        </dt>
+        <dd class="col-sm-9">
+            @Html.DisplayFor(model => model.Doctor.User.UserName)
+        </dd> *@
+    </dl>
+    
+    <form method="post">
+        <input type="hidden" asp-for="Doctor.Id" />
+        @* Optionally include RowVersion for concurrency check *
+        @* <input type="hidden" asp-for="Doctor.RowVersion" /> *@
+        <button type="submit" class="btn btn-danger"><i class="bi bi-trash"></i> Eliminar</button> |
+        <a asp-page="../ManageDoctors" class="btn btn-secondary">Cancelar</a>
+    </form>
+</div>

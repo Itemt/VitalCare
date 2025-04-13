@@ -1,0 +1,131 @@
+@page
+@model CitasEPS.Pages.Appointments.CreateModel
+
+@{
+    ViewData["Title"] = "Agendar Nueva Cita";
+    var patientName = ViewData["PatientName"] as string ?? "Paciente Desconocido";
+}
+
+<h1>@ViewData["Title"]</h1>
+
+<h4>Agendando cita para: <span class="text-primary">@patientName</span></h4>
+<hr />
+<div class="row">
+    <div class="col-md-6">
+        <form method="post">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+            @* Patient dropdown removed - Patient is automatically assigned based on login *@
+            @* <div class="form-group mb-3">
+                <label asp-for="Appointment.PatientId" class="control-label"></label>
+                <select asp-for="Appointment.PatientId" class ="form-control" asp-items="Model.PatientNameSL">
+                    <option value="">-- Seleccione Paciente --</option>
+                </select>
+                <span asp-validation-for="Appointment.PatientId" class="text-danger"></span>
+            </div> *@
+
+            <div class="form-group mb-3">
+                <label asp-for="SelectedSpecialtyId" class="control-label">Especialidad</label>
+                <select id="specialtyDropdown" asp-for="SelectedSpecialtyId" class ="form-control" asp-items="Model.SpecialtySL">
+                    <option value="">-- Seleccione Especialidad --</option>
+                </select>
+            </div>
+
+            <div class="form-group mb-3">
+                <label asp-for="Appointment.DoctorId" class="control-label">Médico</label>
+                 <select id="doctorDropdown" asp-for="Appointment.DoctorId" class ="form-control" asp-items='ViewData["DoctorNameSL"] as SelectList' disabled>
+                    <option value="">-- Seleccione Médico --</option>
+                 </select>
+                <span asp-validation-for="Appointment.DoctorId" class="text-danger"></span>
+            </div>
+
+            <div class="form-group mb-3">
+                <label asp-for="Appointment.AppointmentDateTime" class="control-label">Fecha y Hora de la Cita</label>
+                @*
+                 * Add min attribute with today's date/time in ISO format.
+                 * The specific format might depend on the datetimepicker library used,
+                 * but this is the standard HTML5 approach.
+                 *@ 
+                <input asp-for="Appointment.AppointmentDateTime" class="form-control datetimepicker" type="text" min="@DateTime.Now.ToString("yyyy-MM-ddTHH:mm")"/>
+                <span asp-validation-for="Appointment.AppointmentDateTime" class="text-danger"></span>
+                <small class="form-text text-muted">Seleccione la fecha y hora deseada para la cita.</small>
+            </div>
+
+            <div class="form-group mb-3">
+                <label asp-for="Appointment.Notes" class="control-label">Notas / Motivo</label>
+                <textarea asp-for="Appointment.Notes" class="form-control" rows="3"></textarea>
+                <span asp-validation-for="Appointment.Notes" class="text-danger"></span>
+            </div>
+
+            @* IsConfirmed is false by default, usually confirmed later by admin/staff *@
+            @*<div class="form-group form-check mb-3">
+                <label class="form-check-label">
+                    <input class="form-check-input" asp-for="Appointment.IsConfirmed" /> @Html.DisplayNameFor(model => model.Appointment.IsConfirmed)
+                </label>
+            </div>*@
+
+            <div class="form-group mt-4">
+                <input type="submit" value="Agendar Cita" class="btn btn-success" />
+                <a asp-page="Index" class="btn btn-secondary">Cancelar</a>
+            </div>
+        </form>
+    </div>
+    <div class="col-md-6">
+        @* Placeholder for a more advanced calendar or availability display *@
+        <div class="card">
+            <div class="card-header">Disponibilidad (Próximamente)</div>
+            <div class="card-body">
+                <p>Aquí se podría mostrar un calendario interactivo para seleccionar la fecha/hora y ver la disponibilidad del médico.</p>
+                <p>Por ahora, por favor use el selector de fecha y hora estándar.</p>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+
+    <script>
+        $(document).ready(function () {
+            var initialSpecialtyId = $('#specialtyDropdown').val();
+            if (initialSpecialtyId) {
+                $('#doctorDropdown').prop('disabled', false);
+            }
+
+            $('#specialtyDropdown').on('change', function () {
+                var specialtyId = $(this).val();
+                var doctorDropdown = $('#doctorDropdown');
+
+                doctorDropdown.prop('disabled', true);
+                doctorDropdown.empty();
+                doctorDropdown.append('<option value="">-- Seleccione Médico --</option>');
+
+                if (specialtyId) {
+                    $.ajax({
+                        url: '?handler=DoctorsBySpecialty&specialtyId=' + specialtyId,
+                        type: 'GET',
+                        dataType: 'json',
+                        success: function (data) {
+                            if (data && data.length > 0) {
+                                $.each(data, function (index, doctor) {
+                                    doctorDropdown.append($('<option>', {
+                                        value: doctor.id,
+                                        text: doctor.fullName
+                                    }));
+                                });
+                                doctorDropdown.prop('disabled', false);
+                            } else {
+                                doctorDropdown.append('<option value="">No hay médicos disponibles</option>');
+                            }
+                        },
+                        error: function (jqXHR, textStatus, errorThrown) {
+                            console.error("Error obteniendo médicos: ", textStatus, errorThrown);
+                            doctorDropdown.append('<option value="">Error al cargar médicos</option>');
+                        }
+                    });
+                } else {
+                }
+            });
+        });
+    </script>
+} 

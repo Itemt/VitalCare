@@ -1,0 +1,76 @@
+@page "{id:int?}"
+@model CitasEPS.Pages.Appointments.EditModel
+
+@{
+    ViewData["Title"] = "Editar Cita";
+}
+
+<h1>@ViewData["Title"]</h1>
+
+<h4>Cita #@Model.Appointment.Id</h4>
+<hr />
+<div class="row">
+    <div class="col-md-6">
+        <form method="post">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input type="hidden" asp-for="Appointment.Id" /> @* Incluir campo oculto para ID *@
+
+            <div class="form-group mb-3">
+                <label asp-for="Appointment.PatientId" class="control-label">Paciente</label> @* Changed Label *@
+                <select asp-for="Appointment.PatientId" class ="form-control" asp-items="Model.PatientNameSL">
+                     <option value="">-- Seleccione Paciente --</option>
+               </select>
+                <span asp-validation-for="Appointment.PatientId" class="text-danger"></span>
+            </div>
+
+            <div class="form-group mb-3">
+                <label asp-for="Appointment.DoctorId" class="control-label">Médico</label> @* Changed Label *@
+                 <select asp-for="Appointment.DoctorId" class ="form-control" asp-items="Model.DoctorNameSL">
+                    <option value="">-- Seleccione Médico --</option> @* Changed Text *@
+                 </select>
+                <span asp-validation-for="Appointment.DoctorId" class="text-danger"></span>
+            </div>
+
+            <div class="form-group mb-3">
+                <label asp-for="Appointment.AppointmentDateTime" class="control-label">Fecha y Hora</label> @* Changed Label *@
+                 @* Usar type="text" y la clase para inicialización de Flatpickr *@
+                <input asp-for="Appointment.AppointmentDateTime" class="form-control datetimepicker" type="text"/>
+                <span asp-validation-for="Appointment.AppointmentDateTime" class="text-danger"></span>
+            </div>
+
+             <div class="form-group mb-3">
+                <label asp-for="Appointment.Notes" class="control-label">Notas / Motivo</label> @* Changed Label *@
+                <textarea asp-for="Appointment.Notes" class="form-control" rows="3"></textarea>
+                <span asp-validation-for="Appointment.Notes" class="text-danger"></span>
+            </div>
+
+            @* Permitir editar estado de confirmación, posiblemente solo para admins *@
+            @* Considerar añadir verificación de autorización aquí: @if ((await AuthorizationService.AuthorizeAsync(User, "Admin")).Succeeded) { ... } *@
+             <div class="form-group form-check mb-3">
+                <label class="form-check-label">
+                    <input class="form-check-input" asp-for="Appointment.IsConfirmed" /> Confirmada @* Changed Label *@
+                </label>
+            </div>
+
+            <div class="form-group mt-4">
+                <input type="submit" value="Guardar Cambios" class="btn btn-success" />
+                 <a asp-page="./Index" class="btn btn-secondary">Cancelar</a>
+            </div>
+        </form>
+    </div>
+     <div class="col-md-6">
+        @* Placeholder para calendario/disponibilidad *@
+         <div class="card">
+            <div class="card-header">Disponibilidad (Próximamente)</div>
+            <div class="card-body">
+                 <p>Calendario de disponibilidad...</p>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+     @* Añadir scripts para librería de calendario JS aquí si es necesario *@
+} 

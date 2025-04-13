@@ -1,0 +1,74 @@
+@page "{patientId:int?}"
+@model CitasEPS.Pages.Doctor.PatientHistoryModel
+
+@{
+    ViewData["Title"] = "Historial del Paciente";
+}
+
+<h1><i class="bi bi-person-lines-fill"></i> @ViewData["Title"]</h1>
+
+@if (Model.TargetPatient != null && Model.CurrentDoctor != null)
+{
+    <h4>Paciente: @Model.TargetPatient.FullName <small>(ID: @Model.TargetPatient.DocumentId)</small></h4>
+    <h5>Atendido por: Dr(a). @Model.CurrentDoctor.FullName</h5>
+    <hr />
+
+    @if (!Model.AppointmentHistory.Any())
+    {
+        <div class="alert alert-info">No hay historial de citas registradas entre usted y este paciente.</div>
+    }
+    else
+    {
+        <h3 class="mt-4">Historial de Citas y Prescripciones</h3>
+        
+        @foreach (var appointment in Model.AppointmentHistory)
+        {
+            <div class="card mb-3 shadow-sm">
+                <div class="card-header bg-light">
+                    <strong>Cita ID: @appointment.Id</strong> - @appointment.AppointmentDateTime.ToString("dd/MM/yyyy HH:mm")
+                     <span class="badge float-end @(appointment.IsConfirmed ? "bg-success" : "bg-warning")">
+                        @(appointment.IsConfirmed ? "Confirmada" : "Pendiente")
+                    </span>
+                </div>
+                <div class="card-body">
+                    <p class="card-text"><strong>Notas/Motivo:</strong> @(string.IsNullOrEmpty(appointment.Notes) ? "(ninguna)" : appointment.Notes)</p>
+                    
+                    @if (appointment.Prescriptions != null && appointment.Prescriptions.Any())
+                    {
+                        <h6 class="card-subtitle mb-2 text-muted">Prescripciones:</h6>
+                        <ul class="list-group list-group-flush">
+                            @foreach (var prescription in appointment.Prescriptions.OrderByDescending(p => p.PrescriptionDate))
+                            {
+                                <li class="list-group-item">
+                                    <strong>@prescription.Medication.Name</strong> - Dosis: @prescription.Dosage <br />
+                                    <em>Instrucciones:</em> @prescription.Instructions <br />
+                                    <small class="text-muted">Fecha: @prescription.PrescriptionDate.ToString("dd/MM/yyyy")</small>
+                                     @* Aquí también se podrían poner botones de editar/eliminar prescripción *@
+                                    <a asp-page="/Doctor/EditPrescription" asp-route-id="@prescription.Id" class="btn btn-outline-warning btn-sm float-end ms-1" title="Editar Prescripción"><i class="bi bi-pencil"></i></a>
+                                    <a asp-page="/Doctor/DeletePrescription" asp-route-id="@prescription.Id" class="btn btn-outline-danger btn-sm float-end" title="Eliminar Prescripción"><i class="bi bi-trash"></i></a>
+                                </li>
+                            }
+                        </ul>
+                    }
+                    else
+                    {
+                        <p class="card-text"><small><em>No hay prescripciones para esta cita.</em></small></p>
+                    }
+                </div>
+                 <div class="card-footer text-muted">
+                     <a asp-page="/Appointments/Details" asp-route-id="@appointment.Id" class="btn btn-sm btn-outline-info me-2">Ver Detalles Cita</a>
+                     <a asp-page="/Doctor/Prescribe" asp-route-appointmentId="@appointment.Id" class="btn btn-sm btn-outline-success">Añadir Prescripción</a>
+                </div>
+            </div>
+        }
+    } @* Closing brace for else block checking AppointmentHistory *@
+
+     <div class="mt-4">
+        <a asp-page="./Patients" class="btn btn-secondary"><i class="bi bi-arrow-left-circle"></i> Volver a Mis Pacientes</a>
+    </div>
+} @* Closing brace for if block checking TargetPatient/CurrentDoctor *@
+else
+{
+     <div class="alert alert-warning">No se pudo cargar la información del paciente o del doctor.</div>
+      <a asp-page="./Patients" class="btn btn-secondary"><i class="bi bi-arrow-left-circle"></i> Volver a Mis Pacientes</a>
+} 
