@@ -183,7 +183,15 @@
 <div class="mt-3">
     @* Ocultar el botón genérico de editar si es Doctor? O mantenerlo para editar fecha/confirmación? Por ahora se deja. *@
     <a asp-page="./Edit" asp-route-id="@Model.Appointment.Id" class="btn btn-warning">Editar Cita</a>
-    <a href="/Appointments/Index" class="btn btn-secondary">Volver al Listado</a>
+
+    @if (User.IsInRole("Doctor"))
+    {
+        <a asp-page="/Doctor/Agenda" class="btn btn-secondary">Volver a la Agenda</a>
+    }
+    else
+    {
+        <a asp-page="/Appointments/Index" class="btn btn-secondary">Volver al Listado</a>
+    }
 </div>
 
 @section Scripts {

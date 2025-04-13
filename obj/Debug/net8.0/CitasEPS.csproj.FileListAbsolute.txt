@@ -1311,3 +1311,4 @@
 /home/cristian/Downloads/CitasEPS/obj/Debug/net8.0/CitasEPS.csproj.Up2Date
 /home/cristian/Downloads/CitasEPS/obj/Debug/net8.0/CitasEPS.genruntimeconfig.cache
 /home/cristian/Downloads/CitasEPS/obj/Debug/net8.0/ref/CitasEPS.dll
+/home/cristian/Downloads/CitasEPS/obj/Debug/net8.0/CitasEPS.sourcelink.json

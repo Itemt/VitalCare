@@ -1,20 +1,18 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+using CitasEPS.Data;
+using CitasEPS.Models;
+using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.EntityFrameworkCore;
-using CitasEPS.Data;
-using CitasEPS.Models;
-using Microsoft.AspNetCore.Authorization; 
-using Microsoft.AspNetCore.Identity; 
-using System.Security.Claims; 
-using Microsoft.Extensions.Logging; 
+using Microsoft.Extensions.Logging;
+using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
 
 namespace CitasEPS.Pages.Appointments
 {
-    [Authorize] 
+    [Authorize] // Ensure only logged-in users can access
     public class IndexModel : PageModel
     {
         private readonly ApplicationDbContext _context;
@@ -28,61 +26,71 @@ namespace CitasEPS.Pages.Appointments
             _logger = logger;
         }
 
-        public IList<Appointment> Appointment { get; set; } = default!;
-        public string? CurrentUserName { get; set; } 
-        public string? UserRole { get; set; } 
-        public bool IsDoctor { get; set; }
+        public IList<Appointment> Appointment { get; set; } = new List<Appointment>();
+        public string UserRole { get; set; } = string.Empty; // To know which view to tailor
 
         public async Task<IActionResult> OnGetAsync()
         {
             var user = await _userManager.GetUserAsync(User);
             if (user == null)
             {
-                _logger.LogWarning("User not found or not logged in.");
-                return Challenge(); 
+                _logger.LogWarning("User not found.");
+                return Challenge(); // Or redirect to login
             }
 
-            CurrentUserName = user.UserName; 
-            Appointment = new List<Appointment>(); 
+            _logger.LogInformation($"User {user.UserName} (ID: {user.Id}) accessing Appointment Index.");
 
             if (await _userManager.IsInRoleAsync(user, "Patient"))
             {
                 UserRole = "Patient";
                 _logger.LogInformation($"Loading appointments for Patient: {user.UserName} (ID: {user.Id})");
-                Appointment = await _context.Appointments
-                    .Where(a => a.PatientId == user.Id) 
-                    .Include(a => a.Doctor) 
-                    .OrderBy(a => a.AppointmentDateTime)
-                    .ToListAsync();
-                 _logger.LogInformation($"Found {Appointment.Count} appointments for Patient {user.UserName}.");
-            }
-            else if (await _userManager.IsInRoleAsync(user, "Doctor"))
-            {
-                UserRole = "Doctor";
-                _logger.LogInformation($"Loading appointments for Doctor: {user.UserName} (ID: {user.Id})");
-                var doctor = await _context.Doctors.FirstOrDefaultAsync(d => d.UserId == user.Id); 
-                if (doctor != null)
+
+                // --- FIX: Find Patient record using Email ---
+                var patient = await _context.Patients.FirstOrDefaultAsync(p => p.Email == user.Email); // Link User and Patient via Email
+                if (patient != null)
                 {
+                    _logger.LogInformation($"Found matching Patient record (ID: {patient.Id}) for User {user.UserName} using email.");
                     Appointment = await _context.Appointments
-                                        .Where(a => a.DoctorId == doctor.Id)
-                                        .Include(a => a.Patient)
-                                        .Include(a => a.Doctor) 
-                                        .OrderBy(a => a.AppointmentDateTime) 
-                                        .ToListAsync();
-                    IsDoctor = true;
+                        .Where(a => a.PatientId == patient.Id) // Filter by the Patient's own ID
+                        .Include(a => a.Doctor)
+                            .ThenInclude(d => d.Specialty) // Include Specialty for display
+                        .OrderBy(a => a.AppointmentDateTime)
+                        .ToListAsync();
+                    _logger.LogInformation($"Found {Appointment.Count} appointments for Patient {user.UserName} (Patient ID: {patient.Id}).");
                 }
                 else
                 {
-                    // Manejar el caso donde el usuario Doctor no tiene un perfil de Doctor asociado
-                    _logger.LogWarning($"Usuario con rol Doctor (ID: {user.Id}) no tiene un registro Doctor asociado.");
-                    Appointment = new List<Appointment>(); // Lista vacía
+                    _logger.LogWarning($"User {user.UserName} (ID: {user.Id}) has role Patient but no associated Patient record found.");
+                    Appointment = new List<Appointment>(); // Ensure list is initialized empty
+                    // Optionally add a message for the user
+                    // TempData["ErrorMessage"] = "No se pudo encontrar su registro de paciente asociado.";
                 }
-                _logger.LogInformation($"Found {Appointment.Count} appointments for Doctor {user.UserName}.");
+                // --- END FIX ---
+            }
+            else if (await _userManager.IsInRoleAsync(user, "Doctor"))
+            {
+                // Doctors should primarily use their Agenda page. Redirect them there.
+                _logger.LogInformation($"User {user.UserName} is a Doctor. Redirecting to Doctor/Agenda.");
+                return RedirectToPage("/Doctor/Agenda");
+            }
+            else if (await _userManager.IsInRoleAsync(user, "Admin"))
+            {
+                UserRole = "Admin";
+                _logger.LogInformation($"Loading all appointments for Admin: {user.UserName}");
+                // Admins might see all appointments
+                Appointment = await _context.Appointments
+                    .Include(a => a.Patient) // Include Patient info for Admin view
+                    .Include(a => a.Doctor)
+                        .ThenInclude(d => d.Specialty) // Include Doctor and Specialty info
+                    .OrderBy(a => a.AppointmentDateTime)
+                    .ToListAsync();
+                _logger.LogInformation($"Found {Appointment.Count} total appointments for Admin.");
             }
             else
             {
-                 _logger.LogWarning($"User {user.UserName} (ID: {user.Id}) has role {User.FindFirstValue(ClaimTypes.Role)} but is not handled in Appointment Index.");
-                 TempData["ErrorMessage"] = "No tiene permiso para ver esta sección o su rol no está configurado.";
+                _logger.LogWarning($"User {user.UserName} has an unrecognized role.");
+                // Handle other roles or lack of roles if necessary
+                Appointment = new List<Appointment>();
             }
 
             return Page();

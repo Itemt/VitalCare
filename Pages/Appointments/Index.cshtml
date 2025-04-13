@@ -18,11 +18,11 @@ else if (Model.Appointment == null || !Model.Appointment.Any())
     <div class="alert alert-info" role="alert">
         @if (Model.UserRole == "Patient")
         {
-            <p>Hola @Model.CurrentUserName. No tienes citas programadas actualmente.</p>
+            <p>No tienes citas programadas actualmente.</p>
         }
         else if (Model.UserRole == "Doctor")
         {
-             <p>Hola Dr./Dra. @Model.CurrentUserName. No tiene citas asignadas en su agenda.</p>
+             <p>No tiene citas asignadas en su agenda.</p>
         }
         else
         {
@@ -37,11 +37,11 @@ else
 {
     @if (Model.UserRole == "Patient")
     {
-        <p>Hola @Model.CurrentUserName, aquí están tus próximas citas:</p>
+        <p>Aquí están tus próximas citas:</p>
     }
      else if (Model.UserRole == "Doctor")
     {
-         <p>Dr./Dra. @Model.CurrentUserName, estas son las citas en su agenda:</p>
+         <p>Estas son las citas en su agenda:</p>
     }
     <p>
         <a asp-page="Create" class="btn btn-primary"><i class="bi bi-calendar-plus"></i> Agendar Nueva Cita</a>
