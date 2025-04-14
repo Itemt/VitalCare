@@ -4,10 +4,10 @@
 
 namespace CitasEPS.Migrations
 {
-    /// <inheritdoc />
+    /// <heredadoc />
     public partial class AddClinicalNotesAndMakePrescriptionAppointmentOptional : Migration
     {
-        /// <inheritdoc />
+        /// <heredadoc />
         protected override void Up(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropForeignKey(
@@ -37,7 +37,7 @@ namespace CitasEPS.Migrations
                 principalColumn: "Id");
         }
 
-        /// <inheritdoc />
+        /// <heredadoc />
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropForeignKey(

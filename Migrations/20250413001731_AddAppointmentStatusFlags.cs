@@ -4,10 +4,10 @@
 
 namespace CitasEPS.Migrations
 {
-    /// <inheritdoc />
+    /// <heredadoc />
     public partial class AddAppointmentStatusFlags : Migration
     {
-        /// <inheritdoc />
+        /// <heredadoc />
         protected override void Up(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.AlterColumn<string>(
@@ -28,7 +28,7 @@ namespace CitasEPS.Migrations
                 defaultValue: false);
         }
 
-        /// <inheritdoc />
+        /// <heredadoc />
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropColumn(
