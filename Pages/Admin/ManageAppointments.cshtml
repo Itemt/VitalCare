@@ -42,7 +42,7 @@ else
         <tbody>
     @foreach (var item in Model.Appointments)
     {
-            <tr class="@(item.AppointmentDateTime < DateTime.Now ? "table-secondary" : "")"> @* Grey out past appointments *@
+            <tr class="@(item.AppointmentDateTime < DateTime.Now ? "table-secondary" : "")"> @* Marcar citas pasadas en gris *@
                 <td>
                     @Html.DisplayFor(modelItem => item.AppointmentDateTime)
                 </td>
@@ -67,7 +67,7 @@ else
                 </td>
                 <td>
                     <a asp-page="./Appointments/Details" asp-route-id="@item.Id" class="btn btn-sm btn-info" title="Ver Detalles"><i class="bi bi-info-circle"></i></a>
-                    @if (item.AppointmentDateTime >= DateTime.Now) @* Only allow cancel for future appointments *@
+                    @if (item.AppointmentDateTime >= DateTime.Now) @* Solo permitir cancelar citas futuras *@
                     {
                         <a asp-page="./Appointments/Cancel" asp-route-id="@item.Id" class="btn btn-sm btn-danger" title="Cancelar Cita"><i class="bi bi-calendar-x"></i></a>
                     }

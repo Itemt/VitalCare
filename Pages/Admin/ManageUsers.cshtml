@@ -25,7 +25,7 @@ else
                 <th>Nombre de Usuario</th>
                 <th>Email</th>
                 <th>Roles</th>
-                <th>Acciones</th> @* Placeholder for future actions *@
+                <th>Acciones</th> @* Marcador para acciones futuras *@
             </tr>
         </thead>
         <tbody>
@@ -38,7 +38,7 @@ else
                         @string.Join(", ", user.Roles)
                     </td>
                     <td>
-                        @* Placeholder for Edit/Delete/Manage Roles links/buttons *@
+                        @* Marcador para enlaces/botones Editar/Eliminar/Gestionar Roles *@
                         <a asp-page="./Users/Edit" asp-route-id="@user.Id" class="btn btn-sm btn-warning" title="Editar Usuario/Roles"><i class="bi bi-pencil-square"></i></a>
                         <a asp-page="./Users/Delete" asp-route-id="@user.Id" class="btn btn-sm btn-danger" title="Eliminar Usuario"><i class="bi bi-trash"></i></a>
                         <a asp-page="#" asp-route-id="@user.Id" class="btn btn-sm btn-outline-secondary disabled" title="Gestionar Roles (No implementado)"><i class="bi bi-person-rolodex"></i></a>
@@ -47,4 +47,4 @@ else
             }
         </tbody>
     </table>
-} 
+}
