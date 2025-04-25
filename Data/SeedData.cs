@@ -176,7 +176,7 @@ namespace CitasEPS.Data
                     Email = docData.Email,
                     PhoneNumber = docData.Phone
                 };
-                context.Doctors.Add(newDoctor); // Add to context, but don't save yet
+                context.Doctors.Add(newDoctor); // Añadir a la base de datos
 
                 // Ahora crear el User asociado
                 var userExists = await userManager.FindByEmailAsync(docData.Email);

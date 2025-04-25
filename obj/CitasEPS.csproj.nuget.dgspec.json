@@ -1,20 +1,20 @@
 {
   "format": 1,
   "restore": {
-    "/home/cristian/Downloads/CitasEPS/CitasEPS.csproj": {}
+    "/Users/cristianramos/Desktop/Proyectos/AplicativosWeb/CitasEPS/CitasEPS.csproj": {}
   },
   "projects": {
-    "/home/cristian/Downloads/CitasEPS/CitasEPS.csproj": {
+    "/Users/cristianramos/Desktop/Proyectos/AplicativosWeb/CitasEPS/CitasEPS.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "/home/cristian/Downloads/CitasEPS/CitasEPS.csproj",
+        "projectUniqueName": "/Users/cristianramos/Desktop/Proyectos/AplicativosWeb/CitasEPS/CitasEPS.csproj",
         "projectName": "CitasEPS",
-        "projectPath": "/home/cristian/Downloads/CitasEPS/CitasEPS.csproj",
-        "packagesPath": "/home/cristian/.nuget/packages/",
-        "outputPath": "/home/cristian/Downloads/CitasEPS/obj/",
+        "projectPath": "/Users/cristianramos/Desktop/Proyectos/AplicativosWeb/CitasEPS/CitasEPS.csproj",
+        "packagesPath": "/Users/cristianramos/.nuget/packages/",
+        "outputPath": "/Users/cristianramos/Desktop/Proyectos/AplicativosWeb/CitasEPS/obj/",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "/home/cristian/.nuget/NuGet/NuGet.Config"
+          "/Users/cristianramos/.nuget/NuGet/NuGet.Config"
         ],
         "originalTargetFrameworks": [
           "net8.0"
@@ -90,7 +90,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "/usr/share/dotnet/sdk/9.0.203/PortableRuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "/usr/local/share/dotnet/sdk/9.0.201/PortableRuntimeIdentifierGraph.json"
         }
       }
     }

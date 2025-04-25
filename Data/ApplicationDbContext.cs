@@ -5,7 +5,7 @@ using CitasEPS.Models;
 
 namespace CitasEPS.Data
 {
-    // Inherit from IdentityDbContext, specifying the User, Role (using default IdentityRole<int>), and key type (int)
+    // Hereda de IdentityDbContext, especificando el Usuario, Rol (usando IdentityRole<int> por defecto) y el tipo de clave (int)
     public class ApplicationDbContext : IdentityDbContext<User, IdentityRole<int>, int>
     {
         public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options)
@@ -19,22 +19,22 @@ namespace CitasEPS.Data
         public DbSet<Specialty> Specialties { get; set; } = default!;
         public DbSet<Medication> Medications { get; set; } = default!;
         public DbSet<Prescription> Prescriptions { get; set; } = default!;
-        // DbSet<User> is inherited from IdentityDbContext
+        // DbSet<User> se hereda de IdentityDbContext
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             base.OnModelCreating(modelBuilder);
 
-            // Configure relationships and constraints if needed
-            // Example: Ensure DocumentId is unique for Patients
+            // Configurar relaciones y restricciones si es necesario
+            // Ejemplo: Asegurar que DocumentId sea único para los Pacientes
             modelBuilder.Entity<Patient>()
                 .HasIndex(p => p.DocumentId)
                 .IsUnique();
 
-            // User seeding is removed, handled by Identity setup or manual registration/role assignment later.
+            // La inicialización de usuarios (seeding) se ha eliminado, se maneja mediante la configuración de Identity o el registro manual/asignación de roles posteriormente.
 
-            // Customize the ASP.NET Identity model relations if needed here
-            // Example: Change table names
+            // Personalizar las relaciones del modelo de ASP.NET Identity si es necesario aquí
+            // Ejemplo: Cambiar nombres de tablas
             // modelBuilder.Entity<User>(entity => { entity.ToTable(name: "Users"); });
             // modelBuilder.Entity<IdentityRole<int>>(entity => { entity.ToTable(name: "Roles"); });
             // modelBuilder.Entity<IdentityUserRole<int>>(entity => { entity.ToTable("UserRoles"); });
@@ -44,4 +44,4 @@ namespace CitasEPS.Data
             // modelBuilder.Entity<IdentityUserToken<int>>(entity => { entity.ToTable("UserTokens"); });
         }
     }
-} 
+}
