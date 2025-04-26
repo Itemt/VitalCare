@@ -6,4 +6,5 @@ WORKDIR /source
 COPY *.sln .
 COPY *.csproj .
 EXPOSE 8000
+EXPOSE 5238
 ENTRYPOINT ["dotnet", "RUN"] 
