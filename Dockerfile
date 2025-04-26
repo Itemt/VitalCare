@@ -2,13 +2,14 @@
 FROM mcr.microsoft.com/dotnet/sdk:8.0 AS build
 WORKDIR /source
 
-# Copy the project file and restore dependencies
+# Copy the solution and project files
+COPY *.sln .
 COPY *.csproj .
-RUN dotnet restore
+RUN dotnet restore CitasEPS.sln
 
 # Copy the remaining source code and build the application
 COPY . .
-RUN dotnet publish -c Release -o /app/publish --no-restore
+RUN dotnet publish CitasEPS.csproj -c Release -o /app/publish --no-restore
 
 # Use the ASP.NET runtime image for the final stage
 FROM mcr.microsoft.com/dotnet/aspnet:8.0 AS final
