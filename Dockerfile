@@ -1,27 +1,22 @@
-# Use the official .NET SDK image to build the app
-FROM mcr.microsoft.com/dotnet/sdk:7.0 AS build
+# Use the .NET SDK image for building the application
+FROM mcr.microsoft.com/dotnet/sdk:8.0 AS build
+WORKDIR /source
 
-# Set the working directory inside the container
-WORKDIR /app
-
-# Copy the project file(s) and restore dependencies
-COPY *.csproj ./
+# Copy the project file and restore dependencies
+COPY *.csproj .
 RUN dotnet restore
 
-# Copy the rest of the source code and build the app
-COPY . ./
-RUN dotnet publish -c Release -o out
+# Copy the remaining source code and build the application
+COPY . .
+RUN dotnet publish -c Release -o /app/publish --no-restore
 
-# Use the official ASP.NET runtime image for the final container
-FROM mcr.microsoft.com/dotnet/aspnet:7.0 AS runtime
-
+# Use the ASP.NET runtime image for the final stage
+FROM mcr.microsoft.com/dotnet/aspnet:8.0 AS final
 WORKDIR /app
+COPY --from=build /app/publish .
 
-# Copy the published output from the build stage
-COPY --from=build /app/out ./
+# Expose port 8080 for the web application
+EXPOSE 8080
 
-# Expose the port your app runs on (default 80 for ASP.NET Core)
-EXPOSE 80
-
-# Set the entry point to run the app
-ENTRYPOINT ["dotnet", "CitasEPS.dll"]
+# Set the entry point for the application
+ENTRYPOINT ["dotnet", "CitasEPS.dll"] 
