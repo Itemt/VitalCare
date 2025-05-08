@@ -143,7 +143,7 @@ namespace CitasEPS.Areas.Identity.Pages.Account
                 user.FirstName = Input.FirstName;
                 user.LastName = Input.LastName;
                 user.PhoneNumber = Input.PhoneNumber;
-                user.DateOfBirth = Input.DateOfBirth;
+                user.DateOfBirth = new DateTime(Input.DateOfBirth.Year, Input.DateOfBirth.Month, Input.DateOfBirth.Day, 0, 0, 0, DateTimeKind.Utc);
                 await _userStore.SetUserNameAsync(user, Input.Email, CancellationToken.None);
                 await _emailStore.SetEmailAsync(user, Input.Email, CancellationToken.None);
                 var result = await _userManager.CreateAsync(user, Input.Password);
