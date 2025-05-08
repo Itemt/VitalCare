@@ -97,17 +97,37 @@
     <div class="mb-3">
         <h5>Estado de la Cita</h5>
         <p>
-            @if (Model.Appointment.IsCompleted)
+            @if (Model.Appointment.IsCancelled)
             {
-                <span class="badge bg-secondary">Completada</span>
+                <span class="badge bg-danger">Cancelada</span>
+            }
+            else if (Model.Appointment.WasNoShow)
+            {
+                <span class="badge bg-danger">No Presentó</span>
+            }
+            else if (Model.Appointment.IsCompleted)
+            {
+                <span class="badge bg-success">Completada</span>
+            }
+            else if (Model.Appointment.AppointmentDateTime < DateTime.Now)
+            {
+                 <span class="badge bg-secondary text-dark">Expirada</span>
+            }
+            else if (Model.Appointment.DoctorProposedReschedule && Model.Appointment.ProposedNewDateTime.HasValue)
+            {
+                 <span class="badge bg-primary text-white">Propuesto por Doctor</span>
+            }
+            else if (Model.Appointment.RescheduleRequested && Model.Appointment.ProposedNewDateTime.HasValue)
+            {
+                 <span class="badge bg-warning text-dark">Propuesto por Paciente</span>
             }
             else if (Model.Appointment.IsConfirmed)
             {
-                <span class="badge bg-success">Confirmada</span>
+                <span class="badge bg-info">Confirmada</span>
             }
             else
             {
-                <span class="badge bg-warning text-dark">Pendiente de Confirmación</span>
+                <span class="badge bg-warning text-dark">Pendiente</span>
             }
         </p>
     </div>
@@ -192,15 +212,39 @@
     }
     @* --- Fin Sección Paciente --- *@
 </div>
-<div class="mt-3">
-    @* Ocultar el botón genérico de editar si es Doctor? O mantenerlo para editar fecha/confirmación? Por ahora se deja. *@
-    <a asp-page="./Edit" asp-route-id="@Model.Appointment.Id" class="btn btn-warning">Editar Cita</a>
+<div class="mt-3"> @* Action Buttons Area *@
+
+    @* --- START: Cancel Button (Details View) --- *@
+    @if (!Model.Appointment.IsCompleted && !Model.Appointment.IsCancelled && (User.IsInRole("Patient") || User.IsInRole("Doctor") || User.IsInRole("Admin")))
+    {
+        <form method="post" asp-page-handler="CancelAppointment" asp-route-id="@Model.Appointment.Id" class="d-inline me-2"
+              onsubmit="return confirm('¿Está seguro de que desea cancelar esta cita? Esta acción no se puede deshacer.');">
+            <button type="submit" class="btn btn-danger">
+                <i class="bi bi-x-circle"></i> Cancelar Cita
+            </button>
+        </form>
+    }
+    @* --- END: Cancel Button (Details View) --- *@
+
+    @* --- START: Doctor Propose Reschedule Button (Details View) --- *@
+    @if (User.IsInRole("Doctor") && !Model.Appointment.IsCompleted && !Model.Appointment.IsCancelled && Model.Appointment.AppointmentDateTime >= DateTime.Now && !Model.Appointment.RescheduleRequested && !Model.Appointment.DoctorProposedReschedule)
+    {
+         <a asp-page="/Doctor/ProposeDoctorReschedule" asp-route-id="@Model.Appointment.Id" class="btn btn-outline-primary me-2" title="Proponer nuevo horario al paciente">
+             <i class="bi bi-arrow-repeat"></i> Proponer Reag.
+         </a>
+    }
+    @* --- END: Doctor Propose Reschedule Button (Details View) --- *@
+
+    @if(User.IsInRole("Admin"))
+    {
+        <a asp-page="./Edit" asp-route-id="@Model.Appointment.Id" class="btn btn-warning me-2">Editar Cita</a> @* Added me-2 for spacing *@
+    }
 
     @if (User.IsInRole("Doctor"))
     {
         <a asp-page="/Doctor/Agenda" class="btn btn-secondary">Volver a la Agenda</a>
     }
-    else
+    else // Patient or Admin
     {
         <a asp-page="/Appointments/Index" class="btn btn-secondary">Volver al Listado</a>
     }

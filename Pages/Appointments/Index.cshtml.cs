@@ -155,6 +155,85 @@ namespace CitasEPS.Pages.Appointments
             return RedirectToPage();
         }
 
+        public async Task<IActionResult> OnPostCancelAppointmentAsync(int appointmentId)
+        {
+            var user = await _userManager.GetUserAsync(User);
+            if (user == null) return Challenge();
+
+            // Ensure the user is a patient for this action
+            if (!await _userManager.IsInRoleAsync(user, "Patient"))
+            {
+                TempData["ErrorMessage"] = "Acción no autorizada.";
+                return RedirectToPage();
+            }
+
+            var patient = await _context.Patients.FirstOrDefaultAsync(p => p.Email == user.Email);
+            if (patient == null)
+            {
+                TempData["ErrorMessage"] = "Perfil de paciente no encontrado.";
+                return RedirectToPage();
+            }
+
+            var appointmentToCancel = await _context.Appointments.FindAsync(appointmentId);
+
+            if (appointmentToCancel == null)
+            {
+                TempData["ErrorMessage"] = "Cita no encontrada.";
+                return RedirectToPage();
+            }
+
+            // Authorization: Ensure the appointment belongs to this patient
+            if (appointmentToCancel.PatientId != patient.Id)
+            {
+                TempData["ErrorMessage"] = "No está autorizado para cancelar esta cita.";
+                return RedirectToPage();
+            }
+
+            // Eligibility checks
+            if (appointmentToCancel.IsCompleted)
+            {
+                TempData["ErrorMessage"] = "No se puede cancelar una cita que ya ha sido completada.";
+                return RedirectToPage();
+            }
+            if (appointmentToCancel.AppointmentDateTime < DateTime.Now)
+            {
+                 TempData["ErrorMessage"] = "No se puede cancelar una cita que ya ha pasado."; // Patients likely shouldn't cancel past appointments
+                 return RedirectToPage();
+            }
+            if (appointmentToCancel.IsCancelled)
+            {
+                TempData["InfoMessage"] = "Esta cita ya se encuentra cancelada.";
+                return RedirectToPage();
+            }
+
+            // Perform cancellation
+            appointmentToCancel.IsCancelled = true;
+            appointmentToCancel.IsConfirmed = false;
+            appointmentToCancel.RescheduleRequested = false;
+            appointmentToCancel.DoctorProposedReschedule = false;
+            appointmentToCancel.ProposedNewDateTime = null;
+
+            try
+            {
+                _context.Appointments.Update(appointmentToCancel);
+                await _context.SaveChangesAsync();
+                TempData["SuccessMessage"] = $"La cita ID {appointmentToCancel.Id} ha sido cancelada exitosamente.";
+                _logger.LogInformation($"Patient {user.Email} cancelled Appointment ID {appointmentToCancel.Id}.");
+            }
+            catch (DbUpdateConcurrencyException ex)
+            {
+                _logger.LogWarning(ex, "Concurrency error cancelling Appointment ID {AppointmentId}", appointmentToCancel.Id);
+                TempData["ErrorMessage"] = "Error de concurrencia al intentar cancelar la cita. Por favor, intente de nuevo.";
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError(ex, "Error cancelling Appointment ID {AppointmentId}", appointmentToCancel.Id);
+                TempData["ErrorMessage"] = "Ocurrió un error inesperado al cancelar la cita.";
+            }
+
+            return RedirectToPage();
+        }
+
         private bool AppointmentExists(int id)
         {
             return _context.Appointments.Any(e => e.Id == id);

@@ -213,5 +213,104 @@ namespace CitasEPS.Pages.Appointments
 
             return RedirectToPage(new { id = id });
         }
+
+        public async Task<IActionResult> OnPostCancelAppointmentAsync(int id)
+        {
+            _logger.LogInformation($"Attempting to cancel appointment ID {id} from Details page.");
+            var user = await _userManager.GetUserAsync(User);
+            if (user == null) return Challenge();
+
+            var appointmentToCancel = await _context.Appointments
+                                                .Include(a => a.Patient) // Needed for patient check
+                                                .Include(a => a.Doctor)  // Needed for doctor check
+                                                .FirstOrDefaultAsync(a => a.Id == id);
+
+            if (appointmentToCancel == null)
+            {
+                TempData["ErrorMessage"] = "Cita no encontrada.";
+                return RedirectToPage("./Index"); // Redirect to index if appointment doesn't exist
+            }
+
+            // Authorization Check: Allow Patient or Doctor assigned to the appointment (or Admin)
+            bool isAuthorized = false;
+            if (User.IsInRole("Admin"))
+            {
+                isAuthorized = true;
+                _logger.LogInformation($"Admin '{user.Email}' authorized to cancel appointment {id}.");
+            }
+            else if (User.IsInRole("Patient"))
+            {
+                var patient = await _context.Patients.FirstOrDefaultAsync(p => p.Email == user.Email);
+                if (patient != null && appointmentToCancel.PatientId == patient.Id)
+                {
+                    isAuthorized = true;
+                     _logger.LogInformation($"Patient '{user.Email}' authorized to cancel their appointment {id}.");
+                }
+            }
+            else if (User.IsInRole("Doctor"))
+            {
+                var doctor = await _context.Doctors.FirstOrDefaultAsync(d => d.Email == user.Email);
+                if (doctor != null && appointmentToCancel.DoctorId == doctor.Id)
+                {
+                    isAuthorized = true;
+                     _logger.LogInformation($"Doctor '{user.Email}' authorized to cancel their assigned appointment {id}.");
+                }
+            }
+
+            if (!isAuthorized)
+            {
+                TempData["ErrorMessage"] = "No está autorizado para cancelar esta cita.";
+                 _logger.LogWarning($"User '{user.Email}' failed authorization to cancel appointment {id}.");
+                // Redirect back to details page if they could view it, otherwise index.
+                return RedirectToPage(new { id = id });
+            }
+
+            // Eligibility checks
+            if (appointmentToCancel.IsCompleted)
+            {
+                TempData["ErrorMessage"] = "No se puede cancelar una cita que ya ha sido completada.";
+                return RedirectToPage(new { id = id });
+            }
+            // Allow cancelling past appointments from details? Maybe, unlike the index page. Let's allow it for now.
+            // if (appointmentToCancel.AppointmentDateTime < DateTime.Now) { ... }
+            if (appointmentToCancel.IsCancelled)
+            {
+                TempData["InfoMessage"] = "Esta cita ya se encuentra cancelada.";
+                return RedirectToPage(new { id = id });
+            }
+
+            // Perform cancellation
+            appointmentToCancel.IsCancelled = true;
+            appointmentToCancel.IsConfirmed = false;
+            appointmentToCancel.RescheduleRequested = false;
+            appointmentToCancel.DoctorProposedReschedule = false;
+            appointmentToCancel.ProposedNewDateTime = null;
+            // appointmentToCancel.WasNoShow = false; // Optional: Clear NoShow if cancelled
+
+            try
+            {
+                _context.Appointments.Update(appointmentToCancel);
+                await _context.SaveChangesAsync();
+                TempData["SuccessMessage"] = $"La cita ID {appointmentToCancel.Id} ha sido cancelada exitosamente.";
+                 _logger.LogInformation($"Appointment ID {appointmentToCancel.Id} cancelled successfully by user {user.Email}.");
+                // After cancelling from details, redirect to the appropriate index/agenda
+                if (User.IsInRole("Doctor")) return RedirectToPage("/Doctor/Agenda");
+                else return RedirectToPage("./Index");
+
+            }
+            catch (DbUpdateConcurrencyException ex)
+            {
+                 _logger.LogWarning(ex, "Concurrency error cancelling Appointment ID {AppointmentId} from Details.", id);
+                TempData["ErrorMessage"] = "Error de concurrencia al intentar cancelar la cita. Por favor, intente de nuevo.";
+            }
+            catch (Exception ex)
+            {
+                 _logger.LogError(ex, "Error cancelling Appointment ID {AppointmentId} from Details.", id);
+                TempData["ErrorMessage"] = "Ocurrió un error inesperado al cancelar la cita.";
+            }
+
+            // Redirect back to details if save failed
+            return RedirectToPage(new { id = id });
+        }
     }
 }

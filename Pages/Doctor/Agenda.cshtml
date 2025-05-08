@@ -27,7 +27,7 @@ else
                     @Html.DisplayNameFor(model => model.Appointments[0].AppointmentDateTime)
                 </th>
                 <th>
-                    @Html.DisplayNameFor(model => model.Appointments[0].Patient)
+                    Paciente
                 </th>
                 <th>
                     @Html.DisplayNameFor(model => model.Appointments[0].Notes)
@@ -56,7 +56,11 @@ else
                         @Html.DisplayFor(modelItem => item.Notes)
                     </td>
                     <td>
-                        @if (item.WasNoShow)
+                        @if (item.IsCancelled)
+                        {
+                            <span class="badge bg-danger text-white">Cancelada</span>
+                        }
+                        else if (item.WasNoShow)
                         {
                             <span class="badge bg-danger text-white">No Presentó</span>
                         }

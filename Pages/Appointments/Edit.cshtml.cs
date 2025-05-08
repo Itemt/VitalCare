@@ -16,7 +16,7 @@ namespace CitasEPS.Pages.Appointments
 {
     // [Authorize] // O política específica como "Admin" si solo admins pueden editar todas las citas
     // Por ahora, asumiremos que el paciente puede editar (quizás con limitaciones)
-    [Authorize(Roles = "Admin,Doctor")] // REMOVED "Patient" from roles
+    [Authorize(Roles = "Admin")] // REMOVED "Doctor" from roles, only Admin can edit directly
     public class EditModel : PageModel
     {
         private readonly ApplicationDbContext _context;

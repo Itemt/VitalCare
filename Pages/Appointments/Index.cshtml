@@ -78,7 +78,11 @@ else
                          <td>@Html.DisplayFor(modelItem => item.Patient.FullName)</td>
                     }
                     <td>
-                        @if (item.WasNoShow)
+                        @if (item.IsCancelled)
+                        {
+                             <span class="badge bg-danger text-white">Cancelada</span>
+                        }
+                        else if (item.WasNoShow)
                         {
                             <span class="badge bg-danger text-white">No Presentó</span>
                         }
@@ -122,14 +126,20 @@ else
                         {
                              <a asp-page="./ProposeReschedule" asp-route-id="@item.Id" class="btn btn-sm btn-outline-warning ms-1" title="Proponer cambio de fecha/hora"><i class="bi bi-clock-history"></i> Proponer Reagendamiento</a>
                         }
-                        @if ((Model.UserRole == "Admin" || Model.UserRole == "Doctor") && !item.IsCompleted && item.AppointmentDateTime >= DateTime.Now && !item.RescheduleRequested && !item.DoctorProposedReschedule && !item.IsCancelled)
+                        @if (Model.UserRole == "Admin" && !item.IsCompleted && item.AppointmentDateTime >= DateTime.Now && !item.RescheduleRequested && !item.DoctorProposedReschedule && !item.IsCancelled)
                         {
                             <a asp-page="./Edit" asp-route-id="@item.Id" class="btn btn-sm btn-warning ms-1"><i class="bi bi-pencil"></i> Editar</a>
                         }
                         
-                        @if (!item.IsConfirmed && !item.IsCompleted && item.AppointmentDateTime >= DateTime.Now && !item.RescheduleRequested && !item.DoctorProposedReschedule && !item.IsCancelled)
+                        @* Cancel/Delete button - Now specific for Patient cancellation *@
+                        @if (Model.UserRole == "Patient" && !item.IsCompleted && !item.IsCancelled && item.AppointmentDateTime >= DateTime.Now) @* Eligibility for patient cancel *@
                         { 
-                              <a asp-page="./Delete" asp-route-id="@item.Id" class="btn btn-sm btn-danger ms-1"><i class="bi bi-trash"></i> Cancelar</a>
+                            <form method="post" asp-page-handler="CancelAppointment" asp-route-appointmentId="@item.Id" class="d-inline" 
+                                  onsubmit="return confirm('¿Está seguro de que desea cancelar su cita? Esta acción no se puede deshacer.');">
+                                <button type="submit" class="btn btn-danger btn-sm ms-1" title="Cancelar Cita">
+                                    <i class="bi bi-x-lg"></i> Cancelar Cita
+                                </button>
+                            </form>
                         }
                     </td>
                 </tr>
