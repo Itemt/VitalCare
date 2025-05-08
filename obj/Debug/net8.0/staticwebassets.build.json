@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "C6+kKSVeqzXGGo86GYoCjuHiaHseMF0BSAu4aXoGv1w=",
+  "Hash": "qyUBCIkxXBGM3KxwUO821TUjn72ti8OdSI7nl0MIWQg=",
   "Source": "CitasEPS",
   "BasePath": "_content/CitasEPS",
   "Mode": "Default",
@@ -1375,8 +1375,8 @@
       "RelatedAsset": "",
       "AssetTraitName": "",
       "AssetTraitValue": "",
-      "Fingerprint": "fbk2ssqwf2",
-      "Integrity": "pQDACMeDmNuKQBKznGArxi22nacekjD7cGEkr7y0QNQ=",
+      "Fingerprint": "mzkdwxx6tn",
+      "Integrity": "foCTqMikxtmDJSSzRDVODi+9aMTIvatPM+eU0vEs/kQ=",
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\js\\site.flatpickr.js"
@@ -2624,7 +2624,7 @@
         },
         {
           "Name": "Last-Modified",
-          "Value": "Sat, 26 Apr 2025 04:27:25 GMT"
+          "Value": "Wed, 07 May 2025 23:39:38 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -2661,7 +2661,7 @@
         },
         {
           "Name": "Last-Modified",
-          "Value": "Sat, 26 Apr 2025 04:27:25 GMT"
+          "Value": "Wed, 07 May 2025 23:39:38 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -2698,7 +2698,7 @@
         },
         {
           "Name": "Last-Modified",
-          "Value": "Sat, 26 Apr 2025 04:27:25 GMT"
+          "Value": "Wed, 07 May 2025 23:39:38 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -2743,7 +2743,7 @@
         },
         {
           "Name": "Last-Modified",
-          "Value": "Sat, 26 Apr 2025 04:27:25 GMT"
+          "Value": "Wed, 07 May 2025 23:39:38 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -5150,51 +5150,6 @@
       ]
     },
     {
-      "Route": "js/site.flatpickr.fbk2ssqwf2.js",
-      "AssetFile": "C:\\Users\\CristianPC\\Desktop\\vitalcare\\wwwroot\\js\\site.flatpickr.js",
-      "Selectors": [],
-      "ResponseHeaders": [
-        {
-          "Name": "Accept-Ranges",
-          "Value": "bytes"
-        },
-        {
-          "Name": "Content-Length",
-          "Value": "1043"
-        },
-        {
-          "Name": "Content-Type",
-          "Value": "text/javascript"
-        },
-        {
-          "Name": "ETag",
-          "Value": "\"pQDACMeDmNuKQBKznGArxi22nacekjD7cGEkr7y0QNQ=\""
-        },
-        {
-          "Name": "Last-Modified",
-          "Value": "Sat, 26 Apr 2025 04:27:25 GMT"
-        },
-        {
-          "Name": "Cache-Control",
-          "Value": "max-age=31536000, immutable"
-        }
-      ],
-      "EndpointProperties": [
-        {
-          "Name": "fingerprint",
-          "Value": "fbk2ssqwf2"
-        },
-        {
-          "Name": "label",
-          "Value": "js/site.flatpickr.js"
-        },
-        {
-          "Name": "integrity",
-          "Value": "sha256-pQDACMeDmNuKQBKznGArxi22nacekjD7cGEkr7y0QNQ="
-        }
-      ]
-    },
-    {
       "Route": "js/site.flatpickr.js",
       "AssetFile": "C:\\Users\\CristianPC\\Desktop\\vitalcare\\wwwroot\\js\\site.flatpickr.js",
       "Selectors": [],
@@ -5205,7 +5160,7 @@
         },
         {
           "Name": "Content-Length",
-          "Value": "1043"
+          "Value": "1776"
         },
         {
           "Name": "Content-Type",
@@ -5213,11 +5168,11 @@
         },
         {
           "Name": "ETag",
-          "Value": "\"pQDACMeDmNuKQBKznGArxi22nacekjD7cGEkr7y0QNQ=\""
+          "Value": "\"foCTqMikxtmDJSSzRDVODi+9aMTIvatPM+eU0vEs/kQ=\""
         },
         {
           "Name": "Last-Modified",
-          "Value": "Sat, 26 Apr 2025 04:27:25 GMT"
+          "Value": "Thu, 08 May 2025 08:49:09 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -5227,7 +5182,52 @@
       "EndpointProperties": [
         {
           "Name": "integrity",
-          "Value": "sha256-pQDACMeDmNuKQBKznGArxi22nacekjD7cGEkr7y0QNQ="
+          "Value": "sha256-foCTqMikxtmDJSSzRDVODi+9aMTIvatPM+eU0vEs/kQ="
+        }
+      ]
+    },
+    {
+      "Route": "js/site.flatpickr.mzkdwxx6tn.js",
+      "AssetFile": "C:\\Users\\CristianPC\\Desktop\\vitalcare\\wwwroot\\js\\site.flatpickr.js",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "1776"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "text/javascript"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"foCTqMikxtmDJSSzRDVODi+9aMTIvatPM+eU0vEs/kQ=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Thu, 08 May 2025 08:49:09 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=31536000, immutable"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "fingerprint",
+          "Value": "mzkdwxx6tn"
+        },
+        {
+          "Name": "label",
+          "Value": "js/site.flatpickr.js"
+        },
+        {
+          "Name": "integrity",
+          "Value": "sha256-foCTqMikxtmDJSSzRDVODi+9aMTIvatPM+eU0vEs/kQ="
         }
       ]
     },
@@ -5254,7 +5254,7 @@
         },
         {
           "Name": "Last-Modified",
-          "Value": "Sat, 26 Apr 2025 04:27:25 GMT"
+          "Value": "Wed, 07 May 2025 23:39:38 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -5291,7 +5291,7 @@
         },
         {
           "Name": "Last-Modified",
-          "Value": "Sat, 26 Apr 2025 04:27:25 GMT"
+          "Value": "Wed, 07 May 2025 23:39:38 GMT"
         },
         {
           "Name": "Cache-Control",

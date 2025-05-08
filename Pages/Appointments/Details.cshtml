@@ -22,6 +22,10 @@
         </dt>
         <dd class="col-sm-9">
             @Html.DisplayFor(model => model.Appointment.Patient.FullName) <small>(ID: @Html.DisplayFor(model => model.Appointment.Patient.DocumentId))</small>
+            @if (!string.IsNullOrWhiteSpace(Model.Appointment.Patient?.PhoneNumber))
+            {
+                <br /><small>Teléfono: @Html.DisplayFor(model => model.Appointment.Patient.PhoneNumber)</small>
+            }
         </dd>
         <dt class="col-sm-3">
             Médico
@@ -159,6 +163,14 @@
             {
                 <form method="post" asp-page-handler="Complete" asp-route-id="@Model.Appointment.Id" class="d-inline">
                     <button type="submit" class="btn btn-dark">Marcar como Completada</button>
+                </form>
+            }
+            
+            @* Botón para Marcar No Presentó *@
+            @if (Model.Appointment.AppointmentDateTime < DateTime.Now && Model.Appointment.IsConfirmed && !Model.Appointment.IsCompleted && !Model.Appointment.WasNoShow)
+            {
+                 <form method="post" asp-page-handler="MarkNoShow" asp-route-id="@Model.Appointment.Id" class="d-inline ms-2">
+                    <button type="submit" class="btn btn-outline-danger">Marcar No Presentó</button>
                 </form>
             }
         </div>

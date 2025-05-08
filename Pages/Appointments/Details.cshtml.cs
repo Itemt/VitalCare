@@ -58,7 +58,6 @@ namespace CitasEPS.Pages.Appointments
         }
 
         // Handler to save clinical notes
-        [Authorize(Roles = "Doctor")]
         public async Task<IActionResult> OnPostSaveNotesAsync(int id, string? clinicalNotes)
         {
              _logger.LogInformation("Intentando guardar notas clínicas para cita ID: {AppointmentId}", id);
@@ -174,6 +173,43 @@ namespace CitasEPS.Pages.Appointments
                 await _context.SaveChangesAsync();
             }
             // Si no es paciente o la cita está completada, no hace nada, solo redirige
+
+            return RedirectToPage(new { id = id });
+        }
+
+        // NUEVO: Handler para marcar como que el paciente no se presentó
+        [Authorize(Roles = "Doctor")] // Solo el doctor puede hacer esto
+        public async Task<IActionResult> OnPostMarkNoShowAsync(int id)
+        {
+            var appointmentToUpdate = await _context.Appointments.FindAsync(id);
+            if (appointmentToUpdate == null)
+            {
+                return NotFound();
+            }
+
+            // Verificar autorización (si es necesario verificar que es el doctor de la cita)
+            var user = await _userManager.GetUserAsync(User);
+            var doctorRecord = await _context.Doctors.FirstOrDefaultAsync(d => d.Email == user.Email);
+            if (doctorRecord == null || appointmentToUpdate.DoctorId != doctorRecord.Id)
+            {
+                TempData["ErrorMessage"] = "Acción no autorizada.";
+                return RedirectToPage(new { id = id }); 
+            }
+
+            // Solo marcar si la fecha ya pasó, está confirmada, pero no completada ni ya marcada como NoShow
+            if (appointmentToUpdate.AppointmentDateTime < DateTime.Now && 
+                appointmentToUpdate.IsConfirmed && 
+                !appointmentToUpdate.IsCompleted && 
+                !appointmentToUpdate.WasNoShow)
+            {
+                appointmentToUpdate.WasNoShow = true;
+                await _context.SaveChangesAsync();
+                TempData["SuccessMessage"] = "Cita marcada como 'No Presentó'.";
+            }
+            else
+            {
+                TempData["WarningMessage"] = "La cita no cumple los requisitos para ser marcada como 'No Presentó'.";
+            }
 
             return RedirectToPage(new { id = id });
         }

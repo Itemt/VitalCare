@@ -5,7 +5,7 @@
     ViewData["Title"] = "Mis Citas";
 }
 
-<h1><i class="bi bi-calendar-check"></i> Mis Citas Médicas</h1>
+<h1 class="text-primary"><i class="bi bi-calendar-check"></i> Mis Citas Médicas</h1>
 
 @if (TempData["ErrorMessage"] != null)
 {
@@ -49,18 +49,18 @@ else
     <table class="table table-striped table-hover">
         <thead>
             <tr>
-                <th>Fecha y Hora</th>
+                <th class="text-primary">Fecha y Hora</th>
                 @if (Model.UserRole == "Patient")
                 {
-                     <th>Médico</th>
-                     <th>Especialidad</th>
+                     <th class="text-primary">Médico</th>
+                     <th class="text-primary">Especialidad</th>
                 }
                 else if (Model.UserRole == "Doctor")
                 {
-                    <th>Paciente</th>
+                    <th class="text-primary">Paciente</th>
                 }
-                 <th>Estado</th>
-                <th>Acciones</th>
+                 <th class="text-primary">Estado</th>
+                <th class="text-primary">Acciones</th>
             </tr>
         </thead>
         <tbody>
@@ -78,33 +78,59 @@ else
                          <td>@Html.DisplayFor(modelItem => item.Patient.FullName)</td>
                     }
                     <td>
-                         @if (item.RescheduleRequested)
+                        @if (item.WasNoShow)
                         {
-                             <span class="badge bg-warning text-dark">Reagendamiento Solicitado</span>
+                            <span class="badge bg-danger text-white">No Presentó</span>
                         }
                         else if (item.IsCompleted)
                         {
-                            <span class="badge bg-secondary">Completada</span>
+                            <span class="badge bg-success text-white">Completada</span>
+                        }
+                        else if (item.AppointmentDateTime < DateTime.Now)
+                        {
+                            <span class="badge bg-secondary text-dark">Expirada</span>
+                        }
+                        else if (item.DoctorProposedReschedule && item.ProposedNewDateTime.HasValue)
+                        {
+                             <span class="badge bg-primary text-white">Propuesto por Doctor</span>
+                        }
+                        else if (item.RescheduleRequested && item.ProposedNewDateTime.HasValue)
+                        {
+                             <span class="badge bg-warning text-dark">Propuesto por Paciente</span>
                         }
                         else if (item.IsConfirmed)
                         {
-                            <span class="badge bg-success">Confirmada</span>
+                            <span class="badge bg-info text-white">Confirmada</span>
                         }
                         else
                         {
-                            <span class="badge bg-info text-dark">Pendiente</span>
+                            <span class="badge bg-warning text-dark">Pendiente</span>
                         }
                     </td>
                     <td>
                         <a asp-page="./Details" asp-route-id="@item.Id" class="btn btn-sm btn-info"><i class="bi bi-eye"></i> Detalles</a>
-                        @* Permitir Editar solo si no está completada? O dejarlo siempre?*@
-                        <a asp-page="./Edit" asp-route-id="@item.Id" class="btn btn-sm btn-warning"><i class="bi bi-pencil"></i> Editar</a>
-                        @* Permitir Eliminar solo si no está confirmada/completada? *@
-                        @if (!item.IsConfirmed && !item.IsCompleted)
+                        
+                        @if (Model.UserRole == "Doctor" && item.RescheduleRequested && item.ProposedNewDateTime.HasValue && !item.IsCompleted && item.AppointmentDateTime >= DateTime.Now && !item.IsCancelled)
                         {
-                              <a asp-page="./Delete" asp-route-id="@item.Id" class="btn btn-sm btn-danger"><i class="bi bi-trash"></i> Cancelar</a>
+                            <a asp-page="/Doctor/ConfirmRescheduleProposal" asp-route-id="@item.Id" class="btn btn-sm btn-success ms-1"><i class="bi bi-check-circle"></i> Revisar Propuesta</a>
                         }
-
+                        else if (Model.UserRole == "Patient" && item.DoctorProposedReschedule && item.ProposedNewDateTime.HasValue && !item.IsCompleted && !item.IsCancelled && item.AppointmentDateTime >= DateTime.Now)
+                        {
+                             <a asp-page="./ReviewDoctorProposal" asp-route-id="@item.Id" class="btn btn-sm btn-primary ms-1" title="Revisar propuesta de reagendamiento del doctor"><i class="bi bi-calendar-event"></i> Revisar Propuesta de Doctor</a>
+                        }
+                        else if (Model.UserRole == "Patient" && !item.IsCompleted && item.AppointmentDateTime >= DateTime.Now && !item.RescheduleRequested && !item.DoctorProposedReschedule && !item.IsCancelled)
+                        {
+                             <a asp-page="./ProposeReschedule" asp-route-id="@item.Id" class="btn btn-sm btn-outline-warning ms-1" title="Proponer cambio de fecha/hora"><i class="bi bi-clock-history"></i> Proponer Reagendamiento</a>
+                        }
+                        @if ((Model.UserRole == "Admin" || Model.UserRole == "Doctor") && !item.IsCompleted && item.AppointmentDateTime >= DateTime.Now && !item.RescheduleRequested && !item.DoctorProposedReschedule && !item.IsCancelled)
+                        {
+                            <a asp-page="./Edit" asp-route-id="@item.Id" class="btn btn-sm btn-warning ms-1"><i class="bi bi-pencil"></i> Editar</a>
+                        }
+                        
+                        @if (!item.IsConfirmed && !item.IsCompleted && item.AppointmentDateTime >= DateTime.Now && !item.RescheduleRequested && !item.DoctorProposedReschedule && !item.IsCancelled)
+                        { 
+                              <a asp-page="./Delete" asp-route-id="@item.Id" class="btn btn-sm btn-danger ms-1"><i class="bi bi-trash"></i> Cancelar</a>
+                        }
                     </td>
                 </tr>
             }

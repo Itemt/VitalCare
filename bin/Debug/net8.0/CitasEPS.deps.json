@@ -13,7 +13,8 @@
           "Microsoft.EntityFrameworkCore.SqlServer": "8.0.8",
           "Microsoft.EntityFrameworkCore.Tools": "8.0.8",
           "Microsoft.VisualStudio.Web.CodeGeneration.Design": "9.0.0",
-          "Npgsql.EntityFrameworkCore.PostgreSQL": "8.0.8"
+          "Npgsql.EntityFrameworkCore.PostgreSQL": "8.0.8",
+          "Resend": "0.1.1"
         },
         "runtime": {
           "CitasEPS.dll": {}
@@ -1834,6 +1835,17 @@
           }
         }
       },
+      "Resend/0.1.1": {
+        "dependencies": {
+          "Microsoft.Extensions.Options": "8.0.2"
+        },
+        "runtime": {
+          "lib/net8.0/Resend.dll": {
+            "assemblyVersion": "0.1.1.0",
+            "fileVersion": "0.1.1.0"
+          }
+        }
+      },
       "System.CodeDom/6.0.0": {
         "runtime": {
           "lib/net6.0/System.CodeDom.dll": {
@@ -2991,6 +3003,13 @@
       "sha512": "sha512-v/GGlIj2dd7svplFmASWEueu62veKW0MrMtBaZ7QG8aJTSGv2yE+pgUGhXRcQ4nxNOEq/wLBrz1vkth/1SND7A==",
       "path": "nuget.versioning/6.11.0",
       "hashPath": "nuget.versioning.6.11.0.nupkg.sha512"
+    },
+    "Resend/0.1.1": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-w+8MJ+Y6Whl3K1EQjfd6LAxHlCBAoeFFiPwTmcIwjf2ZvBp4FKM0LmI05WlHRAs0eBzLEsdpek7BQHGDeXrERg==",
+      "path": "resend/0.1.1",
+      "hashPath": "resend.0.1.1.nupkg.sha512"
     },
     "System.CodeDom/6.0.0": {
       "type": "package",

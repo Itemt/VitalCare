@@ -95,5 +95,69 @@ namespace CitasEPS.Pages.Appointments
 
             return Page();
         }
+
+        public async Task<IActionResult> OnPostRequestRescheduleAsync(int id)
+        {
+            var user = await _userManager.GetUserAsync(User);
+            if (user == null || !(await _userManager.IsInRoleAsync(user, "Patient")))
+            {
+                TempData["ErrorMessage"] = "Acción no autorizada.";
+                return RedirectToPage();
+            }
+
+            var appointment = await _context.Appointments.FindAsync(id);
+
+            if (appointment == null)
+            {
+                TempData["ErrorMessage"] = "Cita no encontrada.";
+                return RedirectToPage();
+            }
+
+            // Verify the appointment belongs to the current patient
+            var patientRecord = await _context.Patients.FirstOrDefaultAsync(p => p.Email == user.Email);
+            if (patientRecord == null || appointment.PatientId != patientRecord.Id)
+            {
+                TempData["ErrorMessage"] = "No tiene permiso para modificar esta cita.";
+                return RedirectToPage();
+            }
+
+            if (appointment.IsCompleted || appointment.AppointmentDateTime < DateTime.Now || appointment.RescheduleRequested)
+            {
+                TempData["ErrorMessage"] = "Esta cita no puede ser reagendada en este momento.";
+                return RedirectToPage();
+            }
+
+            appointment.RescheduleRequested = true;
+            _context.Attach(appointment).State = EntityState.Modified;
+
+            try
+            {
+                await _context.SaveChangesAsync();
+                TempData["SuccessMessage"] = "Solicitud de reagendamiento enviada correctamente.";
+            }
+            catch (DbUpdateConcurrencyException)
+            {
+                if (!AppointmentExists(appointment.Id))
+                {
+                    TempData["ErrorMessage"] = "Error: La cita ya no existe.";
+                }
+                else
+                {
+                    TempData["ErrorMessage"] = "Error de concurrencia al guardar la solicitud.";
+                }
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError(ex, "Error al guardar la solicitud de reagendamiento para la cita {AppointmentId}", appointment.Id);
+                TempData["ErrorMessage"] = "Ocurrió un error al procesar su solicitud.";
+            }
+
+            return RedirectToPage();
+        }
+
+        private bool AppointmentExists(int id)
+        {
+            return _context.Appointments.Any(e => e.Id == id);
+        }
     }
 }

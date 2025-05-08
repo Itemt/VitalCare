@@ -39,6 +39,12 @@ namespace CitasEPS.Migrations
                     b.Property<int>("DoctorId")
                         .HasColumnType("integer");
 
+                    b.Property<bool>("DoctorProposedReschedule")
+                        .HasColumnType("boolean");
+
+                    b.Property<bool>("IsCancelled")
+                        .HasColumnType("boolean");
+
                     b.Property<bool>("IsCompleted")
                         .HasColumnType("boolean");
 
@@ -52,7 +58,13 @@ namespace CitasEPS.Migrations
                     b.Property<int>("PatientId")
                         .HasColumnType("integer");
 
+                    b.Property<DateTime?>("ProposedNewDateTime")
+                        .HasColumnType("timestamp with time zone");
+
                     b.Property<bool>("RescheduleRequested")
+                        .HasColumnType("boolean");
+
+                    b.Property<bool>("WasNoShow")
                         .HasColumnType("boolean");
 
                     b.HasKey("Id");
@@ -248,6 +260,9 @@ namespace CitasEPS.Migrations
                         .IsConcurrencyToken()
                         .HasColumnType("text");
 
+                    b.Property<DateTime>("DateOfBirth")
+                        .HasColumnType("timestamp with time zone");
+
                     b.Property<string>("Email")
                         .HasMaxLength(256)
                         .HasColumnType("character varying(256)");
@@ -255,8 +270,18 @@ namespace CitasEPS.Migrations
                     b.Property<bool>("EmailConfirmed")
                         .HasColumnType("boolean");
 
+                    b.Property<string>("FirstName")
+                        .IsRequired()
+                        .HasMaxLength(100)
+                        .HasColumnType("character varying(100)");
+
                     b.Property<bool>("IsAdmin")
                         .HasColumnType("boolean");
+
+                    b.Property<string>("LastName")
+                        .IsRequired()
+                        .HasMaxLength(100)
+                        .HasColumnType("character varying(100)");
 
                     b.Property<bool>("LockoutEnabled")
                         .HasColumnType("boolean");

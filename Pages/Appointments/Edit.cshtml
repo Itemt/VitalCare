@@ -15,21 +15,38 @@
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <input type="hidden" asp-for="Appointment.Id" /> @* Incluir campo oculto para ID *@
 
-            <div class="form-group mb-3">
-                <label asp-for="Appointment.PatientId" class="control-label">Paciente</label> @* Changed Label *@
-                <select asp-for="Appointment.PatientId" class ="form-control" asp-items="Model.PatientNameSL">
-                     <option value="">-- Seleccione Paciente --</option>
-               </select>
-                <span asp-validation-for="Appointment.PatientId" class="text-danger"></span>
-            </div>
+            @if (User.IsInRole("Admin"))
+            {
+                <div class="form-group mb-3">
+                    <label asp-for="Appointment.PatientId" class="control-label">Paciente</label>
+                    <select asp-for="Appointment.PatientId" class ="form-control" asp-items="Model.PatientNameSL">
+                         <option value="">-- Seleccione Paciente --</option>
+                   </select>
+                    <span asp-validation-for="Appointment.PatientId" class="text-danger"></span>
+                </div>
 
-            <div class="form-group mb-3">
-                <label asp-for="Appointment.DoctorId" class="control-label">Médico</label> @* Changed Label *@
-                 <select asp-for="Appointment.DoctorId" class ="form-control" asp-items="Model.DoctorNameSL">
-                    <option value="">-- Seleccione Médico --</option> @* Changed Text *@
-                 </select>
-                <span asp-validation-for="Appointment.DoctorId" class="text-danger"></span>
-            </div>
+                <div class="form-group mb-3">
+                    <label asp-for="Appointment.DoctorId" class="control-label">Médico</label>
+                     <select asp-for="Appointment.DoctorId" class ="form-control" asp-items="Model.DoctorNameSL">
+                        <option value="">-- Seleccione Médico --</option>
+                     </select>
+                    <span asp-validation-for="Appointment.DoctorId" class="text-danger"></span>
+                </div>
+            }
+            else
+            {
+                <div class="form-group mb-3">
+                    <label class="control-label">Paciente</label>
+                    <input type="text" class="form-control" value="@ViewData["PatientName"]" readonly />
+                    @* Hidden fields to ensure PatientId and DoctorId are posted back even if not editable by current role, handled in PageModel *@
+                    <input type="hidden" asp-for="Appointment.PatientId" />
+                </div>
+                 <div class="form-group mb-3">
+                    <label class="control-label">Médico</label>
+                    <input type="text" class="form-control" value="@ViewData["DoctorName"]" readonly />
+                    <input type="hidden" asp-for="Appointment.DoctorId" />
+                </div>
+            }
 
             <div class="form-group mb-3">
                 <label asp-for="Appointment.AppointmentDateTime" class="control-label">Fecha y Hora</label> @* Changed Label *@
@@ -44,13 +61,16 @@
                 <span asp-validation-for="Appointment.Notes" class="text-danger"></span>
             </div>
 
-            @* Permitir editar estado de confirmación, posiblemente solo para admins *@
-            @* Considerar añadir verificación de autorización aquí: @if ((await AuthorizationService.AuthorizeAsync(User, "Admin")).Succeeded) { ... } *@
-             <div class="form-group form-check mb-3">
-                <label class="form-check-label">
-                    <input class="form-check-input" asp-for="Appointment.IsConfirmed" /> Confirmada @* Changed Label *@
-                </label>
-            </div>
+            @* Permitir editar estado de confirmación, posiblemente solo para admins/doctores *@
+            @if (!Model.IsCurrentUserPatient)
+            {
+                 <div class="form-group form-check mb-3">
+                    <label class="form-check-label">
+                        <input class="form-check-input" asp-for="Appointment.IsConfirmed" /> Confirmada
+                    </label>
+                </div>
+            }
+            @* For patients, this field will be hidden. Its value will be preserved by the PageModel on post. *@
 
             <div class="form-group mt-4">
                 <input type="submit" value="Guardar Cambios" class="btn btn-success" />

@@ -19,8 +19,15 @@
 <ul class="navbar-nav">
 @if (SignInManager.IsSignedIn(User))
 {
+    var currentUser = await UserManager.GetUserAsync(User);
+    var displayName = currentUser?.FirstName + " " + currentUser?.LastName;
+    if (string.IsNullOrWhiteSpace(displayName?.Trim()))
+    {
+        displayName = UserManager.GetUserName(User); // Fallback to username if name is not set
+    }
+
     <li class="nav-item">
-        <a id="manage" class="nav-link text-dark" asp-area="Identity" asp-page="/Account/Manage/Index" title="Gestionar Cuenta">¡Hola @UserManager.GetUserName(User)!</a>
+        <a id="manage" class="nav-link text-dark" asp-area="Identity" asp-page="/Account/Manage/Index" title="Gestionar Cuenta">¡Hola @displayName!</a>
     </li>
     <li class="nav-item">
         <a class="nav-link text-info" asp-area="Identity" asp-page="/Account/Manage/Index" title="Gestionar Cuenta">(@userRole)</a> @* Mostrar Rol como enlace *@

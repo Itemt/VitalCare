@@ -52,13 +52,26 @@ namespace CitasEPS.Areas.Identity.Pages.Account.Manage
         /// </summary>
         public class InputModel
         {
-            /// <summary>
-            ///     This API supports the ASP.NET Core Identity default UI infrastructure and is not intended to be used
-            ///     directly from your code. This API may change or be removed in future releases.
-            /// </summary>
-            [Phone]
-            [Display(Name = "Phone number")]
+            [Required(ErrorMessage = "El campo Nombres es obligatorio.")]
+            [Display(Name = "Nombres")]
+            [StringLength(100, ErrorMessage = "El campo Nombres no puede exceder los 100 caracteres.")]
+            public string FirstName { get; set; }
+
+            [Required(ErrorMessage = "El campo Apellidos es obligatorio.")]
+            [Display(Name = "Apellidos")]
+            [StringLength(100, ErrorMessage = "El campo Apellidos no puede exceder los 100 caracteres.")]
+            public string LastName { get; set; }
+
+            [Phone(ErrorMessage = "El formato del número de teléfono no es válido.")]
+            [Display(Name = "Número de teléfono")]
+            [Required(ErrorMessage = "El campo Número de teléfono es obligatorio.")]
             public string PhoneNumber { get; set; }
+
+            [Required(ErrorMessage = "El campo Fecha de Nacimiento es obligatorio.")]
+            [Display(Name = "Fecha de Nacimiento")]
+            [DataType(DataType.Text)]
+            [DisplayFormat(DataFormatString = "{0:dd/MM/yyyy}", ApplyFormatInEditMode = true)]
+            public DateTime DateOfBirth { get; set; }
         }
 
         private async Task LoadAsync(User user)
@@ -70,7 +83,10 @@ namespace CitasEPS.Areas.Identity.Pages.Account.Manage
 
             Input = new InputModel
             {
-                PhoneNumber = phoneNumber
+                FirstName = user.FirstName,
+                LastName = user.LastName,
+                PhoneNumber = phoneNumber,
+                DateOfBirth = user.DateOfBirth
             };
         }
 
@@ -79,7 +95,7 @@ namespace CitasEPS.Areas.Identity.Pages.Account.Manage
             var user = await _userManager.GetUserAsync(User);
             if (user == null)
             {
-                return NotFound($"Unable to load user with ID '{_userManager.GetUserId(User)}'.");
+                return NotFound($"No se pudo cargar el usuario con ID '{_userManager.GetUserId(User)}'.");
             }
 
             await LoadAsync(user);
@@ -91,7 +107,7 @@ namespace CitasEPS.Areas.Identity.Pages.Account.Manage
             var user = await _userManager.GetUserAsync(User);
             if (user == null)
             {
-                return NotFound($"Unable to load user with ID '{_userManager.GetUserId(User)}'.");
+                return NotFound($"No se pudo cargar el usuario con ID '{_userManager.GetUserId(User)}'.");
             }
 
             if (!ModelState.IsValid)
@@ -100,19 +116,50 @@ namespace CitasEPS.Areas.Identity.Pages.Account.Manage
                 return Page();
             }
 
+            // Update FirstName, LastName, and DateOfBirth directly on the user object
+            bool profileUpdated = false;
+            if (Input.FirstName != user.FirstName)
+            {
+                user.FirstName = Input.FirstName;
+                profileUpdated = true;
+            }
+
+            if (Input.LastName != user.LastName)
+            {
+                user.LastName = Input.LastName;
+                profileUpdated = true;
+            }
+
+            if (Input.DateOfBirth != user.DateOfBirth)
+            {
+                user.DateOfBirth = Input.DateOfBirth;
+                profileUpdated = true;
+            }
+
             var phoneNumber = await _userManager.GetPhoneNumberAsync(user);
             if (Input.PhoneNumber != phoneNumber)
             {
                 var setPhoneResult = await _userManager.SetPhoneNumberAsync(user, Input.PhoneNumber);
                 if (!setPhoneResult.Succeeded)
                 {
-                    StatusMessage = "Unexpected error when trying to set phone number.";
+                    StatusMessage = "Error: Error inesperado al intentar establecer el número de teléfono.";
+                    return RedirectToPage();
+                }
+                profileUpdated = true;
+            }
+
+            if (profileUpdated)
+            {
+                var updateResult = await _userManager.UpdateAsync(user);
+                if (!updateResult.Succeeded)
+                {
+                    StatusMessage = "Error: Error inesperado al intentar actualizar el perfil.";
                     return RedirectToPage();
                 }
             }
 
             await _signInManager.RefreshSignInAsync(user);
-            StatusMessage = "Your profile has been updated";
+            StatusMessage = "Tu perfil ha sido actualizado";
             return RedirectToPage();
         }
     }

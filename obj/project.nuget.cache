@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "bi+LQG6NDf4=",
+  "dgSpecHash": "6KMRA8SOZqE=",
   "success": true,
   "projectFilePath": "C:\\Users\\CristianPC\\Desktop\\vitalcare\\CitasEPS.csproj",
   "expectedPackageFiles": [
@@ -133,6 +133,7 @@
     "C:\\Users\\CristianPC\\.nuget\\packages\\nuget.projectmodel\\6.11.0\\nuget.projectmodel.6.11.0.nupkg.sha512",
     "C:\\Users\\CristianPC\\.nuget\\packages\\nuget.protocol\\6.11.0\\nuget.protocol.6.11.0.nupkg.sha512",
     "C:\\Users\\CristianPC\\.nuget\\packages\\nuget.versioning\\6.11.0\\nuget.versioning.6.11.0.nupkg.sha512",
+    "C:\\Users\\CristianPC\\.nuget\\packages\\resend\\0.1.1\\resend.0.1.1.nupkg.sha512",
     "C:\\Users\\CristianPC\\.nuget\\packages\\system.codedom\\6.0.0\\system.codedom.6.0.0.nupkg.sha512",
     "C:\\Users\\CristianPC\\.nuget\\packages\\system.collections.immutable\\8.0.0\\system.collections.immutable.8.0.0.nupkg.sha512",
     "C:\\Users\\CristianPC\\.nuget\\packages\\system.composition\\7.0.0\\system.composition.7.0.0.nupkg.sha512",

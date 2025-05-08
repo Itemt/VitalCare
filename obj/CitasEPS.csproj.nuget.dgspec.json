@@ -26,7 +26,7 @@
         ],
         "sources": {
           "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
-          "https://api.nuget.org/v3/index.json": {}
+          "https://www.nuget.org/api/v2": {}
         },
         "frameworks": {
           "net8.0": {
@@ -75,6 +75,10 @@
             "Npgsql.EntityFrameworkCore.PostgreSQL": {
               "target": "Package",
               "version": "[8.0.7, )"
+            },
+            "Resend": {
+              "target": "Package",
+              "version": "[0.1.1, )"
             }
           },
           "imports": [

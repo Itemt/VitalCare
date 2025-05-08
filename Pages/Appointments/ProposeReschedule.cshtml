@@ -1,0 +1,57 @@
+@page "{id:int}"
+@model CitasEPS.Pages.Appointments.ProposeRescheduleModel
+@inject Microsoft.AspNetCore.Antiforgery.IAntiforgery Xsrf
+
+@{
+    ViewData["Title"] = "Proponer Nuevo Horario";
+}
+
+<div class="container mt-4">
+    <div class="row justify-content-center">
+        <div class="col-lg-7 col-md-9">
+            <div class="card shadow-sm">
+                 <div class="card-header bg-warning text-dark">
+                    <h4 class="mb-0">@ViewData["Title"]</h4>
+                </div>
+                 <div class="card-body">
+                    @if (Model.CurrentAppointment != null)
+                    {
+                        <p class="card-text">
+                            Está proponiendo un nuevo horario para su cita con: <strong>@Model.DoctorName</strong>.<br />
+                            Fecha y hora actual: <strong>@Model.CurrentDateTime</strong>.
+                        </p>
+                        <hr />
+                        <form method="post">
+                             <div asp-validation-summary="ModelOnly" class="text-danger mb-3" role="alert"></div>
+                             @Html.HiddenFor(model => model.Id) 
+                             @Html.AntiForgeryToken()
+
+                             <div class="form-group mb-3">
+                                <label asp-for="Input.ProposedNewDateTime" class="form-label fw-bold"></label>
+                                <input asp-for="Input.ProposedNewDateTime" class="form-control datetimepicker" />
+                                <span asp-validation-for="Input.ProposedNewDateTime" class="text-danger"></span>
+                             </div>
+
+                             <div class="d-grid gap-2 d-md-flex justify-content-md-end mt-4">
+                                <a asp-page="./Index" class="btn btn-outline-secondary me-md-2">Cancelar</a>
+                                <button type="submit" class="btn btn-warning"><i class="bi bi-send"></i> Enviar Propuesta</button>
+                            </div>
+                        </form>
+                    }
+                    else
+                    {
+                        <div class="alert alert-warning" role="alert">
+                            No se pudo cargar la información de la cita para proponer reagendamiento.
+                        </div>
+                        <a asp-page="./Index" class="btn btn-secondary">Volver a Mis Citas</a>
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+    @* Flatpickr is initialized globally via site.flatpickr.js for .datetimepicker class *@
+} 

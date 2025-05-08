@@ -44,5 +44,17 @@ namespace CitasEPS.Models
 
         [Display(Name = "Reagendamiento Solicitado")]
         public bool RescheduleRequested { get; set; } = false; // Nueva propiedad
+
+        [Display(Name = "Nueva Fecha Propuesta")]
+        public DateTime? ProposedNewDateTime { get; set; } // Para propuesta de reagendamiento del paciente
+
+        [Display(Name = "No Se Presentó")]
+        public bool WasNoShow { get; set; } = false; // Marcar si el paciente no asistió
+
+        [Display(Name = "Cancelada")]
+        public bool IsCancelled { get; set; } = false; // Nueva propiedad para cancelación
+
+        [Display(Name = "Reagendamiento Propuesto por Doctor")]
+        public bool DoctorProposedReschedule { get; set; } = false; // New flag for doctor-initiated reschedule
     }
 } 

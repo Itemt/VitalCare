@@ -5,6 +5,7 @@ using CitasEPS.Models;
 using CitasEPS.Services;
 using System.Security.Claims;
 using Microsoft.AspNetCore.Identity.UI.Services;
+using Resend;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -23,6 +24,14 @@ builder.Services.AddIdentity<User, IdentityRole<int>>(options => options.SignIn.
 
 // Registrar IEmailSender
 builder.Services.AddTransient<IEmailSender, EmailSender>();
+
+// Register Resend services for dependency injection
+builder.Services.AddOptions<ResendClientOptions>();
+builder.Services.AddHttpClient<IResend, ResendClient>();
+builder.Services.Configure<ResendClientOptions>(o =>
+{
+    o.ApiToken = builder.Configuration["Resend:ApiKey"];
+});
 
 // Añadir políticas de Autorización
 builder.Services.AddAuthorization(options =>

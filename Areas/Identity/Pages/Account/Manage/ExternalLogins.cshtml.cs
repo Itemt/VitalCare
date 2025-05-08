@@ -61,7 +61,7 @@ namespace CitasEPS.Areas.Identity.Pages.Account.Manage
             var user = await _userManager.GetUserAsync(User);
             if (user == null)
             {
-                return NotFound($"Unable to load user with ID '{_userManager.GetUserId(User)}'.");
+                return NotFound($"No se pudo cargar el usuario con ID '{_userManager.GetUserId(User)}'.");
             }
 
             CurrentLogins = await _userManager.GetLoginsAsync(user);
@@ -84,18 +84,18 @@ namespace CitasEPS.Areas.Identity.Pages.Account.Manage
             var user = await _userManager.GetUserAsync(User);
             if (user == null)
             {
-                return NotFound($"Unable to load user with ID '{_userManager.GetUserId(User)}'.");
+                return NotFound($"No se pudo cargar el usuario con ID '{_userManager.GetUserId(User)}'.");
             }
 
             var result = await _userManager.RemoveLoginAsync(user, loginProvider, providerKey);
             if (!result.Succeeded)
             {
-                StatusMessage = "The external login was not removed.";
+                StatusMessage = "El inicio de sesión externo no fue eliminado.";
                 return RedirectToPage();
             }
 
             await _signInManager.RefreshSignInAsync(user);
-            StatusMessage = "The external login was removed.";
+            StatusMessage = "El inicio de sesión externo fue eliminado.";
             return RedirectToPage();
         }
 
@@ -115,27 +115,27 @@ namespace CitasEPS.Areas.Identity.Pages.Account.Manage
             var user = await _userManager.GetUserAsync(User);
             if (user == null)
             {
-                return NotFound($"Unable to load user with ID '{_userManager.GetUserId(User)}'.");
+                return NotFound($"No se pudo cargar el usuario con ID '{_userManager.GetUserId(User)}'.");
             }
 
             var userId = await _userManager.GetUserIdAsync(user);
             var info = await _signInManager.GetExternalLoginInfoAsync(userId);
             if (info == null)
             {
-                throw new InvalidOperationException($"Unexpected error occurred loading external login info.");
+                throw new InvalidOperationException($"Error inesperado al cargar la información de inicio de sesión externo.");
             }
 
             var result = await _userManager.AddLoginAsync(user, info);
             if (!result.Succeeded)
             {
-                StatusMessage = "The external login was not added. External logins can only be associated with one account.";
+                StatusMessage = "El inicio de sesión externo no fue añadido. Los inicios de sesión externos solo pueden asociarse con una cuenta.";
                 return RedirectToPage();
             }
 
             // Clear the existing external cookie to ensure a clean login process
             await HttpContext.SignOutAsync(IdentityConstants.ExternalScheme);
 
-            StatusMessage = "The external login was added.";
+            StatusMessage = "El inicio de sesión externo fue añadido.";
             return RedirectToPage();
         }
     }

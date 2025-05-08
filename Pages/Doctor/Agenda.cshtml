@@ -33,7 +33,7 @@ else
                     @Html.DisplayNameFor(model => model.Appointments[0].Notes)
                 </th>
                 <th>
-                    @Html.DisplayNameFor(model => model.Appointments[0].IsConfirmed)
+                    Estado
                 </th>
                 <th>Acciones</th>
             </tr>
@@ -47,18 +47,68 @@ else
                     </td>
                     <td>
                         @Html.DisplayFor(modelItem => item.Patient.FullName)
+                        @if (!string.IsNullOrWhiteSpace(item.Patient.PhoneNumber))
+                        {
+                            <br /><small class="text-muted"><i class="bi bi-telephone"></i> @Html.DisplayFor(modelItem => item.Patient.PhoneNumber)</small>
+                        }
                     </td>
                     <td>
                         @Html.DisplayFor(modelItem => item.Notes)
                     </td>
                     <td>
-                        @(item.IsConfirmed ? "Sí" : "No")
+                        @if (item.WasNoShow)
+                        {
+                            <span class="badge bg-danger text-white">No Presentó</span>
+                        }
+                        else if (item.IsCompleted)
+                        {
+                            <span class="badge bg-success text-white">Completada</span>
+                        }
+                        else if (item.AppointmentDateTime < DateTime.Now)
+                        {
+                            <span class="badge bg-secondary text-dark">Expirada</span>
+                        }
+                        else if (item.RescheduleRequested && item.ProposedNewDateTime.HasValue)
+                        {
+                             <span class="badge bg-warning text-dark">Reagendamiento Propuesto</span>
+                        }
+                        else if (item.IsConfirmed)
+                        {
+                            <span class="badge bg-info text-white">Confirmada</span>
+                        }
+                        else
+                        {
+                            <span class="badge bg-warning text-dark">Pendiente</span>
+                        }
                     </td>
                     <td>
                         <a asp-page="/Appointments/Details" asp-route-id="@item.Id" class="btn btn-info btn-sm" title="Detalles"><i class="bi bi-info-circle"></i></a>
-                        @* Aquí irán los botones para gestionar la cita (ej. agregar notas, prescribir) *
-                        @* <a asp-page="./ManageAppointment" asp-route-id="@item.Id" class="btn btn-primary btn-sm">Gestionar</a> *@
-                        <a asp-page="./Prescribe" asp-route-appointmentId="@item.Id" class="btn btn-success btn-sm" title="Prescribir"><i class="bi bi-file-medical"></i></a>
+                        
+                        @if (item.RescheduleRequested && item.ProposedNewDateTime.HasValue && !item.IsCompleted && item.AppointmentDateTime >= DateTime.Now && !item.IsCancelled)
+                        {
+                            <a asp-page="./ConfirmRescheduleProposal" asp-route-id="@item.Id" class="btn btn-success btn-sm ms-1" title="Revisar Propuesta Paciente"><i class="bi bi-check-circle"></i></a>
+                        }
+
+                        <a asp-page="./Prescribe" asp-route-appointmentId="@item.Id" class="btn btn-secondary btn-sm ms-1" title="Prescribir"><i class="bi bi-file-medical"></i></a>
+
+                        @* --- START: Cancel Button --- *@
+                        @if (!item.IsCompleted && !item.IsCancelled)
+                        {
+                            <form method="post" asp-page-handler="CancelAppointment" asp-route-appointmentId="@item.Id" class="d-inline" 
+                                  onsubmit="return confirm('¿Está seguro de que desea cancelar esta cita? Esta acción no se puede deshacer.');">
+                                <button type="submit" class="btn btn-danger btn-sm ms-1" title="Cancelar Cita">
+                                    <i class="bi bi-x-circle"></i>
+                                </button>
+                            </form>
+                        }
+                        @* --- END: Cancel Button --- *@
+
+                        @* --- START: Doctor Propose Reschedule Button --- *@
+                        @if (!item.IsCompleted && !item.IsCancelled && item.AppointmentDateTime >= DateTime.Now && !item.RescheduleRequested && !item.DoctorProposedReschedule)
+                        {
+                             <a asp-page="./ProposeDoctorReschedule" asp-route-id="@item.Id" class="btn btn-sm btn-outline-primary ms-1" title="Proponer nuevo horario al paciente"><i class="bi bi-arrow-repeat"></i> Proponer Reag.</a>
+                        }
+                        @* --- END: Doctor Propose Reschedule Button --- *@
                     </td>
                 </tr>
             }

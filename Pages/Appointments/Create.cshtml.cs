@@ -10,6 +10,7 @@ using CitasEPS.Models;
 using Microsoft.AspNetCore.Authorization; // Add for authorization
 using Microsoft.EntityFrameworkCore; // Required for ToListAsync
 using Microsoft.AspNetCore.Identity; // Required for UserManager
+using Microsoft.Extensions.Logging;
 
 namespace CitasEPS.Pages.Appointments
 {
@@ -92,12 +93,86 @@ namespace CitasEPS.Pages.Appointments
             // Assign patient ID before validation
             Appointment.PatientId = LoggedInPatientId;
 
+            // --- START: Convert AppointmentDateTime to UTC EARLY ---
+            var originalBoundDateTime = Appointment.AppointmentDateTime;
+            if (originalBoundDateTime.Kind == DateTimeKind.Unspecified)
+            {
+                _logger.LogInformation($"Original BOUND AppointmentDateTime '{originalBoundDateTime}' had Kind Unspecified. Assuming Local, then converting to UTC.");
+                Appointment.AppointmentDateTime = DateTime.SpecifyKind(originalBoundDateTime, DateTimeKind.Local).ToUniversalTime();
+            }
+            else if (originalBoundDateTime.Kind == DateTimeKind.Local)
+            {
+                _logger.LogInformation($"Original BOUND AppointmentDateTime '{originalBoundDateTime}' had Kind Local. Converting to UTC.");
+                Appointment.AppointmentDateTime = originalBoundDateTime.ToUniversalTime();
+            }
+            else // Already UTC
+            {
+                 _logger.LogInformation($"Original BOUND AppointmentDateTime '{originalBoundDateTime}' was already Kind Utc. No conversion needed.");
+                // Ensure it's assigned if it was a different instance, though unlikely here.
+                Appointment.AppointmentDateTime = originalBoundDateTime;
+            }
+            _logger.LogInformation($"Early converted AppointmentDateTime: '{Appointment.AppointmentDateTime}', Kind: '{Appointment.AppointmentDateTime.Kind}'. This will be used for validations.");
+            // --- END: Convert AppointmentDateTime to UTC EARLY ---
+
             // --- START: Add Past Date Validation ---
             if (Appointment.AppointmentDateTime < DateTime.Now)
             {
                  ModelState.AddModelError("Appointment.AppointmentDateTime", "No puede seleccionar una fecha u hora en el pasado.");
             }
             // --- END: Add Past Date Validation ---
+
+            // --- START: Working Hours Validation (Mon-Fri, 8 AM - 6 PM) ---
+            var appTime = Appointment.AppointmentDateTime.TimeOfDay;
+            var appDay = Appointment.AppointmentDateTime.DayOfWeek;
+
+            if (appDay == DayOfWeek.Saturday || appDay == DayOfWeek.Sunday)
+            {
+                ModelState.AddModelError("Appointment.AppointmentDateTime", "Las citas solo pueden agendarse de Lunes a Viernes.");
+            }
+            else if (appTime < new TimeSpan(8, 0, 0) || appTime >= new TimeSpan(18, 0, 0)) // 8 AM to 5:59 PM
+            {
+                ModelState.AddModelError("Appointment.AppointmentDateTime", "Las citas solo pueden agendarse entre las 8:00 AM y las 5:59 PM.");
+            }
+            // --- END: Working Hours Validation ---
+
+            // --- START: Patient Weekly Limit Validation (Max 2 per week) ---
+            if (ModelState.IsValid) // Only proceed if previous validations passed
+            {
+                DayOfWeek firstDayOfWeek = DayOfWeek.Monday; // Assuming week starts on Monday
+                DateTime startDate = Appointment.AppointmentDateTime.Date;
+                while (startDate.DayOfWeek != firstDayOfWeek)
+                {
+                    startDate = startDate.AddDays(-1);
+                }
+                DateTime endDate = startDate.AddDays(7);
+
+                var appointmentsInWeek = await _context.Appointments
+                    .Where(a => a.PatientId == Appointment.PatientId &&
+                                // No need to filter by status, count all
+                                a.AppointmentDateTime >= startDate &&
+                                a.AppointmentDateTime < endDate)
+                    .CountAsync();
+
+                if (appointmentsInWeek >= 2)
+                {
+                    ModelState.AddModelError("Appointment.AppointmentDateTime", "El paciente ya tiene 2 citas agendadas para esta semana. No se pueden agendar más.");
+                }
+            }
+            // --- END: Patient Weekly Limit Validation ---
+
+            // --- START: Doctor Availability Validation (No Double Booking) ---
+            if (ModelState.IsValid) // Only proceed if previous validations passed
+            {
+                var doctorHasSlot = await _context.Appointments
+                    .AnyAsync(a => a.DoctorId == Appointment.DoctorId &&
+                                   a.AppointmentDateTime == Appointment.AppointmentDateTime);
+
+                if (doctorHasSlot) // If true, means there IS an existing appointment
+                {
+                    ModelState.AddModelError("Appointment.AppointmentDateTime", "El doctor seleccionado ya tiene una cita programada para esta fecha y hora exactas.");
+                }
+            }
+            // --- END: Doctor Availability Validation ---
 
             // Remove the invalid Appointment.SpecialtyId references
             // Validate DoctorId specifically
@@ -122,8 +197,36 @@ namespace CitasEPS.Pages.Appointments
                 return Page();
             }
 
-            // Ensure the DateTime is in UTC before saving
-            Appointment.AppointmentDateTime = Appointment.AppointmentDateTime.ToUniversalTime();
+            // At this point, Appointment.AppointmentDateTime is already UTC.
+            // The block that was here previously to convert it has been moved up.
+
+            // Ensure ProposedNewDateTime is also UTC if it has a value
+            if (Appointment.ProposedNewDateTime.HasValue)
+            {
+                var originalProposedDateTime = Appointment.ProposedNewDateTime.Value;
+                _logger.LogInformation($"Original ProposedNewDateTime '{originalProposedDateTime}', Kind: '{originalProposedDateTime.Kind}'.");
+                if (originalProposedDateTime.Kind == DateTimeKind.Unspecified)
+                {
+                    _logger.LogInformation($"ProposedNewDateTime had Kind Unspecified. Assuming Local, then converting to UTC.");
+                    Appointment.ProposedNewDateTime = DateTime.SpecifyKind(originalProposedDateTime, DateTimeKind.Local).ToUniversalTime();
+                }
+                else if (originalProposedDateTime.Kind == DateTimeKind.Local)
+                {
+                    _logger.LogInformation($"ProposedNewDateTime had Kind Local. Converting to UTC.");
+                    Appointment.ProposedNewDateTime = originalProposedDateTime.ToUniversalTime();
+                }
+                // If already UTC, no change needed unless it was a different instance.
+                // Ensure it is assigned to handle that potential.
+                else
+                {
+                     Appointment.ProposedNewDateTime = originalProposedDateTime; // Already UTC
+                }
+                _logger.LogInformation($"Final ProposedNewDateTime to be saved: '{Appointment.ProposedNewDateTime.Value}', Kind: '{Appointment.ProposedNewDateTime.Value.Kind}'.");
+            }
+            else
+            {
+                _logger.LogInformation("ProposedNewDateTime is null. No conversion needed.");
+            }
 
             _context.Appointments.Add(Appointment);
             await _context.SaveChangesAsync();

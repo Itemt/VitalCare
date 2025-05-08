@@ -84,8 +84,8 @@
       <RelatedAsset></RelatedAsset>
       <AssetTraitName></AssetTraitName>
       <AssetTraitValue></AssetTraitValue>
-      <Fingerprint>fbk2ssqwf2</Fingerprint>
-      <Integrity>pQDACMeDmNuKQBKznGArxi22nacekjD7cGEkr7y0QNQ=</Integrity>
+      <Fingerprint>mzkdwxx6tn</Fingerprint>
+      <Integrity>foCTqMikxtmDJSSzRDVODi+9aMTIvatPM+eU0vEs/kQ=</Integrity>
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
       <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
       <OriginalItemSpec>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\js\site.flatpickr.js'))</OriginalItemSpec>

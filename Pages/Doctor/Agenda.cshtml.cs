@@ -8,6 +8,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using CitasEPS.Models;
+using Microsoft.Extensions.Logging;
 
 namespace CitasEPS.Pages.Doctor
 {
@@ -16,11 +17,13 @@ namespace CitasEPS.Pages.Doctor
     {
         private readonly ApplicationDbContext _context;
         private readonly UserManager<User> _userManager;
+        private readonly ILogger<AgendaModel> _logger;
 
-        public AgendaModel(ApplicationDbContext context, UserManager<User> userManager)
+        public AgendaModel(ApplicationDbContext context, UserManager<User> userManager, ILogger<AgendaModel> logger)
         {
             _context = context;
             _userManager = userManager;
+            _logger = logger;
         }
 
         public IList<Models.Appointment> Appointments { get; set; } = new List<Models.Appointment>();
@@ -53,6 +56,74 @@ namespace CitasEPS.Pages.Doctor
                 .ToListAsync();
 
             return Page();
+        }
+
+        public async Task<IActionResult> OnPostCancelAppointmentAsync(int appointmentId)
+        {
+            var user = await _userManager.GetUserAsync(User);
+            if (user == null)
+            {
+                TempData["ErrorMessage"] = "Usuario no autenticado.";
+                return RedirectToPage();
+            }
+
+            var currentDoctor = await _context.Doctors.FirstOrDefaultAsync(d => d.Email == user.Email);
+            if (currentDoctor == null)
+            {
+                TempData["ErrorMessage"] = "Perfil de doctor no encontrado.";
+                return RedirectToPage();
+            }
+
+            var appointmentToCancel = await _context.Appointments.FindAsync(appointmentId);
+
+            if (appointmentToCancel == null)
+            {
+                TempData["ErrorMessage"] = "Cita no encontrada.";
+                return RedirectToPage();
+            }
+
+            if (appointmentToCancel.DoctorId != currentDoctor.Id)
+            {
+                TempData["ErrorMessage"] = "No está autorizado para cancelar esta cita.";
+                return RedirectToPage();
+            }
+
+            if (appointmentToCancel.IsCompleted)
+            {
+                TempData["ErrorMessage"] = "No se puede cancelar una cita que ya ha sido completada.";
+                return RedirectToPage();
+            }
+
+            if (appointmentToCancel.IsCancelled)
+            {
+                TempData["InfoMessage"] = "Esta cita ya se encuentra cancelada.";
+                return RedirectToPage();
+            }
+            
+            appointmentToCancel.IsCancelled = true;
+            appointmentToCancel.IsConfirmed = false; 
+            appointmentToCancel.RescheduleRequested = false; 
+            appointmentToCancel.ProposedNewDateTime = null; 
+
+            try
+            {
+                _context.Appointments.Update(appointmentToCancel);
+                await _context.SaveChangesAsync();
+                TempData["SuccessMessage"] = $"La cita ID {appointmentToCancel.Id} ha sido cancelada exitosamente.";
+                _logger.LogInformation($"Doctor {currentDoctor.Email} cancelled Appointment ID {appointmentToCancel.Id}.");
+            }
+            catch (DbUpdateConcurrencyException ex)
+            {
+                _logger.LogWarning(ex, "Concurrency error cancelling Appointment ID {AppointmentId}", appointmentToCancel.Id);
+                TempData["ErrorMessage"] = "Error de concurrencia al intentar cancelar la cita. Por favor, intente de nuevo.";
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError(ex, "Error cancelling Appointment ID {AppointmentId}", appointmentToCancel.Id);
+                TempData["ErrorMessage"] = "Ocurrió un error inesperado al cancelar la cita.";
+            }
+
+            return RedirectToPage();
         }
     }
 } 

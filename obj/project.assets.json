@@ -2318,6 +2318,22 @@
           "lib/netstandard2.0/NuGet.Versioning.dll": {}
         }
       },
+      "Resend/0.1.1": {
+        "type": "package",
+        "dependencies": {
+          "Microsoft.Extensions.Options": "8.0.0"
+        },
+        "compile": {
+          "lib/net8.0/Resend.dll": {
+            "related": ".xml"
+          }
+        },
+        "runtime": {
+          "lib/net8.0/Resend.dll": {
+            "related": ".xml"
+          }
+        }
+      },
       "System.CodeDom/6.0.0": {
         "type": "package",
         "compile": {
@@ -6816,6 +6832,21 @@
         "nuget.versioning.nuspec"
       ]
     },
+    "Resend/0.1.1": {
+      "sha512": "w+8MJ+Y6Whl3K1EQjfd6LAxHlCBAoeFFiPwTmcIwjf2ZvBp4FKM0LmI05WlHRAs0eBzLEsdpek7BQHGDeXrERg==",
+      "type": "package",
+      "path": "resend/0.1.1",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "README.md",
+        "icon.png",
+        "lib/net8.0/Resend.dll",
+        "lib/net8.0/Resend.xml",
+        "resend.0.1.1.nupkg.sha512",
+        "resend.nuspec"
+      ]
+    },
     "System.CodeDom/6.0.0": {
       "sha512": "CPc6tWO1LAer3IzfZufDBRL+UZQcj5uS207NHALQzP84Vp/z6wF0Aa0YZImOQY8iStY0A2zI/e3ihKNPfUm8XA==",
       "type": "package",
@@ -8135,7 +8166,8 @@
       "Microsoft.EntityFrameworkCore.SqlServer >= 8.0.8",
       "Microsoft.EntityFrameworkCore.Tools >= 8.0.8",
       "Microsoft.VisualStudio.Web.CodeGeneration.Design >= 8.0.8",
-      "Npgsql.EntityFrameworkCore.PostgreSQL >= 8.0.7"
+      "Npgsql.EntityFrameworkCore.PostgreSQL >= 8.0.7",
+      "Resend >= 0.1.1"
     ]
   },
   "packageFolders": {
@@ -8164,7 +8196,7 @@
       ],
       "sources": {
         "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
-        "https://api.nuget.org/v3/index.json": {}
+        "https://www.nuget.org/api/v2": {}
       },
       "frameworks": {
         "net8.0": {
@@ -8213,6 +8245,10 @@
           "Npgsql.EntityFrameworkCore.PostgreSQL": {
             "target": "Package",
             "version": "[8.0.7, )"
+          },
+          "Resend": {
+            "target": "Package",
+            "version": "[0.1.1, )"
           }
         },
         "imports": [

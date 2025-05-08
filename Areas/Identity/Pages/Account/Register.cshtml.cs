@@ -75,10 +75,35 @@ namespace CitasEPS.Areas.Identity.Pages.Account
             ///     Esta API soporta la infraestructura UI por defecto de ASP.NET Core Identity y no está pensada para ser usada
             ///     directamente desde tu código. Esta API puede cambiar o ser eliminada en futuras versiones.
             /// </summary>
+            [Required(ErrorMessage = "El campo Nombres es obligatorio.")]
+            [Display(Name = "Nombres")]
+            [StringLength(100, ErrorMessage = "El campo Nombres no puede exceder los 100 caracteres.")]
+            public string FirstName { get; set; }
+
+            [Required(ErrorMessage = "El campo Apellidos es obligatorio.")]
+            [Display(Name = "Apellidos")]
+            [StringLength(100, ErrorMessage = "El campo Apellidos no puede exceder los 100 caracteres.")]
+            public string LastName { get; set; }
+
+            /// <summary>
+            ///     Esta API soporta la infraestructura UI por defecto de ASP.NET Core Identity y no está pensada para ser usada
+            ///     directamente desde tu código. Esta API puede cambiar o ser eliminada en futuras versiones.
+            /// </summary>
             [Required(ErrorMessage = "El campo Correo Electrónico es obligatorio.")]
             [EmailAddress(ErrorMessage = "El formato del Correo Electrónico no es válido.")]
             [Display(Name = "Correo Electrónico")]
             public string Email { get; set; }
+
+            [Required(ErrorMessage = "El campo Teléfono es obligatorio.")]
+            [Phone(ErrorMessage = "El formato del Teléfono no es válido.")]
+            [Display(Name = "Teléfono")]
+            public string PhoneNumber { get; set; }
+
+            [Required(ErrorMessage = "El campo Fecha de Nacimiento es obligatorio.")]
+            [Display(Name = "Fecha de Nacimiento")]
+            [DataType(DataType.Text)]
+            [DisplayFormat(DataFormatString = "{0:dd/MM/yyyy}", ApplyFormatInEditMode = true)]
+            public DateTime DateOfBirth { get; set; }
 
             /// <summary>
             ///     Esta API soporta la infraestructura UI por defecto de ASP.NET Core Identity y no está pensada para ser usada
@@ -115,6 +140,10 @@ namespace CitasEPS.Areas.Identity.Pages.Account
             {
                 var user = CreateUser();
 
+                user.FirstName = Input.FirstName;
+                user.LastName = Input.LastName;
+                user.PhoneNumber = Input.PhoneNumber;
+                user.DateOfBirth = Input.DateOfBirth;
                 await _userStore.SetUserNameAsync(user, Input.Email, CancellationToken.None);
                 await _emailStore.SetEmailAsync(user, Input.Email, CancellationToken.None);
                 var result = await _userManager.CreateAsync(user, Input.Password);

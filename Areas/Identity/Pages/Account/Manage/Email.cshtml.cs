@@ -68,20 +68,20 @@ namespace CitasEPS.Areas.Identity.Pages.Account.Manage
             ///     This API supports the ASP.NET Core Identity default UI infrastructure and is not intended to be used
             ///     directly from your code. This API may change or be removed in future releases.
             /// </summary>
-            [Required]
-            [EmailAddress]
-            [Display(Name = "New email")]
+            [Required(ErrorMessage = "El campo Nuevo correo electrónico es obligatorio.")]
+            [EmailAddress(ErrorMessage = "El formato del Nuevo correo electrónico no es válido.")]
+            [Display(Name = "Nuevo correo electrónico")]
             public string NewEmail { get; set; }
         }
 
         private async Task LoadAsync(User user)
         {
-            var email = await _userManager.GetEmailAsync(user);
-            Email = email;
+            var emailText = await _userManager.GetEmailAsync(user);
+            Email = emailText;
 
             Input = new InputModel
             {
-                NewEmail = email,
+                NewEmail = emailText,
             };
 
             IsEmailConfirmed = await _userManager.IsEmailConfirmedAsync(user);
@@ -92,7 +92,7 @@ namespace CitasEPS.Areas.Identity.Pages.Account.Manage
             var user = await _userManager.GetUserAsync(User);
             if (user == null)
             {
-                return NotFound($"Unable to load user with ID '{_userManager.GetUserId(User)}'.");
+                return NotFound($"No se pudo cargar el usuario con ID '{_userManager.GetUserId(User)}'.");
             }
 
             await LoadAsync(user);
@@ -104,7 +104,7 @@ namespace CitasEPS.Areas.Identity.Pages.Account.Manage
             var user = await _userManager.GetUserAsync(User);
             if (user == null)
             {
-                return NotFound($"Unable to load user with ID '{_userManager.GetUserId(User)}'.");
+                return NotFound($"No se pudo cargar el usuario con ID '{_userManager.GetUserId(User)}'.");
             }
 
             if (!ModelState.IsValid)
@@ -113,8 +113,8 @@ namespace CitasEPS.Areas.Identity.Pages.Account.Manage
                 return Page();
             }
 
-            var email = await _userManager.GetEmailAsync(user);
-            if (Input.NewEmail != email)
+            var currentEmail = await _userManager.GetEmailAsync(user);
+            if (Input.NewEmail != currentEmail)
             {
                 var userId = await _userManager.GetUserIdAsync(user);
                 var code = await _userManager.GenerateChangeEmailTokenAsync(user, Input.NewEmail);
@@ -126,14 +126,14 @@ namespace CitasEPS.Areas.Identity.Pages.Account.Manage
                     protocol: Request.Scheme);
                 await _emailSender.SendEmailAsync(
                     Input.NewEmail,
-                    "Confirm your email",
-                    $"Please confirm your account by <a href='{HtmlEncoder.Default.Encode(callbackUrl)}'>clicking here</a>.");
+                    "Confirma tu correo electrónico",
+                    $"Por favor confirma tu cuenta <a href='{HtmlEncoder.Default.Encode(callbackUrl)}'>haciendo clic aquí</a>.");
 
-                StatusMessage = "Confirmation link to change email sent. Please check your email.";
+                StatusMessage = "Enlace de confirmación para cambiar el correo electrónico enviado. Por favor, revisa tu correo.";
                 return RedirectToPage();
             }
 
-            StatusMessage = "Your email is unchanged.";
+            StatusMessage = "Tu correo electrónico no ha cambiado.";
             return RedirectToPage();
         }
 
@@ -142,7 +142,7 @@ namespace CitasEPS.Areas.Identity.Pages.Account.Manage
             var user = await _userManager.GetUserAsync(User);
             if (user == null)
             {
-                return NotFound($"Unable to load user with ID '{_userManager.GetUserId(User)}'.");
+                return NotFound($"No se pudo cargar el usuario con ID '{_userManager.GetUserId(User)}'.");
             }
 
             if (!ModelState.IsValid)
@@ -152,7 +152,7 @@ namespace CitasEPS.Areas.Identity.Pages.Account.Manage
             }
 
             var userId = await _userManager.GetUserIdAsync(user);
-            var email = await _userManager.GetEmailAsync(user);
+            var emailForVerification = await _userManager.GetEmailAsync(user);
             var code = await _userManager.GenerateEmailConfirmationTokenAsync(user);
             code = WebEncoders.Base64UrlEncode(Encoding.UTF8.GetBytes(code));
             var callbackUrl = Url.Page(
@@ -161,11 +161,11 @@ namespace CitasEPS.Areas.Identity.Pages.Account.Manage
                 values: new { area = "Identity", userId = userId, code = code },
                 protocol: Request.Scheme);
             await _emailSender.SendEmailAsync(
-                email,
-                "Confirm your email",
-                $"Please confirm your account by <a href='{HtmlEncoder.Default.Encode(callbackUrl)}'>clicking here</a>.");
+                emailForVerification,
+                "Confirma tu correo electrónico",
+                $"Por favor confirma tu cuenta <a href='{HtmlEncoder.Default.Encode(callbackUrl)}'>haciendo clic aquí</a>.");
 
-            StatusMessage = "Verification email sent. Please check your email.";
+            StatusMessage = "Correo de verificación enviado. Por favor, revisa tu correo.";
             return RedirectToPage();
         }
     }
