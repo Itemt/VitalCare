@@ -42,7 +42,7 @@ namespace CitasEPS.Pages.Appointments
                 return Challenge(); // Or redirect to login
             }
 
-            var patient = await _context.Patients.FirstOrDefaultAsync(p => p.Email == user.Email);
+            var patient = await _context.Patients.FirstOrDefaultAsync(p => p.UserId == user.Id);
             if (patient == null)
             {
                 // Log error and display message to user
@@ -78,7 +78,7 @@ namespace CitasEPS.Pages.Appointments
         {
              var user = await _userManager.GetUserAsync(User);
              if (user == null) return Challenge();
-             var patient = await _context.Patients.FirstOrDefaultAsync(p => p.Email == user.Email);
+             var patient = await _context.Patients.FirstOrDefaultAsync(p => p.UserId == user.Id);
              if (patient == null)
              { // Should have been caught in OnGet, but double check
                 _logger.LogError($"POST Error: Could not find Patient record for logged-in user {user.Email}.");

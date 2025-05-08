@@ -22,10 +22,9 @@ namespace CitasEPS.Models
         [Display(Name = "Nombre Completo")]
         public string FullName => $"{FirstName} {LastName}";
 
-        [Required(ErrorMessage = "El documento de identidad es requerido.")]
         [StringLength(20)]
         [Display(Name = "Documento de Identidad")]
-        public string DocumentId { get; set; } = string.Empty; // Cédula, Tarjeta de Identidad, etc.
+        public string? DocumentId { get; set; }
 
         [Required(ErrorMessage = "La fecha de nacimiento es requerida.")]
         [DataType(DataType.Date)]
@@ -39,6 +38,11 @@ namespace CitasEPS.Models
         [EmailAddress(ErrorMessage = "El formato del correo electrónico no es válido.")]
         [Display(Name = "Correo Electrónico")]
         public string? Email { get; set; }
+
+        // Clave foránea para el User de Identity
+        [Required]
+        public int UserId { get; set; } 
+        public virtual User User { get; set; }
 
         // Colección de citas asociadas
         public ICollection<Appointment>? Appointments { get; set; }

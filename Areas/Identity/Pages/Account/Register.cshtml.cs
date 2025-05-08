@@ -19,6 +19,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.AspNetCore.WebUtilities;
 using Microsoft.Extensions.Logging;
+using CitasEPS.Data;
 
 namespace CitasEPS.Areas.Identity.Pages.Account
 {
@@ -30,13 +31,15 @@ namespace CitasEPS.Areas.Identity.Pages.Account
         private readonly IUserEmailStore<User> _emailStore;
         private readonly ILogger<RegisterModel> _logger;
         private readonly IEmailSender _emailSender;
+        private readonly ApplicationDbContext _context;
 
         public RegisterModel(
             UserManager<User> userManager,
             IUserStore<User> userStore,
             SignInManager<User> signInManager,
             ILogger<RegisterModel> logger,
-            IEmailSender emailSender)
+            IEmailSender emailSender,
+            ApplicationDbContext context)
         {
             _userManager = userManager;
             _userStore = userStore;
@@ -44,6 +47,7 @@ namespace CitasEPS.Areas.Identity.Pages.Account
             _signInManager = signInManager;
             _logger = logger;
             _emailSender = emailSender;
+            _context = context;
         }
 
         /// <summary>
@@ -151,6 +155,20 @@ namespace CitasEPS.Areas.Identity.Pages.Account
                 if (result.Succeeded)
                 {
                     _logger.LogInformation("Usuario creó una nueva cuenta con contraseña.");
+
+                    // Create and save the associated Patient record
+                    var patient = new Patient
+                    {
+                        UserId = user.Id, // Link to the newly created User
+                        FirstName = Input.FirstName,
+                        LastName = Input.LastName,
+                        Email = Input.Email,
+                        PhoneNumber = Input.PhoneNumber,
+                        DateOfBirth = user.DateOfBirth, // Use the same UTC date
+                        DocumentId = null // DocumentId is now optional
+                    };
+                    _context.Patients.Add(patient);
+                    await _context.SaveChangesAsync(); // Save the new Patient to the database
 
                     var userId = await _userManager.GetUserIdAsync(user);
                     var code = await _userManager.GenerateEmailConfirmationTokenAsync(user);

@@ -26,5 +26,8 @@ namespace CitasEPS.Models
         // Propiedades personalizadas pueden ser añadidas aquí
         [Display(Name = "Es Administrador")]
         public bool IsAdmin { get; set; } = false;
+
+        // Propiedad de navegación al Paciente asociado
+        public virtual Patient Patient { get; set; }
     }
 } 
