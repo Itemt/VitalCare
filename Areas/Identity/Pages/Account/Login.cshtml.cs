@@ -130,6 +130,12 @@ namespace CitasEPS.Areas.Identity.Pages.Account
                     ModelState.AddModelError(string.Empty, TranslateIdentityErrorStatic("User account locked out."));
                     return RedirectToPage("./Lockout");
                 }
+                if (result.IsNotAllowed)
+                {
+                    _logger.LogWarning($"Intento de inicio de sesión no permitido para {Input.Email}. Podría requerir confirmación de cuenta.");
+                    ModelState.AddModelError(string.Empty, "Debe confirmar su correo electrónico antes de iniciar sesión.");
+                    return Page();
+                }
                 else
                 {
                     ModelState.AddModelError(string.Empty, TranslateIdentityErrorStatic("Invalid login attempt."));

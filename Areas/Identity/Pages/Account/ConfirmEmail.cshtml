@@ -1,8 +1,38 @@
 ﻿@page
 @model ConfirmEmailModel
 @{
-    ViewData["Title"] = "Confirm email";
+    ViewData["Title"] = "Correo Confirmado";
 }
 
-<h1>@ViewData["Title"]</h1>
-<partial name="_StatusMessage" model="Model.StatusMessage" />
+<div class="container text-center mt-5">
+    <div class="row">
+        <div class="col-md-8 offset-md-2 col-lg-6 offset-lg-3">
+            @if (Model.StatusMessage.ToLower().Contains("gracias")) // O una forma más robusta de verificar éxito si es posible desde el modelo
+            {
+                <i class="bi bi-check-circle-fill text-success mb-3" style="font-size: 5rem; display: block;"></i>
+            }
+            else
+            {
+                <i class="bi bi-x-circle-fill text-danger mb-3" style="font-size: 5rem; display: block;"></i>
+            }
+            
+            <h1>@ViewData["Title"]</h1>
+            <div class="alert @(Model.StatusMessage.ToLower().Contains("gracias") ? "alert-success" : "alert-danger")" role="alert">
+                @Model.StatusMessage
+            </div>
+            
+            @if (Model.StatusMessage.ToLower().Contains("gracias"))
+            {
+                <p>
+                    <a asp-page="./Login" class="btn btn-primary mt-3">Iniciar Sesión</a>
+                </p>
+            }
+            else
+            {
+                 <p>
+                    <a asp-page="/Index" class="btn btn-secondary mt-3">Volver al Inicio</a>
+                </p>
+            }
+        </div>
+    </div>
+</div>

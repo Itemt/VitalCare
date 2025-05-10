@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "qyUBCIkxXBGM3KxwUO821TUjn72ti8OdSI7nl0MIWQg=",
+  "Hash": "zLxCvVfRDOj49XMPB7wF3Kj9J/h3pb6TJuk3/PLVEZI=",
   "Source": "CitasEPS",
   "BasePath": "_content/CitasEPS",
   "Mode": "Default",
@@ -1361,6 +1361,27 @@
       "OriginalItemSpec": "wwwroot\\favicon.ico"
     },
     {
+      "Identity": "C:\\Users\\CristianPC\\Desktop\\vitalcare\\wwwroot\\favicon.svg",
+      "SourceId": "CitasEPS",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\CristianPC\\Desktop\\vitalcare\\wwwroot\\",
+      "BasePath": "_content/CitasEPS",
+      "RelativePath": "favicon#[.{fingerprint}]?.svg",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "Fingerprint": "quwf1qxj1d",
+      "Integrity": "Em0urfWd0LR4cewIfq1tD3dyCbSxkjt3g9aTFiIFRC0=",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\favicon.svg"
+    },
+    {
       "Identity": "C:\\Users\\CristianPC\\Desktop\\vitalcare\\wwwroot\\js\\site.flatpickr.js",
       "SourceId": "CitasEPS",
       "SourceType": "Discovered",
@@ -1375,8 +1396,8 @@
       "RelatedAsset": "",
       "AssetTraitName": "",
       "AssetTraitValue": "",
-      "Fingerprint": "mzkdwxx6tn",
-      "Integrity": "foCTqMikxtmDJSSzRDVODi+9aMTIvatPM+eU0vEs/kQ=",
+      "Fingerprint": "hncqgrmf6o",
+      "Integrity": "c8Fcq6Hnb9nKqwyKUgVEO6Z1uFVos4pZJKSOHiPSm54=",
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\js\\site.flatpickr.js"
@@ -2926,6 +2947,88 @@
         {
           "Name": "integrity",
           "Value": "sha256-Jtxf9L+5ITKRc1gIRl4VbUpGkRNfOBXjYTdhJD4facM="
+        }
+      ]
+    },
+    {
+      "Route": "favicon.quwf1qxj1d.svg",
+      "AssetFile": "C:\\Users\\CristianPC\\Desktop\\vitalcare\\wwwroot\\favicon.svg",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "511"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "image/svg+xml"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"Em0urfWd0LR4cewIfq1tD3dyCbSxkjt3g9aTFiIFRC0=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Sat, 10 May 2025 13:06:06 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=31536000, immutable"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "fingerprint",
+          "Value": "quwf1qxj1d"
+        },
+        {
+          "Name": "label",
+          "Value": "favicon.svg"
+        },
+        {
+          "Name": "integrity",
+          "Value": "sha256-Em0urfWd0LR4cewIfq1tD3dyCbSxkjt3g9aTFiIFRC0="
+        }
+      ]
+    },
+    {
+      "Route": "favicon.svg",
+      "AssetFile": "C:\\Users\\CristianPC\\Desktop\\vitalcare\\wwwroot\\favicon.svg",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "511"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "image/svg+xml"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"Em0urfWd0LR4cewIfq1tD3dyCbSxkjt3g9aTFiIFRC0=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Sat, 10 May 2025 13:06:06 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=3600, must-revalidate"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "integrity",
+          "Value": "sha256-Em0urfWd0LR4cewIfq1tD3dyCbSxkjt3g9aTFiIFRC0="
         }
       ]
     },
@@ -5150,6 +5253,51 @@
       ]
     },
     {
+      "Route": "js/site.flatpickr.hncqgrmf6o.js",
+      "AssetFile": "C:\\Users\\CristianPC\\Desktop\\vitalcare\\wwwroot\\js\\site.flatpickr.js",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "1776"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "text/javascript"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"c8Fcq6Hnb9nKqwyKUgVEO6Z1uFVos4pZJKSOHiPSm54=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Sat, 10 May 2025 13:00:04 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=31536000, immutable"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "fingerprint",
+          "Value": "hncqgrmf6o"
+        },
+        {
+          "Name": "label",
+          "Value": "js/site.flatpickr.js"
+        },
+        {
+          "Name": "integrity",
+          "Value": "sha256-c8Fcq6Hnb9nKqwyKUgVEO6Z1uFVos4pZJKSOHiPSm54="
+        }
+      ]
+    },
+    {
       "Route": "js/site.flatpickr.js",
       "AssetFile": "C:\\Users\\CristianPC\\Desktop\\vitalcare\\wwwroot\\js\\site.flatpickr.js",
       "Selectors": [],
@@ -5168,11 +5316,11 @@
         },
         {
           "Name": "ETag",
-          "Value": "\"foCTqMikxtmDJSSzRDVODi+9aMTIvatPM+eU0vEs/kQ=\""
+          "Value": "\"c8Fcq6Hnb9nKqwyKUgVEO6Z1uFVos4pZJKSOHiPSm54=\""
         },
         {
           "Name": "Last-Modified",
-          "Value": "Thu, 08 May 2025 08:49:09 GMT"
+          "Value": "Sat, 10 May 2025 13:00:04 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -5182,52 +5330,7 @@
       "EndpointProperties": [
         {
           "Name": "integrity",
-          "Value": "sha256-foCTqMikxtmDJSSzRDVODi+9aMTIvatPM+eU0vEs/kQ="
-        }
-      ]
-    },
-    {
-      "Route": "js/site.flatpickr.mzkdwxx6tn.js",
-      "AssetFile": "C:\\Users\\CristianPC\\Desktop\\vitalcare\\wwwroot\\js\\site.flatpickr.js",
-      "Selectors": [],
-      "ResponseHeaders": [
-        {
-          "Name": "Accept-Ranges",
-          "Value": "bytes"
-        },
-        {
-          "Name": "Content-Length",
-          "Value": "1776"
-        },
-        {
-          "Name": "Content-Type",
-          "Value": "text/javascript"
-        },
-        {
-          "Name": "ETag",
-          "Value": "\"foCTqMikxtmDJSSzRDVODi+9aMTIvatPM+eU0vEs/kQ=\""
-        },
-        {
-          "Name": "Last-Modified",
-          "Value": "Thu, 08 May 2025 08:49:09 GMT"
-        },
-        {
-          "Name": "Cache-Control",
-          "Value": "max-age=31536000, immutable"
-        }
-      ],
-      "EndpointProperties": [
-        {
-          "Name": "fingerprint",
-          "Value": "mzkdwxx6tn"
-        },
-        {
-          "Name": "label",
-          "Value": "js/site.flatpickr.js"
-        },
-        {
-          "Name": "integrity",
-          "Value": "sha256-foCTqMikxtmDJSSzRDVODi+9aMTIvatPM+eU0vEs/kQ="
+          "Value": "sha256-c8Fcq6Hnb9nKqwyKUgVEO6Z1uFVos4pZJKSOHiPSm54="
         }
       ]
     },

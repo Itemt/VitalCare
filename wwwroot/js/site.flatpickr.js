@@ -25,7 +25,7 @@ document.addEventListener('DOMContentLoaded', function () {
     // Initialize Flatpickr for Date of Birth on Registration page
     flatpickr(".datepicker-register", {
         enableTime: false,
-        dateFormat: "d/m/Y", // Format for display and parsing
+        dateFormat: "Y-m-d", // Format for display and parsing
         altInput: true,       // Show a user-friendly format, but submit the standard one
         altFormat: "d/m/Y",   // User-friendly display format
         locale: "es",         // Spanish locale

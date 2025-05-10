@@ -42,6 +42,14 @@ namespace CitasEPS.Pages.Appointments
                 return Challenge(); // Or redirect to login
             }
 
+            // Check if email is confirmed before allowing access to appointment creation
+            if (!user.EmailConfirmed)
+            {
+                _logger.LogWarning($"User {user.Email} attempted to access appointment creation without a confirmed email.");
+                TempData["ErrorMessage"] = "Debe confirmar su dirección de correo electrónico antes de poder agendar citas.";
+                return RedirectToPage("/Index"); 
+            }
+
             var patient = await _context.Patients.FirstOrDefaultAsync(p => p.UserId == user.Id);
             if (patient == null)
             {
@@ -78,6 +86,18 @@ namespace CitasEPS.Pages.Appointments
         {
              var user = await _userManager.GetUserAsync(User);
              if (user == null) return Challenge();
+
+            // Check if email is confirmed before processing the appointment POST
+            if (!user.EmailConfirmed)
+            {
+                _logger.LogWarning($"User {user.Email} attempted to POST to appointment creation without a confirmed email.");
+                TempData["ErrorMessage"] = "Debe confirmar su dirección de correo electrónico antes de poder agendar citas.";
+                // Repopulate dropdowns before redirecting or returning the page
+                // Consider if SelectedSpecialtyId is available and valid here or if it needs to be handled more robustly
+                await PopulateDropdownsAsync(SelectedSpecialtyId); 
+                return RedirectToPage("/Index"); // Redirecting is simpler than trying to re-render the page with an error before patient is loaded
+            }
+
              var patient = await _context.Patients.FirstOrDefaultAsync(p => p.UserId == user.Id);
              if (patient == null)
              { // Should have been caught in OnGet, but double check

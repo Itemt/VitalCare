@@ -4,20 +4,32 @@
     ViewData["Title"] = "Confirmación de registro";
 }
 
-<h1>@ViewData["Title"]</h1>
-@{
-    if (@Model.DisplayConfirmAccountLink)
-    {
-<p>
-    Esta aplicación actualmente no tiene un remitente de correo real registrado, consulta <a href="https://aka.ms/aspaccountconf">esta documentación</a> para saber cómo configurar un remitente de correo real.
-    Normalmente, esto se enviaría por correo electrónico: <a id="confirm-link" href="@Model.EmailConfirmationUrl">Haz clic aquí para confirmar tu cuenta</a>.
-</p>
-    }
-    else
-    {
-<p>
-        Por favor, revisa tu correo electrónico para confirmar tu cuenta.
-</p>
-    }
-}
+<div class="container text-center mt-5">
+    <div class="row">
+        <div class="col-md-8 offset-md-2 col-lg-6 offset-lg-3">
+            <i class="bi bi-envelope-check-fill text-primary mb-3" style="font-size: 5rem; display: block;"></i>
+            <h1>@ViewData["Title"]</h1>
+            <p class="lead">
+                Por favor, revisa tu correo electrónico para confirmar tu cuenta.
+            </p>
+            <p>
+                Hemos enviado un enlace de confirmación a la dirección de correo que nos proporcionaste. Si no lo encuentras, revisa tu carpeta de spam.
+            </p>
+            <hr class="my-4">
+            <p>
+                ¿No recibiste el correo? 
+                @if (!string.IsNullOrEmpty(Model.Email)){
+                    <a asp-page="./ResendEmailConfirmation" asp-route-email="@Model.Email">Reenviar el correo de confirmación</a>
+                }
+                else
+                {
+                    <span class="text-muted">No podemos reenviar el correo en este momento.</span>
+                }
+            </p>
+            <p>
+                <a asp-page="/Index" class="btn btn-primary mt-3">Volver al Inicio</a>
+            </p>
+        </div>
+    </div>
+</div>
 

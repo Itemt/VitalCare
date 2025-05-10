@@ -1,23 +1,35 @@
 ﻿@page
 @model ResendEmailConfirmationModel
 @{
-    ViewData["Title"] = "Resend email confirmation";
+    ViewData["Title"] = "Reenviar Correo de Confirmación";
 }
 
-<h1>@ViewData["Title"]</h1>
-<h2>Enter your email.</h2>
-<hr />
-<div class="row">
-    <div class="col-md-4">
-        <form method="post">
-            <div asp-validation-summary="All" class="text-danger" role="alert"></div>
-            <div class="form-floating mb-3">
-                <input asp-for="Input.Email" class="form-control" aria-required="true" placeholder="name@example.com" />
-                <label asp-for="Input.Email" class="form-label"></label>
-                <span asp-validation-for="Input.Email" class="text-danger"></span>
-            </div>
-            <button type="submit" class="w-100 btn btn-lg btn-primary">Resend</button>
-        </form>
+<div class="container text-center mt-5">
+    <div class="row">
+        <div class="col-md-8 offset-md-2 col-lg-6 offset-lg-3">
+            <i class="bi bi-envelope-arrow-up-fill text-primary mb-3" style="font-size: 5rem; display: block;"></i>
+            
+            <h1>@ViewData["Title"]</h1>
+            <p class="lead mb-4">
+                Ingresa tu dirección de correo electrónico y te enviaremos nuevamente el enlace de confirmación.
+            </p>
+            
+            <form method="post">
+                <div asp-validation-summary="ModelOnly" class="text-danger mb-3" role="alert"></div>
+                
+                <div class="form-floating mb-3">
+                    <input asp-for="Input.Email" class="form-control" aria-required="true" placeholder="tuCorreo@ejemplo.com" />
+                    <label asp-for="Input.Email">Correo Electrónico</label>
+                    <span asp-validation-for="Input.Email" class="text-danger"></span>
+                </div>
+                
+                <button type="submit" class="w-100 btn btn-lg btn-primary">Reenviar Enlace</button>
+            </form>
+            <hr class="my-4">
+            <p>
+                <a asp-page="./Login" class="text-secondary">Volver a Iniciar Sesión</a>
+            </p>
+        </div>
     </div>
 </div>
 

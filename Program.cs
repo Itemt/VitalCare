@@ -6,6 +6,7 @@ using CitasEPS.Services;
 using System.Security.Claims;
 using Microsoft.AspNetCore.Identity.UI.Services;
 using Resend;
+using Microsoft.AspNetCore.DataProtection;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -17,7 +18,7 @@ builder.Services.AddDbContext<ApplicationDbContext>(options =>
     options.UseNpgsql(connectionString)); // Usar proveedor apropiado (UseSqlite, UseNpgsql, etc.) si no es SQL Server
 
 // Añadir servicios de Identity
-builder.Services.AddIdentity<User, IdentityRole<int>>(options => options.SignIn.RequireConfirmedAccount = false) // Usando nuestra clase User y especificando el tipo de Rol
+builder.Services.AddIdentity<User, IdentityRole<int>>(options => options.SignIn.RequireConfirmedAccount = true) // Usando nuestra clase User y especificando el tipo de Rol
     .AddEntityFrameworkStores<ApplicationDbContext>()
     .AddDefaultTokenProviders()
     .AddClaimsPrincipalFactory<CustomUserClaimsPrincipalFactory>();
@@ -49,6 +50,15 @@ builder.Services.AddRazorPages(options =>
     options.Conventions.AuthorizeAreaFolder("Identity", "/Account/Manage");
     options.Conventions.AuthorizeAreaPage("Identity", "/Account/Logout");
 });
+
+// Configure Data Protection to persist keys to the filesystem
+var keysFolder = Path.Combine(builder.Environment.ContentRootPath, "App_Data", "Keys");
+// Ensure the directory exists
+System.IO.Directory.CreateDirectory(keysFolder);
+
+builder.Services.AddDataProtection()
+    .PersistKeysToFileSystem(new DirectoryInfo(keysFolder))
+    .SetApplicationName("VitalCare"); // Sets a unique name for the app to isolate its keys
 
 var app = builder.Build();
 

@@ -14,6 +14,8 @@ using Microsoft.AspNetCore.Identity.UI.Services;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.AspNetCore.WebUtilities;
+using Microsoft.Extensions.Configuration;
+using Microsoft.Extensions.Logging;
 
 namespace CitasEPS.Areas.Identity.Pages.Account
 {
@@ -22,11 +24,19 @@ namespace CitasEPS.Areas.Identity.Pages.Account
     {
         private readonly UserManager<User> _userManager;
         private readonly IEmailSender _emailSender;
+        private readonly IConfiguration _configuration;
+        private readonly ILogger<ResendEmailConfirmationModel> _logger;
 
-        public ResendEmailConfirmationModel(UserManager<User> userManager, IEmailSender emailSender)
+        public ResendEmailConfirmationModel(
+            UserManager<User> userManager, 
+            IEmailSender emailSender, 
+            IConfiguration configuration,
+            ILogger<ResendEmailConfirmationModel> logger)
         {
             _userManager = userManager;
             _emailSender = emailSender;
+            _configuration = configuration;
+            _logger = logger;
         }
 
         /// <summary>
@@ -65,24 +75,105 @@ namespace CitasEPS.Areas.Identity.Pages.Account
             var user = await _userManager.FindByEmailAsync(Input.Email);
             if (user == null)
             {
-                ModelState.AddModelError(string.Empty, "Verification email sent. Please check your email.");
+                ModelState.AddModelError(string.Empty, "Correo de verificación enviado. Por favor, revisa tu correo electrónico.");
                 return Page();
             }
 
             var userId = await _userManager.GetUserIdAsync(user);
             var code = await _userManager.GenerateEmailConfirmationTokenAsync(user);
             code = WebEncoders.Base64UrlEncode(Encoding.UTF8.GetBytes(code));
-            var callbackUrl = Url.Page(
-                "/Account/ConfirmEmail",
-                pageHandler: null,
-                values: new { userId = userId, code = code },
-                protocol: Request.Scheme);
-            await _emailSender.SendEmailAsync(
-                Input.Email,
-                "Confirm your email",
-                $"Please confirm your account by <a href='{HtmlEncoder.Default.Encode(callbackUrl)}'>clicking here</a>.");
 
-            ModelState.AddModelError(string.Empty, "Verification email sent. Please check your email.");
+            string siteBaseUrl = _configuration["ApplicationSettings:SiteBaseUrl"];
+            string callbackUrl;
+
+            if (!string.IsNullOrEmpty(siteBaseUrl))
+            {
+                var publicUri = new Uri(siteBaseUrl);
+                callbackUrl = Url.Page(
+                    "/Account/ConfirmEmail",
+                    pageHandler: null,
+                    values: new { userId = userId, code = code },
+                    protocol: publicUri.Scheme,
+                    host: publicUri.Authority);
+            }
+            else
+            {
+                _logger.LogWarning("ApplicationSettings:SiteBaseUrl is not configured. Email links will use the current request's host.");
+                callbackUrl = Url.Page(
+                    "/Account/ConfirmEmail",
+                    pageHandler: null,
+                    values: new { userId = userId, code = code },
+                    protocol: Request.Scheme);
+            }
+
+            // Updated HTML Email Template for Resend Confirmation
+            string userName = user?.FirstName ?? Input.Email; // Use user's first name if available, otherwise email
+            string emailSubject = "Reenvía tu Confirmación de Correo Electrónico en VitalCare";
+            string htmlMessageBody = $@"
+<!DOCTYPE html>
+<html lang=""es"">
+<head>
+    <meta charset=""UTF-8"">
+    <meta name=""viewport"" content=""width=device-width, initial-scale=1.0"">
+    <title>{emailSubject}</title>
+    <style>
+        body {{ font-family: Arial, sans-serif; margin: 0; padding: 0; background-color: #f4f4f4; color: #333333; }}
+        .email-wrapper {{ padding: 20px 0; }}
+        .container {{ max-width: 600px; margin: 0 auto; background-color: #ffffff; padding: 20px; border-radius: 8px; box-shadow: 0 0 15px rgba(0,0,0,0.1); }}
+        .header {{ text-align: center; padding-bottom: 20px; border-bottom: 1px solid #eeeeee; }}
+        /* .header img {{ max-width: 150px; margin-bottom:10px; }} */
+        .header h2 {{ color: #0d6efd; margin:0; font-size: 24px; }}
+        .content {{ padding: 25px 5px; line-height: 1.6; }}
+        .content p {{ margin-bottom: 18px; font-size: 16px; }}
+        .button-container {{ text-align: center; margin-top: 30px; margin-bottom: 30px; }}
+        .button {{
+            background-color: #0d6efd; 
+            color: #ffffff !important; 
+            padding: 14px 28px;
+            text-decoration: none;
+            border-radius: 6px;
+            font-weight: bold;
+            display: inline-block;
+            font-size: 16px;
+        }}
+        .link-alternative p {{ font-size: 0.9em; word-break: break-all; }}
+        .footer {{ text-align: center; padding-top: 20px; border-top: 1px solid #eeeeee; font-size: 0.9em; color: #777777; }}
+        .footer p {{ margin-bottom: 5px; }}
+    </style>
+</head>
+<body>
+    <div class=""email-wrapper"">
+    <div class=""container"">
+        <div class=""header"">
+            <svg width=""50px"" height=""50px"" viewBox=""0 0 32 32"" version=""1.1"" xmlns=""http://www.w3.org/2000/svg"" style=""fill:#0d6efd; margin-bottom:10px;"">
+                <path d=""M23.6,0c-3.4,0-6.3,2.7-7.6,5.6C14.7,2.7,11.8,0,8.4,0C3.8,0,0,3.8,0,8.4c0,9.4,9.5,11.9,16,21.2 c6.1-9.3,16-12.1,16-21.2C32,3.8,28.2,0,23.6,0z""/>
+            </svg>
+            <h2>VitalCare</h2>
+        </div>
+        <div class=""content"">
+            <p>¡Hola {userName}!</p>
+            <p>Parece que has solicitado reenviar el correo de confirmación para tu cuenta en VitalCare. Para confirmar tu dirección de correo electrónico y activar tu cuenta, por favor haz clic en el siguiente botón:</p>
+            <div class=""button-container"">
+                <a href=""{HtmlEncoder.Default.Encode(callbackUrl)}"" class=""button"" style=""color: #ffffff !important;"">Confirmar mi Correo Electrónico</a>
+            </div>
+            <div class=""link-alternative"">
+                <p>Si el botón no funciona, también puedes copiar y pegar el siguiente enlace en la barra de direcciones de tu navegador:</p>
+                <p><a href=""{HtmlEncoder.Default.Encode(callbackUrl)}"" style=""color: #0d6efd;"">{HtmlEncoder.Default.Encode(callbackUrl)}</a></p>
+            </div>
+            <p>Si no solicitaste reenviar este correo, por favor ignora este mensaje.</p>
+        </div>
+        <div class=""footer"">
+            <p>&copy; {DateTime.Now.Year} VitalCare. Todos los derechos reservados.</p>
+            <p>Este es un mensaje automático, por favor no respondas directamente a este correo.</p>
+        </div>
+    </div>
+    </div>
+</body>
+</html>
+";
+            await _emailSender.SendEmailAsync(Input.Email, emailSubject, htmlMessageBody);
+
+            ModelState.AddModelError(string.Empty, "Correo de verificación reenviado. Por favor, revisa tu correo electrónico.");
             return Page();
         }
     }
