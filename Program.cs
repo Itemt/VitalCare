@@ -41,7 +41,7 @@ builder.Services.AddAuthorization(options =>
 {
     options.AddPolicy("RequireAdminRole", policy => policy.RequireRole("Admin"));
     options.AddPolicy("RequireDoctorRole", policy => policy.RequireRole("Doctor"));
-    options.AddPolicy("RequirePatientRole", policy => policy.RequireRole("Patient"));
+    options.AddPolicy("RequirePatientRole", policy => policy.RequireRole("Paciente"));
     // Mantener la política original "Admin" por si se usa en otro lugar, o eliminarla si es redundante.
     options.AddPolicy("Admin", policy => policy.RequireClaim("IsAdmin", "true"));
 });
