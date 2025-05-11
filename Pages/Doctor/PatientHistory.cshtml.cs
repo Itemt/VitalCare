@@ -23,8 +23,8 @@ namespace CitasEPS.Pages.Doctor
             _userManager = userManager;
         }
 
-        public Models.Patient TargetPatient { get; set; } = default!;
-        public Models.Doctor CurrentDoctor { get; set; } = default!;
+        public Models.Patient? TargetPatient { get; set; }
+        public Models.Doctor? CurrentDoctor { get; set; }
         public IList<Models.Appointment> AppointmentHistory { get; set; } = new List<Models.Appointment>();
 
         public async Task<IActionResult> OnGetAsync(int? patientId)
@@ -51,7 +51,7 @@ namespace CitasEPS.Pages.Doctor
             // Incluir Prescripciones y Medicamentos asociados
             AppointmentHistory = await _context.Appointments
                 .Where(a => a.DoctorId == CurrentDoctor.Id && a.PatientId == patientId)
-                .Include(a => a.Prescriptions)
+                .Include(a => a.Prescriptions ?? new List<Prescription>())
                     .ThenInclude(p => p.Medication)
                 .OrderByDescending(a => a.AppointmentDateTime) // Mostrar más recientes primero
                 .ToListAsync();

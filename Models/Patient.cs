@@ -42,7 +42,7 @@ namespace CitasEPS.Models
         // Clave foránea para el User de Identity
         [Required]
         public int UserId { get; set; } 
-        public virtual User User { get; set; }
+        public virtual User User { get; set; } = null!;
 
         // Colección de citas asociadas
         public ICollection<Appointment>? Appointments { get; set; }

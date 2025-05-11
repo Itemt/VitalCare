@@ -11,12 +11,12 @@ namespace CitasEPS.Models
         [Required(ErrorMessage = "El campo Nombres es obligatorio.")]
         [Display(Name = "Nombres")]
         [StringLength(100, ErrorMessage = "El campo Nombres no puede exceder los 100 caracteres.")]
-        public string FirstName { get; set; }
+        public string FirstName { get; set; } = string.Empty;
 
         [Required(ErrorMessage = "El campo Apellidos es obligatorio.")]
         [Display(Name = "Apellidos")]
         [StringLength(100, ErrorMessage = "El campo Apellidos no puede exceder los 100 caracteres.")]
-        public string LastName { get; set; }
+        public string LastName { get; set; } = string.Empty;
 
         [Required(ErrorMessage = "El campo Fecha de Nacimiento es obligatorio.")]
         [Display(Name = "Fecha de Nacimiento")]
@@ -28,6 +28,6 @@ namespace CitasEPS.Models
         public bool IsAdmin { get; set; } = false;
 
         // Propiedad de navegación al Paciente asociado
-        public virtual Patient Patient { get; set; }
+        public virtual Patient? Patient { get; set; }
     }
 } 

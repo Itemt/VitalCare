@@ -31,7 +31,8 @@ builder.Services.AddOptions<ResendClientOptions>();
 builder.Services.AddHttpClient<IResend, ResendClient>();
 builder.Services.Configure<ResendClientOptions>(o =>
 {
-    o.ApiToken = builder.Configuration["Resend:ApiKey"];
+    o.ApiToken = builder.Configuration["Resend:ApiKey"] ?? 
+        throw new InvalidOperationException("Resend API key not found in configuration.");
 });
 
 // Añadir políticas de Autorización

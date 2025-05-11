@@ -28,10 +28,10 @@ namespace CitasEPS.Pages.Doctor
         [BindProperty(SupportsGet = true)]
         public int Id { get; set; } // Appointment ID
 
-        public Appointment AppointmentToConfirm { get; set; }
-        public string PatientName { get; set; }
-        public string CurrentDateTime { get; set; }
-        public string ProposedDateTime { get; set; }
+        public Appointment? AppointmentToConfirm { get; set; }
+        public string PatientName { get; set; } = "Paciente";
+        public string CurrentDateTime { get; set; } = "No disponible";
+        public string ProposedDateTime { get; set; } = "No disponible";
 
         public async Task<IActionResult> OnGetAsync()
         {

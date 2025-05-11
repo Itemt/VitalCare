@@ -24,20 +24,41 @@
                 @Html.DisplayNameFor(model => model.Appointment!.Patient)
             </dt>
             <dd class="col-sm-9">
-                 @Html.DisplayFor(model => model.Appointment!.Patient.FullName) 
-                 (@Html.DisplayFor(model => model.Appointment!.Patient.DocumentId))
+                @if (Model.Appointment.Patient != null)
+                {
+                    @Html.DisplayFor(model => model.Appointment.Patient.FullName)
+                    <span>(@(Model.Appointment.Patient.DocumentId ?? "No ID"))</span>
+                }
+                else
+                {
+                    <span>No patient information</span>
+                }
             </dd>
              <dt class="col-sm-3">
                 @Html.DisplayNameFor(model => model.Appointment!.Doctor)
             </dt>
             <dd class="col-sm-9">
-                @Html.DisplayFor(model => model.Appointment!.Doctor.FullName)
+                @if (Model.Appointment.Doctor != null)
+                {
+                    @Html.DisplayFor(model => model.Appointment.Doctor.FullName)
+                }
+                else
+                {
+                    <span>No doctor information</span>
+                }
             </dd>
             <dt class="col-sm-3">
                 @Html.DisplayNameFor(model => model.Appointment!.Doctor.Specialty)
             </dt>
             <dd class="col-sm-9">
-                @Html.DisplayFor(model => model.Appointment!.Doctor.Specialty.Name)
+                @if (Model.Appointment.Doctor?.Specialty != null)
+                {
+                    @Html.DisplayFor(model => model.Appointment.Doctor.Specialty.Name)
+                }
+                else
+                {
+                    <span>No specialty information</span>
+                }
             </dd>
             <dt class="col-sm-3">
                 @Html.DisplayNameFor(model => model.Appointment!.IsConfirmed)

@@ -8528,8 +8528,8 @@
       "Microsoft.AspNetCore.Identity.UI >= 8.0.8",
       "Microsoft.EntityFrameworkCore.SqlServer >= 8.0.8",
       "Microsoft.EntityFrameworkCore.Tools >= 8.0.8",
-      "Microsoft.VisualStudio.Web.CodeGeneration.Design >= 8.0.8",
-      "Npgsql.EntityFrameworkCore.PostgreSQL >= 8.0.7",
+      "Microsoft.VisualStudio.Web.CodeGeneration.Design >= 9.0.0",
+      "Npgsql.EntityFrameworkCore.PostgreSQL >= 8.0.8",
       "Resend >= 0.1.1"
     ]
   },
@@ -8607,11 +8607,11 @@
           },
           "Microsoft.VisualStudio.Web.CodeGeneration.Design": {
             "target": "Package",
-            "version": "[8.0.8, )"
+            "version": "[9.0.0, )"
           },
           "Npgsql.EntityFrameworkCore.PostgreSQL": {
             "target": "Package",
-            "version": "[8.0.7, )"
+            "version": "[8.0.8, )"
           },
           "Resend": {
             "target": "Package",
@@ -8640,27 +8640,5 @@
         "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\9.0.203/PortableRuntimeIdentifierGraph.json"
       }
     }
-  },
-  "logs": [
-    {
-      "code": "NU1603",
-      "level": "Warning",
-      "warningLevel": 1,
-      "message": "CitasEPS depends on Microsoft.VisualStudio.Web.CodeGeneration.Design (>= 8.0.8) but Microsoft.VisualStudio.Web.CodeGeneration.Design 8.0.8 was not found. Microsoft.VisualStudio.Web.CodeGeneration.Design 9.0.0 was resolved instead.",
-      "libraryId": "Microsoft.VisualStudio.Web.CodeGeneration.Design",
-      "targetGraphs": [
-        "net8.0"
-      ]
-    },
-    {
-      "code": "NU1603",
-      "level": "Warning",
-      "warningLevel": 1,
-      "message": "CitasEPS depends on Npgsql.EntityFrameworkCore.PostgreSQL (>= 8.0.7) but Npgsql.EntityFrameworkCore.PostgreSQL 8.0.7 was not found. Npgsql.EntityFrameworkCore.PostgreSQL 8.0.8 was resolved instead.",
-      "libraryId": "Npgsql.EntityFrameworkCore.PostgreSQL",
-      "targetGraphs": [
-        "net8.0"
-      ]
-    }
-  ]
+  }
 }

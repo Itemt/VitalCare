@@ -104,11 +104,13 @@ namespace CitasEPS.Pages.Doctor
                     { return NotFound(); }
                     else { throw; }
                 }
-                 catch (Exception ex)
-                 {
-                     // Log error
-                     ModelState.AddModelError(string.Empty, "Ocurrió un error al guardar la prescripción.");
-                 }
+                catch (Exception ex)
+                {
+                    // Log error with details
+                    Console.Error.WriteLine($"Error al guardar prescripción: {ex.Message}");
+                    TempData["ErrorMessage"] = "Ha ocurrido un error al guardar los cambios en la prescripción.";
+                    ModelState.AddModelError(string.Empty, $"Error: {ex.Message}");
+                }
             }
 
             // Si falla el TryUpdateModelAsync o hay otro error, recargar datos y mostrar página
