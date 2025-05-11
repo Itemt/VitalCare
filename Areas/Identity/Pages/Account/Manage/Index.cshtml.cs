@@ -69,8 +69,7 @@ namespace CitasEPS.Areas.Identity.Pages.Account.Manage
 
             [Required(ErrorMessage = "El campo Fecha de Nacimiento es obligatorio.")]
             [Display(Name = "Fecha de Nacimiento")]
-            [DataType(DataType.Text)]
-            [DisplayFormat(DataFormatString = "{0:dd/MM/yyyy}", ApplyFormatInEditMode = true)]
+            [DataType(DataType.Date)]
             public DateTime DateOfBirth { get; set; }
         }
 
