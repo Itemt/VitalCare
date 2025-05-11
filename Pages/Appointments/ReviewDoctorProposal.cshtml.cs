@@ -11,7 +11,7 @@ using System.Threading.Tasks;
 
 namespace CitasEPS.Pages.Appointments
 {
-    [Authorize(Roles = "Patient")]
+    [Authorize(Roles = "Paciente")]
     public class ReviewDoctorProposalModel : PageModel
     {
         private readonly ApplicationDbContext _context;

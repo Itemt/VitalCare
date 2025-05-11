@@ -40,9 +40,9 @@ namespace CitasEPS.Pages.Appointments
 
             _logger.LogInformation($"User {user.UserName} (ID: {user.Id}) accessing Appointment Index.");
 
-            if (await _userManager.IsInRoleAsync(user, "Patient"))
+            if (await _userManager.IsInRoleAsync(user, "Paciente"))
             {
-                UserRole = "Patient";
+                UserRole = "Paciente";
                 _logger.LogInformation($"Loading appointments for Patient: {user.UserName} (ID: {user.Id})");
 
                 // --- FIX: Find Patient record using Email ---
@@ -99,7 +99,7 @@ namespace CitasEPS.Pages.Appointments
         public async Task<IActionResult> OnPostRequestRescheduleAsync(int id)
         {
             var user = await _userManager.GetUserAsync(User);
-            if (user == null || !(await _userManager.IsInRoleAsync(user, "Patient")))
+            if (user == null || !(await _userManager.IsInRoleAsync(user, "Paciente")))
             {
                 TempData["ErrorMessage"] = "Acción no autorizada.";
                 return RedirectToPage();
@@ -161,7 +161,7 @@ namespace CitasEPS.Pages.Appointments
             if (user == null) return Challenge();
 
             // Ensure the user is a patient for this action
-            if (!await _userManager.IsInRoleAsync(user, "Patient"))
+            if (!await _userManager.IsInRoleAsync(user, "Paciente"))
             {
                 TempData["ErrorMessage"] = "Acción no autorizada.";
                 return RedirectToPage();

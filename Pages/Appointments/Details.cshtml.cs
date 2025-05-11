@@ -13,7 +13,7 @@ using Microsoft.AspNetCore.Identity;
 
 namespace CitasEPS.Pages.Appointments
 {
-    [Authorize(Roles = "Patient,Admin,Doctor")]
+    [Authorize(Roles = "Paciente,Admin,Doctor")]
     public class DetailsModel : PageModel
     {
         private readonly ApplicationDbContext _context;
@@ -238,7 +238,7 @@ namespace CitasEPS.Pages.Appointments
                 isAuthorized = true;
                 _logger.LogInformation($"Admin '{user.Email}' authorized to cancel appointment {id}.");
             }
-            else if (User.IsInRole("Patient"))
+            else if (User.IsInRole("Paciente"))
             {
                 var patient = await _context.Patients.FirstOrDefaultAsync(p => p.Email == user.Email);
                 if (patient != null && appointmentToCancel.PatientId == patient.Id)

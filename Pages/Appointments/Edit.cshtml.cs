@@ -55,7 +55,7 @@ namespace CitasEPS.Pages.Appointments
             }
             Appointment = appointment;
 
-            IsCurrentUserPatient = User.IsInRole("Patient"); // Set the property
+            IsCurrentUserPatient = User.IsInRole("Paciente"); // Set the property
 
             // TODO: Verificar autorización - ¿Este paciente/admin puede editar ESTA cita?
             // Ejemplo: Si es paciente, verificar que Appointment.PatientId coincida con el ID del paciente logueado.
@@ -125,7 +125,7 @@ namespace CitasEPS.Pages.Appointments
             // --- END: Past Date Validation ---
 
             // --- START: Patient Weekly Limit Validation ---
-            if (User.IsInRole("Patient") || User.IsInRole("Admin")) // Or apply to all roles that can change date
+            if (User.IsInRole("Paciente") || User.IsInRole("Admin")) // Or apply to all roles that can change date
             {
                 DayOfWeek firstDayOfWeek = DayOfWeek.Monday; 
                 DateTime utcStartDate = Appointment.AppointmentDateTime.Date;
@@ -162,7 +162,7 @@ namespace CitasEPS.Pages.Appointments
 
             if (!ModelState.IsValid)
             {
-                IsCurrentUserPatient = User.IsInRole("Patient"); // Re-set for view if validation fails
+                IsCurrentUserPatient = User.IsInRole("Paciente"); // Re-set for view if validation fails
                 if (User.IsInRole("Admin"))
                 {
                     await PopulateDropdownsAsync(Appointment.PatientId, Appointment.DoctorId);
@@ -176,7 +176,7 @@ namespace CitasEPS.Pages.Appointments
             }
 
             // Preserve sensitive fields if user is a patient
-            if (User.IsInRole("Patient"))
+            if (User.IsInRole("Paciente"))
             {
                 Appointment.IsConfirmed = originalAppointment.IsConfirmed;
                 Appointment.RescheduleRequested = originalAppointment.RescheduleRequested;
@@ -188,7 +188,7 @@ namespace CitasEPS.Pages.Appointments
             // For ProposedNewDateTime, it should ideally be nullified if a Doctor/Admin directly sets AppointmentDateTime
             // or IsConfirmed, unless the edit *is* part of confirming a proposal.
             // If an Admin/Doctor confirms the main AppointmentDateTime, clear proposal flags:
-            if (!User.IsInRole("Patient") && Appointment.AppointmentDateTime != originalAppointment.AppointmentDateTime)
+            if (!User.IsInRole("Paciente") && Appointment.AppointmentDateTime != originalAppointment.AppointmentDateTime)
             {
                 Appointment.RescheduleRequested = false;
                 Appointment.ProposedNewDateTime = null;
@@ -212,7 +212,7 @@ namespace CitasEPS.Pages.Appointments
                 else
                 {
                     ModelState.AddModelError(string.Empty, "La cita fue modificada por otro usuario. Por favor, recargue la página e intente de nuevo.");
-                    IsCurrentUserPatient = User.IsInRole("Patient");
+                    IsCurrentUserPatient = User.IsInRole("Paciente");
                     if (User.IsInRole("Admin")) await PopulateDropdownsAsync(Appointment.PatientId, Appointment.DoctorId);
                     else {
                          ViewData["PatientName"] = await _context.Patients.Where(p => p.Id == originalAppointment.PatientId).Select(p => p.FullName).FirstOrDefaultAsync();
@@ -225,7 +225,7 @@ namespace CitasEPS.Pages.Appointments
             {
                  _logger.LogError(ex, "Error inesperado actualizando cita ID: {AppointmentId}", Appointment.Id);
                  ModelState.AddModelError(string.Empty, "Ocurrió un error inesperado al guardar los cambios.");
-                 IsCurrentUserPatient = User.IsInRole("Patient");
+                 IsCurrentUserPatient = User.IsInRole("Paciente");
                  if (User.IsInRole("Admin")) await PopulateDropdownsAsync(Appointment.PatientId, Appointment.DoctorId);
                  else {
                       ViewData["PatientName"] = await _context.Patients.Where(p => p.Id == originalAppointment.PatientId).Select(p => p.FullName).FirstOrDefaultAsync();
