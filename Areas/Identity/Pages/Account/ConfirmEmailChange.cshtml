@@ -3,7 +3,7 @@
 @{
     ViewData["Title"] = "Confirmación de Cambio de Correo";
     // Determine card header class based on success or error for StatusMessage
-    bool isSuccess = Model.StatusMessage != null && Model.StatusMessage.ToLower().Contains("gracias"); // Simple check
+    bool isSuccess = Model.StatusMessage != null && Model.StatusMessage.ToLower().Contains("thank you"); // Check for "thank you"
     var cardHeaderClass = isSuccess ? "bg-success text-white" : "bg-danger text-white";
     var iconClass = isSuccess ? "bi-check-circle-fill" : "bi-exclamation-triangle-fill";
 }
@@ -29,7 +29,7 @@
                     {
                         <div class="mt-4">
                             <p>Tu correo electrónico ha sido actualizado.</p>
-                            <a asp-area="Identity" asp-page="/Account/Manage/Index" class="btn btn-primary">
+                            <a asp-area="Identity" asp-page="/Account/Manage/Index" class="btn btn-success">
                                 <i class="bi bi-person-fill"></i> Ir a mi Perfil
                             </a>
                              <a asp-page="/Index" class="btn btn-secondary">
