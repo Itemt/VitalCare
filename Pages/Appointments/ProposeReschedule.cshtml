@@ -5,57 +5,61 @@
     ViewData["Title"] = "Proponer Reagendamiento de Cita";
 }
 
-<div class="row justify-content-center">
-    <div class="col-md-8">
-        <div class="card shadow-sm">
-            <div class="card-header bg-info text-white">
-                <h3 class="mb-0"><i class="bi bi-calendar2-week-fill"></i> @ViewData["Title"]</h3>
-            </div>
-            <div class="card-body">
-                @if (Model.CurrentAppointment != null)
-                {
-                    <p>Estás proponiendo un reagendamiento para la cita con ID: <strong>@Model.CurrentAppointment.Id</strong></p>
-                    <p>Fecha Original: <strong>@Model.CurrentDateTime</strong></p>
-                    @if (Model.CurrentAppointment.Doctor != null)
+<div class="container mt-5">
+    <div class="row justify-content-center">
+        <div class="col-md-8 col-lg-6">
+            <div class="card shadow-sm">
+                <div class="card-header bg-success text-white text-center">
+                    <h4 class="my-0 font-weight-normal">
+                        <i class="bi bi-clock-history me-2"></i>Solicitar Reagendamiento
+                    </h4>
+                </div>
+                <div class="card-body">
+                    @if (Model.CurrentAppointment != null)
                     {
-                        <p>Médico: <strong>@Model.DoctorName</strong></p>
+                        <p>Estás proponiendo un reagendamiento para la cita con ID: <strong>@Model.CurrentAppointment.Id</strong></p>
+                        <p>Fecha Original: <strong>@Model.CurrentDateTime</strong></p>
+                        @if (Model.CurrentAppointment.Doctor != null)
+                        {
+                            <p>Médico: <strong>@Model.DoctorName</strong></p>
+                        }
+                        <hr />
+
+                        <form method="post">
+                            <div asp-validation-summary="ModelOnly" class="text-danger mb-3"></div>
+                            <input type="hidden" asp-for="Id" /> @* Id is correctly bound for post *@
+
+                            <div class="form-group mb-3">
+                                <label asp-for="Input.ProposedNewDateTime" class="form-label fw-semibold"></label>
+                                <input asp-for="Input.ProposedNewDateTime" class="form-control datetimepicker" />
+                                <span asp-validation-for="Input.ProposedNewDateTime" class="text-danger"></span>
+                            </div>
+
+                            @* RescheduleReason removed as it's not in the PageModel's InputModel *
+                            @* <div class="form-group mb-3">
+                                <label asp-for="RescheduleReason" class="form-label fw-semibold">Motivo del Reagendamiento</label>
+                                <textarea asp-for="RescheduleReason" class="form-control" rows="3"></textarea>
+                                <span asp-validation-for="RescheduleReason" class="text-danger"></span>
+                            </div> *@
+
+                            <div class="card-footer bg-light text-end">
+                                <a asp-page="./Details" asp-route-id="@Model.Id" class="btn btn-secondary me-2"><i class="bi bi-x-circle"></i> Cancelar</a>
+                                <button type="submit" class="btn btn-info"><i class="bi bi-send"></i> Enviar Propuesta</button>
+                            </div>
+                        </form>
                     }
-                    <hr />
-
-                    <form method="post">
-                        <div asp-validation-summary="ModelOnly" class="text-danger mb-3"></div>
-                        <input type="hidden" asp-for="Id" /> @* Id is correctly bound for post *@
-
-                        <div class="form-group mb-3">
-                            <label asp-for="Input.ProposedNewDateTime" class="form-label fw-semibold"></label>
-                            <input asp-for="Input.ProposedNewDateTime" class="form-control datetimepicker" />
-                            <span asp-validation-for="Input.ProposedNewDateTime" class="text-danger"></span>
+                    else
+                    {
+                        <div class="alert alert-warning" role="alert">
+                             No se pudo cargar la información de la cita para proponer reagendamiento.
                         </div>
-
-                        @* RescheduleReason removed as it's not in the PageModel's InputModel *
-                        @* <div class="form-group mb-3">
-                            <label asp-for="RescheduleReason" class="form-label fw-semibold">Motivo del Reagendamiento</label>
-                            <textarea asp-for="RescheduleReason" class="form-control" rows="3"></textarea>
-                            <span asp-validation-for="RescheduleReason" class="text-danger"></span>
-                        </div> *@
-
-                        <div class="card-footer bg-light text-end">
-                            <a asp-page="./Details" asp-route-id="@Model.Id" class="btn btn-secondary me-2"><i class="bi bi-x-circle"></i> Cancelar</a>
-                            <button type="submit" class="btn btn-info"><i class="bi bi-send"></i> Enviar Propuesta</button>
-                        </div>
-                    </form>
-                }
-                else
-                {
-                    <div class="alert alert-warning" role="alert">
-                         No se pudo cargar la información de la cita para proponer reagendamiento.
-                    </div>
-                    <a asp-page="./Index" class="btn btn-primary"><i class="bi bi-arrow-left-circle"></i> Volver a Mis Citas</a>
-                }
-            </div> @* End card-body *@
-        </div> @* End card *@
-    </div> @* End col *@
-</div> @* End row *@
+                        <a asp-page="./Index" class="btn btn-primary"><i class="bi bi-arrow-left-circle"></i> Volver a Mis Citas</a>
+                    }
+                </div> @* End card-body *@
+            </div> @* End card *@
+        </div> @* End col *@
+    </div> @* End row *@
+</div> @* End container *@
 
 @section Scripts {
     @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}

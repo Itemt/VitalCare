@@ -8,8 +8,10 @@ html {
   }
 }
 
-.btn:focus, .btn:active:focus, .btn-link.nav-link:focus, .form-control:focus, .form-check-input:focus {
-  box-shadow: 0 0 0 0.1rem white, 0 0 0 0.25rem #258cfb;
+.btn:focus, .btn:active:focus, .btn.active:focus,
+.form-control:focus,
+.form-check-input:focus {
+  box-shadow: none;
 }
 
 html {
@@ -18,10 +20,15 @@ html {
 }
 
 body {
-  margin-bottom: 60px;
+  margin-bottom: 20px !important; /* Match new footer height */
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
   padding-top: 70px; /* Account for fixed navbar */
-  padding-bottom: 80px; /* Account for fixed footer */
-  background-color: #f8f9fa; /* Light grey background */
+  padding-bottom: 15px !important; /* Reduced padding above footer */
+  background-size: cover; 
+  background-attachment: fixed; 
+  background-position: center;
 }
 
 .navbar {
@@ -33,11 +40,18 @@ body {
 }
 
 .footer {
-    position: fixed;
-    bottom: 0;
-    width: 100%;
-    line-height: 60px; /* Vertically center the text there */
-    background-color: #e9ecef; /* Slightly darker footer */
+    height: 20px !important; /* Further reduced height */
+    background-color: transparent; /* Footer will inherit body background */
+    display: flex !important; 
+    align-items: center !important; /* Should vertically center direct text children now */
+    justify-content: center !important; 
+    font-size: 0.875rem !important; 
+    color: #6c757d; /* Default text color for muted text, adjust if needed */
+    border: none !important; /* Ensure no borders at all */
+}
+
+.footer a {
+    color: #0d6efd; /* Standard link blue, or theme appropriately */
 }
 
 /* Improve table appearance */
@@ -66,3 +80,83 @@ body {
     background-color: #dc3545;
     border-color: #dc3545;
 }
+
+/* Custom class for text shadow on themed headers */
+.text-shadow-custom {
+    text-shadow: 0px 1px 2px rgba(0, 0, 0, 0.5); /* Adjust values as needed: X-offset, Y-offset, blur-radius, color */
+}
+
+/* Styles for role-specific dashboard backgrounds on Index.cshtml */
+.admin-dashboard-bg {
+    background-image: none !important; /* Ensure no specific background */
+    padding: 0 !important; /* Ensure no padding */
+    border-radius: 0 !important; /* Ensure no radius */
+    /* background-size: cover; */ /* Not needed if no image */
+    /* background-position: center; */ /* Not needed if no image */
+}
+
+.doctor-dashboard-bg {
+    background-image: none !important; /* Ensure no specific background */
+    padding: 0 !important; /* Ensure no padding */
+    border-radius: 0 !important; /* Ensure no radius */
+    /* background-size: cover; */ /* Not needed if no image */
+    /* background-position: center; */ /* Not needed if no image */
+}
+
+.patient-dashboard-bg {
+    /* This class is mainly a placeholder now for structure, background is from body */
+    /* It might still be useful if we want to target the patient area specifically for non-background reasons */
+    padding: 0 !important; /* Ensure no padding if it was added by mistake */
+    border-radius: 0 !important; /* Ensure no radius if it was added by mistake */
+}
+
+/* Ensure content within these backgrounds is legible */
+.admin-dashboard-bg .card,
+.doctor-dashboard-bg .card,
+.patient-dashboard-bg .card {
+    background-color: rgba(255, 255, 255, 0.9); /* Slight transparency to let background show through */
+}
+
+/* Text shadow for better readability on complex backgrounds, if needed */
+.admin-dashboard-bg .card-header h2,
+.doctor-dashboard-bg .card-header h2,
+.patient-dashboard-bg .card-header h2 {
+    /* text-shadow: 1px 1px 2px rgba(0,0,0,0.7); */ /* Example, uncomment and adjust if needed */
+}
+
+/* Role-specific body backgrounds */
+body.patient-body-bg {
+    background-image: url('/images/patient-dashboard-bg.svg');
+}
+
+body.doctor-body-bg {
+    background-image: url('/images/doctor-dashboard-bg-subtle.svg'); /* Placeholder for new subtle SVG */
+}
+
+/* Default/fallback body background if no specific role or for other roles */
+body:not(.patient-body-bg):not(.doctor-body-bg) {
+    background-color: #f8f9fa; /* A very light grey, or choose another default */
+}
+
+/* Ensure footer text is readable on different backgrounds */
+body.doctor-body-bg .footer {
+    color: #dee2e6; /* Lighter text for dark blueish background */
+}
+body.doctor-body-bg .footer a {
+    color: #003366; /* Darker, specified blue for doctor link */
+}
+body.doctor-body-bg .footer a:hover {
+    color: #003366; /* Same color as normal state to remove hover effect */
+}
+
+body.patient-body-bg .footer {
+    color: #2a5c2a; /* Darker green text for light green background */
+}
+body.patient-body-bg .footer a {
+    color: #198754; /* Main theme green for patient link */
+}
+body.patient-body-bg .footer a:hover {
+    color: #157347; /* Darker green on hover */
+}
+
+/* Default footer text colors are fine for the default light grey body background */

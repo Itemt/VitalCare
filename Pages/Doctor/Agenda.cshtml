@@ -5,87 +5,89 @@
     ViewData["Title"] = "Agenda del Médico";
 }
 
-<div class="row justify-content-center">
-    <div class="col-md-10"> @* Wider for table display *@
-        <div class="card shadow-sm">
-            <div class="card-header bg-info text-white">
-                <h3 class="mb-0"><i class="bi bi-calendar-week-fill"></i> @ViewData["Title"]</h3>
+<div class="container-fluid mt-4">
+    <div class="card shadow-sm">
+        <div class="card-header bg-info text-white text-center">
+            <div class="d-flex justify-content-center align-items-center">
+                <h4 class="my-0 font-weight-normal">
+                    <i class="bi bi-calendar-week-fill me-2"></i>Agenda Médica
+                </h4>
             </div>
-            <div class="card-body">
-                <p class="lead">
-                    Bienvenido, Dr. @Model.CurrentDoctor?.LastName. Aquí puede ver sus citas programadas.
-                </p>
-                <hr />
+        </div>
+        <div class="card-body">
+            <p class="lead">
+                Bienvenido, Dr. @Model.CurrentDoctor?.LastName. Aquí puede ver sus citas programadas.
+            </p>
+            <hr />
 
-                <form method="get" class="mb-3">
-                    <div class="row g-2 align-items-end">
-                        <div class="col-md-4">
-                            <label for="selectedDate" class="form-label fw-semibold">Filtrar por Fecha:</label>
-                            <input type="date" asp-for="SelectedDate" class="form-control" id="selectedDate" />
-                        </div>
-                        <div class="col-md-auto">
-                            <button type="submit" class="btn btn-primary"><i class="bi bi-funnel-fill"></i> Filtrar</button>
-                            <a asp-page="/Doctor/Agenda" class="btn btn-outline-secondary ms-2"><i class="bi bi-arrow-clockwise"></i> Mostrar Todas</a>
-                        </div>
+            <form method="get" class="mb-3">
+                <div class="row g-2 align-items-end">
+                    <div class="col-md-4">
+                        <label for="selectedDate" class="form-label fw-semibold">Filtrar por Fecha:</label>
+                        <input type="date" asp-for="SelectedDate" class="form-control" id="selectedDate" />
                     </div>
-                </form>
+                    <div class="col-md-auto">
+                        <button type="submit" class="btn btn-primary"><i class="bi bi-funnel-fill"></i> Filtrar</button>
+                        <a asp-page="/Doctor/Agenda" class="btn btn-outline-secondary ms-2"><i class="bi bi-arrow-clockwise"></i> Mostrar Todas</a>
+                    </div>
+                </div>
+            </form>
 
-                @if (Model.Appointments == null || !Model.Appointments.Any())
-                {
-                    <div class="alert alert-info">
-                        <i class="bi bi-info-circle-fill"></i> No hay citas para la fecha seleccionada o no tiene citas programadas.
-                    </div>
-                }
-                else
-                {
-                    <div class="table-responsive">
-                        <table class="table table-hover table-striped">
-                            <thead class="table-light">
+            @if (Model.Appointments == null || !Model.Appointments.Any())
+            {
+                <div class="alert alert-info">
+                    <i class="bi bi-info-circle-fill"></i> No hay citas para la fecha seleccionada o no tiene citas programadas.
+                </div>
+            }
+            else
+            {
+                <div class="table-responsive">
+                    <table class="table table-hover table-striped">
+                        <thead class="table-light">
+                            <tr>
+                                <th><i class="bi bi-calendar-event"></i> Fecha y Hora</th>
+                                <th><i class="bi bi-person"></i> Paciente</th>
+                                <th><i class="bi bi-info-circle"></i> Notas</th>
+                                <th><i class="bi bi-check2-circle"></i> Confirmada</th>
+                                <th><i class="bi bi-pencil-square"></i> Acciones</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var appointment in Model.Appointments)
+                            {
                                 <tr>
-                                    <th><i class="bi bi-calendar-event"></i> Fecha y Hora</th>
-                                    <th><i class="bi bi-person"></i> Paciente</th>
-                                    <th><i class="bi bi-info-circle"></i> Notas</th>
-                                    <th><i class="bi bi-check2-circle"></i> Confirmada</th>
-                                    <th><i class="bi bi-pencil-square"></i> Acciones</th>
+                                    <td>@appointment.AppointmentDateTime.ToString("g")</td>
+                                    <td>@(appointment.Patient?.FullName ?? "N/A")</td>
+                                    <td>@appointment.Notes</td>
+                                    <td>
+                                        @if (appointment.IsCancelled)
+                                        {
+                                            <span class="badge bg-danger"><i class="bi bi-x-circle-fill"></i> Cancelada</span>
+                                        }
+                                        else if (appointment.IsConfirmed)
+                                        {
+                                            <span class="badge bg-success"><i class="bi bi-check-circle-fill"></i> Confirmada</span>
+                                        }
+                                        else
+                                        {
+                                            <span class="badge bg-warning text-dark"><i class="bi bi-hourglass-split"></i> Pendiente</span>
+                                        }
+                                    </td>
+                                    <td>
+                                        <a asp-page="/Appointments/Details" asp-route-id="@appointment.Id" class="btn btn-sm btn-info me-1" title="Ver Detalles">
+                                            <i class="bi bi-eye-fill"></i>
+                                        </a>
+                                        @* Consider adding Edit link for admins/doctors if they can edit directly from agenda *
+                                        @* <a asp-page="/Appointments/Edit" asp-route-id="@appointment.Id" class="btn btn-sm btn-warning" title="Editar">
+                                            <i class="bi bi-pencil-fill"></i>
+                                        </a> *@
+                                    </td>
                                 </tr>
-                            </thead>
-                            <tbody>
-                                @foreach (var appointment in Model.Appointments)
-                                {
-                                    <tr>
-                                        <td>@appointment.AppointmentDateTime.ToString("g")</td>
-                                        <td>@(appointment.Patient?.FullName ?? "N/A")</td>
-                                        <td>@appointment.Notes</td>
-                                        <td>
-                                            @if (appointment.IsCancelled)
-                                            {
-                                                <span class="badge bg-danger"><i class="bi bi-x-circle-fill"></i> Cancelada</span>
-                                            }
-                                            else if (appointment.IsConfirmed)
-                                            {
-                                                <span class="badge bg-success"><i class="bi bi-check-circle-fill"></i> Confirmada</span>
-                                            }
-                                            else
-                                            {
-                                                <span class="badge bg-warning text-dark"><i class="bi bi-hourglass-split"></i> Pendiente</span>
-                                            }
-                                        </td>
-                                        <td>
-                                            <a asp-page="/Appointments/Details" asp-route-id="@appointment.Id" class="btn btn-sm btn-info me-1" title="Ver Detalles">
-                                                <i class="bi bi-eye-fill"></i>
-                                            </a>
-                                            @* Consider adding Edit link for admins/doctors if they can edit directly from agenda *
-                                            @* <a asp-page="/Appointments/Edit" asp-route-id="@appointment.Id" class="btn btn-sm btn-warning" title="Editar">
-                                                <i class="bi bi-pencil-fill"></i>
-                                            </a> *@
-                                        </td>
-                                    </tr>
-                                }
-                            </tbody>
-                        </table>
-                    </div>
-                }
-            </div> @* End card-body *@
-        </div> @* End card *@
-    </div> @* End col *@
-</div> @* End row *@ 
+                            }
+                        </tbody>
+                    </table>
+                </div>
+            }
+        </div> @* End card-body *@
+    </div> @* End card *@
+</div> @* End container *@ 

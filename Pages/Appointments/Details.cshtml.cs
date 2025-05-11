@@ -10,6 +10,7 @@ using CitasEPS.Models;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.Extensions.Logging;
 using Microsoft.AspNetCore.Identity;
+using CitasEPS.Services;
 
 namespace CitasEPS.Pages.Appointments
 {
@@ -19,12 +20,14 @@ namespace CitasEPS.Pages.Appointments
         private readonly ApplicationDbContext _context;
         private readonly ILogger<DetailsModel> _logger;
         private readonly UserManager<User> _userManager;
+        private readonly IAppointmentPolicyService _appointmentPolicyService;
 
-        public DetailsModel(ApplicationDbContext context, ILogger<DetailsModel> logger, UserManager<User> userManager)
+        public DetailsModel(ApplicationDbContext context, ILogger<DetailsModel> logger, UserManager<User> userManager, IAppointmentPolicyService appointmentPolicyService)
         {
             _context = context;
             _logger = logger;
             _userManager = userManager;
+            _appointmentPolicyService = appointmentPolicyService;
         }
 
         public Appointment Appointment { get; set; } = default!;
@@ -218,6 +221,27 @@ namespace CitasEPS.Pages.Appointments
             _logger.LogInformation($"Attempting to cancel appointment ID {id} from Details page.");
             var user = await _userManager.GetUserAsync(User);
             if (user == null) return Challenge();
+
+            // <<< START: Cancellation Limit Check for Patients >>>
+            if (User.IsInRole("Paciente"))
+            {
+                var patientRecord = await _context.Patients.FirstOrDefaultAsync(p => p.UserId == user.Id);
+                if (patientRecord != null)
+                {
+                    if (!_appointmentPolicyService.CanPatientCancelAppointment(patientRecord.Id, out string reason))
+                    {
+                        TempData["ErrorMessage"] = reason;
+                        // Redirect to the same page to show the message, or to Index
+                        return RedirectToPage(new { id = id }); 
+                    }
+                }
+                else
+                {
+                    TempData["ErrorMessage"] = "No se encontró su registro de paciente.";
+                    return RedirectToPage("./Index");
+                }
+            }
+            // <<< END: Cancellation Limit Check for Patients >>>
 
             var appointmentToCancel = await _context.Appointments
                                                 .Include(a => a.Patient) // Needed for patient check

@@ -9,6 +9,7 @@ using Microsoft.Extensions.Logging;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using CitasEPS.Services;
 
 namespace CitasEPS.Pages.Appointments
 {
@@ -18,16 +19,19 @@ namespace CitasEPS.Pages.Appointments
         private readonly ApplicationDbContext _context;
         private readonly UserManager<User> _userManager;
         private readonly ILogger<IndexModel> _logger;
+        private readonly IAppointmentPolicyService _appointmentPolicyService;
 
-        public IndexModel(ApplicationDbContext context, UserManager<User> userManager, ILogger<IndexModel> logger)
+        public IndexModel(ApplicationDbContext context, UserManager<User> userManager, ILogger<IndexModel> logger, IAppointmentPolicyService appointmentPolicyService)
         {
             _context = context;
             _userManager = userManager;
             _logger = logger;
+            _appointmentPolicyService = appointmentPolicyService;
         }
 
         public IList<Appointment> Appointment { get; set; } = new List<Appointment>();
         public string UserRole { get; set; } = string.Empty; // To know which view to tailor
+        public AppointmentStats? PatientWeeklyStats { get; set; }
 
         public async Task<IActionResult> OnGetAsync()
         {
@@ -57,6 +61,8 @@ namespace CitasEPS.Pages.Appointments
                         .OrderBy(a => a.AppointmentDateTime)
                         .ToListAsync();
                     _logger.LogInformation($"Found {Appointment.Count} appointments for Patient {user.UserName} (Patient ID: {patient.Id}).");
+
+                    PatientWeeklyStats = _appointmentPolicyService.GetPatientWeeklyAppointmentStats(patient.Id, DateTime.Today);
                 }
                 else
                 {
@@ -173,6 +179,14 @@ namespace CitasEPS.Pages.Appointments
                 TempData["ErrorMessage"] = "Perfil de paciente no encontrado.";
                 return RedirectToPage();
             }
+
+            // <<< START: Cancellation Limit Check for Patients >>>
+            if (!_appointmentPolicyService.CanPatientCancelAppointment(patient.Id, out string reason))
+            {
+                TempData["ErrorMessage"] = reason;
+                return RedirectToPage(); 
+            }
+            // <<< END: Cancellation Limit Check for Patients >>>
 
             var appointmentToCancel = await _context.Appointments.FindAsync(appointmentId);
 

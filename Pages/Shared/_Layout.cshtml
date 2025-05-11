@@ -6,6 +6,51 @@
 @inject UserManager<User> UserManager
 @inject IAuthorizationService AuthorizationService
 
+@{
+    var isDoctorLoggedIn = false;
+    var isPatientLoggedIn = false;
+    var bodyClass = ""; // Default body class
+
+    if (SignInManager.IsSignedIn(User))
+    {
+        var doctorCheck = await AuthorizationService.AuthorizeAsync(User, "RequireDoctorRole");
+        isDoctorLoggedIn = doctorCheck.Succeeded;
+        if (isDoctorLoggedIn)
+        {
+            bodyClass = "doctor-body-bg";
+        }
+        else
+        {
+            var patientCheck = await AuthorizationService.AuthorizeAsync(User, "RequirePatientRole");
+            isPatientLoggedIn = patientCheck.Succeeded;
+            if (isPatientLoggedIn)
+            {
+                bodyClass = "patient-body-bg";
+            }
+        }
+    }
+
+    var navClass = "navbar-light bg-white border-bottom"; // Default
+    var textClass = "text-primary"; // Default for brand
+    var linkTextClass = "text-dark"; // Default for nav links
+    var headerTextShadowClass = ""; // New variable for text shadow
+
+    if (isDoctorLoggedIn)
+    {
+        navClass = "navbar-dark bg-info border-info";
+        textClass = "text-white";
+        linkTextClass = "text-white";
+        headerTextShadowClass = "text-shadow-custom"; // Apply shadow for doctor
+    }
+    else if (isPatientLoggedIn)
+    {
+        navClass = "navbar-dark bg-success border-success";
+        textClass = "text-white";
+        linkTextClass = "text-white";
+        headerTextShadowClass = "text-shadow-custom"; // Apply shadow for patient
+    }
+}
+
 <!DOCTYPE html>
 <html lang="es-CO">
 <head>
@@ -22,12 +67,13 @@
     @* Site specific CSS *@
     <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
     <link rel="stylesheet" href="~/CitasEPS.styles.css" asp-append-version="true" />
+    @await RenderSectionAsync("Styles", required: false) @* Added to render page-specific styles *@
 </head>
-<body>
+<body class="@bodyClass">
     <header>
-        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
+        <nav class="navbar navbar-expand-sm navbar-toggleable-sm @navClass box-shadow mb-3">
             <div class="container">
-                <a class="navbar-brand text-primary fw-bold" asp-area="" asp-page="/Index"><i class="bi bi-heart-pulse"></i> VitalCare</a>
+                <a class="navbar-brand fw-bold @textClass @headerTextShadowClass" asp-area="" asp-page="/Index"><i class="bi bi-heart-pulse"></i> VitalCare</a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target=".navbar-collapse" aria-controls="navbarSupportedContent"
                         aria-expanded="false" aria-label="Navegación">
                     <span class="navbar-toggler-icon"></span>
@@ -35,18 +81,17 @@
                 <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
                     <ul class="navbar-nav flex-grow-1">
                         <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-page="/Index"><i class="bi bi-house-door"></i> Inicio</a>
+                            <a class="nav-link @linkTextClass @headerTextShadowClass" asp-area="" asp-page="/Index"><i class="bi bi-house-door"></i> Inicio</a>
                         </li>
                         @if (SignInManager.IsSignedIn(User))
                         {
                             var isAdminResult = await AuthorizationService.AuthorizeAsync(User, "RequireAdminRole");
-                            var isDoctorResult = await AuthorizationService.AuthorizeAsync(User, "RequireDoctorRole");
-                            var isPatientResult = await AuthorizationService.AuthorizeAsync(User, "RequirePatientRole");
+                            // isDoctorResult and isPatientResult already determined above
 
                             @if (isAdminResult.Succeeded)
                             {
                                 <li class="nav-item dropdown">
-                                    <a class="nav-link dropdown-toggle text-dark" href="#" id="adminDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                    <a class="nav-link dropdown-toggle @linkTextClass @headerTextShadowClass" href="#" id="adminDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                                         <i class="bi bi-person-gear"></i> Administración
                                     </a>
                                     <ul class="dropdown-menu" aria-labelledby="adminDropdown">
@@ -58,56 +103,50 @@
                                         <li><a class="dropdown-item" asp-page="/Admin/Medications/Index"><i class="bi bi-capsule-pill"></i> Gestionar Medicamentos</a></li>
                                      </ul>
                                 </li>
-                            } @* Closing Admin check *@
-                            else if (isDoctorResult.Succeeded)
+                            } 
+                            else if (isDoctorLoggedIn) // Use pre-calculated variable
                             {
                                 <li class="nav-item dropdown">
-                                    <a class="nav-link dropdown-toggle text-dark" href="#" id="doctorDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                    <a class="nav-link dropdown-toggle @linkTextClass @headerTextShadowClass" href="#" id="doctorDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                                         <i class="bi bi-clipboard-pulse"></i> Portal Médico
                                     </a>
                                     <ul class="dropdown-menu" aria-labelledby="doctorDropdown">
                                         <li><a class="dropdown-item" asp-page="/Doctor/Agenda"><i class="bi bi-calendar-week-fill"></i> Mi Agenda</a></li>
                                         <li><a class="dropdown-item" asp-page="/Doctor/Patients"><i class="bi bi-person-badge-fill"></i> Mis Pacientes</a></li>
-                                        @* Add other doctor-specific links here, e.g., Prescriptions *@
                                     </ul>
                                 </li>
-                            } @* Closing Doctor check *@
-                            else if (isPatientResult.Succeeded)
+                            } 
+                            else if (isPatientLoggedIn) // Use pre-calculated variable
                             {
                                 <li class="nav-item dropdown">
-                                    <a class="nav-link dropdown-toggle text-dark" href="#" id="patientDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                    <a class="nav-link dropdown-toggle @linkTextClass @headerTextShadowClass" href="#" id="patientDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                                         <i class="bi bi-person-vcard"></i> Portal Paciente
                                     </a>
-                                    <ul class="dropdown-menu" aria-labelledby="patientDropdown">
+                                    <ul class="dropdown-menu shadow-sm fade" aria-labelledby="patientDropdown">
                                         <li><a class="dropdown-item" asp-page="/Appointments/Create"><i class="bi bi-calendar-plus-fill"></i> Agendar Cita</a></li>
                                         <li><a class="dropdown-item" asp-page="/Appointments/Index"><i class="bi bi-calendar-event-fill"></i> Mis Citas</a></li>
                                         <li><a class="dropdown-item" asp-page="/Appointments/MyPrescriptions"><i class="bi bi-journal-medical"></i> Mis Recetas</a></li>
                                     </ul>
                                 </li>
-                            } @* Closing Patient check *@
-                        } @* Closing SignIn check *@
+                            } 
+                        } 
                         else
                         {
-                            @* Show public links for non-logged-in users if needed *@
-                            @* Example:
-                            <li class="nav-item">
-                               <a class="nav-link text-dark" asp-area="" asp-page="/PublicInfo">Información</a>
-                            </li>
-                            *@
-                        } @* Closing not SignedIn check *@
+                           
+                        } 
 
                         <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-page="/Privacy"><i class="bi bi-shield-check"></i> Privacidad</a>
+                            <a class="nav-link @linkTextClass @headerTextShadowClass" asp-area="" asp-page="/Privacy"><i class="bi bi-shield-check"></i> Privacidad</a>
                         </li>
                     </ul>
                     <partial name="_LoginPartial" />
-                </div> @* Closing navbar-collapse *@
-            </div> @* Closing container *@
+                </div> 
+            </div> 
         </nav>
     </header>
     <div class="container mt-4">
         <main role="main" class="pb-3">
-            @* Display TempData messages *@
+            
             @if (TempData["SuccessMessage"] != null)
             {
                 <div class="alert alert-success alert-dismissible fade show" role="alert">
@@ -124,22 +163,20 @@
             }
             @RenderBody()
         </main>
-    </div> @* Closing container mt-4 *@
+    </div> 
 
-    <footer class="border-top footer text-muted bg-light mt-auto py-3"> @* Removed fixed-bottom, added mt-auto py-3 *@
-        <div class="container text-center">
-            &copy; @DateTime.Now.Year - VitalCare - <a asp-area="" asp-page="/Privacy">Política de Privacidad</a>
-        </div>
+    <footer class="border-top footer text-muted text-center mt-auto">
+        &copy; @DateTime.Now.Year - VitalCare - <a asp-area="" asp-page="/Privacy"> Política de Privacidad</a>
     </footer>
 
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
     <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
-    @* Flatpickr JS for date pickers *@
+    
     <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
-    <script src="https://npmcdn.com/flatpickr/dist/l10n/es.js"></script> @* Spanish locale for Flatpickr *@
+    <script src="https://npmcdn.com/flatpickr/dist/l10n/es.js"></script> 
     <script src="~/js/site.js" asp-append-version="true"></script>
-    <script src="~/js/site.flatpickr.js" asp-append-version="true"></script> @* Add Flatpickr initialization *@
-    <script src="~/js/passwordToggle.js" asp-append-version="true"></script> @* Added for show/hide password functionality *@
+    <script src="~/js/site.flatpickr.js" asp-append-version="true"></script> 
+    <script src="~/js/passwordToggle.js" asp-append-version="true"></script> 
 
     @await RenderSectionAsync("Scripts", required: false)
 </body>

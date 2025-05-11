@@ -2,6 +2,7 @@ using CitasEPS.Models;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using System.Security.Claims;
+using CitasEPS.Models.Enums;
 
 namespace CitasEPS.Data
 {
@@ -69,8 +70,12 @@ namespace CitasEPS.Data
                 {
                     UserName = adminEmail,
                     Email = adminEmail,
-                    IsAdmin = true,
-                    EmailConfirmed = true // Normalmente confirmar emails admin manualmente
+                    FirstName = "Admin",
+                    LastName = "VitalCare",
+                    DocumentId = "AD000001",
+                    Gender = Gender.Otro,
+                    EmailConfirmed = true,
+                    IsAdmin = true
                 };
                 // IMPORTANTE: ¡Establecer una contraseña segura para el admin en una aplicación real!
                 // Considerar usar configuración o gestión de secretos para la contraseña inicial.
@@ -148,19 +153,19 @@ namespace CitasEPS.Data
             // Obtener IDs para varias especialidades
             var specialties = await context.Specialties.ToDictionaryAsync(s => s.Name, s => s.Id);
 
-            var doctorsData = new List<(string FirstName, string LastName, int SpecialtyId, string MedicalLicense, string Email, string Phone, string Password)>() {
-                ("Alejandro", "Guerra", specialties["Medicina General"], "MG1001", "aguerra@vitalcare.com", "3101234567", "DoctorPass1!"),
-                ("Sofia", "Ramirez", specialties["Cardiología"], "CA2002", "sramirez@vitalcare.com", "3119876543", "DoctorPass2!"),
-                ("Carlos", "Vega", specialties["Dermatología"], "DE3003", "cvega@vitalcare.com", "3125551122", "DoctorPass3!"),
-                ("Laura", "Mendez", specialties["Medicina General"], "MG1004", "lmendez@vitalcare.com", "3134443322", "DoctorPass4!"),
-                ("Ricardo", "Perez", specialties["Pediatría"], "PE4001", "rperez@vitalcare.com", "3141112233", "DoctorPass5!"),
-                ("Ana", "Martinez", specialties["Ginecología"], "GI5002", "amartinez@vitalcare.com", "3153334455", "DoctorPass6!"),
-                ("Jorge", "Linares", specialties["Ortopedia"], "OR6003", "jlinares@vitalcare.com", "3167778899", "DoctorPass7!"),
-                ("Beatriz", "Alvarez", specialties["Neurología"], "NE7004", "balvarez@vitalcare.com", "3176665544", "DoctorPass8!"),
-                ("David", "Suarez", specialties["Oftalmología"], "OF8005", "dsuarez@vitalcare.com", "3189990011", "DoctorPass9!"),
-                ("Elena", "Rojas", specialties["Psicología"], "PS9006", "erojas@vitalcare.com", "3192223344", "DoctorPass10!"),
-                ("Mario", "Benavides", specialties["Endocrinología"], "EN1007", "mbenavides@vitalcare.com", "3205556677", "DoctorPass11!"),
-                ("Lucia", "Castro", specialties["Medicina General"], "MG1008", "lcastro@vitalcare.com", "3218887766", "DoctorPass12!")
+            var doctorsData = new List<(string FirstName, string LastName, int SpecialtyId, string MedicalLicense, string Email, string Phone, string Password, string DocumentId, Gender Gender)>() {
+                ("Alejandro", "Guerra", specialties["Medicina General"], "MG1001", "aguerra@vitalcare.com", "3101234567", "DoctorPass1!", "DC10203040", Gender.Masculino),
+                ("Sofia", "Ramirez", specialties["Cardiología"], "CA2002", "sramirez@vitalcare.com", "3119876543", "DoctorPass2!", "DC10203041", Gender.Femenino),
+                ("Carlos", "Vega", specialties["Dermatología"], "DE3003", "cvega@vitalcare.com", "3125551122", "DoctorPass3!", "DC10203042", Gender.Masculino),
+                ("Laura", "Mendez", specialties["Medicina General"], "MG1004", "lmendez@vitalcare.com", "3134443322", "DoctorPass4!", "DC10203043", Gender.Femenino),
+                ("Ricardo", "Perez", specialties["Pediatría"], "PE4001", "rperez@vitalcare.com", "3141112233", "DoctorPass5!", "DC10203044", Gender.Masculino),
+                ("Ana", "Martinez", specialties["Ginecología"], "GI5002", "amartinez@vitalcare.com", "3153334455", "DoctorPass6!", "DC10203045", Gender.Femenino),
+                ("Jorge", "Linares", specialties["Ortopedia"], "OR6003", "jlinares@vitalcare.com", "3167778899", "DoctorPass7!", "DC10203046", Gender.Masculino),
+                ("Beatriz", "Alvarez", specialties["Neurología"], "NE7004", "balvarez@vitalcare.com", "3176665544", "DoctorPass8!", "DC10203047", Gender.Femenino),
+                ("David", "Suarez", specialties["Oftalmología"], "OF8005", "dsuarez@vitalcare.com", "3189990011", "DoctorPass9!", "DC10203048", Gender.Masculino),
+                ("Elena", "Rojas", specialties["Psicología"], "PS9006", "erojas@vitalcare.com", "3192223344", "DoctorPass10!", "DC10203049", Gender.Femenino),
+                ("Mario", "Benavides", specialties["Endocrinología"], "EN1007", "mbenavides@vitalcare.com", "3205556677", "DoctorPass11!", "DC10203050", Gender.Masculino),
+                ("Lucia", "Castro", specialties["Medicina General"], "MG1008", "lcastro@vitalcare.com", "3218887766", "DoctorPass12!", "DC10203051", Gender.Femenino)
             };
 
             int doctorsCreatedCount = 0;
@@ -182,7 +187,17 @@ namespace CitasEPS.Data
                 var userExists = await userManager.FindByEmailAsync(docData.Email);
                 if (userExists == null)
                 {
-                    var newUser = new User { UserName = docData.Email, Email = docData.Email, EmailConfirmed = true };
+                    var newUser = new User 
+                    {
+                         UserName = docData.Email, 
+                         Email = docData.Email, 
+                         EmailConfirmed = true,
+                         FirstName = docData.FirstName,
+                         LastName = docData.LastName,
+                         PhoneNumber = docData.Phone,
+                         DocumentId = docData.DocumentId,
+                         Gender = docData.Gender
+                    };
                     var result = await userManager.CreateAsync(newUser, docData.Password);
                     if (result.Succeeded)
                     {
@@ -220,18 +235,18 @@ namespace CitasEPS.Data
                  // return;
             }
 
-            var patientsToAdd = new List<(string FirstName, string LastName, string DocumentId, DateTime Dob, string Email, string Phone, string Password)>
+            var patientsToAdd = new List<(string FirstName, string LastName, string DocumentId, Gender Gender, DateTime Dob, string Email, string Phone, string Password)>()
             {
-                ("Juan", "Perez", "11223344", new DateTime(1985, 5, 15, 0, 0, 0, DateTimeKind.Utc), "juan.perez@email.com", "3001112233", "PatientPass1!"),
-                ("Maria", "Gomez", "55667788", new DateTime(1992, 11, 20, 0, 0, 0, DateTimeKind.Utc), "maria.gomez@email.com", "3019998877", "PatientPass2!"),
-                ("Carlos", "Rodriguez", "99887766", new DateTime(1978, 2, 10, 0, 0, 0, DateTimeKind.Utc), "carlos.rodriguez@email.com", "3025556677", "PatientPass3!"),
-                ("Ana", "Lopez", "12312312", new DateTime(2001, 8, 25, 0, 0, 0, DateTimeKind.Utc), "ana.lopez@email.com", "3031231234", "PatientPass4!"),
-                ("Luis", "Martinez", "45645645", new DateTime(1995, 12, 1, 0, 0, 0, DateTimeKind.Utc), "luis.martinez@email.com", "3044564567", "PatientPass5!"),
-                ("Elena", "Sanchez", "78978978", new DateTime(1988, 6, 30, 0, 0, 0, DateTimeKind.Utc), "elena.sanchez@email.com", "3057897890", "PatientPass6!"),
-                ("Miguel", "Ramirez", "10101010", new DateTime(1999, 4, 18, 0, 0, 0, DateTimeKind.Utc), "miguel.ramirez@email.com", "3061010101", "PatientPass7!"),
-                ("Sofia", "Torres", "20202020", new DateTime(1991, 9, 5, 0, 0, 0, DateTimeKind.Utc), "sofia.torres@email.com", "3072020202", "PatientPass8!"),
-                ("Andres", "Diaz", "30303030", new DateTime(1982, 1, 12, 0, 0, 0, DateTimeKind.Utc), "andres.diaz@email.com", "3083030303", "PatientPass9!"),
-                ("Paula", "Vargas", "40404040", new DateTime(2003, 3, 22, 0, 0, 0, DateTimeKind.Utc), "paula.vargas@email.com", "3094040404", "PatientPass10!")
+                ("Juan", "Perez", "11223344", Gender.Masculino, new DateTime(1985, 5, 15, 0, 0, 0, DateTimeKind.Utc), "juan.perez@email.com", "3001112233", "PatientPass1!"),
+                ("Maria", "Gomez", "55667788", Gender.Femenino, new DateTime(1992, 11, 20, 0, 0, 0, DateTimeKind.Utc), "maria.gomez@email.com", "3019998877", "PatientPass2!"),
+                ("Carlos", "Rodriguez", "99887766", Gender.Masculino, new DateTime(1978, 2, 10, 0, 0, 0, DateTimeKind.Utc), "carlos.rodriguez@email.com", "3025556677", "PatientPass3!"),
+                ("Ana", "Lopez", "12312312", Gender.Femenino, new DateTime(2001, 8, 25, 0, 0, 0, DateTimeKind.Utc), "ana.lopez@email.com", "3031231234", "PatientPass4!"),
+                ("Luis", "Martinez", "45645645", Gender.Masculino, new DateTime(1995, 12, 1, 0, 0, 0, DateTimeKind.Utc), "luis.martinez@email.com", "3044564567", "PatientPass5!"),
+                ("Elena", "Sanchez", "78978978", Gender.Femenino, new DateTime(1988, 6, 30, 0, 0, 0, DateTimeKind.Utc), "elena.sanchez@email.com", "3057897890", "PatientPass6!"),
+                ("Miguel", "Ramirez", "10101010", Gender.Masculino, new DateTime(1999, 4, 18, 0, 0, 0, DateTimeKind.Utc), "miguel.ramirez@email.com", "3061010101", "PatientPass7!"),
+                ("Sofia", "Torres", "20202020", Gender.Femenino, new DateTime(1991, 9, 5, 0, 0, 0, DateTimeKind.Utc), "sofia.torres@email.com", "3072020202", "PatientPass8!"),
+                ("Andres", "Diaz", "30303030", Gender.Masculino, new DateTime(1982, 1, 12, 0, 0, 0, DateTimeKind.Utc), "andres.diaz@email.com", "3083030303", "PatientPass9!"),
+                ("Paula", "Vargas", "40404040", Gender.Femenino, new DateTime(2003, 3, 22, 0, 0, 0, DateTimeKind.Utc), "paula.vargas@email.com", "3094040404", "PatientPass10!")
             };
 
             int patientsCreatedCount = 0;
@@ -243,22 +258,35 @@ namespace CitasEPS.Data
 
                 if (userExists == null && !patientExists)
                 {
-                    var newUser = new User { UserName = pData.Email, Email = pData.Email, EmailConfirmed = true };
+                    var newUser = new User 
+                    {
+                        UserName = pData.Email, 
+                        Email = pData.Email, 
+                        EmailConfirmed = true,
+                        FirstName = pData.FirstName,
+                        LastName = pData.LastName,
+                        PhoneNumber = pData.Phone,
+                        DateOfBirth = pData.Dob,
+                        DocumentId = pData.DocumentId,
+                        Gender = pData.Gender
+                    };
                     var result = await userManager.CreateAsync(newUser, pData.Password);
                     if (result.Succeeded)
                     {
                         await userManager.AddToRoleAsync(newUser, "Paciente");
                         logger.LogInformation($"Usuario paciente '{pData.Email}' creado.");
-                        var newPatient = new Patient
+                        var patient = new Patient
                         {
+                            UserId = newUser.Id,
                             FirstName = pData.FirstName,
                             LastName = pData.LastName,
-                            DocumentId = pData.DocumentId,
-                            DateOfBirth = pData.Dob,
                             Email = pData.Email,
-                            PhoneNumber = pData.Phone
+                            PhoneNumber = pData.Phone,
+                            DateOfBirth = pData.Dob,
+                            DocumentId = pData.DocumentId,
+                            Gender = pData.Gender
                         };
-                        await context.Patients.AddAsync(newPatient);
+                        await context.Patients.AddAsync(patient);
                         await context.SaveChangesAsync(); // Guardar cada paciente o guardar en lote fuera del bucle
                         logger.LogInformation($"Registro de paciente para '{pData.Email}' creado.");
                         patientsCreatedCount++;

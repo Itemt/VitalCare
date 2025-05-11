@@ -1,19 +1,48 @@
 @using Microsoft.AspNetCore.Identity
 @using CitasEPS.Models
+@using Microsoft.AspNetCore.Authorization
 
 @inject SignInManager<User> SignInManager
 @inject UserManager<User> UserManager
+@inject IAuthorizationService AuthorizationService
 
 @{ 
     // Determinar el rol del usuario para mostrarlo
     var userRole = "Desconocido";
+    var isDoctorLoggedIn = false;
+    var isPatientLoggedIn = false;
+
     if (SignInManager.IsSignedIn(User))
     {
+        var doctorCheck = await AuthorizationService.AuthorizeAsync(User, "RequireDoctorRole");
+        isDoctorLoggedIn = doctorCheck.Succeeded;
+
         if (User.IsInRole("Admin")) { userRole = "Administrador"; }
-        else if (User.IsInRole("Doctor")) { userRole = "Médico"; }
-        else if (User.IsInRole("Paciente")) { userRole = "Paciente"; }
-        // Añadir más roles si es necesario
+        else if (isDoctorLoggedIn) { 
+            userRole = "Médico"; 
+        }
+        else 
+        { // If not admin or doctor, check for patient
+            var patientCheck = await AuthorizationService.AuthorizeAsync(User, "RequirePatientRole");
+            if (patientCheck.Succeeded) {
+                userRole = "Paciente";
+                isPatientLoggedIn = true;
+            }
+        }
     }
+
+    var partialLinkClass = "text-dark"; // Default
+    var roleLinkClass = "text-info";    // Default for role
+    var loginPartialTextShadowClass = ""; // New variable for text shadow in partial
+
+    if (isDoctorLoggedIn || isPatientLoggedIn) // If doctor or patient, links should be white
+    {
+        partialLinkClass = "text-white";
+        roleLinkClass = "text-white";
+        loginPartialTextShadowClass = "text-shadow-custom"; // Apply shadow for doctor/patient in partial
+    }
+    // For Admin or other roles not explicitly themed, they will use default or _Layout's general linkTextClass if applicable.
+    // However, _LoginPartial is usually self-contained for its link colors based on its own logic.
 }
 
 <ul class="navbar-nav">
@@ -27,24 +56,24 @@
     }
 
     <li class="nav-item">
-        <a id="manage" class="nav-link text-dark" asp-area="Identity" asp-page="/Account/Manage/Index" title="Gestionar Cuenta">¡Hola @displayName!</a>
+        <a id="manage" class="nav-link @partialLinkClass @loginPartialTextShadowClass" asp-area="Identity" asp-page="/Account/Manage/Index" title="Gestionar Cuenta">¡Hola @displayName!</a>
     </li>
     <li class="nav-item">
-        <a class="nav-link text-info" asp-area="Identity" asp-page="/Account/Manage/Index" title="Gestionar Cuenta">(@userRole)</a> @* Mostrar Rol como enlace *@
+        <a class="nav-link @roleLinkClass @loginPartialTextShadowClass" asp-area="Identity" asp-page="/Account/Manage/Index" title="Gestionar Cuenta">(@userRole)</a> @* Mostrar Rol como enlace *@
     </li>
     <li class="nav-item">
         <form id="logoutForm" class="form-inline" asp-area="Identity" asp-page="/Account/Logout" asp-route-returnUrl="@Url.Page("/Index", new { area = "" })">
-            <button id="logout" type="submit" class="nav-link btn btn-link text-dark border-0">Cerrar Sesión</button>
+            <button id="logout" type="submit" class="nav-link btn btn-link @partialLinkClass @loginPartialTextShadowClass border-0">Cerrar Sesión</button>
         </form>
     </li>
 }
 else
 {
     <li class="nav-item">
-        <a class="nav-link text-dark" id="register" asp-area="Identity" asp-page="/Account/Register">Registrarse</a>
+        <a class="nav-link @partialLinkClass @loginPartialTextShadowClass" id="register" asp-area="Identity" asp-page="/Account/Register">Registrarse</a>
     </li>
     <li class="nav-item">
-        <a class="nav-link text-dark" id="login" asp-area="Identity" asp-page="/Account/Login">Iniciar Sesión</a>
+        <a class="nav-link @partialLinkClass @loginPartialTextShadowClass" id="login" asp-area="Identity" asp-page="/Account/Login">Iniciar Sesión</a>
     </li>
 }
 </ul>

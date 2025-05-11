@@ -52,7 +52,7 @@ namespace CitasEPS.Pages.Doctor
             // Incluir Prescripciones y Medicamentos asociados
             AppointmentHistory = await _context.Appointments
                 .Where(a => a.DoctorId == CurrentDoctor.Id && a.PatientId == patientId)
-                .Include(a => a.Prescriptions ?? new List<Prescription>())
+                .Include(a => a.Prescriptions)
                     .ThenInclude(p => p.Medication)
                 .OrderByDescending(a => a.AppointmentDateTime) // Mostrar más recientes primero
                 .ToListAsync();

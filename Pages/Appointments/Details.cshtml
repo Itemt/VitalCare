@@ -5,268 +5,272 @@
     ViewData["Title"] = "Detalles de Cita";
 }
 
-<div class="row justify-content-center">
-    <div class="col-md-9"> @* Adjusted col-md- for wider content if needed *@
-        <div class="card shadow-sm">
-            <div class="card-header bg-primary text-white">
-                <h3 class="mb-0"><i class="bi bi-calendar2-event-fill"></i> @ViewData["Title"]</h3>
-            </div>
-            <div class="card-body">
-                <h4>Cita #@Model.Appointment.Id</h4>
-                <hr />
-                <dl class="row">
-                    <dt class="col-sm-4">Fecha y Hora</dt>
-                    <dd class="col-sm-8">@Html.DisplayFor(model => model.Appointment.AppointmentDateTime)</dd>
-
-                    <dt class="col-sm-4">Paciente</dt>
-                    <dd class="col-sm-8">
-                        @Html.DisplayFor(model => model.Appointment.Patient.FullName) 
-                        @if (!string.IsNullOrWhiteSpace(Model.Appointment.Patient?.DocumentId))
-                        {
-                            <small>(ID: @Html.DisplayFor(model => model.Appointment.Patient.DocumentId))</small>
-                        }
-                        @if (!string.IsNullOrWhiteSpace(Model.Appointment.Patient?.PhoneNumber))
-                        {
-                            <br /><small><i class="bi bi-telephone-fill"></i> @Html.DisplayFor(model => model.Appointment.Patient.PhoneNumber)</small>
-                        }
-                    </dd>
-
-                    <dt class="col-sm-4">Médico</dt>
-                    <dd class="col-sm-8">
-                        @Html.DisplayFor(model => model.Appointment.Doctor.FullName) 
-                        <small>(Especialidad: @Html.DisplayFor(model => model.Appointment.Doctor.Specialty.Name))</small>
-                    </dd>
-
-                    <dt class="col-sm-4">Confirmada por Consultorio</dt>
-                    <dd class="col-sm-8">@(Model.Appointment.IsConfirmed ? "Sí" : "No")</dd>
-                    
-                    <dt class="col-sm-4">Notas / Motivo de la Cita</dt>
-                    <dd class="col-sm-8">@(string.IsNullOrWhiteSpace(Model.Appointment.Notes) ? "N/A" : Model.Appointment.Notes)</dd>
-                </dl>
-
-                @* Sección de Prescripciones *@
-                @if (Model.Appointment.Prescriptions != null && Model.Appointment.Prescriptions.Any())
-                {
-                    <h4 class="mt-4">Prescripciones Asociadas</h4>
+<div class="container mt-5">
+    <div class="row justify-content-center">
+        <div class="col-md-10 col-lg-8">
+            <div class="card shadow-sm">
+                <div class="card-header bg-success text-white text-center">
+                    <h4 class="my-0 font-weight-normal">
+                        <i class="bi bi-calendar-check-fill me-2"></i>Detalles de la Cita
+                    </h4>
+                </div>
+                <div class="card-body">
+                    <h4>Cita #@Model.Appointment.Id</h4>
                     <hr />
-                    <table class="table table-sm table-bordered">
-                        <thead class="table-light">
-                            <tr>
-                                <th>Medicamento</th>
-                                <th>Dosis</th>
-                                <th>Instrucciones</th>
-                                <th>Fecha Prescripción</th>
-                                @* Se podría añadir botón para editar/eliminar prescripción si es necesario *@
-                                @if (User.IsInRole("Doctor"))
-                                {
-                                     <th>Acciones</th>
-                                }
-                            </tr>
-                        </thead>
-                        <tbody>
-                            @foreach (var prescription in Model.Appointment.Prescriptions.OrderByDescending(p => p.PrescriptionDate))
+                    <dl class="row">
+                        <dt class="col-sm-4">Fecha y Hora</dt>
+                        <dd class="col-sm-8">@Html.DisplayFor(model => model.Appointment.AppointmentDateTime)</dd>
+
+                        <dt class="col-sm-4">Paciente</dt>
+                        <dd class="col-sm-8">
+                            @Html.DisplayFor(model => model.Appointment.Patient.FullName) 
+                            @if (!string.IsNullOrWhiteSpace(Model.Appointment.Patient?.DocumentId))
                             {
+                                <small>(ID: @Html.DisplayFor(model => model.Appointment.Patient.DocumentId))</small>
+                            }
+                            @if (!string.IsNullOrWhiteSpace(Model.Appointment.Patient?.PhoneNumber))
+                            {
+                                <br /><small><i class="bi bi-telephone-fill"></i> @Html.DisplayFor(model => model.Appointment.Patient.PhoneNumber)</small>
+                            }
+                        </dd>
+
+                        <dt class="col-sm-4">Médico</dt>
+                        <dd class="col-sm-8">
+                            @Html.DisplayFor(model => model.Appointment.Doctor.FullName) 
+                            <small>(Especialidad: @Html.DisplayFor(model => model.Appointment.Doctor.Specialty.Name))</small>
+                        </dd>
+
+                        <dt class="col-sm-4">Confirmada por Consultorio</dt>
+                        <dd class="col-sm-8">@(Model.Appointment.IsConfirmed ? "Sí" : "No")</dd>
+                        
+                        <dt class="col-sm-4">Notas / Motivo de la Cita</dt>
+                        <dd class="col-sm-8">@(string.IsNullOrWhiteSpace(Model.Appointment.Notes) ? "N/A" : Model.Appointment.Notes)</dd>
+                    </dl>
+
+                    @* Sección de Prescripciones *@
+                    @if (Model.Appointment.Prescriptions != null && Model.Appointment.Prescriptions.Any())
+                    {
+                        <h4 class="mt-4">Prescripciones Asociadas</h4>
+                        <hr />
+                        <table class="table table-sm table-bordered">
+                            <thead class="table-light">
                                 <tr>
-                                    <td>@Html.DisplayFor(modelItem => prescription.Medication.Name)</td>
-                                    <td>@Html.DisplayFor(modelItem => prescription.Dosage)</td>
-                                    <td>@Html.DisplayFor(modelItem => prescription.Instructions)</td>
-                                    <td>@Html.DisplayFor(modelItem => prescription.PrescriptionDate)</td>
+                                    <th>Medicamento</th>
+                                    <th>Dosis</th>
+                                    <th>Instrucciones</th>
+                                    <th>Fecha Prescripción</th>
+                                    @* Se podría añadir botón para editar/eliminar prescripción si es necesario *@
                                     @if (User.IsInRole("Doctor"))
                                     {
-                                        <td>
-                                            <a asp-page="/Doctor/EditPrescription" asp-route-id="@prescription.Id" class="btn btn-warning btn-sm" title="Editar Prescripción"><i class="bi bi-pencil-square"></i></a>
-                                            <a asp-page="/Doctor/DeletePrescription" asp-route-id="@prescription.Id" class="btn btn-danger btn-sm" title="Eliminar Prescripción"><i class="bi bi-trash3"></i></a>
-                                        </td>
+                                         <th>Acciones</th>
                                     }
                                 </tr>
-                            }
-                        </tbody>
-                    </table>
-                }
-                else
-                {
-                    <p class="mt-3"><em>No hay prescripciones asociadas a esta cita.</em></p>
-                }
-
-                <hr />
-
-                <!-- Mostrar Estado para TODOS -->
-                <div class="mb-3">
-                    <h5>Estado de la Cita</h5>
-                    <p>
-                        @if (Model.Appointment.IsCancelled)
-                        {
-                            <span class="badge bg-danger">Cancelada</span>
-                        }
-                        else if (Model.Appointment.WasNoShow)
-                        {
-                            <span class="badge bg-danger">No Presentó</span>
-                        }
-                        else if (Model.Appointment.IsCompleted)
-                        {
-                            <span class="badge bg-success">Completada</span>
-                        }
-                        else if (Model.Appointment.AppointmentDateTime < DateTime.Now)
-                        {
-                             <span class="badge bg-secondary text-dark">Expirada</span>
-                        }
-                        else if (Model.Appointment.DoctorProposedReschedule && Model.Appointment.ProposedNewDateTime.HasValue)
-                        {
-                             <span class="badge bg-primary text-white">Propuesto por Doctor</span>
-                        }
-                        else if (Model.Appointment.RescheduleRequested && Model.Appointment.ProposedNewDateTime.HasValue)
-                        {
-                             <span class="badge bg-warning text-dark">Propuesto por Paciente</span>
-                        }
-                        else if (Model.Appointment.IsConfirmed)
-                        {
-                            <span class="badge bg-info">Confirmada</span>
-                        }
-                        else
-                        {
-                            <span class="badge bg-warning text-dark">Pendiente</span>
-                        }
-                    </p>
-                </div>
-
-                <!-- Mensaje de Reagendamiento Solicitado (Visible para todos si aplica) -->
-                @if (Model.Appointment.RescheduleRequested)
-                {
-                    <div class="alert alert-warning" role="alert">
-                        <i class="bi bi-exclamation-triangle-fill"></i>
-                        @if (User.IsInRole("Paciente"))
-                        {
-                            <span>Ha solicitado reagendar esta cita. El consultorio se pondrá en contacto pronto.</span>
-                        }
-                        else if (User.IsInRole("Doctor"))
-                        {
-                            <span>El paciente ha solicitado reagendar esta cita. Por favor, póngase en contacto y vuelva a confirmar la cita una vez acordada la nueva fecha/hora.</span>
-                        }
-                        else // Para otros roles (admin?) si llegaran a ver esto
-                        {
-                             <span>Se ha solicitado reagendar esta cita.</span>
-                        }
-                    </div>
-                }
-
-                @* --- Sección de Notas Clínicas y Acciones del Doctor --- *@
-                @if (User.IsInRole("Doctor"))
-                {
-                    @if (!Model.Appointment.IsCancelled)
-                    { 
-                        <hr class="mt-4" />
-                        <h4 class="mt-3">Notas Clínicas <i class="bi bi-journal-medical"></i></h4>
-                        <form method="post" asp-page-handler="SaveNotes" asp-route-id="@Model.Appointment.Id">
-                            <div class="mb-3">
-                                <textarea asp-for="Appointment.ClinicalNotes" class="form-control" rows="5" placeholder="Ingrese aquí las notas clínicas..."></textarea>
-                                <span asp-validation-for="Appointment.ClinicalNotes" class="text-danger"></span>
-                            </div>
-                            <button type="submit" class="btn btn-primary"><i class="bi bi-save"></i> Guardar Notas</button>
-                        </form>
-
-                        <div class="mt-3">
-                            <a asp-page="/Doctor/Prescribe" asp-route-appointmentId="@Model.Appointment.Id" class="btn btn-success"><i class="bi bi-file-earmark-medical"></i> Crear Prescripción para esta Cita</a>
-                        </div>
-
-                        <!-- Sección SOLO para Botones Confirmar/Completar Doctor -->
-                        <hr /> @* Add separator *@
-                        <div class="mb-3">
-                            @if (!Model.Appointment.IsConfirmed && !Model.Appointment.IsCompleted)
-                            {
-                                <form method="post" asp-page-handler="Confirm" asp-route-id="@Model.Appointment.Id" class="d-inline">
-                                    <button type="submit" class="btn btn-info">Confirmar Cita</button>
-                                </form>
-                            }
-
-                            @if (Model.Appointment.IsConfirmed && !Model.Appointment.IsCompleted)
-                            {
-                                <form method="post" asp-page-handler="Complete" asp-route-id="@Model.Appointment.Id" class="d-inline">
-                                    <button type="submit" class="btn btn-dark">Marcar como Completada</button>
-                                </form>
-                            }
-                            
-                            @* Botón para Marcar No Presentó *@
-                            @if (Model.Appointment.AppointmentDateTime < DateTime.Now && Model.Appointment.IsConfirmed && !Model.Appointment.IsCompleted && !Model.Appointment.WasNoShow)
-                            {
-                                <form method="post" asp-page-handler="MarkNoShow" asp-route-id="@Model.Appointment.Id" class="d-inline ms-2">
-                                    <button type="submit" class="btn btn-outline-danger">Marcar No Presentó</button>
-                                </form>
-                            }
-                        </div>
-                        <!-- Fin Sección para Confirmar/Completar Cita -->
+                            </thead>
+                            <tbody>
+                                @foreach (var prescription in Model.Appointment.Prescriptions.OrderByDescending(p => p.PrescriptionDate))
+                                {
+                                    <tr>
+                                        <td>@Html.DisplayFor(modelItem => prescription.Medication.Name)</td>
+                                        <td>@Html.DisplayFor(modelItem => prescription.Dosage)</td>
+                                        <td>@Html.DisplayFor(modelItem => prescription.Instructions)</td>
+                                        <td>@Html.DisplayFor(modelItem => prescription.PrescriptionDate)</td>
+                                        @if (User.IsInRole("Doctor"))
+                                        {
+                                            <td>
+                                                <a asp-page="/Doctor/EditPrescription" asp-route-id="@prescription.Id" class="btn btn-warning btn-sm" title="Editar Prescripción"><i class="bi bi-pencil-square"></i></a>
+                                                <a asp-page="/Doctor/DeletePrescription" asp-route-id="@prescription.Id" class="btn btn-danger btn-sm" title="Eliminar Prescripción"><i class="bi bi-trash3"></i></a>
+                                            </td>
+                                        }
+                                    </tr>
+                                }
+                            </tbody>
+                        </table>
                     }
                     else
-                    { 
-                        <hr class="mt-4" />
-                        <div class="alert alert-warning" role="alert">
-                            <i class="bi bi-exclamation-circle-fill"></i> Esta cita ha sido cancelada. No se pueden realizar más acciones.
-                        </div>
-                    } 
-                } @* <<< Closing brace for @if (User.IsInRole("Doctor")) *@
-
-                @* --- Sección de Acciones del Paciente --- *@
-                @if (User.IsInRole("Paciente"))
-                {
-                    @if (!Model.Appointment.IsCompleted && 
-                         !Model.Appointment.IsCancelled && 
-                         Model.Appointment.AppointmentDateTime >= DateTime.Now && 
-                         !Model.Appointment.RescheduleRequested && 
-                         !Model.Appointment.DoctorProposedReschedule)
                     {
-                         <hr />
-                         <div class="mb-3">
-                             <form method="post" asp-page-handler="RequestReschedule" asp-route-id="@Model.Appointment.Id" class="d-inline">
-                                <button type="submit" class="btn btn-outline-warning">Solicitar Reagendamiento</button>
-                             </form>
-                         </div>
+                        <p class="mt-3"><em>No hay prescripciones asociadas a esta cita.</em></p>
                     }
-                }
-                @* --- Fin Sección Paciente --- *@
-            </div> @* End of card-body containing main details and patient actions *@
-            <div class="card-footer bg-light">
-                <div class="d-flex justify-content-between align-items-center">
-                    <div> @* Action Buttons on the left/center *@
-                        @* --- START: Cancel Button (Details View) --- *@
-                        @if (!Model.Appointment.IsCompleted && !Model.Appointment.IsCancelled && (User.IsInRole("Paciente") || User.IsInRole("Doctor") || User.IsInRole("Admin")))
-                        {
-                            <form method="post" asp-page-handler="CancelAppointment" asp-route-id="@Model.Appointment.Id" class="d-inline me-2"
-                                  onsubmit="return confirm('¿Está seguro de que desea cancelar esta cita? Esta acción no se puede deshacer.');">
-                                <button type="submit" class="btn btn-danger">
-                                    <i class="bi bi-x-circle"></i> Cancelar Cita
-                                </button>
+
+                    <hr />
+
+                    <!-- Mostrar Estado para TODOS -->
+                    <div class="mb-3">
+                        <h5>Estado de la Cita</h5>
+                        <p>
+                            @if (Model.Appointment.IsCancelled)
+                            {
+                                <span class="badge bg-danger">Cancelada</span>
+                            }
+                            else if (Model.Appointment.WasNoShow)
+                            {
+                                <span class="badge bg-danger">No Presentó</span>
+                            }
+                            else if (Model.Appointment.IsCompleted)
+                            {
+                                <span class="badge bg-success">Completada</span>
+                            }
+                            else if (Model.Appointment.AppointmentDateTime < DateTime.Now)
+                            {
+                                 <span class="badge bg-secondary text-dark">Expirada</span>
+                            }
+                            else if (Model.Appointment.DoctorProposedReschedule && Model.Appointment.ProposedNewDateTime.HasValue)
+                            {
+                                 <span class="badge bg-primary text-white">Propuesto por Doctor</span>
+                            }
+                            else if (Model.Appointment.RescheduleRequested && Model.Appointment.ProposedNewDateTime.HasValue)
+                            {
+                                 <span class="badge bg-warning text-dark">Propuesto por Paciente</span>
+                            }
+                            else if (Model.Appointment.IsConfirmed)
+                            {
+                                <span class="badge bg-info">Confirmada</span>
+                            }
+                            else
+                            {
+                                <span class="badge bg-warning text-dark">Pendiente</span>
+                            }
+                        </p>
+                    </div>
+
+                    <!-- Mensaje de Reagendamiento Solicitado (Visible para todos si aplica) -->
+                    @if (Model.Appointment.RescheduleRequested)
+                    {
+                        <div class="alert alert-warning" role="alert">
+                            <i class="bi bi-exclamation-triangle-fill"></i>
+                            @if (User.IsInRole("Paciente"))
+                            {
+                                <span>Ha solicitado reagendar esta cita. El consultorio se pondrá en contacto pronto.</span>
+                            }
+                            else if (User.IsInRole("Doctor"))
+                            {
+                                <span>El paciente ha solicitado reagendar esta cita. Por favor, póngase en contacto y vuelva a confirmar la cita una vez acordada la nueva fecha/hora.</span>
+                            }
+                            else // Para otros roles (admin?) si llegaran a ver esto
+                            {
+                                 <span>Se ha solicitado reagendar esta cita.</span>
+                            }
+                        </div>
+                    }
+
+                    @* --- Sección de Notas Clínicas y Acciones del Doctor --- *@
+                    @if (User.IsInRole("Doctor"))
+                    {
+                        @if (!Model.Appointment.IsCancelled)
+                        { 
+                            <hr class="mt-4" />
+                            <h4 class="mt-3">Notas Clínicas <i class="bi bi-journal-medical"></i></h4>
+                            <form method="post" asp-page-handler="SaveNotes" asp-route-id="@Model.Appointment.Id">
+                                <div class="mb-3">
+                                    <textarea asp-for="Appointment.ClinicalNotes" class="form-control" rows="5" placeholder="Ingrese aquí las notas clínicas..."></textarea>
+                                    <span asp-validation-for="Appointment.ClinicalNotes" class="text-danger"></span>
+                                </div>
+                                <button type="submit" class="btn btn-primary"><i class="bi bi-save"></i> Guardar Notas</button>
                             </form>
-                        }
-                        @* --- END: Cancel Button (Details View) --- *@
 
-                        @* --- START: Doctor Propose Reschedule Button (Details View) --- *@
-                        @if (User.IsInRole("Doctor") && !Model.Appointment.IsCompleted && !Model.Appointment.IsCancelled && Model.Appointment.AppointmentDateTime >= DateTime.Now && !Model.Appointment.RescheduleRequested && !Model.Appointment.DoctorProposedReschedule)
-                        {
-                             <a asp-page="/Doctor/ProposeDoctorReschedule" asp-route-id="@Model.Appointment.Id" class="btn btn-outline-primary me-2" title="Proponer nuevo horario al paciente">
-                                 <i class="bi bi-arrow-repeat"></i> Proponer Reag.
-                             </a>
-                        }
-                        @* --- END: Doctor Propose Reschedule Button (Details View) --- *@
+                            <div class="mt-3">
+                                <a asp-page="/Doctor/Prescribe" asp-route-appointmentId="@Model.Appointment.Id" class="btn btn-success"><i class="bi bi-file-earmark-medical"></i> Crear Prescripción para esta Cita</a>
+                            </div>
 
-                        @if(User.IsInRole("Admin"))
-                        {
-                            <a asp-page="./Edit" asp-route-id="@Model.Appointment.Id" class="btn btn-warning me-2"><i class="bi bi-pencil-square"></i> Editar Cita</a>
+                            <!-- Sección SOLO para Botones Confirmar/Completar Doctor -->
+                            <hr /> @* Add separator *@
+                            <div class="mb-3">
+                                @if (!Model.Appointment.IsConfirmed && !Model.Appointment.IsCompleted)
+                                {
+                                    <form method="post" asp-page-handler="Confirm" asp-route-id="@Model.Appointment.Id" class="d-inline">
+                                        <button type="submit" class="btn btn-info">Confirmar Cita</button>
+                                    </form>
+                                }
+
+                                @if (Model.Appointment.IsConfirmed && !Model.Appointment.IsCompleted)
+                                {
+                                    <form method="post" asp-page-handler="Complete" asp-route-id="@Model.Appointment.Id" class="d-inline">
+                                        <button type="submit" class="btn btn-dark">Marcar como Completada</button>
+                                    </form>
+                                }
+                                
+                                @* Botón para Marcar No Presentó *@
+                                @if (Model.Appointment.AppointmentDateTime < DateTime.Now && Model.Appointment.IsConfirmed && !Model.Appointment.IsCompleted && !Model.Appointment.WasNoShow)
+                                {
+                                    <form method="post" asp-page-handler="MarkNoShow" asp-route-id="@Model.Appointment.Id" class="d-inline ms-2">
+                                        <button type="submit" class="btn btn-outline-danger">Marcar No Presentó</button>
+                                    </form>
+                                }
+                            </div>
+                            <!-- Fin Sección para Confirmar/Completar Cita -->
                         }
+                        else
+                        { 
+                            <hr class="mt-4" />
+                            <div class="alert alert-warning" role="alert">
+                                <i class="bi bi-exclamation-circle-fill"></i> Esta cita ha sido cancelada. No se pueden realizar más acciones.
+                            </div>
+                        } 
+                    } @* <<< Closing brace for @if (User.IsInRole("Doctor")) *@
+
+                    @* --- Sección de Acciones del Paciente --- *@
+                    @if (User.IsInRole("Paciente"))
+                    {
+                        @if (!Model.Appointment.IsCompleted && 
+                             !Model.Appointment.IsCancelled && 
+                             Model.Appointment.AppointmentDateTime >= DateTime.Now && 
+                             !Model.Appointment.RescheduleRequested && 
+                             !Model.Appointment.DoctorProposedReschedule)
+                        {
+                             <hr />
+                             <div class="mb-3">
+                                 <form method="post" asp-page-handler="RequestReschedule" asp-route-id="@Model.Appointment.Id" class="d-inline">
+                                    <button type="submit" class="btn btn-outline-warning">Solicitar Reagendamiento</button>
+                                 </form>
+                             </div>
+                        }
+                    }
+                    @* --- Fin Sección Paciente --- *@
+                </div> @* End of card-body containing main details and patient actions *@
+                <div class="card-footer bg-light">
+                    <div class="d-flex justify-content-between align-items-center">
+                        <div> @* Action Buttons on the left/center *@
+                            @* --- START: Cancel Button (Details View) --- *@
+                            @if (!Model.Appointment.IsCompleted && !Model.Appointment.IsCancelled && (User.IsInRole("Paciente") || User.IsInRole("Doctor") || User.IsInRole("Admin")))
+                            {
+                                <form method="post" asp-page-handler="CancelAppointment" asp-route-id="@Model.Appointment.Id" class="d-inline me-2"
+                                      onsubmit="return confirm('¿Está seguro de que desea cancelar esta cita? Esta acción no se puede deshacer.');">
+                                    <button type="submit" class="btn btn-danger">
+                                        <i class="bi bi-x-circle"></i> Cancelar Cita
+                                    </button>
+                                </form>
+                            }
+                            @* --- END: Cancel Button (Details View) --- *@
+
+                            @* --- START: Doctor Propose Reschedule Button (Details View) --- *@
+                            @if (User.IsInRole("Doctor") && !Model.Appointment.IsCompleted && !Model.Appointment.IsCancelled && Model.Appointment.AppointmentDateTime >= DateTime.Now && !Model.Appointment.RescheduleRequested && !Model.Appointment.DoctorProposedReschedule)
+                            {
+                                 <a asp-page="/Doctor/ProposeDoctorReschedule" asp-route-id="@Model.Appointment.Id" class="btn btn-outline-primary me-2" title="Proponer nuevo horario al paciente">
+                                     <i class="bi bi-arrow-repeat"></i> Proponer Reag.
+                                 </a>
+                            }
+                            @* --- END: Doctor Propose Reschedule Button (Details View) --- *@
+
+                            @if(User.IsInRole("Admin"))
+                            {
+                                <a asp-page="./Edit" asp-route-id="@Model.Appointment.Id" class="btn btn-warning me-2"><i class="bi bi-pencil-square"></i> Editar Cita</a>
+                            }
+                        </div>
+                        <div> @* Back Button on the right *@
+                            @if (User.IsInRole("Doctor"))
+                            {
+                                <a asp-page="/Doctor/Agenda" class="btn btn-secondary"><i class="bi bi-arrow-left-circle"></i> Volver a la Agenda</a>
+                            }
+                            else // Patient or Admin
+                            {
+                                <a asp-page="/Appointments/Index" class="btn btn-secondary"><i class="bi bi-arrow-left-circle"></i> Volver al Listado</a>
+                            }
+                        </div>
                     </div>
-                    <div> @* Back Button on the right *@
-                        @if (User.IsInRole("Doctor"))
-                        {
-                            <a asp-page="/Doctor/Agenda" class="btn btn-secondary"><i class="bi bi-arrow-left-circle"></i> Volver a la Agenda</a>
-                        }
-                        else // Patient or Admin
-                        {
-                            <a asp-page="/Appointments/Index" class="btn btn-secondary"><i class="bi bi-arrow-left-circle"></i> Volver al Listado</a>
-                        }
-                    </div>
-                </div>
-            </div> @* End of card-footer *@
-        </div> @* End of card *@
-    </div> @* End of col-md-9 *@
-</div> @* End of row *@
+                </div> @* End of card-footer *@
+            </div> @* End of card *@
+        </div> @* End of col-md-10 col-lg-8 *@
+    </div> @* End of row *@
+</div> @* End of container *@
 
 @section Scripts {
     @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}

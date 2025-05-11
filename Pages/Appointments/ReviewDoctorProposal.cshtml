@@ -5,41 +5,45 @@
     ViewData["Title"] = "Revisar Propuesta de Reagendamiento del Médico";
 }
 
-<div class="row justify-content-center">
-    <div class="col-md-8">
-        <div class="card shadow-sm">
-            <div class="card-header bg-info text-white">
-                <h3 class="mb-0"><i class="bi bi-question-circle-fill"></i> @ViewData["Title"]</h3>
-            </div>
-            <div class="card-body">
-                @if (Model.AppointmentToReview != null)
-                {
-                    <p>El médico ha propuesto un nuevo horario para su cita con ID: <strong>@Model.AppointmentToReview.Id</strong>.</p>
-                    <p>Fecha Original: <strong>@Model.CurrentDateTime</strong></p>
-                    <p>Nueva Fecha Propuesta por el Médico: <strong class="text-success">@Model.ProposedDateTime</strong></p>
-                    <p>Motivo del Médico: <em>@Model.AppointmentToReview.DoctorRescheduleReason</em></p>
-                    <hr />
+<div class="container mt-5">
+    <div class="row justify-content-center">
+        <div class="col-md-8 col-lg-6">
+            <div class="card shadow-sm">
+                <div class="card-header bg-success text-white text-center">
+                    <h4 class="my-0 font-weight-normal">
+                        <i class="bi bi-calendar-question-fill me-2"></i>Revisar Propuesta de Reagendamiento
+                    </h4>
+                </div>
+                <div class="card-body">
+                    @if (Model.AppointmentToReview != null)
+                    {
+                        <p>El médico ha propuesto un nuevo horario para su cita con ID: <strong>@Model.AppointmentToReview.Id</strong>.</p>
+                        <p>Fecha Original: <strong>@Model.CurrentDateTime</strong></p>
+                        <p>Nueva Fecha Propuesta por el Médico: <strong class="text-success">@Model.ProposedDateTime</strong></p>
+                        <p>Motivo del Médico: <em>@Model.AppointmentToReview.DoctorRescheduleReason</em></p>
+                        <hr />
 
-                    <form method="post">
-                        <input type="hidden" asp-for="Id" /> @* The Id property is correctly bound from the route and available for post *@
-                        <div asp-validation-summary="ModelOnly" class="text-danger mb-3"></div>
-                        
-                        <p class="fw-semibold">¿Desea aceptar este nuevo horario?</p>
+                        <form method="post">
+                            <input type="hidden" asp-for="Id" /> @* The Id property is correctly bound from the route and available for post *@
+                            <div asp-validation-summary="ModelOnly" class="text-danger mb-3"></div>
+                            
+                            <p class="fw-semibold">¿Desea aceptar este nuevo horario?</p>
 
-                        <div class="card-footer bg-light text-center"> @* Centered buttons for this decision page *@
-                            <button type="submit" asp-page-handler="Confirm" class="btn btn-success me-2"><i class="bi bi-check-circle-fill"></i> Aceptar Propuesta</button>
-                            <button type="submit" asp-page-handler="Reject" class="btn btn-danger"><i class="bi bi-x-circle-fill"></i> Rechazar Propuesta</button>
+                            <div class="card-footer bg-light text-center"> @* Centered buttons for this decision page *@
+                                <button type="submit" asp-page-handler="Confirm" class="btn btn-success me-2"><i class="bi bi-check-circle-fill"></i> Aceptar Propuesta</button>
+                                <button type="submit" asp-page-handler="Reject" class="btn btn-danger"><i class="bi bi-x-circle-fill"></i> Rechazar Propuesta</button>
+                            </div>
+                        </form>
+                    }
+                    else
+                    {
+                        <div class="alert alert-warning" role="alert">
+                            No se encontró la información de la cita o la propuesta de reagendamiento.
                         </div>
-                    </form>
-                }
-                else
-                {
-                    <div class="alert alert-warning" role="alert">
-                        No se encontró la información de la cita o la propuesta de reagendamiento.
-                    </div>
-                    <a asp-page="./Index" class="btn btn-primary"><i class="bi bi-arrow-left-circle"></i> Volver a Mis Citas</a>
-                }
-            </div> @* End card-body *@
-        </div> @* End card *@
-    </div> @* End col *@
-</div> @* End row *@ 
+                        <a asp-page="./Index" class="btn btn-primary"><i class="bi bi-arrow-left-circle"></i> Volver a Mis Citas</a>
+                    }
+                </div> @* End card-body *@
+            </div> @* End card *@
+        </div> @* End col *@
+    </div> @* End row *@
+</div> @* End container *@ 

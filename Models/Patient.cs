@@ -2,6 +2,8 @@ using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+using CitasEPS.Models.Enums;
+
 namespace CitasEPS.Models
 {
     public class Patient
@@ -25,6 +27,10 @@ namespace CitasEPS.Models
         [StringLength(20)]
         [Display(Name = "Documento de Identidad")]
         public string? DocumentId { get; set; }
+
+        [Required(ErrorMessage = "El género es requerido.")]
+        [Display(Name = "Género")]
+        public Gender Gender { get; set; }
 
         [Required(ErrorMessage = "La fecha de nacimiento es requerida.")]
         [DataType(DataType.Date)]

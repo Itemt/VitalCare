@@ -1,0 +1,100 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1920" height="1080" viewBox="0 0 1920 1080">
+  <defs>
+    <linearGradient id="heroGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#103c60" />
+      <stop offset="100%" stop-color="#051f35" />
+    </linearGradient>
+    
+    <!-- Subtle Grid Pattern -->
+    <pattern id="grid" width="40" height="40" patternUnits="userSpaceOnUse">
+      <path d="M 40 0 L 0 0 0 40" fill="none" stroke="#ffffff" stroke-width="0.5" opacity="0.07"/>
+    </pattern>
+    
+    <!-- Pulse Wave Definition -->
+    <g id="pulse">
+      <path d="M0,20 L15,20 L20,5 L25,35 L30,20 L35,20 L40,10 L45,30 L50,20 L100,20" 
+            fill="none" stroke="#4dc9fe" stroke-width="1.5" opacity="0.3"/>
+    </g>
+  </defs>
+  
+  <!-- Main Background -->
+  <rect width="100%" height="100%" fill="url(#heroGradient)" />
+  
+  <!-- Grid Pattern -->
+  <rect width="100%" height="100%" fill="url(#grid)" />
+  
+  <!-- Decorative Elements -->
+  <circle cx="0" cy="1080" r="700" fill="#0066aa" opacity="0.04" />
+  <circle cx="1920" cy="0" r="500" fill="#0066aa" opacity="0.04" />
+  
+  <!-- Abstract Wave Patterns -->
+  <path d="M0,300 Q480,250 960,300 T1920,300" stroke="#0099ff" stroke-width="2" opacity="0.1" fill="none" />
+  <path d="M0,330 Q480,380 960,330 T1920,330" stroke="#0099ff" stroke-width="1.5" opacity="0.07" fill="none" />
+  <path d="M0,360 Q480,310 960,360 T1920,360" stroke="#0099ff" stroke-width="1" opacity="0.05" fill="none" />
+  
+  <!-- Pulse Line Animation Effect (multiple instances) -->
+  <g transform="translate(100, 700)">
+    <use href="#pulse" />
+  </g>
+  <g transform="translate(300, 750)">
+    <use href="#pulse" />
+  </g>
+  <g transform="translate(600, 720)">
+    <use href="#pulse" />
+  </g>
+  <g transform="translate(900, 680)">
+    <use href="#pulse" />
+  </g>
+  <g transform="translate(1200, 730)">
+    <use href="#pulse" />
+  </g>
+  <g transform="translate(1500, 710)">
+    <use href="#pulse" />
+  </g>
+  
+  <!-- Abstract Medical Symbols -->
+  <g opacity="0.1">
+    <!-- Caduceus-inspired symbol -->
+    <circle cx="1700" cy="200" r="40" fill="#fff" />
+    <path d="M1700,160 L1700,240" stroke="#fff" stroke-width="6" />
+    <path d="M1680,180 Q1700,150 1720,180 Q1740,210 1720,240 Q1700,270 1680,240 Q1660,210 1680,180" 
+          fill="none" stroke="#fff" stroke-width="2" />
+    <path d="M1720,180 Q1700,150 1680,180 Q1660,210 1680,240 Q1700,270 1720,240 Q1740,210 1720,180" 
+          fill="none" stroke="#fff" stroke-width="2" />
+  </g>
+  
+  <!-- Abstract DNA Helix -->
+  <g opacity="0.07">
+    <path d="M200,100 Q250,150 300,100 Q350,50 400,100 Q450,150 500,100" stroke="#fff" stroke-width="3" fill="none" />
+    <path d="M200,200 Q250,150 300,200 Q350,250 400,200 Q450,150 500,200" stroke="#fff" stroke-width="3" fill="none" />
+    
+    <line x1="220" y1="120" x2="220" y2="180" stroke="#fff" stroke-width="1.5" />
+    <line x1="260" y1="130" x2="260" y2="170" stroke="#fff" stroke-width="1.5" />
+    <line x1="300" y1="120" x2="300" y2="180" stroke="#fff" stroke-width="1.5" />
+    <line x1="340" y1="130" x2="340" y2="170" stroke="#fff" stroke-width="1.5" />
+    <line x1="380" y1="120" x2="380" y2="180" stroke="#fff" stroke-width="1.5" />
+    <line x1="420" y1="130" x2="420" y2="170" stroke="#fff" stroke-width="1.5" />
+    <line x1="460" y1="120" x2="460" y2="180" stroke="#fff" stroke-width="1.5" />
+  </g>
+  
+  <!-- Subtle Particle Effect -->
+  <g opacity="0.3">
+    <circle cx="300" cy="400" r="2" fill="#4dc9fe" />
+    <circle cx="350" cy="420" r="1.5" fill="#4dc9fe" />
+    <circle cx="380" cy="390" r="1" fill="#4dc9fe" />
+    <circle cx="420" cy="430" r="2" fill="#4dc9fe" />
+    <circle cx="450" cy="410" r="1" fill="#4dc9fe" />
+    
+    <circle cx="1500" cy="300" r="2" fill="#4dc9fe" />
+    <circle cx="1550" cy="320" r="1.5" fill="#4dc9fe" />
+    <circle cx="1580" cy="290" r="1" fill="#4dc9fe" />
+    <circle cx="1620" cy="330" r="2" fill="#4dc9fe" />
+    <circle cx="1650" cy="310" r="1" fill="#4dc9fe" />
+    
+    <circle cx="800" cy="200" r="2" fill="#4dc9fe" />
+    <circle cx="850" cy="220" r="1.5" fill="#4dc9fe" />
+    <circle cx="880" cy="190" r="1" fill="#4dc9fe" />
+    <circle cx="920" cy="230" r="2" fill="#4dc9fe" />
+    <circle cx="950" cy="210" r="1" fill="#4dc9fe" />
+  </g>
+</svg> 

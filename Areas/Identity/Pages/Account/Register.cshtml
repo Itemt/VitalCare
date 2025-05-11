@@ -1,5 +1,6 @@
 ﻿@page
 @model RegisterModel
+@using CitasEPS.Models.Enums
 @{
     ViewData["Title"] = "Registrarse";
 }
@@ -31,6 +32,20 @@
                                     <span asp-validation-for="Input.LastName" class="text-danger"></span>
                                 </div>
                             </div>
+                        </div>
+
+                        <div class="form-floating mb-3">
+                            <input asp-for="Input.DocumentId" class="form-control" placeholder="Documento de Identidad" />
+                            <label asp-for="Input.DocumentId"></label>
+                            <span asp-validation-for="Input.DocumentId" class="text-danger"></span>
+                        </div>
+
+                        <div class="form-floating mb-3">
+                            <select asp-for="Input.Gender" class="form-select" asp-items="Html.GetEnumSelectList<Gender>()">
+                                <option selected disabled value="">Seleccione Género...</option>
+                            </select>
+                            <label asp-for="Input.Gender"></label>
+                            <span asp-validation-for="Input.Gender" class="text-danger"></span>
                         </div>
 
                         <div class="form-floating mb-3">

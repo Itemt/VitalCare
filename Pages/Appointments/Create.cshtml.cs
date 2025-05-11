@@ -11,6 +11,7 @@ using Microsoft.AspNetCore.Authorization; // Add for authorization
 using Microsoft.EntityFrameworkCore; // Required for ToListAsync
 using Microsoft.AspNetCore.Identity; // Required for UserManager
 using Microsoft.Extensions.Logging;
+using CitasEPS.Services; // <<< Add this using
 
 namespace CitasEPS.Pages.Appointments
 {
@@ -20,12 +21,14 @@ namespace CitasEPS.Pages.Appointments
         private readonly CitasEPS.Data.ApplicationDbContext _context;
         private readonly UserManager<User> _userManager; // Inject UserManager
         private readonly ILogger<CreateModel> _logger;
+        private readonly IAppointmentPolicyService _appointmentPolicyService; // <<< Inject service
 
-        public CreateModel(CitasEPS.Data.ApplicationDbContext context, UserManager<User> userManager, ILogger<CreateModel> logger)
+        public CreateModel(CitasEPS.Data.ApplicationDbContext context, UserManager<User> userManager, ILogger<CreateModel> logger, IAppointmentPolicyService appointmentPolicyService)
         {
             _context = context;
             _userManager = userManager;
             _logger = logger;
+            _appointmentPolicyService = appointmentPolicyService; // <<< Assign service
         }
 
         // Store the logged-in patient's ID and name
@@ -156,26 +159,12 @@ namespace CitasEPS.Pages.Appointments
             // --- END: Working Hours Validation ---
 
             // --- START: Patient Weekly Limit Validation (Max 2 per week) ---
+            // The existing custom logic here will be replaced by the service call
             if (ModelState.IsValid) // Only proceed if previous validations passed
             {
-                DayOfWeek firstDayOfWeek = DayOfWeek.Monday; // Assuming week starts on Monday
-                DateTime startDate = Appointment.AppointmentDateTime.Date;
-                while (startDate.DayOfWeek != firstDayOfWeek)
+                if (!_appointmentPolicyService.CanPatientCreateAppointment(patient.Id, Appointment.AppointmentDateTime, out string reason))
                 {
-                    startDate = startDate.AddDays(-1);
-                }
-                DateTime endDate = startDate.AddDays(7);
-
-                var appointmentsInWeek = await _context.Appointments
-                    .Where(a => a.PatientId == Appointment.PatientId &&
-                                // No need to filter by status, count all
-                                a.AppointmentDateTime >= startDate &&
-                                a.AppointmentDateTime < endDate)
-                    .CountAsync();
-
-                if (appointmentsInWeek >= 2)
-                {
-                    ModelState.AddModelError("Appointment.AppointmentDateTime", "El paciente ya tiene 2 citas agendadas para esta semana. No se pueden agendar más.");
+                    ModelState.AddModelError("Appointment.AppointmentDateTime", reason);
                 }
             }
             // --- END: Patient Weekly Limit Validation ---

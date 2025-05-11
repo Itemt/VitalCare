@@ -6,77 +6,81 @@
     var patientName = ViewData["PatientName"] as string ?? "Paciente Desconocido";
 }
 
-<div class="row justify-content-center">
-    <div class="col-md-8"> @* Adjusted for a typical form width *@
-        <div class="card shadow-sm">
-            <div class="card-header bg-primary text-white">
-                <h3 class="mb-0"><i class="bi bi-calendar-plus-fill"></i> @ViewData["Title"]</h3>
-            </div>
-            <div class="card-body">
-                <h4 class="card-title mb-3">Agendando cita para: <span class="text-primary fw-semibold">@patientName</span></h4>
-                <hr class="mb-4">
-                <form method="post">
-                    <div asp-validation-summary="ModelOnly" class="text-danger mb-3"></div>
+<div class="container mt-5">
+    <div class="row justify-content-center">
+        <div class="col-md-8 col-lg-6">
+            <div class="card shadow-sm">
+                <div class="card-header bg-success text-white text-center">
+                    <h4 class="my-0 font-weight-normal">
+                        <i class="bi bi-calendar-plus-fill me-2"></i>Agendar Nueva Cita
+                    </h4>
+                </div>
+                <div class="card-body">
+                    <h4 class="card-title mb-3">Agendando cita para: <span class="text-success fw-semibold">@patientName</span></h4>
+                    <hr class="mb-4">
+                    <form method="post">
+                        <div asp-validation-summary="ModelOnly" class="text-danger mb-3"></div>
 
-                    @* Patient dropdown removed - Patient is automatically assigned based on login *@
-                    @* <div class="form-group mb-3">
-                        <label asp-for="Appointment.PatientId" class="control-label"></label>
-                        <select asp-for="Appointment.PatientId" class ="form-control" asp-items="Model.PatientNameSL">
-                            <option value="">-- Seleccione Paciente --</option>
-                        </select>
-                        <span asp-validation-for="Appointment.PatientId" class="text-danger"></span>
-                    </div> *@
+                        @* Patient dropdown removed - Patient is automatically assigned based on login *@
+                        @* <div class="form-group mb-3">
+                            <label asp-for="Appointment.PatientId" class="control-label"></label>
+                            <select asp-for="Appointment.PatientId" class ="form-control" asp-items="Model.PatientNameSL">
+                                <option value="">-- Seleccione Paciente --</option>
+                            </select>
+                            <span asp-validation-for="Appointment.PatientId" class="text-danger"></span>
+                        </div> *@
 
-                    <div class="form-group mb-3">
-                        <label asp-for="SelectedSpecialtyId" class="form-label fw-semibold">Especialidad</label>
-                        <select id="specialtyDropdown" asp-for="SelectedSpecialtyId" class ="form-select" asp-items="Model.SpecialtySL">
-                            <option value="">-- Seleccione Especialidad --</option>
-                        </select>
-                        <span asp-validation-for="SelectedSpecialtyId" class="text-danger"></span>
-                    </div>
+                        <div class="form-group mb-3">
+                            <label asp-for="SelectedSpecialtyId" class="form-label fw-semibold">Especialidad</label>
+                            <select id="specialtyDropdown" asp-for="SelectedSpecialtyId" class ="form-select" asp-items="Model.SpecialtySL">
+                                <option value="">-- Seleccione Especialidad --</option>
+                            </select>
+                            <span asp-validation-for="SelectedSpecialtyId" class="text-danger"></span>
+                        </div>
 
-                    <div class="form-group mb-3">
-                        <label asp-for="Appointment.DoctorId" class="form-label fw-semibold">Médico</label>
-                         <select id="doctorDropdown" asp-for="Appointment.DoctorId" class ="form-select" asp-items='ViewData["DoctorNameSL"] as SelectList' disabled>
-                            <option value="">-- Seleccione Médico --</option>
-                         </select>
-                        <span asp-validation-for="Appointment.DoctorId" class="text-danger"></span>
-                    </div>
+                        <div class="form-group mb-3">
+                            <label asp-for="Appointment.DoctorId" class="form-label fw-semibold">Médico</label>
+                             <select id="doctorDropdown" asp-for="Appointment.DoctorId" class ="form-select" asp-items='ViewData["DoctorNameSL"] as SelectList' disabled>
+                                <option value="">-- Seleccione Médico --</option>
+                             </select>
+                            <span asp-validation-for="Appointment.DoctorId" class="text-danger"></span>
+                        </div>
 
-                    <div class="form-group mb-3">
-                        <label asp-for="Appointment.AppointmentDateTime" class="form-label fw-semibold">Fecha y Hora de la Cita</label>
-                        @*
-                         * Add min attribute with today's date/time in ISO format.
-                         * The specific format might depend on the datetimepicker library used,
-                         * but this is the standard HTML5 approach.
-                         *@ 
-                        <input asp-for="Appointment.AppointmentDateTime" class="form-control datetimepicker" placeholder="Seleccione fecha y hora"/>
-                        <span asp-validation-for="Appointment.AppointmentDateTime" class="text-danger"></span>
-                        <small class="form-text text-muted">Seleccione la fecha y hora deseada para la cita.</small>
-                    </div>
+                        <div class="form-group mb-3">
+                            <label asp-for="Appointment.AppointmentDateTime" class="form-label fw-semibold">Fecha y Hora de la Cita</label>
+                            @*
+                             * Add min attribute with today's date/time in ISO format.
+                             * The specific format might depend on the datetimepicker library used,
+                             * but this is the standard HTML5 approach.
+                             *@ 
+                            <input asp-for="Appointment.AppointmentDateTime" class="form-control datetimepicker" placeholder="Seleccione fecha y hora"/>
+                            <span asp-validation-for="Appointment.AppointmentDateTime" class="text-danger"></span>
+                            <small class="form-text text-muted">Seleccione la fecha y hora deseada para la cita.</small>
+                        </div>
 
-                    <div class="form-group mb-3">
-                        <label asp-for="Appointment.Notes" class="form-label fw-semibold">Notas / Motivo de la Cita (Opcional)</label>
-                        <textarea asp-for="Appointment.Notes" class="form-control" rows="3" placeholder="Breve descripción del motivo de la consulta..."></textarea>
-                        <span asp-validation-for="Appointment.Notes" class="text-danger"></span>
-                    </div>
+                        <div class="form-group mb-3">
+                            <label asp-for="Appointment.Notes" class="form-label fw-semibold">Notas / Motivo de la Cita (Opcional)</label>
+                            <textarea asp-for="Appointment.Notes" class="form-control" rows="3" placeholder="Breve descripción del motivo de la consulta..."></textarea>
+                            <span asp-validation-for="Appointment.Notes" class="text-danger"></span>
+                        </div>
 
-                    @* IsConfirmed is false by default, usually confirmed later by admin/staff *@
-                    @*<div class="form-group form-check mb-3">
-                        <label class="form-check-label">
-                            <input class="form-check-input" asp-for="Appointment.IsConfirmed" /> @Html.DisplayNameFor(model => model.Appointment.IsConfirmed)
-                        </label>
-                    </div>*@
+                        @* IsConfirmed is false by default, usually confirmed later by admin/staff *@
+                        @*<div class="form-group form-check mb-3">
+                            <label class="form-check-label">
+                                <input class="form-check-input" asp-for="Appointment.IsConfirmed" /> @Html.DisplayNameFor(model => model.Appointment.IsConfirmed)
+                            </label>
+                        </div>*@
 
-                    <div class="card-footer bg-light text-end"> @* Actions in footer, aligned to end *@
-                        <a asp-page="./Index" class="btn btn-secondary me-2"><i class="bi bi-x-circle"></i> Cancelar</a>
-                        <button type="submit" class="btn btn-primary"><i class="bi bi-calendar-check"></i> Agendar Cita</button>
-                    </div>
-                </form>
-            </div> @* End card-body *@
-        </div> @* End card *@
-    </div> @* End col *@
-</div> @* End row *@
+                        <div class="card-footer bg-light text-end"> @* Actions in footer, aligned to end *@
+                            <a asp-page="./Index" class="btn btn-secondary me-2"><i class="bi bi-x-circle"></i> Cancelar</a>
+                            <button type="submit" class="btn btn-success"><i class="bi bi-calendar-check"></i> Agendar Cita</button>
+                        </div>
+                    </form>
+                </div> @* End card-body *@
+            </div> @* End card *@
+        </div> @* End col *@
+    </div> @* End row *@
+</div> @* End container *@
 
 @section Scripts {
     @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}

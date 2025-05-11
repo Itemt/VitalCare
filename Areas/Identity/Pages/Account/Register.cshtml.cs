@@ -21,6 +21,7 @@ using Microsoft.AspNetCore.WebUtilities;
 using Microsoft.Extensions.Logging;
 using CitasEPS.Data;
 using Microsoft.Extensions.Configuration;
+using CitasEPS.Models.Enums;
 
 namespace CitasEPS.Areas.Identity.Pages.Account
 {
@@ -96,6 +97,15 @@ namespace CitasEPS.Areas.Identity.Pages.Account
             [StringLength(100, ErrorMessage = "El campo Apellidos no puede exceder los 100 caracteres.")]
             public string LastName { get; set; }
 
+            [Required(ErrorMessage = "El campo Documento de Identidad es obligatorio.")]
+            [Display(Name = "Documento de Identidad")]
+            [StringLength(20, ErrorMessage = "El campo Documento de Identidad no puede exceder los 20 caracteres.")]
+            public string DocumentId { get; set; }
+
+            [Required(ErrorMessage = "El campo Género es obligatorio.")]
+            [Display(Name = "Género")]
+            public Gender Gender { get; set; }
+
             /// <summary>
             ///     Esta API soporta la infraestructura UI por defecto de ASP.NET Core Identity y no está pensada para ser usada
             ///     directamente desde tu código. Esta API puede cambiar o ser eliminada en futuras versiones.
@@ -155,6 +165,8 @@ namespace CitasEPS.Areas.Identity.Pages.Account
                 user.LastName = Input.LastName;
                 user.PhoneNumber = Input.PhoneNumber;
                 user.DateOfBirth = new DateTime(Input.DateOfBirth.Year, Input.DateOfBirth.Month, Input.DateOfBirth.Day, 0, 0, 0, DateTimeKind.Utc);
+                user.DocumentId = Input.DocumentId;
+                user.Gender = Input.Gender;
                 await _userStore.SetUserNameAsync(user, Input.Email, CancellationToken.None);
                 await _emailStore.SetEmailAsync(user, Input.Email, CancellationToken.None);
                 var result = await _userManager.CreateAsync(user, Input.Password);
@@ -182,7 +194,8 @@ namespace CitasEPS.Areas.Identity.Pages.Account
                         Email = Input.Email,
                         PhoneNumber = Input.PhoneNumber,
                         DateOfBirth = user.DateOfBirth, // Use the same UTC date
-                        DocumentId = null // DocumentId is now optional
+                        DocumentId = Input.DocumentId,
+                        Gender = Input.Gender
                     };
                     _context.Patients.Add(patient);
                     await _context.SaveChangesAsync(); // Save the new Patient to the database

@@ -62,6 +62,10 @@ builder.Services.AddDataProtection()
     .PersistKeysToFileSystem(new DirectoryInfo(keysFolder))
     .SetApplicationName("VitalCare"); // Sets a unique name for the app to isolate its keys
 
+// Register custom application services
+builder.Services.AddScoped<IDateTimeService, DateTimeService>();
+builder.Services.AddScoped<IAppointmentPolicyService, AppointmentPolicyService>();
+
 var app = builder.Build();
 
 // Aplicar migraciones automáticamente al inicio (recomendado en Desarrollo)
