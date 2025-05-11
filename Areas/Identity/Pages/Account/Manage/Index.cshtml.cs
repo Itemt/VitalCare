@@ -132,7 +132,8 @@ namespace CitasEPS.Areas.Identity.Pages.Account.Manage
 
             if (Input.DateOfBirth != user.DateOfBirth)
             {
-                user.DateOfBirth = Input.DateOfBirth;
+                // Ensure the new date is saved as UTC, preserving only the date part
+                user.DateOfBirth = new DateTime(Input.DateOfBirth.Year, Input.DateOfBirth.Month, Input.DateOfBirth.Day, 0, 0, 0, DateTimeKind.Utc);
                 profileUpdated = true;
             }
 
