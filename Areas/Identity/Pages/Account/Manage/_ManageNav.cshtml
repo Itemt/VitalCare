@@ -6,13 +6,21 @@
     var user = await UserManager.GetUserAsync(User);
     var email = user?.Email;
     var isEmailConfirmed = user != null && await UserManager.IsEmailConfirmedAsync(user);
+
+    var navCardHeaderClass = "bg-vitalcare-doctor text-white text-center"; // Default for Doctor
+    var navPillsClass = "manage-nav-pills"; // Default for Doctor
+    if (user != null && await UserManager.IsInRoleAsync(user, "Paciente"))
+    {
+        navCardHeaderClass = "bg-vitalcare-patient-profile-theme text-white text-center"; // Use vibrant green for Patient profile nav card header
+        navPillsClass = "manage-nav-pills-patient"; // Patient specific nav pills
+    }
 }
 
 <div class="card shadow-sm mb-3">
-    <div class="card-header bg-vitalcare-doctor text-white text-center">
+    <div class="card-header @navCardHeaderClass">
         <h5 class="mb-0 text-white text-shadow-custom">Navegación de Perfil</h5>
     </div>
-    <ul class="nav nav-pills flex-column p-2 manage-nav-pills">
+    <ul class="nav nav-pills flex-column p-2 @navPillsClass">
         <li class="nav-item">
             <a class="nav-link @ManageNavPages.IndexNavClass(ViewContext)" id="profile" asp-page="./Index">
                 <i class="bi bi-person-fill me-2"></i>Perfil

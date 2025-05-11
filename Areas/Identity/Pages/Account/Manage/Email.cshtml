@@ -3,8 +3,13 @@
 @{
     ViewData["Title"] = "Gestionar Correo Electrónico";
     ViewData["ActivePage"] = ManageNavPages.Email;
-    var cardHeaderClass = "bg-vitalcare-doctor text-white text-center"; // Consistent dark blue header
-    if (User.IsInRole("Paciente")) { cardHeaderClass = "bg-success text-white text-center"; } // Green for patient
+    var cardHeaderClass = "bg-vitalcare-doctor text-white text-center";
+    var buttonClass = "btn-vitalcare-dark"; // Default for doctor
+    if (User.IsInRole("Paciente")) 
+    {
+        cardHeaderClass = "bg-vitalcare-patient-profile-theme text-white text-center";
+        buttonClass = "btn-vitalcare-patient";
+    }
 }
 
 <div class="row justify-content-center">
@@ -45,7 +50,7 @@
                                 <label asp-for="Input.NewEmail" class="form-label">Nuevo Correo Electrónico</label>
                                 <span asp-validation-for="Input.NewEmail" class="text-danger"></span>
                             </div>
-                            <button id="change-email-button" type="submit" asp-page-handler="ChangeEmail" class="w-100 btn btn-lg btn-vitalcare-dark"><i class="bi bi-envelope-check-fill"></i> Cambiar Correo</button>
+                            <button id="change-email-button" type="submit" asp-page-handler="ChangeEmail" class="w-100 btn btn-lg @buttonClass"><i class="bi bi-envelope-check-fill"></i> Cambiar Correo</button>
                         </form>
                     </div>
                 </div>

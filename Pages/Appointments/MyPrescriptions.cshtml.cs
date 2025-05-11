@@ -35,8 +35,8 @@ namespace CitasEPS.Pages.Appointments
                 return RedirectToPage("/Index"); // Or appropriate error/login page
             }
 
-            // Find the patient associated with the logged-in user's email
-            var patient = await _context.Patients.FirstOrDefaultAsync(p => p.Email == user.Email);
+            // Find the patient associated with the logged-in user's ID
+            var patient = await _context.Patients.FirstOrDefaultAsync(p => p.UserId == user.Id);
 
             if (patient == null)
             {

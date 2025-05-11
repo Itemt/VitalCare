@@ -194,4 +194,39 @@ body.patient-body-bg .footer a:hover {
     color: #003366 !important; /* Dark blue text on hover */
 }
 
+/* Styles for the PATIENT manage profile navigation pills */
+.manage-nav-pills-patient .nav-link {
+    color: #73b845 !important; /* Vibrant green text for inactive links */
+    border-radius: 0.25rem;
+}
+
+.manage-nav-pills-patient .nav-link.active,
+.manage-nav-pills-patient .show > .nav-link {
+    background-color: #73b845 !important; /* Vibrant green background for active */
+    color: #fff !important; /* White text for active */
+}
+
+.manage-nav-pills-patient .nav-link:not(.active):hover {
+    background-color: #e3f0d9 !important; /* Light vibrant green hover for inactive */
+    color: #73b845 !important; /* Vibrant green text on hover */
+}
+
+/* Patient specific button for profile pages */
+.btn-vitalcare-patient {
+    background-color: #73b845 !important; /* Vibrant green for patient buttons */
+    border-color: #73b845 !important; /* Vibrant green for patient buttons */
+    color: #fff !important; /* White text on button */
+}
+
+.btn-vitalcare-patient:hover {
+    background-color: #62a037 !important; /* Darker vibrant green for hover */
+    border-color: #62a037 !important; /* Darker vibrant green for hover */
+    color: #fff !important;
+}
+
+/* Specific vibrant green background for patient profile card headers */
+.bg-vitalcare-patient-profile-theme {
+    background-color: #73b845 !important;
+}
+
 /* Default footer text colors are fine for the default light grey body background */
