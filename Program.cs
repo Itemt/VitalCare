@@ -21,6 +21,7 @@ builder.Services.AddDbContext<ApplicationDbContext>(options =>
 builder.Services.AddIdentity<User, IdentityRole<int>>(options => options.SignIn.RequireConfirmedAccount = true) // Usando nuestra clase User y especificando el tipo de Rol
     .AddEntityFrameworkStores<ApplicationDbContext>()
     .AddDefaultTokenProviders()
+    .AddRoles<IdentityRole<int>>()
     .AddClaimsPrincipalFactory<CustomUserClaimsPrincipalFactory>();
 
 // Registrar IEmailSender
