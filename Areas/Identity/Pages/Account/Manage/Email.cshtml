@@ -3,39 +3,54 @@
 @{
     ViewData["Title"] = "Gestionar Correo Electrónico";
     ViewData["ActivePage"] = ManageNavPages.Email;
+    var cardHeaderClass = "bg-vitalcare-doctor text-white text-center"; // Consistent dark blue header
+    if (User.IsInRole("Paciente")) { cardHeaderClass = "bg-success text-white text-center"; } // Green for patient
 }
 
-<h3>@ViewData["Title"]</h3>
-<partial name="_StatusMessage" for="StatusMessage" />
-<div class="row">
-    <div class="col-md-6">
-        <form id="email-form" method="post">
-            <div asp-validation-summary="All" class="text-danger" role="alert"></div>
-            @if (Model.IsEmailConfirmed)
-            {
-                <div class="form-floating mb-3 input-group">
-                    <input asp-for="Email" class="form-control" placeholder="Tu correo electrónico" disabled />
-                        <div class="input-group-append">
-                            <span class="h-100 input-group-text text-success font-weight-bold">✓</span>
-                        </div>
-                    <label asp-for="Email" class="form-label">Correo Electrónico</label>
-                </div>
-            }
-            else
-            {
-                <div class="form-floating mb-3">
-                    <input asp-for="Email" class="form-control" placeholder="Tu correo electrónico" disabled />
-                    <label asp-for="Email" class="form-label">Correo Electrónico</label>
-                    <button id="email-verification" type="submit" asp-page-handler="SendVerificationEmail" class="btn btn-link">Enviar correo de verificación</button>
-                </div>
-            }
-            <div class="form-floating mb-3">
-                <input asp-for="Input.NewEmail" class="form-control" autocomplete="email" aria-required="true" placeholder="Nuevo correo electrónico" />
-                <label asp-for="Input.NewEmail" class="form-label">Nuevo Correo Electrónico</label>
-                <span asp-validation-for="Input.NewEmail" class="text-danger"></span>
+<div class="row justify-content-center">
+    <div class="col-md-3">
+        <partial name="_ManageNav" />
+    </div>
+    <div class="col-md-9">
+        <div class="card shadow-sm">
+            <div class="card-header @cardHeaderClass">
+                 <h3 class="mb-0 text-white text-shadow-custom"><i class="bi bi-envelope-at-fill"></i> @ViewData["Title"]</h3>
             </div>
-            <button id="change-email-button" type="submit" asp-page-handler="ChangeEmail" class="w-100 btn btn-lg btn-primary">Cambiar correo electrónico</button>
-        </form>
+            <div class="card-body">
+                <partial name="_StatusMessage" for="StatusMessage" />
+                <div class="row">
+                    <div class="col-md-8 offset-md-2">
+                        <form id="email-form" method="post">
+                            <div asp-validation-summary="All" class="text-danger mb-3" role="alert"></div>
+                            @if (Model.IsEmailConfirmed)
+                            {
+                                <div class="form-floating mb-3 input-group">
+                                    <input asp-for="Email" class="form-control" placeholder="Tu correo electrónico" disabled />
+                                    <div class="input-group-append">
+                                        <span class="h-100 input-group-text text-success font-weight-bold">✓</span>
+                                    </div>
+                                    <label asp-for="Email" class="form-label">Correo Electrónico</label>
+                                </div>
+                            }
+                            else
+                            {
+                                <div class="form-floating mb-3">
+                                    <input asp-for="Email" class="form-control" placeholder="Tu correo electrónico" disabled />
+                                    <label asp-for="Email" class="form-label">Correo Electrónico</label>
+                                </div>
+                                <button id="email-verification" type="submit" asp-page-handler="SendVerificationEmail" class="btn btn-link mb-3">Enviar correo de verificación</button>
+                            }
+                            <div class="form-floating mb-3">
+                                <input asp-for="Input.NewEmail" class="form-control" autocomplete="email" aria-required="true" placeholder="Nuevo correo electrónico" />
+                                <label asp-for="Input.NewEmail" class="form-label">Nuevo Correo Electrónico</label>
+                                <span asp-validation-for="Input.NewEmail" class="text-danger"></span>
+                            </div>
+                            <button id="change-email-button" type="submit" asp-page-handler="ChangeEmail" class="w-100 btn btn-lg btn-vitalcare-dark"><i class="bi bi-envelope-check-fill"></i> Cambiar Correo</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
 </div>
 

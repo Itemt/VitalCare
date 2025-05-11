@@ -49,11 +49,11 @@ namespace CitasEPS.Pages.Appointments
                 UserRole = "Paciente";
                 _logger.LogInformation($"Loading appointments for Patient: {user.UserName} (ID: {user.Id})");
 
-                // --- FIX: Find Patient record using Email ---
-                var patient = await _context.Patients.FirstOrDefaultAsync(p => p.Email == user.Email); // Link User and Patient via Email
+                // --- FIX: Find Patient record using UserId ---
+                var patient = await _context.Patients.FirstOrDefaultAsync(p => p.UserId == user.Id); // Link User and Patient via UserId
                 if (patient != null)
                 {
-                    _logger.LogInformation($"Found matching Patient record (ID: {patient.Id}) for User {user.UserName} using email.");
+                    _logger.LogInformation($"Found matching Patient record (ID: {patient.Id}) for User {user.UserName} using UserId.");
                     Appointment = await _context.Appointments
                         .Where(a => a.PatientId == patient.Id) // Filter by the Patient's own ID
                         .Include(a => a.Doctor)
@@ -120,7 +120,7 @@ namespace CitasEPS.Pages.Appointments
             }
 
             // Verify the appointment belongs to the current patient
-            var patientRecord = await _context.Patients.FirstOrDefaultAsync(p => p.Email == user.Email);
+            var patientRecord = await _context.Patients.FirstOrDefaultAsync(p => p.UserId == user.Id);
             if (patientRecord == null || appointment.PatientId != patientRecord.Id)
             {
                 TempData["ErrorMessage"] = "No tiene permiso para modificar esta cita.";
@@ -173,7 +173,7 @@ namespace CitasEPS.Pages.Appointments
                 return RedirectToPage();
             }
 
-            var patient = await _context.Patients.FirstOrDefaultAsync(p => p.Email == user.Email);
+            var patient = await _context.Patients.FirstOrDefaultAsync(p => p.UserId == user.Id);
             if (patient == null)
             {
                 TempData["ErrorMessage"] = "Perfil de paciente no encontrado.";

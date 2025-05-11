@@ -9,10 +9,10 @@
 }
 
 <div class="card shadow-sm mb-3">
-    <div class="card-header bg-light">
-        <h5 class="mb-0">Navegación de Perfil</h5>
+    <div class="card-header bg-vitalcare-doctor text-white text-center">
+        <h5 class="mb-0 text-white text-shadow-custom">Navegación de Perfil</h5>
     </div>
-    <ul class="nav nav-pills flex-column p-2">
+    <ul class="nav nav-pills flex-column p-2 manage-nav-pills">
         <li class="nav-item">
             <a class="nav-link @ManageNavPages.IndexNavClass(ViewContext)" id="profile" asp-page="./Index">
                 <i class="bi bi-person-fill me-2"></i>Perfil
@@ -40,15 +40,5 @@
                 </a>
             </li>
         }
-        <li class="nav-item">
-            <a class="nav-link @ManageNavPages.TwoFactorAuthenticationNavClass(ViewContext)" id="two-factor" asp-page="./TwoFactorAuthentication">
-                <i class="bi bi-shield-lock-fill me-2"></i>Autenticación de dos factores
-            </a>
-        </li>
-        <li class="nav-item">
-            <a class="nav-link @ManageNavPages.PersonalDataNavClass(ViewContext)" id="personal-data" asp-page="./PersonalData">
-                <i class="bi bi-file-earmark-person-fill me-2"></i>Datos Personales
-            </a>
-        </li>
     </ul>
 </div>

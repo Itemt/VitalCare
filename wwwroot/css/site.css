@@ -159,4 +159,39 @@ body.patient-body-bg .footer a:hover {
     color: #157347; /* Darker green on hover */
 }
 
+/* Custom class for VitalCare Doctor navbar */
+.bg-vitalcare-doctor {
+    background-color: #003366 !important; /* Darker navy blue */
+    border-color: #003366 !important; /* Darker navy blue */
+}
+
+.btn-vitalcare-dark {
+    background-color: #003366 !important;
+    border-color: #003366 !important;
+    color: #fff !important; /* Ensure text is white */
+}
+
+.btn-vitalcare-dark:hover {
+    background-color: #002244 !important; /* A slightly darker shade for hover */
+    border-color: #002244 !important;
+    color: #fff !important;
+}
+
+/* Styles for the manage profile navigation pills */
+.manage-nav-pills .nav-link {
+    color: #003366 !important; /* Dark blue text for inactive links */
+    border-radius: 0.25rem; /* Match default Bootstrap pill radius */
+}
+
+.manage-nav-pills .nav-link.active,
+.manage-nav-pills .show > .nav-link {
+    background-color: #003366 !important; /* Dark blue background for active */
+    color: #fff !important; /* White text for active */
+}
+
+.manage-nav-pills .nav-link:not(.active):hover {
+    background-color: #e9ecef !important; /* Light grey hover for inactive */
+    color: #003366 !important; /* Dark blue text on hover */
+}
+
 /* Default footer text colors are fine for the default light grey body background */

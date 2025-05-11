@@ -124,12 +124,77 @@ namespace CitasEPS.Areas.Identity.Pages.Account.Manage
                     pageHandler: null,
                     values: new { area = "Identity", userId = userId, email = Input.NewEmail, code = code },
                     protocol: Request.Scheme);
+
+                string userName = user.FirstName ?? Input.NewEmail; // Use user's first name or new email as fallback
+                string emailSubject = "Confirma tu Cambio de Correo Electrónico en VitalCare";
+                string htmlMessageBody = $@"
+<!DOCTYPE html>
+<html lang=""es"">
+<head>
+    <meta charset=""UTF-8"">
+    <meta name=""viewport"" content=""width=device-width, initial-scale=1.0"">
+    <title>{emailSubject}</title>
+    <style>
+        body {{ font-family: Arial, sans-serif; margin: 0; padding: 0; background-color: #f4f4f4; color: #333333; }}
+        .email-wrapper {{ padding: 20px 0; }}
+        .container {{ max-width: 600px; margin: 0 auto; background-color: #ffffff; padding: 20px; border-radius: 8px; box-shadow: 0 0 15px rgba(0,0,0,0.1); }}
+        .header {{ text-align: center; padding-bottom: 20px; border-bottom: 1px solid #eeeeee; }}
+        .header h2 {{ color: #0d6efd; /* VitalCare primary color */ margin:0; font-size: 24px; }}
+        .content {{ padding: 25px 5px; line-height: 1.6; }}
+        .content p {{ margin-bottom: 18px; font-size: 16px; }}
+        .button-container {{ text-align: center; margin-top: 30px; margin-bottom: 30px; }}
+        .button {{
+            background-color: #0d6efd; /* VitalCare primary color */
+            color: #ffffff !important; 
+            padding: 14px 28px;
+            text-decoration: none;
+            border-radius: 6px;
+            font-weight: bold;
+            display: inline-block;
+            font-size: 16px;
+        }}
+        .link-alternative p {{ font-size: 0.9em; word-break: break-all; }}
+        .footer {{ text-align: center; padding-top: 20px; border-top: 1px solid #eeeeee; font-size: 0.9em; color: #777777; }}
+        .footer p {{ margin-bottom: 5px; }}
+    </style>
+</head>
+<body>
+    <div class=""email-wrapper"">
+    <div class=""container"">
+        <div class=""header"">
+            <svg width=""50px"" height=""50px"" viewBox=""0 0 32 32"" version=""1.1"" xmlns=""http://www.w3.org/2000/svg"" style=""fill:#0d6efd; margin-bottom:10px;"">
+                 <path d=""M23.6,0c-3.4,0-6.3,2.7-7.6,5.6C14.7,2.7,11.8,0,8.4,0C3.8,0,0,3.8,0,8.4c0,9.4,9.5,11.9,16,21.2 c6.1-9.3,16-12.1,16-21.2C32,3.8,28.2,0,23.6,0z""/>
+            </svg>
+            <h2>VitalCare</h2>
+        </div>
+        <div class=""content"">
+            <p>¡Hola {userName}!</p>
+            <p>Has solicitado cambiar la dirección de correo electrónico asociada a tu cuenta en VitalCare a <strong>{Input.NewEmail}</strong>.</p>
+            <p>Para confirmar este cambio, por favor haz clic en el siguiente botón:</p>
+            <div class=""button-container"">
+                <a href=""{HtmlEncoder.Default.Encode(callbackUrl)}"" class=""button"" style=""color: #ffffff !important;"">Confirmar Nuevo Correo</a>
+            </div>
+            <div class=""link-alternative"">
+                <p>Si el botón no funciona, también puedes copiar y pegar el siguiente enlace en la barra de direcciones de tu navegador:</p>
+                <p><a href=""{HtmlEncoder.Default.Encode(callbackUrl)}"" style=""color: #0d6efd;"">{HtmlEncoder.Default.Encode(callbackUrl)}</a></p>
+            </div>
+            <p>Si no solicitaste cambiar tu correo electrónico, por favor ignora este mensaje o contacta a nuestro soporte si tienes alguna preocupación.</p>
+        </div>
+        <div class=""footer"">
+            <p>&copy; {DateTime.Now.Year} VitalCare. Todos los derechos reservados.</p>
+            <p>Este es un mensaje automático, por favor no respondas directamente a este correo.</p>
+        </div>
+    </div>
+    </div>
+</body>
+</html>
+";
                 await _emailSender.SendEmailAsync(
                     Input.NewEmail,
-                    "Confirma tu correo electrónico",
-                    $"Por favor confirma tu cuenta <a href='{HtmlEncoder.Default.Encode(callbackUrl)}'>haciendo clic aquí</a>.");
+                    emailSubject, // Updated subject
+                    htmlMessageBody); // Use the HTML body
 
-                StatusMessage = "Enlace de confirmación para cambiar el correo electrónico enviado. Por favor, revisa tu correo.";
+                StatusMessage = "Enlace de confirmación para cambiar el correo electrónico enviado. Por favor, revisa tu nuevo correo electrónico.";
                 return RedirectToPage();
             }
 

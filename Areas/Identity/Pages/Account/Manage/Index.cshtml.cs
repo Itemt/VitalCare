@@ -47,6 +47,9 @@ namespace CitasEPS.Areas.Identity.Pages.Account.Manage
         [BindProperty]
         public InputModel Input { get; set; }
 
+        public bool IsPatient { get; set; }
+        public bool IsDoctor { get; set; }
+
         /// <summary>
         ///     This API supports the ASP.NET Core Identity default UI infrastructure and is not intended to be used
         ///     directly from your code. This API may change or be removed in future releases.
@@ -108,6 +111,10 @@ namespace CitasEPS.Areas.Identity.Pages.Account.Manage
             }
 
             await LoadAsync(user);
+
+            IsPatient = await _userManager.IsInRoleAsync(user, "Paciente");
+            IsDoctor = await _userManager.IsInRoleAsync(user, "Doctor");
+
             return Page();
         }
 

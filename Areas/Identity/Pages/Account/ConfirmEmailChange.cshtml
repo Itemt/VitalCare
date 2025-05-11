@@ -1,8 +1,59 @@
 ﻿@page
 @model ConfirmEmailChangeModel
 @{
-    ViewData["Title"] = "Confirm email change";
+    ViewData["Title"] = "Confirmación de Cambio de Correo";
+    // Determine card header class based on success or error for StatusMessage
+    bool isSuccess = Model.StatusMessage != null && Model.StatusMessage.ToLower().Contains("gracias"); // Simple check
+    var cardHeaderClass = isSuccess ? "bg-success text-white" : "bg-danger text-white";
+    var iconClass = isSuccess ? "bi-check-circle-fill" : "bi-exclamation-triangle-fill";
 }
 
-<h1>@ViewData["Title"]</h1>
-<partial name="_StatusMessage" model="Model.StatusMessage" />
+<div class="container mt-5">
+    <div class="row justify-content-center">
+        <div class="col-md-8 col-lg-6">
+            <div class="card shadow-lg">
+                <div class="card-header @cardHeaderClass text-center">
+                    <h2 class="my-2"><i class="bi @iconClass me-2"></i> @ViewData["Title"]</h2>
+                </div>
+                <div class="card-body p-4 text-center">
+                    @if (Model.StatusMessage != null)
+                    {
+                        <p class="lead">@Model.StatusMessage</p>
+                    }
+                    else
+                    {
+                        <p class="lead">Procesando tu solicitud de cambio de correo electrónico...</p>
+                    }
+
+                    @if (isSuccess)
+                    {
+                        <div class="mt-4">
+                            <p>Tu correo electrónico ha sido actualizado.</p>
+                            <a asp-area="Identity" asp-page="/Account/Manage/Index" class="btn btn-primary">
+                                <i class="bi bi-person-fill"></i> Ir a mi Perfil
+                            </a>
+                             <a asp-page="/Index" class="btn btn-secondary">
+                                <i class="bi bi-house-door-fill"></i> Volver al Inicio
+                            </a>
+                        </div>
+                    }
+                    else
+                    {
+                        <div class="mt-4">
+                            <p>Si el problema persiste, por favor, intenta solicitar el cambio de correo nuevamente o contacta con el soporte.</p>
+                            <a asp-area="Identity" asp-page="/Account/Manage/Email" class="btn btn-warning">
+                                <i class="bi bi-envelope-at-fill"></i> Volver a Gestionar Correo
+                            </a>
+                            <a asp-page="/Index" class="btn btn-secondary">
+                                <i class="bi bi-house-door-fill"></i> Volver al Inicio
+                            </a>
+                        </div>
+                    }
+                </div>
+                <div class="card-footer text-center bg-light">
+                    <p class="mb-0 text-muted small">VitalCare - Cuidando tu Bienestar</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

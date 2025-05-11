@@ -17,6 +17,26 @@
       "PackagePath": "staticwebassets\\favicon.svg"
     },
     {
+      "Id": "C:\\Users\\CristianPC\\Desktop\\vitalcare\\wwwroot\\images\\admin-dashboard-bg.svg",
+      "PackagePath": "staticwebassets\\images\\admin-dashboard-bg.svg"
+    },
+    {
+      "Id": "C:\\Users\\CristianPC\\Desktop\\vitalcare\\wwwroot\\images\\doctor-dashboard-bg-subtle.svg",
+      "PackagePath": "staticwebassets\\images\\doctor-dashboard-bg-subtle.svg"
+    },
+    {
+      "Id": "C:\\Users\\CristianPC\\Desktop\\vitalcare\\wwwroot\\images\\doctor-dashboard-bg.svg",
+      "PackagePath": "staticwebassets\\images\\doctor-dashboard-bg.svg"
+    },
+    {
+      "Id": "C:\\Users\\CristianPC\\Desktop\\vitalcare\\wwwroot\\images\\hero-background.svg",
+      "PackagePath": "staticwebassets\\images\\hero-background.svg"
+    },
+    {
+      "Id": "C:\\Users\\CristianPC\\Desktop\\vitalcare\\wwwroot\\images\\patient-dashboard-bg.svg",
+      "PackagePath": "staticwebassets\\images\\patient-dashboard-bg.svg"
+    },
+    {
       "Id": "C:\\Users\\CristianPC\\Desktop\\vitalcare\\wwwroot\\js\\passwordToggle.js",
       "PackagePath": "staticwebassets\\js\\passwordToggle.js"
     },

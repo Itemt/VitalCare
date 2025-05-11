@@ -1,6 +1,6 @@
 ﻿@page
 @model IndexModel
-@using CitasEPS.Models.Enums // Required for Gender enum
+@using CitasEPS.Models.Enums
 @{
     ViewData["Title"] = "Perfil de Usuario";
     ViewData["ActivePage"] = ManageNavPages.Index;
@@ -12,8 +12,13 @@
     </div>
     <div class="col-md-9">
         <div class="card shadow-sm">
-            <div class="card-header bg-primary text-white">
-                <h3 class="mb-0"><i class="bi bi-person-circle"></i> @ViewData["Title"]</h3>
+            @{ 
+                var cardHeaderClass = "bg-secondary text-white"; // Default
+                if (Model.IsPatient) { cardHeaderClass = "bg-success text-white"; }
+                else if (Model.IsDoctor) { cardHeaderClass = "bg-vitalcare-doctor text-white"; }
+            }
+            <div class="card-header @cardHeaderClass text-center">
+                <h3 class="mb-0 text-white text-shadow-custom"><i class="bi bi-person-circle"></i> @ViewData["Title"]</h3>
             </div>
             <div class="card-body">
                 <partial name="_StatusMessage" model="Model.StatusMessage" />
@@ -79,7 +84,7 @@
                     </div>
                     
                     <div class="card-footer bg-light text-end mt-4">
-                         <button id="update-profile-button" type="submit" class="btn btn-primary"><i class="bi bi-save"></i> Guardar Cambios</button>
+                         <button id="update-profile-button" type="submit" class="btn btn-vitalcare-dark"><i class="bi bi-save"></i> Guardar Cambios</button>
                     </div>
                 </form>
             </div> @* End card-body *@
