@@ -29,6 +29,9 @@ namespace CitasEPS.Pages.Doctor
         public IList<Models.Appointment> Appointments { get; set; } = new List<Models.Appointment>();
         public Models.Doctor? CurrentDoctor { get; set; }
 
+        [BindProperty(SupportsGet = true)]
+        public DateTime? SelectedDate { get; set; }
+
         public async Task<IActionResult> OnGetAsync()
         {
             var user = await _userManager.GetUserAsync(User);
@@ -49,9 +52,25 @@ namespace CitasEPS.Pages.Doctor
             }
 
             // Obtener las citas asignadas a este doctor, incluyendo datos del paciente
-            Appointments = await _context.Appointments
-                .Where(a => a.DoctorId == CurrentDoctor.Id)
-                .Include(a => a.Patient) // Incluir datos del paciente
+            IQueryable<Models.Appointment> query = _context.Appointments.AsQueryable();
+
+            // Filter by current doctor
+            query = query.Where(a => a.DoctorId == CurrentDoctor.Id);
+
+            if (SelectedDate.HasValue)
+            {
+                _logger.LogInformation($"Filtering agenda for doctor {CurrentDoctor.Id} for date {SelectedDate.Value.ToShortDateString()}");
+                DateTime startDate = SelectedDate.Value.Date;
+                DateTime endDate = startDate.AddDays(1);
+                query = query.Where(a => a.AppointmentDateTime >= startDate && a.AppointmentDateTime < endDate);
+            }
+            else
+            {
+                _logger.LogInformation($"Loading all appointments for doctor {CurrentDoctor.Id}");
+            }
+
+            Appointments = await query
+                .Include(a => a.Patient) // Include Patient data here
                 .OrderBy(a => a.AppointmentDateTime) // Ordenar por fecha/hora
                 .ToListAsync();
 

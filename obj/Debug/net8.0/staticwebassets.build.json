@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "zLxCvVfRDOj49XMPB7wF3Kj9J/h3pb6TJuk3/PLVEZI=",
+  "Hash": "lYeoRU4R7pYe2OBxfvCA1E8cS2hWIrEbNNjZK6zH3Lc=",
   "Source": "CitasEPS",
   "BasePath": "_content/CitasEPS",
   "Mode": "Default",
@@ -1382,6 +1382,27 @@
       "OriginalItemSpec": "wwwroot\\favicon.svg"
     },
     {
+      "Identity": "C:\\Users\\CristianPC\\Desktop\\vitalcare\\wwwroot\\js\\passwordToggle.js",
+      "SourceId": "CitasEPS",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\CristianPC\\Desktop\\vitalcare\\wwwroot\\",
+      "BasePath": "_content/CitasEPS",
+      "RelativePath": "js/passwordToggle#[.{fingerprint}]?.js",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "Fingerprint": "m8jetttecg",
+      "Integrity": "5nlOhu8WuaN9+i4lMQYrDWp+TRo1s/QDgtEHHTmUsz8=",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\js\\passwordToggle.js"
+    },
+    {
       "Identity": "C:\\Users\\CristianPC\\Desktop\\vitalcare\\wwwroot\\js\\site.flatpickr.js",
       "SourceId": "CitasEPS",
       "SourceType": "Discovered",
@@ -1396,8 +1417,8 @@
       "RelatedAsset": "",
       "AssetTraitName": "",
       "AssetTraitValue": "",
-      "Fingerprint": "hncqgrmf6o",
-      "Integrity": "c8Fcq6Hnb9nKqwyKUgVEO6Z1uFVos4pZJKSOHiPSm54=",
+      "Fingerprint": "wzdvxddh3j",
+      "Integrity": "ZILs9enY97XfJ8dkLfxQK2y2HJr8VXu0B9Qt47MdYiI=",
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\js\\site.flatpickr.js"
@@ -5253,8 +5274,8 @@
       ]
     },
     {
-      "Route": "js/site.flatpickr.hncqgrmf6o.js",
-      "AssetFile": "C:\\Users\\CristianPC\\Desktop\\vitalcare\\wwwroot\\js\\site.flatpickr.js",
+      "Route": "js/passwordToggle.js",
+      "AssetFile": "C:\\Users\\CristianPC\\Desktop\\vitalcare\\wwwroot\\js\\passwordToggle.js",
       "Selectors": [],
       "ResponseHeaders": [
         {
@@ -5263,7 +5284,7 @@
         },
         {
           "Name": "Content-Length",
-          "Value": "1776"
+          "Value": "1335"
         },
         {
           "Name": "Content-Type",
@@ -5271,11 +5292,48 @@
         },
         {
           "Name": "ETag",
-          "Value": "\"c8Fcq6Hnb9nKqwyKUgVEO6Z1uFVos4pZJKSOHiPSm54=\""
+          "Value": "\"5nlOhu8WuaN9+i4lMQYrDWp+TRo1s/QDgtEHHTmUsz8=\""
         },
         {
           "Name": "Last-Modified",
-          "Value": "Sat, 10 May 2025 13:00:04 GMT"
+          "Value": "Sun, 11 May 2025 06:24:49 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "no-cache"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "integrity",
+          "Value": "sha256-5nlOhu8WuaN9+i4lMQYrDWp+TRo1s/QDgtEHHTmUsz8="
+        }
+      ]
+    },
+    {
+      "Route": "js/passwordToggle.m8jetttecg.js",
+      "AssetFile": "C:\\Users\\CristianPC\\Desktop\\vitalcare\\wwwroot\\js\\passwordToggle.js",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "1335"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "text/javascript"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"5nlOhu8WuaN9+i4lMQYrDWp+TRo1s/QDgtEHHTmUsz8=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Sun, 11 May 2025 06:24:49 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -5285,15 +5343,15 @@
       "EndpointProperties": [
         {
           "Name": "fingerprint",
-          "Value": "hncqgrmf6o"
+          "Value": "m8jetttecg"
         },
         {
           "Name": "label",
-          "Value": "js/site.flatpickr.js"
+          "Value": "js/passwordToggle.js"
         },
         {
           "Name": "integrity",
-          "Value": "sha256-c8Fcq6Hnb9nKqwyKUgVEO6Z1uFVos4pZJKSOHiPSm54="
+          "Value": "sha256-5nlOhu8WuaN9+i4lMQYrDWp+TRo1s/QDgtEHHTmUsz8="
         }
       ]
     },
@@ -5316,11 +5374,11 @@
         },
         {
           "Name": "ETag",
-          "Value": "\"c8Fcq6Hnb9nKqwyKUgVEO6Z1uFVos4pZJKSOHiPSm54=\""
+          "Value": "\"ZILs9enY97XfJ8dkLfxQK2y2HJr8VXu0B9Qt47MdYiI=\""
         },
         {
           "Name": "Last-Modified",
-          "Value": "Sat, 10 May 2025 13:00:04 GMT"
+          "Value": "Sun, 11 May 2025 05:06:00 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -5330,7 +5388,52 @@
       "EndpointProperties": [
         {
           "Name": "integrity",
-          "Value": "sha256-c8Fcq6Hnb9nKqwyKUgVEO6Z1uFVos4pZJKSOHiPSm54="
+          "Value": "sha256-ZILs9enY97XfJ8dkLfxQK2y2HJr8VXu0B9Qt47MdYiI="
+        }
+      ]
+    },
+    {
+      "Route": "js/site.flatpickr.wzdvxddh3j.js",
+      "AssetFile": "C:\\Users\\CristianPC\\Desktop\\vitalcare\\wwwroot\\js\\site.flatpickr.js",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "1776"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "text/javascript"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"ZILs9enY97XfJ8dkLfxQK2y2HJr8VXu0B9Qt47MdYiI=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Sun, 11 May 2025 05:06:00 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=31536000, immutable"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "fingerprint",
+          "Value": "wzdvxddh3j"
+        },
+        {
+          "Name": "label",
+          "Value": "js/site.flatpickr.js"
+        },
+        {
+          "Name": "integrity",
+          "Value": "sha256-ZILs9enY97XfJ8dkLfxQK2y2HJr8VXu0B9Qt47MdYiI="
         }
       ]
     },

@@ -7,6 +7,7 @@ using System.ComponentModel.DataAnnotations;
 using System.Text.Encodings.Web;
 using System.Threading.Tasks;
 using CitasEPS.Models;
+using CitasEPS.Models.Enums;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
@@ -71,6 +72,13 @@ namespace CitasEPS.Areas.Identity.Pages.Account.Manage
             [Display(Name = "Fecha de Nacimiento")]
             [DataType(DataType.Date)]
             public DateTime DateOfBirth { get; set; }
+
+            [Display(Name = "Documento de Identidad")]
+            [StringLength(20, ErrorMessage = "El Documento de Identidad no puede exceder los 20 caracteres.")]
+            public string? DocumentId { get; set; }
+
+            [Display(Name = "Género")]
+            public Gender? Gender { get; set; }
         }
 
         private async Task LoadAsync(User user)
@@ -85,7 +93,9 @@ namespace CitasEPS.Areas.Identity.Pages.Account.Manage
                 FirstName = user.FirstName,
                 LastName = user.LastName,
                 PhoneNumber = phoneNumber,
-                DateOfBirth = user.DateOfBirth
+                DateOfBirth = user.DateOfBirth,
+                DocumentId = user.DocumentId,
+                Gender = user.Gender
             };
         }
 
@@ -133,6 +143,18 @@ namespace CitasEPS.Areas.Identity.Pages.Account.Manage
             {
                 // Ensure the new date is saved as UTC, preserving only the date part
                 user.DateOfBirth = new DateTime(Input.DateOfBirth.Year, Input.DateOfBirth.Month, Input.DateOfBirth.Day, 0, 0, 0, DateTimeKind.Utc);
+                profileUpdated = true;
+            }
+
+            if (Input.DocumentId != user.DocumentId)
+            {
+                user.DocumentId = Input.DocumentId;
+                profileUpdated = true;
+            }
+
+            if (Input.Gender != user.Gender)
+            {
+                user.Gender = Input.Gender;
                 profileUpdated = true;
             }
 

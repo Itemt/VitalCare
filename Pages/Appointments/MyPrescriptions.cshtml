@@ -2,59 +2,56 @@
 @model CitasEPS.Pages.Appointments.MyPrescriptionsModel
 
 @{ 
-    ViewData["Title"] = "Mis Recetas";
+    ViewData["Title"] = "Mis Recetas Médicas";
 }
 
-<h2><i class="bi bi-journal-medical"></i> @ViewData["Title"]</h2>
-
-@if (!Model.Prescriptions.Any())
-{
-    <div class="alert alert-info" role="alert">
-        No tiene recetas registradas actualmente.
-    </div>
-}
-else
-{
-    <table class="table table-striped table-hover">
-        <thead class="table-light">
-            <tr>
-                <th>
-                    @Html.DisplayNameFor(model => model.Prescriptions[0].PrescriptionDate)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.Prescriptions[0].Medication)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.Prescriptions[0].Dosage)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.Prescriptions[0].Instructions)
-                </th>
-                 <th>
-                    @Html.DisplayNameFor(model => model.Prescriptions[0].Doctor)
-                </th>
-            </tr>
-        </thead>
-        <tbody>
-    @foreach (var item in Model.Prescriptions)
-    {           <tr>
-                <td>
-                    @Html.DisplayFor(modelItem => item.PrescriptionDate)
-                </td>
-                 <td>
-                    @Html.DisplayFor(modelItem => item.Medication.Name) @* Assuming Medication is included and has a Name *@
-                </td>
-                 <td>
-                    @Html.DisplayFor(modelItem => item.Dosage)
-                </td>
-                 <td>
-                    @Html.DisplayFor(modelItem => item.Instructions)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Doctor.FullName) @* Assuming Doctor is included and has FullName *@
-                </td>
-            </tr>
-    }
-        </tbody>
-    </table>
-} 
+<div class="row justify-content-center">
+    <div class="col-md-10"> @* Wider for table display *@
+        <div class="card shadow-sm">
+            <div class="card-header bg-success text-white">
+                <h3 class="mb-0"><i class="bi bi-file-earmark-medical-fill"></i> @ViewData["Title"]</h3>
+            </div>
+            <div class="card-body">
+                @if (Model.Prescriptions == null || !Model.Prescriptions.Any())
+                {
+                    <div class="alert alert-info" role="alert">
+                        <i class="bi bi-info-circle-fill"></i> No tiene recetas médicas registradas actualmente.
+                    </div>
+                }
+                else
+                {
+                    <table class="table table-hover table-striped">
+                        <thead class="table-light">
+                            <tr>
+                                <th><i class="bi bi-calendar-event"></i> Fecha Emisión</th>
+                                <th><i class="bi bi-person-fill"></i> Médico</th>
+                                <th><i class="bi bi-capsule"></i> Medicamento</th>
+                                <th><i class="bi bi-card-text"></i> Dosis</th>
+                                <th><i class="bi bi-info-circle"></i> Instrucciones</th>
+                                <th><i class="bi bi-download"></i> Acción</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var item in Model.Prescriptions)
+                            {
+                                <tr>
+                                    <td>@Html.DisplayFor(modelItem => item.PrescriptionDate)</td>
+                                    <td>@Html.DisplayFor(modelItem => item.Doctor.FullName)</td>
+                                    <td>@Html.DisplayFor(modelItem => item.Medication.Name)</td>
+                                    <td>@Html.DisplayFor(modelItem => item.Dosage)</td>
+                                    <td>@Html.DisplayFor(modelItem => item.Instructions)</td>
+                                    <td>
+                                        <a href="#" class="btn btn-sm btn-outline-primary disabled" title="Descargar PDF (Próximamente)"><i class="bi bi-file-pdf"></i> PDF</a>
+                                    </td>
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+                }
+            </div> @* End card-body *@
+            <div class="card-footer bg-light text-center">
+                <a asp-page="/Appointments/Index" class="btn btn-secondary"><i class="bi bi-arrow-left-circle"></i> Volver a Mis Citas</a>
+            </div>
+        </div> @* End card *@
+    </div> @* End col *@
+</div> @* End row *@ 

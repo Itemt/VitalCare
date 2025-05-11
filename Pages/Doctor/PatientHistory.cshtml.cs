@@ -26,6 +26,7 @@ namespace CitasEPS.Pages.Doctor
         public Models.Patient? TargetPatient { get; set; }
         public Models.Doctor? CurrentDoctor { get; set; }
         public IList<Models.Appointment> AppointmentHistory { get; set; } = new List<Models.Appointment>();
+        public IList<Models.Prescription> PatientPrescriptions { get; set; } = new List<Models.Prescription>();
 
         public async Task<IActionResult> OnGetAsync(int? patientId)
         {
@@ -55,6 +56,17 @@ namespace CitasEPS.Pages.Doctor
                     .ThenInclude(p => p.Medication)
                 .OrderByDescending(a => a.AppointmentDateTime) // Mostrar más recientes primero
                 .ToListAsync();
+
+            // Load all prescriptions for the target patient separately
+            if (TargetPatient != null) 
+            {
+                PatientPrescriptions = await _context.Prescriptions
+                    .Where(p => p.PatientId == TargetPatient.Id)
+                    .Include(p => p.Medication) 
+                    .Include(p => p.Doctor)   
+                    .OrderByDescending(p => p.PrescriptionDate)
+                    .ToListAsync();
+            }
 
             // Opcional: Verificar si el doctor realmente ha tenido citas con este paciente
             // Podríamos hacerlo comprobando si AppointmentHistory tiene elementos o consultando si existe al menos una cita

@@ -1,57 +1,62 @@
 @page "{id:int}"
 @model CitasEPS.Pages.Appointments.ProposeRescheduleModel
-@inject Microsoft.AspNetCore.Antiforgery.IAntiforgery Xsrf
 
 @{
-    ViewData["Title"] = "Proponer Nuevo Horario";
+    ViewData["Title"] = "Proponer Reagendamiento de Cita";
 }
 
-<div class="container mt-4">
-    <div class="row justify-content-center">
-        <div class="col-lg-7 col-md-9">
-            <div class="card shadow-sm">
-                 <div class="card-header bg-warning text-dark">
-                    <h4 class="mb-0">@ViewData["Title"]</h4>
-                </div>
-                 <div class="card-body">
-                    @if (Model.CurrentAppointment != null)
-                    {
-                        <p class="card-text">
-                            Está proponiendo un nuevo horario para su cita con: <strong>@Model.DoctorName</strong>.<br />
-                            Fecha y hora actual: <strong>@Model.CurrentDateTime</strong>.
-                        </p>
-                        <hr />
-                        <form method="post">
-                             <div asp-validation-summary="ModelOnly" class="text-danger mb-3" role="alert"></div>
-                             @Html.HiddenFor(model => model.Id) 
-                             @Html.AntiForgeryToken()
-
-                             <div class="form-group mb-3">
-                                <label asp-for="Input.ProposedNewDateTime" class="form-label fw-bold"></label>
-                                <input asp-for="Input.ProposedNewDateTime" class="form-control datetimepicker" />
-                                <span asp-validation-for="Input.ProposedNewDateTime" class="text-danger"></span>
-                             </div>
-
-                             <div class="d-grid gap-2 d-md-flex justify-content-md-end mt-4">
-                                <a asp-page="./Index" class="btn btn-outline-secondary me-md-2">Cancelar</a>
-                                <button type="submit" class="btn btn-warning"><i class="bi bi-send"></i> Enviar Propuesta</button>
-                            </div>
-                        </form>
-                    }
-                    else
-                    {
-                        <div class="alert alert-warning" role="alert">
-                            No se pudo cargar la información de la cita para proponer reagendamiento.
-                        </div>
-                        <a asp-page="./Index" class="btn btn-secondary">Volver a Mis Citas</a>
-                    }
-                </div>
+<div class="row justify-content-center">
+    <div class="col-md-8">
+        <div class="card shadow-sm">
+            <div class="card-header bg-info text-white">
+                <h3 class="mb-0"><i class="bi bi-calendar2-week-fill"></i> @ViewData["Title"]</h3>
             </div>
-        </div>
-    </div>
-</div>
+            <div class="card-body">
+                @if (Model.CurrentAppointment != null)
+                {
+                    <p>Estás proponiendo un reagendamiento para la cita con ID: <strong>@Model.CurrentAppointment.Id</strong></p>
+                    <p>Fecha Original: <strong>@Model.CurrentDateTime</strong></p>
+                    @if (Model.CurrentAppointment.Doctor != null)
+                    {
+                        <p>Médico: <strong>@Model.DoctorName</strong></p>
+                    }
+                    <hr />
+
+                    <form method="post">
+                        <div asp-validation-summary="ModelOnly" class="text-danger mb-3"></div>
+                        <input type="hidden" asp-for="Id" /> @* Id is correctly bound for post *@
+
+                        <div class="form-group mb-3">
+                            <label asp-for="Input.ProposedNewDateTime" class="form-label fw-semibold"></label>
+                            <input asp-for="Input.ProposedNewDateTime" class="form-control datetimepicker" />
+                            <span asp-validation-for="Input.ProposedNewDateTime" class="text-danger"></span>
+                        </div>
+
+                        @* RescheduleReason removed as it's not in the PageModel's InputModel *
+                        @* <div class="form-group mb-3">
+                            <label asp-for="RescheduleReason" class="form-label fw-semibold">Motivo del Reagendamiento</label>
+                            <textarea asp-for="RescheduleReason" class="form-control" rows="3"></textarea>
+                            <span asp-validation-for="RescheduleReason" class="text-danger"></span>
+                        </div> *@
+
+                        <div class="card-footer bg-light text-end">
+                            <a asp-page="./Details" asp-route-id="@Model.Id" class="btn btn-secondary me-2"><i class="bi bi-x-circle"></i> Cancelar</a>
+                            <button type="submit" class="btn btn-info"><i class="bi bi-send"></i> Enviar Propuesta</button>
+                        </div>
+                    </form>
+                }
+                else
+                {
+                    <div class="alert alert-warning" role="alert">
+                         No se pudo cargar la información de la cita para proponer reagendamiento.
+                    </div>
+                    <a asp-page="./Index" class="btn btn-primary"><i class="bi bi-arrow-left-circle"></i> Volver a Mis Citas</a>
+                }
+            </div> @* End card-body *@
+        </div> @* End card *@
+    </div> @* End col *@
+</div> @* End row *@
 
 @section Scripts {
     @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
-    @* Flatpickr is initialized globally via site.flatpickr.js for .datetimepicker class *@
 } 

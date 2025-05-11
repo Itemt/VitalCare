@@ -178,7 +178,6 @@ namespace CitasEPS.Pages.Appointments
         }
 
         // NUEVO: Handler para marcar como que el paciente no se presentó
-        [Authorize(Roles = "Doctor")] // Solo el doctor puede hacer esto
         public async Task<IActionResult> OnPostMarkNoShowAsync(int id)
         {
             var appointmentToUpdate = await _context.Appointments.FindAsync(id);

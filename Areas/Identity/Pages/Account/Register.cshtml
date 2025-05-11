@@ -38,14 +38,20 @@
                             <label asp-for="Input.Email">Correo Electrónico</label>
                             <span asp-validation-for="Input.Email" class="text-danger"></span>
                         </div>
-                        <div class="form-floating mb-3">
-                            <input asp-for="Input.Password" class="form-control" autocomplete="new-password" aria-required="true" placeholder="contraseña" />
+                        <div class="form-floating mb-3 position-relative">
+                            <input asp-for="Input.Password" class="form-control" autocomplete="new-password" aria-required="true" placeholder="contraseña" id="registerPasswordInput" />
                             <label asp-for="Input.Password">Contraseña</label>
+                            <button type="button" class="btn position-absolute end-0 me-2" id="toggleRegisterPassword" style="top: 50%; transform: translateY(-50%); border: none; background: transparent; padding: 0.375rem 0.75rem; z-index: 5; right: 0.5rem!important;">
+                                <i class="bi bi-eye-slash"></i>
+                            </button>
                             <span asp-validation-for="Input.Password" class="text-danger"></span>
                         </div>
-                        <div class="form-floating mb-3">
-                            <input asp-for="Input.ConfirmPassword" class="form-control" autocomplete="new-password" aria-required="true" placeholder="contraseña" />
+                        <div class="form-floating mb-3 position-relative">
+                            <input asp-for="Input.ConfirmPassword" class="form-control" autocomplete="new-password" aria-required="true" placeholder="confirmar contraseña" id="confirmPasswordInput" />
                             <label asp-for="Input.ConfirmPassword">Confirmar Contraseña</label>
+                            <button type="button" class="btn position-absolute end-0 me-2" id="toggleConfirmPassword" style="top: 50%; transform: translateY(-50%); border: none; background: transparent; padding: 0.375rem 0.75rem; z-index: 5; right: 0.5rem!important;">
+                                <i class="bi bi-eye-slash"></i>
+                            </button>
                             <span asp-validation-for="Input.ConfirmPassword" class="text-danger"></span>
                         </div>
 

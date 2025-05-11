@@ -56,5 +56,9 @@ namespace CitasEPS.Models
 
         [Display(Name = "Reagendamiento Propuesto por Doctor")]
         public bool DoctorProposedReschedule { get; set; } = false; // New flag for doctor-initiated reschedule
+        
+        [Display(Name = "Motivo del Reagendamiento (Doctor)")]
+        [StringLength(500, ErrorMessage = "El motivo no puede exceder los 500 caracteres.")]
+        public string? DoctorRescheduleReason { get; set; } // Reason from doctor for their proposal
     }
 } 

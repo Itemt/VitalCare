@@ -1,5 +1,6 @@
 using Microsoft.AspNetCore.Identity;
 using System.ComponentModel.DataAnnotations;
+using CitasEPS.Models.Enums; // Required for Gender enum
 
 namespace CitasEPS.Models
 {
@@ -22,6 +23,13 @@ namespace CitasEPS.Models
         [Display(Name = "Fecha de Nacimiento")]
         [DataType(DataType.Date)]
         public DateTime DateOfBirth { get; set; }
+
+        [Display(Name = "Documento de Identidad")]
+        [StringLength(20, ErrorMessage = "El Documento de Identidad no puede exceder los 20 caracteres.")]
+        public string? DocumentId { get; set; } // Assuming it can be optional or set later
+
+        [Display(Name = "Género")]
+        public Gender? Gender { get; set; } // Assuming it can be optional
         
         // Propiedades personalizadas pueden ser añadidas aquí
         [Display(Name = "Es Administrador")]

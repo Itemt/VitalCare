@@ -1,46 +1,45 @@
 @page "{id:int}"
 @model CitasEPS.Pages.Appointments.ReviewDoctorProposalModel
+
 @{
-    ViewData["Title"] = "Revisar Propuesta de Reagendamiento del Doctor";
+    ViewData["Title"] = "Revisar Propuesta de Reagendamiento del Médico";
 }
 
-<h1>@ViewData["Title"]</h1>
-<hr />
+<div class="row justify-content-center">
+    <div class="col-md-8">
+        <div class="card shadow-sm">
+            <div class="card-header bg-info text-white">
+                <h3 class="mb-0"><i class="bi bi-question-circle-fill"></i> @ViewData["Title"]</h3>
+            </div>
+            <div class="card-body">
+                @if (Model.AppointmentToReview != null)
+                {
+                    <p>El médico ha propuesto un nuevo horario para su cita con ID: <strong>@Model.AppointmentToReview.Id</strong>.</p>
+                    <p>Fecha Original: <strong>@Model.CurrentDateTime</strong></p>
+                    <p>Nueva Fecha Propuesta por el Médico: <strong class="text-success">@Model.ProposedDateTime</strong></p>
+                    <p>Motivo del Médico: <em>@Model.AppointmentToReview.DoctorRescheduleReason</em></p>
+                    <hr />
 
-@if (Model.AppointmentToReview == null)
-{
-    <div class="alert alert-danger">No se encontró la cita o la propuesta.</div>
-    <a asp-page="./Index" class="btn btn-secondary">Volver a Mis Citas</a>
-}
-else
-{
-    <div class="alert alert-warning" role="alert">
-        <h4 class="alert-heading">Propuesta de Nuevo Horario</h4>
-        <p>
-            Su doctor, <strong>@Model.DoctorName</strong>, ha propuesto un nuevo horario para su cita.
-        </p>
-        <hr>
-        <p class="mb-1"><strong>Horario Actual (sin confirmar):</strong> @Model.CurrentDateTime</p>
-        <p class="mb-0"><strong>Nuevo Horario Propuesto:</strong> <strong class="text-primary">@Model.ProposedDateTime</strong></p>
-    </div>
+                    <form method="post">
+                        <input type="hidden" asp-for="Id" /> @* The Id property is correctly bound from the route and available for post *@
+                        <div asp-validation-summary="ModelOnly" class="text-danger mb-3"></div>
+                        
+                        <p class="fw-semibold">¿Desea aceptar este nuevo horario?</p>
 
-    <p>Por favor, revise el nuevo horario propuesto y confirme si le funciona o rechace la propuesta.</p>
-
-    <form method="post" class="mt-3">
-        <input type="hidden" asp-for="Id" />
-        <button type="submit" asp-page-handler="Confirm" class="btn btn-success me-2">
-            <i class="bi bi-check-lg"></i> Confirmar Nuevo Horario
-        </button>
-        <button type="submit" asp-page-handler="Reject" class="btn btn-danger me-2">
-            <i class="bi bi-x-lg"></i> Rechazar Propuesta
-        </button>
-        <a asp-page="./Index" class="btn btn-secondary">Volver a Mis Citas</a>
-    </form>
-
-    <div class="mt-4">
-        <small class="text-muted">
-            Si rechaza la propuesta, la cita volverá a su horario original (@Model.CurrentDateTime) y permanecerá sin confirmar.
-            Puede entonces proponer un horario diferente si lo desea, o contactar al consultorio.
-        </small>
-    </div>
-} 
+                        <div class="card-footer bg-light text-center"> @* Centered buttons for this decision page *@
+                            <button type="submit" asp-page-handler="Confirm" class="btn btn-success me-2"><i class="bi bi-check-circle-fill"></i> Aceptar Propuesta</button>
+                            <button type="submit" asp-page-handler="Reject" class="btn btn-danger"><i class="bi bi-x-circle-fill"></i> Rechazar Propuesta</button>
+                        </div>
+                    </form>
+                }
+                else
+                {
+                    <div class="alert alert-warning" role="alert">
+                        No se encontró la información de la cita o la propuesta de reagendamiento.
+                    </div>
+                    <a asp-page="./Index" class="btn btn-primary"><i class="bi bi-arrow-left-circle"></i> Volver a Mis Citas</a>
+                }
+            </div> @* End card-body *@
+        </div> @* End card *@
+    </div> @* End col *@
+</div> @* End row *@ 

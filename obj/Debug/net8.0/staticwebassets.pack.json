@@ -17,6 +17,10 @@
       "PackagePath": "staticwebassets\\favicon.svg"
     },
     {
+      "Id": "C:\\Users\\CristianPC\\Desktop\\vitalcare\\wwwroot\\js\\passwordToggle.js",
+      "PackagePath": "staticwebassets\\js\\passwordToggle.js"
+    },
+    {
       "Id": "C:\\Users\\CristianPC\\Desktop\\vitalcare\\wwwroot\\js\\site.flatpickr.js",
       "PackagePath": "staticwebassets\\js\\site.flatpickr.js"
     },

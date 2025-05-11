@@ -48,17 +48,29 @@
       <EndpointProperties><![CDATA[[{"Name":"integrity","Value":"sha256-Em0urfWd0LR4cewIfq1tD3dyCbSxkjt3g9aTFiIFRC0="}]]]></EndpointProperties>
       <ResponseHeaders><![CDATA[[{"Name":"Accept-Ranges","Value":"bytes"},{"Name":"Cache-Control","Value":"max-age=3600, must-revalidate"},{"Name":"Content-Length","Value":"511"},{"Name":"Content-Type","Value":"image/svg\u002Bxml"},{"Name":"ETag","Value":"\u0022Em0urfWd0LR4cewIfq1tD3dyCbSxkjt3g9aTFiIFRC0=\u0022"},{"Name":"Last-Modified","Value":"Sat, 10 May 2025 13:06:06 GMT"}]]]></ResponseHeaders>
     </StaticWebAssetEndpoint>
-    <StaticWebAssetEndpoint Include="_content/CitasEPS/js/site.flatpickr.hncqgrmf6o.js">
-      <AssetFile>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\js\site.flatpickr.js'))</AssetFile>
+    <StaticWebAssetEndpoint Include="_content/CitasEPS/js/passwordToggle.js">
+      <AssetFile>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\js\passwordToggle.js'))</AssetFile>
       <Selectors><![CDATA[[]]]></Selectors>
-      <EndpointProperties><![CDATA[[{"Name":"fingerprint","Value":"hncqgrmf6o"},{"Name":"integrity","Value":"sha256-c8Fcq6Hnb9nKqwyKUgVEO6Z1uFVos4pZJKSOHiPSm54="},{"Name":"label","Value":"_content/CitasEPS/js/site.flatpickr.js"}]]]></EndpointProperties>
-      <ResponseHeaders><![CDATA[[{"Name":"Accept-Ranges","Value":"bytes"},{"Name":"Cache-Control","Value":"max-age=31536000, immutable"},{"Name":"Content-Length","Value":"1776"},{"Name":"Content-Type","Value":"text/javascript"},{"Name":"ETag","Value":"\u0022c8Fcq6Hnb9nKqwyKUgVEO6Z1uFVos4pZJKSOHiPSm54=\u0022"},{"Name":"Last-Modified","Value":"Sat, 10 May 2025 13:00:04 GMT"}]]]></ResponseHeaders>
+      <EndpointProperties><![CDATA[[{"Name":"integrity","Value":"sha256-5nlOhu8WuaN9\u002Bi4lMQYrDWp\u002BTRo1s/QDgtEHHTmUsz8="}]]]></EndpointProperties>
+      <ResponseHeaders><![CDATA[[{"Name":"Accept-Ranges","Value":"bytes"},{"Name":"Cache-Control","Value":"no-cache"},{"Name":"Content-Length","Value":"1335"},{"Name":"Content-Type","Value":"text/javascript"},{"Name":"ETag","Value":"\u00225nlOhu8WuaN9\u002Bi4lMQYrDWp\u002BTRo1s/QDgtEHHTmUsz8=\u0022"},{"Name":"Last-Modified","Value":"Sun, 11 May 2025 06:24:49 GMT"}]]]></ResponseHeaders>
+    </StaticWebAssetEndpoint>
+    <StaticWebAssetEndpoint Include="_content/CitasEPS/js/passwordToggle.m8jetttecg.js">
+      <AssetFile>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\js\passwordToggle.js'))</AssetFile>
+      <Selectors><![CDATA[[]]]></Selectors>
+      <EndpointProperties><![CDATA[[{"Name":"fingerprint","Value":"m8jetttecg"},{"Name":"integrity","Value":"sha256-5nlOhu8WuaN9\u002Bi4lMQYrDWp\u002BTRo1s/QDgtEHHTmUsz8="},{"Name":"label","Value":"_content/CitasEPS/js/passwordToggle.js"}]]]></EndpointProperties>
+      <ResponseHeaders><![CDATA[[{"Name":"Accept-Ranges","Value":"bytes"},{"Name":"Cache-Control","Value":"max-age=31536000, immutable"},{"Name":"Content-Length","Value":"1335"},{"Name":"Content-Type","Value":"text/javascript"},{"Name":"ETag","Value":"\u00225nlOhu8WuaN9\u002Bi4lMQYrDWp\u002BTRo1s/QDgtEHHTmUsz8=\u0022"},{"Name":"Last-Modified","Value":"Sun, 11 May 2025 06:24:49 GMT"}]]]></ResponseHeaders>
     </StaticWebAssetEndpoint>
     <StaticWebAssetEndpoint Include="_content/CitasEPS/js/site.flatpickr.js">
       <AssetFile>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\js\site.flatpickr.js'))</AssetFile>
       <Selectors><![CDATA[[]]]></Selectors>
-      <EndpointProperties><![CDATA[[{"Name":"integrity","Value":"sha256-c8Fcq6Hnb9nKqwyKUgVEO6Z1uFVos4pZJKSOHiPSm54="}]]]></EndpointProperties>
-      <ResponseHeaders><![CDATA[[{"Name":"Accept-Ranges","Value":"bytes"},{"Name":"Cache-Control","Value":"no-cache"},{"Name":"Content-Length","Value":"1776"},{"Name":"Content-Type","Value":"text/javascript"},{"Name":"ETag","Value":"\u0022c8Fcq6Hnb9nKqwyKUgVEO6Z1uFVos4pZJKSOHiPSm54=\u0022"},{"Name":"Last-Modified","Value":"Sat, 10 May 2025 13:00:04 GMT"}]]]></ResponseHeaders>
+      <EndpointProperties><![CDATA[[{"Name":"integrity","Value":"sha256-ZILs9enY97XfJ8dkLfxQK2y2HJr8VXu0B9Qt47MdYiI="}]]]></EndpointProperties>
+      <ResponseHeaders><![CDATA[[{"Name":"Accept-Ranges","Value":"bytes"},{"Name":"Cache-Control","Value":"no-cache"},{"Name":"Content-Length","Value":"1776"},{"Name":"Content-Type","Value":"text/javascript"},{"Name":"ETag","Value":"\u0022ZILs9enY97XfJ8dkLfxQK2y2HJr8VXu0B9Qt47MdYiI=\u0022"},{"Name":"Last-Modified","Value":"Sun, 11 May 2025 05:06:00 GMT"}]]]></ResponseHeaders>
+    </StaticWebAssetEndpoint>
+    <StaticWebAssetEndpoint Include="_content/CitasEPS/js/site.flatpickr.wzdvxddh3j.js">
+      <AssetFile>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\js\site.flatpickr.js'))</AssetFile>
+      <Selectors><![CDATA[[]]]></Selectors>
+      <EndpointProperties><![CDATA[[{"Name":"fingerprint","Value":"wzdvxddh3j"},{"Name":"integrity","Value":"sha256-ZILs9enY97XfJ8dkLfxQK2y2HJr8VXu0B9Qt47MdYiI="},{"Name":"label","Value":"_content/CitasEPS/js/site.flatpickr.js"}]]]></EndpointProperties>
+      <ResponseHeaders><![CDATA[[{"Name":"Accept-Ranges","Value":"bytes"},{"Name":"Cache-Control","Value":"max-age=31536000, immutable"},{"Name":"Content-Length","Value":"1776"},{"Name":"Content-Type","Value":"text/javascript"},{"Name":"ETag","Value":"\u0022ZILs9enY97XfJ8dkLfxQK2y2HJr8VXu0B9Qt47MdYiI=\u0022"},{"Name":"Last-Modified","Value":"Sun, 11 May 2025 05:06:00 GMT"}]]]></ResponseHeaders>
     </StaticWebAssetEndpoint>
     <StaticWebAssetEndpoint Include="_content/CitasEPS/js/site.js">
       <AssetFile>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\js\site.js'))</AssetFile>
