@@ -14,7 +14,7 @@ using Microsoft.Extensions.Logging;
 
 namespace CitasEPS.Pages.Appointments
 {
-    [Authorize(Roles = "Patient")] // Restrict to Patients only
+    [Authorize(Roles = "Paciente")] // Restrict to Patients only
     public class CreateModel : PageModel
     {
         private readonly CitasEPS.Data.ApplicationDbContext _context;
