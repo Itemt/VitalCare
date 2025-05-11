@@ -21,7 +21,7 @@
                 <a class="btn btn-light btn-lg me-2" asp-page="/Admin/Index" role="button"><i class="bi bi-speedometer2"></i> Ir al Panel</a>
                 <a class="btn btn-outline-light btn-lg" asp-page="/Admin/ManageAppointments" role="button"><i class="bi bi-calendar-check"></i> Gestionar Citas</a>
             }
-            else if (User.IsInRole("Patient"))
+            else if (User.IsInRole("Paciente"))
             {
                 <a class="btn btn-light btn-lg me-2" asp-page="/Appointments/Create" role="button"><i class="bi bi-calendar-plus"></i> Agendar Nueva Cita</a>
                 <a class="btn btn-outline-light btn-lg" asp-page="/Appointments/Index" role="button"><i class="bi bi-calendar-event"></i> Ver Mis Citas</a>
@@ -129,11 +129,11 @@
                  @* Add more Doctor specific cards here if needed *@
             </div>
         }
-        else if (User.IsInRole("Patient"))
+        else if (User.IsInRole("Paciente"))
         {
             <div class="text-center mb-4">
                 <h2>Panel de Paciente</h2>
-                <p>Agende nuevas citas y consulte las existentes.</p>
+                <p>Bienvenido al portal de pacientes. Aquí puedes gestionar tus citas y ver tu información médica.</p>
             </div>
             <div class="row justify-content-center text-center">
                 <div class="col-md-5 mb-4">

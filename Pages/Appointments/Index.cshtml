@@ -16,7 +16,7 @@
 else if (Model.Appointment == null || !Model.Appointment.Any())
 {
     <div class="alert alert-info" role="alert">
-        @if (Model.UserRole == "Patient")
+        @if (Model.UserRole == "Paciente")
         {
             <p>No tienes citas programadas actualmente.</p>
         }
@@ -35,7 +35,7 @@ else if (Model.Appointment == null || !Model.Appointment.Any())
 }
 else
 {
-    @if (Model.UserRole == "Patient")
+    @if (Model.UserRole == "Paciente")
     {
         <p>Aquí están tus próximas citas:</p>
     }
@@ -50,7 +50,7 @@ else
         <thead>
             <tr>
                 <th class="text-primary">Fecha y Hora</th>
-                @if (Model.UserRole == "Patient")
+                @if (Model.UserRole == "Paciente")
                 {
                      <th class="text-primary">Médico</th>
                      <th class="text-primary">Especialidad</th>
@@ -68,7 +68,7 @@ else
             {
                 <tr>
                     <td>@Html.DisplayFor(modelItem => item.AppointmentDateTime)</td>
-                     @if (Model.UserRole == "Patient")
+                     @if (Model.UserRole == "Paciente")
                     {
                         <td>@Html.DisplayFor(modelItem => item.Doctor.FullName)</td>
                         <td>@Html.DisplayFor(modelItem => item.Doctor.Specialty.Name)</td>
@@ -118,11 +118,11 @@ else
                         {
                             <a asp-page="/Doctor/ConfirmRescheduleProposal" asp-route-id="@item.Id" class="btn btn-sm btn-success ms-1"><i class="bi bi-check-circle"></i> Revisar Propuesta</a>
                         }
-                        else if (Model.UserRole == "Patient" && item.DoctorProposedReschedule && item.ProposedNewDateTime.HasValue && !item.IsCompleted && !item.IsCancelled && item.AppointmentDateTime >= DateTime.Now)
+                        else if (Model.UserRole == "Paciente" && item.DoctorProposedReschedule && item.ProposedNewDateTime.HasValue && !item.IsCompleted && !item.IsCancelled && item.AppointmentDateTime >= DateTime.Now)
                         {
                              <a asp-page="./ReviewDoctorProposal" asp-route-id="@item.Id" class="btn btn-sm btn-primary ms-1" title="Revisar propuesta de reagendamiento del doctor"><i class="bi bi-calendar-event"></i> Revisar Propuesta de Doctor</a>
                         }
-                        else if (Model.UserRole == "Patient" && !item.IsCompleted && item.AppointmentDateTime >= DateTime.Now && !item.RescheduleRequested && !item.DoctorProposedReschedule && !item.IsCancelled)
+                        else if (Model.UserRole == "Paciente" && !item.IsCompleted && item.AppointmentDateTime >= DateTime.Now && !item.RescheduleRequested && !item.DoctorProposedReschedule && !item.IsCancelled)
                         {
                              <a asp-page="./ProposeReschedule" asp-route-id="@item.Id" class="btn btn-sm btn-outline-warning ms-1" title="Proponer cambio de fecha/hora"><i class="bi bi-clock-history"></i> Proponer Reagendamiento</a>
                         }
@@ -132,7 +132,7 @@ else
                         }
                         
                         @* Cancel/Delete button - Now specific for Patient cancellation *@
-                        @if (Model.UserRole == "Patient" && !item.IsCompleted && !item.IsCancelled && item.AppointmentDateTime >= DateTime.Now) @* Eligibility for patient cancel *@
+                        @if (Model.UserRole == "Paciente" && !item.IsCompleted && !item.IsCancelled && item.AppointmentDateTime >= DateTime.Now) @* Eligibility for patient cancel *@
                         { 
                             <form method="post" asp-page-handler="CancelAppointment" asp-route-appointmentId="@item.Id" class="d-inline" 
                                   onsubmit="return confirm('¿Está seguro de que desea cancelar su cita? Esta acción no se puede deshacer.');">

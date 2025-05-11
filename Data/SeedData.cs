@@ -247,7 +247,7 @@ namespace CitasEPS.Data
                     var result = await userManager.CreateAsync(newUser, pData.Password);
                     if (result.Succeeded)
                     {
-                        await userManager.AddToRoleAsync(newUser, "Patient");
+                        await userManager.AddToRoleAsync(newUser, "Paciente");
                         logger.LogInformation($"Usuario paciente '{pData.Email}' creado.");
                         var newPatient = new Patient
                         {

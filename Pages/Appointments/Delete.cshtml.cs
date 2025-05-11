@@ -11,7 +11,7 @@ using Microsoft.AspNetCore.Authorization;
 
 namespace CitasEPS.Pages.Appointments
 {
-    [Authorize] // Or specific policy like "Admin"
+    [Authorize(Roles = "Admin")] // Or specific policy like "Admin"
     public class DeleteModel : PageModel
     {
         private readonly CitasEPS.Data.ApplicationDbContext _context;

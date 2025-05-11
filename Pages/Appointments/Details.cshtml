@@ -137,7 +137,7 @@
     {
         <div class="alert alert-warning" role="alert">
             <i class="bi bi-exclamation-triangle-fill"></i>
-            @if (User.IsInRole("Patient"))
+            @if (User.IsInRole("Paciente"))
             {
                 <span>Ha solicitado reagendar esta cita. El consultorio se pondrá en contacto pronto.</span>
             }
@@ -198,7 +198,7 @@
     } @* <<< Closing brace for @if (User.IsInRole("Doctor")) *@
 
     @* --- Sección de Acciones del Paciente --- *@
-    @if (User.IsInRole("Patient"))
+    @if (User.IsInRole("Paciente"))
     {
         @if (!Model.Appointment.IsCompleted && !Model.Appointment.RescheduleRequested)
         {
@@ -215,7 +215,7 @@
 <div class="mt-3"> @* Action Buttons Area *@
 
     @* --- START: Cancel Button (Details View) --- *@
-    @if (!Model.Appointment.IsCompleted && !Model.Appointment.IsCancelled && (User.IsInRole("Patient") || User.IsInRole("Doctor") || User.IsInRole("Admin")))
+    @if (!Model.Appointment.IsCompleted && !Model.Appointment.IsCancelled && (User.IsInRole("Paciente") || User.IsInRole("Doctor") || User.IsInRole("Admin")))
     {
         <form method="post" asp-page-handler="CancelAppointment" asp-route-id="@Model.Appointment.Id" class="d-inline me-2"
               onsubmit="return confirm('¿Está seguro de que desea cancelar esta cita? Esta acción no se puede deshacer.');">
