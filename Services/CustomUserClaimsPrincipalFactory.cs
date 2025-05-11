@@ -19,15 +19,11 @@ namespace CitasEPS.Services
         protected override async Task<ClaimsIdentity> GenerateClaimsAsync(User user)
         {
             var identity = await base.GenerateClaimsAsync(user);
-
-            // Add custom claim if the user is an admin
-            if (user.IsAdmin)
+            var roles = await UserManager.GetRolesAsync(user);
+            foreach (var role in roles)
             {
-                identity.AddClaim(new Claim("IsAdmin", "true"));
+                identity.AddClaim(new Claim(ClaimTypes.Role, role));
             }
-
-            // You could add other custom claims here based on user properties
-
             return identity;
         }
     }
