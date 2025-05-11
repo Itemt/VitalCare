@@ -34,6 +34,7 @@ namespace CitasEPS.Areas.Identity.Pages.Account
         private readonly IEmailSender _emailSender;
         private readonly ApplicationDbContext _context;
         private readonly IConfiguration _configuration;
+        private readonly RoleManager<IdentityRole<int>> _roleManager;
 
         public RegisterModel(
             UserManager<User> userManager,
@@ -42,7 +43,8 @@ namespace CitasEPS.Areas.Identity.Pages.Account
             ILogger<RegisterModel> logger,
             IEmailSender emailSender,
             ApplicationDbContext context,
-            IConfiguration configuration)
+            IConfiguration configuration,
+            RoleManager<IdentityRole<int>> roleManager)
         {
             _userManager = userManager;
             _userStore = userStore;
@@ -52,6 +54,7 @@ namespace CitasEPS.Areas.Identity.Pages.Account
             _emailSender = emailSender;
             _context = context;
             _configuration = configuration;
+            _roleManager = roleManager;
         }
 
         /// <summary>
@@ -159,6 +162,16 @@ namespace CitasEPS.Areas.Identity.Pages.Account
                 if (result.Succeeded)
                 {
                     _logger.LogInformation("Usuario creó una nueva cuenta con contraseña.");
+
+                    // Ensure "Paciente" role exists and assign it to the user
+                    string roleName = "Paciente";
+                    if (!await _roleManager.RoleExistsAsync(roleName))
+                    {
+                        _logger.LogInformation($"El rol '{roleName}' no existe. Creándolo ahora.");
+                        await _roleManager.CreateAsync(new IdentityRole<int>(roleName));
+                    }
+                    await _userManager.AddToRoleAsync(user, roleName);
+                    _logger.LogInformation($"Usuario {user.Email} asignado al rol '{roleName}'.");
 
                     // Create and save the associated Patient record
                     var patient = new Patient
@@ -275,9 +288,6 @@ namespace CitasEPS.Areas.Identity.Pages.Account
                     }
                     else
                     {
-                        await _userManager.AddToRoleAsync(user, "Patient");
-                        _logger.LogInformation($"Usuario {user.UserName} asignado al rol 'Patient' por defecto.");
-
                         await _signInManager.SignInAsync(user, isPersistent: false);
                         return LocalRedirect(returnUrl);
                     }
