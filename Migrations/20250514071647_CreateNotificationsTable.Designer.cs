@@ -3,6 +3,7 @@ using System;
 using CitasEPS.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 
@@ -11,9 +12,11 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 namespace CitasEPS.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20250514071647_CreateNotificationsTable")]
+    partial class CreateNotificationsTable
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -77,7 +80,7 @@ namespace CitasEPS.Migrations
 
                     b.HasIndex("PatientId");
 
-                    b.ToTable("Appointments", (string)null);
+                    b.ToTable("Appointments");
                 });
 
             modelBuilder.Entity("CitasEPS.Models.Doctor", b =>
@@ -120,7 +123,7 @@ namespace CitasEPS.Migrations
 
                     b.HasIndex("UserId");
 
-                    b.ToTable("Doctors", (string)null);
+                    b.ToTable("Doctors");
                 });
 
             modelBuilder.Entity("CitasEPS.Models.Medication", b =>
@@ -142,7 +145,7 @@ namespace CitasEPS.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Medications", (string)null);
+                    b.ToTable("Medications");
                 });
 
             modelBuilder.Entity("CitasEPS.Models.Notification", b =>
@@ -167,8 +170,9 @@ namespace CitasEPS.Migrations
                         .HasMaxLength(500)
                         .HasColumnType("character varying(500)");
 
-                    b.Property<int>("NotificationType")
-                        .HasColumnType("integer");
+                    b.Property<string>("NotificationType")
+                        .HasMaxLength(50)
+                        .HasColumnType("character varying(50)");
 
                     b.Property<int>("UserId")
                         .HasColumnType("integer");
@@ -179,7 +183,7 @@ namespace CitasEPS.Migrations
 
                     b.HasIndex("UserId");
 
-                    b.ToTable("Notifications", (string)null);
+                    b.ToTable("Notifications");
                 });
 
             modelBuilder.Entity("CitasEPS.Models.Patient", b =>
@@ -227,7 +231,7 @@ namespace CitasEPS.Migrations
                     b.HasIndex("UserId")
                         .IsUnique();
 
-                    b.ToTable("Patients", (string)null);
+                    b.ToTable("Patients");
                 });
 
             modelBuilder.Entity("CitasEPS.Models.Prescription", b =>
@@ -273,7 +277,7 @@ namespace CitasEPS.Migrations
 
                     b.HasIndex("PatientId");
 
-                    b.ToTable("Prescriptions", (string)null);
+                    b.ToTable("Prescriptions");
                 });
 
             modelBuilder.Entity("CitasEPS.Models.Specialty", b =>
@@ -291,7 +295,7 @@ namespace CitasEPS.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Specialties", (string)null);
+                    b.ToTable("Specialties");
                 });
 
             modelBuilder.Entity("CitasEPS.Models.User", b =>
@@ -556,8 +560,7 @@ namespace CitasEPS.Migrations
                 {
                     b.HasOne("CitasEPS.Models.Appointment", "Appointment")
                         .WithMany()
-                        .HasForeignKey("AppointmentId")
-                        .OnDelete(DeleteBehavior.Cascade);
+                        .HasForeignKey("AppointmentId");
 
                     b.HasOne("CitasEPS.Models.User", "User")
                         .WithMany()

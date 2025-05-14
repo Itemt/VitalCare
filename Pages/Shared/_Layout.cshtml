@@ -139,6 +139,30 @@
                             <a class="nav-link @linkTextClass @headerTextShadowClass" asp-area="" asp-page="/Privacy"><i class="bi bi-shield-check"></i> Privacidad</a>
                         </li>
                     </ul>
+                    @* Notification Bell Dropdown - START *@
+                    @if (SignInManager.IsSignedIn(User))
+                    {
+                        <ul class="navbar-nav">
+                            <li class="nav-item dropdown">
+                                <a class="nav-link @linkTextClass @headerTextShadowClass" href="#" id="notificationDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                    <i class="bi bi-bell-fill"></i>
+                                    <span class="badge rounded-pill bg-danger" id="notificationBadge" style="position: relative; top: -10px; left: -5px; display: none;"></span>
+                                </a>
+                                <ul class="dropdown-menu dropdown-menu-end shadow" aria-labelledby="notificationDropdown" id="notificationPanel" style="width: 350px;">
+                                    <li><h6 class="dropdown-header">Notificaciones</h6></li>
+                                    <li><hr class="dropdown-divider"></li>
+                                    @* Container for notification items and the 'no notifications' message *@
+                                    <div style="max-height: 400px; overflow-y: auto;">
+                                        <ul id="notificationItemsList" class="list-unstyled mb-0" style="display: none;"></ul>
+                                        <div id="noNotificationsMessageDisplay" class="text-center p-2" style="display: block;">Sin notificaciones</div>
+                                    </div>
+                                    <li><hr class="dropdown-divider"></li>
+                                    <li><a class="dropdown-item text-center" href="#" id="markAllAsReadLink">Marcar todas como leídas</a></li>
+                                </ul>
+                            </li>
+                        </ul>
+                    }
+                    @* Notification Bell Dropdown - END *@
                     <partial name="_LoginPartial" />
                 </div> 
             </div> 
@@ -177,6 +201,7 @@
     <script src="~/js/site.js" asp-append-version="true"></script>
     <script src="~/js/site.flatpickr.js" asp-append-version="true"></script> 
     <script src="~/js/passwordToggle.js" asp-append-version="true"></script> 
+    <script src="~/js/notifications.js" asp-append-version="true"></script> @* <<< Add notifications.js *@
 
     @await RenderSectionAsync("Scripts", required: false)
 </body>

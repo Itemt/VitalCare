@@ -65,6 +65,9 @@ builder.Services.AddDataProtection()
 // Register custom application services
 builder.Services.AddScoped<IDateTimeService, DateTimeService>();
 builder.Services.AddScoped<IAppointmentPolicyService, AppointmentPolicyService>();
+builder.Services.AddScoped<INotificationService, NotificationService>();
+
+builder.Services.AddControllers(); // <<< Add this for API controllers
 
 var app = builder.Build();
 
@@ -135,5 +138,6 @@ app.UseAuthentication();
 app.UseAuthorization();
 
 app.MapRazorPages();
+app.MapControllers(); // <<< Add this to map API controller routes
 
 app.Run();

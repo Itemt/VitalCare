@@ -14,14 +14,13 @@
         <form method="post">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             
-            @* Link to User Account - Optional for now, might require more complex UI/logic *
-            @* <div class="form-group mb-3">
-                <label asp-for="Doctor.UserId" class="control-label">Cuenta de Usuario Asociada</label>
-                <select asp-for="Doctor.UserId" class="form-control" asp-items="Model.UserSL">
-                    <option value="">-- Seleccione Usuario (Opcional) --</option>
+            <div class="form-group mb-3">
+                <label asp-for="Doctor.UserId" class="control-label fw-bold">Cuenta de Usuario a Vincular</label>
+                <select asp-for="Doctor.UserId" class="form-select" asp-items="Model.UserSL">
+                    <option value="">-- Seleccione un Usuario --</option>
                 </select>
                 <span asp-validation-for="Doctor.UserId" class="text-danger"></span>
-            </div> *@
+            </div>
 
              <div class="form-group mb-3">
                 <label asp-for="Doctor.FirstName" class="control-label"></label>

@@ -22,13 +22,15 @@ namespace CitasEPS.Pages.Appointments
         private readonly UserManager<User> _userManager; // Inject UserManager
         private readonly ILogger<CreateModel> _logger;
         private readonly IAppointmentPolicyService _appointmentPolicyService; // <<< Inject service
+        private readonly INotificationService _notificationService; // <<< Inject NotificationService
 
-        public CreateModel(CitasEPS.Data.ApplicationDbContext context, UserManager<User> userManager, ILogger<CreateModel> logger, IAppointmentPolicyService appointmentPolicyService)
+        public CreateModel(CitasEPS.Data.ApplicationDbContext context, UserManager<User> userManager, ILogger<CreateModel> logger, IAppointmentPolicyService appointmentPolicyService, INotificationService notificationService)
         {
             _context = context;
             _userManager = userManager;
             _logger = logger;
             _appointmentPolicyService = appointmentPolicyService; // <<< Assign service
+            _notificationService = notificationService; // <<< Assign NotificationService
         }
 
         // Store the logged-in patient's ID and name
@@ -239,6 +241,47 @@ namespace CitasEPS.Pages.Appointments
 
             _context.Appointments.Add(Appointment);
             await _context.SaveChangesAsync();
+
+            // --- START: Create Notifications ---
+            try
+            {
+                // Notification for the Doctor
+                var doctor = await _context.Doctors.Include(d => d.User).FirstOrDefaultAsync(d => d.Id == Appointment.DoctorId);
+                
+                if (doctor?.User != null)
+                {
+                    _logger.LogInformation("Attempting to send notification to Doctor UserId: {DoctorUserId} for new appointment {AppointmentId}", doctor.User.Id, Appointment.Id);
+                    var doctorMessage = $"Tiene una nueva cita programada con {LoggedInPatientName} para el {Appointment.AppointmentDateTime:dd/MM/yyyy HH:mm}.";
+                    await _notificationService.CreateNotificationAsync(doctor.User.Id, doctorMessage, NotificationType.NewAppointment, Appointment.Id);
+                    _logger.LogInformation("Notification supposedly sent to Doctor UserId: {DoctorUserId}", doctor.User.Id);
+                }
+                else
+                {
+                    _logger.LogWarning("Could not send new appointment notification to doctor for AppointmentId {AppointmentId} because Doctor or Doctor.User is null. DoctorId was: {DoctorId}. Doctor found: {DoctorExists}, Doctor.User found: {DoctorUserExists}", 
+                        Appointment.Id, Appointment.DoctorId, doctor != null, doctor?.User != null);
+                }
+
+                // Notification for the Patient
+                // Patient object should already be loaded and have User
+                if (patient?.User != null) 
+                {
+                     _logger.LogInformation("Attempting to send confirmation notification to Patient UserId: {PatientUserId} for new appointment {AppointmentId}", patient.User.Id, Appointment.Id);
+                    var patientMessage = $"Su cita con el Dr. {doctor?.FullName ?? "Desconocido"} para el {Appointment.AppointmentDateTime:dd/MM/yyyy HH:mm} ha sido confirmada.";
+                    await _notificationService.CreateNotificationAsync(patient.User.Id, patientMessage, NotificationType.NewAppointment, Appointment.Id);
+                     _logger.LogInformation("Confirmation supposedly sent to Patient UserId: {PatientUserId}", patient.User.Id);
+                }
+                else
+                {
+                     _logger.LogWarning("Could not send new appointment confirmation to patient for AppointmentId {AppointmentId} because Patient or Patient.User is null. PatientId was: {PatientId}. Patient found: {PatientExists}, Patient.User found: {PatientUserExists}", 
+                        Appointment.Id, Appointment.PatientId, patient != null, patient?.User != null);
+                }
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError(ex, "Error al crear notificaciones para la cita {AppointmentId}.", Appointment.Id);
+                // Optionally, inform the user that notifications might have failed, though the main operation (appointment creation) succeeded.
+            }
+            // --- END: Create Notifications ---
 
             TempData["SuccessMessage"] = $"Cita para {LoggedInPatientName} agendada exitosamente.";
 

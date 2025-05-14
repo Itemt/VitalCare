@@ -41,18 +41,23 @@ namespace CitasEPS.Services
         public bool CanPatientCancelAppointment(int patientId, out string reason)
         {
             reason = string.Empty;
-            var (startOfWeek, endOfWeek) = _dateTimeService.GetWeekRange(_dateTimeService.GetNow());
+            var now = _dateTimeService.GetNow(); // Fecha actual, probablemente local
+            var (localStartOfWeek, localEndOfWeek) = _dateTimeService.GetWeekRange(now);
 
-            // Counts appointments scheduled for the current week that are now cancelled by the patient.
+            // Convertir los límites de la semana a UTC para la consulta a la BD
+            var utcStartOfWeek = localStartOfWeek.ToUniversalTime();
+            var utcEndOfWeek = localEndOfWeek.ToUniversalTime();
+
             var cancelledCount = _context.Appointments
                 .Count(a => a.PatientId == patientId && 
-                             a.IsCancelled && // This implies patient cancelled it, or it was cancelled.
-                             a.AppointmentDateTime >= startOfWeek && 
-                             a.AppointmentDateTime <= endOfWeek);
+                             a.IsCancelled && 
+                             a.AppointmentDateTime >= utcStartOfWeek && // Usar versiones UTC
+                             a.AppointmentDateTime <= utcEndOfWeek);   // Usar versiones UTC
             
             if (cancelledCount >= MaxWeeklyCancellations)
             {
-                reason = $"Ya ha cancelado {MaxWeeklyCancellations} citas programadas para la semana actual ({startOfWeek:dd/MM/yyyy} - {endOfWeek:dd/MM/yyyy}). No puede cancelar más citas esta semana.";
+                // Para el mensaje al usuario, es mejor mostrar las fechas locales
+                reason = $"Ya ha cancelado {MaxWeeklyCancellations} citas programadas para la semana actual ({localStartOfWeek:dd/MM/yyyy} - {localEndOfWeek:dd/MM/yyyy}). No puede cancelar más citas esta semana.";
                 return false;
             }
             return true;

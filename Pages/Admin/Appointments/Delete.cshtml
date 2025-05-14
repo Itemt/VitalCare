@@ -1,22 +1,22 @@
 @page "{id:int}"
-@model CitasEPS.Pages.Admin.Appointments.CancelModel
+@model CitasEPS.Pages.Admin.Appointments.DeleteModel
 
 @{ 
-    ViewData["Title"] = "Cancelar Cita";
+    ViewData["Title"] = "Eliminar Cita";
     Layout = "~/Pages/Shared/_Layout.cshtml"; 
 }
 
-<h1><i class="bi bi-calendar-x-fill text-danger"></i> @ViewData["Title"]</h1>
+<h1><i class="bi bi-trash-fill text-danger"></i> @ViewData["Title"]</h1>
 
 <div class="alert alert-danger" role="alert">
-    <h3>¿Está seguro de que desea cancelar esta cita?</h3>
+    <h3>¿Está seguro de que desea eliminar esta cita?</h3>
     <p>Esta acción eliminará permanentemente el registro de la cita.</p>
 </div>
 
 @if (Model.Appointment != null)
 {
     <div>
-        <h4>Detalles de la Cita a Cancelar</h4>
+        <h4>Detalles de la Cita a Eliminar</h4>
         <hr />
         <dl class="row">
              <dt class="col-sm-3">
@@ -48,13 +48,13 @@
         
         <form method="post">
             <input type="hidden" asp-for="Appointment!.Id" />
-            <button type="submit" class="btn btn-danger"><i class="bi bi-calendar-x"></i> Sí, Cancelar Cita</button> |
+            <button type="submit" class="btn btn-danger"><i class="bi bi-trash"></i> Sí, Eliminar Cita</button> |
             <a asp-page="../ManageAppointments" class="btn btn-secondary">No, Volver a la Lista</a>
         </form>
     </div>
 }
 else
 {
-    <div class="alert alert-warning">No se encontró la cita especificada o ya fue cancelada.</div>
+    <div class="alert alert-warning">No se encontró la cita especificada o ya fue eliminada.</div>
      <a asp-page="../ManageAppointments" class="btn btn-secondary">Volver a la Lista</a>
-}
+} 

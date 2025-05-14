@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
+using System.Linq; // Required for Linq methods like Select
 
 namespace CitasEPS.Pages.Admin.Doctors;
 
@@ -14,20 +15,20 @@ public class CreateModel : PageModel
 {
     private readonly ApplicationDbContext _context;
     private readonly ILogger<CreateModel> _logger;
-    // Optionally Inject UserManager if linking Doctors to User accounts
-    // private readonly UserManager<User> _userManager;
+    private readonly UserManager<User> _userManager; // Descomentado e inyectado
 
-    public CreateModel(ApplicationDbContext context, ILogger<CreateModel> logger)
+    public CreateModel(ApplicationDbContext context, ILogger<CreateModel> logger, UserManager<User> userManager) // Añadido userManager
     {
         _context = context;
         _logger = logger;
+        _userManager = userManager; // Asignado userManager
     }
 
     [BindProperty]
     public Models.Doctor Doctor { get; set; } = default!;
 
     public SelectList SpecialtySL { get; set; } = default!;
-    // public SelectList UserSL { get; set; } = default!; // For linking User accounts
+    public SelectList UserSL { get; set; } = default!; // Descomentado
 
     public async Task OnGetAsync()
     {
@@ -36,15 +37,28 @@ public class CreateModel : PageModel
 
     public async Task<IActionResult> OnPostAsync()
     {
-        // Manual validation if needed (e.g., check if license number is unique)
-
         if (!ModelState.IsValid)
         {
             await PopulateDropdownsAsync();
             return Page();
         }
+        
+        // Validar que se haya seleccionado un Usuario
+        if (Doctor.UserId == null || Doctor.UserId == 0)
+        {
+            ModelState.AddModelError("Doctor.UserId", "Debe seleccionar un usuario para vincularlo al médico.");
+            await PopulateDropdownsAsync();
+            return Page();
+        }
 
-        // Validar si ya existe un médico con el mismo número de licencia
+        // Validar si el Usuario seleccionado ya está vinculado a otro Médico
+        if (await _context.Doctors.AnyAsync(d => d.UserId == Doctor.UserId))
+        {
+            ModelState.AddModelError("Doctor.UserId", "Este usuario ya está vinculado a otro perfil de médico.");
+            await PopulateDropdownsAsync();
+            return Page();
+        }
+
         if (!string.IsNullOrEmpty(Doctor.MedicalLicenseNumber) && 
             await _context.Doctors.AnyAsync(d => d.MedicalLicenseNumber == Doctor.MedicalLicenseNumber))
         {
@@ -57,8 +71,8 @@ public class CreateModel : PageModel
         try
         {
             await _context.SaveChangesAsync();
-            _logger.LogInformation("Nuevo médico '{FirstName} {LastName}' creado exitosamente.", Doctor.FirstName, Doctor.LastName);
-            TempData["SuccessMessage"] = $"Médico '{Doctor.FullName}' creado exitosamente.";
+            _logger.LogInformation("Nuevo médico '{FirstName} {LastName}' creado exitosamente y vinculado al usuario ID {UserId}.", Doctor.FirstName, Doctor.LastName, Doctor.UserId);
+            TempData["SuccessMessage"] = $"Médico '{Doctor.FullName}' creado y vinculado exitosamente.";
             return RedirectToPage("../ManageDoctors");
         }
         catch (DbUpdateException ex)
@@ -77,13 +91,21 @@ public class CreateModel : PageModel
                                     .ToListAsync();
         SpecialtySL = new SelectList(specialties, nameof(Specialty.Id), nameof(Specialty.Name), Doctor?.SpecialtyId);
 
-        // Optional: Populate Users for linking
-        /*
-        var users = await _userManager.Users
-                              .OrderBy(u => u.UserName)
-                              .Select(u => new { u.Id, u.UserName })
-                              .ToListAsync();
-        UserSL = new SelectList(users, "Id", "UserName", Doctor?.UserId);
-        */
+        // Obtener IDs de usuarios que ya están vinculados a un médico
+        var linkedUserIds = await _context.Doctors
+                                      .Where(d => d.UserId.HasValue)
+                                      .Select(d => d.UserId.Value)
+                                      .ToListAsync();
+
+        // Obtener usuarios con el rol "Doctor" que NO están en la lista de linkedUserIds
+        var usersInRoleDoctor = await _userManager.GetUsersInRoleAsync("Doctor");
+        var availableUsersForDoctorRole = usersInRoleDoctor
+                                          .Where(u => !linkedUserIds.Contains(u.Id))
+                                          .OrderBy(u => u.UserName)
+                                          .Select(u => new { u.Id, DisplayName = $"{u.FirstName} {u.LastName} ({u.Email})" })
+                                          .ToList();
+
+        UserSL = new SelectList(availableUsersForDoctorRole, "Id", "DisplayName", Doctor?.UserId);
     }
 }
+

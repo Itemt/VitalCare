@@ -67,11 +67,23 @@ else
                 </td>
                 <td>
                     <a asp-page="./Appointments/Details" asp-route-id="@item.Id" class="btn btn-sm btn-info" title="Ver Detalles"><i class="bi bi-info-circle"></i></a>
-                    @if (item.AppointmentDateTime >= DateTime.Now) @* Solo permitir cancelar citas futuras *@
+                    @if (item.AppointmentDateTime >= DateTime.Now && !item.IsCancelled && !item.IsCompleted)
                     {
-                        <a asp-page="./Appointments/Cancel" asp-route-id="@item.Id" class="btn btn-sm btn-danger" title="Cancelar Cita"><i class="bi bi-calendar-x"></i></a>
+                        <a asp-page="./Appointments/SetCancelled" asp-route-id="@item.Id" class="btn btn-sm btn-warning" title="Marcar como Cancelada"><i class="bi bi-calendar-minus"></i></a>
                     }
-                    else
+                    @if (item.AppointmentDateTime >= DateTime.Now) @* Solo permitir eliminar citas futuras (o no completadas/canceladas) *@
+                    {
+                        <a asp-page="./Appointments/Delete" asp-route-id="@item.Id" class="btn btn-sm btn-danger" title="Eliminar Cita Permanentemente"><i class="bi bi-trash"></i></a>
+                    }
+                    else if (item.IsCancelled)
+                    {
+                        <span class="btn btn-sm btn-outline-danger disabled" title="Cita Cancelada"><i class="bi bi-calendar-x"></i></span>
+                    }
+                    else if (item.IsCompleted)
+                    {
+                        <span class-="btn btn-sm btn-outline-success disabled" title="Cita Completada"><i class="bi bi-check-all"></i></span>
+                    }
+                    else // Cita pasada y no cancelada/completada (ej. No Show)
                     {
                          <span class="btn btn-sm btn-secondary disabled" title="Cita Pasada"><i class="bi bi-check-circle"></i></span>
                     }

@@ -20,13 +20,15 @@ namespace CitasEPS.Pages.Appointments
         private readonly UserManager<User> _userManager;
         private readonly ILogger<IndexModel> _logger;
         private readonly IAppointmentPolicyService _appointmentPolicyService;
+        private readonly INotificationService _notificationService;
 
-        public IndexModel(ApplicationDbContext context, UserManager<User> userManager, ILogger<IndexModel> logger, IAppointmentPolicyService appointmentPolicyService)
+        public IndexModel(ApplicationDbContext context, UserManager<User> userManager, ILogger<IndexModel> logger, IAppointmentPolicyService appointmentPolicyService, INotificationService notificationService)
         {
             _context = context;
             _userManager = userManager;
             _logger = logger;
             _appointmentPolicyService = appointmentPolicyService;
+            _notificationService = notificationService;
         }
 
         public IList<Appointment> Appointment { get; set; } = new List<Appointment>();
@@ -111,7 +113,9 @@ namespace CitasEPS.Pages.Appointments
                 return RedirectToPage();
             }
 
-            var appointment = await _context.Appointments.FindAsync(id);
+            var appointment = await _context.Appointments
+                .Include(a => a.Doctor).ThenInclude(d => d.User)
+                .FirstOrDefaultAsync(a => a.Id == id);
 
             if (appointment == null)
             {
@@ -140,6 +144,19 @@ namespace CitasEPS.Pages.Appointments
             {
                 await _context.SaveChangesAsync();
                 TempData["SuccessMessage"] = "Solicitud de reagendamiento enviada correctamente.";
+
+                // --- START: Notify Doctor of Reschedule Request ---
+                if (appointment.Doctor?.User != null)
+                {
+                    var patientName = patientRecord?.FullName ?? user.Email;
+                    var doctorMessage = $"El paciente {patientName} ha solicitado reagendar la cita del {appointment.AppointmentDateTime:dd/MM/yyyy HH:mm}.";
+                    await _notificationService.CreateNotificationAsync(appointment.Doctor.User.Id, doctorMessage, NotificationType.RescheduleRequestedByPatient, appointment.Id);
+                }
+                else
+                {
+                     _logger.LogWarning($"No se pudo notificar al doctor sobre la solicitud de reagendamiento para la cita {appointment.Id} porque el usuario del doctor no fue encontrado.");
+                }
+                // --- END: Notify Doctor of Reschedule Request ---
             }
             catch (DbUpdateConcurrencyException)
             {
@@ -188,7 +205,9 @@ namespace CitasEPS.Pages.Appointments
             }
             // <<< END: Cancellation Limit Check for Patients >>>
 
-            var appointmentToCancel = await _context.Appointments.FindAsync(appointmentId);
+            var appointmentToCancel = await _context.Appointments
+                .Include(a => a.Doctor).ThenInclude(d => d.User) // Ensure Doctor and User are loaded for notification
+                .FirstOrDefaultAsync(a => a.Id == appointmentId);
 
             if (appointmentToCancel == null)
             {
@@ -231,8 +250,22 @@ namespace CitasEPS.Pages.Appointments
             {
                 _context.Appointments.Update(appointmentToCancel);
                 await _context.SaveChangesAsync();
-                TempData["SuccessMessage"] = $"La cita ID {appointmentToCancel.Id} ha sido cancelada exitosamente.";
-                _logger.LogInformation($"Patient {user.Email} cancelled Appointment ID {appointmentToCancel.Id}.");
+                TempData["SuccessMessage"] = $"La cita con ID {appointmentToCancel.Id} ha sido cancelada exitosamente.";
+                _logger.LogInformation($"Patient {patient.Email} (ID: {patient.Id}) cancelled Appointment ID {appointmentToCancel.Id}.");
+
+                // --- START: Notify Doctor of Cancellation by Patient ---
+                if (appointmentToCancel.Doctor?.User != null)
+                {
+                    var patientName = patient?.FullName ?? user.Email; // Use patient from current context
+                    var doctorMessage = $"La cita con el paciente {patientName} programada para el {appointmentToCancel.AppointmentDateTime:dd/MM/yyyy HH:mm} ha sido cancelada por el paciente.";
+                    await _notificationService.CreateNotificationAsync(appointmentToCancel.Doctor.User.Id, doctorMessage, NotificationType.AppointmentCancelled, appointmentToCancel.Id);
+                }
+                else
+                {
+                    _logger.LogWarning($"No se pudo notificar al doctor sobre la cancelación (por paciente) de la cita {appointmentToCancel.Id} porque el usuario del doctor no fue encontrado.");
+                }
+                // --- END: Notify Doctor of Cancellation by Patient ---
+
             }
             catch (DbUpdateConcurrencyException ex)
             {

@@ -9,6 +9,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using CitasEPS.Models;
 using Microsoft.Extensions.Logging;
+using CitasEPS.Services;
 
 namespace CitasEPS.Pages.Doctor
 {
@@ -18,12 +19,14 @@ namespace CitasEPS.Pages.Doctor
         private readonly ApplicationDbContext _context;
         private readonly UserManager<User> _userManager;
         private readonly ILogger<AgendaModel> _logger;
+        private readonly INotificationService _notificationService;
 
-        public AgendaModel(ApplicationDbContext context, UserManager<User> userManager, ILogger<AgendaModel> logger)
+        public AgendaModel(ApplicationDbContext context, UserManager<User> userManager, ILogger<AgendaModel> logger, INotificationService notificationService)
         {
             _context = context;
             _userManager = userManager;
             _logger = logger;
+            _notificationService = notificationService;
         }
 
         public IList<Models.Appointment> Appointments { get; set; } = new List<Models.Appointment>();
@@ -93,7 +96,9 @@ namespace CitasEPS.Pages.Doctor
                 return RedirectToPage();
             }
 
-            var appointmentToCancel = await _context.Appointments.FindAsync(appointmentId);
+            var appointmentToCancel = await _context.Appointments
+                                                .Include(a => a.Patient).ThenInclude(p => p.User)
+                                                .FirstOrDefaultAsync(a => a.Id == appointmentId);
 
             if (appointmentToCancel == null)
             {
@@ -130,6 +135,17 @@ namespace CitasEPS.Pages.Doctor
                 await _context.SaveChangesAsync();
                 TempData["SuccessMessage"] = $"La cita ID {appointmentToCancel.Id} ha sido cancelada exitosamente.";
                 _logger.LogInformation($"Doctor {currentDoctor.Email} cancelled Appointment ID {appointmentToCancel.Id}.");
+
+                if (appointmentToCancel.Patient?.User != null)
+                {
+                    var doctorName = currentDoctor?.FullName ?? user.Email;
+                    var patientMessage = $"Su cita con el Dr. {doctorName} programada para el {appointmentToCancel.AppointmentDateTime:dd/MM/yyyy HH:mm} ha sido cancelada.";
+                    await _notificationService.CreateNotificationAsync(appointmentToCancel.Patient.User.Id, patientMessage, NotificationType.AppointmentCancelled, appointmentToCancel.Id);
+                }
+                else
+                {
+                     _logger.LogWarning($"No se pudo notificar al paciente sobre la cancelación de la cita {appointmentToCancel.Id} por el doctor {currentDoctor.Email} porque el usuario del paciente no fue encontrado.");
+                }
             }
             catch (DbUpdateConcurrencyException ex)
             {

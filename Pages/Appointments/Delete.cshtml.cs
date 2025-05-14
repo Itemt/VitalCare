@@ -8,6 +8,8 @@ using Microsoft.EntityFrameworkCore;
 using CitasEPS.Data;
 using CitasEPS.Models;
 using Microsoft.AspNetCore.Authorization;
+using CitasEPS.Services;
+using Microsoft.Extensions.Logging;
 
 namespace CitasEPS.Pages.Appointments
 {
@@ -15,10 +17,16 @@ namespace CitasEPS.Pages.Appointments
     public class DeleteModel : PageModel
     {
         private readonly CitasEPS.Data.ApplicationDbContext _context;
+        private readonly INotificationService _notificationService;
+        private readonly ILogger<DeleteModel> _logger;
 
-        public DeleteModel(CitasEPS.Data.ApplicationDbContext context)
+        public DeleteModel(CitasEPS.Data.ApplicationDbContext context, 
+                           INotificationService notificationService, 
+                           ILogger<DeleteModel> logger)
         {
             _context = context;
+            _notificationService = notificationService;
+            _logger = logger;
         }
 
         [BindProperty]
@@ -68,11 +76,60 @@ namespace CitasEPS.Pages.Appointments
                  return RedirectToPage("./Index");
             }
 
+            // Fetch full appointment details for notification purposes BEFORE deleting
+            var appointmentToNotify = await _context.Appointments
+                .Include(a => a.Patient).ThenInclude(p => p.User)
+                .Include(a => a.Doctor).ThenInclude(d => d.User)
+                .FirstOrDefaultAsync(m => m.Id == id);
+
+            if (appointmentToNotify == null)
+            {
+                // This case should ideally be covered by appointmentToDelete == null check, but good for robustness
+                TempData["ErrorMessage"] = "No se pudo encontrar la cita para enviar notificaciones.";
+                return RedirectToPage("./Index");
+            }
+
             try
             {
                 _context.Appointments.Remove(appointmentToDelete);
                 await _context.SaveChangesAsync();
-                 TempData["SuccessMessage"] = "Cita eliminada exitosamente.";
+
+                // --- START: Create Notifications for Cancellation ---
+                try
+                {
+                    string patientName = appointmentToNotify.Patient?.FullName ?? "Paciente Desconocido";
+                    string doctorName = appointmentToNotify.Doctor?.FullName ?? "Doctor Desconocido";
+                    string appointmentDateTime = appointmentToNotify.AppointmentDateTime.ToString("dd/MM/yyyy HH:mm");
+
+                    // Notification for the Patient
+                    if (appointmentToNotify.Patient?.User != null)
+                    {
+                        var patientMessage = $"Su cita con el Dr. {doctorName} para el {appointmentDateTime} ha sido cancelada por un administrador.";
+                        await _notificationService.CreateNotificationAsync(appointmentToNotify.Patient.User.Id, patientMessage, NotificationType.AppointmentCancelled, appointmentToNotify.Id);
+                    }
+                    else
+                    {
+                        _logger.LogWarning($"No se pudo notificar al paciente para la cita cancelada {appointmentToNotify.Id} porque el usuario del paciente no fue encontrado.");
+                    }
+
+                    // Notification for the Doctor
+                    if (appointmentToNotify.Doctor?.User != null)
+                    {
+                        var doctorMessage = $"La cita del paciente {patientName} para el {appointmentDateTime} ha sido cancelada por un administrador.";
+                        await _notificationService.CreateNotificationAsync(appointmentToNotify.Doctor.User.Id, doctorMessage, NotificationType.AppointmentCancelled, appointmentToNotify.Id);
+                    }
+                    else
+                    {
+                        _logger.LogWarning($"No se pudo notificar al doctor para la cita cancelada {appointmentToNotify.Id} porque el usuario del doctor no fue encontrado.");
+                    }
+                }
+                catch (Exception ex)
+                {
+                    _logger.LogError(ex, "Error al crear notificaciones para la cancelación de la cita {AppointmentId}.", appointmentToNotify.Id);
+                }
+                // --- END: Create Notifications for Cancellation ---
+
+                TempData["SuccessMessage"] = "Cita eliminada exitosamente.";
                 return RedirectToPage("./Index");
             }
             catch (DbUpdateException /* ex */)

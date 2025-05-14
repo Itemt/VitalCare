@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "E8/FGlp/b+s7O1BVWKgNN6cJqB3qcmyrmzNPL0wJCFA=",
+  "Hash": "HWprM2R3HTi1xkQ5M3HO9txKIL01rqBaWgklBGT44h8=",
   "Source": "CitasEPS",
   "BasePath": "_content/CitasEPS",
   "Mode": "Default",
@@ -1333,8 +1333,8 @@
       "RelatedAsset": "",
       "AssetTraitName": "",
       "AssetTraitValue": "",
-      "Fingerprint": "0q8bsuevmw",
-      "Integrity": "GItorOJiWoLXrUS/lnd7rQk0xCKKojp9ClbNNKWob1M=",
+      "Fingerprint": "0yy35442t8",
+      "Integrity": "WLfMgO903DKQUQo/YyxG+sfusXa97AappbRK8XRnD38=",
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\css\\site.css"
@@ -1485,6 +1485,27 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\images\\patient-dashboard-bg.svg"
+    },
+    {
+      "Identity": "C:\\Users\\CristianPC\\Desktop\\vitalcare\\wwwroot\\js\\notifications.js",
+      "SourceId": "CitasEPS",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\CristianPC\\Desktop\\vitalcare\\wwwroot\\",
+      "BasePath": "_content/CitasEPS",
+      "RelativePath": "js/notifications#[.{fingerprint}]?.js",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "Fingerprint": "j5d7fqzu4v",
+      "Integrity": "qfqKiUHnFYThrVO++6gcC0crkVSlhvVCWTR+Y9JtIvM=",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\js\\notifications.js"
     },
     {
       "Identity": "C:\\Users\\CristianPC\\Desktop\\vitalcare\\wwwroot\\js\\passwordToggle.js",
@@ -2913,7 +2934,7 @@
       ]
     },
     {
-      "Route": "css/site.0q8bsuevmw.css",
+      "Route": "css/site.0yy35442t8.css",
       "AssetFile": "C:\\Users\\CristianPC\\Desktop\\vitalcare\\wwwroot\\css\\site.css",
       "Selectors": [],
       "ResponseHeaders": [
@@ -2923,7 +2944,7 @@
         },
         {
           "Name": "Content-Length",
-          "Value": "5315"
+          "Value": "7662"
         },
         {
           "Name": "Content-Type",
@@ -2931,11 +2952,11 @@
         },
         {
           "Name": "ETag",
-          "Value": "\"GItorOJiWoLXrUS/lnd7rQk0xCKKojp9ClbNNKWob1M=\""
+          "Value": "\"WLfMgO903DKQUQo/YyxG+sfusXa97AappbRK8XRnD38=\""
         },
         {
           "Name": "Last-Modified",
-          "Value": "Sun, 11 May 2025 09:54:49 GMT"
+          "Value": "Sun, 11 May 2025 10:35:04 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -2945,7 +2966,7 @@
       "EndpointProperties": [
         {
           "Name": "fingerprint",
-          "Value": "0q8bsuevmw"
+          "Value": "0yy35442t8"
         },
         {
           "Name": "label",
@@ -2953,7 +2974,7 @@
         },
         {
           "Name": "integrity",
-          "Value": "sha256-GItorOJiWoLXrUS/lnd7rQk0xCKKojp9ClbNNKWob1M="
+          "Value": "sha256-WLfMgO903DKQUQo/YyxG+sfusXa97AappbRK8XRnD38="
         }
       ]
     },
@@ -2968,7 +2989,7 @@
         },
         {
           "Name": "Content-Length",
-          "Value": "5315"
+          "Value": "7662"
         },
         {
           "Name": "Content-Type",
@@ -2976,11 +2997,11 @@
         },
         {
           "Name": "ETag",
-          "Value": "\"GItorOJiWoLXrUS/lnd7rQk0xCKKojp9ClbNNKWob1M=\""
+          "Value": "\"WLfMgO903DKQUQo/YyxG+sfusXa97AappbRK8XRnD38=\""
         },
         {
           "Name": "Last-Modified",
-          "Value": "Sun, 11 May 2025 09:54:49 GMT"
+          "Value": "Sun, 11 May 2025 10:35:04 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -2990,7 +3011,7 @@
       "EndpointProperties": [
         {
           "Name": "integrity",
-          "Value": "sha256-GItorOJiWoLXrUS/lnd7rQk0xCKKojp9ClbNNKWob1M="
+          "Value": "sha256-WLfMgO903DKQUQo/YyxG+sfusXa97AappbRK8XRnD38="
         }
       ]
     },
@@ -5785,6 +5806,88 @@
         {
           "Name": "integrity",
           "Value": "sha256-B55bZ4XsIW0k1hBfeZMKPtMGKhMG1m0onkUz3zgHlBg="
+        }
+      ]
+    },
+    {
+      "Route": "js/notifications.j5d7fqzu4v.js",
+      "AssetFile": "C:\\Users\\CristianPC\\Desktop\\vitalcare\\wwwroot\\js\\notifications.js",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "6430"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "text/javascript"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"qfqKiUHnFYThrVO++6gcC0crkVSlhvVCWTR+Y9JtIvM=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Wed, 14 May 2025 07:28:41 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=31536000, immutable"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "fingerprint",
+          "Value": "j5d7fqzu4v"
+        },
+        {
+          "Name": "label",
+          "Value": "js/notifications.js"
+        },
+        {
+          "Name": "integrity",
+          "Value": "sha256-qfqKiUHnFYThrVO++6gcC0crkVSlhvVCWTR+Y9JtIvM="
+        }
+      ]
+    },
+    {
+      "Route": "js/notifications.js",
+      "AssetFile": "C:\\Users\\CristianPC\\Desktop\\vitalcare\\wwwroot\\js\\notifications.js",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "6430"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "text/javascript"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"qfqKiUHnFYThrVO++6gcC0crkVSlhvVCWTR+Y9JtIvM=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Wed, 14 May 2025 07:28:41 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "no-cache"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "integrity",
+          "Value": "sha256-qfqKiUHnFYThrVO++6gcC0crkVSlhvVCWTR+Y9JtIvM="
         }
       ]
     },
