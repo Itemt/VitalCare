@@ -82,31 +82,27 @@
                             <span asp-validation-for="Doctor.MedicalLicenseNumber" class="text-danger"></span>
                         </div>
 
-                        <div class="form-floating mb-3">
-                            <select asp-for="Doctor.SpecialtyId" class="form-select" asp-items="Model.SpecialtySL" placeholder="Especialidad">
+                        <div class="form-group mb-3">
+                            <label asp-for="Doctor.SpecialtyId" class="control-label"></label>
+                            <select asp-for="Doctor.SpecialtyId" class="form-control" asp-items="Model.SpecialtySL">
                                 <option value="">-- Seleccione Especialidad --</option>
                             </select>
-                            <label asp-for="Doctor.SpecialtyId" class="form-label"></label>
                             <span asp-validation-for="Doctor.SpecialtyId" class="text-danger"></span>
                         </div>
 
-                        @if (Model.UserSL != null && Model.UserSL.Any()) // Display UserSL only if it has items (i.e., doctor is unlinked or link is problematic)
-                        {
-                            <div class="form-floating mb-3">
-                                <select asp-for="Doctor.UserId" class="form-select" asp-items="Model.UserSL" placeholder="Vincular Usuario del Sistema">
-                                    <option value="">-- No vincular / Mantener sin cambios --</option>
-                                </select>
-                                <label asp-for="Doctor.UserId" class="form-label">Vincular Usuario del Sistema (Rol Doctor)</label>
-                                <span asp-validation-for="Doctor.UserId" class="text-danger"></span>
-                                <div class="form-text">Seleccione una cuenta de usuario para vincular a este perfil de doctor. Esto es necesario para que el doctor reciba notificaciones y acceda al sistema.</div>
-                            </div>
-                        }
-                        else if (Model.Doctor.UserId == null || Model.Doctor.User == null) // UserSL is null or empty, but doctor is still unlinked
-                        {
-                             <div class="alert alert-secondary" role="alert">
-                                No hay cuentas de usuario con rol 'Doctor' disponibles para vincular en este momento, o la lista no pudo ser cargada.
-                            </div>
-                        }
+                        <div class="form-group mb-3">
+                            <label asp-for="Doctor.UserId" class="control-label">Usuario del Sistema Vinculado</label>
+                            <select asp-for="Doctor.UserId" class="form-control" asp-items="Model.UserSL">
+                                <option value="">-- No asignar / Desvincular --</option>
+                            </select>
+                            <span asp-validation-for="Doctor.UserId" class="text-danger"></span>
+                            @if (!string.IsNullOrEmpty(Model.UnlinkedUserMessage))
+                            {
+                                <div class="alert alert-warning mt-2" role="alert">
+                                    @Model.UnlinkedUserMessage
+                                </div>
+                            }
+                        </div>
 
                         <div class="d-grid gap-2 d-md-flex justify-content-md-end mt-4">
                             <button type="submit" class="btn btn-primary me-md-2"><i class="bi bi-save me-2"></i>Guardar Cambios</button>

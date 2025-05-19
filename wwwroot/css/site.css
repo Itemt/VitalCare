@@ -230,3 +230,94 @@ body.patient-body-bg .footer a:hover {
 }
 
 /* Default footer text colors are fine for the default light grey body background */
+
+/* Styles for notifications */
+.notification-item a.dropdown-item {
+    white-space: normal; /* Allow text to wrap */
+    /* Ensure the link itself doesn't have default blue color if not desired */
+    /* color: inherit; might be needed if Bootstrap overrides */
+}
+
+/* Style for UNREAD notifications */
+.notification-item.notification-unread .dropdown-item p {
+    font-weight: bold; /* Make unread notification messages bold */
+}
+
+.notification-item.notification-unread .dropdown-item small {
+    font-weight: bold; /* Optionally make timestamp bold too, or leave normal */
+}
+
+/* Style for READ notifications */
+.notification-item.notification-read .dropdown-item p {
+    font-weight: normal; /* Ensure read notification messages are normal weight */
+    opacity: 0.75;       /* Lower intensity for read message text */
+}
+
+.notification-item.notification-read .dropdown-item small {
+    font-weight: normal;
+    opacity: 0.75;       /* Lower intensity for read timestamp text */
+}
+
+/* General hover effect for all notification items */
+.notification-item .dropdown-item:hover {
+    background-color: #f0f0f0; /* Light grey hover background */
+}
+
+/* Ensure text in hovered notification items remains readable */
+.notification-item .dropdown-item:hover p,
+.notification-item .dropdown-item:hover small {
+    color: #212529 !important; /* Bootstrap's default dark text color, !important to ensure override */
+}
+
+/* Ensure the badge is styled correctly if not already handled by Bootstrap */
+#notificationBadge {
+    font-size: 0.75em;
+    padding: .25em .5em;
+    position: absolute;
+    top: 5px; /* Adjust as needed */
+    right: 5px; /* Adjust as needed */
+}
+
+/* Ensure the panel has a max height and is scrollable */
+/* The id #notificationPanel is based on the previous summary */
+#notificationPanel {
+    max-height: 400px; /* Adjust as needed */
+    overflow-y: auto;
+}
+
+/* Styling for the links within the dropdown, if not using default Bootstrap properly */
+#notificationPanel .dropdown-item p {
+    margin-bottom: 0.25rem; /* Space between message and timestamp */
+    font-size: 0.9em;
+}
+
+#notificationPanel .dropdown-item small {
+    font-size: 0.75em;
+}
+
+#noNotificationsMessage {
+    padding: 0.5rem 1rem; /* Consistent padding */
+}
+
+#markAllAsReadLink {
+    font-weight: bold;
+    text-align: center;
+}
+
+/* Doctor-specific theming for /Appointments/Details page - REMOVED AS NOW HANDLED IN CSHTML */
+/*
+body.doctor-body-bg .details-page-card-header {
+    background-color: #0dcaf0 !important; 
+}
+
+body.doctor-body-bg .btn-create-prescription-doctor {
+    background-color: #0d6efd !important; 
+    border-color: #0d6efd !important;
+    color: #fff !important;
+}
+
+body.doctor-body-bg .btn-create-prescription-doctor:hover {
+    background-color: #0b5ed7 !important; 
+    border-color: #0a58ca !important;
+}
+*/

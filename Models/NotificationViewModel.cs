@@ -1,0 +1,32 @@
+using System;
+using CitasEPS.Models; // Assuming Notification and NotificationType are here
+
+namespace CitasEPS.Models
+{
+    public class NotificationViewModel
+    {
+        public int Id { get; set; }
+        public int UserId { get; set; }
+        public int? AppointmentId { get; set; }
+        public string? Message { get; set; }
+        public bool IsRead { get; set; }
+        public DateTime CreatedAt { get; set; }
+        public NotificationType NotificationType { get; set; }
+        public string? NavigationPath { get; set; }
+
+        // Constructor to map from Notification entity
+        public NotificationViewModel(Notification notification, string? navigationPath = null)
+        {
+            Id = notification.Id;
+            UserId = notification.UserId;
+            AppointmentId = notification.AppointmentId;
+            Message = notification.Message;
+            IsRead = notification.IsRead;
+            CreatedAt = notification.CreatedAt;
+            NotificationType = notification.NotificationType;
+            NavigationPath = navigationPath;
+        }
+        // Parameterless constructor for model binding if needed
+        public NotificationViewModel() { }
+    }
+} 

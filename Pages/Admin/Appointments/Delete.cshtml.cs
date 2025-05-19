@@ -38,13 +38,6 @@ public class DeleteModel : PageModel
              TempData["WarningMessage"] = $"La cita con ID {id} no fue encontrada.";
             return RedirectToPage("../ManageAppointments");
         }
-        
-        if (Appointment.AppointmentDateTime < DateTime.Now)
-        {
-             _logger.LogWarning("Intento de eliminar una cita pasada (ID: {AppointmentId}) desde la página de confirmación.", id);
-            TempData["ErrorMessage"] = "No se pueden eliminar citas que ya han ocurrido.";
-            return RedirectToPage("../ManageAppointments");
-        }
 
         return Page();
     }
@@ -57,13 +50,6 @@ public class DeleteModel : PageModel
         {
             _logger.LogWarning("Intento de eliminación para Cita ID {AppointmentId} no encontrada (POST).", id);
             TempData["WarningMessage"] = $"La cita con ID {id} ya no existe o fue eliminada por otro usuario.";
-            return RedirectToPage("../ManageAppointments");
-        }
-        
-        if (appointmentToDelete.AppointmentDateTime < DateTime.Now)
-        {
-            _logger.LogWarning("Intento de confirmar eliminación de una cita pasada (ID: {AppointmentId}).", id);
-            TempData["ErrorMessage"] = "Esta cita ya ha ocurrido y no puede ser eliminada.";
             return RedirectToPage("../ManageAppointments");
         }
 

@@ -118,43 +118,57 @@ namespace CitasEPS.Pages.Appointments
             // Assign patient ID before validation
             Appointment.PatientId = LoggedInPatientId;
 
-            // --- START: Convert AppointmentDateTime to UTC EARLY ---
-            var originalBoundDateTime = Appointment.AppointmentDateTime;
-            if (originalBoundDateTime.Kind == DateTimeKind.Unspecified)
+            // --- START: Store original local DateTime for specific validations ---
+            var localAppointmentDateTime = Appointment.AppointmentDateTime; // Store the original, assumed local, DateTime
+            if (localAppointmentDateTime.Kind == DateTimeKind.Unspecified)
             {
-                _logger.LogInformation($"Original BOUND AppointmentDateTime '{originalBoundDateTime}' had Kind Unspecified. Assuming Local, then converting to UTC.");
-                Appointment.AppointmentDateTime = DateTime.SpecifyKind(originalBoundDateTime, DateTimeKind.Local).ToUniversalTime();
+                // If unspecified, explicitly treat it as Local for the purpose of local time validations.
+                // The database conversion to UTC will handle its own logic later.
+                localAppointmentDateTime = DateTime.SpecifyKind(localAppointmentDateTime, DateTimeKind.Local);
+                _logger.LogInformation($"Original BOUND AppointmentDateTime '{Appointment.AppointmentDateTime}' was Unspecified. For local validation, treating as Local: '{localAppointmentDateTime}'.");
             }
-            else if (originalBoundDateTime.Kind == DateTimeKind.Local)
+            else
             {
-                _logger.LogInformation($"Original BOUND AppointmentDateTime '{originalBoundDateTime}' had Kind Local. Converting to UTC.");
-                Appointment.AppointmentDateTime = originalBoundDateTime.ToUniversalTime();
+                 _logger.LogInformation($"Original BOUND AppointmentDateTime for local validation: '{localAppointmentDateTime}', Kind: '{localAppointmentDateTime.Kind}'.");
+            }
+            // --- END: Store original local DateTime for specific validations ---
+
+            // --- START: Convert AppointmentDateTime to UTC EARLY (for database and UTC-dependent logic) ---
+            var originalBoundDateTimeForUtcConversion = Appointment.AppointmentDateTime;
+            if (originalBoundDateTimeForUtcConversion.Kind == DateTimeKind.Unspecified)
+            {
+                _logger.LogInformation($"Original BOUND AppointmentDateTime for UTC conversion '{originalBoundDateTimeForUtcConversion}' had Kind Unspecified. Assuming Local, then converting to UTC.");
+                Appointment.AppointmentDateTime = DateTime.SpecifyKind(originalBoundDateTimeForUtcConversion, DateTimeKind.Local).ToUniversalTime();
+            }
+            else if (originalBoundDateTimeForUtcConversion.Kind == DateTimeKind.Local)
+            {
+                _logger.LogInformation($"Original BOUND AppointmentDateTime for UTC conversion '{originalBoundDateTimeForUtcConversion}' had Kind Local. Converting to UTC.");
+                Appointment.AppointmentDateTime = originalBoundDateTimeForUtcConversion.ToUniversalTime();
             }
             else // Already UTC
             {
-                 _logger.LogInformation($"Original BOUND AppointmentDateTime '{originalBoundDateTime}' was already Kind Utc. No conversion needed.");
-                // Ensure it's assigned if it was a different instance, though unlikely here.
-                Appointment.AppointmentDateTime = originalBoundDateTime;
+                 _logger.LogInformation($"Original BOUND AppointmentDateTime for UTC conversion '{originalBoundDateTimeForUtcConversion}' was already Kind Utc. No conversion needed.");
+                Appointment.AppointmentDateTime = originalBoundDateTimeForUtcConversion;
             }
-            _logger.LogInformation($"Early converted AppointmentDateTime: '{Appointment.AppointmentDateTime}', Kind: '{Appointment.AppointmentDateTime.Kind}'. This will be used for validations.");
+            _logger.LogInformation($"Early converted AppointmentDateTime (for DB): '{Appointment.AppointmentDateTime}', Kind: '{Appointment.AppointmentDateTime.Kind}'.");
             // --- END: Convert AppointmentDateTime to UTC EARLY ---
 
-            // --- START: Add Past Date Validation ---
-            if (Appointment.AppointmentDateTime < DateTime.Now)
+            // --- START: Add Past Date Validation (using local time for user feedback) ---
+            if (localAppointmentDateTime < DateTime.Now) // Compare with current local time
             {
                  ModelState.AddModelError("Appointment.AppointmentDateTime", "No puede seleccionar una fecha u hora en el pasado.");
             }
             // --- END: Add Past Date Validation ---
 
-            // --- START: Working Hours Validation (Mon-Fri, 8 AM - 6 PM) ---
-            var appTime = Appointment.AppointmentDateTime.TimeOfDay;
-            var appDay = Appointment.AppointmentDateTime.DayOfWeek;
+            // --- START: Working Hours Validation (Mon-Fri, 8 AM - 6 PM) - USING LOCAL TIME ---
+            var localAppTime = localAppointmentDateTime.TimeOfDay;
+            var localAppDay = localAppointmentDateTime.DayOfWeek;
 
-            if (appDay == DayOfWeek.Saturday || appDay == DayOfWeek.Sunday)
+            if (localAppDay == DayOfWeek.Saturday || localAppDay == DayOfWeek.Sunday)
             {
                 ModelState.AddModelError("Appointment.AppointmentDateTime", "Las citas solo pueden agendarse de Lunes a Viernes.");
             }
-            else if (appTime < new TimeSpan(8, 0, 0) || appTime >= new TimeSpan(18, 0, 0)) // 8 AM to 5:59 PM
+            else if (localAppTime < new TimeSpan(8, 0, 0) || localAppTime >= new TimeSpan(18, 0, 0)) // 8 AM to 5:59 PM
             {
                 ModelState.AddModelError("Appointment.AppointmentDateTime", "Las citas solo pueden agendarse entre las 8:00 AM y las 5:59 PM.");
             }
@@ -241,39 +255,52 @@ namespace CitasEPS.Pages.Appointments
 
             _context.Appointments.Add(Appointment);
             await _context.SaveChangesAsync();
+            _logger.LogInformation("Cita ID {AppointmentId} guardada en la BD.", Appointment.Id);
 
-            // --- START: Create Notifications ---
             try
             {
-                // Notification for the Doctor
-                var doctor = await _context.Doctors.Include(d => d.User).FirstOrDefaultAsync(d => d.Id == Appointment.DoctorId);
-                
-                if (doctor?.User != null)
+                // Notificación para el Paciente
+                var patientUser = await _userManager.FindByIdAsync(patient.UserId.ToString());
+                if (patientUser != null)
                 {
-                    _logger.LogInformation("Attempting to send notification to Doctor UserId: {DoctorUserId} for new appointment {AppointmentId}", doctor.User.Id, Appointment.Id);
-                    var doctorMessage = $"Tiene una nueva cita programada con {LoggedInPatientName} para el {Appointment.AppointmentDateTime:dd/MM/yyyy HH:mm}.";
-                    await _notificationService.CreateNotificationAsync(doctor.User.Id, doctorMessage, NotificationType.NewAppointment, Appointment.Id);
-                    _logger.LogInformation("Notification supposedly sent to Doctor UserId: {DoctorUserId}", doctor.User.Id);
+                    _logger.LogInformation($"Intentando notificación para Paciente User ID: {patientUser.Id} para cita ID: {Appointment.Id}");
+                    await _notificationService.CreateNotificationAsync(
+                        patientUser.Id,
+                        $"Su cita para el {Appointment.AppointmentDateTime:dd/MM/yyyy 'a las' HH:mm} ha sido agendada y está pendiente de confirmación por el consultorio.",
+                        NotificationType.NewAppointment,
+                        Appointment.Id
+                    );
+                    _logger.LogInformation($"Notificación creada para Paciente User ID: {patientUser.Id} por nueva cita ID: {Appointment.Id}");
                 }
                 else
                 {
-                    _logger.LogWarning("Could not send new appointment notification to doctor for AppointmentId {AppointmentId} because Doctor or Doctor.User is null. DoctorId was: {DoctorId}. Doctor found: {DoctorExists}, Doctor.User found: {DoctorUserExists}", 
-                        Appointment.Id, Appointment.DoctorId, doctor != null, doctor?.User != null);
+                    _logger.LogWarning($"No se pudo encontrar el User para el Paciente ID: {patient.Id} (UserId: {patient.UserId}) para enviar notificación.");
                 }
 
-                // Notification for the Patient
-                // Patient object should already be loaded and have User
-                if (patient?.User != null) 
+                // Obtener el doctor con su información de User para la notificación
+                var doctorForNotification = await _context.Doctors
+                                                    .Include(d => d.User) 
+                                                    .FirstOrDefaultAsync(d => d.Id == Appointment.DoctorId);
+
+                // Notificación para el Doctor
+                if (doctorForNotification?.User != null)
                 {
-                     _logger.LogInformation("Attempting to send confirmation notification to Patient UserId: {PatientUserId} for new appointment {AppointmentId}", patient.User.Id, Appointment.Id);
-                    var patientMessage = $"Su cita con el Dr. {doctor?.FullName ?? "Desconocido"} para el {Appointment.AppointmentDateTime:dd/MM/yyyy HH:mm} ha sido confirmada.";
-                    await _notificationService.CreateNotificationAsync(patient.User.Id, patientMessage, NotificationType.NewAppointment, Appointment.Id);
-                     _logger.LogInformation("Confirmation supposedly sent to Patient UserId: {PatientUserId}", patient.User.Id);
+                    _logger.LogInformation($"Intentando notificación para Doctor User ID: {doctorForNotification.User.Id} para cita ID: {Appointment.Id}");
+                    await _notificationService.CreateNotificationAsync(
+                        doctorForNotification.User.Id,
+                        $"Tiene una nueva cita agendada con {LoggedInPatientName} para el {Appointment.AppointmentDateTime:dd/MM/yyyy 'a las' HH:mm}.",
+                        NotificationType.NewAppointment,
+                        Appointment.Id
+                    );
+                    _logger.LogInformation($"Notificación creada para Doctor User ID: {doctorForNotification.User.Id} por nueva cita ID: {Appointment.Id}");
                 }
                 else
                 {
-                     _logger.LogWarning("Could not send new appointment confirmation to patient for AppointmentId {AppointmentId} because Patient or Patient.User is null. PatientId was: {PatientId}. Patient found: {PatientExists}, Patient.User found: {PatientUserExists}", 
-                        Appointment.Id, Appointment.PatientId, patient != null, patient?.User != null);
+                    _logger.LogWarning($"No se pudo notificar al Doctor ID: {Appointment.DoctorId}. 'doctorForNotification.User' es null. Doctor cargado: {doctorForNotification != null}, Doctor.UserId FK: {doctorForNotification?.UserId}");
+                    if (doctorForNotification != null && doctorForNotification.UserId.HasValue && doctorForNotification.User == null)
+                    {
+                        _logger.LogWarning($"Doctor ID {doctorForNotification.Id} tiene UserId {doctorForNotification.UserId} pero doctor.User no fue cargado. REVISAR .Include(d => d.User).");
+                    }
                 }
             }
             catch (Exception ex)
@@ -281,7 +308,6 @@ namespace CitasEPS.Pages.Appointments
                 _logger.LogError(ex, "Error al crear notificaciones para la cita {AppointmentId}.", Appointment.Id);
                 // Optionally, inform the user that notifications might have failed, though the main operation (appointment creation) succeeded.
             }
-            // --- END: Create Notifications ---
 
             TempData["SuccessMessage"] = $"Cita para {LoggedInPatientName} agendada exitosamente.";
 

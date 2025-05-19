@@ -79,6 +79,32 @@
             <dd class="col-sm-9">
                 @(string.IsNullOrWhiteSpace(Model.Appointment.Notes) ? "-" : Model.Appointment.Notes)
             </dd>
+
+            <dt class="col-sm-3">Estado General</dt>
+            <dd class="col-sm-9">
+                @if (Model.Appointment.IsCancelled)
+                {
+                    <span class="badge bg-danger">Cancelada</span>
+                }
+                else if (Model.Appointment.IsCompleted) // Asumiendo que tienes IsCompleted
+                {
+                    <span class="badge bg-success">Completada</span>
+                }
+                else if (Model.Appointment.AppointmentDateTime < DateTime.Now) // Pasada, no cancelada, no completada
+                {
+                    // Aquí podrías diferenciar "No Asistió" si tienes esa lógica/propiedad en el modelo Appointment.
+                    // Por ahora, genérico "Pasada" o "No Asistió" si no hay 'IsCompleted'.
+                    <span class="badge bg-secondary">No Asistió / Pasada</span> 
+                }
+                else if (Model.Appointment.IsConfirmed) // Futura y confirmada
+                {
+                    <span class="badge bg-info">Confirmada y Programada</span>
+                }
+                else // Futura y no confirmada
+                {
+                    <span class="badge bg-warning text-dark">Pendiente de Confirmación</span>
+                }
+            </dd>
         </dl>
     </div>
     <div class="mt-4">

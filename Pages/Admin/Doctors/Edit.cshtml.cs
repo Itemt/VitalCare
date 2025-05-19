@@ -18,12 +18,14 @@ public class EditModel : PageModel
     private readonly ApplicationDbContext _context;
     private readonly UserManager<User> _userManager;
     private readonly ILogger<EditModel> _logger;
+    private readonly RoleManager<IdentityRole<int>> _roleManager;
 
-    public EditModel(ApplicationDbContext context, UserManager<User> userManager, ILogger<EditModel> logger)
+    public EditModel(ApplicationDbContext context, UserManager<User> userManager, ILogger<EditModel> logger, RoleManager<IdentityRole<int>> roleManager)
     {
         _context = context;
         _userManager = userManager;
         _logger = logger;
+        _roleManager = roleManager;
     }
 
     [BindProperty]
@@ -40,96 +42,47 @@ public class EditModel : PageModel
             return NotFound();
         }
 
-        Doctor = await _context.Doctors
+        var doctorData = await _context.Doctors
             .Include(d => d.Specialty)
-            .Include(d => d.User)
             .FirstOrDefaultAsync(m => m.Id == id);
 
-        if (Doctor == null)
+        if (doctorData == null)
         {
             return NotFound();
         }
+        Doctor = doctorData;
 
-        SpecialtySL = new SelectList(await _context.Specialties.OrderBy(s => s.Name).ToListAsync(), "Id", "Name", Doctor.SpecialtyId);
-
-        if (Doctor.UserId == null || Doctor.User == null)
-        {
-            UnlinkedUserMessage = Doctor.User == null ? 
-                "Este perfil de doctor no está vinculado a una cuenta de usuario del sistema." : 
-                $"Este perfil de doctor está vinculado a un UserId ({Doctor.UserId}) que no corresponde a un usuario existente.";
-
-            var doctorRole = await _context.Roles.FirstOrDefaultAsync(r => r.Name == "Doctor");
-            if (doctorRole != null)
-            {
-                var linkedUserIds = await _context.Doctors
-                    .Where(d => d.UserId.HasValue && d.Id != Doctor.Id)
-                    .Select(d => d.UserId.Value)
-                    .ToListAsync();
-
-                var unlinkedUsers = await _context.UserRoles
-                    .Where(ur => ur.RoleId == doctorRole.Id && !linkedUserIds.Contains(ur.UserId))
-                    .Select(ur => ur.UserId)
-                    .ToListAsync();
-                
-                var availableUsersForLinking = await _userManager.Users
-                    .Where(u => unlinkedUsers.Contains(u.Id))
-                    .OrderBy(u => u.Email)
-                    .Select(u => new { u.Id, DisplayName = u.Email + (string.IsNullOrEmpty(u.FirstName) && string.IsNullOrEmpty(u.LastName) ? "" : " (" + u.FirstName + " " + u.LastName + ")") })
-                    .ToListAsync();
-                
-                UserSL = new SelectList(availableUsersForLinking, "Id", "DisplayName");
-            }
-        }
-        else
-        {
-            _logger.LogInformation($"Doctor ID {Doctor.Id} ({Doctor.FullName}) is currently linked to User ID {Doctor.UserId} ({Doctor.User.Email}).");
-        }
-
+        await PopulateSelectListsAsync(Doctor.UserId, Doctor.SpecialtyId);
         return Page();
     }
 
-    public async Task<IActionResult> OnPostAsync(int id)
+    public async Task<IActionResult> OnPostAsync()
     {
         if (!ModelState.IsValid)
         {
-            await PopulateSelectListsAsync(Doctor?.SpecialtyId, true);
+            await PopulateSelectListsAsync(Doctor.UserId, Doctor.SpecialtyId);
             return Page();
         }
         
-        var doctorToUpdate = await _context.Doctors.FirstOrDefaultAsync(d => d.Id == id);
-
-        if (doctorToUpdate == null)
+        if (Doctor.UserId.HasValue)
         {
-            return NotFound();
-        }
+            var doctorWithSameUser = await _context.Doctors
+                .FirstOrDefaultAsync(d => d.UserId == Doctor.UserId && d.Id != Doctor.Id);
 
-        doctorToUpdate.FirstName = Doctor.FirstName;
-        doctorToUpdate.LastName = Doctor.LastName;
-        doctorToUpdate.Email = Doctor.Email;
-        doctorToUpdate.PhoneNumber = Doctor.PhoneNumber;
-        doctorToUpdate.MedicalLicenseNumber = Doctor.MedicalLicenseNumber;
-        doctorToUpdate.SpecialtyId = Doctor.SpecialtyId;
-
-        if (Request.Form.ContainsKey("Doctor.UserId") && int.TryParse(Request.Form["Doctor.UserId"], out int selectedUserId) && selectedUserId > 0)
-        {
-            var existingDoctorWithUser = await _context.Doctors
-                .FirstOrDefaultAsync(d => d.UserId == selectedUserId && d.Id != doctorToUpdate.Id);
-
-            if (existingDoctorWithUser != null)
+            if (doctorWithSameUser != null)
             {
-                ModelState.AddModelError("Doctor.UserId", $"El usuario seleccionado ya está vinculado al doctor {existingDoctorWithUser.FullName}.");
-                await PopulateSelectListsAsync(doctorToUpdate.SpecialtyId, true);
+                ModelState.AddModelError("Doctor.UserId", "Este usuario ya está asignado a otro perfil de doctor.");
+                await PopulateSelectListsAsync(Doctor.UserId, Doctor.SpecialtyId);
                 return Page();
             }
-            doctorToUpdate.UserId = selectedUserId;
         }
 
-        _context.Attach(doctorToUpdate).State = EntityState.Modified;
+        _context.Attach(Doctor).State = EntityState.Modified;
 
         try
         {
             await _context.SaveChangesAsync();
-            _logger.LogInformation($"Doctor ID {doctorToUpdate.Id} ({doctorToUpdate.FullName}) updated. Linked UserID: {doctorToUpdate.UserId?.ToString() ?? "None"}.");
+            _logger.LogInformation($"Doctor ID {Doctor.Id} ({Doctor.FullName}) updated. Linked UserID: {Doctor.UserId?.ToString() ?? "None"}.");
             TempData["SuccessMessage"] = "Doctor actualizado exitosamente.";
         }
         catch (DbUpdateConcurrencyException)
@@ -142,7 +95,7 @@ public class EditModel : PageModel
             {
                 _logger.LogError($"Concurrency error updating Doctor ID {Doctor.Id}.");
                 ModelState.AddModelError(string.Empty, "Error de concurrencia. El registro fue modificado por otro usuario.");
-                await PopulateSelectListsAsync(doctorToUpdate.SpecialtyId, doctorToUpdate.UserId == null);
+                await PopulateSelectListsAsync(Doctor.UserId, Doctor.SpecialtyId);
                 return Page();
             }
         }
@@ -150,11 +103,11 @@ public class EditModel : PageModel
         {
             _logger.LogError(ex, $"Error updating Doctor ID {Doctor.Id}.");
             ModelState.AddModelError(string.Empty, "Ocurrió un error inesperado al actualizar el doctor.");
-            await PopulateSelectListsAsync(doctorToUpdate.SpecialtyId, doctorToUpdate.UserId == null);
+            await PopulateSelectListsAsync(Doctor.UserId, Doctor.SpecialtyId);
             return Page();
         }
 
-        return RedirectToPage("./Index");
+        return RedirectToPage("/Admin/ManageDoctors");
     }
 
     private bool DoctorExists(int id)
@@ -162,29 +115,29 @@ public class EditModel : PageModel
         return _context.Doctors.Any(e => e.Id == id);
     }
 
-    private async Task PopulateSelectListsAsync(int? specialtyId, bool populateUserListIfNeeded)
+    private async Task PopulateSelectListsAsync(int? selectedUserId, int? selectedSpecialtyId)
     {
-        SpecialtySL = new SelectList(await _context.Specialties.OrderBy(s => s.Name).ToListAsync(), "Id", "Name", specialtyId);
-        if (populateUserListIfNeeded)
+        var doctorRole = await _roleManager.FindByNameAsync("Doctor");
+        if (doctorRole == null)
         {
-            var doctorRole = await _context.Roles.FirstOrDefaultAsync(r => r.Name == "Doctor");
-            if (doctorRole != null)
-            {
-                var linkedUserIds = await _context.Doctors
-                    .Where(d => d.UserId.HasValue && d.Id != Doctor.Id)
-                    .Select(d => d.UserId.Value)
-                    .ToListAsync();
-                var unlinkedUsers = await _context.UserRoles
-                    .Where(ur => ur.RoleId == doctorRole.Id && !linkedUserIds.Contains(ur.UserId))
-                    .Select(ur => ur.UserId)
-                    .ToListAsync();
-                var availableUsersForLinking = await _userManager.Users
-                    .Where(u => unlinkedUsers.Contains(u.Id) || (Doctor.UserId.HasValue && u.Id == Doctor.UserId.Value))
-                    .OrderBy(u => u.Email)
-                    .Select(u => new { u.Id, DisplayName = u.Email + (string.IsNullOrEmpty(u.FirstName) && string.IsNullOrEmpty(u.LastName) ? "" : " (" + u.FirstName + " " + u.LastName + ")") })
-                    .ToListAsync();
-                UserSL = new SelectList(availableUsersForLinking, "Id", "DisplayName", Doctor?.UserId);
-            }
+            UserSL = new SelectList(Enumerable.Empty<SelectListItem>());
+            SpecialtySL = new SelectList(_context.Specialties, "Id", "Name", selectedSpecialtyId);
+            return;
         }
+
+        var usersInDoctorRole = await _userManager.GetUsersInRoleAsync(doctorRole.Name!);
+
+        var assignedUserIds = await _context.Doctors
+            .Where(d => d.UserId.HasValue && d.Id != Doctor.Id)
+            .Select(d => d.UserId)
+            .ToListAsync();
+
+        var availableUsers = usersInDoctorRole
+            .Where(u => u.Id == selectedUserId || !assignedUserIds.Contains(u.Id))
+            .Select(u => new { u.Id, DisplayName = $"{u.FirstName} {u.LastName} (ID: {u.Id})" })
+            .ToList();
+        
+        UserSL = new SelectList(availableUsers, "Id", "DisplayName", selectedUserId);
+        SpecialtySL = new SelectList(_context.Specialties.AsNoTracking(), "Id", "Name", selectedSpecialtyId);
     }
 }

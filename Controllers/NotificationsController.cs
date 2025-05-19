@@ -6,6 +6,8 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using System.Security.Claims;
 using System.Threading.Tasks;
+using System.Collections.Generic; // Required for IEnumerable
+using System.Linq; // Required for Select
 
 namespace CitasEPS.Controllers
 {
@@ -30,13 +32,24 @@ namespace CitasEPS.Controllers
 
         // GET: api/notifications/unread
         [HttpGet("unread")]
-        public async Task<ActionResult<IEnumerable<Notification>>> GetUnreadNotifications()
+        public async Task<ActionResult<IEnumerable<NotificationViewModel>>> GetUnreadNotifications()
         {
             var currentUser = await GetCurrentUserAsync();
             if (currentUser == null) return Unauthorized();
 
             var notifications = await _notificationService.GetUserNotificationsAsync(currentUser.Id, includeRead: false);
-            return Ok(notifications);
+            
+            var viewModels = notifications.Select(n => {
+                string? navigationPath = null;
+                if (n.AppointmentId.HasValue)
+                {
+                    // For now, all roles go to the same details page.
+                    navigationPath = $"/Appointments/Details/{n.AppointmentId.Value}";
+                }
+                return new NotificationViewModel(n, navigationPath);
+            }).ToList();
+            
+            return Ok(viewModels);
         }
 
         // GET: api/notifications/unreadcount
@@ -52,14 +65,26 @@ namespace CitasEPS.Controllers
 
         // GET: api/notifications/all
         [HttpGet("all")]
-        public async Task<ActionResult<IEnumerable<Notification>>> GetAllNotifications()
+        public async Task<ActionResult<IEnumerable<NotificationViewModel>>> GetAllNotifications()
         {
             var currentUser = await GetCurrentUserAsync();
-            if (currentUser == null) return Unauthorized();
+            if (currentUser == null) 
+            {
+                return Unauthorized();
+            }
 
-            // Consider adding pagination here for performance if notification lists can get very long
-            var notifications = await _notificationService.GetUserNotificationsAsync(currentUser.Id, includeRead: true);
-            return Ok(notifications);
+            var notificationsFromService = await _notificationService.GetUserNotificationsAsync(currentUser.Id, includeRead: true);
+
+            var notificationViewModels = notificationsFromService.Select(notification => { 
+                string? navPath = null;
+                if (notification.AppointmentId.HasValue)
+                {
+                    navPath = $"/Appointments/Details/{notification.AppointmentId.Value}";
+                }
+                return new NotificationViewModel(notification, navPath);
+            }).ToList();
+            
+            return Ok(notificationViewModels);
         }
 
         // POST: api/notifications/{id}/markasread
@@ -69,12 +94,8 @@ namespace CitasEPS.Controllers
             var currentUser = await GetCurrentUserAsync();
             if (currentUser == null) return Unauthorized();
 
-            // Optional: Verify the notification belongs to the current user before marking as read
-            // This would require modifying GetNotificationById or adding a method to INotificationService
-            // For now, we assume the ID is valid and service handles logic.
-
             await _notificationService.MarkNotificationAsReadAsync(id);
-            return NoContent(); // Successfully processed, no content to return
+            return NoContent(); 
         }
 
         // POST: api/notifications/markallasread
