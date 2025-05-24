@@ -163,6 +163,13 @@
                     }
                     @* Notification Bell Dropdown - END *@
                     <partial name="_LoginPartial" />
+
+                    @* Theme Toggle Button - START *@
+                    <button class="btn btn-outline-secondary ms-2" type="button" id="themeToggleBtn" title="Toggle light/dark theme">
+                        <i class="bi bi-sun-fill" id="themeIconSun"></i>
+                        <i class="bi bi-moon-stars-fill" id="themeIconMoon" style="display:none;"></i>
+                    </button>
+                    @* Theme Toggle Button - END *@
                 </div> 
             </div> 
         </nav>
@@ -201,6 +208,7 @@
     <script src="~/js/site.flatpickr.js" asp-append-version="true"></script> 
     <script src="~/js/passwordToggle.js" asp-append-version="true"></script> 
     <script src="~/js/notifications.js" asp-append-version="true"></script> @* <<< Add notifications.js *@
+    <script src="~/js/themeSwitcher.js" asp-append-version="true"></script> @* Add new theme switcher JS *@
 
     @await RenderSectionAsync("Scripts", required: false)
 </body>

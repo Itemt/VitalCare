@@ -2,6 +2,379 @@ html {
   font-size: 14px;
 }
 
+/* Light theme variables (default) */
+:root {
+    --bs-light-rgb: 248,249,250; /* Bootstrap's $light-rgb value */
+    --bs-dark-rgb: 33,37,41;    /* Bootstrap's $dark-rgb value */
+
+    --body-bg: #f8f9fa; 
+    --body-color: #212529; 
+    --card-bg: #fff; 
+    --card-border-color: rgba(0,0,0,.125);
+    --table-bg: transparent; /* Default table bg */
+    --table-striped-bg: rgba(0,0,0,0.05);
+    --table-border-color: #dee2e6;
+    --primary-text-emphasis: #0d6efd;
+    --secondary-text-emphasis: #6c757d;
+    --link-color: #0d6efd;
+    --link-hover-color: #0a58ca;
+}
+
+/* Dark theme overrides using data-bs-theme attribute */
+[data-bs-theme="dark"] {
+    --body-bg: #121212; /* Very dark grey, almost black */
+    --body-color: #e0e0e0; /* Light grey for text */
+    --card-bg: #1e1e1e; /* Slightly lighter dark for cards */
+    --card-border-color: rgba(255,255,255,.125);
+    --table-bg: #1e1e1e;
+    --table-striped-bg: rgba(255,255,255,0.05);
+    --table-border-color: #454d55; /* Darker border for tables */
+    --primary-text-emphasis: #6ea8fe; /* Lighter blue for primary text emphasis */
+    --secondary-text-emphasis: #adb5bd; /* Lighter grey for secondary text emphasis */
+    --link-color: #6ea8fe; 
+    --link-hover-color: #8bb9fe;
+
+    /* Override Bootstrap root variables for dark mode */
+    --bs-body-bg: var(--body-bg);
+    --bs-body-color: var(--body-color);
+    --bs-tertiary-bg: #2b3035;
+    --bs-emphasis-color: #f8f9fa; /* Lighter emphasis color */
+    --bs-secondary-color: #adb5bd;
+    --bs-light-rgb: 222, 226, 230; /* Light color for text on dark backgrounds */
+    --bs-dark-rgb: 233, 236, 239;   /* Darker color (but still light) */
+    --bs-border-color: #495057;
+    --bs-border-color-translucent: rgba(255, 255, 255, 0.15);
+    --bs-link-color: var(--link-color);
+    --bs-link-hover-color: var(--link-hover-color);
+    --bs-code-color: #e83e8c;
+}
+
+/* General element styling for dark mode */
+html[data-bs-theme="dark"] body {
+    background-color: var(--bs-body-bg); /* Effectively var(--body-bg) -> #121212 */
+    color: var(--body-color);
+}
+
+/* Override for the default body background (when no specific role class is present) in dark mode */
+html[data-bs-theme="dark"] body:not(.patient-body-bg):not(.doctor-body-bg) {
+    background-color: var(--body-bg) !important; 
+    color: var(--body-color) !important;
+}
+
+/* Override role-specific image backgrounds with solid dark color in dark mode */
+html[data-bs-theme="dark"] body.patient-body-bg,
+html[data-bs-theme="dark"] body.doctor-body-bg {
+    background-image: none !important;
+    background-color: var(--body-bg) !important; 
+}
+
+[data-bs-theme="dark"] .card {
+    background-color: var(--card-bg);
+    border-color: var(--card-border-color);
+}
+
+[data-bs-theme="dark"] .card-header,
+[data-bs-theme="dark"] .card-footer {
+    background-color: rgba(255,255,255,0.03); /* Slightly different from card body */
+    /* border-bottom-color: var(--card-border-color); Ensure consistent border if card-header has border */
+    /* border-top-color: var(--card-border-color); Ensure consistent border for card-footer */
+}
+/* Specific fix for card-header with explicit border */
+[data-bs-theme="dark"] .card-header {
+    border-bottom: 1px solid var(--card-border-color);
+}
+/* Specific fix for card-footer with explicit border */
+[data-bs-theme="dark"] .card-footer {
+    border-top: 1px solid var(--card-border-color);
+}
+
+
+[data-bs-theme="dark"] .table {
+    --bs-table-color: var(--body-color);
+    --bs-table-bg: var(--table-bg);
+    --bs-table-border-color: var(--table-border-color);
+    --bs-table-striped-color: var(--body-color);
+    --bs-table-striped-bg: var(--table-striped-bg);
+    --bs-table-active-color: var(--body-color);
+    --bs-table-active-bg: rgba(255,255,255,0.1);
+    --bs-table-hover-color: var(--body-color);
+    --bs-table-hover-bg: rgba(255,255,255,0.075);
+}
+
+[data-bs-theme="dark"] .table-light {
+    --bs-table-bg: #2c3034;
+    --bs-table-color: var(--body-color);
+    --bs-table-border-color: #454d55;
+}
+
+[data-bs-theme="dark"] .table-hover > tbody > tr:hover > * {
+    --bs-table-accent-bg: rgba(255,255,255,0.075);
+}
+
+[data-bs-theme="dark"] .text-primary {
+    color: var(--primary-text-emphasis) !important;
+}
+
+[data-bs-theme="dark"] .text-muted {
+    color: var(--secondary-text-emphasis) !important;
+}
+
+[data-bs-theme="dark"] .dropdown-menu {
+    --bs-dropdown-bg: var(--card-bg);
+    --bs-dropdown-link-color: var(--body-color);
+    --bs-dropdown-link-hover-color: var(--body-color);
+    --bs-dropdown-link-hover-bg: rgba(255,255,255,0.15);
+    --bs-dropdown-border-color: var(--card-border-color);
+    --bs-dropdown-divider-bg: var(--card-border-color);
+}
+
+
+[data-bs-theme="dark"] .navbar:not([class*="bg-"]) { /* Default light navbar to dark */
+    background-color: #212529 !important; 
+    --bs-navbar-color: rgba(255, 255, 255, 0.75);
+    --bs-navbar-hover-color: rgba(255, 255, 255, 0.95);
+    --bs-navbar-toggler-icon-bg: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3e%3cpath stroke='rgba%28255, 255, 255, 0.75%29' stroke-linecap='round' stroke-miterlimit='10' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e");
+}
+
+[data-bs-theme="dark"] .navbar.bg-white {
+    background-color: #212529 !important; 
+    --bs-navbar-color: rgba(255, 255, 255, 0.75) !important;
+    --bs-navbar-hover-color: rgba(255, 255, 255, 0.95) !important;
+    --bs-navbar-brand-color: rgba(255, 255, 255, 0.95) !important;
+    /* --bs-nav-link-color: rgba(255, 255, 255, 0.75) !important; */ /* Let specific .text-white override */
+    /* --bs-nav-link-hover-color: rgba(255, 255, 255, 0.95) !important; */
+}
+/* Ensure link text color in navbar.bg-white is also themed */
+[data-bs-theme="dark"] .navbar.bg-white .nav-link {
+    color: rgba(255, 255, 255, 0.75) !important;
+}
+[data-bs-theme="dark"] .navbar.bg-white .nav-link:hover,
+[data-bs-theme="dark"] .navbar.bg-white .nav-link:focus {
+    color: rgba(255, 255, 255, 0.95) !important;
+}
+
+
+[data-bs-theme="dark"] .navbar.bg-info .navbar-toggler-icon,
+[data-bs-theme="dark"] .navbar.bg-success .navbar-toggler-icon {
+    --bs-navbar-toggler-icon-bg: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3e%3cpath stroke='rgba%28255, 255, 255, 0.95%29' stroke-linecap='round' stroke-miterlimit='10' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e");
+}
+
+[data-bs-theme="dark"] .form-control {
+    background-color: #2b3035; /* Darker input background */
+    color: var(--body-color);
+    border-color: #495057;
+}
+
+[data-bs-theme="dark"] .form-control:focus {
+    background-color: #2b3035;
+    color: var(--body-color);
+    border-color: #6ea8fe; /* Lighter blue for focus */
+    box-shadow: 0 0 0 0.25rem rgba(110, 168, 254, 0.25); /* Lighter blue shadow */
+}
+
+[data-bs-theme="dark"] .form-select {
+    background-color: #2b3035;
+    color: var(--body-color);
+    border-color: #495057;
+}
+
+[data-bs-theme="dark"] .form-control::placeholder, 
+[data-bs-theme="dark"] .form-select::placeholder, 
+[data-bs-theme="dark"] textarea::placeholder {
+    color: #6c757d; /* Lighter placeholder text */
+}
+
+/* Hero Section Specifics for Dark Mode */
+[data-bs-theme="dark"] .container-fluid.bg-dark.text-white .btn-light {
+    /* This button is on an already dark hero background with a dark overlay */
+    /* Default Bootstrap [data-bs-theme="dark"] .btn-light makes it dark bg, light text which is fine */
+}
+
+[data-bs-theme="dark"] .container-fluid.bg-dark.text-white .btn-outline-light {
+    /* Should be fine: light border, light text */
+}
+
+/* Feature Cards on Public Homepage */
+[data-bs-theme="dark"] .features-card {
+    background-color: var(--card-bg) !important; 
+    border-color: var(--card-border-color) !important;
+}
+
+[data-bs-theme="dark"] .features-card .card-title,
+[data-bs-theme="dark"] .features-card .card-text {
+    color: var(--body-color) !important; 
+}
+
+[data-bs-theme="dark"] .features-card .feature-icon-round {
+    /* Icons are bg-primary, bg-success, bg-info with text-white */
+    /* These should remain as accent colors, text-white ensures icon is visible */
+}
+
+
+/* Ensure buttons have good contrast */
+[data-bs-theme="dark"] .btn-outline-secondary {
+    --bs-btn-color: #adb5bd;
+    --bs-btn-border-color: #adb5bd;
+    --bs-btn-hover-color: #121212; /* Darker text for contrast on hover */
+    --bs-btn-hover-bg: #adb5bd;
+    --bs-btn-active-bg: #adb5bd;
+    --bs-btn-active-border-color: #adb5bd;
+}
+
+[data-bs-theme="dark"] .btn-light {
+    /* Bootstrap default: dark bg, light text. Usually OK. */
+     /* If it needs to be light bg, dark text on a dark page section: */
+    /* background-color: #f8f9fa; */
+    /* border-color: #f8f9fa; */
+    /* color: #212529; */
+}
+
+[data-bs-theme="dark"] .btn-dark {
+    /* .btn-dark should become a light button in dark mode */
+    --bs-btn-color: var(--bs-dark-rgb); /* text dark */
+    --bs-btn-bg: var(--bs-light-rgb); /* bg light */
+    --bs-btn-border-color: var(--bs-light-rgb);
+    --bs-btn-hover-color: var(--bs-dark-rgb);
+    --bs-btn-hover-bg: #e2e6ea; /* Slightly darker light */
+    --bs-btn-hover-border-color: #dae0e5;
+    --bs-btn-active-color: var(--bs-dark-rgb);
+    --bs-btn-active-bg: #dae0e5;
+    --bs-btn-active-border-color: #d3d9df;
+}
+
+[data-bs-theme="dark"] .btn-link {
+    color: var(--link-color);
+}
+
+[data-bs-theme="dark"] .btn-link:hover {
+    color: var(--link-hover-color);
+}
+
+/* Dark mode for Alerts */
+[data-bs-theme="dark"] .alert {
+    --bs-alert-bg: #343a40; /* Dark background for alerts */
+    --bs-alert-color: #e9ecef; /* Light text for alerts */
+    --bs-alert-border-color: #495057;
+}
+[data-bs-theme="dark"] .alert-primary {
+    --bs-alert-bg: #03284c;
+    --bs-alert-color: #cfe2ff;
+    --bs-alert-border-color: #03284c;
+}
+[data-bs-theme="dark"] .alert-secondary {
+    --bs-alert-bg: #2b3035;
+    --bs-alert-color: #d6d8db;
+    --bs-alert-border-color: #2b3035;
+}
+[data-bs-theme="dark"] .alert-success {
+    --bs-alert-bg: #0a3622;
+    --bs-alert-color: #d1e7dd;
+    --bs-alert-border-color: #0a3622;
+}
+[data-bs-theme="dark"] .alert-danger {
+    --bs-alert-bg: #58151c;
+    --bs-alert-color: #f8d7da;
+    --bs-alert-border-color: #58151c;
+}
+[data-bs-theme="dark"] .alert-warning {
+    --bs-alert-bg: #664d03;
+    --bs-alert-color: #fff3cd;
+    --bs-alert-border-color: #664d03;
+}
+[data-bs-theme="dark"] .alert-info {
+    --bs-alert-bg: #055160;
+    --bs-alert-color: #cff4fc;
+    --bs-alert-border-color: #055160;
+}
+[data-bs-theme="dark"] .alert-light {
+    /* bg becomes dark, text becomes light */
+    --bs-alert-bg: var(--bs-tertiary-bg); 
+    --bs-alert-color: var(--bs-emphasis-color);
+    --bs-alert-border-color: var(--bs-tertiary-bg);
+}
+[data-bs-theme="dark"] .alert-dark {
+    /* bg becomes light, text becomes dark - effectively an inverted alert */
+    --bs-alert-bg: var(--bs-body-color); /* Light bg */
+    --bs-alert-color: var(--bs-body-bg); /* Dark text */
+    --bs-alert-border-color: var(--bs-body-color);
+}
+
+[data-bs-theme="dark"] .alert .btn-close {
+    filter: invert(1) grayscale(100%) brightness(200%);
+}
+
+/* Dark mode for Card Footers that were explicitly .bg-light */
+[data-bs-theme="dark"] .card-footer.bg-light {
+    background-color: var(--bs-tertiary-bg) !important; 
+    color: var(--body-color) !important;
+    /* border-top-color: var(--card-border-color) !important; */ /* Handled by general card-footer rule */
+}
+
+[data-bs-theme="dark"] .card-footer.bg-light .text-muted {
+    color: var(--secondary-text-emphasis) !important;
+}
+
+/* Dark mode for List Groups */
+[data-bs-theme="dark"] .list-group-item {
+    background-color: var(--card-bg); 
+    border-color: var(--card-border-color);
+    color: var(--body-color);
+}
+[data-bs-theme="dark"] .list-group-item-action:hover, 
+[data-bs-theme="dark"] .list-group-item-action:focus {
+    background-color: #2c3034; /* Slightly lighter dark for hover/focus */
+}
+
+/* Dark mode for Modals */
+[data-bs-theme="dark"] .modal-content {
+    background-color: var(--card-bg);
+    border-color: var(--card-border-color);
+}
+[data-bs-theme="dark"] .modal-header {
+    border-bottom-color: var(--card-border-color);
+}
+[data-bs-theme="dark"] .modal-footer {
+    border-top-color: var(--card-border-color);
+}
+[data-bs-theme="dark"] .modal-header .btn-close {
+    filter: invert(1) grayscale(100%) brightness(200%);
+}
+
+/* Dark mode for Badges */
+[data-bs-theme="dark"] .badge {
+    /* Most badges should adapt via Bootstrap's utilities, but for default/light ones: */
+}
+[data-bs-theme="dark"] .badge.bg-light {
+    background-color: #343a40 !important;
+    color: #f8f9fa !important;
+}
+[data-bs-theme="dark"] .badge.text-dark {
+    color: var(--bs-light-rgb) !important; /* Make .text-dark on a badge light */
+}
+
+/* Override specific text colors if they cause issues */
+[data-bs-theme="dark"] .text-dark {
+    color: var(--body-color) !important; /* Make .text-dark use the light body color */
+}
+
+/* Footer text in dark mode - ensure it's light */
+html[data-bs-theme="dark"] .footer,
+html[data-bs-theme="dark"] body.doctor-body-bg .footer,
+html[data-bs-theme="dark"] body.patient-body-bg .footer {
+    color: var(--secondary-text-emphasis) !important;
+}
+html[data-bs-theme="dark"] .footer a,
+html[data-bs-theme="dark"] body.doctor-body-bg .footer a,
+html[data-bs-theme="dark"] body.patient-body-bg .footer a {
+    color: var(--link-color) !important;
+}
+html[data-bs-theme="dark"] .footer a:hover,
+html[data-bs-theme="dark"] body.doctor-body-bg .footer a:hover,
+html[data-bs-theme="dark"] body.patient-body-bg .footer a:hover {
+    color: var(--link-hover-color) !important;
+}
+
+
 @media (min-width: 768px) {
   html {
     font-size: 16px;
@@ -46,82 +419,83 @@ body {
     align-items: center !important; /* Should vertically center direct text children now */
     justify-content: center !important; 
     font-size: 0.875rem !important; 
-    color: #6c757d; /* Default text color for muted text, adjust if needed */
+    /* color: #6c757d; */ /* Default color handled by light/dark themes now */
     border: none !important; /* Ensure no borders at all */
 }
 
 .footer a {
-    color: #0d6efd; /* Standard link blue, or theme appropriately */
+    /* color: #0d6efd; */ /* Standard link blue, or theme appropriately */
 }
 
 /* Improve table appearance */
 .table {
-    background-color: #fff;
+    /* background-color: #fff; */ /* Handled by themes */
     box-shadow: 0 .125rem .25rem rgba(0,0,0,.075);
 }
 
 .table thead {
-    background-color: #0d6efd; /* Bootstrap primary blue */
-    color: white;
+    /* background-color: #0d6efd; */ /* Theming this specifically for dark mode might be needed if default isn't good */
+    /* color: white; */
+}
+[data-bs-theme="dark"] .table thead {
+    background-color: #343a40; /* Darker header for tables in dark mode */
+    color: var(--bs-emphasis-color);
 }
 
 /* Button Styling */
 .btn-primary {
-    background-color: #0d6efd;
-    border-color: #0d6efd;
+    /* background-color: #0d6efd; */ /* Default Bootstrap */
+    /* border-color: #0d6efd; */
 }
 
 .btn-secondary {
-    background-color: #6c757d;
-    border-color: #6c757d;
+    /* background-color: #6c757d; */
+    /* border-color: #6c757d; */
 }
 
 .btn-danger {
-    background-color: #dc3545;
-    border-color: #dc3545;
+    /* background-color: #dc3545; */
+    /* border-color: #dc3545; */
 }
 
 /* Custom class for text shadow on themed headers */
 .text-shadow-custom {
-    text-shadow: 0px 1px 2px rgba(0, 0, 0, 0.5); /* Adjust values as needed: X-offset, Y-offset, blur-radius, color */
+    text-shadow: 0px 1px 2px rgba(0, 0, 0, 0.5);
+}
+[data-bs-theme="dark"] .text-shadow-custom {
+    text-shadow: 0px 1px 2px rgba(0, 0, 0, 0.7); /* Potentially darker shadow if needed on light text */
 }
 
 /* Styles for role-specific dashboard backgrounds on Index.cshtml */
 .admin-dashboard-bg {
-    background-image: none !important; /* Ensure no specific background */
-    padding: 0 !important; /* Ensure no padding */
-    border-radius: 0 !important; /* Ensure no radius */
-    /* background-size: cover; */ /* Not needed if no image */
-    /* background-position: center; */ /* Not needed if no image */
+    background-image: none !important; 
+    padding: 0 !important; 
+    border-radius: 0 !important; 
 }
 
 .doctor-dashboard-bg {
-    background-image: none !important; /* Ensure no specific background */
-    padding: 0 !important; /* Ensure no padding */
-    border-radius: 0 !important; /* Ensure no radius */
-    /* background-size: cover; */ /* Not needed if no image */
-    /* background-position: center; */ /* Not needed if no image */
+    background-image: none !important; 
+    padding: 0 !important; 
+    border-radius: 0 !important; 
 }
 
 .patient-dashboard-bg {
-    /* This class is mainly a placeholder now for structure, background is from body */
-    /* It might still be useful if we want to target the patient area specifically for non-background reasons */
-    padding: 0 !important; /* Ensure no padding if it was added by mistake */
-    border-radius: 0 !important; /* Ensure no radius if it was added by mistake */
+    padding: 0 !important; 
+    border-radius: 0 !important; 
 }
 
 /* Ensure content within these backgrounds is legible */
 .admin-dashboard-bg .card,
 .doctor-dashboard-bg .card,
 .patient-dashboard-bg .card {
-    background-color: rgba(255, 255, 255, 0.9); /* Slight transparency to let background show through */
+    /* background-color: rgba(255, 255, 255, 0.9); */ /* Card bg handled by theme */
 }
 
 /* Text shadow for better readability on complex backgrounds, if needed */
 .admin-dashboard-bg .card-header h2,
 .doctor-dashboard-bg .card-header h2,
 .patient-dashboard-bg .card-header h2 {
-    /* text-shadow: 1px 1px 2px rgba(0,0,0,0.7); */ /* Example, uncomment and adjust if needed */
+    /* text-shadow: 1px 1px 2px rgba(0,0,0,0.7); */ 
 }
 
 /* Role-specific body backgrounds */
@@ -130,97 +504,128 @@ body.patient-body-bg {
 }
 
 body.doctor-body-bg {
-    background-image: url('/images/doctor-dashboard-bg-subtle.svg'); /* Placeholder for new subtle SVG */
+    background-image: url('/images/doctor-dashboard-bg-subtle.svg'); 
 }
 
 /* Default/fallback body background if no specific role or for other roles */
 body:not(.patient-body-bg):not(.doctor-body-bg) {
     background-color: #f8f9fa; /* A very light grey, or choose another default */
+    /* This will be overridden by the more specific dark theme rule above if dark mode is active */
 }
 
 /* Ensure footer text is readable on different backgrounds */
+/* These are now handled by the [data-bs-theme="dark"] .footer rules */
+/*
 body.doctor-body-bg .footer {
-    color: #dee2e6; /* Lighter text for dark blueish background */
+    color: #dee2e6; 
 }
 body.doctor-body-bg .footer a {
-    color: #003366; /* Darker, specified blue for doctor link */
+    color: #003366; 
 }
 body.doctor-body-bg .footer a:hover {
-    color: #003366; /* Same color as normal state to remove hover effect */
+    color: #003366; 
 }
 
 body.patient-body-bg .footer {
-    color: #2a5c2a; /* Darker green text for light green background */
+    color: #2a5c2a; 
 }
 body.patient-body-bg .footer a {
-    color: #198754; /* Main theme green for patient link */
+    color: #198754; 
 }
 body.patient-body-bg .footer a:hover {
-    color: #157347; /* Darker green on hover */
+    color: #157347; 
 }
+*/
 
 /* Custom class for VitalCare Doctor navbar */
 .bg-vitalcare-doctor {
-    background-color: #003366 !important; /* Darker navy blue */
-    border-color: #003366 !important; /* Darker navy blue */
+    background-color: #003366 !important; 
+    border-color: #003366 !important; 
 }
 
 .btn-vitalcare-dark {
     background-color: #003366 !important;
     border-color: #003366 !important;
-    color: #fff !important; /* Ensure text is white */
+    color: #fff !important; 
 }
 
 .btn-vitalcare-dark:hover {
-    background-color: #002244 !important; /* A slightly darker shade for hover */
+    background-color: #002244 !important; 
     border-color: #002244 !important;
     color: #fff !important;
 }
 
 /* Styles for the manage profile navigation pills */
 .manage-nav-pills .nav-link {
-    color: #003366 !important; /* Dark blue text for inactive links */
-    border-radius: 0.25rem; /* Match default Bootstrap pill radius */
+    color: #003366 !important; 
+    border-radius: 0.25rem; 
 }
 
 .manage-nav-pills .nav-link.active,
 .manage-nav-pills .show > .nav-link {
-    background-color: #003366 !important; /* Dark blue background for active */
-    color: #fff !important; /* White text for active */
+    background-color: #003366 !important; 
+    color: #fff !important; 
 }
 
 .manage-nav-pills .nav-link:not(.active):hover {
-    background-color: #e9ecef !important; /* Light grey hover for inactive */
-    color: #003366 !important; /* Dark blue text on hover */
+    background-color: #e9ecef !important; 
+    color: #003366 !important; 
 }
+
+/* Dark theme for doctor manage pills */
+[data-bs-theme="dark"] .manage-nav-pills .nav-link {
+    color: var(--link-color) !important;
+}
+[data-bs-theme="dark"] .manage-nav-pills .nav-link.active,
+[data-bs-theme="dark"] .manage-nav-pills .show > .nav-link {
+    background-color: var(--link-color) !important;
+    color: var(--bs-body-bg) !important; /* Dark text on light-ish blue bg */
+}
+[data-bs-theme="dark"] .manage-nav-pills .nav-link:not(.active):hover {
+    background-color: rgba(var(--bs-link-color-rgb), 0.15) !important;
+}
+
 
 /* Styles for the PATIENT manage profile navigation pills */
 .manage-nav-pills-patient .nav-link {
-    color: #73b845 !important; /* Vibrant green text for inactive links */
+    color: #73b845 !important; 
     border-radius: 0.25rem;
 }
 
 .manage-nav-pills-patient .nav-link.active,
 .manage-nav-pills-patient .show > .nav-link {
-    background-color: #73b845 !important; /* Vibrant green background for active */
-    color: #fff !important; /* White text for active */
+    background-color: #73b845 !important; 
+    color: #fff !important; 
 }
 
 .manage-nav-pills-patient .nav-link:not(.active):hover {
-    background-color: #e3f0d9 !important; /* Light vibrant green hover for inactive */
-    color: #73b845 !important; /* Vibrant green text on hover */
+    background-color: #e3f0d9 !important; 
+    color: #73b845 !important; 
+}
+
+/* Dark theme for patient manage pills */
+[data-bs-theme="dark"] .manage-nav-pills-patient .nav-link {
+    color: #85d455 !important; /* Lighter green for dark mode */
+}
+[data-bs-theme="dark"] .manage-nav-pills-patient .nav-link.active,
+[data-bs-theme="dark"] .manage-nav-pills-patient .show > .nav-link {
+    background-color: #85d455 !important;
+    color: var(--bs-body-bg) !important; /* Dark text on light-ish green bg */
+}
+[data-bs-theme="dark"] .manage-nav-pills-patient .nav-link:not(.active):hover {
+    background-color: rgba(133, 212, 85, 0.15) !important;
 }
 
 /* Patient specific button for profile pages */
 .btn-vitalcare-patient {
-    background-color: #73b845 !important; /* Vibrant green for patient buttons */
-    border-color: #73b845 !important; /* Vibrant green for patient buttons */
-    color: #fff !important; /* White text on button */
+    background-color: #73b845 !important; 
+    border-color: #73b845 !important; 
+    color: #fff !important; 
 }
 
 .btn-vitalcare-patient:hover {
-    background-color: #62a037 !important; /* Darker vibrant green for hover */
-    border-color: #62a037 !important; /* Darker vibrant green for hover */
+    background-color: #62a037 !important; 
+    border-color: #62a037 !important; 
     color: #fff !important;
 }
 
@@ -229,44 +634,67 @@ body.patient-body-bg .footer a:hover {
     background-color: #73b845 !important;
 }
 
-/* Default footer text colors are fine for the default light grey body background */
+[data-bs-theme="dark"] .btn-vitalcare-patient {
+    background-color: #85d455 !important;
+    border-color: #85d455 !important;
+    color: #121212 !important; /* Dark text on lighter green */
+}
+[data-bs-theme="dark"] .btn-vitalcare-patient:hover {
+    background-color: #73b845 !important;
+    border-color: #73b845 !important;
+}
+[data-bs-theme="dark"] .bg-vitalcare-patient-profile-theme {
+    background-color: #85d455 !important;
+    /* Text color on this header should be dark for contrast */
+}
+[data-bs-theme="dark"] .bg-vitalcare-patient-profile-theme h1,
+[data-bs-theme="dark"] .bg-vitalcare-patient-profile-theme h2,
+[data-bs-theme="dark"] .bg-vitalcare-patient-profile-theme h3,
+[data-bs-theme="dark"] .bg-vitalcare-patient-profile-theme h4,
+[data-bs-theme="dark"] .bg-vitalcare-patient-profile-theme h5,
+[data-bs-theme="dark"] .bg-vitalcare-patient-profile-theme h6,
+[data-bs-theme="dark"] .bg-vitalcare-patient-profile-theme p {
+    color: #121212 !important; /* Dark text */
+}
+
 
 /* Styles for notifications */
 .notification-item a.dropdown-item {
-    white-space: normal; /* Allow text to wrap */
-    /* Ensure the link itself doesn't have default blue color if not desired */
-    /* color: inherit; might be needed if Bootstrap overrides */
+    white-space: normal; 
 }
 
 /* Style for UNREAD notifications */
 .notification-item.notification-unread .dropdown-item p {
-    font-weight: bold; /* Make unread notification messages bold */
+    font-weight: bold; 
 }
 
 .notification-item.notification-unread .dropdown-item small {
-    font-weight: bold; /* Optionally make timestamp bold too, or leave normal */
+    font-weight: bold; 
 }
 
 /* Style for READ notifications */
 .notification-item.notification-read .dropdown-item p {
-    font-weight: normal; /* Ensure read notification messages are normal weight */
-    opacity: 0.75;       /* Lower intensity for read message text */
+    font-weight: normal; 
+    opacity: 0.75;       
 }
 
 .notification-item.notification-read .dropdown-item small {
     font-weight: normal;
-    opacity: 0.75;       /* Lower intensity for read timestamp text */
+    opacity: 0.75;       
 }
 
 /* General hover effect for all notification items */
-.notification-item .dropdown-item:hover {
-    background-color: #f0f0f0; /* Light grey hover background */
+[data-bs-theme="light"] .notification-item .dropdown-item:hover {
+    background-color: #f0f0f0; 
+}
+[data-bs-theme="dark"] .notification-item .dropdown-item:hover {
+    background-color: rgba(255,255,255,0.1); /* Lighter overlay for dark mode */
 }
 
 /* Ensure text in hovered notification items remains readable */
 .notification-item .dropdown-item:hover p,
 .notification-item .dropdown-item:hover small {
-    color: #212529 !important; /* Bootstrap's default dark text color, !important to ensure override */
+    /* color: #212529 !important; */ /* Handled by dropdown link hover color now */
 }
 
 /* Ensure the badge is styled correctly if not already handled by Bootstrap */
@@ -274,20 +702,17 @@ body.patient-body-bg .footer a:hover {
     font-size: 0.75em;
     padding: .25em .5em;
     position: absolute;
-    top: 5px; /* Adjust as needed */
-    right: 5px; /* Adjust as needed */
+    top: 5px; 
+    right: 5px; 
 }
 
-/* Ensure the panel has a max height and is scrollable */
-/* The id #notificationPanel is based on the previous summary */
 #notificationPanel {
-    max-height: 400px; /* Adjust as needed */
+    max-height: 400px; 
     overflow-y: auto;
 }
 
-/* Styling for the links within the dropdown, if not using default Bootstrap properly */
 #notificationPanel .dropdown-item p {
-    margin-bottom: 0.25rem; /* Space between message and timestamp */
+    margin-bottom: 0.25rem; 
     font-size: 0.9em;
 }
 
@@ -295,8 +720,8 @@ body.patient-body-bg .footer a:hover {
     font-size: 0.75em;
 }
 
-#noNotificationsMessage {
-    padding: 0.5rem 1rem; /* Consistent padding */
+#noNotificationsMessageDisplay { /* Renamed from #noNotificationsMessage */
+    padding: 0.5rem 1rem; 
 }
 
 #markAllAsReadLink {
@@ -304,20 +729,4 @@ body.patient-body-bg .footer a:hover {
     text-align: center;
 }
 
-/* Doctor-specific theming for /Appointments/Details page - REMOVED AS NOW HANDLED IN CSHTML */
-/*
-body.doctor-body-bg .details-page-card-header {
-    background-color: #0dcaf0 !important; 
-}
-
-body.doctor-body-bg .btn-create-prescription-doctor {
-    background-color: #0d6efd !important; 
-    border-color: #0d6efd !important;
-    color: #fff !important;
-}
-
-body.doctor-body-bg .btn-create-prescription-doctor:hover {
-    background-color: #0b5ed7 !important; 
-    border-color: #0a58ca !important;
-}
-*/
+/* Removed commented out Doctor-specific theming for /Appointments/Details page */
