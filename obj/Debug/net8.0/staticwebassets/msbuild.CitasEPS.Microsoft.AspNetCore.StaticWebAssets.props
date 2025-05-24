@@ -30,8 +30,8 @@
       <RelatedAsset></RelatedAsset>
       <AssetTraitName></AssetTraitName>
       <AssetTraitValue></AssetTraitValue>
-      <Fingerprint>o5inouwr0q</Fingerprint>
-      <Integrity>rMsRUeSdr7Ifh31RdDRJ5WEv8qZjwkeqI8URE6KPv3M=</Integrity>
+      <Fingerprint>ekqkp9flj8</Fingerprint>
+      <Integrity>go+Qmwg1PKPWJTg9msSAl56CQ4yUvfnyim3dXFzy9NY=</Integrity>
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
       <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
       <OriginalItemSpec>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\css\site.css'))</OriginalItemSpec>
@@ -246,8 +246,8 @@
       <RelatedAsset></RelatedAsset>
       <AssetTraitName></AssetTraitName>
       <AssetTraitValue></AssetTraitValue>
-      <Fingerprint>sxzcte3f1u</Fingerprint>
-      <Integrity>8GUBEf8Ff2BxFMJdDTN4GsnmtwwHO5CR2rO/hlitaFA=</Integrity>
+      <Fingerprint>vag4yqp9ii</Fingerprint>
+      <Integrity>efr9Q//nkSSR0nIcaU4nBYQir/ObgjV/ehPqcCs7Zaw=</Integrity>
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
       <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
       <OriginalItemSpec>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\js\themeSwitcher.js'))</OriginalItemSpec>
