@@ -148,9 +148,9 @@
         else if (User.IsInRole("Doctor"))
         {
             <div id="doctorPanelDashboard" class="row justify-content-center doctor-dashboard-bg">
-                <div class="col-lg-10 col-xl-8">
+                <div class="col-lg-10 col-xl-9">
                     <div class="card shadow-lg">
-                        <div class="card-header bg-info text-white text-center">
+                        <div class="card-header bg-info text-white text-center text-shadow-custom">
                             <h2 class="my-2"><i class="bi bi-clipboard-pulse"></i> Portal Médico</h2>
                         </div>
                         <div class="card-body p-4">
@@ -160,39 +160,110 @@
                             } else {
                                 <p class="lead text-center mb-4">Acceda a su agenda y gestione pacientes.</p>
                             }
-                            <div class="row justify-content-center text-center g-4">
-                                <div class="col-md-6">
-                                    <div class="card h-100 shadow-sm border-info">
-                                        <div class="card-body d-flex flex-column align-items-center">
+
+                            <!-- Quick Stats Row -->
+                            <div class="row g-3 mb-4 text-center">
+                                <div class="col-md-4">
+                                    <div class="stat-card p-3 border border-info-subtle rounded bg-info-subtle">
+                                        <h5 class="stat-value mb-1 fs-2 fw-bold text-info text-shadow-custom" id="doctorCitasHoyStat">5</h5>
+                                        <p class="stat-label mb-0 text-muted small text-uppercase">Citas Hoy</p>
+                                    </div>
+                                </div>
+                                <div class="col-md-4">
+                                    <div class="stat-card p-3 border border-warning-subtle rounded bg-warning-subtle">
+                                        <h5 class="stat-value mb-1 fs-2 fw-bold text-warning text-shadow-custom">2</h5>
+                                        <p class="stat-label mb-0 text-muted small text-uppercase">Resultados Pendientes</p>
+                                    </div>
+                                </div>
+                                <div class="col-md-4">
+                                    <div class="stat-card p-3 border border-success-subtle rounded bg-success-subtle">
+                                        <h5 class="stat-value mb-1 fs-2 fw-bold text-success text-shadow-custom">87%</h5>
+                                        <p class="stat-label mb-0 text-muted small text-uppercase">Satisfacción</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- End Quick Stats Row -->
+
+                            <hr class="my-4">
+
+                            <h4 class="mb-3 text-center fw-normal text-info-emphasis">Acciones Principales</h4>
+                            <div class="row justify-content-center text-center g-4 mb-4">
+                                <div class="col-md-6 col-lg-4">
+                                    <div class="card h-100 shadow-sm border-info action-card-hover">
+                                        <div class="card-body d-flex flex-column align-items-center p-4">
                                             <i class="bi bi-calendar-week-fill fs-1 text-info mb-3"></i>
                                             <h5 class="card-title">Mi Agenda</h5>
-                                            <p class="card-text flex-grow-1">Vea sus citas, detalles y añada prescripciones.</p>
-                                            <a asp-page="/Doctor/Agenda" class="btn btn-info mt-auto w-100"><i class="bi bi-arrow-right-circle"></i> Ver Agenda</a>
+                                            <p class="card-text flex-grow-1 small text-muted">Vea sus citas, detalles y añada prescripciones.</p>
+                                            <a asp-page="/Doctor/Agenda" class="btn btn-info mt-auto w-100 fw-semibold"><i class="bi bi-arrow-right-circle me-1"></i> Ver Agenda</a>
                                         </div>
                                     </div>
                                 </div>
-                                <div class="col-md-6">
-                                    <div class="card h-100 shadow-sm border-info">
-                                        <div class="card-body d-flex flex-column align-items-center">
+                                <div class="col-md-6 col-lg-4">
+                                    <div class="card h-100 shadow-sm border-info action-card-hover">
+                                        <div class="card-body d-flex flex-column align-items-center p-4">
                                             <i class="bi bi-people-fill fs-1 text-info mb-3"></i>
                                             <h5 class="card-title">Mis Pacientes</h5>
-                                            <p class="card-text flex-grow-1">Consulte pacientes atendidos y vea su historial.</p>
-                                            <a asp-page="/Doctor/Patients" class="btn btn-info mt-auto w-100"><i class="bi bi-list-check"></i> Ver Pacientes</a>
+                                            <p class="card-text flex-grow-1 small text-muted">Consulte pacientes atendidos y vea su historial.</p>
+                                            <a asp-page="/Doctor/Patients" class="btn btn-info mt-auto w-100 fw-semibold"><i class="bi bi-list-check me-1"></i> Ver Pacientes</a>
                                         </div>
                                     </div>
                                 </div>
-                                <div class="col-md-6">
-                                    <div class="card h-100 shadow-sm border-info">
-                                        <div class="card-body d-flex flex-column align-items-center">
+                                <div class="col-md-6 col-lg-4">
+                                    <div class="card h-100 shadow-sm border-info action-card-hover">
+                                        <div class="card-body d-flex flex-column align-items-center p-4">
                                             <i class="bi bi-person-fill-gear fs-1 text-info mb-3"></i>
                                             <h5 class="card-title">Mi Perfil</h5>
-                                            <p class="card-text flex-grow-1">Actualice su información profesional.</p>
-                                            <a asp-area="Identity" asp-page="/Account/Manage/Index" class="btn btn-info mt-auto w-100"><i class="bi bi-pencil-square"></i> Actualizar Perfil</a>
+                                            <p class="card-text flex-grow-1 small text-muted">Actualice su información profesional.</p>
+                                            <a asp-area="Identity" asp-page="/Account/Manage/Index" class="btn btn-outline-info mt-auto w-100 fw-semibold"><i class="bi bi-pencil-square me-1"></i> Actualizar Perfil</a>
                                         </div>
                                     </div>
                                 </div>
                                 @* Add more Doctor specific cards here if needed *@
                             </div>
+
+                            <hr class="my-4">
+
+                            <div class="row g-4">
+                                <div class="col-lg-6">
+                                    <h5 class="mb-3 text-info-emphasis"><i class="bi bi-tools me-2"></i>Herramientas Rápidas</h5>
+                                    <div class="list-group shadow-sm quick-links-widget">
+                                        <div class="list-group-item p-0">
+                                            <form id="doctorPatientSearchForm" class="d-flex p-2">
+                                                <input type="text" id="doctorPatientSearchInput" class="form-control form-control-sm me-2" placeholder="Buscar Paciente...">
+                                                <button type="submit" class="btn btn-sm btn-outline-info"><i class="bi bi-search"></i></button>
+                                            </form>
+                                        </div>
+                                        <a href="#" class="list-group-item list-group-item-action d-flex justify-content-between align-items-center">
+                                            Configurar Notificaciones
+                                            <i class="bi bi-bell-slash text-muted"></i>
+                                        </a>
+                                        <a href="#" class="list-group-item list-group-item-action d-flex justify-content-between align-items-center">
+                                            Base de Conocimiento Médico
+                                            <i class="bi bi-book text-muted"></i>
+                                        </a>
+                                        <a href="#" class="list-group-item list-group-item-action d-flex justify-content-between align-items-center">
+                                            Ver Estadísticas Completas
+                                            <i class="bi bi-graph-up text-muted"></i>
+                                        </a>
+                                    </div>
+                                </div>
+                                <div class="col-lg-6">
+                                    <h5 class="mb-3 text-info-emphasis"><i class="bi bi-newspaper me-2"></i>Novedades y Anuncios</h5>
+                                    <div class="card shadow-sm announcements-widget">
+                                        <div class="card-body">
+                                            <p class="card-text text-muted small">
+                                                <strong>15 Julio, 2024:</strong> Nueva actualización del sistema de agendamiento. Revise el manual actualizado.
+                                            </p>
+                                            <hr class="my-2">
+                                            <p class="card-text text-muted small">
+                                                <strong>10 Julio, 2024:</strong> Próxima jornada de capacitación sobre CIE-11 el 1 de Agosto. ¡Inscríbase!
+                                            </p>
+                                            <a href="#" class="btn btn-sm btn-outline-info mt-2 float-end">Ver todos</a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
                         </div>
                         <div class="card-footer bg-light text-center">
                             <p class="mb-0 text-muted small">Herramientas para Profesionales de la Salud</p>
@@ -204,9 +275,9 @@
         else if (User.IsInRole("Paciente"))
         {
             <div id="patientPanelDashboard" class="row justify-content-center patient-dashboard-bg">
-                <div class="col-lg-10 col-xl-8">
+                <div class="col-lg-10 col-xl-9">
                     <div class="card shadow-lg">
-                        <div class="card-header bg-success text-white text-center">
+                        <div class="card-header bg-success text-white text-center text-shadow-custom">
                             <h2 class="my-2"><i class="bi bi-person-vcard"></i> Portal del Paciente</h2>
                         </div>
                         <div class="card-body p-4">
@@ -216,48 +287,112 @@
                             } else {
                                 <p class="lead text-center mb-4">Bienvenido al portal de pacientes. Aquí puedes gestionar tus citas y ver tu información médica.</p>
                             }
-                            <div class="row justify-content-center text-center g-4">
+
+                            <!-- Quick Overview Row -->
+                            <div class="row g-3 mb-4 text-center">
                                 <div class="col-md-6">
-                                    <div class="card h-100 shadow-sm border-success">
-                                        <div class="card-body d-flex flex-column align-items-center">
+                                    <div class="stat-card p-3 border border-primary-subtle rounded bg-primary-subtle">
+                                        <h5 class="stat-value mb-1 fs-4 fw-semibold text-primary-emphasis" id="patientProximaCitaStat">25 Jul, 10:00 AM</h5>
+                                        <p class="stat-label mb-0 text-muted small text-uppercase">Próxima Cita</p>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="stat-card p-3 border border-danger-subtle rounded bg-danger-subtle">
+                                        <h5 class="stat-value mb-1 fs-2 fw-bold text-danger-emphasis" id="patientNuevasRecetasStat">3</h5>
+                                        <p class="stat-label mb-0 text-muted small text-uppercase">Recetas Nuevas</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- End Quick Overview Row -->
+
+                            <hr class="my-4">
+
+                            <h4 class="mb-3 text-center fw-normal text-success-emphasis">Tu Espacio Personal</h4>
+                            <div class="row justify-content-center text-center g-4 mb-4">
+                                <div class="col-md-6 col-lg-4">
+                                    <div class="card h-100 shadow-sm border-success action-card-hover">
+                                        <div class="card-body d-flex flex-column align-items-center p-4">
                                             <i class="bi bi-calendar-plus-fill fs-1 text-success mb-3"></i>
                                             <h5 class="card-title">Agendar Nueva Cita</h5>
-                                            <p class="card-text flex-grow-1">Busque disponibilidad y programe una nueva consulta médica.</p>
-                                            <a asp-page="/Appointments/Create" class="btn btn-success mt-auto w-100"><i class="bi bi-arrow-right-circle"></i> Agendar Ahora</a>
+                                            <p class="card-text flex-grow-1 small text-muted">Busque disponibilidad y programe una nueva consulta médica.</p>
+                                            <a asp-page="/Appointments/Create" class="btn btn-success mt-auto w-100 fw-semibold"><i class="bi bi-arrow-right-circle me-1"></i> Agendar Ahora</a>
                                         </div>
                                     </div>
                                 </div>
-                                <div class="col-md-6">
-                                    <div class="card h-100 shadow-sm border-success">
-                                        <div class="card-body d-flex flex-column align-items-center">
+                                <div class="col-md-6 col-lg-4">
+                                    <div class="card h-100 shadow-sm border-success action-card-hover">
+                                        <div class="card-body d-flex flex-column align-items-center p-4">
                                             <i class="bi bi-calendar-check-fill fs-1 text-success mb-3"></i>
                                             <h5 class="card-title">Mis Citas</h5>
-                                            <p class="card-text flex-grow-1">Vea sus próximas citas, detalles, y gestione sus solicitudes.</p>
-                                            <a asp-page="/Appointments/Index" class="btn btn-success mt-auto w-100"><i class="bi bi-list-check"></i> Ver Mis Citas</a>
+                                            <p class="card-text flex-grow-1 small text-muted">Vea sus próximas citas, detalles, y gestione sus solicitudes.</p>
+                                            <a asp-page="/Appointments/Index" class="btn btn-success mt-auto w-100 fw-semibold"><i class="bi bi-list-check me-1"></i> Ver Mis Citas</a>
                                         </div>
                                     </div>
                                 </div>
-                                <div class="col-md-6">
-                                    <div class="card h-100 shadow-sm border-success">
-                                        <div class="card-body d-flex flex-column align-items-center">
+                                <div class="col-md-6 col-lg-4">
+                                    <div class="card h-100 shadow-sm border-success action-card-hover">
+                                        <div class="card-body d-flex flex-column align-items-center p-4">
                                             <i class="bi bi-journal-medical fs-1 text-success mb-3"></i>
                                             <h5 class="card-title">Mis Recetas</h5>
-                                            <p class="card-text flex-grow-1">Consulte las recetas médicas emitidas por sus doctores.</p>
-                                            <a asp-page="/Appointments/MyPrescriptions" class="btn btn-success mt-auto w-100"><i class="bi bi-eye"></i> Ver Mis Recetas</a>
+                                            <p class="card-text flex-grow-1 small text-muted">Consulte las recetas médicas emitidas por sus doctores.</p>
+                                            <a asp-page="/Appointments/MyPrescriptions" class="btn btn-success mt-auto w-100 fw-semibold"><i class="bi bi-eye me-1"></i> Ver Mis Recetas</a>
                                         </div>
                                     </div>
                                 </div>
-                                <div class="col-md-6">
-                                    <div class="card h-100 shadow-sm border-success">
-                                        <div class="card-body d-flex flex-column align-items-center">
+                                <div class="col-md-6 col-lg-4">
+                                    <div class="card h-100 shadow-sm border-success action-card-hover">
+                                        <div class="card-body d-flex flex-column align-items-center p-4">
                                             <i class="bi bi-person-fill-gear fs-1 text-success mb-3"></i>
                                             <h5 class="card-title">Mi Perfil</h5>
-                                            <p class="card-text flex-grow-1">Actualice su información personal y de contacto.</p>
-                                            <a asp-area="Identity" asp-page="/Account/Manage/Index" class="btn btn-success mt-auto w-100"><i class="bi bi-pencil-square"></i> Actualizar Perfil</a>
+                                            <p class="card-text flex-grow-1 small text-muted">Actualice su información personal y de contacto.</p>
+                                            <a asp-area="Identity" asp-page="/Account/Manage/Index" class="btn btn-outline-success mt-auto w-100 fw-semibold"><i class="bi bi-pencil-square me-1"></i> Actualizar Perfil</a>
+                                        </div>
+                                    </div>
+                                </div>
+                                @* Add more Patient specific cards here if needed *@
+                            </div>
+
+                            <hr class="my-4">
+
+                            <div class="row g-4">
+                                <div class="col-lg-6">
+                                    <h5 class="mb-3 text-success-emphasis"><i class="bi bi-info-circle-fill me-2"></i>Información Útil</h5>
+                                    <div class="list-group shadow-sm useful-info-widget">
+                                        <a href="#" class="list-group-item list-group-item-action d-flex justify-content-between align-items-center">
+                                            Preguntas Frecuentes (FAQ)
+                                            <i class="bi bi-patch-question-fill text-muted"></i>
+                                        </a>
+                                        <a href="#" class="list-group-item list-group-item-action d-flex justify-content-between align-items-center">
+                                            Guía del Paciente
+                                            <i class="bi bi-book-half text-muted"></i>
+                                        </a>
+                                        <a href="#" class="list-group-item list-group-item-action d-flex justify-content-between align-items-center">
+                                            Directorio Médico
+                                            <i class="bi bi-person-rolodex text-muted"></i>
+                                        </a>
+                                        <a href="#" class="list-group-item list-group-item-action d-flex justify-content-between align-items-center">
+                                            Políticas de Privacidad Detalladas
+                                            <i class="bi bi-shield-shaded text-muted"></i>
+                                        </a>
+                                    </div>
+                                </div>
+                                <div class="col-lg-6">
+                                    <h5 class="mb-3 text-success-emphasis"><i class="bi bi-bell-fill me-2"></i>Recordatorios y Novedades</h5>
+                                    <div class="card shadow-sm reminders-widget">
+                                        <div class="card-body">
+                                            <p class="card-text text-muted small">
+                                                <strong>Recordatorio:</strong> Su próxima revisión dental es el 05 de Agosto. No olvide confirmar.
+                                            </p>
+                                            <hr class="my-2">
+                                            <p class="card-text text-muted small">
+                                                <strong>Novedad:</strong> Nueva jornada de vacunación contra la influenza a partir del 20 de Julio.
+                                            </p>
+                                            <a href="#" class="btn btn-sm btn-outline-success mt-2 float-end">Ver más</a>
                                         </div>
                                     </div>
                                 </div>
                             </div>
+
                         </div>
                         <div class="card-footer bg-light text-center">
                              <p class="mb-0 text-muted small">VitalCare &copy; @DateTime.Now.Year</p>
@@ -308,7 +443,7 @@
     }
     else // This 'else' is for non-logged-in users
     {
-        // Content for non-logged-in users - GENERAL INFO CARDS
+        // Content for non-logged-in users - GENERAL INFO CARDS (Restored)
         <div class="row justify-content-center text-center g-4">
             <div class="col-lg-4 col-md-6">
                 <div class="card h-100 shadow-sm features-card">
@@ -325,10 +460,10 @@
                 <div class="card h-100 shadow-sm features-card">
                     <div class="card-body">
                         <div class="feature-icon-round bg-success text-white mb-3 mx-auto">
-                            <i class="bi bi-calendar2-check fs-2"></i>
+                            <i class="bi bi-shield-lock-fill fs-2"></i>
                         </div>
-                        <h5 class="card-title">Gestión Fácil de Citas</h5>
-                        <p class="card-text">Agende, reprograme o cancele sus citas médicas de manera intuitiva y rápida.</p>
+                        <h5 class="card-title">Seguridad y Confidencialidad</h5>
+                        <p class="card-text">Sus datos de salud son tratados con la máxima seguridad y confidencialidad.</p>
                     </div>
                 </div>
             </div>
@@ -336,31 +471,122 @@
                 <div class="card h-100 shadow-sm features-card">
                     <div class="card-body">
                         <div class="feature-icon-round bg-info text-white mb-3 mx-auto">
-                            <i class="bi bi-shield-lock fs-2"></i>
+                            <i class="bi bi-calendar-check-fill fs-2"></i>
                         </div>
-                        <h5 class="card-title">Seguridad y Confidencialidad</h5>
-                        <p class="card-text">Sus datos de salud son tratados con la máxima seguridad y confidencialidad.</p>
+                        <h5 class="card-title">Gestión Fácil de Citas</h5>
+                        <p class="card-text">Agende, reprograme o cancele sus citas médicas de manera intuitiva y rápida.</p>
                     </div>
                 </div>
             </div>
         </div>
+        <!-- End of Restored General Info Cards -->
+        
+        <!-- Features Section for non-logged-in users (New - let's enhance this) -->
+        <section id="features" class="py-5 mt-5 features-section-bg"> @* Changed background class *@
+            <div class="container px-4 px-lg-5">
+                <div class="row gx-4 gx-lg-5 justify-content-center">
+                    <div class="col-lg-8 text-center">
+                        <h2 class="mt-0 display-5 fw-bold">¿Cómo VitalCare puede ayudarte?</h2>
+                        <hr class="divider divider-primary my-4 mx-auto" />
+                        <p class="text-muted mb-5 fs-5">Gestiona tu salud de manera eficiente y cómoda desde un solo lugar. Descubre nuestras funcionalidades clave:</p>
+                    </div>
+                </div>
+                <div class="row gx-4 gx-lg-5">
+                    <div class="col-lg-3 col-md-6 text-center mb-5 mb-lg-0">
+                        <div class="mt-0 card shadow-lg feature-card-hover h-100"> @* Added shadow-lg, feature-card-hover, h-100 and made it a card *@
+                            <div class="card-body d-flex flex-column">
+                                <div class="mb-3 mx-auto"><i class="bi bi-calendar2-plus fs-1 text-primary"></i></div>
+                                <h3 class="h4 mb-2">Agenda Citas Fácilmente</h3>
+                                <p class="text-muted mb-0 flex-grow-1">Encuentra doctores y agenda tus citas médicas en pocos clics.</p>
+                            </div>
+                        </div>
+                    </div> @* Corrected closing div placement relative to this item block *@
+                    <div class="col-lg-3 col-md-6 text-center mb-5 mb-lg-0">
+                        <div class="mt-0 card shadow-lg feature-card-hover h-100"> @* Added shadow-lg, feature-card-hover, h-100 and made it a card *@
+                            <div class="card-body d-flex flex-column">
+                                <div class="mb-3 mx-auto"><i class="bi bi-shield-check fs-1 text-success"></i></div>
+                                <h3 class="h4 mb-2">Seguridad y Confidencialidad</h3>
+                                <p class="text-muted mb-0 flex-grow-1">Tus datos de salud son tratados con la máxima seguridad.</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-6 text-center mb-5 mb-md-0">
+                        <div class="mt-0 card shadow-lg feature-card-hover h-100"> @* Added shadow-lg, feature-card-hover, h-100 and made it a card *@
+                            <div class="card-body d-flex flex-column">
+                                <div class="mb-3 mx-auto"><i class="bi bi-journal-medical fs-1 text-info"></i></div>
+                                <h3 class="h4 mb-2">Historial Médico Accesible</h3>
+                                <p class="text-muted mb-0 flex-grow-1">Accede a tu historial y recetas médicas cuando lo necesites.</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-6 text-center">
+                        <div class="mt-0 card shadow-lg feature-card-hover h-100"> @* Added shadow-lg, feature-card-hover, h-100 and made it a card *@
+                            <div class="card-body d-flex flex-column">
+                                <div class="mb-3 mx-auto"><i class="bi bi-headset fs-1 text-warning"></i></div>
+                                <h3 class="h4 mb-2">Soporte Continuo</h3>
+                                <p class="text-muted mb-0 flex-grow-1">Nuestro equipo está para ayudarte con cualquier consulta.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!-- End Features Section -->
     }
 </div>
 
-@* Added placeholder for custom CSS for feature cards, if needed *@
-@section Styles {
-<style>
-    .features-card .feature-icon-round {
-        width: 60px;
-        height: 60px;
-        border-radius: 50%;
-        display: inline-flex;
-        align-items: center;
-        justify-content: center;
-    }
-    .hero-background-image { /* A class you can add to the hero div for more specific styling */
-        /* Example: min-height: 400px; */
-    }
-</style>
+@section Scripts {
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            // Doctor Dashboard: Dynamic Citas Hoy Stat
+            const citasHoyStatElement = document.getElementById('doctorCitasHoyStat');
+            if (citasHoyStatElement) {
+                citasHoyStatElement.textContent = Math.floor(Math.random() * 11); // Random number 0-10
+            }
+
+            // Doctor Dashboard: Patient Search Form Simulation
+            const doctorPatientSearchForm = document.getElementById('doctorPatientSearchForm');
+            if (doctorPatientSearchForm) {
+                doctorPatientSearchForm.addEventListener('submit', function (event) {
+                    event.preventDefault(); // Prevent actual form submission
+                    const searchInput = document.getElementById('doctorPatientSearchInput');
+                    if (searchInput && searchInput.value.trim() !== '') {
+                        alert('Buscando paciente: ' + searchInput.value.trim());
+                        // Here you would typically make an AJAX call to the server
+                        // For now, we just alert and clear the input.
+                        searchInput.value = ''; 
+                    } else {
+                        alert('Por favor ingrese un término de búsqueda.');
+                    }
+                });
+            }
+
+            // Patient Dashboard: Dynamic Próxima Cita Stat (Placeholder)
+            const proximaCitaStatElement = document.getElementById('patientProximaCitaStat');
+            if (proximaCitaStatElement) {
+                // In a real app, this would come from the server or a more complex client-side logic
+                const citasPlaceholders = [
+                    "28 Jul, 09:30 AM - Dr. Aal H", 
+                    "02 Ago, 02:00 PM - Dra. Smith R", 
+                    "No hay citas próximas",
+                    "15 Ago, 11:00 AM - Dr. Jones P"
+                ];
+                proximaCitaStatElement.textContent = citasPlaceholders[Math.floor(Math.random() * citasPlaceholders.length)];
+            }
+
+            // Patient Dashboard: Dynamic Nuevas Recetas Stat
+            const nuevasRecetasStatElement = document.getElementById('patientNuevasRecetasStat');
+            if (nuevasRecetasStatElement) {
+                nuevasRecetasStatElement.textContent = Math.floor(Math.random() * 5); // Random number 0-4
+            }
+        });
+    </script>
+    <style>
+        /* You can also add page-specific CSS here if needed */
+        .divider-primary {
+            border-top: 3px solid var(--bs-primary);
+            width: 50px;
+        }
+    </style>
 }
 

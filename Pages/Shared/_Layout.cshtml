@@ -59,7 +59,7 @@
     <title>@ViewData["Title"] - VitalCare</title>
     <link rel="icon" href="~/favicon.svg" type="image/svg+xml"> @* Favicon Link *@
     @* Bootswatch Cerulean Theme - Consider using local copy for reliability *@
-    <link rel="stylesheet" href="https://bootswatch.com/5/cerulean/bootstrap.min.css" />
+    <link rel="stylesheet" href="https://bootswatch.com/5/cerulean/bootstrap.min.css" /> @* Restored Bootswatch *@
     @* Bootstrap Icons - Requires separate inclusion or project setup *@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
     @* Flatpickr CSS for date pickers *@
@@ -203,9 +203,64 @@
         </main>
     </div> 
 
-    <footer class="border-top footer text-muted text-center mt-auto">
-        &copy; @DateTime.Now.Year - VitalCare - <a asp-area="" asp-page="/Privacy"> Política de Privacidad</a>
+    <footer class="app-footer py-4 py-md-5">
+        <div class="container">
+            <div class="row gy-4">
+                <div class="col-lg-4 col-md-6">
+                    <h5 class="text-uppercase mb-3 fw-bold"><i class="bi bi-heart-pulse me-2"></i>VitalCare</h5>
+                    <p class="small text-white-75">Comprometidos con tu salud, facilitando el acceso a servicios médicos de calidad de forma rápida y segura.</p>
+                </div>
+                <div class="col-lg-2 col-md-6">
+                    <h5 class="text-uppercase mb-3 fw-bold">Enlaces</h5>
+                    <ul class="list-unstyled mb-0">
+                        <li class="mb-2"><a asp-area="" asp-page="/Index" class="footer-link text-white-75">Inicio</a></li>
+                        <li class="mb-2"><a asp-area="" asp-page="/Privacy" class="footer-link text-white-75">Privacidad</a></li>
+                        @* Add other relevant links here if needed *@
+                    </ul>
+                </div>
+                <div class="col-lg-3 col-md-6 footer-contact-column">
+                    <h5 class="text-uppercase mb-4 fw-bold">Contacto</h5>
+                    <div class="contact-item mb-3 d-flex align-items-start">
+                        <div class="contact-icon-wrapper me-3">
+                            <i class="bi bi-geo-alt-fill fs-5 text-primary"></i>
+                        </div>
+                        <div>
+                            <strong class="d-block text-white-75">Ubicación:</strong>
+                            <a href="https://www.google.com/maps/search/?api=1&query=Barrancabermeja+Santander" target="_blank" class="footer-link text-white-75">Barrancabermeja, Santander</a>
+                        </div>
+                    </div>
+                    <div class="contact-item mb-3 d-flex align-items-start">
+                        <div class="contact-icon-wrapper me-3">
+                            <i class="bi bi-telephone-fill fs-5 text-primary"></i>
+                        </div>
+                        <div>
+                            <strong class="d-block text-white-75">Teléfono:</strong>
+                            <a href="tel:+573203465135" class="footer-link text-white-75">320 346 5135</a>
+                        </div>
+                    </div>
+                    <div class="contact-item d-flex align-items-start">
+                        <div class="contact-icon-wrapper me-3">
+                            <i class="bi bi-envelope-fill fs-5 text-primary"></i>
+                        </div>
+                        <div>
+                            <strong class="d-block text-white-75">Correo:</strong>
+                            <a href="mailto:cramos5@udi.edu.co" class="footer-link text-white-75">cramos5@udi.edu.co</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-6">
+                    <h5 class="text-uppercase mb-3 fw-bold">Síguenos</h5>
+                    <a href="#" class="footer-social-icon text-white-75 me-3 fs-5"><i class="bi bi-facebook"></i></a>
+                    <a href="#" class="footer-social-icon text-white-75 me-3 fs-5"><i class="bi bi-twitter-x"></i></a>
+                    <a href="#" class="footer-social-icon text-white-75 fs-5"><i class="bi bi-instagram"></i></a>
+                </div>
+            </div>
+        </div>
     </footer>
+
+    <div class="text-center p-3 copyright-footer">
+        &copy; @DateTime.Now.Year VitalCare. Todos los derechos reservados. Diseñado por Cristian Ramos.
+    </div>
 
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
     <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
