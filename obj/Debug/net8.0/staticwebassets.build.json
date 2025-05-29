@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "gxKzLN9sRALsizmIBPuTDIxNn718ho91CxUS68IKt7o=",
+  "Hash": "xEpk40OMQoR/e+xvTGTucbVE8q8gDxI5/JhvxVZAFs0=",
   "Source": "CitasEPS",
   "BasePath": "_content/CitasEPS",
   "Mode": "Default",
@@ -1333,8 +1333,8 @@
       "RelatedAsset": "",
       "AssetTraitName": "",
       "AssetTraitValue": "",
-      "Fingerprint": "77zp5vsrit",
-      "Integrity": "c//Im6YTq28AxkadEeXMwrRC85VodPcuhoxgaLenLcs=",
+      "Fingerprint": "w4bokdsxog",
+      "Integrity": "oMmPLUQ3PH+U9GkIKOw3cxWqzGEYiTCTAA6/Iuc6/3U=",
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot/css/site.css"
@@ -2955,51 +2955,6 @@
       ]
     },
     {
-      "Route": "css/site.77zp5vsrit.css",
-      "AssetFile": "/Users/cristianramos/Desktop/Proyectos/AplicativosWeb/CitasEPS/wwwroot/css/site.css",
-      "Selectors": [],
-      "ResponseHeaders": [
-        {
-          "Name": "Accept-Ranges",
-          "Value": "bytes"
-        },
-        {
-          "Name": "Content-Length",
-          "Value": "38211"
-        },
-        {
-          "Name": "Content-Type",
-          "Value": "text/css"
-        },
-        {
-          "Name": "ETag",
-          "Value": "\"c//Im6YTq28AxkadEeXMwrRC85VodPcuhoxgaLenLcs=\""
-        },
-        {
-          "Name": "Last-Modified",
-          "Value": "Wed, 28 May 2025 04:45:20 GMT"
-        },
-        {
-          "Name": "Cache-Control",
-          "Value": "max-age=31536000, immutable"
-        }
-      ],
-      "EndpointProperties": [
-        {
-          "Name": "fingerprint",
-          "Value": "77zp5vsrit"
-        },
-        {
-          "Name": "label",
-          "Value": "css/site.css"
-        },
-        {
-          "Name": "integrity",
-          "Value": "sha256-c//Im6YTq28AxkadEeXMwrRC85VodPcuhoxgaLenLcs="
-        }
-      ]
-    },
-    {
       "Route": "css/site.css",
       "AssetFile": "/Users/cristianramos/Desktop/Proyectos/AplicativosWeb/CitasEPS/wwwroot/css/site.css",
       "Selectors": [],
@@ -3010,7 +2965,7 @@
         },
         {
           "Name": "Content-Length",
-          "Value": "38211"
+          "Value": "38630"
         },
         {
           "Name": "Content-Type",
@@ -3018,11 +2973,11 @@
         },
         {
           "Name": "ETag",
-          "Value": "\"c//Im6YTq28AxkadEeXMwrRC85VodPcuhoxgaLenLcs=\""
+          "Value": "\"oMmPLUQ3PH+U9GkIKOw3cxWqzGEYiTCTAA6/Iuc6/3U=\""
         },
         {
           "Name": "Last-Modified",
-          "Value": "Wed, 28 May 2025 04:45:20 GMT"
+          "Value": "Thu, 29 May 2025 06:55:56 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -3032,7 +2987,52 @@
       "EndpointProperties": [
         {
           "Name": "integrity",
-          "Value": "sha256-c//Im6YTq28AxkadEeXMwrRC85VodPcuhoxgaLenLcs="
+          "Value": "sha256-oMmPLUQ3PH+U9GkIKOw3cxWqzGEYiTCTAA6/Iuc6/3U="
+        }
+      ]
+    },
+    {
+      "Route": "css/site.w4bokdsxog.css",
+      "AssetFile": "/Users/cristianramos/Desktop/Proyectos/AplicativosWeb/CitasEPS/wwwroot/css/site.css",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "38630"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "text/css"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"oMmPLUQ3PH+U9GkIKOw3cxWqzGEYiTCTAA6/Iuc6/3U=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Thu, 29 May 2025 06:55:56 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=31536000, immutable"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "fingerprint",
+          "Value": "w4bokdsxog"
+        },
+        {
+          "Name": "label",
+          "Value": "css/site.css"
+        },
+        {
+          "Name": "integrity",
+          "Value": "sha256-oMmPLUQ3PH+U9GkIKOw3cxWqzGEYiTCTAA6/Iuc6/3U="
         }
       ]
     },
