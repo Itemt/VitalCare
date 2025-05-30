@@ -60,8 +60,35 @@ namespace CitasEPS.Pages.Appointments
             {
                 // Log error and display message to user
                 _logger.LogError($"Could not find Patient record for logged-in user {user.Email}.");
-                TempData["ErrorMessage"] = "No se pudo encontrar su registro de paciente asociado. Por favor, contacte a soporte.";
-                return RedirectToPage("/Index"); // Redirect to a safe page
+
+                // Attempt to create missing Patient record automatically
+                try
+                {
+                    _logger.LogInformation($"Attempting to create missing Patient record for user {user.Email} (ID: {user.Id})");
+                    
+                    patient = new Patient
+                    {
+                        UserId = user.Id,
+                        FirstName = user.FirstName ?? "Sin nombre",
+                        LastName = user.LastName ?? "Sin apellido", 
+                        Email = user.Email,
+                        PhoneNumber = user.PhoneNumber,
+                        DateOfBirth = user.DateOfBirth,
+                        DocumentId = user.DocumentId,
+                        Gender = user.Gender ?? Models.Enums.Gender.Otro
+                    };
+                    
+                    _context.Patients.Add(patient);
+                    await _context.SaveChangesAsync();
+                    
+                    _logger.LogInformation($"Successfully created Patient record for user {user.Email} (ID: {user.Id})");
+                }
+                catch (Exception ex)
+                {
+                    _logger.LogError(ex, $"Failed to auto-create Patient record for user {user.Email} (ID: {user.Id})");
+                    TempData["ErrorMessage"] = "No se pudo encontrar su registro de paciente asociado. Por favor, contacte a soporte.";
+                    return RedirectToPage("/Index"); // Redirect to a safe page
+                }
             }
 
             LoggedInPatientId = patient.Id;
@@ -107,8 +134,35 @@ namespace CitasEPS.Pages.Appointments
              if (patient == null)
              { // Should have been caught in OnGet, but double check
                 _logger.LogError($"POST Error: Could not find Patient record for logged-in user {user.Email}.");
-                TempData["ErrorMessage"] = "Error al procesar la solicitud. No se encontró su registro de paciente.";
-                return RedirectToPage("/Index");
+
+                // Attempt to create missing Patient record automatically
+                try
+                {
+                    _logger.LogInformation($"Attempting to create missing Patient record for user {user.Email} (ID: {user.Id}) during POST");
+                    
+                    patient = new Patient
+                    {
+                        UserId = user.Id,
+                        FirstName = user.FirstName ?? "Sin nombre",
+                        LastName = user.LastName ?? "Sin apellido", 
+                        Email = user.Email,
+                        PhoneNumber = user.PhoneNumber,
+                        DateOfBirth = user.DateOfBirth,
+                        DocumentId = user.DocumentId,
+                        Gender = user.Gender ?? Models.Enums.Gender.Otro
+                    };
+                    
+                    _context.Patients.Add(patient);
+                    await _context.SaveChangesAsync();
+                    
+                    _logger.LogInformation($"Successfully created Patient record for user {user.Email} (ID: {user.Id}) during POST");
+                }
+                catch (Exception ex)
+                {
+                    _logger.LogError(ex, $"Failed to auto-create Patient record for user {user.Email} (ID: {user.Id}) during POST");
+                    TempData["ErrorMessage"] = "Error al procesar la solicitud. No se encontró su registro de paciente.";
+                    return RedirectToPage("/Index");
+                }
              }
 
              LoggedInPatientId = patient.Id;

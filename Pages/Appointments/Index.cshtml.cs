@@ -69,9 +69,45 @@ namespace CitasEPS.Pages.Appointments
                 else
                 {
                     _logger.LogWarning($"User {user.UserName} (ID: {user.Id}) has role Patient but no associated Patient record found.");
-                    Appointment = new List<Appointment>(); // Ensure list is initialized empty
-                    // Optionally add a message for the user
-                    // TempData["ErrorMessage"] = "No se pudo encontrar su registro de paciente asociado.";
+
+                    // Attempt to create missing Patient record automatically
+                    try
+                    {
+                        _logger.LogInformation($"Attempting to create missing Patient record for user {user.Email} (ID: {user.Id}) on Index page");
+                        
+                        var newPatient = new Patient
+                        {
+                            UserId = user.Id,
+                            FirstName = user.FirstName ?? "Sin nombre",
+                            LastName = user.LastName ?? "Sin apellido", 
+                            Email = user.Email,
+                            PhoneNumber = user.PhoneNumber,
+                            DateOfBirth = user.DateOfBirth,
+                            DocumentId = user.DocumentId,
+                            Gender = user.Gender ?? Models.Enums.Gender.Otro
+                        };
+                        
+                        _context.Patients.Add(newPatient);
+                        await _context.SaveChangesAsync();
+                        
+                        _logger.LogInformation($"Successfully created Patient record for user {user.Email} (ID: {user.Id}) on Index page");
+                        
+                        // Now load appointments for the newly created patient
+                        Appointment = await _context.Appointments
+                            .Where(a => a.PatientId == newPatient.Id)
+                            .Include(a => a.Doctor)
+                                .ThenInclude(d => d.Specialty)
+                            .OrderBy(a => a.AppointmentDateTime)
+                            .ToListAsync();
+                        
+                        PatientWeeklyStats = _appointmentPolicyService.GetPatientWeeklyAppointmentStats(newPatient.Id, DateTime.Today);
+                    }
+                    catch (Exception ex)
+                    {
+                        _logger.LogError(ex, $"Failed to auto-create Patient record for user {user.Email} (ID: {user.Id}) on Index page");
+                        Appointment = new List<Appointment>(); // Ensure list is initialized empty
+                        TempData["ErrorMessage"] = "No se pudo encontrar su registro de paciente asociado. Por favor, contacte a soporte.";
+                    }
                 }
                 // --- END FIX ---
             }

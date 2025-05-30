@@ -110,6 +110,13 @@ using (var scope = app.Services.CreateScope())
         var userManager = services.GetRequiredService<UserManager<User>>();
         await SeedData.Initialize(services, context, userManager, roleManager, logger);
 
+        // Fix missing Patient records for users with "Paciente" role
+        logger.LogInformation("Running missing Patient records check and fix...");
+        await MigrationHelpers.FixMissingPatientRecordsAsync(context, userManager, logger);
+
+        // Optional: Run integrity validation (can be removed in production)
+        await MigrationHelpers.ValidateUserPatientIntegrityAsync(context, userManager, logger);
+
     }
     catch (Exception ex)
     {
