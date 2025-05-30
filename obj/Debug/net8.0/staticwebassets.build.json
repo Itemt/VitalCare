@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "2oN8iioEEr9G1gYNOeDf/hY0wsWxQWM4UX7+91dkDN4=",
+  "Hash": "fpEYiteE082JWGhKbXTguo+MlPbvyJe0VJNdyqyQiaA=",
   "Source": "CitasEPS",
   "BasePath": "_content/CitasEPS",
   "Mode": "Default",
@@ -1319,6 +1319,27 @@
       "OriginalItemSpec": "C:\\Users\\CristianPC\\Desktop\\vitalcare\\obj\\Debug\\net8.0\\scopedcss\\projectbundle\\CitasEPS.bundle.scp.css"
     },
     {
+      "Identity": "C:\\Users\\CristianPC\\Desktop\\vitalcare\\wwwroot\\css\\enhanced-features.css",
+      "SourceId": "CitasEPS",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\CristianPC\\Desktop\\vitalcare\\wwwroot\\",
+      "BasePath": "_content/CitasEPS",
+      "RelativePath": "css/enhanced-features#[.{fingerprint}]?.css",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "Fingerprint": "ng53wxw7yg",
+      "Integrity": "mb0SBvW7JragSuycuJZeJQgMFiOkNJpnJGxSj+7LQpE=",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\css\\enhanced-features.css"
+    },
+    {
       "Identity": "C:\\Users\\CristianPC\\Desktop\\vitalcare\\wwwroot\\css\\site.css",
       "SourceId": "CitasEPS",
       "SourceType": "Discovered",
@@ -1333,8 +1354,8 @@
       "RelatedAsset": "",
       "AssetTraitName": "",
       "AssetTraitValue": "",
-      "Fingerprint": "800vt8jlj4",
-      "Integrity": "yN7+PXiUuP8QhrwPwrnKDK0PAABAl2YZ8dfP3RIeItE=",
+      "Fingerprint": "rdh7rkxd94",
+      "Integrity": "QZEeTVxG5N7FUL7wg2E7cBI4UL3dGTF8ehYepRS+rjc=",
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\css\\site.css"
@@ -1403,6 +1424,27 @@
       "OriginalItemSpec": "wwwroot\\images\\admin-dashboard-bg.svg"
     },
     {
+      "Identity": "C:\\Users\\CristianPC\\Desktop\\vitalcare\\wwwroot\\images\\admin.png",
+      "SourceId": "CitasEPS",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\CristianPC\\Desktop\\vitalcare\\wwwroot\\",
+      "BasePath": "_content/CitasEPS",
+      "RelativePath": "images/admin#[.{fingerprint}]?.png",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "Fingerprint": "eicshuxf2m",
+      "Integrity": "VucH1ejKz4wlIUFmoGQz3cPnq++7gNvP9CUE+arPaEo=",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\images\\admin.png"
+    },
+    {
       "Identity": "C:\\Users\\CristianPC\\Desktop\\vitalcare\\wwwroot\\images\\doctor-dashboard-bg-subtle.svg",
       "SourceId": "CitasEPS",
       "SourceType": "Discovered",
@@ -1445,6 +1487,27 @@
       "OriginalItemSpec": "wwwroot\\images\\doctor-dashboard-bg.svg"
     },
     {
+      "Identity": "C:\\Users\\CristianPC\\Desktop\\vitalcare\\wwwroot\\images\\doctor.png",
+      "SourceId": "CitasEPS",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\CristianPC\\Desktop\\vitalcare\\wwwroot\\",
+      "BasePath": "_content/CitasEPS",
+      "RelativePath": "images/doctor#[.{fingerprint}]?.png",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "Fingerprint": "6q9r9lxrtx",
+      "Integrity": "AqmjsBSY9ZHYlCQ+SUYSGLD29jNKoeitC+DgrjFBZI8=",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\images\\doctor.png"
+    },
+    {
       "Identity": "C:\\Users\\CristianPC\\Desktop\\vitalcare\\wwwroot\\images\\hero-background.svg",
       "SourceId": "CitasEPS",
       "SourceType": "Discovered",
@@ -1464,6 +1527,48 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\images\\hero-background.svg"
+    },
+    {
+      "Identity": "C:\\Users\\CristianPC\\Desktop\\vitalcare\\wwwroot\\images\\INDEX.png",
+      "SourceId": "CitasEPS",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\CristianPC\\Desktop\\vitalcare\\wwwroot\\",
+      "BasePath": "_content/CitasEPS",
+      "RelativePath": "images/INDEX#[.{fingerprint}]?.png",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "Fingerprint": "szu1lzsib7",
+      "Integrity": "KDQ96BosvTI5osA8sPWV48zcZ9z/Z3rfz+AfppJ/Ppg=",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\images\\INDEX.png"
+    },
+    {
+      "Identity": "C:\\Users\\CristianPC\\Desktop\\vitalcare\\wwwroot\\images\\Pacientes.png",
+      "SourceId": "CitasEPS",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\CristianPC\\Desktop\\vitalcare\\wwwroot\\",
+      "BasePath": "_content/CitasEPS",
+      "RelativePath": "images/Pacientes#[.{fingerprint}]?.png",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "Fingerprint": "guxqmv49cf",
+      "Integrity": "2F9V17/f0aQNgckQLBL54L3bMDNx6rMhUyNviTaAo0E=",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\images\\Pacientes.png"
     },
     {
       "Identity": "C:\\Users\\CristianPC\\Desktop\\vitalcare\\wwwroot\\images\\patient-dashboard-bg.svg",
@@ -2955,8 +3060,8 @@
       ]
     },
     {
-      "Route": "css/site.800vt8jlj4.css",
-      "AssetFile": "C:\\Users\\CristianPC\\Desktop\\vitalcare\\wwwroot\\css\\site.css",
+      "Route": "css/enhanced-features.css",
+      "AssetFile": "C:\\Users\\CristianPC\\Desktop\\vitalcare\\wwwroot\\css\\enhanced-features.css",
       "Selectors": [],
       "ResponseHeaders": [
         {
@@ -2965,7 +3070,7 @@
         },
         {
           "Name": "Content-Length",
-          "Value": "210099"
+          "Value": "5380"
         },
         {
           "Name": "Content-Type",
@@ -2973,11 +3078,48 @@
         },
         {
           "Name": "ETag",
-          "Value": "\"yN7+PXiUuP8QhrwPwrnKDK0PAABAl2YZ8dfP3RIeItE=\""
+          "Value": "\"mb0SBvW7JragSuycuJZeJQgMFiOkNJpnJGxSj+7LQpE=\""
         },
         {
           "Name": "Last-Modified",
-          "Value": "Fri, 30 May 2025 06:11:58 GMT"
+          "Value": "Fri, 30 May 2025 07:37:02 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "no-cache"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "integrity",
+          "Value": "sha256-mb0SBvW7JragSuycuJZeJQgMFiOkNJpnJGxSj+7LQpE="
+        }
+      ]
+    },
+    {
+      "Route": "css/enhanced-features.ng53wxw7yg.css",
+      "AssetFile": "C:\\Users\\CristianPC\\Desktop\\vitalcare\\wwwroot\\css\\enhanced-features.css",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "5380"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "text/css"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"mb0SBvW7JragSuycuJZeJQgMFiOkNJpnJGxSj+7LQpE=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Fri, 30 May 2025 07:37:02 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -2987,15 +3129,15 @@
       "EndpointProperties": [
         {
           "Name": "fingerprint",
-          "Value": "800vt8jlj4"
+          "Value": "ng53wxw7yg"
         },
         {
           "Name": "label",
-          "Value": "css/site.css"
+          "Value": "css/enhanced-features.css"
         },
         {
           "Name": "integrity",
-          "Value": "sha256-yN7+PXiUuP8QhrwPwrnKDK0PAABAl2YZ8dfP3RIeItE="
+          "Value": "sha256-mb0SBvW7JragSuycuJZeJQgMFiOkNJpnJGxSj+7LQpE="
         }
       ]
     },
@@ -3010,7 +3152,7 @@
         },
         {
           "Name": "Content-Length",
-          "Value": "210099"
+          "Value": "187526"
         },
         {
           "Name": "Content-Type",
@@ -3018,11 +3160,11 @@
         },
         {
           "Name": "ETag",
-          "Value": "\"yN7+PXiUuP8QhrwPwrnKDK0PAABAl2YZ8dfP3RIeItE=\""
+          "Value": "\"QZEeTVxG5N7FUL7wg2E7cBI4UL3dGTF8ehYepRS+rjc=\""
         },
         {
           "Name": "Last-Modified",
-          "Value": "Fri, 30 May 2025 06:11:58 GMT"
+          "Value": "Fri, 30 May 2025 07:36:39 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -3032,7 +3174,52 @@
       "EndpointProperties": [
         {
           "Name": "integrity",
-          "Value": "sha256-yN7+PXiUuP8QhrwPwrnKDK0PAABAl2YZ8dfP3RIeItE="
+          "Value": "sha256-QZEeTVxG5N7FUL7wg2E7cBI4UL3dGTF8ehYepRS+rjc="
+        }
+      ]
+    },
+    {
+      "Route": "css/site.rdh7rkxd94.css",
+      "AssetFile": "C:\\Users\\CristianPC\\Desktop\\vitalcare\\wwwroot\\css\\site.css",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "187526"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "text/css"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"QZEeTVxG5N7FUL7wg2E7cBI4UL3dGTF8ehYepRS+rjc=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Fri, 30 May 2025 07:36:39 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=31536000, immutable"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "fingerprint",
+          "Value": "rdh7rkxd94"
+        },
+        {
+          "Name": "label",
+          "Value": "css/site.css"
+        },
+        {
+          "Name": "integrity",
+          "Value": "sha256-QZEeTVxG5N7FUL7wg2E7cBI4UL3dGTF8ehYepRS+rjc="
         }
       ]
     },
@@ -5503,6 +5690,88 @@
       ]
     },
     {
+      "Route": "images/admin.eicshuxf2m.png",
+      "AssetFile": "C:\\Users\\CristianPC\\Desktop\\vitalcare\\wwwroot\\images\\admin.png",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "2107983"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "image/png"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"VucH1ejKz4wlIUFmoGQz3cPnq++7gNvP9CUE+arPaEo=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Tue, 06 Apr 2021 15:12:52 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=31536000, immutable"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "fingerprint",
+          "Value": "eicshuxf2m"
+        },
+        {
+          "Name": "label",
+          "Value": "images/admin.png"
+        },
+        {
+          "Name": "integrity",
+          "Value": "sha256-VucH1ejKz4wlIUFmoGQz3cPnq++7gNvP9CUE+arPaEo="
+        }
+      ]
+    },
+    {
+      "Route": "images/admin.png",
+      "AssetFile": "C:\\Users\\CristianPC\\Desktop\\vitalcare\\wwwroot\\images\\admin.png",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "2107983"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "image/png"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"VucH1ejKz4wlIUFmoGQz3cPnq++7gNvP9CUE+arPaEo=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Tue, 06 Apr 2021 15:12:52 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=3600, must-revalidate"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "integrity",
+          "Value": "sha256-VucH1ejKz4wlIUFmoGQz3cPnq++7gNvP9CUE+arPaEo="
+        }
+      ]
+    },
+    {
       "Route": "images/doctor-dashboard-bg-subtle.9c147i6eph.svg",
       "AssetFile": "C:\\Users\\CristianPC\\Desktop\\vitalcare\\wwwroot\\images\\doctor-dashboard-bg-subtle.svg",
       "Selectors": [],
@@ -5667,6 +5936,88 @@
       ]
     },
     {
+      "Route": "images/doctor.6q9r9lxrtx.png",
+      "AssetFile": "C:\\Users\\CristianPC\\Desktop\\vitalcare\\wwwroot\\images\\doctor.png",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "275309"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "image/png"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"AqmjsBSY9ZHYlCQ+SUYSGLD29jNKoeitC+DgrjFBZI8=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Fri, 05 Jul 2024 14:06:24 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=31536000, immutable"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "fingerprint",
+          "Value": "6q9r9lxrtx"
+        },
+        {
+          "Name": "label",
+          "Value": "images/doctor.png"
+        },
+        {
+          "Name": "integrity",
+          "Value": "sha256-AqmjsBSY9ZHYlCQ+SUYSGLD29jNKoeitC+DgrjFBZI8="
+        }
+      ]
+    },
+    {
+      "Route": "images/doctor.png",
+      "AssetFile": "C:\\Users\\CristianPC\\Desktop\\vitalcare\\wwwroot\\images\\doctor.png",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "275309"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "image/png"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"AqmjsBSY9ZHYlCQ+SUYSGLD29jNKoeitC+DgrjFBZI8=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Fri, 05 Jul 2024 14:06:24 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=3600, must-revalidate"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "integrity",
+          "Value": "sha256-AqmjsBSY9ZHYlCQ+SUYSGLD29jNKoeitC+DgrjFBZI8="
+        }
+      ]
+    },
+    {
       "Route": "images/hero-background.e8k1wgifc9.svg",
       "AssetFile": "C:\\Users\\CristianPC\\Desktop\\vitalcare\\wwwroot\\images\\hero-background.svg",
       "Selectors": [],
@@ -5745,6 +6096,170 @@
         {
           "Name": "integrity",
           "Value": "sha256-rlyEGV+WkWk1VS4RVQvHagpTEkxgoUKaYb2bqaskEFc="
+        }
+      ]
+    },
+    {
+      "Route": "images/INDEX.png",
+      "AssetFile": "C:\\Users\\CristianPC\\Desktop\\vitalcare\\wwwroot\\images\\INDEX.png",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "1622988"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "image/png"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"KDQ96BosvTI5osA8sPWV48zcZ9z/Z3rfz+AfppJ/Ppg=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Fri, 08 Jan 2021 16:49:00 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=3600, must-revalidate"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "integrity",
+          "Value": "sha256-KDQ96BosvTI5osA8sPWV48zcZ9z/Z3rfz+AfppJ/Ppg="
+        }
+      ]
+    },
+    {
+      "Route": "images/INDEX.szu1lzsib7.png",
+      "AssetFile": "C:\\Users\\CristianPC\\Desktop\\vitalcare\\wwwroot\\images\\INDEX.png",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "1622988"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "image/png"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"KDQ96BosvTI5osA8sPWV48zcZ9z/Z3rfz+AfppJ/Ppg=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Fri, 08 Jan 2021 16:49:00 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=31536000, immutable"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "fingerprint",
+          "Value": "szu1lzsib7"
+        },
+        {
+          "Name": "label",
+          "Value": "images/INDEX.png"
+        },
+        {
+          "Name": "integrity",
+          "Value": "sha256-KDQ96BosvTI5osA8sPWV48zcZ9z/Z3rfz+AfppJ/Ppg="
+        }
+      ]
+    },
+    {
+      "Route": "images/Pacientes.guxqmv49cf.png",
+      "AssetFile": "C:\\Users\\CristianPC\\Desktop\\vitalcare\\wwwroot\\images\\Pacientes.png",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "320097"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "image/png"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"2F9V17/f0aQNgckQLBL54L3bMDNx6rMhUyNviTaAo0E=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Sun, 07 Jul 2024 07:49:10 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=31536000, immutable"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "fingerprint",
+          "Value": "guxqmv49cf"
+        },
+        {
+          "Name": "label",
+          "Value": "images/Pacientes.png"
+        },
+        {
+          "Name": "integrity",
+          "Value": "sha256-2F9V17/f0aQNgckQLBL54L3bMDNx6rMhUyNviTaAo0E="
+        }
+      ]
+    },
+    {
+      "Route": "images/Pacientes.png",
+      "AssetFile": "C:\\Users\\CristianPC\\Desktop\\vitalcare\\wwwroot\\images\\Pacientes.png",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "320097"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "image/png"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"2F9V17/f0aQNgckQLBL54L3bMDNx6rMhUyNviTaAo0E=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Sun, 07 Jul 2024 07:49:10 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=3600, must-revalidate"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "integrity",
+          "Value": "sha256-2F9V17/f0aQNgckQLBL54L3bMDNx6rMhUyNviTaAo0E="
         }
       ]
     },

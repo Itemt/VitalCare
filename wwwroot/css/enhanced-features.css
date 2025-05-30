@@ -1,0 +1,220 @@
+/* === Enhanced Feature Cards with Sparkles === */
+.feature-icon-wrapper {
+    position: relative;
+    display: inline-block;
+    padding: 1rem;
+}
+
+.feature-icon-main {
+    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    display: block;
+    position: relative;
+    z-index: 2;
+}
+
+.feature-card-hover:hover .feature-icon-main {
+    transform: rotateY(360deg) scale(1.1);
+    filter: drop-shadow(0 8px 16px rgba(0,0,0,0.2));
+}
+
+/* Sparkle Effects */
+.feature-sparkles {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    pointer-events: none;
+    z-index: 1;
+}
+
+.sparkle {
+    position: absolute;
+    width: 6px;
+    height: 6px;
+    background: linear-gradient(45deg, #ffd700, #ffed4e);
+    border-radius: 50%;
+    opacity: 0;
+    animation: sparkleFloat 2s ease-in-out infinite;
+}
+
+.sparkle-1 {
+    top: 20%;
+    left: 15%;
+    animation-delay: 0s;
+}
+
+.sparkle-2 {
+    top: 60%;
+    right: 20%;
+    animation-delay: 0.7s;
+}
+
+.sparkle-3 {
+    bottom: 25%;
+    left: 25%;
+    animation-delay: 1.4s;
+}
+
+@keyframes sparkleFloat {
+    0%, 100% {
+        opacity: 0;
+        transform: translateY(0) scale(0.5);
+    }
+    50% {
+        opacity: 1;
+        transform: translateY(-10px) scale(1);
+    }
+}
+
+.feature-card-hover:hover .sparkle {
+    animation-duration: 1.5s;
+}
+
+/* Feature Stats Animation */
+.feature-stats {
+    opacity: 0;
+    transform: translateY(10px);
+    transition: all 0.4s ease;
+}
+
+.feature-card-hover:hover .feature-stats {
+    opacity: 1;
+    transform: translateY(0);
+    transition-delay: 0.2s;
+}
+
+.feature-stats small {
+    position: relative;
+    overflow: hidden;
+}
+
+.feature-stats small::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(40,167,69,0.2), transparent);
+    transition: left 0.6s ease;
+}
+
+.feature-card-hover:hover .feature-stats small::before {
+    left: 100%;
+}
+
+/* Enhanced Section Background */
+.features-section-bg {
+    background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 50%, #f8f9fa 100%);
+    position: relative;
+}
+
+.features-section-bg::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-image: 
+        radial-gradient(circle at 25% 25%, rgba(0,123,255,0.05) 0%, transparent 70%),
+        radial-gradient(circle at 75% 75%, rgba(40,167,69,0.05) 0%, transparent 70%);
+    pointer-events: none;
+}
+
+/* Divider Styling */
+.divider-primary {
+    border-top: 4px solid var(--bs-primary);
+    width: 60px;
+    border-radius: 2px;
+}
+
+/* Enhanced Feature Card Hover Effects Override */
+.feature-card-hover {
+    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275) !important;
+    position: relative;
+    background: linear-gradient(135deg, #fff 0%, #f8f9fa 100%) !important;
+    overflow: hidden;
+}
+
+.feature-card-hover::before {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: linear-gradient(45deg, transparent, rgba(0,123,255,0.1), transparent);
+    transform: rotate(-45deg) translateX(-100%);
+    transition: transform 0.8s ease;
+    z-index: 1;
+}
+
+.feature-card-hover:hover::before {
+    transform: rotate(-45deg) translateX(100%);
+}
+
+.feature-card-hover .card-body {
+    position: relative;
+    z-index: 2;
+}
+
+.feature-card-hover:hover {
+    transform: translateY(-12px) scale(1.03) !important;
+    box-shadow: 0 25px 50px rgba(0,0,0,0.15), 0 0 0 1px rgba(0,123,255,0.1) !important;
+}
+
+/* Dark Mode Enhancements for Feature Cards */
+[data-bs-theme="dark"] .feature-card-hover {
+    background: linear-gradient(135deg, #212529 0%, #2d3748 100%) !important;
+}
+
+[data-bs-theme="dark"] .feature-card-hover:hover {
+    box-shadow: 0 25px 50px rgba(255,255,255,0.08), 0 0 0 1px rgba(255,255,255,0.1) !important;
+}
+
+[data-bs-theme="dark"] .features-section-bg {
+    background: linear-gradient(135deg, #1a1a1a 0%, #2d2d2d 50%, #1a1a1a 100%);
+}
+
+[data-bs-theme="dark"] .features-section-bg::before {
+    background-image: 
+        radial-gradient(circle at 25% 25%, rgba(0,123,255,0.08) 0%, transparent 70%),
+        radial-gradient(circle at 75% 75%, rgba(40,167,69,0.08) 0%, transparent 70%);
+}
+
+/* Additional Animations for Better UX */
+@keyframes cardBreathe {
+    0%, 100% { transform: scale(1); }
+    50% { transform: scale(1.01); }
+}
+
+.feature-card-hover:not(:hover) {
+    animation: cardBreathe 4s ease-in-out infinite;
+}
+
+.feature-card-hover:nth-child(1) { animation-delay: 0s; }
+.feature-card-hover:nth-child(2) { animation-delay: 1s; }
+.feature-card-hover:nth-child(3) { animation-delay: 2s; }
+.feature-card-hover:nth-child(4) { animation-delay: 3s; }
+
+/* Mobile Responsive Adjustments for Enhanced Cards */
+@media (max-width: 768px) {
+    .feature-card-hover:hover {
+        transform: translateY(-6px) scale(1.02) !important;
+    }
+    
+    .sparkle {
+        width: 4px;
+        height: 4px;
+    }
+    
+    .feature-icon-wrapper {
+        padding: 0.5rem;
+    }
+    
+    .feature-card-hover:not(:hover) {
+        animation: none; /* Disable breathing animation on mobile */
+    }
+} 

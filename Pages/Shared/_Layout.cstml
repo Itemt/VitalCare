@@ -1,0 +1,5 @@
+@* Site specific CSS *@
+<link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+<link rel="stylesheet" href="~/css/enhanced-features.css" asp-append-version="true" />
+<link rel="stylesheet" href="~/CitasEPS.styles.css" asp-append-version="true" />
+@await RenderSectionAsync("Styles", required: false) @* Added to render page-specific styles *@ 

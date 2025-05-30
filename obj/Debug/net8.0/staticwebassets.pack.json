@@ -5,6 +5,10 @@
       "PackagePath": "staticwebassets\\CitasEPS.ut2vjzp850.bundle.scp.css"
     },
     {
+      "Id": "C:\\Users\\CristianPC\\Desktop\\vitalcare\\wwwroot\\css\\enhanced-features.css",
+      "PackagePath": "staticwebassets\\css\\enhanced-features.css"
+    },
+    {
       "Id": "C:\\Users\\CristianPC\\Desktop\\vitalcare\\wwwroot\\css\\site.css",
       "PackagePath": "staticwebassets\\css\\site.css"
     },
@@ -17,8 +21,20 @@
       "PackagePath": "staticwebassets\\favicon.svg"
     },
     {
+      "Id": "C:\\Users\\CristianPC\\Desktop\\vitalcare\\wwwroot\\images\\INDEX.png",
+      "PackagePath": "staticwebassets\\images\\INDEX.png"
+    },
+    {
+      "Id": "C:\\Users\\CristianPC\\Desktop\\vitalcare\\wwwroot\\images\\Pacientes.png",
+      "PackagePath": "staticwebassets\\images\\Pacientes.png"
+    },
+    {
       "Id": "C:\\Users\\CristianPC\\Desktop\\vitalcare\\wwwroot\\images\\admin-dashboard-bg.svg",
       "PackagePath": "staticwebassets\\images\\admin-dashboard-bg.svg"
+    },
+    {
+      "Id": "C:\\Users\\CristianPC\\Desktop\\vitalcare\\wwwroot\\images\\admin.png",
+      "PackagePath": "staticwebassets\\images\\admin.png"
     },
     {
       "Id": "C:\\Users\\CristianPC\\Desktop\\vitalcare\\wwwroot\\images\\doctor-dashboard-bg-subtle.svg",
@@ -27,6 +43,10 @@
     {
       "Id": "C:\\Users\\CristianPC\\Desktop\\vitalcare\\wwwroot\\images\\doctor-dashboard-bg.svg",
       "PackagePath": "staticwebassets\\images\\doctor-dashboard-bg.svg"
+    },
+    {
+      "Id": "C:\\Users\\CristianPC\\Desktop\\vitalcare\\wwwroot\\images\\doctor.png",
+      "PackagePath": "staticwebassets\\images\\doctor.png"
     },
     {
       "Id": "C:\\Users\\CristianPC\\Desktop\\vitalcare\\wwwroot\\images\\hero-background.svg",
