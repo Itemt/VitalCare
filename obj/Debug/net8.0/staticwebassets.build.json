@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "fpEYiteE082JWGhKbXTguo+MlPbvyJe0VJNdyqyQiaA=",
+  "Hash": "/dbKY0MkLz8LK7yaoaAkwPhx133Ymvl7UPpTrgnQffc=",
   "Source": "CitasEPS",
   "BasePath": "_content/CitasEPS",
   "Mode": "Default",
@@ -1333,8 +1333,8 @@
       "RelatedAsset": "",
       "AssetTraitName": "",
       "AssetTraitValue": "",
-      "Fingerprint": "ng53wxw7yg",
-      "Integrity": "mb0SBvW7JragSuycuJZeJQgMFiOkNJpnJGxSj+7LQpE=",
+      "Fingerprint": "c25csxrx9z",
+      "Integrity": "XKt4sWACtdjpN7JVNQcCuDysfILWPkUvqrURSDl9ITg=",
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\css\\enhanced-features.css"
@@ -3060,6 +3060,51 @@
       ]
     },
     {
+      "Route": "css/enhanced-features.c25csxrx9z.css",
+      "AssetFile": "C:\\Users\\CristianPC\\Desktop\\vitalcare\\wwwroot\\css\\enhanced-features.css",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "43660"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "text/css"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"XKt4sWACtdjpN7JVNQcCuDysfILWPkUvqrURSDl9ITg=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Fri, 30 May 2025 08:05:39 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=31536000, immutable"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "fingerprint",
+          "Value": "c25csxrx9z"
+        },
+        {
+          "Name": "label",
+          "Value": "css/enhanced-features.css"
+        },
+        {
+          "Name": "integrity",
+          "Value": "sha256-XKt4sWACtdjpN7JVNQcCuDysfILWPkUvqrURSDl9ITg="
+        }
+      ]
+    },
+    {
       "Route": "css/enhanced-features.css",
       "AssetFile": "C:\\Users\\CristianPC\\Desktop\\vitalcare\\wwwroot\\css\\enhanced-features.css",
       "Selectors": [],
@@ -3070,7 +3115,7 @@
         },
         {
           "Name": "Content-Length",
-          "Value": "5380"
+          "Value": "43660"
         },
         {
           "Name": "Content-Type",
@@ -3078,11 +3123,11 @@
         },
         {
           "Name": "ETag",
-          "Value": "\"mb0SBvW7JragSuycuJZeJQgMFiOkNJpnJGxSj+7LQpE=\""
+          "Value": "\"XKt4sWACtdjpN7JVNQcCuDysfILWPkUvqrURSDl9ITg=\""
         },
         {
           "Name": "Last-Modified",
-          "Value": "Fri, 30 May 2025 07:37:02 GMT"
+          "Value": "Fri, 30 May 2025 08:05:39 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -3092,52 +3137,7 @@
       "EndpointProperties": [
         {
           "Name": "integrity",
-          "Value": "sha256-mb0SBvW7JragSuycuJZeJQgMFiOkNJpnJGxSj+7LQpE="
-        }
-      ]
-    },
-    {
-      "Route": "css/enhanced-features.ng53wxw7yg.css",
-      "AssetFile": "C:\\Users\\CristianPC\\Desktop\\vitalcare\\wwwroot\\css\\enhanced-features.css",
-      "Selectors": [],
-      "ResponseHeaders": [
-        {
-          "Name": "Accept-Ranges",
-          "Value": "bytes"
-        },
-        {
-          "Name": "Content-Length",
-          "Value": "5380"
-        },
-        {
-          "Name": "Content-Type",
-          "Value": "text/css"
-        },
-        {
-          "Name": "ETag",
-          "Value": "\"mb0SBvW7JragSuycuJZeJQgMFiOkNJpnJGxSj+7LQpE=\""
-        },
-        {
-          "Name": "Last-Modified",
-          "Value": "Fri, 30 May 2025 07:37:02 GMT"
-        },
-        {
-          "Name": "Cache-Control",
-          "Value": "max-age=31536000, immutable"
-        }
-      ],
-      "EndpointProperties": [
-        {
-          "Name": "fingerprint",
-          "Value": "ng53wxw7yg"
-        },
-        {
-          "Name": "label",
-          "Value": "css/enhanced-features.css"
-        },
-        {
-          "Name": "integrity",
-          "Value": "sha256-mb0SBvW7JragSuycuJZeJQgMFiOkNJpnJGxSj+7LQpE="
+          "Value": "sha256-XKt4sWACtdjpN7JVNQcCuDysfILWPkUvqrURSDl9ITg="
         }
       ]
     },
@@ -3164,7 +3164,7 @@
         },
         {
           "Name": "Last-Modified",
-          "Value": "Fri, 30 May 2025 07:36:39 GMT"
+          "Value": "Fri, 30 May 2025 07:44:34 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -3201,7 +3201,7 @@
         },
         {
           "Name": "Last-Modified",
-          "Value": "Fri, 30 May 2025 07:36:39 GMT"
+          "Value": "Fri, 30 May 2025 07:44:34 GMT"
         },
         {
           "Name": "Cache-Control",

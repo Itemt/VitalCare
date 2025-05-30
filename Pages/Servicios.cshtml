@@ -1,0 +1,392 @@
+@page
+@model CitasEPS.Pages.ServiciosModel
+@{
+    ViewData["Title"] = "Servicios - VitalCare";
+}
+
+<!-- Hero Section for Services -->
+<div class="container-fluid bg-gradient-primary text-white text-center py-5 mb-4 shadow-lg hero-section services-hero" style="background-image: linear-gradient(135deg, rgba(0,123,255,0.9), rgba(0,86,179,0.9)), url('/images/INDEX.png'); background-size: cover; background-position: center center;">
+    <div class="hero-overlay" style="background-color: rgba(0, 40, 80, 0.85); padding: 4rem 1.5rem; display: inline-block; border-radius: 1rem; max-width: 90%; width: 800px;">
+        <h1 class="display-2 fw-bolder text-shadow-custom mb-4">Servicios VitalCare</h1>
+        <p class="lead fs-3 mb-4 text-shadow-custom">Descubre nuestra gama completa de servicios médicos de vanguardia, diseñados para brindar la mejor atención en salud digital.</p>
+        <div class="service-badges mb-4">
+            <span class="badge bg-success fs-6 me-2 service-badge"><i class="bi bi-check-circle-fill me-1"></i>Certificado ISO 9001</span>
+            <span class="badge bg-warning fs-6 me-2 service-badge"><i class="bi bi-award-fill me-1"></i>Premio Innovación 2024</span>
+            <span class="badge bg-info fs-6 service-badge"><i class="bi bi-shield-check-fill me-1"></i>HIPAA Compliant</span>
+        </div>
+    </div>
+</div>
+
+<!-- Services Statistics -->
+<div class="container mb-5">
+    <div class="row text-center">
+        <div class="col-lg-12">
+            <h2 class="display-6 fw-bold text-primary mb-4">En Números que Hablan</h2>
+            <div class="row g-4">
+                <div class="col-md-3">
+                    <div class="stat-card-premium p-4 rounded-3 shadow-lg h-100">
+                        <div class="stat-icon mb-3">
+                            <i class="bi bi-people-fill fs-1 text-primary"></i>
+                        </div>
+                        <h3 class="fw-bold text-primary mb-1 counter-number" data-target="25000">0</h3>
+                        <p class="text-muted mb-0">Pacientes Satisfechos</p>
+                        <small class="text-success"><i class="bi bi-graph-up-arrow me-1"></i>+15% este mes</small>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="stat-card-premium p-4 rounded-3 shadow-lg h-100">
+                        <div class="stat-icon mb-3">
+                            <i class="bi bi-hospital fs-1 text-success"></i>
+                        </div>
+                        <h3 class="fw-bold text-success mb-1 counter-number" data-target="350">0</h3>
+                        <p class="text-muted mb-0">Especialistas Médicos</p>
+                        <small class="text-info"><i class="bi bi-geo-alt-fill me-1"></i>15 países</small>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="stat-card-premium p-4 rounded-3 shadow-lg h-100">
+                        <div class="stat-icon mb-3">
+                            <i class="bi bi-clock-history fs-1 text-info"></i>
+                        </div>
+                        <h3 class="fw-bold text-info mb-1"><span class="counter-number" data-target="24">0</span>/7</h3>
+                        <p class="text-muted mb-0">Disponibilidad</p>
+                        <small class="text-warning"><i class="bi bi-lightning-charge-fill me-1"></i>Respuesta inmediata</small>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="stat-card-premium p-4 rounded-3 shadow-lg h-100">
+                        <div class="stat-icon mb-3">
+                            <i class="bi bi-star-fill fs-1 text-warning"></i>
+                        </div>
+                        <h3 class="fw-bold text-warning mb-1"><span class="counter-number" data-target="98">0</span>%</h3>
+                        <p class="text-muted mb-0">Satisfacción</p>
+                        <small class="text-success"><i class="bi bi-trophy-fill me-1"></i>Mejor calificado</small>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Premium Services Grid -->
+<div class="container mb-5">
+    <div class="row text-center mb-5">
+        <div class="col-lg-8 mx-auto">
+            <h2 class="display-5 fw-bold text-primary mb-3">Servicios Premium</h2>
+            <p class="lead text-muted fs-5">Tecnología de vanguardia al servicio de tu salud</p>
+        </div>
+    </div>
+    
+    <div class="row g-4 mb-5">
+        <div class="col-lg-4 col-md-6">
+            <div class="card h-100 shadow-lg features-card-premium border-0">
+                <div class="card-body p-4 text-center">
+                    <div class="feature-icon-mega bg-gradient-primary text-white mb-4 mx-auto premium-icon-container">
+                        <i class="bi bi-robot premium-icon"></i>
+                        <div class="icon-particles">
+                            <span class="particle particle-1"></span>
+                            <span class="particle particle-2"></span>
+                            <span class="particle particle-3"></span>
+                            <span class="particle particle-4"></span>
+                        </div>
+                    </div>
+                    <h5 class="card-title fw-bold mb-3">Inteligencia Artificial Médica</h5>
+                    <p class="card-text text-muted mb-3">Sistema de IA avanzado que analiza síntomas, historial médico y predice diagnósticos con 94% de precisión.</p>
+                    <div class="feature-benefits mb-3">
+                        <small class="d-block text-success mb-1"><i class="bi bi-check-circle-fill me-2"></i>Diagnóstico predictivo en tiempo real</small>
+                        <small class="d-block text-success mb-1"><i class="bi bi-check-circle-fill me-2"></i>Análisis de patrones de salud</small>
+                        <small class="d-block text-success"><i class="bi bi-check-circle-fill me-2"></i>Recomendaciones personalizadas</small>
+                    </div>
+                    <div class="tech-specs mt-3">
+                        <div class="row text-center">
+                            <div class="col-4">
+                                <strong class="text-primary">94%</strong>
+                                <br><small>Precisión</small>
+                            </div>
+                            <div class="col-4">
+                                <strong class="text-success">2.3s</strong>
+                                <br><small>Velocidad</small>
+                            </div>
+                            <div class="col-4">
+                                <strong class="text-info">24/7</strong>
+                                <br><small>Disponible</small>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="col-lg-4 col-md-6">
+            <div class="card h-100 shadow-lg features-card-premium border-0">
+                <div class="card-body p-4 text-center">
+                    <div class="feature-icon-mega bg-gradient-success text-white mb-4 mx-auto premium-icon-container">
+                        <i class="bi bi-camera-video premium-icon"></i>
+                        <div class="icon-particles">
+                            <span class="particle particle-1"></span>
+                            <span class="particle particle-2"></span>
+                            <span class="particle particle-3"></span>
+                            <span class="particle particle-4"></span>
+                        </div>
+                    </div>
+                    <h5 class="card-title fw-bold mb-3">Telemedicina Avanzada</h5>
+                    <p class="card-text text-muted mb-3">Consultas médicas en HD con realidad aumentada, traducción en tiempo real y diagnóstico asistido por IA.</p>
+                    <div class="feature-benefits mb-3">
+                        <small class="d-block text-success mb-1"><i class="bi bi-check-circle-fill me-2"></i>Video 4K con audio cristalino</small>
+                        <small class="d-block text-success mb-1"><i class="bi bi-check-circle-fill me-2"></i>Traducción a 30+ idiomas</small>
+                        <small class="d-block text-success"><i class="bi bi-check-circle-fill me-2"></i>Realidad aumentada médica</small>
+                    </div>
+                    <div class="tech-specs mt-3">
+                        <div class="row text-center">
+                            <div class="col-4">
+                                <strong class="text-primary">4K</strong>
+                                <br><small>Calidad</small>
+                            </div>
+                            <div class="col-4">
+                                <strong class="text-success">30+</strong>
+                                <br><small>Idiomas</small>
+                            </div>
+                            <div class="col-4">
+                                <strong class="text-info">AR</strong>
+                                <br><small>Realidad Aumentada</small>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="col-lg-4 col-md-6">
+            <div class="card h-100 shadow-lg features-card-premium border-0">
+                <div class="card-body p-4 text-center">
+                    <div class="feature-icon-mega bg-gradient-info text-white mb-4 mx-auto premium-icon-container">
+                        <i class="bi bi-activity premium-icon"></i>
+                        <div class="icon-particles">
+                            <span class="particle particle-1"></span>
+                            <span class="particle particle-2"></span>
+                            <span class="particle particle-3"></span>
+                            <span class="particle particle-4"></span>
+                        </div>
+                    </div>
+                    <h5 class="card-title fw-bold mb-3">Monitoreo Biométrico IoT</h5>
+                    <p class="card-text text-muted mb-3">Sensores inteligentes que monitoreán signos vitales en tiempo real con alertas predictivas de emergencias.</p>
+                    <div class="feature-benefits mb-3">
+                        <small class="d-block text-success mb-1"><i class="bi bi-check-circle-fill me-2"></i>Sensores IoT de última generación</small>
+                        <small class="d-block text-success mb-1"><i class="bi bi-check-circle-fill me-2"></i>Alertas predictivas tempranas</small>
+                        <small class="d-block text-success"><i class="bi bi-check-circle-fill me-2"></i>Integración con wearables</small>
+                    </div>
+                    <div class="tech-specs mt-3">
+                        <div class="row text-center">
+                            <div class="col-4">
+                                <strong class="text-primary">12</strong>
+                                <br><small>Sensores</small>
+                            </div>
+                            <div class="col-4">
+                                <strong class="text-success">1ms</strong>
+                                <br><small>Latencia</small>
+                            </div>
+                            <div class="col-4">
+                                <strong class="text-info">99.9%</strong>
+                                <br><small>Uptime</small>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Advanced Services Section -->
+<section class="py-5 advanced-services-bg">
+    <div class="container">
+        <div class="row text-center mb-5">
+            <div class="col-lg-8 mx-auto">
+                <h2 class="display-5 fw-bold text-white mb-3">Servicios Avanzados</h2>
+                <p class="lead text-white-50 fs-5">Tecnologías emergentes que transforman la medicina</p>
+            </div>
+        </div>
+        
+        <div class="row g-4">
+            <div class="col-lg-6 col-md-6">
+                <div class="advanced-service-card p-4 rounded-3 shadow-lg h-100">
+                    <div class="d-flex align-items-center mb-3">
+                        <div class="advanced-icon-wrapper me-3">
+                            <i class="bi bi-cpu fs-2 text-primary advanced-service-icon"></i>
+                        </div>
+                        <div>
+                            <h5 class="fw-bold mb-1">Blockchain Médico</h5>
+                            <small class="text-muted">Historial inmutable y seguro</small>
+                        </div>
+                    </div>
+                    <p class="text-muted mb-3">Almacenamiento descentralizado de historiales médicos con encriptación cuántica y acceso controlado por smart contracts.</p>
+                    <div class="feature-metrics">
+                        <span class="metric-badge me-2"><i class="bi bi-shield-check"></i> 256-bit Quantum</span>
+                        <span class="metric-badge"><i class="bi bi-lightning"></i> 0.3s Access</span>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="col-lg-6 col-md-6">
+                <div class="advanced-service-card p-4 rounded-3 shadow-lg h-100">
+                    <div class="d-flex align-items-center mb-3">
+                        <div class="advanced-icon-wrapper me-3">
+                            <i class="bi bi-eye fs-2 text-success advanced-service-icon"></i>
+                        </div>
+                        <div>
+                            <h5 class="fw-bold mb-1">Diagnóstico por Imagen IA</h5>
+                            <small class="text-muted">Detección temprana automática</small>
+                        </div>
+                    </div>
+                    <p class="text-muted mb-3">Análisis automático de radiografías, resonancias y tomografías con detección temprana de anomalías invisible al ojo humano.</p>
+                    <div class="feature-metrics">
+                        <span class="metric-badge me-2"><i class="bi bi-graph-up"></i> 97% Precisión</span>
+                        <span class="metric-badge"><i class="bi bi-clock"></i> 5s Análisis</span>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="col-lg-6 col-md-6">
+                <div class="advanced-service-card p-4 rounded-3 shadow-lg h-100">
+                    <div class="d-flex align-items-center mb-3">
+                        <div class="advanced-icon-wrapper me-3">
+                            <i class="bi bi-dna fs-2 text-info advanced-service-icon"></i>
+                        </div>
+                        <div>
+                            <h5 class="fw-bold mb-1">Medicina Genómica</h5>
+                            <small class="text-muted">Tratamientos personalizados</small>
+                        </div>
+                    </div>
+                    <p class="text-muted mb-3">Análisis genético completo para medicina de precisión, predicción de enfermedades y terapias personalizadas basadas en ADN.</p>
+                    <div class="feature-metrics">
+                        <span class="metric-badge me-2"><i class="bi bi-patch-check"></i> 99.8% Exactitud</span>
+                        <span class="metric-badge"><i class="bi bi-speedometer2"></i> 24h Resultados</span>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="col-lg-6 col-md-6">
+                <div class="advanced-service-card p-4 rounded-3 shadow-lg h-100">
+                    <div class="d-flex align-items-center mb-3">
+                        <div class="advanced-icon-wrapper me-3">
+                            <i class="bi bi-headset-vr fs-2 text-warning advanced-service-icon"></i>
+                        </div>
+                        <div>
+                            <h5 class="fw-bold mb-1">Terapia de Realidad Virtual</h5>
+                            <small class="text-muted">Rehabilitación inmersiva</small>
+                        </div>
+                    </div>
+                    <p class="text-muted mb-3">Tratamientos de rehabilitación, terapia del dolor y salud mental mediante entornos virtuales terapéuticos inmersivos.</p>
+                    <div class="feature-metrics">
+                        <span class="metric-badge me-2"><i class="bi bi-heart-pulse"></i> 85% Mejora</span>
+                        <span class="metric-badge"><i class="bi bi-vr"></i> Full Immersion</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Technology Partners -->
+<div class="container py-5">
+    <div class="row text-center mb-5">
+        <div class="col-lg-8 mx-auto">
+            <h2 class="display-6 fw-bold text-primary mb-3">Partners Tecnológicos</h2>
+            <p class="lead text-muted">Colaboramos con las mejores empresas de tecnología médica del mundo</p>
+        </div>
+    </div>
+    
+    <div class="row align-items-center text-center">
+        <div class="col-lg-2 col-md-4 col-6 mb-4">
+            <div class="partner-logo-container">
+                <i class="bi bi-microsoft fs-1 text-primary partner-logo"></i>
+                <div class="partner-name">Microsoft</div>
+            </div>
+        </div>
+        <div class="col-lg-2 col-md-4 col-6 mb-4">
+            <div class="partner-logo-container">
+                <i class="bi bi-google fs-1 text-success partner-logo"></i>
+                <div class="partner-name">Google Health</div>
+            </div>
+        </div>
+        <div class="col-lg-2 col-md-4 col-6 mb-4">
+            <div class="partner-logo-container">
+                <i class="bi bi-amazon fs-1 text-warning partner-logo"></i>
+                <div class="partner-name">AWS Healthcare</div>
+            </div>
+        </div>
+        <div class="col-lg-2 col-md-4 col-6 mb-4">
+            <div class="partner-logo-container">
+                <i class="bi bi-nvidia fs-1 text-info partner-logo"></i>
+                <div class="partner-name">NVIDIA Clara</div>
+            </div>
+        </div>
+        <div class="col-lg-2 col-md-4 col-6 mb-4">
+            <div class="partner-logo-container">
+                <i class="bi bi-apple fs-1 text-secondary partner-logo"></i>
+                <div class="partner-name">Apple Health</div>
+            </div>
+        </div>
+        <div class="col-lg-2 col-md-4 col-6 mb-4">
+            <div class="partner-logo-container">
+                <i class="bi bi-meta fs-1 text-primary partner-logo"></i>
+                <div class="partner-name">Meta VR</div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            // Counter Animation
+            const counters = document.querySelectorAll('.counter-number');
+            const observerOptions = {
+                threshold: 0.7
+            };
+            
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        const counter = entry.target;
+                        const target = parseInt(counter.getAttribute('data-target'));
+                        const duration = 2000;
+                        const step = target / (duration / 16);
+                        let current = 0;
+                        
+                        const timer = setInterval(() => {
+                            current += step;
+                            if (current >= target) {
+                                counter.textContent = target;
+                                clearInterval(timer);
+                            } else {
+                                counter.textContent = Math.floor(current);
+                            }
+                        }, 16);
+                        
+                        observer.unobserve(counter);
+                    }
+                });
+            }, observerOptions);
+            
+            counters.forEach(counter => {
+                observer.observe(counter);
+            });
+            
+            // Service Badge Animation
+            const serviceBadges = document.querySelectorAll('.service-badge');
+            serviceBadges.forEach((badge, index) => {
+                setTimeout(() => {
+                    badge.style.opacity = '0';
+                    badge.style.transform = 'translateY(20px)';
+                    badge.style.transition = 'all 0.5s ease';
+                    
+                    setTimeout(() => {
+                        badge.style.opacity = '1';
+                        badge.style.transform = 'translateY(0)';
+                    }, 100);
+                }, index * 200);
+            });
+        });
+    </script>
+} 

@@ -92,6 +92,9 @@
                         <li class="nav-item">
                             <a class="nav-link @linkTextClass @headerTextShadowClass" asp-area="" asp-page="/Index"><i class="bi bi-house-door"></i> Inicio</a>
                         </li>
+                        <li class="nav-item">
+                            <a class="nav-link @linkTextClass @headerTextShadowClass" asp-area="" asp-page="/Servicios"><i class="bi bi-gear-fill"></i> Servicios</a>
+                        </li>
                         @if (SignInManager.IsSignedIn(User))
                         {
                             var isAdminResult = await AuthorizationService.AuthorizeAsync(User, "RequireAdminRole");
@@ -204,64 +207,187 @@
         </main>
     </div> 
 
-    <footer class="app-footer py-4 py-md-5">
-        <div class="container">
-            <div class="row gy-4">
+    <footer class="modern-footer">
+        <!-- Animated Background Elements -->
+        <div class="footer-background">
+            <div class="footer-particles">
+                <div class="footer-particle footer-particle-1"></div>
+                <div class="footer-particle footer-particle-2"></div>
+                <div class="footer-particle footer-particle-3"></div>
+                <div class="footer-particle footer-particle-4"></div>
+                <div class="footer-particle footer-particle-5"></div>
+            </div>
+            <div class="footer-gradient-overlay"></div>
+        </div>
+        
+        <div class="container position-relative">
+            <!-- Main Footer Content -->
+            <div class="row gy-4 gy-lg-5">
                 <div class="col-lg-4 col-md-6">
-                    <h5 class="text-uppercase mb-3 fw-bold"><i class="bi bi-heart-pulse me-2"></i>VitalCare</h5>
-                    <p class="small text-white-75">Comprometidos con tu salud, facilitando el acceso a servicios médicos de calidad de forma rápida y segura.</p>
+                    <div class="footer-brand-section">
+                        <div class="footer-logo-container mb-4">
+                            <h3 class="footer-brand-title mb-3">
+                                <i class="bi bi-heart-pulse footer-brand-icon"></i>
+                                <span class="footer-brand-text">Vital</span><span class="footer-brand-highlight">Care</span>
+                            </h3>
+                            <div class="footer-brand-underline"></div>
+                        </div>
+                        <p class="footer-description mb-4">Comprometidos con tu salud, facilitando el acceso a servicios médicos de calidad con tecnología de vanguardia y atención personalizada.</p>
+                        
+                        <!-- Trust Badges -->
+                        <div class="footer-trust-badges">
+                            <div class="trust-badge-footer">
+                                <i class="bi bi-shield-check-fill me-2"></i>
+                                <span>ISO 27001</span>
+                            </div>
+                            <div class="trust-badge-footer">
+                                <i class="bi bi-award-fill me-2"></i>
+                                <span>HIPAA</span>
+                            </div>
+                            <div class="trust-badge-footer">
+                                <i class="bi bi-patch-check-fill me-2"></i>
+                                <span>SSL</span>
+                            </div>
+                        </div>
+                    </div>
                 </div>
+                
                 <div class="col-lg-2 col-md-6">
-                    <h5 class="text-uppercase mb-3 fw-bold">Enlaces</h5>
-                    <ul class="list-unstyled mb-0">
-                        <li class="mb-2"><a asp-area="" asp-page="/Index" class="footer-link text-white-75">Inicio</a></li>
-                        <li class="mb-2"><a asp-area="" asp-page="/Privacy" class="footer-link text-white-75">Privacidad</a></li>
-                        @* Add other relevant links here if needed *@
-                    </ul>
-                </div>
-                <div class="col-lg-3 col-md-6 footer-contact-column">
-                    <h5 class="text-uppercase mb-4 fw-bold">Contacto</h5>
-                    <div class="contact-item mb-3 d-flex align-items-start">
-                        <div class="contact-icon-wrapper me-3">
-                            <i class="bi bi-geo-alt-fill fs-5 text-primary"></i>
-                        </div>
-                        <div>
-                            <strong class="d-block text-white-75">Ubicación:</strong>
-                            <a href="https://www.google.com/maps/search/?api=1&query=Barrancabermeja+Santander" target="_blank" class="footer-link text-white-75">Barrancabermeja, Santander</a>
-                        </div>
-                    </div>
-                    <div class="contact-item mb-3 d-flex align-items-start">
-                        <div class="contact-icon-wrapper me-3">
-                            <i class="bi bi-telephone-fill fs-5 text-primary"></i>
-                        </div>
-                        <div>
-                            <strong class="d-block text-white-75">Teléfono:</strong>
-                            <a href="tel:+573203465135" class="footer-link text-white-75">320 346 5135</a>
-                        </div>
-                    </div>
-                    <div class="contact-item d-flex align-items-start">
-                        <div class="contact-icon-wrapper me-3">
-                            <i class="bi bi-envelope-fill fs-5 text-primary"></i>
-                        </div>
-                        <div>
-                            <strong class="d-block text-white-75">Correo:</strong>
-                            <a href="mailto:cramos5@udi.edu.co" class="footer-link text-white-75">cramos5@udi.edu.co</a>
-                        </div>
+                    <div class="footer-links-section">
+                        <h5 class="footer-section-title">
+                            <i class="bi bi-link-45deg me-2"></i>Enlaces Rápidos
+                        </h5>
+                        <ul class="footer-links-list">
+                            <li><a asp-area="" asp-page="/Index" class="footer-link">
+                                <i class="bi bi-house-door me-2"></i>Inicio
+                                <div class="link-hover-effect"></div>
+                            </a></li>
+                            <li><a asp-area="" asp-page="/Servicios" class="footer-link">
+                                <i class="bi bi-gear-fill me-2"></i>Servicios
+                                <div class="link-hover-effect"></div>
+                            </a></li>
+                            <li><a asp-area="" asp-page="/Privacy" class="footer-link">
+                                <i class="bi bi-shield-check me-2"></i>Privacidad
+                                <div class="link-hover-effect"></div>
+                            </a></li>
+                            <li><a href="#" class="footer-link">
+                                <i class="bi bi-info-circle me-2"></i>Acerca de
+                                <div class="link-hover-effect"></div>
+                            </a></li>
+                        </ul>
                     </div>
                 </div>
+                
                 <div class="col-lg-3 col-md-6">
-                    <h5 class="text-uppercase mb-3 fw-bold">Síguenos</h5>
-                    <a href="#" class="footer-social-icon text-white-75 me-3 fs-5"><i class="bi bi-facebook"></i></a>
-                    <a href="#" class="footer-social-icon text-white-75 me-3 fs-5"><i class="bi bi-twitter-x"></i></a>
-                    <a href="#" class="footer-social-icon text-white-75 fs-5"><i class="bi bi-instagram"></i></a>
+                    <div class="footer-contact-section">
+                        <h5 class="footer-section-title">
+                            <i class="bi bi-telephone-outbound me-2"></i>Contacto
+                        </h5>
+                        
+                        <div class="contact-info-list">
+                            <div class="contact-info-item">
+                                <div class="contact-icon-container">
+                                    <i class="bi bi-geo-alt-fill"></i>
+                                </div>
+                                <div class="contact-details">
+                                    <span class="contact-label">Ubicación:</span>
+                                    <a href="https://www.google.com/maps/search/?api=1&query=Barrancabermeja+Santander" target="_blank" class="contact-link">Barrancabermeja, Santander</a>
+                                </div>
+                            </div>
+                            
+                            <div class="contact-info-item">
+                                <div class="contact-icon-container">
+                                    <i class="bi bi-telephone-fill"></i>
+                                </div>
+                                <div class="contact-details">
+                                    <span class="contact-label">Teléfono:</span>
+                                    <a href="tel:+573203465135" class="contact-link">320 346 5135</a>
+                                </div>
+                            </div>
+                            
+                            <div class="contact-info-item">
+                                <div class="contact-icon-container">
+                                    <i class="bi bi-envelope-fill"></i>
+                                </div>
+                                <div class="contact-details">
+                                    <span class="contact-label">Correo:</span>
+                                    <a href="mailto:cramos5@udi.edu.co" class="contact-link">cramos5@udi.edu.co</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="col-lg-3 col-md-6">
+                    <div class="footer-social-section">
+                        <h5 class="footer-section-title">
+                            <i class="bi bi-share me-2"></i>Síguenos
+                        </h5>
+                        
+                        <div class="social-icons-container">
+                            <a href="#" class="social-icon-link facebook">
+                                <div class="social-icon-wrapper">
+                                    <i class="bi bi-facebook"></i>
+                                    <div class="social-icon-bg"></div>
+                                </div>
+                                <span class="social-label">Facebook</span>
+                            </a>
+                            <a href="#" class="social-icon-link twitter">
+                                <div class="social-icon-wrapper">
+                                    <i class="bi bi-twitter-x"></i>
+                                    <div class="social-icon-bg"></div>
+                                </div>
+                                <span class="social-label">Twitter</span>
+                            </a>
+                            <a href="#" class="social-icon-link instagram">
+                                <div class="social-icon-wrapper">
+                                    <i class="bi bi-instagram"></i>
+                                    <div class="social-icon-bg"></div>
+                                </div>
+                                <span class="social-label">Instagram</span>
+                            </a>
+                        </div>
+                        
+                        <!-- Newsletter Section -->
+                        <div class="newsletter-section mt-4">
+                            <h6 class="newsletter-title">Mantente Informado</h6>
+                            <div class="newsletter-form">
+                                <div class="input-group">
+                                    <input type="email" class="form-control newsletter-input" placeholder="Tu email">
+                                    <button class="btn newsletter-btn" type="button">
+                                        <i class="bi bi-arrow-right"></i>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Footer Bottom Bar -->
+            <div class="footer-bottom">
+                <div class="row align-items-center">
+                    <div class="col-md-6">
+                        <div class="footer-copyright">
+                            <i class="bi bi-c-circle me-1"></i>
+                            @DateTime.Now.Year VitalCare. Todos los derechos reservados.
+                        </div>
+                    </div>
+                    <div class="col-md-6 text-md-end">
+                        <div class="footer-designer">
+                            Diseñado con <i class="bi bi-heart-fill text-danger mx-1"></i> por <span class="designer-name">Cristian Ramos</span>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
+        
+        <!-- Scroll to Top Button -->
+        <button class="scroll-to-top" id="scrollToTopBtn">
+            <i class="bi bi-chevron-up"></i>
+            <div class="scroll-to-top-bg"></div>
+        </button>
     </footer>
-
-    <div class="text-center p-3 copyright-footer">
-        &copy; @DateTime.Now.Year VitalCare. Todos los derechos reservados. Diseñado por Cristian Ramos.
-    </div>
 
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
     <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
