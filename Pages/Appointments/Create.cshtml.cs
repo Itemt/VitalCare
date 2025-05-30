@@ -86,8 +86,8 @@ namespace CitasEPS.Pages.Appointments
                 catch (Exception ex)
                 {
                     _logger.LogError(ex, $"Failed to auto-create Patient record for user {user.Email} (ID: {user.Id})");
-                    TempData["ErrorMessage"] = "No se pudo encontrar su registro de paciente asociado. Por favor, contacte a soporte.";
-                    return RedirectToPage("/Index"); // Redirect to a safe page
+                TempData["ErrorMessage"] = "No se pudo encontrar su registro de paciente asociado. Por favor, contacte a soporte.";
+                return RedirectToPage("/Index"); // Redirect to a safe page
                 }
             }
 
@@ -160,8 +160,8 @@ namespace CitasEPS.Pages.Appointments
                 catch (Exception ex)
                 {
                     _logger.LogError(ex, $"Failed to auto-create Patient record for user {user.Email} (ID: {user.Id}) during POST");
-                    TempData["ErrorMessage"] = "Error al procesar la solicitud. No se encontró su registro de paciente.";
-                    return RedirectToPage("/Index");
+                TempData["ErrorMessage"] = "Error al procesar la solicitud. No se encontró su registro de paciente.";
+                return RedirectToPage("/Index");
                 }
              }
 

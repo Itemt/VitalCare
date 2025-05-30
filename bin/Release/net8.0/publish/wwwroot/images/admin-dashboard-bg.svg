@@ -1,0 +1,54 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="800" viewBox="0 0 1200 800">
+  <defs>
+    <pattern id="grid" width="40" height="40" patternUnits="userSpaceOnUse">
+      <path d="M 40 0 L 0 0 0 40" fill="none" stroke="#0d6efd" stroke-width="1" opacity="0.2"/>
+    </pattern>
+    <linearGradient id="bg-grad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#e7f1ff" />
+      <stop offset="100%" stop-color="#cfe2ff" />
+    </linearGradient>
+    <radialGradient id="circle-grad" cx="50%" cy="50%" r="50%" fx="50%" fy="50%">
+      <stop offset="0%" stop-color="#0d6efd" stop-opacity="0.1" />
+      <stop offset="100%" stop-color="#0d6efd" stop-opacity="0" />
+    </radialGradient>
+  </defs>
+  
+  <!-- Background -->
+  <rect width="100%" height="100%" fill="url(#bg-grad)" />
+  
+  <!-- Grid Pattern -->
+  <rect width="100%" height="100%" fill="url(#grid)" />
+  
+  <!-- Decorative Elements -->
+  <circle cx="100" cy="100" r="300" fill="url(#circle-grad)" />
+  <circle cx="1100" cy="700" r="250" fill="url(#circle-grad)" />
+  
+  <!-- Abstract Shapes -->
+  <path d="M-100,400 Q150,100 400,400 T900,400 T1300,400" stroke="#0d6efd" stroke-width="3" fill="none" opacity="0.2" />
+  <path d="M-100,500 Q150,200 400,500 T900,500 T1300,500" stroke="#0d6efd" stroke-width="2" fill="none" opacity="0.15" />
+  
+  <!-- Small Decorative Dots -->
+  <g opacity="0.3">
+    <circle cx="200" cy="200" r="3" fill="#0d6efd" />
+    <circle cx="240" cy="200" r="3" fill="#0d6efd" />
+    <circle cx="280" cy="200" r="3" fill="#0d6efd" />
+    <circle cx="200" cy="240" r="3" fill="#0d6efd" />
+    <circle cx="240" cy="240" r="3" fill="#0d6efd" />
+    <circle cx="280" cy="240" r="3" fill="#0d6efd" />
+    <circle cx="200" cy="280" r="3" fill="#0d6efd" />
+    <circle cx="240" cy="280" r="3" fill="#0d6efd" />
+    <circle cx="280" cy="280" r="3" fill="#0d6efd" />
+  </g>
+  
+  <g opacity="0.3">
+    <circle cx="900" cy="600" r="3" fill="#0d6efd" />
+    <circle cx="940" cy="600" r="3" fill="#0d6efd" />
+    <circle cx="980" cy="600" r="3" fill="#0d6efd" />
+    <circle cx="900" cy="640" r="3" fill="#0d6efd" />
+    <circle cx="940" cy="640" r="3" fill="#0d6efd" />
+    <circle cx="980" cy="640" r="3" fill="#0d6efd" />
+    <circle cx="900" cy="680" r="3" fill="#0d6efd" />
+    <circle cx="940" cy="680" r="3" fill="#0d6efd" />
+    <circle cx="980" cy="680" r="3" fill="#0d6efd" />
+  </g>
+</svg> 

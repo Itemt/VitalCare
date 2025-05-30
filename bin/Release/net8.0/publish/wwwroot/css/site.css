@@ -1,0 +1,4735 @@
+html {
+  font-size: 14px;
+}
+
+/* Light theme variables (default) */
+:root {
+    --bs-light-rgb: 248,249,250; /* Bootstrap's $light-rgb value */
+    --bs-dark-rgb: 33,37,41;    /* Bootstrap's $dark-rgb value */
+
+    --body-bg: #f8f9fa; 
+    --body-color: #212529; 
+    --card-bg: #fff; 
+    --card-border-color: rgba(0,0,0,.125);
+    --table-bg: transparent; /* Default table bg */
+    --table-striped-bg: rgba(0,0,0,0.05);
+    --table-border-color: #dee2e6;
+    --primary-text-emphasis: #0d6efd;
+    --secondary-text-emphasis: #6c757d;
+    --link-color: #0d6efd;
+    --link-hover-color: #0a58ca;
+
+    /* Default App Footer (Light Mode - No specific role, or Admin) */
+    --app-footer-default-bg-start: #005f9e; /* Deeper blue */
+    --app-footer-default-bg-end: #004a7c;   /* Previous custom blue */
+    
+    /* Patient App Footer (Light Mode) - More Medical Green */
+    --app-footer-patient-bg-start: #206A5D; /* Tealish Green */
+    --app-footer-patient-bg-end: #1A5348;   /* Darker Tealish Green */
+
+    /* Doctor App Footer (Light Mode) */
+    --app-footer-doctor-bg-start: #0dcaf0; /* Bootstrap $info */
+    --app-footer-doctor-bg-end: #0aa3c2;   /* Darker $info */
+
+    /* Common text/link colors for these themed light-mode footers */
+    --app-footer-themed-text: #f8f9fa;
+    --app-footer-themed-link-color: #e0e0e0;
+    --app-footer-themed-link-hover-color: #ffffff;
+    --app-footer-themed-muted-text: #ced4da; /* For p.small */
+
+    /* Role-specific light theme body backgrounds */
+    --patient-body-light-bg: #e0f2f1; /* Very light teal/green for patient light theme body */
+    --doctor-body-light-bg: #e0f7fa;  /* Very light cyan/blue for doctor light theme body */
+
+    /* Patient text shadow variable definition (if not already globally available, define in :root or body.patient-body-bg) */
+    /* We assume text-shadow-custom is applied via _Layout.cshtml, this is a fallback/enhancement */
+    --header-text-shadow-patient: 0 1px 2px rgba(0,0,0,0.4); /* Default, can be overridden in dark theme */
+}
+
+/* Dark theme overrides using data-bs-theme attribute */
+[data-bs-theme="dark"] {
+    --body-bg: #121212; /* Very dark grey, almost black */
+    --body-color: #e0e0e0; /* Light grey for text */
+    --card-bg: #1e1e1e; /* Slightly lighter dark for cards */
+    --card-border-color: rgba(255,255,255,.125);
+    --table-bg: #1e1e1e;
+    --table-striped-bg: rgba(255,255,255,0.05);
+    --table-border-color: #454d55; /* Darker border for tables */
+    --primary-text-emphasis: #6ea8fe; /* Lighter blue for primary text emphasis */
+    --secondary-text-emphasis: #adb5bd; /* Lighter grey for secondary text emphasis */
+    --link-color: #6ea8fe; 
+    --link-hover-color: #8bb9fe;
+
+    /* Override Bootstrap root variables for dark mode */
+    --bs-body-bg: var(--body-bg);
+    --bs-body-color: var(--body-color);
+    --bs-tertiary-bg: #2b3035;
+    --bs-emphasis-color: #f8f9fa; /* Lighter emphasis color */
+    --bs-secondary-color: #adb5bd;
+    --bs-light-rgb: 222, 226, 230; /* Light color for text on dark backgrounds */
+    --bs-dark-rgb: 233, 236, 239;   /* Darker color (but still light) */
+    --bs-border-color: #495057;
+    --bs-border-color-translucent: rgba(255, 255, 255, 0.15);
+    --bs-link-color: var(--link-color);
+    --bs-link-hover-color: var(--link-hover-color);
+    --bs-code-color: #e83e8c;
+}
+
+/* General element styling for dark mode */
+html[data-bs-theme="dark"] body {
+    background-color: var(--bs-body-bg); /* Effectively var(--body-bg) -> #121212 */
+    color: var(--body-color);
+}
+
+/* Override for the default body background (when no specific role class is present) in dark mode */
+html[data-bs-theme="dark"] body:not(.patient-body-bg):not(.doctor-body-bg) {
+    background-color: var(--body-bg) !important; 
+    color: var(--body-color) !important;
+}
+
+/* Override role-specific image backgrounds with solid dark color in dark mode */
+html[data-bs-theme="dark"] body.patient-body-bg,
+html[data-bs-theme="dark"] body.doctor-body-bg {
+    background-image: none !important;
+    background-color: var(--body-bg) !important; 
+}
+
+[data-bs-theme="dark"] .card {
+    background-color: var(--card-bg);
+    border-color: var(--card-border-color);
+}
+
+[data-bs-theme="dark"] .card-header,
+[data-bs-theme="dark"] .card-footer {
+    background-color: rgba(255,255,255,0.03); /* Slightly different from card body */
+    /* border-bottom-color: var(--card-border-color); Ensure consistent border if card-header has border */
+    /* border-top-color: var(--card-border-color); Ensure consistent border for card-footer */
+}
+/* Specific fix for card-header with explicit border */
+[data-bs-theme="dark"] .card-header {
+    border-bottom: 1px solid var(--card-border-color);
+}
+/* Specific fix for card-footer with explicit border */
+[data-bs-theme="dark"] .card-footer {
+    border-top: 1px solid var(--card-border-color);
+}
+
+
+[data-bs-theme="dark"] .table {
+    --bs-table-color: var(--body-color);
+    --bs-table-bg: var(--table-bg);
+    --bs-table-border-color: var(--table-border-color);
+    --bs-table-striped-color: var(--body-color);
+    --bs-table-striped-bg: var(--table-striped-bg);
+    --bs-table-active-color: var(--body-color);
+    --bs-table-active-bg: rgba(255,255,255,0.1);
+    --bs-table-hover-color: var(--body-color);
+    --bs-table-hover-bg: rgba(255,255,255,0.075);
+}
+
+[data-bs-theme="dark"] .table-light {
+    --bs-table-bg: #2c3034;
+    --bs-table-color: var(--body-color);
+    --bs-table-border-color: #454d55;
+}
+
+[data-bs-theme="dark"] .table-hover > tbody > tr:hover > * {
+    --bs-table-accent-bg: rgba(255,255,255,0.075);
+}
+
+[data-bs-theme="dark"] .text-primary {
+    color: var(--primary-text-emphasis) !important;
+}
+
+[data-bs-theme="dark"] .text-muted {
+    color: var(--secondary-text-emphasis) !important;
+}
+
+[data-bs-theme="dark"] .dropdown-menu {
+    --bs-dropdown-bg: var(--card-bg);
+    --bs-dropdown-link-color: var(--body-color);
+    --bs-dropdown-link-hover-color: var(--body-color);
+    --bs-dropdown-link-hover-bg: rgba(255,255,255,0.15);
+    --bs-dropdown-border-color: var(--card-border-color);
+    --bs-dropdown-divider-bg: var(--card-border-color);
+}
+
+
+[data-bs-theme="dark"] .navbar:not([class*="bg-"]) { /* Default light navbar to dark */
+    background-color: #212529 !important; 
+    --bs-navbar-color: rgba(255, 255, 255, 0.75);
+    --bs-navbar-hover-color: rgba(255, 255, 255, 0.95);
+    --bs-navbar-toggler-icon-bg: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3e%3cpath stroke='rgba%28255, 255, 255, 0.75%29' stroke-linecap='round' stroke-miterlimit='10' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e");
+}
+
+[data-bs-theme="dark"] .navbar.bg-white {
+    background-color: #212529 !important; 
+    --bs-navbar-color: rgba(255, 255, 255, 0.75) !important;
+    --bs-navbar-hover-color: rgba(255, 255, 255, 0.95) !important;
+    --bs-navbar-brand-color: rgba(255, 255, 255, 0.95) !important;
+    /* --bs-nav-link-color: rgba(255, 255, 255, 0.75) !important; */ /* Let specific .text-white override */
+    /* --bs-nav-link-hover-color: rgba(255, 255, 255, 0.95) !important; */
+}
+/* Ensure link text color in navbar.bg-white is also themed */
+[data-bs-theme="dark"] .navbar.bg-white .nav-link {
+    color: rgba(255, 255, 255, 0.75) !important;
+}
+[data-bs-theme="dark"] .navbar.bg-white .nav-link:hover,
+[data-bs-theme="dark"] .navbar.bg-white .nav-link:focus {
+    color: rgba(255, 255, 255, 0.95) !important;
+}
+
+
+[data-bs-theme="dark"] .navbar.bg-info .navbar-toggler-icon,
+[data-bs-theme="dark"] .navbar.bg-success .navbar-toggler-icon {
+    --bs-navbar-toggler-icon-bg: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3e%3cpath stroke='rgba%28255, 255, 255, 0.95%29' stroke-linecap='round' stroke-miterlimit='10' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e");
+}
+
+[data-bs-theme="dark"] .form-control {
+    background-color: #2b3035; /* Darker input background */
+    color: var(--body-color);
+    border-color: #495057;
+}
+
+[data-bs-theme="dark"] .form-control:focus {
+    background-color: #2b3035;
+    color: var(--body-color);
+    border-color: #6ea8fe; /* Lighter blue for focus */
+    box-shadow: 0 0 0 0.25rem rgba(110, 168, 254, 0.25); /* Lighter blue shadow */
+}
+
+[data-bs-theme="dark"] .form-select {
+    background-color: #2b3035;
+    color: var(--body-color);
+    border-color: #495057;
+}
+
+[data-bs-theme="dark"] .form-control::placeholder, 
+[data-bs-theme="dark"] .form-select::placeholder, 
+[data-bs-theme="dark"] textarea::placeholder {
+    color: #6c757d; /* Lighter placeholder text */
+}
+
+/* Fix for Bootstrap Floating Labels in Dark Mode */
+[data-bs-theme="dark"] .form-floating > .form-control:-webkit-autofill ~ label,
+[data-bs-theme="dark"] .form-floating > .form-control:focus ~ label,
+[data-bs-theme="dark"] .form-floating > .form-control:not(:placeholder-shown) ~ label {
+    color: var(--bs-secondary-color); /* More muted color for the floated label */
+    opacity: 1; /* Ensure it's fully visible if opacity was an issue */
+}
+
+[data-bs-theme="dark"] .form-floating > .form-control::placeholder {
+    color: transparent; /* Ensure placeholder is hidden when label floats */
+}
+
+[data-bs-theme="dark"] .form-floating > .form-control:focus::placeholder {
+    color: transparent; /* Ensure placeholder is hidden on focus as well */
+}
+
+/* Ensure the label text itself (when not floated) is also readable */
+[data-bs-theme="dark"] .form-floating > label {
+    color: var(--bs-secondary-color); /* Color of the label before it floats */
+}
+
+/* Hero Section Specifics for Dark Mode */
+[data-bs-theme="dark"] .container-fluid.bg-dark.text-white .btn-light {
+    /* This button is on an already dark hero background with a dark overlay */
+    /* Default Bootstrap [data-bs-theme="dark"] .btn-light makes it dark bg, light text which is fine */
+}
+
+[data-bs-theme="dark"] .container-fluid.bg-dark.text-white .btn-outline-light {
+    /* Should be fine: light border, light text */
+}
+
+/* Feature Cards on Public Homepage */
+[data-bs-theme="dark"] .features-card {
+    background-color: var(--card-bg) !important; 
+    border-color: var(--card-border-color) !important;
+}
+
+[data-bs-theme="dark"] .features-card .card-title,
+[data-bs-theme="dark"] .features-card .card-text {
+    color: var(--body-color) !important; 
+}
+
+[data-bs-theme="dark"] .features-card .feature-icon-round {
+    /* Icons are bg-primary, bg-success, bg-info with text-white */
+    /* These should remain as accent colors, text-white ensures icon is visible */
+}
+
+
+/* Ensure buttons have good contrast */
+[data-bs-theme="dark"] .btn-outline-secondary {
+    --bs-btn-color: #adb5bd;
+    --bs-btn-border-color: #adb5bd;
+    --bs-btn-hover-color: #121212; /* Darker text for contrast on hover */
+    --bs-btn-hover-bg: #adb5bd;
+    --bs-btn-active-bg: #adb5bd;
+    --bs-btn-active-border-color: #adb5bd;
+}
+
+[data-bs-theme="dark"] .btn-light {
+    /* Bootstrap default: dark bg, light text. Usually OK. */
+     /* If it needs to be light bg, dark text on a dark page section: */
+    /* background-color: #f8f9fa; */
+    /* border-color: #f8f9fa; */
+    /* color: #212529; */
+}
+
+[data-bs-theme="dark"] .btn-dark {
+    /* .btn-dark should become a light button in dark mode */
+    --bs-btn-color: var(--bs-dark-rgb); /* text dark */
+    --bs-btn-bg: var(--bs-light-rgb); /* bg light */
+    --bs-btn-border-color: var(--bs-light-rgb);
+    --bs-btn-hover-color: var(--bs-dark-rgb);
+    --bs-btn-hover-bg: #e2e6ea; /* Slightly darker light */
+    --bs-btn-hover-border-color: #dae0e5;
+    --bs-btn-active-color: var(--bs-dark-rgb);
+    --bs-btn-active-bg: #dae0e5;
+    --bs-btn-active-border-color: #d3d9df;
+}
+
+[data-bs-theme="dark"] .btn-link {
+    color: var(--link-color);
+}
+
+[data-bs-theme="dark"] .btn-link:hover {
+    color: var(--link-hover-color);
+}
+
+/* Dark mode for Alerts */
+[data-bs-theme="dark"] .alert {
+    --bs-alert-bg: #343a40; /* Dark background for alerts */
+    --bs-alert-color: #e9ecef; /* Light text for alerts */
+    --bs-alert-border-color: #495057;
+}
+[data-bs-theme="dark"] .alert-primary {
+    --bs-alert-bg: #03284c;
+    --bs-alert-color: #cfe2ff;
+    --bs-alert-border-color: #03284c;
+}
+[data-bs-theme="dark"] .alert-secondary {
+    --bs-alert-bg: #2b3035;
+    --bs-alert-color: #d6d8db;
+    --bs-alert-border-color: #2b3035;
+}
+[data-bs-theme="dark"] .alert-success {
+    --bs-alert-bg: #0a3622;
+    --bs-alert-color: #d1e7dd;
+    --bs-alert-border-color: #0a3622;
+}
+[data-bs-theme="dark"] .alert-danger {
+    --bs-alert-bg: #58151c;
+    --bs-alert-color: #f8d7da;
+    --bs-alert-border-color: #58151c;
+}
+[data-bs-theme="dark"] .alert-warning {
+    --bs-alert-bg: #664d03;
+    --bs-alert-color: #fff3cd;
+    --bs-alert-border-color: #664d03;
+}
+[data-bs-theme="dark"] .alert-info {
+    --bs-alert-bg: #055160;
+    --bs-alert-color: #cff4fc;
+    --bs-alert-border-color: #055160;
+}
+[data-bs-theme="dark"] .alert-light {
+    /* bg becomes dark, text becomes light */
+    --bs-alert-bg: var(--bs-tertiary-bg); 
+    --bs-alert-color: var(--bs-emphasis-color);
+    --bs-alert-border-color: var(--bs-tertiary-bg);
+}
+[data-bs-theme="dark"] .alert-dark {
+    /* bg becomes light, text becomes dark - effectively an inverted alert */
+    --bs-alert-bg: var(--bs-body-color); /* Light bg */
+    --bs-alert-color: var(--bs-body-bg); /* Dark text */
+    --bs-alert-border-color: var(--bs-body-color);
+}
+
+[data-bs-theme="dark"] .alert .btn-close {
+    filter: invert(1) grayscale(100%) brightness(200%);
+}
+
+/* Dark mode for Card Footers that were explicitly .bg-light */
+[data-bs-theme="dark"] .card-footer.bg-light {
+    background-color: var(--bs-tertiary-bg) !important; 
+    color: var(--body-color) !important;
+    /* border-top-color: var(--card-border-color) !important; */ /* Handled by general card-footer rule */
+}
+
+[data-bs-theme="dark"] .card-footer.bg-light .text-muted {
+    color: var(--secondary-text-emphasis) !important;
+}
+
+/* Dark mode for List Groups */
+[data-bs-theme="dark"] .list-group-item {
+    background-color: var(--card-bg); 
+    border-color: var(--card-border-color);
+    color: var(--body-color);
+}
+[data-bs-theme="dark"] .list-group-item-action:hover, 
+[data-bs-theme="dark"] .list-group-item-action:focus {
+    background-color: #2c3034; /* Slightly lighter dark for hover/focus */
+}
+
+/* Dark mode for Modals */
+[data-bs-theme="dark"] .modal-content {
+    background-color: var(--card-bg);
+    border-color: var(--card-border-color);
+}
+[data-bs-theme="dark"] .modal-header {
+    border-bottom-color: var(--card-border-color);
+}
+[data-bs-theme="dark"] .modal-footer {
+    border-top-color: var(--card-border-color);
+}
+[data-bs-theme="dark"] .modal-header .btn-close {
+    filter: invert(1) grayscale(100%) brightness(200%);
+}
+
+/* Dark mode for Badges */
+[data-bs-theme="dark"] .badge {
+    /* Most badges should adapt via Bootstrap's utilities, but for default/light ones: */
+}
+[data-bs-theme="dark"] .badge.bg-light {
+    background-color: #343a40 !important;
+    color: #f8f9fa !important;
+}
+[data-bs-theme="dark"] .badge.text-dark {
+    color: var(--bs-light-rgb) !important; /* Make .text-dark on a badge light */
+}
+
+/* Override specific text colors if they cause issues */
+[data-bs-theme="dark"] .text-dark {
+    color: var(--body-color) !important; /* Make .text-dark use the light body color */
+}
+
+/* Footer text in dark mode - ensure it's light */
+html[data-bs-theme="dark"] .footer,
+html[data-bs-theme="dark"] body.doctor-body-bg .footer,
+html[data-bs-theme="dark"] body.patient-body-bg .footer {
+    color: var(--secondary-text-emphasis) !important;
+}
+html[data-bs-theme="dark"] .footer a,
+html[data-bs-theme="dark"] body.doctor-body-bg .footer a,
+html[data-bs-theme="dark"] body.patient-body-bg .footer a {
+    color: var(--link-color) !important;
+}
+html[data-bs-theme="dark"] .footer a:hover,
+html[data-bs-theme="dark"] body.doctor-body-bg .footer a:hover,
+html[data-bs-theme="dark"] body.patient-body-bg .footer a:hover {
+    color: var(--link-hover-color) !important;
+}
+
+
+@media (min-width: 768px) {
+  html {
+    font-size: 16px;
+  }
+}
+
+.btn:focus, .btn:active:focus, .btn.active:focus,
+.form-control:focus,
+.form-check-input:focus {
+  box-shadow: none;
+}
+
+html {
+  position: relative;
+  min-height: 100%;
+}
+
+body {
+  /* margin-bottom: 20px !important; */ /* Removed to prevent extra space */
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  padding-top: 70px; /* Account for fixed navbar */
+  padding-bottom: 0 !important; /* Reduced to 0 to prevent extra space below copyright footer */
+  background-size: cover; 
+  background-attachment: fixed; 
+  background-position: center;
+}
+
+.navbar {
+    box-shadow: 0 .125rem .25rem rgba(0,0,0,.075);
+    position: fixed; /* Make navbar fixed */
+    top: 0;
+    width: 100%;
+    z-index: 1030; /* Ensure navbar is above other content */
+    animation: fadeInDown 0.5s ease-out forwards; /* Added animation */
+}
+
+/* Navbar hover effect */
+.navbar {
+    /* Ensure existing transitions include box-shadow or add a new one */
+    /* The existing box-shadow on .navbar itself will be the base */
+    transition: box-shadow 0.3s ease-in-out, transform 0.3s ease-in-out !important; 
+}
+
+body.patient-body-bg .navbar.bg-success:hover,
+.bg-vitalcare-doctor:hover,
+body.admin-dashboard-bg .navbar-admin-theme:hover,
+.navbar-light.bg-light:hover, /* More specific for default light navbar */
+.navbar-light.bg-white:hover  /* More specific for default white navbar */
+{
+    box-shadow: 0 .5rem 1rem rgba(0,0,0,.175) !important; /* Slightly more pronounced shadow */
+}
+
+/* Dark theme navbar hover - for navbars that become dark in dark mode */
+[data-bs-theme="dark"] .navbar:not([class*="bg-"]):hover, /* Default dark navbar if no bg class */
+[data-bs-theme="dark"] .navbar.bg-white:hover, /* This is styled as dark in dark mode */
+[data-bs-theme="dark"] .navbar.bg-dark:hover, /* If explicitly .bg-dark */
+[data-bs-theme="dark"] .navbar-dark:hover, /* General .navbar-dark */
+/* Specific themed navbars when in dark mode */
+[data-bs-theme="dark"] body.patient-body-bg .navbar.bg-success:hover, 
+[data-bs-theme="dark"] .bg-vitalcare-doctor:hover,
+[data-bs-theme="dark"] body.admin-dashboard-bg .navbar-admin-theme:hover
+{
+    box-shadow: 0 .5rem 1rem rgba(255,255,255,.1) !important; /* Lighter shadow for dark backgrounds */
+}
+
+.footer {
+    height: 20px !important; /* Further reduced height */
+    background-color: transparent; /* Footer will inherit body background */
+    display: flex !important; 
+    align-items: center !important; /* Should vertically center direct text children now */
+    justify-content: center !important; 
+    font-size: 0.875rem !important; 
+    /* color: #6c757d; */ /* Default color handled by light/dark themes now */
+    border: none !important; /* Ensure no borders at all */
+}
+
+.footer a {
+    /* color: #0d6efd; */ /* Standard link blue, or theme appropriately */
+}
+
+/* Improve table appearance */
+.table {
+    /* background-color: #fff; */ /* Handled by themes */
+    box-shadow: 0 .125rem .25rem rgba(0,0,0,.075);
+}
+
+.table thead {
+    /* background-color: #0d6efd; */ /* Theming this specifically for dark mode might be needed if default isn't good */
+    /* color: white; */
+}
+[data-bs-theme="dark"] .table thead {
+    background-color: #343a40; /* Darker header for tables in dark mode */
+    color: var(--bs-emphasis-color);
+}
+
+/* Button Styling */
+.btn-primary {
+    /* background-color: #0d6efd; */ /* Default Bootstrap */
+    /* border-color: #0d6efd; */
+}
+
+.btn-secondary {
+    /* background-color: #6c757d; */
+    /* border-color: #6c757d; */
+}
+
+.btn-danger {
+    /* background-color: #dc3545; */
+    /* border-color: #dc3545; */
+}
+
+/* Custom class for text shadow on themed headers */
+.text-shadow-custom {
+    text-shadow: 0px 1px 2px rgba(0, 0, 0, 0.5);
+}
+[data-bs-theme="dark"] .text-shadow-custom {
+    text-shadow: 0px 1px 2px rgba(0, 0, 0, 0.7); /* Potentially darker shadow if needed on light text */
+}
+
+/* General small text shadow for titles */
+h1, .h1,
+h2, .h2,
+h3, .h3,
+h4, .h4,
+h5, .h5,
+h6, .h6,
+.card-title,
+.modal-title {
+    text-shadow: 0 1px 2px rgba(0,0,0,0.25);
+}
+
+[data-bs-theme="dark"] h1, [data-bs-theme="dark"] .h1,
+[data-bs-theme="dark"] h2, [data-bs-theme="dark"] .h2,
+[data-bs-theme="dark"] h3, [data-bs-theme="dark"] .h3,
+[data-bs-theme="dark"] h4, [data-bs-theme="dark"] .h4,
+[data-bs-theme="dark"] h5, [data-bs-theme="dark"] .h5,
+[data-bs-theme="dark"] h6, [data-bs-theme="dark"] .h6,
+[data-bs-theme="dark"] .card-title,
+[data-bs-theme="dark"] .modal-title {
+    text-shadow: var(--header-text-shadow-patient, 0 1px 2px rgba(0,0,0,0.4));
+}
+
+/* Styles for role-specific dashboard backgrounds on Index.cshtml */
+.admin-dashboard-bg {
+    background-image: none !important; 
+    padding: 0 !important; 
+    border-radius: 0 !important; 
+}
+
+.doctor-dashboard-bg {
+    background-image: none !important; 
+    padding: 0 !important; 
+    border-radius: 0 !important; 
+}
+
+.patient-dashboard-bg {
+    padding: 0 !important; 
+    border-radius: 0 !important; 
+}
+
+/* Ensure content within these backgrounds is legible */
+.admin-dashboard-bg .card,
+.doctor-dashboard-bg .card,
+.patient-dashboard-bg .card {
+    /* background-color: rgba(255, 255, 255, 0.9); */ /* Card bg handled by theme */
+}
+
+/* Text shadow for better readability on complex backgrounds, if needed */
+.admin-dashboard-bg .card-header h2,
+.doctor-dashboard-bg .card-header h2,
+.patient-dashboard-bg .card-header h2 {
+    /* text-shadow: 1px 1px 2px rgba(0,0,0,0.7); */ 
+}
+
+/* Role-specific body backgrounds */
+body.patient-body-bg {
+    /* New Medical Green Theme (Tealish Green) for Patients */
+    /* Applied globally when patient-body-bg class is on the body */
+    --bs-success-rgb: 32, 106, 93; /* RGB for #206A5D */
+    --bs-success-text-emphasis: #1A5348; /* Darker shade for text emphasis */
+    --bs-success-bg-subtle: #cfe8e4; /* Lighter shade for subtle backgrounds */
+    --bs-success-border-subtle: #a0d1c8; /* Slightly darker for subtle borders */
+
+    /* Overriding HSL values for Bootstrap's --bs-success related calculations */
+    --bs-success-h: 168; /* Hue for #206A5D */
+    --bs-success-s: 53%; /* Saturation for #206A5D */
+    --bs-success-l: 27%; /* Lightness for #206A5D */
+    
+    background-color: var(--patient-body-light-bg); /* Light green background for light mode */
+    background-image: url('/images/patient-dashboard-bg.svg'); /* Subtle pattern for patient light theme */
+    background-repeat: repeat;
+    background-size: auto;
+}
+
+body.doctor-body-bg {
+    /* Light Blue Theme for Doctors */
+    --bs-info-rgb: 13, 202, 240;
+    --bs-info-text-emphasis: #0a8ab0;
+    --bs-info-bg-subtle: #cff4fc;
+    --bs-info-border-subtle: #9eeaf9;
+
+    background-color: var(--doctor-body-light-bg); /* Light blue background for light mode */
+    background-image: url('/images/doctor-dashboard-bg-subtle.svg'); /* Subtle pattern for doctor light theme */
+    background-repeat: repeat;
+    background-size: auto;
+}
+
+/* Default/Admin body background (when no specific role class is present) for light mode */
+body:not(.patient-body-bg):not(.doctor-body-bg) {
+    background-color: #f8f9fa; /* A very light grey, or choose another default */
+    /* This will be overridden by the more specific dark theme rule above if dark mode is active */
+}
+
+/* === Aggressive Patient Navbar Override === */
+body.patient-body-bg .navbar.bg-success.navbar-dark.border-success { 
+    /* background: none !important; REMOVED */
+    /* background-image: none !important; REMOVED */
+    /* background-color: #206A5D !important; REMOVED */
+    background-image: linear-gradient(to bottom right, hsl(var(--bs-success-h), var(--bs-success-s), calc(var(--bs-success-l) - 2.5%)), hsl(var(--bs-success-h), var(--bs-success-s), calc(var(--bs-success-l) - 12.5%))) !important;
+    background-color: transparent !important; /* Fallback or to ensure gradient visibility */
+    border: none !important; 
+    border-color: #1A5348 !important; /* Keeping original darker border for now */
+    --bs-success-rgb: 32, 106, 93 !important; 
+}
+
+body.patient-body-bg .navbar.bg-success .navbar-brand,
+body.patient-body-bg .navbar.bg-success .nav-link {
+    color: #fff !important; 
+    /* text-shadow is handled by .text-shadow-custom applied in _Layout.cshtml */
+}
+
+/* Ensure toggler icon is white for patient's success navbar */
+body.patient-body-bg .navbar.bg-success .navbar-toggler-icon {
+    --bs-navbar-toggler-icon-bg: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3e%3cpath stroke='rgba(255, 255, 255, 0.95)' stroke-linecap='round' stroke-miterlimit='10' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e") !important;
+}
+/* === End Patient Navbar Override === */
+
+/* Custom class for VitalCare Doctor navbar */
+.bg-vitalcare-doctor {
+    /* background-color: #003366 !important; REMOVED */ 
+    background-image: linear-gradient(to bottom right, #003366, #002244) !important;
+    background-color: transparent !important;
+    border-color: #002244 !important; /* Or a slightly darker border like #001a33 */
+}
+
+.btn-vitalcare-dark {
+    /* background-color: #003366 !important; REMOVED */
+    /* border-color: #003366 !important; REMOVED */
+    background-image: linear-gradient(to bottom right, #003366, #002244) !important;
+    background-color: transparent !important;
+    border-color: #001a33 !important; /* Darker border */
+    color: #fff !important; 
+    transition: all 0.3s ease-in-out !important;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.1) !important;
+}
+
+.btn-vitalcare-dark:hover {
+    /* background-color: #002244 !important; REMOVED */
+    /* border-color: #002244 !important; REMOVED */
+    background-image: linear-gradient(to bottom right, #002244, #001122) !important;
+    border-color: #000d20 !important; /* Even darker border on hover */
+    color: #fff !important;
+    transform: translateY(-2px) scale(1.03) !important;
+    box-shadow: 0 6px 12px rgba(0,0,0,0.15) !important;
+}
+
+/* Styles for the manage profile navigation pills */
+.manage-nav-pills .nav-link {
+    color: #003366 !important; 
+    border-radius: 0.25rem; 
+}
+
+.manage-nav-pills .nav-link.active,
+.manage-nav-pills .show > .nav-link {
+    background-color: #003366 !important; 
+    color: #fff !important; 
+}
+
+.manage-nav-pills .nav-link:not(.active):hover {
+    background-color: #e9ecef !important; 
+    color: #003366 !important; 
+}
+
+/* Dark theme for doctor manage pills */
+[data-bs-theme="dark"] .manage-nav-pills .nav-link {
+    color: var(--link-color) !important;
+}
+[data-bs-theme="dark"] .manage-nav-pills .nav-link.active,
+[data-bs-theme="dark"] .manage-nav-pills .show > .nav-link {
+    background-color: var(--link-color) !important;
+    color: var(--bs-body-bg) !important; /* Dark text on light-ish blue bg */
+}
+[data-bs-theme="dark"] .manage-nav-pills .nav-link:not(.active):hover {
+    background-color: rgba(var(--bs-link-color-rgb), 0.15) !important;
+}
+
+
+/* Styles for the PATIENT manage profile navigation pills */
+.manage-nav-pills-patient .nav-link {
+    color: var(--bs-success) !important; /* Will now use the new medical green */
+    border-radius: 0.25rem;
+}
+
+.manage-nav-pills-patient .nav-link.active,
+.manage-nav-pills-patient .show > .nav-link {
+    background-color: var(--bs-success) !important;
+    color: #fff !important;
+}
+
+.manage-nav-pills-patient .nav-link:not(.active):hover {
+    background-color: var(--bs-success-bg-subtle) !important;
+    color: var(--bs-success) !important;
+}
+
+/* Dark theme for patient manage pills */
+[data-bs-theme="dark"] .manage-nav-pills-patient .nav-link {
+    /* Keep a distinct lightened green for dark mode for pills, or align with main dark theme link color */
+    color: hsl(var(--bs-success-h), var(--bs-success-s), calc(var(--bs-success-l) + 30%)) !important; 
+}
+[data-bs-theme="dark"] .manage-nav-pills-patient .nav-link.active,
+[data-bs-theme="dark"] .manage-nav-pills-patient .show > .nav-link {
+    background-color: hsl(var(--bs-success-h), var(--bs-success-s), calc(var(--bs-success-l) + 30%)) !important;
+    color: var(--bs-dark) !important; /* Dark text on the lighter green bg */
+}
+[data-bs-theme="dark"] .manage-nav-pills-patient .nav-link:not(.active):hover {
+    background-color: hsl(var(--bs-success-h), var(--bs-success-s), calc(var(--bs-success-l) + 20%)) !important;
+}
+
+/* Patient specific button for profile pages */
+.btn-vitalcare-patient {
+    --bs-btn-bg: hsl(168, 53%, 24.5%) !important; /* Explicit HSL for fallback */
+    --bs-btn-border-color: hsl(168, 53%, 14.5%) !important; /* Explicit HSL for fallback border */
+    --bs-btn-color: #fff !important; 
+    background-image: linear-gradient(to bottom right, hsl(168, 53%, 24.5%), hsl(168, 53%, 14.5%)) !important; /* Explicit HSL */
+    border-color: hsl(168, 53%, 14.5%) !important; /* Explicit HSL to match gradient end */
+    transition: all 0.3s ease-in-out !important;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.1) !important;
+    background-color: transparent !important; /* Ensure gradient is primary background */
+}
+
+.btn-vitalcare-patient:hover {
+    --bs-btn-hover-bg: hsl(168, 53%, 19.5%) !important; /* Explicit HSL for hover fallback */
+    --bs-btn-hover-border-color: hsl(168, 53%, 9.5%) !important; /* Explicit HSL for hover fallback border */
+    background-image: linear-gradient(to bottom right, hsl(168, 53%, 19.5%), hsl(168, 53%, 9.5%)) !important; /* Explicit HSL */
+    border-color: hsl(168, 53%, 9.5%) !important; /* Explicit HSL for hover to match gradient end */
+    color: #fff !important;
+    transform: translateY(-2px) scale(1.03) !important;
+    box-shadow: 0 6px 12px rgba(0,0,0,0.15) !important;
+}
+
+/* Style .btn-primary on patient pages like .btn-success */
+body.patient-body-bg .btn-primary {
+    --bs-btn-color: #fff !important;
+    --bs-btn-bg: hsl(168, 53%, 24.5%) !important;
+    --bs-btn-border-color: hsl(168, 53%, 14.5%) !important;
+    background-image: linear-gradient(to bottom right, hsl(168, 53%, 24.5%), hsl(168, 53%, 14.5%)) !important;
+    background-color: transparent !important; 
+    border-color: hsl(168, 53%, 14.5%) !important; 
+    transition: all 0.3s ease-in-out !important;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.1) !important;
+}
+
+body.patient-body-bg .btn-primary:hover {
+    --bs-btn-hover-color: #fff !important;
+    --bs-btn-hover-bg: hsl(168, 53%, 19.5%) !important;
+    --bs-btn-hover-border-color: hsl(168, 53%, 9.5%) !important;
+    background-image: linear-gradient(to bottom right, hsl(168, 53%, 19.5%), hsl(168, 53%, 9.5%)) !important;
+    border-color: hsl(168, 53%, 9.5%) !important;
+    color: #fff !important; 
+    transform: translateY(-2px) scale(1.03) !important;
+    box-shadow: 0 6px 12px rgba(0,0,0,0.15) !important;
+}
+
+/* Specific vibrant green background for patient profile card headers */
+.bg-vitalcare-patient-profile-theme {
+    background-color: var(--bs-success) !important;
+    /* Text color on this header should be white or very light for contrast */
+    color: #fff !important; 
+}
+
+/* Override Patient Footer Green to use the new --bs-success */
+body.patient-body-bg .app-footer {
+    /* The background gradient used --app-footer-patient-bg-start/end. Let's align these with --bs-success */
+    background: linear-gradient(to bottom right, var(--bs-success), hsl(var(--bs-success-h), var(--bs-success-s), calc(var(--bs-success-l) - 5%)));
+}
+
+/* Styles for notifications */
+.notification-item a.dropdown-item {
+    white-space: normal; 
+}
+
+/* Style for UNREAD notifications */
+.notification-item.notification-unread .dropdown-item p {
+    font-weight: bold; 
+}
+
+.notification-item.notification-unread .dropdown-item small {
+    font-weight: bold; 
+}
+
+/* Style for READ notifications */
+.notification-item.notification-read .dropdown-item p {
+    font-weight: normal; 
+    opacity: 0.75;       
+}
+
+.notification-item.notification-read .dropdown-item small {
+    font-weight: normal;
+    opacity: 0.75;       
+}
+
+/* General hover effect for all notification items */
+[data-bs-theme="light"] .notification-item .dropdown-item:hover {
+    background-color: #f0f0f0; 
+}
+[data-bs-theme="dark"] .notification-item .dropdown-item:hover {
+    background-color: rgba(255,255,255,0.1); /* Lighter overlay for dark mode */
+}
+
+/* Ensure text in hovered notification items remains readable */
+.notification-item .dropdown-item:hover p,
+.notification-item .dropdown-item:hover small {
+    /* color: #212529 !important; */ /* Handled by dropdown link hover color now */
+}
+
+/* Ensure the badge is styled correctly if not already handled by Bootstrap */
+#notificationBadge {
+    font-size: 0.75em;
+    padding: .25em .5em;
+    position: absolute;
+    top: 5px; 
+    right: 5px; 
+}
+
+#notificationPanel {
+    max-height: 400px; 
+    overflow-y: auto;
+}
+
+#notificationPanel .dropdown-item p {
+    margin-bottom: 0.25rem; 
+    font-size: 0.9em;
+}
+
+#notificationPanel .dropdown-item small {
+    font-size: 0.75em;
+}
+
+#noNotificationsMessageDisplay { /* Renamed from #noNotificationsMessage */
+    padding: 0.5rem 1rem; 
+}
+
+#markAllAsReadLink {
+    font-weight: bold;
+    text-align: center;
+}
+
+/* New App Footer Styles */
+.app-footer {
+    /* Default light mode: General, Admin, or if no body class matches */
+    background: linear-gradient(to bottom right, var(--app-footer-default-bg-start), var(--app-footer-default-bg-end));
+    color: var(--app-footer-themed-text);
+    padding-top: 2rem;    /* Increased padding */
+    padding-bottom: 2rem; /* Increased padding */
+    position: relative; /* For pseudo-elements if needed later */
+    box-shadow: inset 0 1px 2px rgba(0,0,0,0.1); /* Subtle inner top shadow */
+}
+
+/* Patient Footer - Light Mode */
+body.patient-body-bg .app-footer {
+    background: linear-gradient(to bottom right, var(--app-footer-patient-bg-start), var(--app-footer-patient-bg-end));
+}
+
+/* Doctor Footer - Light Mode */
+body.doctor-body-bg .app-footer {
+    /* background: linear-gradient(to bottom right, var(--app-footer-doctor-bg-start), var(--app-footer-doctor-bg-end)); REMOVED */
+    background: linear-gradient(to bottom right, #003366, #002244) !important; /* Align with doctor header blue */
+    /* Text color should remain light, var(--app-footer-themed-text) or #fff */
+}
+
+/* Dark Mode App Footer - Overrides all light mode variants */
+[data-bs-theme="dark"] .app-footer,
+[data-bs-theme="dark"] body.patient-body-bg .app-footer, /* Ensure specificity */
+[data-bs-theme="dark"] body.doctor-body-bg .app-footer {
+    background: var(--bs-tertiary-bg) !important; /* Solid very dark background */
+    color: var(--bs-light) !important; 
+    border-top: 1px solid var(--bs-border-color);
+    box-shadow: none; /* Remove light mode inset shadow */
+}
+
+.app-footer h5 {
+    color: var(--app-footer-themed-text); 
+    text-shadow: 0 1px 1px rgba(0,0,0,0.2);
+}
+
+[data-bs-theme="dark"] .app-footer h5 {
+    color: var(--bs-light) !important;
+    text-shadow: none;
+}
+
+.app-footer p.small {
+    color: var(--app-footer-themed-muted-text);
+}
+
+[data-bs-theme="dark"] .app-footer p.small {
+    color: rgba(255, 255, 255, 0.75) !important;
+}
+
+.app-footer .footer-link {
+    color: var(--app-footer-themed-link-color);
+}
+
+.app-footer .footer-link:hover {
+    color: var(--app-footer-themed-link-hover-color) !important; 
+    text-decoration: underline;
+}
+
+[data-bs-theme="dark"] .app-footer .footer-link {
+    color: rgba(255, 255, 255, 0.75) !important;
+}
+[data-bs-theme="dark"] .app-footer .footer-link:hover {
+    color: var(--link-hover-color) !important; /* Uses the general dark theme link hover */
+}
+
+/* Social & Contact Icons in Light Mode (ALL themed footers) */
+/* This targets icons that had .text-primary and forces them to use the footer's themed light color */
+body:not([data-bs-theme="dark"]) .app-footer .footer-social-icon i.text-primary,
+body:not([data-bs-theme="dark"]) .app-footer .footer-contact-column .contact-icon-wrapper i.text-primary {
+     color: var(--app-footer-themed-link-color) !important;
+}
+
+body:not([data-bs-theme="dark"]) .app-footer .footer-social-icon:hover i.text-primary,
+body:not([data-bs-theme="dark"]) .app-footer .footer-contact-column .contact-icon-wrapper:hover i.text-primary {
+    color: var(--app-footer-themed-link-hover-color) !important;
+}
+
+/* Dark Mode Social & Contact Icons */
+[data-bs-theme="dark"] .app-footer .footer-social-icon i.text-primary,
+[data-bs-theme="dark"] .app-footer .footer-contact-column .contact-icon-wrapper i.text-primary {
+    color: var(--link-color) !important; 
+}
+[data-bs-theme="dark"] .app-footer .footer-social-icon:hover i.text-primary,
+[data-bs-theme="dark"] .app-footer .footer-contact-column .contact-icon-wrapper:hover i.text-primary {
+    color: var(--link-hover-color) !important;
+}
+
+.footer-contact-column .contact-item strong {
+    color: var(--app-footer-themed-text); 
+}
+
+[data-bs-theme="dark"] .footer-contact-column .contact-item strong {
+    color: rgba(255, 255, 255, 0.9) !important; 
+}
+
+.copyright-footer {
+    background-color: var(--bs-gray-200); /* Light grey for light mode */
+    color: var(--bs-gray-700); /* Darker grey text for light mode */
+    font-size: 0.875em;
+    padding: 1rem 0;
+}
+
+[data-bs-theme="dark"] .copyright-footer {
+    background-color: var(--bs-gray-900); /* Very dark grey for dark mode */
+    color: var(--bs-gray-400); /* Lighter grey text for dark mode */
+}
+
+/* Enhancements for Index.cshtml - Features Section (Non-Logged-In) */
+.features-section-bg {
+    background: linear-gradient(to bottom, var(--bs-light), #ffffff); /* Subtle gradient from Bootstrap light to white */
+}
+
+[data-bs-theme="dark"] .features-section-bg {
+    background: linear-gradient(to bottom, var(--bs-gray-800), var(--bs-gray-900)); /* Dark gradient */
+}
+
+.feature-card-hover {
+    transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+}
+
+.feature-card-hover:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15) !important; /* Enhanced shadow on hover */
+}
+
+[data-bs-theme="dark"] .feature-card-hover:hover {
+    box-shadow: 0 0.5rem 1rem rgba(255, 255, 255, 0.075) !important; /* Lighter shadow for dark mode */
+}
+
+/* Ensure icons in feature cards are vertically aligned if they are not by default */
+.feature-card-hover .card-body .bi {
+    display: inline-block; /* Helps with alignment sometimes */
+}
+
+/* Doctor Dashboard Enhancements */
+.stat-card {
+    transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+    /* Base styles are mostly Bootstrap utility classes for borders and subtle backgrounds */
+}
+
+.stat-card:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 0.3rem 0.8rem rgba(0, 0, 0, 0.1);
+}
+
+[data-bs-theme="dark"] .stat-card {
+    /* Subtle backgrounds like bg-info-subtle are handled by Bootstrap's dark theme. 
+       We might need to ensure text contrast if default Bootstrap is not enough. */
+}
+
+[data-bs-theme="dark"] .stat-card .stat-value.text-info {
+    color: var(--bs-info-text-emphasis) !important;
+}
+[data-bs-theme="dark"] .stat-card .stat-value.text-warning {
+    color: var(--bs-warning-text-emphasis) !important;
+}
+[data-bs-theme="dark"] .stat-card .stat-value.text-success {
+    color: var(--bs-success-text-emphasis) !important;
+}
+
+[data-bs-theme="dark"] .stat-card:hover {
+    box-shadow: 0 0.3rem 0.8rem rgba(255, 255, 255, 0.06);
+}
+
+.action-card-hover {
+    transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+}
+
+.action-card-hover:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 0.5rem 1.2rem rgba(0, 0, 0, 0.15) !important;
+}
+
+[data-bs-theme="dark"] .action-card-hover:hover {
+    box-shadow: 0 0.5rem 1.2rem rgba(255, 255, 255, 0.1) !important;
+}
+
+/* Ensure main card header for doctor portal also uses custom shadow in dark mode if needed */
+[data-bs-theme="dark"] .card-header.text-shadow-custom {
+    /* text-shadow rule is already defined for .text-shadow-custom and its dark variant */
+}
+
+/* Removed commented out Doctor-specific theming for /Appointments/Details page */
+
+/* Footer Contact Item Styling */
+.footer-contact-column .contact-icon-wrapper {
+    /* The icon color is set to text-primary in HTML. 
+       We can adjust size or add a background if needed. */
+}
+
+[data-bs-theme="dark"] .footer-contact-column .contact-icon-wrapper i {
+    color: var(--link-color) !important; /* Use dark theme's link color for icons */
+}
+
+.footer-contact-column .contact-item strong {
+    /* text-white-75 in HTML is fine for light mode. */
+}
+
+[data-bs-theme="dark"] .footer-contact-column .contact-item strong {
+    color: rgba(255, 255, 255, 0.9) !important; /* Make it a bit brighter in dark mode */
+}
+
+/* Doctor Dashboard - Quick Links and Announcements Widgets */
+.quick-links-widget .list-group-item {
+    /* Uses default list-group-item styling, which is already themed by your dark mode CSS */
+}
+
+.quick-links-widget .list-group-item i {
+    transition: transform 0.2s ease-in-out;
+}
+
+.quick-links-widget .list-group-item:hover i {
+    transform: translateX(3px);
+}
+
+.announcements-widget .card-body {
+    font-size: 0.9rem;
+}
+
+.announcements-widget hr {
+    border-top-style: dashed;
+}
+
+[data-bs-theme="dark"] .announcements-widget {
+    /* Card background is handled by general [data-bs-theme="dark"] .card rules */
+}
+
+[data-bs-theme="dark"] .quick-links-widget .list-group-item .text-muted {
+    color: var(--bs-secondary-color) !important; /* Ensure icons are themed correctly */
+}
+
+[data-bs-theme="dark"] .announcements-widget .text-muted {
+    color: var(--bs-secondary-text-emphasis) !important; /* Ensure announcement text is themed */
+}
+
+/* Patient Dashboard - Useful Info and Reminders Widgets */
+.useful-info-widget .list-group-item {
+    /* Uses default list-group-item styling, which is already themed by your dark mode CSS */
+}
+
+.useful-info-widget .list-group-item i {
+    transition: transform 0.2s ease-in-out;
+}
+
+.useful-info-widget .list-group-item:hover i {
+    transform: translateX(3px);
+}
+
+.reminders-widget .card-body {
+    font-size: 0.9rem;
+}
+
+.reminders-widget hr {
+    border-top-style: dashed;
+}
+
+[data-bs-theme="dark"] .useful-info-widget .list-group-item .text-muted {
+    color: var(--bs-secondary-color) !important; /* Ensure icons are themed correctly */
+}
+
+[data-bs-theme="dark"] .reminders-widget {
+    /* Card background is handled by general [data-bs-theme="dark"] .card rules */
+}
+
+[data-bs-theme="dark"] .reminders-widget .text-muted {
+    color: var(--bs-secondary-text-emphasis) !important; /* Ensure reminder text is themed */
+}
+
+/* Removed commented out Doctor-specific theming for /Appointments/Details page */
+
+/* Dark mode toggle icon color - UPDATED for better contrast on different headers */
+/* Default icon color for theme toggler (e.g., dark for light theme header) */
+#themeIconSunSmUp,
+#themeIconMoonSmUp,
+#themeIconSunXs,
+#themeIconMoonXs {
+    color: #343a40; /* Default to dark (for sun icon on light header) */
+}
+
+/* Moon icon should be light when it's visible (dark theme active on a dark header) */
+[data-bs-theme="dark"] #themeIconMoonSmUp,
+[data-bs-theme="dark"] #themeIconMoonXs {
+    color: #f8f9fa !important; /* Light color for moon */
+}
+
+/* Sun icon should be dark when it's visible (light theme active on a light header) */
+[data-bs-theme="light"] #themeIconSunSmUp,
+[data-bs-theme="light"] #themeIconSunXs {
+    color: #343a40 !important; /* Dark color for sun */
+}
+
+/* Ensure non-visible icons don't clash if they briefly appear during theme switch */
+[data-bs-theme="dark"] #themeIconSunSmUp,
+[data-bs-theme="dark"] #themeIconSunXs {
+    color: #343a40; /* Keep sun dark even if hidden in dark mode */
+}
+
+[data-bs-theme="light"] #themeIconMoonSmUp,
+[data-bs-theme="light"] #themeIconMoonXs {
+     color: #f8f9fa; /* Keep moon light even if hidden in light mode */
+}
+
+
+/* Style .btn-primary on doctor pages with blue gradient */
+body.doctor-body-bg .btn-primary {
+    --bs-btn-color: #fff !important;
+    --bs-btn-bg: #003366 !important; /* Fallback */
+    --bs-btn-border-color: #003366 !important; /* Fallback */
+    background-image: linear-gradient(to bottom right, #003366, #002244) !important;
+    background-color: transparent !important; 
+    border-color: #002244 !important; 
+    transition: all 0.3s ease-in-out !important;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.1) !important;
+}
+
+body.doctor-body-bg .btn-primary:hover {
+    --bs-btn-hover-color: #fff !important;
+    --bs-btn-hover-bg: #002244 !important; /* Fallback */
+    --bs-btn-hover-border-color: #001122 !important; /* Fallback */
+    background-image: linear-gradient(to bottom right, #002244, #001122) !important;
+    border-color: #001122 !important;
+    color: #fff !important; 
+    transform: translateY(-2px) scale(1.03) !important;
+    box-shadow: 0 6px 12px rgba(0,0,0,0.15) !important;
+}
+
+/* Apply MEDICAL BLUE gradient to .btn-info on doctor pages */
+body.doctor-body-bg .btn-info {
+    --bs-btn-color: #fff !important;
+    --bs-btn-bg: #003366 !important; /* Fallback blue */
+    --bs-btn-border-color: #002244 !important; /* Fallback blue border */
+    background-image: linear-gradient(to bottom right, #003366, #002244) !important;
+    background-color: transparent !important; 
+    border-color: #002244 !important; /* Match end of gradient */
+    transition: all 0.3s ease-in-out !important;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.1) !important;
+    transform: scale(1) !important; /* Reset from any previous green theme specific transform */
+}
+
+body.doctor-body-bg .btn-info:hover {
+    --bs-btn-hover-color: #fff !important;
+    --bs-btn-hover-bg: #002244 !important; /* Fallback blue hover */
+    --bs-btn-hover-border-color: #001122 !important; /* Fallback blue hover border */
+    background-image: linear-gradient(to bottom right, #002244, #001122) !important;
+    border-color: #001122 !important; /* Match end of hover gradient */
+    color: #fff !important; 
+    transform: translateY(-2px) scale(1.03) !important;
+    box-shadow: 0 6px 12px rgba(0,0,0,0.15) !important;
+}
+
+/* === Admin Portal Theme (Carmine/Wine Red) === */
+
+/* Admin Navbar Theme */
+body.admin-dashboard-bg .navbar-admin-theme { /* Assuming a specific class for admin navbar */
+    background-image: linear-gradient(to bottom right, #960018, #700012) !important;
+    background-color: transparent !important;
+    border-color: #700012 !important; 
+}
+
+body.admin-dashboard-bg .navbar-admin-theme .navbar-brand,
+body.admin-dashboard-bg .navbar-admin-theme .nav-link {
+    color: #fff !important; 
+}
+
+body.admin-dashboard-bg .navbar-admin-theme .navbar-toggler-icon {
+    --bs-navbar-toggler-icon-bg: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3e%3cpath stroke='rgba(255, 255, 255, 0.95)' stroke-linecap='round' stroke-miterlimit='10' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e") !important;
+}
+
+/* Admin Buttons (.btn-danger or .btn-primary on admin pages) */
+body.admin-dashboard-bg .btn-danger,
+body.admin-dashboard-bg .btn-primary.btn-admin-theme { /* Adding .btn-admin-theme for primary buttons needing this red */
+    --bs-btn-color: #fff !important;
+    --bs-btn-bg: #960018 !important; /* Fallback */
+    --bs-btn-border-color: #960018 !important; /* Fallback */
+    background-image: linear-gradient(to bottom right, #960018, #700012) !important;
+    background-color: transparent !important; 
+    border-color: #700012 !important; 
+    transition: all 0.3s ease-in-out !important;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.1) !important;
+}
+
+body.admin-dashboard-bg .btn-danger:hover,
+body.admin-dashboard-bg .btn-primary.btn-admin-theme:hover {
+    --bs-btn-hover-color: #fff !important;
+    --bs-btn-hover-bg: #700012 !important; /* Fallback */
+    --bs-btn-hover-border-color: #4D000C !important; /* Fallback */
+    background-image: linear-gradient(to bottom right, #700012, #4D000C) !important;
+    border-color: #4D000C !important;
+    color: #fff !important; 
+    transform: translateY(-2px) scale(1.03) !important;
+    box-shadow: 0 6px 12px rgba(0,0,0,0.15) !important;
+}
+
+/* Apply similar styling to .btn-success on patient pages */
+body.patient-body-bg .btn-success {
+    --bs-btn-bg: hsl(168, 53%, 24.5%) !important;
+    --bs-btn-border-color: hsl(168, 53%, 14.5%) !important;
+    --bs-btn-color: #fff !important; 
+    background-image: linear-gradient(to bottom right, hsl(168, 53%, 24.5%), hsl(168, 53%, 14.5%)) !important;
+    border-color: hsl(168, 53%, 14.5%) !important;
+    transition: all 0.3s ease-in-out !important;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.1) !important;
+    background-color: transparent !important; 
+}
+
+body.patient-body-bg .btn-success:hover {
+    --bs-btn-hover-bg: hsl(168, 53%, 19.5%) !important;
+    --bs-btn-hover-border-color: hsl(168, 53%, 9.5%) !important;
+    background-image: linear-gradient(to bottom right, hsl(168, 53%, 19.5%), hsl(168, 53%, 9.5%)) !important;
+    border-color: hsl(168, 53%, 9.5%) !important;
+    color: #fff !important;
+    transform: translateY(-2px) scale(1.03) !important;
+    box-shadow: 0 6px 12px rgba(0,0,0,0.15) !important;
+}
+
+/* Style .btn-outline-success on patient pages like solid green gradient buttons */
+body.patient-body-bg .btn-outline-success {
+    --bs-btn-color: #fff !important; /* Text color to white */
+    --bs-btn-bg: hsl(168, 53%, 24.5%) !important; /* Explicit HSL for fallback */
+    --bs-btn-border-color: hsl(168, 53%, 14.5%) !important; /* Explicit HSL for border */
+    background-image: linear-gradient(to bottom right, hsl(168, 53%, 24.5%), hsl(168, 53%, 14.5%)) !important; /* Explicit HSL */
+    color: #fff !important; /* Ensure text is white */
+    border-color: hsl(168, 53%, 14.5%) !important; /* Explicit HSL to match gradient end */
+    transition: all 0.3s ease-in-out !important;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.1) !important;
+    background-color: transparent !important; /* Ensure gradient is primary background if previously set otherwise */
+}
+
+body.patient-body-bg .btn-outline-success:hover {
+    --bs-btn-hover-color: #fff !important;
+    --bs-btn-hover-bg: hsl(168, 53%, 19.5%) !important; /* Explicit HSL for hover fallback */
+    --bs-btn-hover-border-color: hsl(168, 53%, 9.5%) !important; /* Explicit HSL for hover border */
+    background-image: linear-gradient(to bottom right, hsl(168, 53%, 19.5%), hsl(168, 53%, 9.5%)) !important; /* Explicit HSL */
+    color: #fff !important; /* Ensure text is white on hover */
+    border-color: hsl(168, 53%, 9.5%) !important; /* Explicit HSL for hover to match gradient end */
+    transform: translateY(-2px) scale(1.03) !important;
+    box-shadow: 0 6px 12px rgba(0,0,0,0.15) !important;
+}
+
+/* === Admin Portal Theme (Carmine/Wine Red) === */
+
+/* === General Button Hover Enhancements === */
+.btn {
+    /* Ensure all buttons have a transition for hover effects */
+    /* If not already more specifically defined with !important */
+    transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out, background-color 0.2s ease-in-out, border-color 0.2s ease-in-out;
+}
+
+/* Generic hover for non-themed Bootstrap buttons */
+.btn-secondary:hover,
+.btn-warning:hover,
+.btn-light:hover, /* Default Bootstrap light button hover */
+.btn-dark:hover   /* Default Bootstrap dark button hover */
+{
+    transform: translateY(-1px) scale(1.02);
+    box-shadow: 0 3px 6px rgba(0,0,0,0.1);
+}
+
+/* Ensure our THEMED buttons (gradients) KEEP their specific transitions and hover effects */
+.btn-vitalcare-patient, 
+body.patient-body-bg .btn-success, 
+body.patient-body-bg .btn-primary, 
+body.patient-body-bg .btn-outline-success,
+body.doctor-body-bg .btn-info,
+.btn-vitalcare-dark, 
+body.doctor-body-bg .btn-primary,
+body.admin-dashboard-bg .btn-danger,
+body.admin-dashboard-bg .btn-primary.btn-admin-theme {
+    transition: all 0.3s ease-in-out !important; /* Override generic .btn transition if needed */
+}
+
+.btn-vitalcare-patient:hover, 
+body.patient-body-bg .btn-success:hover, 
+body.patient-body-bg .btn-primary:hover, 
+body.patient-body-bg .btn-outline-success:hover,
+body.doctor-body-bg .btn-info:hover,
+.btn-vitalcare-dark:hover, 
+body.doctor-body-bg .btn-primary:hover,
+body.admin-dashboard-bg .btn-danger:hover,
+body.admin-dashboard-bg .btn-primary.btn-admin-theme:hover {
+    transform: translateY(-2px) scale(1.03) !important; /* Reaffirm more pronounced effect */
+    /* Box-shadow is already defined in their specific hover rules */
+}
+
+
+/* Styles for role-specific dashboard backgrounds on Index.cshtml */
+.admin-dashboard-bg {
+    background-image: none !important; 
+    padding: 0 !important; 
+    border-radius: 0 !important; 
+}
+
+.doctor-dashboard-bg {
+    background-image: none !important; 
+    padding: 0 !important; 
+    border-radius: 0 !important; 
+}
+
+.patient-dashboard-bg {
+    padding: 0 !important; 
+    border-radius: 0 !important; 
+}
+
+/* Ensure content within these backgrounds is legible */
+.admin-dashboard-bg .card,
+.doctor-dashboard-bg .card,
+.patient-dashboard-bg .card {
+    /* background-color: rgba(255, 255, 255, 0.9); */ /* Card bg handled by theme */
+}
+
+/* Text shadow for better readability on complex backgrounds, if needed */
+.admin-dashboard-bg .card-header h2,
+.doctor-dashboard-bg .card-header h2,
+.patient-dashboard-bg .card-header h2 {
+    /* text-shadow: 1px 1px 2px rgba(0,0,0,0.7); */ 
+}
+
+/* Role-specific body backgrounds */
+body.patient-body-bg {
+    /* New Medical Green Theme (Tealish Green) for Patients */
+    /* Applied globally when patient-body-bg class is on the body */
+    --bs-success-rgb: 32, 106, 93; /* RGB for #206A5D */
+    --bs-success-text-emphasis: #1A5348; /* Darker shade for text emphasis */
+    --bs-success-bg-subtle: #cfe8e4; /* Lighter shade for subtle backgrounds */
+    --bs-success-border-subtle: #a0d1c8; /* Slightly darker for subtle borders */
+
+    /* Overriding HSL values for Bootstrap's --bs-success related calculations */
+    --bs-success-h: 168; /* Hue for #206A5D */
+    --bs-success-s: 53%; /* Saturation for #206A5D */
+    --bs-success-l: 27%; /* Lightness for #206A5D */
+    
+    background-color: var(--patient-body-light-bg); /* Light green background for light mode */
+    background-image: url('/images/patient-dashboard-bg.svg'); /* Subtle pattern for patient light theme */
+    background-repeat: repeat;
+    background-size: auto;
+}
+
+body.doctor-body-bg {
+    /* Light Blue Theme for Doctors */
+    --bs-info-rgb: 13, 202, 240;
+    --bs-info-text-emphasis: #0a8ab0;
+    --bs-info-bg-subtle: #cff4fc;
+    --bs-info-border-subtle: #9eeaf9;
+
+    background-color: var(--doctor-body-light-bg); /* Light blue background for light mode */
+    background-image: url('/images/doctor-dashboard-bg-subtle.svg'); /* Subtle pattern for doctor light theme */
+    background-repeat: repeat;
+    background-size: auto;
+}
+
+/* Default/Admin body background (when no specific role class is present) for light mode */
+body:not(.patient-body-bg):not(.doctor-body-bg) {
+    background-color: #f8f9fa; /* A very light grey, or choose another default */
+    /* This will be overridden by the more specific dark theme rule above if dark mode is active */
+}
+
+/* === Aggressive Patient Navbar Override === */
+body.patient-body-bg .navbar.bg-success.navbar-dark.border-success { 
+    /* background: none !important; REMOVED */
+    /* background-image: none !important; REMOVED */
+    /* background-color: #206A5D !important; REMOVED */
+    background-image: linear-gradient(to bottom right, hsl(var(--bs-success-h), var(--bs-success-s), calc(var(--bs-success-l) - 2.5%)), hsl(var(--bs-success-h), var(--bs-success-s), calc(var(--bs-success-l) - 12.5%))) !important;
+    background-color: transparent !important; /* Fallback or to ensure gradient visibility */
+    border: none !important; 
+    border-color: #1A5348 !important; /* Keeping original darker border for now */
+    --bs-success-rgb: 32, 106, 93 !important; 
+}
+
+body.patient-body-bg .navbar.bg-success .navbar-brand,
+body.patient-body-bg .navbar.bg-success .nav-link {
+    color: #fff !important; 
+    /* text-shadow is handled by .text-shadow-custom applied in _Layout.cshtml */
+}
+
+/* Ensure toggler icon is white for patient's success navbar */
+body.patient-body-bg .navbar.bg-success .navbar-toggler-icon {
+    --bs-navbar-toggler-icon-bg: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3e%3cpath stroke='rgba(255, 255, 255, 0.95)' stroke-linecap='round' stroke-miterlimit='10' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e") !important;
+}
+/* === End Patient Navbar Override === */
+
+/* Custom class for VitalCare Doctor navbar */
+.bg-vitalcare-doctor {
+    /* background-color: #003366 !important; REMOVED */ 
+    background-image: linear-gradient(to bottom right, #003366, #002244) !important;
+    background-color: transparent !important;
+    border-color: #002244 !important; /* Or a slightly darker border like #001a33 */
+}
+
+.btn-vitalcare-dark {
+    /* background-color: #003366 !important; REMOVED */
+    /* border-color: #003366 !important; REMOVED */
+    background-image: linear-gradient(to bottom right, #003366, #002244) !important;
+    background-color: transparent !important;
+    border-color: #001a33 !important; /* Darker border */
+    color: #fff !important; 
+    transition: all 0.3s ease-in-out !important;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.1) !important;
+}
+
+.btn-vitalcare-dark:hover {
+    /* background-color: #002244 !important; REMOVED */
+    /* border-color: #002244 !important; REMOVED */
+    background-image: linear-gradient(to bottom right, #002244, #001122) !important;
+    border-color: #000d20 !important; /* Even darker border on hover */
+    color: #fff !important;
+    transform: translateY(-2px) scale(1.03) !important;
+    box-shadow: 0 6px 12px rgba(0,0,0,0.15) !important;
+}
+
+/* Styles for the manage profile navigation pills */
+.manage-nav-pills .nav-link {
+    color: #003366 !important; 
+    border-radius: 0.25rem; 
+}
+
+.manage-nav-pills .nav-link.active,
+.manage-nav-pills .show > .nav-link {
+    background-color: #003366 !important; 
+    color: #fff !important; 
+}
+
+.manage-nav-pills .nav-link:not(.active):hover {
+    background-color: #e9ecef !important; 
+    color: #003366 !important; 
+}
+
+/* Dark theme for doctor manage pills */
+[data-bs-theme="dark"] .manage-nav-pills .nav-link {
+    color: var(--link-color) !important;
+}
+[data-bs-theme="dark"] .manage-nav-pills .nav-link.active,
+[data-bs-theme="dark"] .manage-nav-pills .show > .nav-link {
+    background-color: var(--link-color) !important;
+    color: var(--bs-body-bg) !important; /* Dark text on light-ish blue bg */
+}
+[data-bs-theme="dark"] .manage-nav-pills .nav-link:not(.active):hover {
+    background-color: rgba(var(--bs-link-color-rgb), 0.15) !important;
+}
+
+
+/* Styles for the PATIENT manage profile navigation pills */
+.manage-nav-pills-patient .nav-link {
+    color: var(--bs-success) !important; /* Will now use the new medical green */
+    border-radius: 0.25rem;
+}
+
+.manage-nav-pills-patient .nav-link.active,
+.manage-nav-pills-patient .show > .nav-link {
+    background-color: var(--bs-success) !important;
+    color: #fff !important;
+}
+
+.manage-nav-pills-patient .nav-link:not(.active):hover {
+    background-color: var(--bs-success-bg-subtle) !important;
+    color: var(--bs-success) !important;
+}
+
+/* Dark theme for patient manage pills */
+[data-bs-theme="dark"] .manage-nav-pills-patient .nav-link {
+    /* Keep a distinct lightened green for dark mode for pills, or align with main dark theme link color */
+    color: hsl(var(--bs-success-h), var(--bs-success-s), calc(var(--bs-success-l) + 30%)) !important; 
+}
+[data-bs-theme="dark"] .manage-nav-pills-patient .nav-link.active,
+[data-bs-theme="dark"] .manage-nav-pills-patient .show > .nav-link {
+    background-color: hsl(var(--bs-success-h), var(--bs-success-s), calc(var(--bs-success-l) + 30%)) !important;
+    color: var(--bs-dark) !important; /* Dark text on the lighter green bg */
+}
+[data-bs-theme="dark"] .manage-nav-pills-patient .nav-link:not(.active):hover {
+    background-color: hsl(var(--bs-success-h), var(--bs-success-s), calc(var(--bs-success-l) + 20%)) !important;
+}
+
+/* Patient specific button for profile pages */
+.btn-vitalcare-patient {
+    --bs-btn-bg: hsl(168, 53%, 24.5%) !important; /* Explicit HSL for fallback */
+    --bs-btn-border-color: hsl(168, 53%, 14.5%) !important; /* Explicit HSL for fallback border */
+    --bs-btn-color: #fff !important; 
+    background-image: linear-gradient(to bottom right, hsl(168, 53%, 24.5%), hsl(168, 53%, 14.5%)) !important; /* Explicit HSL */
+    border-color: hsl(168, 53%, 14.5%) !important; /* Explicit HSL to match gradient end */
+    transition: all 0.3s ease-in-out !important;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.1) !important;
+    background-color: transparent !important; /* Ensure gradient is primary background */
+}
+
+.btn-vitalcare-patient:hover {
+    --bs-btn-hover-bg: hsl(168, 53%, 19.5%) !important; /* Explicit HSL for hover fallback */
+    --bs-btn-hover-border-color: hsl(168, 53%, 9.5%) !important; /* Explicit HSL for hover fallback border */
+    background-image: linear-gradient(to bottom right, hsl(168, 53%, 19.5%), hsl(168, 53%, 9.5%)) !important; /* Explicit HSL */
+    border-color: hsl(168, 53%, 9.5%) !important; /* Explicit HSL for hover to match gradient end */
+    color: #fff !important;
+    transform: translateY(-2px) scale(1.03) !important;
+    box-shadow: 0 6px 12px rgba(0,0,0,0.15) !important;
+}
+
+/* Style .btn-primary on patient pages like .btn-success */
+body.patient-body-bg .btn-primary {
+    --bs-btn-color: #fff !important;
+    --bs-btn-bg: hsl(168, 53%, 24.5%) !important;
+    --bs-btn-border-color: hsl(168, 53%, 14.5%) !important;
+    background-image: linear-gradient(to bottom right, hsl(168, 53%, 24.5%), hsl(168, 53%, 14.5%)) !important;
+    background-color: transparent !important; 
+    border-color: hsl(168, 53%, 14.5%) !important; 
+    transition: all 0.3s ease-in-out !important;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.1) !important;
+}
+
+body.patient-body-bg .btn-primary:hover {
+    --bs-btn-hover-color: #fff !important;
+    --bs-btn-hover-bg: hsl(168, 53%, 19.5%) !important;
+    --bs-btn-hover-border-color: hsl(168, 53%, 9.5%) !important;
+    background-image: linear-gradient(to bottom right, hsl(168, 53%, 19.5%), hsl(168, 53%, 9.5%)) !important;
+    border-color: hsl(168, 53%, 9.5%) !important;
+    color: #fff !important; 
+    transform: translateY(-2px) scale(1.03) !important;
+    box-shadow: 0 6px 12px rgba(0,0,0,0.15) !important;
+}
+
+/* Specific vibrant green background for patient profile card headers */
+.bg-vitalcare-patient-profile-theme {
+    background-color: var(--bs-success) !important;
+    /* Text color on this header should be white or very light for contrast */
+    color: #fff !important; 
+}
+
+/* Override Patient Footer Green to use the new --bs-success */
+body.patient-body-bg .app-footer {
+    /* The background gradient used --app-footer-patient-bg-start/end. Let's align these with --bs-success */
+    background: linear-gradient(to bottom right, var(--bs-success), hsl(var(--bs-success-h), var(--bs-success-s), calc(var(--bs-success-l) - 5%)));
+}
+
+/* Styles for notifications */
+.notification-item a.dropdown-item {
+    white-space: normal; 
+}
+
+/* Style for UNREAD notifications */
+.notification-item.notification-unread .dropdown-item p {
+    font-weight: bold; 
+}
+
+.notification-item.notification-unread .dropdown-item small {
+    font-weight: bold; 
+}
+
+/* Style for READ notifications */
+.notification-item.notification-read .dropdown-item p {
+    font-weight: normal; 
+    opacity: 0.75;       
+}
+
+.notification-item.notification-read .dropdown-item small {
+    font-weight: normal;
+    opacity: 0.75;       
+}
+
+/* General hover effect for all notification items */
+[data-bs-theme="light"] .notification-item .dropdown-item:hover {
+    background-color: #f0f0f0; 
+}
+[data-bs-theme="dark"] .notification-item .dropdown-item:hover {
+    background-color: rgba(255,255,255,0.1); /* Lighter overlay for dark mode */
+}
+
+/* Ensure text in hovered notification items remains readable */
+.notification-item .dropdown-item:hover p,
+.notification-item .dropdown-item:hover small {
+    /* color: #212529 !important; */ /* Handled by dropdown link hover color now */
+}
+
+/* Ensure the badge is styled correctly if not already handled by Bootstrap */
+#notificationBadge {
+    font-size: 0.75em;
+    padding: .25em .5em;
+    position: absolute;
+    top: 5px; 
+    right: 5px; 
+}
+
+#notificationPanel {
+    max-height: 400px; 
+    overflow-y: auto;
+}
+
+#notificationPanel .dropdown-item p {
+    margin-bottom: 0.25rem; 
+    font-size: 0.9em;
+}
+
+#notificationPanel .dropdown-item small {
+    font-size: 0.75em;
+}
+
+#noNotificationsMessageDisplay { /* Renamed from #noNotificationsMessage */
+    padding: 0.5rem 1rem; 
+}
+
+#markAllAsReadLink {
+    font-weight: bold;
+    text-align: center;
+}
+
+/* New App Footer Styles */
+.app-footer {
+    /* Default light mode: General, Admin, or if no body class matches */
+    background: linear-gradient(to bottom right, var(--app-footer-default-bg-start), var(--app-footer-default-bg-end));
+    color: var(--app-footer-themed-text);
+    padding-top: 2rem;    /* Increased padding */
+    padding-bottom: 2rem; /* Increased padding */
+    position: relative; /* For pseudo-elements if needed later */
+    box-shadow: inset 0 1px 2px rgba(0,0,0,0.1); /* Subtle inner top shadow */
+}
+
+/* Patient Footer - Light Mode */
+body.patient-body-bg .app-footer {
+    background: linear-gradient(to bottom right, var(--app-footer-patient-bg-start), var(--app-footer-patient-bg-end));
+}
+
+/* Doctor Footer - Light Mode */
+body.doctor-body-bg .app-footer {
+    background: linear-gradient(to bottom right, #003366, #002244) !important; /* Align with doctor header blue */
+    /* Text color should remain light, var(--app-footer-themed-text) or #fff */
+}
+
+/* Dark Mode App Footer - Overrides all light mode variants */
+[data-bs-theme="dark"] .app-footer,
+[data-bs-theme="dark"] body.patient-body-bg .app-footer, /* Ensure specificity */
+[data-bs-theme="dark"] body.doctor-body-bg .app-footer {
+    background: var(--bs-tertiary-bg) !important; /* Solid very dark background */
+    color: var(--bs-light) !important; 
+    border-top: 1px solid var(--bs-border-color);
+    box-shadow: none; /* Remove light mode inset shadow */
+}
+
+.app-footer h5 {
+    color: var(--app-footer-themed-text); 
+    text-shadow: 0 1px 1px rgba(0,0,0,0.2);
+}
+
+[data-bs-theme="dark"] .app-footer h5 {
+    color: var(--bs-light) !important;
+    text-shadow: none;
+}
+
+.app-footer p.small {
+    color: var(--app-footer-themed-muted-text);
+}
+
+[data-bs-theme="dark"] .app-footer p.small {
+    color: rgba(255, 255, 255, 0.75) !important;
+}
+
+.app-footer .footer-link {
+    color: var(--app-footer-themed-link-color);
+}
+
+.app-footer .footer-link:hover {
+    color: var(--app-footer-themed-link-hover-color) !important; 
+    text-decoration: underline;
+}
+
+[data-bs-theme="dark"] .app-footer .footer-link {
+    color: rgba(255, 255, 255, 0.75) !important;
+}
+[data-bs-theme="dark"] .app-footer .footer-link:hover {
+    color: var(--link-hover-color) !important; /* Uses the general dark theme link hover */
+}
+
+/* Social & Contact Icons in Light Mode (ALL themed footers) */
+/* This targets icons that had .text-primary and forces them to use the footer's themed light color */
+body:not([data-bs-theme="dark"]) .app-footer .footer-social-icon i.text-primary,
+body:not([data-bs-theme="dark"]) .app-footer .footer-contact-column .contact-icon-wrapper i.text-primary {
+     color: var(--app-footer-themed-link-color) !important;
+}
+
+body:not([data-bs-theme="dark"]) .app-footer .footer-social-icon:hover i.text-primary,
+body:not([data-bs-theme="dark"]) .app-footer .footer-contact-column .contact-icon-wrapper:hover i.text-primary {
+    color: var(--app-footer-themed-link-hover-color) !important;
+}
+
+/* Dark Mode Social & Contact Icons */
+[data-bs-theme="dark"] .app-footer .footer-social-icon i.text-primary,
+[data-bs-theme="dark"] .app-footer .footer-contact-column .contact-icon-wrapper i.text-primary {
+    color: var(--link-color) !important; 
+}
+[data-bs-theme="dark"] .app-footer .footer-social-icon:hover i.text-primary,
+[data-bs-theme="dark"] .app-footer .footer-contact-column .contact-icon-wrapper:hover i.text-primary {
+    color: var(--link-hover-color) !important;
+}
+
+.footer-contact-column .contact-item strong {
+    color: var(--app-footer-themed-text); 
+}
+
+[data-bs-theme="dark"] .footer-contact-column .contact-item strong {
+    color: rgba(255, 255, 255, 0.9) !important; 
+}
+
+.copyright-footer {
+    background-color: var(--bs-gray-200); /* Light grey for light mode */
+    color: var(--bs-gray-700); /* Darker grey text for light mode */
+    font-size: 0.875em;
+    padding: 1rem 0;
+}
+
+[data-bs-theme="dark"] .copyright-footer {
+    background-color: var(--bs-gray-900); /* Very dark grey for dark mode */
+    color: var(--bs-gray-400); /* Lighter grey text for dark mode */
+}
+
+/* Enhancements for Index.cshtml - Features Section (Non-Logged-In) */
+.features-section-bg {
+    background: linear-gradient(to bottom, var(--bs-light), #ffffff); /* Subtle gradient from Bootstrap light to white */
+}
+
+[data-bs-theme="dark"] .features-section-bg {
+    background: linear-gradient(to bottom, var(--bs-gray-800), var(--bs-gray-900)); /* Dark gradient */
+}
+
+.feature-card-hover {
+    transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+}
+
+.feature-card-hover:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15) !important; /* Enhanced shadow on hover */
+}
+
+[data-bs-theme="dark"] .feature-card-hover:hover {
+    box-shadow: 0 0.5rem 1rem rgba(255, 255, 255, 0.075) !important; /* Lighter shadow for dark mode */
+}
+
+/* Ensure icons in feature cards are vertically aligned if they are not by default */
+.feature-card-hover .card-body .bi {
+    display: inline-block; /* Helps with alignment sometimes */
+}
+
+/* Doctor Dashboard Enhancements */
+.stat-card {
+    transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+    /* Base styles are mostly Bootstrap utility classes for borders and subtle backgrounds */
+}
+
+.stat-card:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 0.3rem 0.8rem rgba(0, 0, 0, 0.1);
+}
+
+[data-bs-theme="dark"] .stat-card {
+    /* Subtle backgrounds like bg-info-subtle are handled by Bootstrap's dark theme. 
+       We might need to ensure text contrast if default Bootstrap is not enough. */
+}
+
+[data-bs-theme="dark"] .stat-card .stat-value.text-info {
+    color: var(--bs-info-text-emphasis) !important;
+}
+[data-bs-theme="dark"] .stat-card .stat-value.text-warning {
+    color: var(--bs-warning-text-emphasis) !important;
+}
+[data-bs-theme="dark"] .stat-card .stat-value.text-success {
+    color: var(--bs-success-text-emphasis) !important;
+}
+
+[data-bs-theme="dark"] .stat-card:hover {
+    box-shadow: 0 0.3rem 0.8rem rgba(255, 255, 255, 0.06);
+}
+
+.action-card-hover {
+    transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+}
+
+.action-card-hover:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 0.5rem 1.2rem rgba(0, 0, 0, 0.15) !important;
+}
+
+[data-bs-theme="dark"] .action-card-hover:hover {
+    box-shadow: 0 0.5rem 1.2rem rgba(255, 255, 255, 0.1) !important;
+}
+
+/* Ensure main card header for doctor portal also uses custom shadow in dark mode if needed */
+[data-bs-theme="dark"] .card-header.text-shadow-custom {
+    /* text-shadow rule is already defined for .text-shadow-custom and its dark variant */
+}
+
+/* Removed commented out Doctor-specific theming for /Appointments/Details page */
+
+/* Footer Contact Item Styling */
+.footer-contact-column .contact-icon-wrapper {
+    /* The icon color is set to text-primary in HTML. 
+       We can adjust size or add a background if needed. */
+}
+
+[data-bs-theme="dark"] .footer-contact-column .contact-icon-wrapper i {
+    color: var(--link-color) !important; /* Use dark theme's link color for icons */
+}
+
+.footer-contact-column .contact-item strong {
+    /* text-white-75 in HTML is fine for light mode. */
+}
+
+[data-bs-theme="dark"] .footer-contact-column .contact-item strong {
+    color: rgba(255, 255, 255, 0.9) !important; /* Make it a bit brighter in dark mode */
+}
+
+/* Doctor Dashboard - Quick Links and Announcements Widgets */
+.quick-links-widget .list-group-item {
+    /* Uses default list-group-item styling, which is already themed by your dark mode CSS */
+}
+
+.quick-links-widget .list-group-item i {
+    transition: transform 0.2s ease-in-out;
+}
+
+.quick-links-widget .list-group-item:hover i {
+    transform: translateX(3px);
+}
+
+.announcements-widget .card-body {
+    font-size: 0.9rem;
+}
+
+.announcements-widget hr {
+    border-top-style: dashed;
+}
+
+[data-bs-theme="dark"] .announcements-widget {
+    /* Card background is handled by general [data-bs-theme="dark"] .card rules */
+}
+
+[data-bs-theme="dark"] .quick-links-widget .list-group-item .text-muted {
+    color: var(--bs-secondary-color) !important; /* Ensure icons are themed correctly */
+}
+
+[data-bs-theme="dark"] .announcements-widget .text-muted {
+    color: var(--bs-secondary-text-emphasis) !important; /* Ensure announcement text is themed */
+}
+
+/* Patient Dashboard - Useful Info and Reminders Widgets */
+.useful-info-widget .list-group-item {
+    /* Uses default list-group-item styling, which is already themed by your dark mode CSS */
+}
+
+.useful-info-widget .list-group-item i {
+    transition: transform 0.2s ease-in-out;
+}
+
+.useful-info-widget .list-group-item:hover i {
+    transform: translateX(3px);
+}
+
+.reminders-widget .card-body {
+    font-size: 0.9rem;
+}
+
+.reminders-widget hr {
+    border-top-style: dashed;
+}
+
+[data-bs-theme="dark"] .useful-info-widget .list-group-item .text-muted {
+    color: var(--bs-secondary-color) !important; /* Ensure icons are themed correctly */
+}
+
+[data-bs-theme="dark"] .reminders-widget {
+    /* Card background is handled by general [data-bs-theme="dark"] .card rules */
+}
+
+[data-bs-theme="dark"] .reminders-widget .text-muted {
+    color: var(--bs-secondary-text-emphasis) !important; /* Ensure reminder text is themed */
+}
+
+/* Removed commented out Doctor-specific theming for /Appointments/Details page */
+
+/* Dark mode toggle icon color - UPDATED for better contrast on different headers */
+/* Default icon color for theme toggler (e.g., dark for light theme header) */
+#themeIconSunSmUp,
+#themeIconMoonSmUp,
+#themeIconSunXs,
+#themeIconMoonXs {
+    color: #343a40; /* Default to dark (for sun icon on light header) */
+}
+
+/* Moon icon should be light when it's visible (dark theme active on a dark header) */
+[data-bs-theme="dark"] #themeIconMoonSmUp,
+[data-bs-theme="dark"] #themeIconMoonXs {
+    color: #f8f9fa !important; /* Light color for moon */
+}
+
+/* Sun icon should be dark when it's visible (light theme active on a light header) */
+[data-bs-theme="light"] #themeIconSunSmUp,
+[data-bs-theme="light"] #themeIconSunXs {
+    color: #343a40 !important; /* Dark color for sun */
+}
+
+/* Ensure non-visible icons don't clash if they briefly appear during theme switch */
+[data-bs-theme="dark"] #themeIconSunSmUp,
+[data-bs-theme="dark"] #themeIconSunXs {
+    color: #343a40; /* Keep sun dark even if hidden in dark mode */
+}
+
+[data-bs-theme="light"] #themeIconMoonSmUp,
+[data-bs-theme="light"] #themeIconMoonXs {
+     color: #f8f9fa; /* Keep moon light even if hidden in light mode */
+}
+
+
+/* Style .btn-primary on doctor pages with blue gradient */
+body.doctor-body-bg .btn-primary {
+    --bs-btn-color: #fff !important;
+    --bs-btn-bg: #003366 !important; /* Fallback */
+    --bs-btn-border-color: #003366 !important; /* Fallback */
+    background-image: linear-gradient(to bottom right, #003366, #002244) !important;
+    background-color: transparent !important; 
+    border-color: #002244 !important; 
+    transition: all 0.3s ease-in-out !important;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.1) !important;
+}
+
+body.doctor-body-bg .btn-primary:hover {
+    --bs-btn-hover-color: #fff !important;
+    --bs-btn-hover-bg: #002244 !important; /* Fallback */
+    --bs-btn-hover-border-color: #001122 !important; /* Fallback */
+    background-image: linear-gradient(to bottom right, #002244, #001122) !important;
+    border-color: #001122 !important;
+    color: #fff !important; 
+    transform: translateY(-2px) scale(1.03) !important;
+    box-shadow: 0 6px 12px rgba(0,0,0,0.15) !important;
+}
+
+/* Apply MEDICAL BLUE gradient to .btn-info on doctor pages */
+body.doctor-body-bg .btn-info {
+    --bs-btn-color: #fff !important;
+    --bs-btn-bg: #003366 !important; /* Fallback blue */
+    --bs-btn-border-color: #002244 !important; /* Fallback blue border */
+    background-image: linear-gradient(to bottom right, #003366, #002244) !important;
+    background-color: transparent !important; 
+    border-color: #002244 !important; /* Match end of gradient */
+    transition: all 0.3s ease-in-out !important;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.1) !important;
+    transform: scale(1) !important; /* Reset from any previous green theme specific transform */
+}
+
+body.doctor-body-bg .btn-info:hover {
+    --bs-btn-hover-color: #fff !important;
+    --bs-btn-hover-bg: #002244 !important; /* Fallback blue hover */
+    --bs-btn-hover-border-color: #001122 !important; /* Fallback blue hover border */
+    background-image: linear-gradient(to bottom right, #002244, #001122) !important;
+    border-color: #001122 !important; /* Match end of hover gradient */
+    color: #fff !important; 
+    transform: translateY(-2px) scale(1.03) !important;
+    box-shadow: 0 6px 12px rgba(0,0,0,0.15) !important;
+}
+
+/* === Admin Portal Theme (Carmine/Wine Red) === */
+
+/* Admin Navbar Theme */
+body.admin-dashboard-bg .navbar-admin-theme { /* Assuming a specific class for admin navbar */
+    background-image: linear-gradient(to bottom right, #960018, #700012) !important;
+    background-color: transparent !important;
+    border-color: #700012 !important; 
+}
+
+body.admin-dashboard-bg .navbar-admin-theme .navbar-brand,
+body.admin-dashboard-bg .navbar-admin-theme .nav-link {
+    color: #fff !important; 
+}
+
+body.admin-dashboard-bg .navbar-admin-theme .navbar-toggler-icon {
+    --bs-navbar-toggler-icon-bg: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3e%3cpath stroke='rgba(255, 255, 255, 0.95)' stroke-linecap='round' stroke-miterlimit='10' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e") !important;
+}
+
+/* Admin Buttons (.btn-danger or .btn-primary on admin pages) */
+body.admin-dashboard-bg .btn-danger,
+body.admin-dashboard-bg .btn-primary.btn-admin-theme { /* Adding .btn-admin-theme for primary buttons needing this red */
+    --bs-btn-color: #fff !important;
+    --bs-btn-bg: #960018 !important; /* Fallback */
+    --bs-btn-border-color: #960018 !important; /* Fallback */
+    background-image: linear-gradient(to bottom right, #960018, #700012) !important;
+    background-color: transparent !important; 
+    border-color: #700012 !important; 
+    transition: all 0.3s ease-in-out !important;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.1) !important;
+}
+
+body.admin-dashboard-bg .btn-danger:hover,
+body.admin-dashboard-bg .btn-primary.btn-admin-theme:hover {
+    --bs-btn-hover-color: #fff !important;
+    --bs-btn-hover-bg: #700012 !important; /* Fallback */
+    --bs-btn-hover-border-color: #4D000C !important; /* Fallback */
+    background-image: linear-gradient(to bottom right, #700012, #4D000C) !important;
+    border-color: #4D000C !important;
+    color: #fff !important; 
+    transform: translateY(-2px) scale(1.03) !important;
+    box-shadow: 0 6px 12px rgba(0,0,0,0.15) !important;
+}
+
+/* Apply similar styling to .btn-success on patient pages */
+body.patient-body-bg .btn-success {
+    --bs-btn-bg: hsl(168, 53%, 24.5%) !important;
+    --bs-btn-border-color: hsl(168, 53%, 14.5%) !important;
+    --bs-btn-color: #fff !important; 
+    background-image: linear-gradient(to bottom right, hsl(168, 53%, 24.5%), hsl(168, 53%, 14.5%)) !important;
+    border-color: hsl(168, 53%, 14.5%) !important;
+    transition: all 0.3s ease-in-out !important;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.1) !important;
+    background-color: transparent !important; 
+}
+
+body.patient-body-bg .btn-success:hover {
+    --bs-btn-hover-bg: hsl(168, 53%, 19.5%) !important;
+    --bs-btn-hover-border-color: hsl(168, 53%, 9.5%) !important;
+    background-image: linear-gradient(to bottom right, hsl(168, 53%, 19.5%), hsl(168, 53%, 9.5%)) !important;
+    border-color: hsl(168, 53%, 9.5%) !important;
+    color: #fff !important;
+    transform: translateY(-2px) scale(1.03) !important;
+    box-shadow: 0 6px 12px rgba(0,0,0,0.15) !important;
+}
+
+/* Style .btn-outline-success on patient pages like solid green gradient buttons */
+body.patient-body-bg .btn-outline-success {
+    --bs-btn-color: #fff !important; /* Text color to white */
+    --bs-btn-bg: hsl(168, 53%, 24.5%) !important; /* Explicit HSL for fallback */
+    --bs-btn-border-color: hsl(168, 53%, 14.5%) !important; /* Explicit HSL for border */
+    background-image: linear-gradient(to bottom right, hsl(168, 53%, 24.5%), hsl(168, 53%, 14.5%)) !important; /* Explicit HSL */
+    color: #fff !important; /* Ensure text is white */
+    border-color: hsl(168, 53%, 14.5%) !important; /* Explicit HSL to match gradient end */
+    transition: all 0.3s ease-in-out !important;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.1) !important;
+    background-color: transparent !important; /* Ensure gradient is primary background if previously set otherwise */
+}
+
+body.patient-body-bg .btn-outline-success:hover {
+    --bs-btn-hover-color: #fff !important;
+    --bs-btn-hover-bg: hsl(168, 53%, 19.5%) !important; /* Explicit HSL for hover fallback */
+    --bs-btn-hover-border-color: hsl(168, 53%, 9.5%) !important; /* Explicit HSL for hover border */
+    background-image: linear-gradient(to bottom right, hsl(168, 53%, 19.5%), hsl(168, 53%, 9.5%)) !important; /* Explicit HSL */
+    color: #fff !important; /* Ensure text is white on hover */
+    border-color: hsl(168, 53%, 9.5%) !important; /* Explicit HSL for hover to match gradient end */
+    transform: translateY(-2px) scale(1.03) !important;
+    box-shadow: 0 6px 12px rgba(0,0,0,0.15) !important;
+}
+
+/* === Admin Portal Theme (Carmine/Wine Red) === */
+
+/* === General Button Hover Enhancements === */
+.btn {
+    /* Ensure all buttons have a transition for hover effects */
+    /* If not already more specifically defined with !important */
+    transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out, background-color 0.2s ease-in-out, border-color 0.2s ease-in-out;
+}
+
+/* Generic hover for non-themed Bootstrap buttons */
+.btn-secondary:hover,
+.btn-warning:hover,
+.btn-light:hover, /* Default Bootstrap light button hover */
+.btn-dark:hover   /* Default Bootstrap dark button hover */
+{
+    transform: translateY(-1px) scale(1.02);
+    box-shadow: 0 3px 6px rgba(0,0,0,0.1);
+}
+
+/* Ensure our THEMED buttons (gradients) KEEP their specific transitions and hover effects */
+.btn-vitalcare-patient, 
+body.patient-body-bg .btn-success, 
+body.patient-body-bg .btn-primary, 
+body.patient-body-bg .btn-outline-success,
+body.doctor-body-bg .btn-info,
+.btn-vitalcare-dark, 
+body.doctor-body-bg .btn-primary,
+body.admin-dashboard-bg .btn-danger,
+body.admin-dashboard-bg .btn-primary.btn-admin-theme {
+    transition: all 0.3s ease-in-out !important; /* Override generic .btn transition if needed */
+}
+
+.btn-vitalcare-patient:hover, 
+body.patient-body-bg .btn-success:hover, 
+body.patient-body-bg .btn-primary:hover, 
+body.patient-body-bg .btn-outline-success:hover,
+body.doctor-body-bg .btn-info:hover,
+.btn-vitalcare-dark:hover, 
+body.doctor-body-bg .btn-primary:hover,
+body.admin-dashboard-bg .btn-danger:hover,
+body.admin-dashboard-bg .btn-primary.btn-admin-theme:hover {
+    transform: translateY(-2px) scale(1.03) !important; /* Reaffirm more pronounced effect */
+    /* Box-shadow is already defined in their specific hover rules */
+}
+
+
+/* Styles for role-specific dashboard backgrounds on Index.cshtml */
+.admin-dashboard-bg {
+    background-image: none !important; 
+    padding: 0 !important; 
+    border-radius: 0 !important; 
+}
+
+.doctor-dashboard-bg {
+    background-image: none !important; 
+    padding: 0 !important; 
+    border-radius: 0 !important; 
+}
+
+.patient-dashboard-bg {
+    padding: 0 !important; 
+    border-radius: 0 !important; 
+}
+
+/* Ensure content within these backgrounds is legible */
+.admin-dashboard-bg .card,
+.doctor-dashboard-bg .card,
+.patient-dashboard-bg .card {
+    /* background-color: rgba(255, 255, 255, 0.9); */ /* Card bg handled by theme */
+}
+
+/* Text shadow for better readability on complex backgrounds, if needed */
+.admin-dashboard-bg .card-header h2,
+.doctor-dashboard-bg .card-header h2,
+.patient-dashboard-bg .card-header h2 {
+    /* text-shadow: 1px 1px 2px rgba(0,0,0,0.7); */ 
+}
+
+/* Role-specific body backgrounds */
+body.patient-body-bg {
+    /* New Medical Green Theme (Tealish Green) for Patients */
+    /* Applied globally when patient-body-bg class is on the body */
+    --bs-success-rgb: 32, 106, 93; /* RGB for #206A5D */
+    --bs-success-text-emphasis: #1A5348; /* Darker shade for text emphasis */
+    --bs-success-bg-subtle: #cfe8e4; /* Lighter shade for subtle backgrounds */
+    --bs-success-border-subtle: #a0d1c8; /* Slightly darker for subtle borders */
+
+    /* Overriding HSL values for Bootstrap's --bs-success related calculations */
+    --bs-success-h: 168; /* Hue for #206A5D */
+    --bs-success-s: 53%; /* Saturation for #206A5D */
+    --bs-success-l: 27%; /* Lightness for #206A5D */
+    
+    background-color: var(--patient-body-light-bg); /* Light green background for light mode */
+    background-image: url('/images/patient-dashboard-bg.svg'); /* Subtle pattern for patient light theme */
+    background-repeat: repeat;
+    background-size: auto;
+}
+
+body.doctor-body-bg {
+    /* Light Blue Theme for Doctors */
+    --bs-info-rgb: 13, 202, 240;
+    --bs-info-text-emphasis: #0a8ab0;
+    --bs-info-bg-subtle: #cff4fc;
+    --bs-info-border-subtle: #9eeaf9;
+
+    background-color: var(--doctor-body-light-bg); /* Light blue background for light mode */
+    background-image: url('/images/doctor-dashboard-bg-subtle.svg'); /* Subtle pattern for doctor light theme */
+    background-repeat: repeat;
+    background-size: auto;
+}
+
+/* Default/Admin body background (when no specific role class is present) for light mode */
+body:not(.patient-body-bg):not(.doctor-body-bg) {
+    background-color: #f8f9fa; /* A very light grey, or choose another default */
+    /* This will be overridden by the more specific dark theme rule above if dark mode is active */
+}
+
+/* === Aggressive Patient Navbar Override === */
+body.patient-body-bg .navbar.bg-success.navbar-dark.border-success { 
+    /* background: none !important; REMOVED */
+    /* background-image: none !important; REMOVED */
+    /* background-color: #206A5D !important; REMOVED */
+    background-image: linear-gradient(to bottom right, hsl(var(--bs-success-h), var(--bs-success-s), calc(var(--bs-success-l) - 2.5%)), hsl(var(--bs-success-h), var(--bs-success-s), calc(var(--bs-success-l) - 12.5%))) !important;
+    background-color: transparent !important; /* Fallback or to ensure gradient visibility */
+    border: none !important; 
+    border-color: #1A5348 !important; /* Keeping original darker border for now */
+    --bs-success-rgb: 32, 106, 93 !important; 
+}
+
+body.patient-body-bg .navbar.bg-success .navbar-brand,
+body.patient-body-bg .navbar.bg-success .nav-link {
+    color: #fff !important; 
+    /* text-shadow is handled by .text-shadow-custom applied in _Layout.cshtml */
+}
+
+/* Ensure toggler icon is white for patient's success navbar */
+body.patient-body-bg .navbar.bg-success .navbar-toggler-icon {
+    --bs-navbar-toggler-icon-bg: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3e%3cpath stroke='rgba(255, 255, 255, 0.95)' stroke-linecap='round' stroke-miterlimit='10' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e") !important;
+}
+/* === End Patient Navbar Override === */
+
+/* Custom class for VitalCare Doctor navbar */
+.bg-vitalcare-doctor {
+    /* background-color: #003366 !important; REMOVED */ 
+    background-image: linear-gradient(to bottom right, #003366, #002244) !important;
+    background-color: transparent !important;
+    border-color: #002244 !important; /* Or a slightly darker border like #001a33 */
+}
+
+.btn-vitalcare-dark {
+    /* background-color: #003366 !important; REMOVED */
+    /* border-color: #003366 !important; REMOVED */
+    background-image: linear-gradient(to bottom right, #003366, #002244) !important;
+    background-color: transparent !important;
+    border-color: #001a33 !important; /* Darker border */
+    color: #fff !important; 
+    transition: all 0.3s ease-in-out !important;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.1) !important;
+}
+
+.btn-vitalcare-dark:hover {
+    /* background-color: #002244 !important; REMOVED */
+    /* border-color: #002244 !important; REMOVED */
+    background-image: linear-gradient(to bottom right, #002244, #001122) !important;
+    border-color: #000d20 !important; /* Even darker border on hover */
+    color: #fff !important;
+    transform: translateY(-2px) scale(1.03) !important;
+    box-shadow: 0 6px 12px rgba(0,0,0,0.15) !important;
+}
+
+/* Styles for the manage profile navigation pills */
+.manage-nav-pills .nav-link {
+    color: #003366 !important; 
+    border-radius: 0.25rem; 
+}
+
+.manage-nav-pills .nav-link.active,
+.manage-nav-pills .show > .nav-link {
+    background-color: #003366 !important; 
+    color: #fff !important; 
+}
+
+.manage-nav-pills .nav-link:not(.active):hover {
+    background-color: #e9ecef !important; 
+    color: #003366 !important; 
+}
+
+/* Dark theme for doctor manage pills */
+[data-bs-theme="dark"] .manage-nav-pills .nav-link {
+    color: var(--link-color) !important;
+}
+[data-bs-theme="dark"] .manage-nav-pills .nav-link.active,
+[data-bs-theme="dark"] .manage-nav-pills .show > .nav-link {
+    background-color: var(--link-color) !important;
+    color: var(--bs-body-bg) !important; /* Dark text on light-ish blue bg */
+}
+[data-bs-theme="dark"] .manage-nav-pills .nav-link:not(.active):hover {
+    background-color: rgba(var(--bs-link-color-rgb), 0.15) !important;
+}
+
+
+/* Styles for the PATIENT manage profile navigation pills */
+.manage-nav-pills-patient .nav-link {
+    color: var(--bs-success) !important; /* Will now use the new medical green */
+    border-radius: 0.25rem;
+}
+
+.manage-nav-pills-patient .nav-link.active,
+.manage-nav-pills-patient .show > .nav-link {
+    background-color: var(--bs-success) !important;
+    color: #fff !important;
+}
+
+.manage-nav-pills-patient .nav-link:not(.active):hover {
+    background-color: var(--bs-success-bg-subtle) !important;
+    color: var(--bs-success) !important;
+}
+
+/* Dark theme for patient manage pills */
+[data-bs-theme="dark"] .manage-nav-pills-patient .nav-link {
+    /* Keep a distinct lightened green for dark mode for pills, or align with main dark theme link color */
+    color: hsl(var(--bs-success-h), var(--bs-success-s), calc(var(--bs-success-l) + 30%)) !important; 
+}
+[data-bs-theme="dark"] .manage-nav-pills-patient .nav-link.active,
+[data-bs-theme="dark"] .manage-nav-pills-patient .show > .nav-link {
+    background-color: hsl(var(--bs-success-h), var(--bs-success-s), calc(var(--bs-success-l) + 30%)) !important;
+    color: var(--bs-dark) !important; /* Dark text on the lighter green bg */
+}
+[data-bs-theme="dark"] .manage-nav-pills-patient .nav-link:not(.active):hover {
+    background-color: hsl(var(--bs-success-h), var(--bs-success-s), calc(var(--bs-success-l) + 20%)) !important;
+}
+
+/* Patient specific button for profile pages */
+.btn-vitalcare-patient {
+    --bs-btn-bg: hsl(168, 53%, 24.5%) !important; /* Explicit HSL for fallback */
+    --bs-btn-border-color: hsl(168, 53%, 14.5%) !important; /* Explicit HSL for fallback border */
+    --bs-btn-color: #fff !important; 
+    background-image: linear-gradient(to bottom right, hsl(168, 53%, 24.5%), hsl(168, 53%, 14.5%)) !important; /* Explicit HSL */
+    border-color: hsl(168, 53%, 14.5%) !important; /* Explicit HSL to match gradient end */
+    transition: all 0.3s ease-in-out !important;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.1) !important;
+    background-color: transparent !important; /* Ensure gradient is primary background */
+}
+
+.btn-vitalcare-patient:hover {
+    --bs-btn-hover-bg: hsl(168, 53%, 19.5%) !important; /* Explicit HSL for hover fallback */
+    --bs-btn-hover-border-color: hsl(168, 53%, 9.5%) !important; /* Explicit HSL for hover fallback border */
+    background-image: linear-gradient(to bottom right, hsl(168, 53%, 19.5%), hsl(168, 53%, 9.5%)) !important; /* Explicit HSL */
+    border-color: hsl(168, 53%, 9.5%) !important; /* Explicit HSL for hover to match gradient end */
+    color: #fff !important;
+    transform: translateY(-2px) scale(1.03) !important;
+    box-shadow: 0 6px 12px rgba(0,0,0,0.15) !important;
+}
+
+/* Style .btn-primary on patient pages like .btn-success */
+body.patient-body-bg .btn-primary {
+    --bs-btn-color: #fff !important;
+    --bs-btn-bg: hsl(168, 53%, 24.5%) !important;
+    --bs-btn-border-color: hsl(168, 53%, 14.5%) !important;
+    background-image: linear-gradient(to bottom right, hsl(168, 53%, 24.5%), hsl(168, 53%, 14.5%)) !important;
+    background-color: transparent !important; 
+    border-color: hsl(168, 53%, 14.5%) !important; 
+    transition: all 0.3s ease-in-out !important;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.1) !important;
+}
+
+body.patient-body-bg .btn-primary:hover {
+    --bs-btn-hover-color: #fff !important;
+    --bs-btn-hover-bg: hsl(168, 53%, 19.5%) !important;
+    --bs-btn-hover-border-color: hsl(168, 53%, 9.5%) !important;
+    background-image: linear-gradient(to bottom right, hsl(168, 53%, 19.5%), hsl(168, 53%, 9.5%)) !important;
+    border-color: hsl(168, 53%, 9.5%) !important;
+    color: #fff !important; 
+    transform: translateY(-2px) scale(1.03) !important;
+    box-shadow: 0 6px 12px rgba(0,0,0,0.15) !important;
+}
+
+/* Specific vibrant green background for patient profile card headers */
+.bg-vitalcare-patient-profile-theme {
+    background-color: var(--bs-success) !important;
+    /* Text color on this header should be white or very light for contrast */
+    color: #fff !important; 
+}
+
+/* Override Patient Footer Green to use the new --bs-success */
+body.patient-body-bg .app-footer {
+    /* The background gradient used --app-footer-patient-bg-start/end. Let's align these with --bs-success */
+    background: linear-gradient(to bottom right, var(--bs-success), hsl(var(--bs-success-h), var(--bs-success-s), calc(var(--bs-success-l) - 5%)));
+}
+
+/* Styles for notifications */
+.notification-item a.dropdown-item {
+    white-space: normal; 
+}
+
+/* Style for UNREAD notifications */
+.notification-item.notification-unread .dropdown-item p {
+    font-weight: bold; 
+}
+
+.notification-item.notification-unread .dropdown-item small {
+    font-weight: bold; 
+}
+
+/* Style for READ notifications */
+.notification-item.notification-read .dropdown-item p {
+    font-weight: normal; 
+    opacity: 0.75;       
+}
+
+.notification-item.notification-read .dropdown-item small {
+    font-weight: normal;
+    opacity: 0.75;       
+}
+
+/* General hover effect for all notification items */
+[data-bs-theme="light"] .notification-item .dropdown-item:hover {
+    background-color: #f0f0f0; 
+}
+[data-bs-theme="dark"] .notification-item .dropdown-item:hover {
+    background-color: rgba(255,255,255,0.1); /* Lighter overlay for dark mode */
+}
+
+/* Ensure text in hovered notification items remains readable */
+.notification-item .dropdown-item:hover p,
+.notification-item .dropdown-item:hover small {
+    /* color: #212529 !important; */ /* Handled by dropdown link hover color now */
+}
+
+/* Ensure the badge is styled correctly if not already handled by Bootstrap */
+#notificationBadge {
+    font-size: 0.75em;
+    padding: .25em .5em;
+    position: absolute;
+    top: 5px; 
+    right: 5px; 
+}
+
+#notificationPanel {
+    max-height: 400px; 
+    overflow-y: auto;
+}
+
+#notificationPanel .dropdown-item p {
+    margin-bottom: 0.25rem; 
+    font-size: 0.9em;
+}
+
+#notificationPanel .dropdown-item small {
+    font-size: 0.75em;
+}
+
+#noNotificationsMessageDisplay { /* Renamed from #noNotificationsMessage */
+    padding: 0.5rem 1rem; 
+}
+
+#markAllAsReadLink {
+    font-weight: bold;
+    text-align: center;
+}
+
+/* New App Footer Styles */
+.app-footer {
+    /* Default light mode: General, Admin, or if no body class matches */
+    background: linear-gradient(to bottom right, var(--app-footer-default-bg-start), var(--app-footer-default-bg-end));
+    color: var(--app-footer-themed-text);
+    padding-top: 2rem;    /* Increased padding */
+    padding-bottom: 2rem; /* Increased padding */
+    position: relative; /* For pseudo-elements if needed later */
+    box-shadow: inset 0 1px 2px rgba(0,0,0,0.1); /* Subtle inner top shadow */
+}
+
+/* Patient Footer - Light Mode */
+body.patient-body-bg .app-footer {
+    background: linear-gradient(to bottom right, var(--app-footer-patient-bg-start), var(--app-footer-patient-bg-end));
+}
+
+/* Doctor Footer - Light Mode */
+body.doctor-body-bg .app-footer {
+    background: linear-gradient(to bottom right, #003366, #002244) !important; /* Align with doctor header blue */
+    /* Text color should remain light, var(--app-footer-themed-text) or #fff */
+}
+
+/* Dark Mode App Footer - Overrides all light mode variants */
+[data-bs-theme="dark"] .app-footer,
+[data-bs-theme="dark"] body.patient-body-bg .app-footer, /* Ensure specificity */
+[data-bs-theme="dark"] body.doctor-body-bg .app-footer {
+    background: var(--bs-tertiary-bg) !important; /* Solid very dark background */
+    color: var(--bs-light) !important; 
+    border-top: 1px solid var(--bs-border-color);
+    box-shadow: none; /* Remove light mode inset shadow */
+}
+
+.app-footer h5 {
+    color: var(--app-footer-themed-text); 
+    text-shadow: 0 1px 1px rgba(0,0,0,0.2);
+}
+
+[data-bs-theme="dark"] .app-footer h5 {
+    color: var(--bs-light) !important;
+    text-shadow: none;
+}
+
+.app-footer p.small {
+    color: var(--app-footer-themed-muted-text);
+}
+
+[data-bs-theme="dark"] .app-footer p.small {
+    color: rgba(255, 255, 255, 0.75) !important;
+}
+
+.app-footer .footer-link {
+    color: var(--app-footer-themed-link-color);
+}
+
+.app-footer .footer-link:hover {
+    color: var(--app-footer-themed-link-hover-color) !important; 
+    text-decoration: underline;
+}
+
+[data-bs-theme="dark"] .app-footer .footer-link {
+    color: rgba(255, 255, 255, 0.75) !important;
+}
+[data-bs-theme="dark"] .app-footer .footer-link:hover {
+    color: var(--link-hover-color) !important; /* Uses the general dark theme link hover */
+}
+
+/* Social & Contact Icons in Light Mode (ALL themed footers) */
+/* This targets icons that had .text-primary and forces them to use the footer's themed light color */
+body:not([data-bs-theme="dark"]) .app-footer .footer-social-icon i.text-primary,
+body:not([data-bs-theme="dark"]) .app-footer .footer-contact-column .contact-icon-wrapper i.text-primary {
+     color: var(--app-footer-themed-link-color) !important;
+}
+
+body:not([data-bs-theme="dark"]) .app-footer .footer-social-icon:hover i.text-primary,
+body:not([data-bs-theme="dark"]) .app-footer .footer-contact-column .contact-icon-wrapper:hover i.text-primary {
+    color: var(--app-footer-themed-link-hover-color) !important;
+}
+
+/* Dark Mode Social & Contact Icons */
+[data-bs-theme="dark"] .app-footer .footer-social-icon i.text-primary,
+[data-bs-theme="dark"] .app-footer .footer-contact-column .contact-icon-wrapper i.text-primary {
+    color: var(--link-color) !important; 
+}
+[data-bs-theme="dark"] .app-footer .footer-social-icon:hover i.text-primary,
+[data-bs-theme="dark"] .app-footer .footer-contact-column .contact-icon-wrapper:hover i.text-primary {
+    color: var(--link-hover-color) !important;
+}
+
+.footer-contact-column .contact-item strong {
+    color: var(--app-footer-themed-text); 
+}
+
+[data-bs-theme="dark"] .footer-contact-column .contact-item strong {
+    color: rgba(255, 255, 255, 0.9) !important; 
+}
+
+.copyright-footer {
+    background-color: var(--bs-gray-200); /* Light grey for light mode */
+    color: var(--bs-gray-700); /* Darker grey text for light mode */
+    font-size: 0.875em;
+    padding: 1rem 0;
+}
+
+[data-bs-theme="dark"] .copyright-footer {
+    background-color: var(--bs-gray-900); /* Very dark grey for dark mode */
+    color: var(--bs-gray-400); /* Lighter grey text for dark mode */
+}
+
+/* Enhancements for Index.cshtml - Features Section (Non-Logged-In) */
+.features-section-bg {
+    background: linear-gradient(to bottom, var(--bs-light), #ffffff); /* Subtle gradient from Bootstrap light to white */
+}
+
+[data-bs-theme="dark"] .features-section-bg {
+    background: linear-gradient(to bottom, var(--bs-gray-800), var(--bs-gray-900)); /* Dark gradient */
+}
+
+.feature-card-hover {
+    transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+}
+
+.feature-card-hover:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15) !important; /* Enhanced shadow on hover */
+}
+
+[data-bs-theme="dark"] .feature-card-hover:hover {
+    box-shadow: 0 0.5rem 1rem rgba(255, 255, 255, 0.075) !important; /* Lighter shadow for dark mode */
+}
+
+/* Ensure icons in feature cards are vertically aligned if they are not by default */
+.feature-card-hover .card-body .bi {
+    display: inline-block; /* Helps with alignment sometimes */
+}
+
+/* Doctor Dashboard Enhancements */
+.stat-card {
+    transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+    /* Base styles are mostly Bootstrap utility classes for borders and subtle backgrounds */
+}
+
+.stat-card:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 0.3rem 0.8rem rgba(0, 0, 0, 0.1);
+}
+
+[data-bs-theme="dark"] .stat-card {
+    /* Subtle backgrounds like bg-info-subtle are handled by Bootstrap's dark theme. 
+       We might need to ensure text contrast if default Bootstrap is not enough. */
+}
+
+[data-bs-theme="dark"] .stat-card .stat-value.text-info {
+    color: var(--bs-info-text-emphasis) !important;
+}
+[data-bs-theme="dark"] .stat-card .stat-value.text-warning {
+    color: var(--bs-warning-text-emphasis) !important;
+}
+[data-bs-theme="dark"] .stat-card .stat-value.text-success {
+    color: var(--bs-success-text-emphasis) !important;
+}
+
+[data-bs-theme="dark"] .stat-card:hover {
+    box-shadow: 0 0.3rem 0.8rem rgba(255, 255, 255, 0.06);
+}
+
+.action-card-hover {
+    transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+}
+
+.action-card-hover:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 0.5rem 1.2rem rgba(0, 0, 0, 0.15) !important;
+}
+
+[data-bs-theme="dark"] .action-card-hover:hover {
+    box-shadow: 0 0.5rem 1.2rem rgba(255, 255, 255, 0.1) !important;
+}
+
+/* Ensure main card header for doctor portal also uses custom shadow in dark mode if needed */
+[data-bs-theme="dark"] .card-header.text-shadow-custom {
+    /* text-shadow rule is already defined for .text-shadow-custom and its dark variant */
+}
+
+/* Removed commented out Doctor-specific theming for /Appointments/Details page */
+
+/* Footer Contact Item Styling */
+.footer-contact-column .contact-icon-wrapper {
+    /* The icon color is set to text-primary in HTML. 
+       We can adjust size or add a background if needed. */
+}
+
+[data-bs-theme="dark"] .footer-contact-column .contact-icon-wrapper i {
+    color: var(--link-color) !important; /* Use dark theme's link color for icons */
+}
+
+.footer-contact-column .contact-item strong {
+    /* text-white-75 in HTML is fine for light mode. */
+}
+
+[data-bs-theme="dark"] .footer-contact-column .contact-item strong {
+    color: rgba(255, 255, 255, 0.9) !important; /* Make it a bit brighter in dark mode */
+}
+
+/* Doctor Dashboard - Quick Links and Announcements Widgets */
+.quick-links-widget .list-group-item {
+    /* Uses default list-group-item styling, which is already themed by your dark mode CSS */
+}
+
+.quick-links-widget .list-group-item i {
+    transition: transform 0.2s ease-in-out;
+}
+
+.quick-links-widget .list-group-item:hover i {
+    transform: translateX(3px);
+}
+
+.announcements-widget .card-body {
+    font-size: 0.9rem;
+}
+
+.announcements-widget hr {
+    border-top-style: dashed;
+}
+
+[data-bs-theme="dark"] .announcements-widget {
+    /* Card background is handled by general [data-bs-theme="dark"] .card rules */
+}
+
+[data-bs-theme="dark"] .quick-links-widget .list-group-item .text-muted {
+    color: var(--bs-secondary-color) !important; /* Ensure icons are themed correctly */
+}
+
+[data-bs-theme="dark"] .announcements-widget .text-muted {
+    color: var(--bs-secondary-text-emphasis) !important; /* Ensure announcement text is themed */
+}
+
+/* Patient Dashboard - Useful Info and Reminders Widgets */
+.useful-info-widget .list-group-item {
+    /* Uses default list-group-item styling, which is already themed by your dark mode CSS */
+}
+
+.useful-info-widget .list-group-item i {
+    transition: transform 0.2s ease-in-out;
+}
+
+.useful-info-widget .list-group-item:hover i {
+    transform: translateX(3px);
+}
+
+.reminders-widget .card-body {
+    font-size: 0.9rem;
+}
+
+.reminders-widget hr {
+    border-top-style: dashed;
+}
+
+[data-bs-theme="dark"] .useful-info-widget .list-group-item .text-muted {
+    color: var(--bs-secondary-color) !important; /* Ensure icons are themed correctly */
+}
+
+[data-bs-theme="dark"] .reminders-widget {
+    /* Card background is handled by general [data-bs-theme="dark"] .card rules */
+}
+
+[data-bs-theme="dark"] .reminders-widget .text-muted {
+    color: var(--bs-secondary-text-emphasis) !important; /* Ensure reminder text is themed */
+}
+
+/* Removed commented out Doctor-specific theming for /Appointments/Details page */
+
+/* Dark mode toggle icon color - UPDATED for better contrast on different headers */
+/* Default icon color for theme toggler (e.g., dark for light theme header) */
+#themeIconSunSmUp,
+#themeIconMoonSmUp,
+#themeIconSunXs,
+#themeIconMoonXs {
+    color: #343a40; /* Default to dark (for sun icon on light header) */
+}
+
+/* Moon icon should be light when it's visible (dark theme active on a dark header) */
+[data-bs-theme="dark"] #themeIconMoonSmUp,
+[data-bs-theme="dark"] #themeIconMoonXs {
+    color: #f8f9fa !important; /* Light color for moon */
+}
+
+/* Sun icon should be dark when it's visible (light theme active on a light header) */
+[data-bs-theme="light"] #themeIconSunSmUp,
+[data-bs-theme="light"] #themeIconSunXs {
+    color: #343a40 !important; /* Dark color for sun */
+}
+
+/* Ensure non-visible icons don't clash if they briefly appear during theme switch */
+[data-bs-theme="dark"] #themeIconSunSmUp,
+[data-bs-theme="dark"] #themeIconSunXs {
+    color: #343a40; /* Keep sun dark even if hidden in dark mode */
+}
+
+[data-bs-theme="light"] #themeIconMoonSmUp,
+[data-bs-theme="light"] #themeIconMoonXs {
+     color: #f8f9fa; /* Keep moon light even if hidden in light mode */
+}
+
+
+/* Style .btn-primary on doctor pages with blue gradient */
+body.doctor-body-bg .btn-primary {
+    --bs-btn-color: #fff !important;
+    --bs-btn-bg: #003366 !important; /* Fallback */
+    --bs-btn-border-color: #003366 !important; /* Fallback */
+    background-image: linear-gradient(to bottom right, #003366, #002244) !important;
+    background-color: transparent !important; 
+    border-color: #002244 !important; 
+    transition: all 0.3s ease-in-out !important;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.1) !important;
+}
+
+body.doctor-body-bg .btn-primary:hover {
+    --bs-btn-hover-color: #fff !important;
+    --bs-btn-hover-bg: #002244 !important; /* Fallback */
+    --bs-btn-hover-border-color: #001122 !important; /* Fallback */
+    background-image: linear-gradient(to bottom right, #002244, #001122) !important;
+    border-color: #001122 !important;
+    color: #fff !important; 
+    transform: translateY(-2px) scale(1.03) !important;
+    box-shadow: 0 6px 12px rgba(0,0,0,0.15) !important;
+}
+
+/* Apply MEDICAL BLUE gradient to .btn-info on doctor pages */
+body.doctor-body-bg .btn-info {
+    --bs-btn-color: #fff !important;
+    --bs-btn-bg: #003366 !important; /* Fallback blue */
+    --bs-btn-border-color: #002244 !important; /* Fallback blue border */
+    background-image: linear-gradient(to bottom right, #003366, #002244) !important;
+    background-color: transparent !important; 
+    border-color: #002244 !important; /* Match end of gradient */
+    transition: all 0.3s ease-in-out !important;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.1) !important;
+    transform: scale(1) !important; /* Reset from any previous green theme specific transform */
+}
+
+body.doctor-body-bg .btn-info:hover {
+    --bs-btn-hover-color: #fff !important;
+    --bs-btn-hover-bg: #002244 !important; /* Fallback blue hover */
+    --bs-btn-hover-border-color: #001122 !important; /* Fallback blue hover border */
+    background-image: linear-gradient(to bottom right, #002244, #001122) !important;
+    border-color: #001122 !important; /* Match end of hover gradient */
+    color: #fff !important; 
+    transform: translateY(-2px) scale(1.03) !important;
+    box-shadow: 0 6px 12px rgba(0,0,0,0.15) !important;
+}
+
+/* === Admin Portal Theme (Carmine/Wine Red) === */
+
+/* Admin Navbar Theme */
+body.admin-dashboard-bg .navbar-admin-theme { /* Assuming a specific class for admin navbar */
+    background-image: linear-gradient(to bottom right, #960018, #700012) !important;
+    background-color: transparent !important;
+    border-color: #700012 !important; 
+}
+
+body.admin-dashboard-bg .navbar-admin-theme .navbar-brand,
+body.admin-dashboard-bg .navbar-admin-theme .nav-link {
+    color: #fff !important; 
+}
+
+body.admin-dashboard-bg .navbar-admin-theme .navbar-toggler-icon {
+    --bs-navbar-toggler-icon-bg: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3e%3cpath stroke='rgba(255, 255, 255, 0.95)' stroke-linecap='round' stroke-miterlimit='10' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e") !important;
+}
+
+/* Admin Buttons (.btn-danger or .btn-primary on admin pages) */
+body.admin-dashboard-bg .btn-danger,
+body.admin-dashboard-bg .btn-primary.btn-admin-theme { /* Adding .btn-admin-theme for primary buttons needing this red */
+    --bs-btn-color: #fff !important;
+    --bs-btn-bg: #960018 !important; /* Fallback */
+    --bs-btn-border-color: #960018 !important; /* Fallback */
+    background-image: linear-gradient(to bottom right, #960018, #700012) !important;
+    background-color: transparent !important; 
+    border-color: #700012 !important; 
+    transition: all 0.3s ease-in-out !important;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.1) !important;
+}
+
+body.admin-dashboard-bg .btn-danger:hover,
+body.admin-dashboard-bg .btn-primary.btn-admin-theme:hover {
+    --bs-btn-hover-color: #fff !important;
+    --bs-btn-hover-bg: #700012 !important; /* Fallback */
+    --bs-btn-hover-border-color: #4D000C !important; /* Fallback */
+    background-image: linear-gradient(to bottom right, #700012, #4D000C) !important;
+    border-color: #4D000C !important;
+    color: #fff !important; 
+    transform: translateY(-2px) scale(1.03) !important;
+    box-shadow: 0 6px 12px rgba(0,0,0,0.15) !important;
+}
+
+/* Apply similar styling to .btn-success on patient pages */
+body.patient-body-bg .btn-success {
+    --bs-btn-bg: hsl(168, 53%, 24.5%) !important;
+    --bs-btn-border-color: hsl(168, 53%, 14.5%) !important;
+    --bs-btn-color: #fff !important; 
+    background-image: linear-gradient(to bottom right, hsl(168, 53%, 24.5%), hsl(168, 53%, 14.5%)) !important;
+    border-color: hsl(168, 53%, 14.5%) !important;
+    transition: all 0.3s ease-in-out !important;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.1) !important;
+    background-color: transparent !important; 
+}
+
+body.patient-body-bg .btn-success:hover {
+    --bs-btn-hover-bg: hsl(168, 53%, 19.5%) !important;
+    --bs-btn-hover-border-color: hsl(168, 53%, 9.5%) !important;
+    background-image: linear-gradient(to bottom right, hsl(168, 53%, 19.5%), hsl(168, 53%, 9.5%)) !important;
+    border-color: hsl(168, 53%, 9.5%) !important;
+    color: #fff !important;
+    transform: translateY(-2px) scale(1.03) !important;
+    box-shadow: 0 6px 12px rgba(0,0,0,0.15) !important;
+}
+
+/* Style .btn-outline-success on patient pages like solid green gradient buttons */
+body.patient-body-bg .btn-outline-success {
+    --bs-btn-color: #fff !important; /* Text color to white */
+    --bs-btn-bg: hsl(168, 53%, 24.5%) !important; /* Explicit HSL for fallback */
+    --bs-btn-border-color: hsl(168, 53%, 14.5%) !important; /* Explicit HSL for border */
+    background-image: linear-gradient(to bottom right, hsl(168, 53%, 24.5%), hsl(168, 53%, 14.5%)) !important; /* Explicit HSL */
+    color: #fff !important; /* Ensure text is white */
+    border-color: hsl(168, 53%, 14.5%) !important; /* Explicit HSL to match gradient end */
+    transition: all 0.3s ease-in-out !important;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.1) !important;
+    background-color: transparent !important; /* Ensure gradient is primary background if previously set otherwise */
+}
+
+body.patient-body-bg .btn-outline-success:hover {
+    --bs-btn-hover-color: #fff !important;
+    --bs-btn-hover-bg: hsl(168, 53%, 19.5%) !important; /* Explicit HSL for hover fallback */
+    --bs-btn-hover-border-color: hsl(168, 53%, 9.5%) !important; /* Explicit HSL for hover border */
+    background-image: linear-gradient(to bottom right, hsl(168, 53%, 19.5%), hsl(168, 53%, 9.5%)) !important; /* Explicit HSL */
+    color: #fff !important; /* Ensure text is white on hover */
+    border-color: hsl(168, 53%, 9.5%) !important; /* Explicit HSL for hover to match gradient end */
+    transform: translateY(-2px) scale(1.03) !important;
+    box-shadow: 0 6px 12px rgba(0,0,0,0.15) !important;
+}
+
+/* === Admin Portal Theme (Carmine/Wine Red) === */
+
+/* === General Button Hover Enhancements === */
+.btn {
+    /* Ensure all buttons have a transition for hover effects */
+    /* If not already more specifically defined with !important */
+    transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out, background-color 0.2s ease-in-out, border-color 0.2s ease-in-out;
+}
+
+/* Generic hover for non-themed Bootstrap buttons */
+.btn-secondary:hover,
+.btn-warning:hover,
+.btn-light:hover, /* Default Bootstrap light button hover */
+.btn-dark:hover   /* Default Bootstrap dark button hover */
+{
+    transform: translateY(-1px) scale(1.02);
+    box-shadow: 0 3px 6px rgba(0,0,0,0.1);
+}
+
+/* Ensure our THEMED buttons (gradients) KEEP their specific transitions and hover effects */
+.btn-vitalcare-patient, 
+body.patient-body-bg .btn-success, 
+body.patient-body-bg .btn-primary, 
+body.patient-body-bg .btn-outline-success,
+body.doctor-body-bg .btn-info,
+.btn-vitalcare-dark, 
+body.doctor-body-bg .btn-primary,
+body.admin-dashboard-bg .btn-danger,
+body.admin-dashboard-bg .btn-primary.btn-admin-theme {
+    transition: all 0.3s ease-in-out !important; /* Override generic .btn transition if needed */
+}
+
+.btn-vitalcare-patient:hover, 
+body.patient-body-bg .btn-success:hover, 
+body.patient-body-bg .btn-primary:hover, 
+body.patient-body-bg .btn-outline-success:hover,
+body.doctor-body-bg .btn-info:hover,
+.btn-vitalcare-dark:hover, 
+body.doctor-body-bg .btn-primary:hover,
+body.admin-dashboard-bg .btn-danger:hover,
+body.admin-dashboard-bg .btn-primary.btn-admin-theme:hover {
+    transform: translateY(-2px) scale(1.03) !important; /* Reaffirm more pronounced effect */
+    /* Box-shadow is already defined in their specific hover rules */
+}
+
+
+/* Styles for role-specific dashboard backgrounds on Index.cshtml */
+.admin-dashboard-bg {
+    background-image: none !important; 
+    padding: 0 !important; 
+    border-radius: 0 !important; 
+}
+
+.doctor-dashboard-bg {
+    background-image: none !important; 
+    padding: 0 !important; 
+    border-radius: 0 !important; 
+}
+
+.patient-dashboard-bg {
+    padding: 0 !important; 
+    border-radius: 0 !important; 
+}
+
+/* Ensure content within these backgrounds is legible */
+.admin-dashboard-bg .card,
+.doctor-dashboard-bg .card,
+.patient-dashboard-bg .card {
+    /* background-color: rgba(255, 255, 255, 0.9); */ /* Card bg handled by theme */
+}
+
+/* Text shadow for better readability on complex backgrounds, if needed */
+.admin-dashboard-bg .card-header h2,
+.doctor-dashboard-bg .card-header h2,
+.patient-dashboard-bg .card-header h2 {
+    /* text-shadow: 1px 1px 2px rgba(0,0,0,0.7); */ 
+}
+
+/* Role-specific body backgrounds */
+body.patient-body-bg {
+    /* New Medical Green Theme (Tealish Green) for Patients */
+    /* Applied globally when patient-body-bg class is on the body */
+    --bs-success-rgb: 32, 106, 93; /* RGB for #206A5D */
+    --bs-success-text-emphasis: #1A5348; /* Darker shade for text emphasis */
+    --bs-success-bg-subtle: #cfe8e4; /* Lighter shade for subtle backgrounds */
+    --bs-success-border-subtle: #a0d1c8; /* Slightly darker for subtle borders */
+
+    /* Overriding HSL values for Bootstrap's --bs-success related calculations */
+    --bs-success-h: 168; /* Hue for #206A5D */
+    --bs-success-s: 53%; /* Saturation for #206A5D */
+    --bs-success-l: 27%; /* Lightness for #206A5D */
+    
+    background-color: var(--patient-body-light-bg); /* Light green background for light mode */
+    background-image: url('/images/patient-dashboard-bg.svg'); /* Subtle pattern for patient light theme */
+    background-repeat: repeat;
+    background-size: auto;
+}
+
+body.doctor-body-bg {
+    /* Light Blue Theme for Doctors */
+    --bs-info-rgb: 13, 202, 240;
+    --bs-info-text-emphasis: #0a8ab0;
+    --bs-info-bg-subtle: #cff4fc;
+    --bs-info-border-subtle: #9eeaf9;
+
+    background-color: var(--doctor-body-light-bg); /* Light blue background for light mode */
+    background-image: url('/images/doctor-dashboard-bg-subtle.svg'); /* Subtle pattern for doctor light theme */
+    background-repeat: repeat;
+    background-size: auto;
+}
+
+/* Default/Admin body background (when no specific role class is present) for light mode */
+body:not(.patient-body-bg):not(.doctor-body-bg) {
+    background-color: #f8f9fa; /* A very light grey, or choose another default */
+    /* This will be overridden by the more specific dark theme rule above if dark mode is active */
+}
+
+/* === Aggressive Patient Navbar Override === */
+body.patient-body-bg .navbar.bg-success.navbar-dark.border-success { 
+    /* background: none !important; REMOVED */
+    /* background-image: none !important; REMOVED */
+    /* background-color: #206A5D !important; REMOVED */
+    background-image: linear-gradient(to bottom right, hsl(var(--bs-success-h), var(--bs-success-s), calc(var(--bs-success-l) - 2.5%)), hsl(var(--bs-success-h), var(--bs-success-s), calc(var(--bs-success-l) - 12.5%))) !important;
+    background-color: transparent !important; /* Fallback or to ensure gradient visibility */
+    border: none !important; 
+    border-color: #1A5348 !important; /* Keeping original darker border for now */
+    --bs-success-rgb: 32, 106, 93 !important; 
+}
+
+body.patient-body-bg .navbar.bg-success .navbar-brand,
+body.patient-body-bg .navbar.bg-success .nav-link {
+    color: #fff !important; 
+    /* text-shadow is handled by .text-shadow-custom applied in _Layout.cshtml */
+}
+
+/* Ensure toggler icon is white for patient's success navbar */
+body.patient-body-bg .navbar.bg-success .navbar-toggler-icon {
+    --bs-navbar-toggler-icon-bg: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3e%3cpath stroke='rgba(255, 255, 255, 0.95)' stroke-linecap='round' stroke-miterlimit='10' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e") !important;
+}
+/* === End Patient Navbar Override === */
+
+/* Custom class for VitalCare Doctor navbar */
+.bg-vitalcare-doctor {
+    /* background-color: #003366 !important; REMOVED */ 
+    background-image: linear-gradient(to bottom right, #003366, #002244) !important;
+    background-color: transparent !important;
+    border-color: #002244 !important; /* Or a slightly darker border like #001a33 */
+}
+
+.btn-vitalcare-dark {
+    /* background-color: #003366 !important; REMOVED */
+    /* border-color: #003366 !important; REMOVED */
+    background-image: linear-gradient(to bottom right, #003366, #002244) !important;
+    background-color: transparent !important;
+    border-color: #001a33 !important; /* Darker border */
+    color: #fff !important; 
+    transition: all 0.3s ease-in-out !important;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.1) !important;
+}
+
+.btn-vitalcare-dark:hover {
+    /* background-color: #002244 !important; REMOVED */
+    /* border-color: #002244 !important; REMOVED */
+    background-image: linear-gradient(to bottom right, #002244, #001122) !important;
+    border-color: #000d20 !important; /* Even darker border on hover */
+    color: #fff !important;
+    transform: translateY(-2px) scale(1.03) !important;
+    box-shadow: 0 6px 12px rgba(0,0,0,0.15) !important;
+}
+
+/* Styles for the manage profile navigation pills */
+.manage-nav-pills .nav-link {
+    color: #003366 !important; 
+    border-radius: 0.25rem; 
+}
+
+.manage-nav-pills .nav-link.active,
+.manage-nav-pills .show > .nav-link {
+    background-color: #003366 !important; 
+    color: #fff !important; 
+}
+
+.manage-nav-pills .nav-link:not(.active):hover {
+    background-color: #e9ecef !important; 
+    color: #003366 !important; 
+}
+
+/* Dark theme for doctor manage pills */
+[data-bs-theme="dark"] .manage-nav-pills .nav-link {
+    color: var(--link-color) !important;
+}
+[data-bs-theme="dark"] .manage-nav-pills .nav-link.active,
+[data-bs-theme="dark"] .manage-nav-pills .show > .nav-link {
+    background-color: var(--link-color) !important;
+    color: var(--bs-body-bg) !important; /* Dark text on light-ish blue bg */
+}
+[data-bs-theme="dark"] .manage-nav-pills .nav-link:not(.active):hover {
+    background-color: rgba(var(--bs-link-color-rgb), 0.15) !important;
+}
+
+
+/* Styles for the PATIENT manage profile navigation pills */
+.manage-nav-pills-patient .nav-link {
+    color: var(--bs-success) !important; /* Will now use the new medical green */
+    border-radius: 0.25rem;
+}
+
+.manage-nav-pills-patient .nav-link.active,
+.manage-nav-pills-patient .show > .nav-link {
+    background-color: var(--bs-success) !important;
+    color: #fff !important;
+}
+
+.manage-nav-pills-patient .nav-link:not(.active):hover {
+    background-color: var(--bs-success-bg-subtle) !important;
+    color: var(--bs-success) !important;
+}
+
+/* Dark theme for patient manage pills */
+[data-bs-theme="dark"] .manage-nav-pills-patient .nav-link {
+    /* Keep a distinct lightened green for dark mode for pills, or align with main dark theme link color */
+    color: hsl(var(--bs-success-h), var(--bs-success-s), calc(var(--bs-success-l) + 30%)) !important; 
+}
+[data-bs-theme="dark"] .manage-nav-pills-patient .nav-link.active,
+[data-bs-theme="dark"] .manage-nav-pills-patient .show > .nav-link {
+    background-color: hsl(var(--bs-success-h), var(--bs-success-s), calc(var(--bs-success-l) + 30%)) !important;
+    color: var(--bs-dark) !important; /* Dark text on the lighter green bg */
+}
+[data-bs-theme="dark"] .manage-nav-pills-patient .nav-link:not(.active):hover {
+    background-color: hsl(var(--bs-success-h), var(--bs-success-s), calc(var(--bs-success-l) + 20%)) !important;
+}
+
+/* Patient specific button for profile pages */
+.btn-vitalcare-patient {
+    --bs-btn-bg: hsl(168, 53%, 24.5%) !important; /* Explicit HSL for fallback */
+    --bs-btn-border-color: hsl(168, 53%, 14.5%) !important; /* Explicit HSL for fallback border */
+    --bs-btn-color: #fff !important; 
+    background-image: linear-gradient(to bottom right, hsl(168, 53%, 24.5%), hsl(168, 53%, 14.5%)) !important; /* Explicit HSL */
+    border-color: hsl(168, 53%, 14.5%) !important; /* Explicit HSL to match gradient end */
+    transition: all 0.3s ease-in-out !important;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.1) !important;
+    background-color: transparent !important; /* Ensure gradient is primary background */
+}
+
+.btn-vitalcare-patient:hover {
+    --bs-btn-hover-bg: hsl(168, 53%, 19.5%) !important; /* Explicit HSL for hover fallback */
+    --bs-btn-hover-border-color: hsl(168, 53%, 9.5%) !important; /* Explicit HSL for hover fallback border */
+    background-image: linear-gradient(to bottom right, hsl(168, 53%, 19.5%), hsl(168, 53%, 9.5%)) !important; /* Explicit HSL */
+    border-color: hsl(168, 53%, 9.5%) !important; /* Explicit HSL for hover to match gradient end */
+    color: #fff !important;
+    transform: translateY(-2px) scale(1.03) !important;
+    box-shadow: 0 6px 12px rgba(0,0,0,0.15) !important;
+}
+
+/* Style .btn-primary on patient pages like .btn-success */
+body.patient-body-bg .btn-primary {
+    --bs-btn-color: #fff !important;
+    --bs-btn-bg: hsl(168, 53%, 24.5%) !important;
+    --bs-btn-border-color: hsl(168, 53%, 14.5%) !important;
+    background-image: linear-gradient(to bottom right, hsl(168, 53%, 24.5%), hsl(168, 53%, 14.5%)) !important;
+    background-color: transparent !important; 
+    border-color: hsl(168, 53%, 14.5%) !important; 
+    transition: all 0.3s ease-in-out !important;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.1) !important;
+}
+
+body.patient-body-bg .btn-primary:hover {
+    --bs-btn-hover-color: #fff !important;
+    --bs-btn-hover-bg: hsl(168, 53%, 19.5%) !important;
+    --bs-btn-hover-border-color: hsl(168, 53%, 9.5%) !important;
+    background-image: linear-gradient(to bottom right, hsl(168, 53%, 19.5%), hsl(168, 53%, 9.5%)) !important;
+    border-color: hsl(168, 53%, 9.5%) !important;
+    color: #fff !important; 
+    transform: translateY(-2px) scale(1.03) !important;
+    box-shadow: 0 6px 12px rgba(0,0,0,0.15) !important;
+}
+
+/* Specific vibrant green background for patient profile card headers */
+.bg-vitalcare-patient-profile-theme {
+    background-color: var(--bs-success) !important;
+    /* Text color on this header should be white or very light for contrast */
+    color: #fff !important; 
+}
+
+/* Override Patient Footer Green to use the new --bs-success */
+body.patient-body-bg .app-footer {
+    /* The background gradient used --app-footer-patient-bg-start/end. Let's align these with --bs-success */
+    background: linear-gradient(to bottom right, var(--bs-success), hsl(var(--bs-success-h), var(--bs-success-s), calc(var(--bs-success-l) - 5%)));
+}
+
+/* Styles for notifications */
+.notification-item a.dropdown-item {
+    white-space: normal; 
+}
+
+/* Style for UNREAD notifications */
+.notification-item.notification-unread .dropdown-item p {
+    font-weight: bold; 
+}
+
+.notification-item.notification-unread .dropdown-item small {
+    font-weight: bold; 
+}
+
+/* Style for READ notifications */
+.notification-item.notification-read .dropdown-item p {
+    font-weight: normal; 
+    opacity: 0.75;       
+}
+
+.notification-item.notification-read .dropdown-item small {
+    font-weight: normal;
+    opacity: 0.75;       
+}
+
+/* General hover effect for all notification items */
+[data-bs-theme="light"] .notification-item .dropdown-item:hover {
+    background-color: #f0f0f0; 
+}
+[data-bs-theme="dark"] .notification-item .dropdown-item:hover {
+    background-color: rgba(255,255,255,0.1); /* Lighter overlay for dark mode */
+}
+
+/* Ensure text in hovered notification items remains readable */
+.notification-item .dropdown-item:hover p,
+.notification-item .dropdown-item:hover small {
+    /* color: #212529 !important; */ /* Handled by dropdown link hover color now */
+}
+
+/* Ensure the badge is styled correctly if not already handled by Bootstrap */
+#notificationBadge {
+    font-size: 0.75em;
+    padding: .25em .5em;
+    position: absolute;
+    top: 5px; 
+    right: 5px; 
+}
+
+#notificationPanel {
+    max-height: 400px; 
+    overflow-y: auto;
+}
+
+#notificationPanel .dropdown-item p {
+    margin-bottom: 0.25rem; 
+    font-size: 0.9em;
+}
+
+#notificationPanel .dropdown-item small {
+    font-size: 0.75em;
+}
+
+#noNotificationsMessageDisplay { /* Renamed from #noNotificationsMessage */
+    padding: 0.5rem 1rem; 
+}
+
+#markAllAsReadLink {
+    font-weight: bold;
+    text-align: center;
+}
+
+/* New App Footer Styles */
+.app-footer {
+    /* Default light mode: General, Admin, or if no body class matches */
+    background: linear-gradient(to bottom right, var(--app-footer-default-bg-start), var(--app-footer-default-bg-end));
+    color: var(--app-footer-themed-text);
+    padding-top: 2rem;    /* Increased padding */
+    padding-bottom: 2rem; /* Increased padding */
+    position: relative; /* For pseudo-elements if needed later */
+    box-shadow: inset 0 1px 2px rgba(0,0,0,0.1); /* Subtle inner top shadow */
+}
+
+/* Patient Footer - Light Mode */
+body.patient-body-bg .app-footer {
+    background: linear-gradient(to bottom right, var(--app-footer-patient-bg-start), var(--app-footer-patient-bg-end));
+}
+
+/* Doctor Footer - Light Mode */
+body.doctor-body-bg .app-footer {
+    background: linear-gradient(to bottom right, #003366, #002244) !important; /* Align with doctor header blue */
+    /* Text color should remain light, var(--app-footer-themed-text) or #fff */
+}
+
+/* Dark Mode App Footer - Overrides all light mode variants */
+[data-bs-theme="dark"] .app-footer,
+[data-bs-theme="dark"] body.patient-body-bg .app-footer, /* Ensure specificity */
+[data-bs-theme="dark"] body.doctor-body-bg .app-footer {
+    background: var(--bs-tertiary-bg) !important; /* Solid very dark background */
+    color: var(--bs-light) !important; 
+    border-top: 1px solid var(--bs-border-color);
+    box-shadow: none; /* Remove light mode inset shadow */
+}
+
+.app-footer h5 {
+    color: var(--app-footer-themed-text); 
+    text-shadow: 0 1px 1px rgba(0,0,0,0.2);
+}
+
+[data-bs-theme="dark"] .app-footer h5 {
+    color: var(--bs-light) !important;
+    text-shadow: none;
+}
+
+.app-footer p.small {
+    color: var(--app-footer-themed-muted-text);
+}
+
+[data-bs-theme="dark"] .app-footer p.small {
+    color: rgba(255, 255, 255, 0.75) !important;
+}
+
+.app-footer .footer-link {
+    color: var(--app-footer-themed-link-color);
+}
+
+.app-footer .footer-link:hover {
+    color: var(--app-footer-themed-link-hover-color) !important; 
+    text-decoration: underline;
+}
+
+[data-bs-theme="dark"] .app-footer .footer-link {
+    color: rgba(255, 255, 255, 0.75) !important;
+}
+[data-bs-theme="dark"] .app-footer .footer-link:hover {
+    color: var(--link-hover-color) !important; /* Uses the general dark theme link hover */
+}
+
+/* Social & Contact Icons in Light Mode (ALL themed footers) */
+/* This targets icons that had .text-primary and forces them to use the footer's themed light color */
+body:not([data-bs-theme="dark"]) .app-footer .footer-social-icon i.text-primary,
+body:not([data-bs-theme="dark"]) .app-footer .footer-contact-column .contact-icon-wrapper i.text-primary {
+     color: var(--app-footer-themed-link-color) !important;
+}
+
+body:not([data-bs-theme="dark"]) .app-footer .footer-social-icon:hover i.text-primary,
+body:not([data-bs-theme="dark"]) .app-footer .footer-contact-column .contact-icon-wrapper:hover i.text-primary {
+    color: var(--app-footer-themed-link-hover-color) !important;
+}
+
+/* Dark Mode Social & Contact Icons */
+[data-bs-theme="dark"] .app-footer .footer-social-icon i.text-primary,
+[data-bs-theme="dark"] .app-footer .footer-contact-column .contact-icon-wrapper i.text-primary {
+    color: var(--link-color) !important; 
+}
+[data-bs-theme="dark"] .app-footer .footer-social-icon:hover i.text-primary,
+[data-bs-theme="dark"] .app-footer .footer-contact-column .contact-icon-wrapper:hover i.text-primary {
+    color: var(--link-hover-color) !important;
+}
+
+.footer-contact-column .contact-item strong {
+    color: var(--app-footer-themed-text); 
+}
+
+[data-bs-theme="dark"] .footer-contact-column .contact-item strong {
+    color: rgba(255, 255, 255, 0.9) !important; 
+}
+
+.copyright-footer {
+    background-color: var(--bs-gray-200); /* Light grey for light mode */
+    color: var(--bs-gray-700); /* Darker grey text for light mode */
+    font-size: 0.875em;
+    padding: 1rem 0;
+}
+
+[data-bs-theme="dark"] .copyright-footer {
+    background-color: var(--bs-gray-900); /* Very dark grey for dark mode */
+    color: var(--bs-gray-400); /* Lighter grey text for dark mode */
+}
+
+/* Enhancements for Index.cshtml - Features Section (Non-Logged-In) */
+.features-section-bg {
+    background: linear-gradient(to bottom, var(--bs-light), #ffffff); /* Subtle gradient from Bootstrap light to white */
+}
+
+[data-bs-theme="dark"] .features-section-bg {
+    background: linear-gradient(to bottom, var(--bs-gray-800), var(--bs-gray-900)); /* Dark gradient */
+}
+
+.feature-card-hover {
+    transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+}
+
+.feature-card-hover:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15) !important; /* Enhanced shadow on hover */
+}
+
+[data-bs-theme="dark"] .feature-card-hover:hover {
+    box-shadow: 0 0.5rem 1rem rgba(255, 255, 255, 0.075) !important; /* Lighter shadow for dark mode */
+}
+
+/* Ensure icons in feature cards are vertically aligned if they are not by default */
+.feature-card-hover .card-body .bi {
+    display: inline-block; /* Helps with alignment sometimes */
+}
+
+/* Doctor Dashboard Enhancements */
+.stat-card {
+    transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+    /* Base styles are mostly Bootstrap utility classes for borders and subtle backgrounds */
+}
+
+.stat-card:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 0.3rem 0.8rem rgba(0, 0, 0, 0.1);
+}
+
+[data-bs-theme="dark"] .stat-card {
+    /* Subtle backgrounds like bg-info-subtle are handled by Bootstrap's dark theme. 
+       We might need to ensure text contrast if default Bootstrap is not enough. */
+}
+
+[data-bs-theme="dark"] .stat-card .stat-value.text-info {
+    color: var(--bs-info-text-emphasis) !important;
+}
+[data-bs-theme="dark"] .stat-card .stat-value.text-warning {
+    color: var(--bs-warning-text-emphasis) !important;
+}
+[data-bs-theme="dark"] .stat-card .stat-value.text-success {
+    color: var(--bs-success-text-emphasis) !important;
+}
+
+[data-bs-theme="dark"] .stat-card:hover {
+    box-shadow: 0 0.3rem 0.8rem rgba(255, 255, 255, 0.06);
+}
+
+.action-card-hover {
+    transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+}
+
+.action-card-hover:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 0.5rem 1.2rem rgba(0, 0, 0, 0.15) !important;
+}
+
+[data-bs-theme="dark"] .action-card-hover:hover {
+    box-shadow: 0 0.5rem 1.2rem rgba(255, 255, 255, 0.1) !important;
+}
+
+/* Ensure main card header for doctor portal also uses custom shadow in dark mode if needed */
+[data-bs-theme="dark"] .card-header.text-shadow-custom {
+    /* text-shadow rule is already defined for .text-shadow-custom and its dark variant */
+}
+
+/* Removed commented out Doctor-specific theming for /Appointments/Details page */
+
+/* Footer Contact Item Styling */
+.footer-contact-column .contact-icon-wrapper {
+    /* The icon color is set to text-primary in HTML. 
+       We can adjust size or add a background if needed. */
+}
+
+[data-bs-theme="dark"] .footer-contact-column .contact-icon-wrapper i {
+    color: var(--link-color) !important; /* Use dark theme's link color for icons */
+}
+
+.footer-contact-column .contact-item strong {
+    /* text-white-75 in HTML is fine for light mode. */
+}
+
+[data-bs-theme="dark"] .footer-contact-column .contact-item strong {
+    color: rgba(255, 255, 255, 0.9) !important; /* Make it a bit brighter in dark mode */
+}
+
+/* Doctor Dashboard - Quick Links and Announcements Widgets */
+.quick-links-widget .list-group-item {
+    /* Uses default list-group-item styling, which is already themed by your dark mode CSS */
+}
+
+.quick-links-widget .list-group-item i {
+    transition: transform 0.2s ease-in-out;
+}
+
+.quick-links-widget .list-group-item:hover i {
+    transform: translateX(3px);
+}
+
+.announcements-widget .card-body {
+    font-size: 0.9rem;
+}
+
+.announcements-widget hr {
+    border-top-style: dashed;
+}
+
+[data-bs-theme="dark"] .announcements-widget {
+    /* Card background is handled by general [data-bs-theme="dark"] .card rules */
+}
+
+[data-bs-theme="dark"] .quick-links-widget .list-group-item .text-muted {
+    color: var(--bs-secondary-color) !important; /* Ensure icons are themed correctly */
+}
+
+[data-bs-theme="dark"] .announcements-widget .text-muted {
+    color: var(--bs-secondary-text-emphasis) !important; /* Ensure announcement text is themed */
+}
+
+/* Patient Dashboard - Useful Info and Reminders Widgets */
+.useful-info-widget .list-group-item {
+    /* Uses default list-group-item styling, which is already themed by your dark mode CSS */
+}
+
+.useful-info-widget .list-group-item i {
+    transition: transform 0.2s ease-in-out;
+}
+
+.useful-info-widget .list-group-item:hover i {
+    transform: translateX(3px);
+}
+
+.reminders-widget .card-body {
+    font-size: 0.9rem;
+}
+
+.reminders-widget hr {
+    border-top-style: dashed;
+}
+
+[data-bs-theme="dark"] .useful-info-widget .list-group-item .text-muted {
+    color: var(--bs-secondary-color) !important; /* Ensure icons are themed correctly */
+}
+
+[data-bs-theme="dark"] .reminders-widget {
+    /* Card background is handled by general [data-bs-theme="dark"] .card rules */
+}
+
+[data-bs-theme="dark"] .reminders-widget .text-muted {
+    color: var(--bs-secondary-text-emphasis) !important; /* Ensure reminder text is themed */
+}
+
+/* Removed commented out Doctor-specific theming for /Appointments/Details page */
+
+/* Dark mode toggle icon color - UPDATED for better contrast on different headers */
+/* Default icon color for theme toggler (e.g., dark for light theme header) */
+#themeIconSunSmUp,
+#themeIconMoonSmUp,
+#themeIconSunXs,
+#themeIconMoonXs {
+    color: #343a40; /* Default to dark (for sun icon on light header) */
+}
+
+/* Moon icon should be light when it's visible (dark theme active on a dark header) */
+[data-bs-theme="dark"] #themeIconMoonSmUp,
+[data-bs-theme="dark"] #themeIconMoonXs {
+    color: #f8f9fa !important; /* Light color for moon */
+}
+
+/* Sun icon should be dark when it's visible (light theme active on a light header) */
+[data-bs-theme="light"] #themeIconSunSmUp,
+[data-bs-theme="light"] #themeIconSunXs {
+    color: #343a40 !important; /* Dark color for sun */
+}
+
+/* Ensure non-visible icons don't clash if they briefly appear during theme switch */
+[data-bs-theme="dark"] #themeIconSunSmUp,
+[data-bs-theme="dark"] #themeIconSunXs {
+    color: #343a40; /* Keep sun dark even if hidden in dark mode */
+}
+
+[data-bs-theme="light"] #themeIconMoonSmUp,
+[data-bs-theme="light"] #themeIconMoonXs {
+     color: #f8f9fa; /* Keep moon light even if hidden in light mode */
+}
+
+
+/* Style .btn-primary on doctor pages with blue gradient */
+body.doctor-body-bg .btn-primary {
+    --bs-btn-color: #fff !important;
+    --bs-btn-bg: #003366 !important; /* Fallback */
+    --bs-btn-border-color: #003366 !important; /* Fallback */
+    background-image: linear-gradient(to bottom right, #003366, #002244) !important;
+    background-color: transparent !important; 
+    border-color: #002244 !important; 
+    transition: all 0.3s ease-in-out !important;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.1) !important;
+}
+
+body.doctor-body-bg .btn-primary:hover {
+    --bs-btn-hover-color: #fff !important;
+    --bs-btn-hover-bg: #002244 !important; /* Fallback */
+    --bs-btn-hover-border-color: #001122 !important; /* Fallback */
+    background-image: linear-gradient(to bottom right, #002244, #001122) !important;
+    border-color: #001122 !important;
+    color: #fff !important; 
+    transform: translateY(-2px) scale(1.03) !important;
+    box-shadow: 0 6px 12px rgba(0,0,0,0.15) !important;
+}
+
+/* Apply MEDICAL BLUE gradient to .btn-info on doctor pages */
+body.doctor-body-bg .btn-info {
+    --bs-btn-color: #fff !important;
+    --bs-btn-bg: #003366 !important; /* Fallback blue */
+    --bs-btn-border-color: #002244 !important; /* Fallback blue border */
+    background-image: linear-gradient(to bottom right, #003366, #002244) !important;
+    background-color: transparent !important; 
+    border-color: #002244 !important; /* Match end of gradient */
+    transition: all 0.3s ease-in-out !important;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.1) !important;
+    transform: scale(1) !important; /* Reset from any previous green theme specific transform */
+}
+
+body.doctor-body-bg .btn-info:hover {
+    --bs-btn-hover-color: #fff !important;
+    --bs-btn-hover-bg: #002244 !important; /* Fallback blue hover */
+    --bs-btn-hover-border-color: #001122 !important; /* Fallback blue hover border */
+    background-image: linear-gradient(to bottom right, #002244, #001122) !important;
+    border-color: #001122 !important; /* Match end of hover gradient */
+    color: #fff !important; 
+    transform: translateY(-2px) scale(1.03) !important;
+    box-shadow: 0 6px 12px rgba(0,0,0,0.15) !important;
+}
+
+/* === Admin Portal Theme (Carmine/Wine Red) === */
+
+/* Admin Navbar Theme */
+body.admin-dashboard-bg .navbar-admin-theme { /* Assuming a specific class for admin navbar */
+    background-image: linear-gradient(to bottom right, #960018, #700012) !important;
+    background-color: transparent !important;
+    border-color: #700012 !important; 
+}
+
+body.admin-dashboard-bg .navbar-admin-theme .navbar-brand,
+body.admin-dashboard-bg .navbar-admin-theme .nav-link {
+    color: #fff !important; 
+}
+
+body.admin-dashboard-bg .navbar-admin-theme .navbar-toggler-icon {
+    --bs-navbar-toggler-icon-bg: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3e%3cpath stroke='rgba(255, 255, 255, 0.95)' stroke-linecap='round' stroke-miterlimit='10' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e") !important;
+}
+
+/* Admin Buttons (.btn-danger or .btn-primary on admin pages) */
+body.admin-dashboard-bg .btn-danger,
+body.admin-dashboard-bg .btn-primary.btn-admin-theme { /* Adding .btn-admin-theme for primary buttons needing this red */
+    --bs-btn-color: #fff !important;
+    --bs-btn-bg: #960018 !important; /* Fallback */
+    --bs-btn-border-color: #960018 !important; /* Fallback */
+    background-image: linear-gradient(to bottom right, #960018, #700012) !important;
+    background-color: transparent !important; 
+    border-color: #700012 !important; 
+    transition: all 0.3s ease-in-out !important;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.1) !important;
+}
+
+body.admin-dashboard-bg .btn-danger:hover,
+body.admin-dashboard-bg .btn-primary.btn-admin-theme:hover {
+    --bs-btn-hover-color: #fff !important;
+    --bs-btn-hover-bg: #700012 !important; /* Fallback */
+    --bs-btn-hover-border-color: #4D000C !important; /* Fallback */
+    background-image: linear-gradient(to bottom right, #700012, #4D000C) !important;
+    border-color: #4D000C !important;
+    color: #fff !important; 
+    transform: translateY(-2px) scale(1.03) !important;
+    box-shadow: 0 6px 12px rgba(0,0,0,0.15) !important;
+}
+
+/* Apply similar styling to .btn-success on patient pages */
+body.patient-body-bg .btn-success {
+    --bs-btn-bg: hsl(168, 53%, 24.5%) !important;
+    --bs-btn-border-color: hsl(168, 53%, 14.5%) !important;
+    --bs-btn-color: #fff !important; 
+    background-image: linear-gradient(to bottom right, hsl(168, 53%, 24.5%), hsl(168, 53%, 14.5%)) !important;
+    border-color: hsl(168, 53%, 14.5%) !important;
+    transition: all 0.3s ease-in-out !important;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.1) !important;
+    background-color: transparent !important; 
+}
+
+body.patient-body-bg .btn-success:hover {
+    --bs-btn-hover-bg: hsl(168, 53%, 19.5%) !important;
+    --bs-btn-hover-border-color: hsl(168, 53%, 9.5%) !important;
+    background-image: linear-gradient(to bottom right, hsl(168, 53%, 19.5%), hsl(168, 53%, 9.5%)) !important;
+    border-color: hsl(168, 53%, 9.5%) !important;
+    color: #fff !important;
+    transform: translateY(-2px) scale(1.03) !important;
+    box-shadow: 0 6px 12px rgba(0,0,0,0.15) !important;
+}
+
+/* Style .btn-outline-success on patient pages like solid green gradient buttons */
+body.patient-body-bg .btn-outline-success {
+    --bs-btn-color: #fff !important; /* Text color to white */
+    --bs-btn-bg: hsl(168, 53%, 24.5%) !important; /* Explicit HSL for fallback */
+    --bs-btn-border-color: hsl(168, 53%, 14.5%) !important; /* Explicit HSL for border */
+    background-image: linear-gradient(to bottom right, hsl(168, 53%, 24.5%), hsl(168, 53%, 14.5%)) !important; /* Explicit HSL */
+    color: #fff !important; /* Ensure text is white */
+    border-color: hsl(168, 53%, 14.5%) !important; /* Explicit HSL to match gradient end */
+    transition: all 0.3s ease-in-out !important;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.1) !important;
+    background-color: transparent !important; /* Ensure gradient is primary background if previously set otherwise */
+}
+
+body.patient-body-bg .btn-outline-success:hover {
+    --bs-btn-hover-color: #fff !important;
+    --bs-btn-hover-bg: hsl(168, 53%, 19.5%) !important; /* Explicit HSL for hover fallback */
+    --bs-btn-hover-border-color: hsl(168, 53%, 9.5%) !important; /* Explicit HSL for hover border */
+    background-image: linear-gradient(to bottom right, hsl(168, 53%, 19.5%), hsl(168, 53%, 9.5%)) !important; /* Explicit HSL */
+    color: #fff !important; /* Ensure text is white on hover */
+    border-color: hsl(168, 53%, 9.5%) !important; /* Explicit HSL for hover to match gradient end */
+    transform: translateY(-2px) scale(1.03) !important;
+    box-shadow: 0 6px 12px rgba(0,0,0,0.15) !important;
+}
+
+/* === Admin Portal Theme (Carmine/Wine Red) === */
+
+/* === General Button Hover Enhancements === */
+.btn {
+    /* Ensure all buttons have a transition for hover effects */
+    /* If not already more specifically defined with !important */
+    transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out, background-color 0.2s ease-in-out, border-color 0.2s ease-in-out;
+}
+
+/* Generic hover for non-themed Bootstrap buttons */
+.btn-secondary:hover,
+.btn-warning:hover,
+.btn-light:hover, /* Default Bootstrap light button hover */
+.btn-dark:hover   /* Default Bootstrap dark button hover */
+{
+    transform: translateY(-1px) scale(1.02);
+    box-shadow: 0 3px 6px rgba(0,0,0,0.1);
+}
+
+/* Ensure our THEMED buttons (gradients) KEEP their specific transitions and hover effects */
+.btn-vitalcare-patient, 
+body.patient-body-bg .btn-success, 
+body.patient-body-bg .btn-primary, 
+body.patient-body-bg .btn-outline-success,
+body.doctor-body-bg .btn-info,
+.btn-vitalcare-dark, 
+body.doctor-body-bg .btn-primary,
+body.admin-dashboard-bg .btn-danger,
+body.admin-dashboard-bg .btn-primary.btn-admin-theme {
+    transition: all 0.3s ease-in-out !important; /* Override generic .btn transition if needed */
+}
+
+.btn-vitalcare-patient:hover, 
+body.patient-body-bg .btn-success:hover, 
+body.patient-body-bg .btn-primary:hover, 
+body.patient-body-bg .btn-outline-success:hover,
+body.doctor-body-bg .btn-info:hover,
+.btn-vitalcare-dark:hover, 
+body.doctor-body-bg .btn-primary:hover,
+body.admin-dashboard-bg .btn-danger:hover,
+body.admin-dashboard-bg .btn-primary.btn-admin-theme:hover {
+    transform: translateY(-2px) scale(1.03) !important; /* Reaffirm more pronounced effect */
+    /* Box-shadow is already defined in their specific hover rules */
+}
+
+
+/* Styles for role-specific dashboard backgrounds on Index.cshtml */
+.admin-dashboard-bg {
+    background-image: none !important; 
+    padding: 0 !important; 
+    border-radius: 0 !important; 
+}
+
+.doctor-dashboard-bg {
+    background-image: none !important; 
+    padding: 0 !important; 
+    border-radius: 0 !important; 
+}
+
+.patient-dashboard-bg {
+    padding: 0 !important; 
+    border-radius: 0 !important; 
+}
+
+/* Ensure content within these backgrounds is legible */
+.admin-dashboard-bg .card,
+.doctor-dashboard-bg .card,
+.patient-dashboard-bg .card {
+    /* background-color: rgba(255, 255, 255, 0.9); */ /* Card bg handled by theme */
+}
+
+/* Text shadow for better readability on complex backgrounds, if needed */
+.admin-dashboard-bg .card-header h2,
+.doctor-dashboard-bg .card-header h2,
+.patient-dashboard-bg .card-header h2 {
+    /* text-shadow: 1px 1px 2px rgba(0,0,0,0.7); */ 
+}
+
+/* Role-specific body backgrounds */
+body.patient-body-bg {
+    /* New Medical Green Theme (Tealish Green) for Patients */
+    /* Applied globally when patient-body-bg class is on the body */
+    --bs-success-rgb: 32, 106, 93; /* RGB for #206A5D */
+    --bs-success-text-emphasis: #1A5348; /* Darker shade for text emphasis */
+    --bs-success-bg-subtle: #cfe8e4; /* Lighter shade for subtle backgrounds */
+    --bs-success-border-subtle: #a0d1c8; /* Slightly darker for subtle borders */
+
+    /* Overriding HSL values for Bootstrap's --bs-success related calculations */
+    --bs-success-h: 168; /* Hue for #206A5D */
+    --bs-success-s: 53%; /* Saturation for #206A5D */
+    --bs-success-l: 27%; /* Lightness for #206A5D */
+    
+    background-color: var(--patient-body-light-bg); /* Light green background for light mode */
+    background-image: url('/images/patient-dashboard-bg.svg'); /* Subtle pattern for patient light theme */
+    background-repeat: repeat;
+    background-size: auto;
+}
+
+body.doctor-body-bg {
+    /* Light Blue Theme for Doctors */
+    --bs-info-rgb: 13, 202, 240;
+    --bs-info-text-emphasis: #0a8ab0;
+    --bs-info-bg-subtle: #cff4fc;
+    --bs-info-border-subtle: #9eeaf9;
+
+    background-color: var(--doctor-body-light-bg); /* Light blue background for light mode */
+    background-image: url('/images/doctor-dashboard-bg-subtle.svg'); /* Subtle pattern for doctor light theme */
+    background-repeat: repeat;
+    background-size: auto;
+}
+
+/* Default/Admin body background (when no specific role class is present) for light mode */
+body:not(.patient-body-bg):not(.doctor-body-bg) {
+    background-color: #f8f9fa; /* A very light grey, or choose another default */
+    /* This will be overridden by the more specific dark theme rule above if dark mode is active */
+}
+
+/* === Aggressive Patient Navbar Override === */
+body.patient-body-bg .navbar.bg-success.navbar-dark.border-success { 
+    /* background: none !important; REMOVED */
+    /* background-image: none !important; REMOVED */
+    /* background-color: #206A5D !important; REMOVED */
+    background-image: linear-gradient(to bottom right, hsl(var(--bs-success-h), var(--bs-success-s), calc(var(--bs-success-l) - 2.5%)), hsl(var(--bs-success-h), var(--bs-success-s), calc(var(--bs-success-l) - 12.5%))) !important;
+    background-color: transparent !important; /* Fallback or to ensure gradient visibility */
+    border: none !important; 
+    border-color: #1A5348 !important; /* Keeping original darker border for now */
+    --bs-success-rgb: 32, 106, 93 !important; 
+}
+
+body.patient-body-bg .navbar.bg-success .navbar-brand,
+body.patient-body-bg .navbar.bg-success .nav-link {
+    color: #fff !important; 
+    /* text-shadow is handled by .text-shadow-custom applied in _Layout.cshtml */
+}
+
+/* Ensure toggler icon is white for patient's success navbar */
+body.patient-body-bg .navbar.bg-success .navbar-toggler-icon {
+    --bs-navbar-toggler-icon-bg: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3e%3cpath stroke='rgba(255, 255, 255, 0.95)' stroke-linecap='round' stroke-miterlimit='10' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e") !important;
+}
+/* === End Patient Navbar Override === */
+
+/* Custom class for VitalCare Doctor navbar */
+.bg-vitalcare-doctor {
+    /* background-color: #003366 !important; REMOVED */ 
+    background-image: linear-gradient(to bottom right, #003366, #002244) !important;
+    background-color: transparent !important;
+    border-color: #002244 !important; /* Or a slightly darker border like #001a33 */
+}
+
+.btn-vitalcare-dark {
+    /* background-color: #003366 !important; REMOVED */
+    /* border-color: #003366 !important; REMOVED */
+    background-image: linear-gradient(to bottom right, #003366, #002244) !important;
+    background-color: transparent !important;
+    border-color: #001a33 !important; /* Darker border */
+    color: #fff !important; 
+    transition: all 0.3s ease-in-out !important;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.1) !important;
+}
+
+.btn-vitalcare-dark:hover {
+    /* background-color: #002244 !important; REMOVED */
+    /* border-color: #002244 !important; REMOVED */
+    background-image: linear-gradient(to bottom right, #002244, #001122) !important;
+    border-color: #000d20 !important; /* Even darker border on hover */
+    color: #fff !important;
+    transform: translateY(-2px) scale(1.03) !important;
+    box-shadow: 0 6px 12px rgba(0,0,0,0.15) !important;
+}
+
+/* Styles for the manage profile navigation pills */
+.manage-nav-pills .nav-link {
+    color: #003366 !important; 
+    border-radius: 0.25rem; 
+}
+
+.manage-nav-pills .nav-link.active,
+.manage-nav-pills .show > .nav-link {
+    background-color: #003366 !important; 
+    color: #fff !important; 
+}
+
+.manage-nav-pills .nav-link:not(.active):hover {
+    background-color: #e9ecef !important; 
+    color: #003366 !important; 
+}
+
+/* Dark theme for doctor manage pills */
+[data-bs-theme="dark"] .manage-nav-pills .nav-link {
+    color: var(--link-color) !important;
+}
+[data-bs-theme="dark"] .manage-nav-pills .nav-link.active,
+[data-bs-theme="dark"] .manage-nav-pills .show > .nav-link {
+    background-color: var(--link-color) !important;
+    color: var(--bs-body-bg) !important; /* Dark text on light-ish blue bg */
+}
+[data-bs-theme="dark"] .manage-nav-pills .nav-link:not(.active):hover {
+    background-color: rgba(var(--bs-link-color-rgb), 0.15) !important;
+}
+
+
+/* Styles for the PATIENT manage profile navigation pills */
+.manage-nav-pills-patient .nav-link {
+    color: var(--bs-success) !important; /* Will now use the new medical green */
+    border-radius: 0.25rem;
+}
+
+.manage-nav-pills-patient .nav-link.active,
+.manage-nav-pills-patient .show > .nav-link {
+    background-color: var(--bs-success) !important;
+    color: #fff !important;
+}
+
+.manage-nav-pills-patient .nav-link:not(.active):hover {
+    background-color: var(--bs-success-bg-subtle) !important;
+    color: var(--bs-success) !important;
+}
+
+/* Dark theme for patient manage pills */
+[data-bs-theme="dark"] .manage-nav-pills-patient .nav-link {
+    /* Keep a distinct lightened green for dark mode for pills, or align with main dark theme link color */
+    color: hsl(var(--bs-success-h), var(--bs-success-s), calc(var(--bs-success-l) + 30%)) !important; 
+}
+[data-bs-theme="dark"] .manage-nav-pills-patient .nav-link.active,
+[data-bs-theme="dark"] .manage-nav-pills-patient .show > .nav-link {
+    background-color: hsl(var(--bs-success-h), var(--bs-success-s), calc(var(--bs-success-l) + 30%)) !important;
+    color: var(--bs-dark) !important; /* Dark text on the lighter green bg */
+}
+[data-bs-theme="dark"] .manage-nav-pills-patient .nav-link:not(.active):hover {
+    background-color: hsl(var(--bs-success-h), var(--bs-success-s), calc(var(--bs-success-l) + 20%)) !important;
+}
+
+/* Patient specific button for profile pages */
+.btn-vitalcare-patient {
+    --bs-btn-bg: hsl(168, 53%, 24.5%) !important; /* Explicit HSL for fallback */
+    --bs-btn-border-color: hsl(168, 53%, 14.5%) !important; /* Explicit HSL for fallback border */
+    --bs-btn-color: #fff !important; 
+    background-image: linear-gradient(to bottom right, hsl(168, 53%, 24.5%), hsl(168, 53%, 14.5%)) !important; /* Explicit HSL */
+    border-color: hsl(168, 53%, 14.5%) !important; /* Explicit HSL to match gradient end */
+    transition: all 0.3s ease-in-out !important;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.1) !important;
+    background-color: transparent !important; /* Ensure gradient is primary background */
+}
+
+.btn-vitalcare-patient:hover {
+    --bs-btn-hover-bg: hsl(168, 53%, 19.5%) !important; /* Explicit HSL for hover fallback */
+    --bs-btn-hover-border-color: hsl(168, 53%, 9.5%) !important; /* Explicit HSL for hover fallback border */
+    background-image: linear-gradient(to bottom right, hsl(168, 53%, 19.5%), hsl(168, 53%, 9.5%)) !important; /* Explicit HSL */
+    border-color: hsl(168, 53%, 9.5%) !important; /* Explicit HSL for hover to match gradient end */
+    color: #fff !important;
+    transform: translateY(-2px) scale(1.03) !important;
+    box-shadow: 0 6px 12px rgba(0,0,0,0.15) !important;
+}
+
+/* Style .btn-primary on patient pages like .btn-success */
+body.patient-body-bg .btn-primary {
+    --bs-btn-color: #fff !important;
+    --bs-btn-bg: hsl(168, 53%, 24.5%) !important;
+    --bs-btn-border-color: hsl(168, 53%, 14.5%) !important;
+    background-image: linear-gradient(to bottom right, hsl(168, 53%, 24.5%), hsl(168, 53%, 14.5%)) !important;
+    background-color: transparent !important; 
+    border-color: hsl(168, 53%, 14.5%) !important; 
+    transition: all 0.3s ease-in-out !important;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.1) !important;
+}
+
+body.patient-body-bg .btn-primary:hover {
+    --bs-btn-hover-color: #fff !important;
+    --bs-btn-hover-bg: hsl(168, 53%, 19.5%) !important;
+    --bs-btn-hover-border-color: hsl(168, 53%, 9.5%) !important;
+    background-image: linear-gradient(to bottom right, hsl(168, 53%, 19.5%), hsl(168, 53%, 9.5%)) !important;
+    border-color: hsl(168, 53%, 9.5%) !important;
+    color: #fff !important; 
+    transform: translateY(-2px) scale(1.03) !important;
+    box-shadow: 0 6px 12px rgba(0,0,0,0.15) !important;
+}
+
+/* Specific vibrant green background for patient profile card headers */
+.bg-vitalcare-patient-profile-theme {
+    background-color: var(--bs-success) !important;
+    /* Text color on this header should be white or very light for contrast */
+    color: #fff !important; 
+}
+
+/* Override Patient Footer Green to use the new --bs-success */
+body.patient-body-bg .app-footer {
+    /* The background gradient used --app-footer-patient-bg-start/end. Let's align these with --bs-success */
+    background: linear-gradient(to bottom right, var(--bs-success), hsl(var(--bs-success-h), var(--bs-success-s), calc(var(--bs-success-l) - 5%)));
+}
+
+/* Styles for notifications */
+.notification-item a.dropdown-item {
+    white-space: normal; 
+}
+
+/* Style for UNREAD notifications */
+.notification-item.notification-unread .dropdown-item p {
+    font-weight: bold; 
+}
+
+.notification-item.notification-unread .dropdown-item small {
+    font-weight: bold; 
+}
+
+/* Style for READ notifications */
+.notification-item.notification-read .dropdown-item p {
+    font-weight: normal; 
+    opacity: 0.75;       
+}
+
+.notification-item.notification-read .dropdown-item small {
+    font-weight: normal;
+    opacity: 0.75;       
+}
+
+/* General hover effect for all notification items */
+[data-bs-theme="light"] .notification-item .dropdown-item:hover {
+    background-color: #f0f0f0; 
+}
+[data-bs-theme="dark"] .notification-item .dropdown-item:hover {
+    background-color: rgba(255,255,255,0.1); /* Lighter overlay for dark mode */
+}
+
+/* Ensure text in hovered notification items remains readable */
+.notification-item .dropdown-item:hover p,
+.notification-item .dropdown-item:hover small {
+    /* color: #212529 !important; */ /* Handled by dropdown link hover color now */
+}
+
+/* Ensure the badge is styled correctly if not already handled by Bootstrap */
+#notificationBadge {
+    font-size: 0.75em;
+    padding: .25em .5em;
+    position: absolute;
+    top: 5px; 
+    right: 5px; 
+}
+
+#notificationPanel {
+    max-height: 400px; 
+    overflow-y: auto;
+}
+
+#notificationPanel .dropdown-item p {
+    margin-bottom: 0.25rem; 
+    font-size: 0.9em;
+}
+
+#notificationPanel .dropdown-item small {
+    font-size: 0.75em;
+}
+
+#noNotificationsMessageDisplay { /* Renamed from #noNotificationsMessage */
+    padding: 0.5rem 1rem; 
+}
+
+#markAllAsReadLink {
+    font-weight: bold;
+    text-align: center;
+}
+
+/* New App Footer Styles */
+.app-footer {
+    /* Default light mode: General, Admin, or if no body class matches */
+    background: linear-gradient(to bottom right, var(--app-footer-default-bg-start), var(--app-footer-default-bg-end));
+    color: var(--app-footer-themed-text);
+    padding-top: 2rem;    /* Increased padding */
+    padding-bottom: 2rem; /* Increased padding */
+    position: relative; /* For pseudo-elements if needed later */
+    box-shadow: inset 0 1px 2px rgba(0,0,0,0.1); /* Subtle inner top shadow */
+}
+
+/* Patient Footer - Light Mode */
+body.patient-body-bg .app-footer {
+    background: linear-gradient(to bottom right, var(--app-footer-patient-bg-start), var(--app-footer-patient-bg-end));
+}
+
+/* Doctor Footer - Light Mode */
+body.doctor-body-bg .app-footer {
+    background: linear-gradient(to bottom right, #003366, #002244) !important; /* Align with doctor header blue */
+    /* Text color should remain light, var(--app-footer-themed-text) or #fff */
+}
+
+/* Dark Mode App Footer - Overrides all light mode variants */
+[data-bs-theme="dark"] .app-footer,
+[data-bs-theme="dark"] body.patient-body-bg .app-footer, /* Ensure specificity */
+[data-bs-theme="dark"] body.doctor-body-bg .app-footer {
+    background: var(--bs-tertiary-bg) !important; /* Solid very dark background */
+    color: var(--bs-light) !important; 
+    border-top: 1px solid var(--bs-border-color);
+    box-shadow: none; /* Remove light mode inset shadow */
+}
+
+.app-footer h5 {
+    color: var(--app-footer-themed-text); 
+    text-shadow: 0 1px 1px rgba(0,0,0,0.2);
+}
+
+[data-bs-theme="dark"] .app-footer h5 {
+    color: var(--bs-light) !important;
+    text-shadow: none;
+}
+
+.app-footer p.small {
+    color: var(--app-footer-themed-muted-text);
+}
+
+[data-bs-theme="dark"] .app-footer p.small {
+    color: rgba(255, 255, 255, 0.75) !important;
+}
+
+.app-footer .footer-link {
+    color: var(--app-footer-themed-link-color);
+}
+
+.app-footer .footer-link:hover {
+    color: var(--app-footer-themed-link-hover-color) !important; 
+    text-decoration: underline;
+}
+
+[data-bs-theme="dark"] .app-footer .footer-link {
+    color: rgba(255, 255, 255, 0.75) !important;
+}
+[data-bs-theme="dark"] .app-footer .footer-link:hover {
+    color: var(--link-hover-color) !important; /* Uses the general dark theme link hover */
+}
+
+/* Social & Contact Icons in Light Mode (ALL themed footers) */
+/* This targets icons that had .text-primary and forces them to use the footer's themed light color */
+body:not([data-bs-theme="dark"]) .app-footer .footer-social-icon i.text-primary,
+body:not([data-bs-theme="dark"]) .app-footer .footer-contact-column .contact-icon-wrapper i.text-primary {
+     color: var(--app-footer-themed-link-color) !important;
+}
+
+body:not([data-bs-theme="dark"]) .app-footer .footer-social-icon:hover i.text-primary,
+body:not([data-bs-theme="dark"]) .app-footer .footer-contact-column .contact-icon-wrapper:hover i.text-primary {
+    color: var(--app-footer-themed-link-hover-color) !important;
+}
+
+/* Dark Mode Social & Contact Icons */
+[data-bs-theme="dark"] .app-footer .footer-social-icon i.text-primary,
+[data-bs-theme="dark"] .app-footer .footer-contact-column .contact-icon-wrapper i.text-primary {
+    color: var(--link-color) !important; 
+}
+[data-bs-theme="dark"] .app-footer .footer-social-icon:hover i.text-primary,
+[data-bs-theme="dark"] .app-footer .footer-contact-column .contact-icon-wrapper:hover i.text-primary {
+    color: var(--link-hover-color) !important;
+}
+
+.footer-contact-column .contact-item strong {
+    color: var(--app-footer-themed-text); 
+}
+
+[data-bs-theme="dark"] .footer-contact-column .contact-item strong {
+    color: rgba(255, 255, 255, 0.9) !important; 
+}
+
+.copyright-footer {
+    background-color: var(--bs-gray-200); /* Light grey for light mode */
+    color: var(--bs-gray-700); /* Darker grey text for light mode */
+    font-size: 0.875em;
+    padding: 1rem 0;
+}
+
+[data-bs-theme="dark"] .copyright-footer {
+    background-color: var(--bs-gray-900); /* Very dark grey for dark mode */
+    color: var(--bs-gray-400); /* Lighter grey text for dark mode */
+}
+
+/* Enhancements for Index.cshtml - Features Section (Non-Logged-In) */
+.features-section-bg {
+    background: linear-gradient(to bottom, var(--bs-light), #ffffff); /* Subtle gradient from Bootstrap light to white */
+}
+
+[data-bs-theme="dark"] .features-section-bg {
+    background: linear-gradient(to bottom, var(--bs-gray-800), var(--bs-gray-900)); /* Dark gradient */
+}
+
+.feature-card-hover {
+    transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+}
+
+.feature-card-hover:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15) !important; /* Enhanced shadow on hover */
+}
+
+[data-bs-theme="dark"] .feature-card-hover:hover {
+    box-shadow: 0 0.5rem 1rem rgba(255, 255, 255, 0.075) !important; /* Lighter shadow for dark mode */
+}
+
+/* Ensure icons in feature cards are vertically aligned if they are not by default */
+.feature-card-hover .card-body .bi {
+    display: inline-block; /* Helps with alignment sometimes */
+}
+
+/* Doctor Dashboard Enhancements */
+.stat-card {
+    transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+    /* Base styles are mostly Bootstrap utility classes for borders and subtle backgrounds */
+}
+
+.stat-card:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 0.3rem 0.8rem rgba(0, 0, 0, 0.1);
+}
+
+[data-bs-theme="dark"] .stat-card {
+    /* Subtle backgrounds like bg-info-subtle are handled by Bootstrap's dark theme. 
+       We might need to ensure text contrast if default Bootstrap is not enough. */
+}
+
+[data-bs-theme="dark"] .stat-card .stat-value.text-info {
+    color: var(--bs-info-text-emphasis) !important;
+}
+[data-bs-theme="dark"] .stat-card .stat-value.text-warning {
+    color: var(--bs-warning-text-emphasis) !important;
+}
+[data-bs-theme="dark"] .stat-card .stat-value.text-success {
+    color: var(--bs-success-text-emphasis) !important;
+}
+
+[data-bs-theme="dark"] .stat-card:hover {
+    box-shadow: 0 0.3rem 0.8rem rgba(255, 255, 255, 0.06);
+}
+
+.action-card-hover {
+    transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+}
+
+.action-card-hover:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 0.5rem 1.2rem rgba(0, 0, 0, 0.15) !important;
+}
+
+[data-bs-theme="dark"] .action-card-hover:hover {
+    box-shadow: 0 0.5rem 1.2rem rgba(255, 255, 255, 0.1) !important;
+}
+
+/* Ensure main card header for doctor portal also uses custom shadow in dark mode if needed */
+[data-bs-theme="dark"] .card-header.text-shadow-custom {
+    /* text-shadow rule is already defined for .text-shadow-custom and its dark variant */
+}
+
+/* Removed commented out Doctor-specific theming for /Appointments/Details page */
+
+/* Footer Contact Item Styling */
+.footer-contact-column .contact-icon-wrapper {
+    /* The icon color is set to text-primary in HTML. 
+       We can adjust size or add a background if needed. */
+}
+
+[data-bs-theme="dark"] .footer-contact-column .contact-icon-wrapper i {
+    color: var(--link-color) !important; /* Use dark theme's link color for icons */
+}
+
+.footer-contact-column .contact-item strong {
+    /* text-white-75 in HTML is fine for light mode. */
+}
+
+[data-bs-theme="dark"] .footer-contact-column .contact-item strong {
+    color: rgba(255, 255, 255, 0.9) !important; /* Make it a bit brighter in dark mode */
+}
+
+/* Doctor Dashboard - Quick Links and Announcements Widgets */
+.quick-links-widget .list-group-item {
+    /* Uses default list-group-item styling, which is already themed by your dark mode CSS */
+}
+
+.quick-links-widget .list-group-item i {
+    transition: transform 0.2s ease-in-out;
+}
+
+.quick-links-widget .list-group-item:hover i {
+    transform: translateX(3px);
+}
+
+.announcements-widget .card-body {
+    font-size: 0.9rem;
+}
+
+.announcements-widget hr {
+    border-top-style: dashed;
+}
+
+[data-bs-theme="dark"] .announcements-widget {
+    /* Card background is handled by general [data-bs-theme="dark"] .card rules */
+}
+
+[data-bs-theme="dark"] .quick-links-widget .list-group-item .text-muted {
+    color: var(--bs-secondary-color) !important; /* Ensure icons are themed correctly */
+}
+
+[data-bs-theme="dark"] .announcements-widget .text-muted {
+    color: var(--bs-secondary-text-emphasis) !important; /* Ensure announcement text is themed */
+}
+
+/* Patient Dashboard - Useful Info and Reminders Widgets */
+.useful-info-widget .list-group-item {
+    /* Uses default list-group-item styling, which is already themed by your dark mode CSS */
+}
+
+.useful-info-widget .list-group-item i {
+    transition: transform 0.2s ease-in-out;
+}
+
+.useful-info-widget .list-group-item:hover i {
+    transform: translateX(3px);
+}
+
+.reminders-widget .card-body {
+    font-size: 0.9rem;
+}
+
+.reminders-widget hr {
+    border-top-style: dashed;
+}
+
+[data-bs-theme="dark"] .useful-info-widget .list-group-item .text-muted {
+    color: var(--bs-secondary-color) !important; /* Ensure icons are themed correctly */
+}
+
+[data-bs-theme="dark"] .reminders-widget {
+    /* Card background is handled by general [data-bs-theme="dark"] .card rules */
+}
+
+[data-bs-theme="dark"] .reminders-widget .text-muted {
+    color: var(--bs-secondary-text-emphasis) !important; /* Ensure reminder text is themed */
+}
+
+/* Removed commented out Doctor-specific theming for /Appointments/Details page */
+
+/* Dark mode toggle icon color - UPDATED for better contrast on different headers */
+/* Default icon color for theme toggler (e.g., dark for light theme header) */
+#themeIconSunSmUp,
+#themeIconMoonSmUp,
+#themeIconSunXs,
+#themeIconMoonXs {
+    color: #343a40; /* Default to dark (for sun icon on light header) */
+}
+
+/* Moon icon should be light when it's visible (dark theme active on a dark header) */
+[data-bs-theme="dark"] #themeIconMoonSmUp,
+[data-bs-theme="dark"] #themeIconMoonXs {
+    color: #f8f9fa !important; /* Light color for moon */
+}
+
+/* Sun icon should be dark when it's visible (light theme active on a light header) */
+[data-bs-theme="light"] #themeIconSunSmUp,
+[data-bs-theme="light"] #themeIconSunXs {
+    color: #343a40 !important; /* Dark color for sun */
+}
+
+/* Ensure non-visible icons don't clash if they briefly appear during theme switch */
+[data-bs-theme="dark"] #themeIconSunSmUp,
+[data-bs-theme="dark"] #themeIconSunXs {
+    color: #343a40; /* Keep sun dark even if hidden in dark mode */
+}
+
+[data-bs-theme="light"] #themeIconMoonSmUp,
+[data-bs-theme="light"] #themeIconMoonXs {
+     color: #f8f9fa; /* Keep moon light even if hidden in light mode */
+}
+
+
+/* Style .btn-primary on doctor pages with blue gradient */
+body.doctor-body-bg .btn-primary {
+    --bs-btn-color: #fff !important;
+    --bs-btn-bg: #003366 !important; /* Fallback */
+    --bs-btn-border-color: #003366 !important; /* Fallback */
+    background-image: linear-gradient(to bottom right, #003366, #002244) !important;
+    background-color: transparent !important; 
+    border-color: #002244 !important; 
+    transition: all 0.3s ease-in-out !important;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.1) !important;
+}
+
+body.doctor-body-bg .btn-primary:hover {
+    --bs-btn-hover-color: #fff !important;
+    --bs-btn-hover-bg: #002244 !important; /* Fallback */
+    --bs-btn-hover-border-color: #001122 !important; /* Fallback */
+    background-image: linear-gradient(to bottom right, #002244, #001122) !important;
+    border-color: #001122 !important;
+    color: #fff !important; 
+    transform: translateY(-2px) scale(1.03) !important;
+    box-shadow: 0 6px 12px rgba(0,0,0,0.15) !important;
+}
+
+/* Apply MEDICAL BLUE gradient to .btn-info on doctor pages */
+body.doctor-body-bg .btn-info {
+    --bs-btn-color: #fff !important;
+    --bs-btn-bg: #003366 !important; /* Fallback blue */
+    --bs-btn-border-color: #002244 !important; /* Fallback blue border */
+    background-image: linear-gradient(to bottom right, #003366, #002244) !important;
+    background-color: transparent !important; 
+    border-color: #002244 !important; /* Match end of gradient */
+    transition: all 0.3s ease-in-out !important;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.1) !important;
+    transform: scale(1) !important; /* Reset from any previous green theme specific transform */
+}
+
+body.doctor-body-bg .btn-info:hover {
+    --bs-btn-hover-color: #fff !important;
+    --bs-btn-hover-bg: #002244 !important; /* Fallback blue hover */
+    --bs-btn-hover-border-color: #001122 !important; /* Fallback blue hover border */
+    background-image: linear-gradient(to bottom right, #002244, #001122) !important;
+    border-color: #001122 !important; /* Match end of hover gradient */
+    color: #fff !important; 
+    transform: translateY(-2px) scale(1.03) !important;
+    box-shadow: 0 6px 12px rgba(0,0,0,0.15) !important;
+}
+
+/* === Admin Portal Theme (Carmine/Wine Red) === */
+
+/* Admin Navbar Theme */
+body.admin-dashboard-bg .navbar-admin-theme { /* Assuming a specific class for admin navbar */
+    background-image: linear-gradient(to bottom right, #960018, #700012) !important;
+    background-color: transparent !important;
+    border-color: #700012 !important; 
+}
+
+body.admin-dashboard-bg .navbar-admin-theme .navbar-brand,
+body.admin-dashboard-bg .navbar-admin-theme .nav-link {
+    color: #fff !important; 
+}
+
+body.admin-dashboard-bg .navbar-admin-theme .navbar-toggler-icon {
+    --bs-navbar-toggler-icon-bg: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3e%3cpath stroke='rgba(255, 255, 255, 0.95)' stroke-linecap='round' stroke-miterlimit='10' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e") !important;
+}
+
+/* Admin Buttons (.btn-danger or .btn-primary on admin pages) */
+body.admin-dashboard-bg .btn-danger,
+body.admin-dashboard-bg .btn-primary.btn-admin-theme { /* Adding .btn-admin-theme for primary buttons needing this red */
+    --bs-btn-color: #fff !important;
+    --bs-btn-bg: #960018 !important; /* Fallback */
+    --bs-btn-border-color: #960018 !important; /* Fallback */
+    background-image: linear-gradient(to bottom right, #960018, #700012) !important;
+    background-color: transparent !important; 
+    border-color: #700012 !important; 
+    transition: all 0.3s ease-in-out !important;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.1) !important;
+}
+
+body.admin-dashboard-bg .btn-danger:hover,
+body.admin-dashboard-bg .btn-primary.btn-admin-theme:hover {
+    --bs-btn-hover-color: #fff !important;
+    --bs-btn-hover-bg: #700012 !important; /* Fallback */
+    --bs-btn-hover-border-color: #4D000C !important; /* Fallback */
+    background-image: linear-gradient(to bottom right, #700012, #4D000C) !important;
+    border-color: #4D000C !important;
+    color: #fff !important; 
+    transform: translateY(-2px) scale(1.03) !important;
+    box-shadow: 0 6px 12px rgba(0,0,0,0.15) !important;
+}
+
+/* Apply similar styling to .btn-success on patient pages */
+body.patient-body-bg .btn-success {
+    --bs-btn-bg: hsl(168, 53%, 24.5%) !important;
+    --bs-btn-border-color: hsl(168, 53%, 14.5%) !important;
+    --bs-btn-color: #fff !important; 
+    background-image: linear-gradient(to bottom right, hsl(168, 53%, 24.5%), hsl(168, 53%, 14.5%)) !important;
+    border-color: hsl(168, 53%, 14.5%) !important;
+    transition: all 0.3s ease-in-out !important;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.1) !important;
+    background-color: transparent !important; 
+}
+
+body.patient-body-bg .btn-success:hover {
+    --bs-btn-hover-bg: hsl(168, 53%, 19.5%) !important;
+    --bs-btn-hover-border-color: hsl(168, 53%, 9.5%) !important;
+    background-image: linear-gradient(to bottom right, hsl(168, 53%, 19.5%), hsl(168, 53%, 9.5%)) !important;
+    border-color: hsl(168, 53%, 9.5%) !important;
+    color: #fff !important;
+    transform: translateY(-2px) scale(1.03) !important;
+    box-shadow: 0 6px 12px rgba(0,0,0,0.15) !important;
+}
+
+/* Style .btn-outline-success on patient pages like solid green gradient buttons */
+body.patient-body-bg .btn-outline-success {
+    --bs-btn-color: #fff !important; /* Text color to white */
+    --bs-btn-bg: hsl(168, 53%, 24.5%) !important; /* Explicit HSL for fallback */
+    --bs-btn-border-color: hsl(168, 53%, 14.5%) !important; /* Explicit HSL for border */
+    background-image: linear-gradient(to bottom right, hsl(168, 53%, 24.5%), hsl(168, 53%, 14.5%)) !important; /* Explicit HSL */
+    color: #fff !important; /* Ensure text is white */
+    border-color: hsl(168, 53%, 14.5%) !important; /* Explicit HSL to match gradient end */
+    transition: all 0.3s ease-in-out !important;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.1) !important;
+    background-color: transparent !important; /* Ensure gradient is primary background if previously set otherwise */
+}
+
+body.patient-body-bg .btn-outline-success:hover {
+    --bs-btn-hover-color: #fff !important;
+    --bs-btn-hover-bg: hsl(168, 53%, 19.5%) !important; /* Explicit HSL for hover fallback */
+    --bs-btn-hover-border-color: hsl(168, 53%, 9.5%) !important; /* Explicit HSL for hover border */
+    background-image: linear-gradient(to bottom right, hsl(168, 53%, 19.5%), hsl(168, 53%, 9.5%)) !important; /* Explicit HSL */
+    color: #fff !important; /* Ensure text is white on hover */
+    border-color: hsl(168, 53%, 9.5%) !important; /* Explicit HSL for hover to match gradient end */
+    transform: translateY(-2px) scale(1.03) !important;
+    box-shadow: 0 6px 12px rgba(0,0,0,0.15) !important;
+}
+
+/* === Admin Portal Theme (Carmine/Wine Red) === */
+
+/* === General Button Hover Enhancements === */
+.btn {
+    /* Ensure all buttons have a transition for hover effects */
+    /* If not already more specifically defined with !important */
+    transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out, background-color 0.2s ease-in-out, border-color 0.2s ease-in-out;
+}
+
+/* Generic hover for non-themed Bootstrap buttons */
+.btn-secondary:hover,
+.btn-warning:hover,
+.btn-light:hover, /* Default Bootstrap light button hover */
+.btn-dark:hover   /* Default Bootstrap dark button hover */
+{
+    transform: translateY(-1px) scale(1.02);
+    box-shadow: 0 3px 6px rgba(0,0,0,0.1);
+}
+
+/* Ensure our THEMED buttons (gradients) KEEP their specific transitions and hover effects */
+.btn-vitalcare-patient, 
+body.patient-body-bg .btn-success, 
+body.patient-body-bg .btn-primary, 
+body.patient-body-bg .btn-outline-success,
+body.doctor-body-bg .btn-info,
+.btn-vitalcare-dark, 
+body.doctor-body-bg .btn-primary,
+body.admin-dashboard-bg .btn-danger,
+body.admin-dashboard-bg .btn-primary.btn-admin-theme {
+    transition: all 0.3s ease-in-out !important; /* Override generic .btn transition if needed */
+}
+
+.btn-vitalcare-patient:hover, 
+body.patient-body-bg .btn-success:hover, 
+body.patient-body-bg .btn-primary:hover, 
+body.patient-body-bg .btn-outline-success:hover,
+body.doctor-body-bg .btn-info:hover,
+.btn-vitalcare-dark:hover, 
+body.doctor-body-bg .btn-primary:hover,
+body.admin-dashboard-bg .btn-danger:hover,
+body.admin-dashboard-bg .btn-primary.btn-admin-theme:hover {
+    transform: translateY(-2px) scale(1.03) !important; /* Reaffirm more pronounced effect */
+    /* Box-shadow is already defined in their specific hover rules */
+}
+
+
+/* Styles for role-specific dashboard backgrounds on Index.cshtml */
+.admin-dashboard-bg {
+    background-image: none !important; 
+    padding: 0 !important; 
+    border-radius: 0 !important; 
+}
+
+.doctor-dashboard-bg {
+    background-image: none !important; 
+    padding: 0 !important; 
+    border-radius: 0 !important; 
+}
+
+.patient-dashboard-bg {
+    padding: 0 !important; 
+    border-radius: 0 !important; 
+}
+
+/* Ensure content within these backgrounds is legible */
+.admin-dashboard-bg .card,
+.doctor-dashboard-bg .card,
+.patient-dashboard-bg .card {
+    /* background-color: rgba(255, 255, 255, 0.9); */ /* Card bg handled by theme */
+}
+
+/* Text shadow for better readability on complex backgrounds, if needed */
+.admin-dashboard-bg .card-header h2,
+.doctor-dashboard-bg .card-header h2,
+.patient-dashboard-bg .card-header h2 {
+    /* text-shadow: 1px 1px 2px rgba(0,0,0,0.7); */ 
+}
+
+/* Role-specific body backgrounds */
+body.patient-body-bg {
+    /* New Medical Green Theme (Tealish Green) for Patients */
+    /* Applied globally when patient-body-bg class is on the body */
+    --bs-success-rgb: 32, 106, 93; /* RGB for #206A5D */
+    --bs-success-text-emphasis: #1A5348; /* Darker shade for text emphasis */
+    --bs-success-bg-subtle: #cfe8e4; /* Lighter shade for subtle backgrounds */
+    --bs-success-border-subtle: #a0d1c8; /* Slightly darker for subtle borders */
+
+    /* Overriding HSL values for Bootstrap's --bs-success related calculations */
+    --bs-success-h: 168; /* Hue for #206A5D */
+    --bs-success-s: 53%; /* Saturation for #206A5D */
+    --bs-success-l: 27%; /* Lightness for #206A5D */
+    
+    background-color: var(--patient-body-light-bg); /* Light green background for light mode */
+    box-shadow: 0 15px 30px rgba(0,0,0,0.1);
+}
+
+.trust-card .col-md-3 i {
+    transition: all 0.3s ease;
+}
+
+.trust-card:hover .col-md-3 i {
+    transform: scale(1.2) rotateY(360deg);
+}
+
+.trust-card .col-md-3:nth-child(1) i { transition-delay: 0.1s; }
+.trust-card .col-md-3:nth-child(2) i { transition-delay: 0.2s; }
+.trust-card .col-md-3:nth-child(3) i { transition-delay: 0.3s; }
+.trust-card .col-md-3:nth-child(4) i { transition-delay: 0.4s; }
+
+/* Enhanced Button Hover Effects for Hero Section */
+.hero-section .btn {
+    position: relative;
+    overflow: hidden;
+    transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.hero-section .btn::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 0;
+    height: 0;
+    background: rgba(255,255,255,0.2);
+    border-radius: 50%;
+    transform: translate(-50%, -50%);
+    transition: all 0.6s ease;
+}
+
+.hero-section .btn:hover::before {
+    width: 300px;
+    height: 300px;
+}
+
+.hero-section .btn:hover {
+    transform: translateY(-3px) scale(1.05);
+    box-shadow: 0 10px 20px rgba(0,0,0,0.2);
+}
+
+/* Pulse Animation for Stats */
+@keyframes statPulse {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.05); }
+    100% { transform: scale(1); }
+}
+
+.fw-bold.text-success,
+.fw-bold.text-info,
+.fw-bold.text-warning {
+    animation: statPulse 2s ease-in-out infinite;
+}
+
+.fw-bold.text-success { animation-delay: 0.2s; }
+.fw-bold.text-info { animation-delay: 0.4s; }
+.fw-bold.text-warning { animation-delay: 0.6s; }
+
+/* Dark Mode Styles for Premium Cards */
+[data-bs-theme="dark"] .features-card-premium {
+    background: linear-gradient(135deg, #1e1e1e 0%, #2d2d2d 100%);
+    border-color: #495057;
+}
+
+[data-bs-theme="dark"] .features-card-premium:hover {
+    box-shadow: 0 20px 40px rgba(255,255,255,0.05), 0 0 0 1px rgba(255,255,255,0.1);
+}
+
+[data-bs-theme="dark"] .trust-card {
+    background: linear-gradient(135deg, #212529 0%, #343a40 100%);
+}
+
+[data-bs-theme="dark"] .trust-card:hover {
+    box-shadow: 0 15px 30px rgba(255,255,255,0.05);
+}
+
+/* Mobile Optimizations */
+@media (max-width: 768px) {
+    .features-card-premium:hover {
+        transform: translateY(-8px) scale(1.02);
+    }
+    
+    .feature-icon-mega {
+        width: 60px;
+        height: 60px;
+    }
+    
+    .features-card-premium:hover .feature-icon-mega {
+        transform: scale(1.05);
+    }
+}
+
+/* Add floating particles effect */
+@keyframes float {
+    0%, 100% { transform: translateY(0px); }
+    50% { transform: translateY(-10px); }
+}
+
+.feature-icon-mega::after {
+    content: '';
+    position: absolute;
+    width: 4px;
+    height: 4px;
+    background: rgba(255,255,255,0.3);
+    border-radius: 50%;
+    top: 10%;
+    right: 15%;
+    animation: float 3s ease-in-out infinite;
+}
