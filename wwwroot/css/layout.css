@@ -1,0 +1,295 @@
+/* === LAYOUT Y ESTRUCTURA === */
+/* Estilos optimizados para layout principal */
+
+/* === ROLE-SPECIFIC BACKGROUNDS === */
+body.patient-body-bg {
+    background: var(--patient-body-bg);
+    background-image: 
+        radial-gradient(circle at 20% 80%, rgba(32,106,93,0.1) 0%, transparent 50%),
+        radial-gradient(circle at 80% 20%, rgba(40,167,69,0.1) 0%, transparent 50%);
+    background-attachment: fixed;
+    background-size: 100% 100%;
+}
+
+body.doctor-body-bg {
+    background: var(--doctor-body-bg);
+    background-image: 
+        radial-gradient(circle at 20% 80%, rgba(13,202,240,0.1) 0%, transparent 50%),
+        radial-gradient(circle at 80% 20%, rgba(0,123,255,0.1) 0%, transparent 50%);
+    background-attachment: fixed;
+    background-size: 100% 100%;
+}
+
+/* Dark theme overrides para backgrounds */
+[data-bs-theme="dark"] body.patient-body-bg,
+[data-bs-theme="dark"] body.doctor-body-bg {
+    background-image: none !important;
+    background-color: var(--body-bg) !important; 
+}
+
+/* === DASHBOARD LAYOUTS === */
+.admin-dashboard-bg {
+    background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+    min-height: 100vh;
+}
+
+.doctor-dashboard-bg {
+    background: linear-gradient(135deg, #e0f7fa 0%, #b2ebf2 100%);
+    min-height: 100vh;
+}
+
+.patient-dashboard-bg {
+    background: linear-gradient(135deg, #e8f5e8 0%, #c8e6c9 100%);
+    min-height: 100vh;
+}
+
+/* === NAVBAR SPECIFIC STYLES === */
+body.patient-body-bg .navbar.bg-success.navbar-dark.border-success { 
+    background: linear-gradient(135deg, #28a745 0%, #20c997 100%) !important;
+    border-color: #20c997 !important;
+    backdrop-filter: blur(10px);
+    box-shadow: var(--shadow-sm);
+}
+
+body.patient-body-bg .navbar.bg-success .navbar-brand,
+body.patient-body-bg .navbar.bg-success .nav-link {
+    color: white !important;
+    text-shadow: 0 1px 2px rgba(0,0,0,0.2);
+}
+
+.bg-vitalcare-doctor {
+    background: linear-gradient(135deg, #17a2b8 0%, #20c997 100%) !important;
+    color: white !important;
+}
+
+/* === APP FOOTER - CONSOLIDADO === */
+.app-footer {
+    background: var(--app-footer-default-bg);
+    color: var(--app-footer-text);
+    padding: 2rem 0 1rem;
+    margin-top: auto;
+    position: relative;
+    overflow: hidden;
+}
+
+/* Footer específico por rol */
+body.patient-body-bg .app-footer {
+    background: var(--app-footer-patient-bg);
+}
+
+body.doctor-body-bg .app-footer {
+    background: var(--app-footer-doctor-bg);
+}
+
+/* Dark mode footer */
+[data-bs-theme="dark"] .app-footer,
+[data-bs-theme="dark"] body.patient-body-bg .app-footer,
+[data-bs-theme="dark"] body.doctor-body-bg .app-footer {
+    background: linear-gradient(135deg, #1a1a1a 0%, #2d2d2d 100%) !important;
+    border-top: 1px solid var(--card-border-color);
+}
+
+.app-footer h5 {
+    color: var(--app-footer-text);
+    font-weight: 600;
+    margin-bottom: 1rem;
+}
+
+.app-footer p.small {
+    color: var(--app-footer-muted);
+    margin-bottom: 0.5rem;
+}
+
+.app-footer .footer-link {
+    color: var(--app-footer-link);
+    text-decoration: none;
+    transition: all var(--transition-fast);
+}
+
+.app-footer .footer-link:hover {
+    color: var(--app-footer-link-hover);
+    transform: translateX(3px);
+}
+
+/* === FOOTER CONTACT SECTION === */
+.footer-contact-column .contact-item strong {
+    color: var(--app-footer-text);
+    display: block;
+}
+
+.footer-contact-column .contact-icon-wrapper {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 2rem;
+    height: 2rem;
+    margin-right: 0.75rem;
+}
+
+[data-bs-theme="dark"] .footer-contact-column .contact-icon-wrapper i {
+    color: var(--app-footer-link);
+}
+
+/* === COPYRIGHT FOOTER === */
+.copyright-footer {
+    background: rgba(0,0,0,0.1);
+    color: var(--app-footer-muted);
+    padding: 1rem 0;
+    text-align: center;
+    border-top: 1px solid rgba(255,255,255,0.1);
+}
+
+[data-bs-theme="dark"] .copyright-footer {
+    background: rgba(0,0,0,0.3);
+    border-top-color: rgba(255,255,255,0.05);
+}
+
+/* === FEATURES SECTION === */
+.features-section-bg {
+    background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+    position: relative;
+}
+
+[data-bs-theme="dark"] .features-section-bg {
+    background: linear-gradient(135deg, #1a1a1a 0%, #2d2d2d 100%);
+}
+
+/* === WIDGET STYLES === */
+.quick-links-widget .list-group-item {
+    border: none;
+    background: transparent;
+    padding: 0.75rem 1rem;
+    transition: all var(--transition-fast);
+}
+
+.quick-links-widget .list-group-item:hover {
+    background: rgba(0,123,255,0.1);
+    transform: translateX(5px);
+}
+
+.quick-links-widget .list-group-item i {
+    color: #6c757d;
+    margin-right: 0.75rem;
+    transition: color var(--transition-fast);
+}
+
+.quick-links-widget .list-group-item:hover i {
+    color: #007bff;
+}
+
+.useful-info-widget .list-group-item {
+    border: none;
+    background: transparent;
+    padding: 0.75rem 1rem;
+    transition: all var(--transition-fast);
+}
+
+.useful-info-widget .list-group-item:hover {
+    background: rgba(40,167,69,0.1);
+    transform: translateX(5px);
+}
+
+.useful-info-widget .list-group-item i {
+    color: #6c757d;
+    margin-right: 0.75rem;
+    transition: color var(--transition-fast);
+}
+
+.useful-info-widget .list-group-item:hover i {
+    color: #28a745;
+}
+
+/* === ANNOUNCEMENTS & REMINDERS === */
+.announcements-widget .card-body,
+.reminders-widget .card-body {
+    padding: 1.5rem;
+}
+
+.announcements-widget hr,
+.reminders-widget hr {
+    margin: 1rem 0;
+    border-color: rgba(0,0,0,0.1);
+}
+
+[data-bs-theme="dark"] .announcements-widget,
+[data-bs-theme="dark"] .reminders-widget {
+    background-color: var(--card-bg);
+}
+
+[data-bs-theme="dark"] .quick-links-widget .list-group-item .text-muted,
+[data-bs-theme="dark"] .useful-info-widget .list-group-item .text-muted,
+[data-bs-theme="dark"] .announcements-widget .text-muted,
+[data-bs-theme="dark"] .reminders-widget .text-muted {
+    color: var(--secondary-text-emphasis) !important;
+}
+
+/* === THEME ICONS === */
+#themeIconSunSmUp,
+#themeIconMoonSmUp {
+    transition: all var(--transition-fast);
+}
+
+[data-bs-theme="dark"] #themeIconMoonSmUp,
+[data-bs-theme="light"] #themeIconSunSmUp {
+    display: inline-block;
+}
+
+[data-bs-theme="dark"] #themeIconSunSmUp,
+[data-bs-theme="light"] #themeIconMoonSmUp {
+    display: none;
+}
+
+/* === TABLE OPTIMIZATIONS === */
+.table {
+    margin-bottom: 0;
+}
+
+.table thead {
+    background-color: var(--bs-tertiary-bg, #f8f9fa);
+}
+
+[data-bs-theme="dark"] .table thead {
+    background-color: var(--bs-tertiary-bg);
+    color: var(--body-color);
+}
+
+/* === NOTIFICATION STYLES === */
+#notificationBadge {
+    background: linear-gradient(135deg, #dc3545 0%, #c82333 100%);
+    border: 2px solid white;
+    box-shadow: var(--shadow-sm);
+    animation: none; /* Remove constant animation */
+}
+
+#notificationPanel {
+    max-height: 400px;
+    overflow-y: auto;
+    border: none;
+    box-shadow: var(--shadow-lg);
+}
+
+#notificationPanel .dropdown-item {
+    border-bottom: 1px solid rgba(0,0,0,0.05);
+    padding: 1rem;
+}
+
+#notificationPanel .dropdown-item:last-child {
+    border-bottom: none;
+}
+
+#noNotificationsMessageDisplay {
+    text-align: center;
+    color: #6c757d;
+    padding: 2rem;
+}
+
+#markAllAsReadLink {
+    color: #007bff;
+    text-decoration: none;
+    font-weight: 500;
+    transition: color var(--transition-fast);
+}
+
+#markAllAsReadLink:hover {
+    color: #0056b3;
+} 

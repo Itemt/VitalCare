@@ -1,0 +1,514 @@
+/* === EFECTOS AVANZADOS SOLO EN HOVER === */
+/* Optimizado para máximo rendimiento - efectos solo cuando son necesarios */
+
+/* === HERO EFFECTS MEJORADOS === */
+.hero-section-enhanced {
+    position: relative;
+    overflow: hidden;
+}
+
+/* === EFECTO ARCOÍRIS SUAVIZADO DEL LETRERO === */
+.hero-glow-border {
+    position: absolute;
+    top: -2px;
+    left: -2px;
+    right: -2px;
+    bottom: -2px;
+    background: linear-gradient(45deg, #007bff, #28a745, #ffc107, #dc3545, #007bff);
+    background-size: 400% 400%;
+    border-radius: 1.6rem;
+    z-index: -1;
+    animation: borderGlow 6s ease-in-out infinite;
+    opacity: 0.3;
+}
+
+@keyframes borderGlow {
+    0%, 100% {
+        background-position: 0% 50%;
+    }
+    50% {
+        background-position: 100% 50%;
+    }
+}
+
+/* === SPARKLES SIEMPRE VISIBLES (NO SOLO EN HOVER) === */
+.feature-sparkles {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    pointer-events: none;
+    opacity: 1; /* Siempre visibles */
+    z-index: 1;
+}
+
+.sparkle {
+    position: absolute;
+    width: 3px;
+    height: 3px;
+    background: linear-gradient(45deg, #fff, rgba(255,255,255,0.8));
+    border-radius: 50%;
+    animation: sparkleFloat 2s ease-in-out infinite;
+    box-shadow: 0 0 6px rgba(255,255,255,0.8);
+}
+
+@keyframes sparkleFloat {
+    0%, 100% {
+        opacity: 0;
+        transform: scale(0.5) translateY(0);
+    }
+    50% {
+        opacity: 1;
+        transform: scale(1.2) translateY(-8px);
+    }
+}
+
+/* === ICON EFFECTS === */
+.feature-icon-wrapper {
+    position: relative;
+    display: inline-block;
+    padding: 1rem;
+}
+
+.feature-icon-main {
+    transition: transform var(--transition-slow);
+    display: block;
+    position: relative;
+    z-index: 2;
+}
+
+.feature-card-hover:hover .feature-icon-main {
+    transform: rotateY(360deg) scale(1.1);
+    filter: drop-shadow(0 8px 16px rgba(0,0,0,0.2));
+}
+
+/* === PREMIUM CARD EFFECTS === */
+.features-card-premium {
+    position: relative;
+    overflow: hidden;
+}
+
+.premium-icon {
+    transition: transform 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    color: white !important;
+}
+
+.features-card-premium:hover .premium-icon {
+    transform: rotateY(360deg) scale(1.2);
+    filter: drop-shadow(0 10px 20px rgba(0,0,0,0.3));
+}
+
+/* Icon particles solo en hover */
+.icon-particles {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    pointer-events: none;
+    z-index: 1;
+    opacity: 0;
+    transition: opacity var(--transition-normal);
+}
+
+.features-card-premium:hover .icon-particles {
+    opacity: 1;
+}
+
+.particle {
+    position: absolute;
+    width: 2px;
+    height: 2px;
+    background: linear-gradient(45deg, #fff, rgba(255,255,255,0.8));
+    border-radius: 50%;
+    animation: particleFloat 2s ease-in-out infinite;
+    box-shadow: 0 0 4px rgba(255,255,255,0.6);
+}
+
+@keyframes particleFloat {
+    0%, 100% {
+        transform: translateY(0) translateX(0) scale(0.5);
+        opacity: 0;
+    }
+    25% {
+        opacity: 0.8;
+        transform: translateY(-10px) translateX(5px) scale(1);
+    }
+    50% {
+        opacity: 1;
+        transform: translateY(-20px) translateX(-5px) scale(1.2);
+    }
+    75% {
+        opacity: 0.8;
+        transform: translateY(-10px) translateX(8px) scale(1);
+    }
+}
+
+/* === TRUST CARD EFFECTS === */
+.trust-card .col-md-3 i {
+    transition: all var(--transition-normal);
+}
+
+.trust-card:hover .col-md-3 i {
+    color: #007bff !important;
+    transform: scale(1.2) rotate(10deg);
+}
+
+/* Efectos en cascada solo en hover */
+.trust-card:hover .col-md-3:nth-child(1) i { transition-delay: 0.1s; }
+.trust-card:hover .col-md-3:nth-child(2) i { transition-delay: 0.2s; }
+.trust-card:hover .col-md-3:nth-child(3) i { transition-delay: 0.3s; }
+.trust-card:hover .col-md-3:nth-child(4) i { transition-delay: 0.4s; }
+
+/* === BOTONES HERO RESTAURADOS === */
+.hero-btn {
+    position: relative;
+    overflow: hidden;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    border: none;
+    box-shadow: 0 8px 25px rgba(0,0,0,0.15);
+    z-index: 1;
+}
+
+.hero-btn::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+    transition: left 0.6s ease;
+    z-index: 1;
+}
+
+.hero-btn:hover::before {
+    left: 100%;
+}
+
+.hero-btn span,
+.hero-btn i {
+    position: relative;
+    z-index: 2;
+}
+
+.hero-btn:hover {
+    transform: translateY(-4px) scale(1.05);
+    box-shadow: 0 15px 35px rgba(0,0,0,0.25);
+}
+
+.hero-btn-primary {
+    background: linear-gradient(135deg, #007bff 0%, #0056b3 100%);
+}
+
+.hero-btn-primary:hover {
+    background: linear-gradient(135deg, #0056b3 0%, #004085 100%);
+}
+
+.hero-btn-success {
+    background: linear-gradient(135deg, #28a745 0%, #1e7e34 100%);
+}
+
+.hero-btn-success:hover {
+    background: linear-gradient(135deg, #1e7e34 0%, #155724 100%);
+}
+
+.hero-btn-info {
+    background: linear-gradient(135deg, #17a2b8 0%, #117a8b 100%);
+}
+
+.hero-btn-info:hover {
+    background: linear-gradient(135deg, #117a8b 0%, #0c5460 100%);
+}
+
+.hero-btn-light {
+    background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+    color: #495057;
+}
+
+.hero-btn-light:hover {
+    background: linear-gradient(135deg, #e9ecef 0%, #dee2e6 100%);
+    color: #212529;
+}
+
+/* Button Ripple Effect */
+.btn-ripple {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 0;
+    height: 0;
+    border-radius: 50%;
+    background: rgba(255,255,255,0.3);
+    transform: translate(-50%, -50%);
+    transition: all 0.6s ease;
+}
+
+.hero-btn:active .btn-ripple {
+    width: 300px;
+    height: 300px;
+}
+
+/* === ADVANCED SERVICE CARDS === */
+.advanced-service-card {
+    background: rgba(255,255,255,0.95);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255,255,255,0.2);
+    transition: all var(--transition-slow);
+    position: relative;
+    overflow: hidden;
+}
+
+.advanced-service-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
+    transition: left 0.8s ease;
+}
+
+.advanced-service-card:hover::before {
+    left: 100%;
+}
+
+.advanced-service-card:hover {
+    transform: translateY(-8px) scale(1.02);
+    box-shadow: 0 20px 40px rgba(0,0,0,0.15);
+}
+
+/* === FLOATING ICONS EFFECTS MEJORADOS === */
+.floating-medical-icons {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    opacity: 0.6;
+    transition: opacity var(--transition-normal);
+}
+
+.hero-section-enhanced:hover .floating-medical-icons {
+    opacity: 0.8;
+}
+
+.floating-icon {
+    position: absolute;
+    width: 60px;
+    height: 60px;
+    background: rgba(255,255,255,0.1);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: rgba(255,255,255,0.7);
+    animation: iconFloat 8s ease-in-out infinite;
+    transition: transform var(--transition-normal);
+    backdrop-filter: blur(5px);
+    border: 1px solid rgba(255,255,255,0.2);
+    font-size: 1.8rem;
+    cursor: pointer;
+    pointer-events: auto;
+}
+
+.floating-icon:hover {
+    transform: scale(1.3) rotateY(360deg);
+    background: rgba(255,255,255,0.2);
+    box-shadow: 0 10px 25px rgba(255,255,255,0.2);
+}
+
+@keyframes iconFloat {
+    0%, 100% {
+        transform: translateY(0) rotate(0deg);
+    }
+    25% {
+        transform: translateY(-15px) rotate(5deg);
+    }
+    50% {
+        transform: translateY(-25px) rotate(-5deg);
+    }
+    75% {
+        transform: translateY(-15px) rotate(5deg);
+    }
+}
+
+/* === MODERN FOOTER STYLES RESTAURADOS === */
+.modern-footer {
+    background: linear-gradient(135deg, #0f1419 0%, #1a1a2e 50%, #16213e 100%);
+    position: relative;
+    padding: 4rem 0 0;
+    margin-top: 6rem;
+    overflow: hidden;
+}
+
+.footer-background {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 1;
+}
+
+.footer-particles {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+}
+
+.footer-particle {
+    position: absolute;
+    border: 1px solid rgba(255,255,255,0.1);
+    border-radius: 50%;
+    animation: footerParticleFloat 20s linear infinite;
+}
+
+.footer-particle-1 {
+    width: 80px;
+    height: 80px;
+    top: 10%;
+    left: 10%;
+    animation-delay: 0s;
+    animation-duration: 25s;
+}
+
+.footer-particle-2 {
+    width: 60px;
+    height: 60px;
+    top: 60%;
+    right: 15%;
+    animation-delay: 5s;
+    animation-duration: 30s;
+}
+
+.footer-particle-3 {
+    width: 100px;
+    height: 100px;
+    bottom: 30%;
+    left: 70%;
+    animation-delay: 10s;
+    animation-duration: 22s;
+}
+
+.footer-particle-4 {
+    width: 40px;
+    height: 40px;
+    top: 30%;
+    right: 40%;
+    animation-delay: 15s;
+    animation-duration: 28s;
+}
+
+.footer-particle-5 {
+    width: 120px;
+    height: 120px;
+    bottom: 10%;
+    left: 30%;
+    animation-delay: 20s;
+    animation-duration: 26s;
+}
+
+@keyframes footerParticleFloat {
+    0% {
+        transform: translateY(0) translateX(0) rotate(0deg);
+        opacity: 0.1;
+    }
+    50% {
+        opacity: 0.3;
+    }
+    100% {
+        transform: translateY(-50px) translateX(30px) rotate(360deg);
+        opacity: 0.1;
+    }
+}
+
+.footer-gradient-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: radial-gradient(circle at 30% 20%, rgba(0,123,255,0.15) 0%, transparent 50%),
+                radial-gradient(circle at 70% 80%, rgba(40,167,69,0.15) 0%, transparent 50%);
+    animation: footerGradientShift 15s ease-in-out infinite;
+}
+
+@keyframes footerGradientShift {
+    0%, 100% { opacity: 0.7; }
+    50% { opacity: 1; }
+}
+
+/* === PERFORMANCE OPTIMIZATIONS === */
+/* Solo aplicar will-change cuando es necesario */
+.feature-card-hover,
+.stat-card,
+.action-card-hover,
+.btn {
+    will-change: auto;
+}
+
+.feature-card-hover:hover,
+.stat-card:hover,
+.action-card-hover:hover,
+.btn:hover {
+    will-change: transform, box-shadow;
+}
+
+/* === RESPONSIVE ADJUSTMENTS === */
+@media (max-width: 768px) {
+    /* Reducir efectos en móviles para mejor rendimiento */
+    .feature-card-hover:hover {
+        transform: translateY(-2px) scale(1.01);
+    }
+    
+    /* Mantener sparkles pero más pequeños */
+    .sparkle {
+        width: 2px;
+        height: 2px;
+    }
+    
+    .floating-icon {
+        animation: none; /* Desactivar animaciones flotantes */
+        width: 45px;
+        height: 45px;
+        font-size: 1.4rem;
+    }
+    
+    .advanced-service-card:hover {
+        transform: translateY(-3px) scale(1.01);
+    }
+    
+    .footer-particle {
+        display: none; /* Ocultar partículas del footer en móviles */
+    }
+}
+
+/* === DARK THEME ADJUSTMENTS === */
+[data-bs-theme="dark"] .feature-card-hover:hover {
+    box-shadow: 0 10px 20px rgba(0,0,0,0.3);
+}
+
+[data-bs-theme="dark"] .advanced-service-card {
+    background: rgba(30,30,30,0.95);
+    border-color: rgba(255,255,255,0.1);
+}
+
+[data-bs-theme="dark"] .floating-icon {
+    background: rgba(0,0,0,0.2);
+    color: rgba(255,255,255,0.5);
+}
+
+[data-bs-theme="dark"] .floating-icon:hover {
+    background: rgba(0,0,0,0.3);
+}
+
+[data-bs-theme="dark"] .modern-footer {
+    background: linear-gradient(135deg, #000000 0%, #1a1a1a 50%, #2d2d2d 100%);
+} 

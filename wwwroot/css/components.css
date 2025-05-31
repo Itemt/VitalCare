@@ -1,0 +1,391 @@
+/* === COMPONENTES OPTIMIZADOS === */
+/* Solo efectos en hover para mejor rendimiento */
+
+/* === CARDS === */
+.card {
+    background-color: var(--card-bg);
+    border-color: var(--card-border-color);
+    transition: transform var(--transition-fast), box-shadow var(--transition-fast);
+    will-change: auto; /* Reset will-change when not hovering */
+}
+
+.card:hover {
+    will-change: transform, box-shadow;
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-md);
+}
+
+[data-bs-theme="dark"] .card {
+    background-color: var(--card-bg);
+    border-color: var(--card-border-color);
+}
+
+/* === BUTTONS OPTIMIZADOS === */
+.btn {
+    transition: all var(--transition-fast);
+    will-change: auto;
+}
+
+.btn:hover {
+    will-change: transform, background-color;
+    transform: translateY(-1px);
+}
+
+.btn:focus, .btn:active:focus, .btn.active:focus {
+    outline: 0;
+    box-shadow: none;
+}
+
+/* Botones específicos VitalCare - CONSOLIDADOS */
+.btn-vitalcare-patient {
+    background: linear-gradient(135deg, #28a745 0%, #20c997 100%);
+    border: none;
+    color: white;
+    font-weight: 500;
+    text-shadow: 0 1px 2px rgba(0,0,0,0.2);
+    box-shadow: var(--shadow-sm);
+    transition: all var(--transition-fast);
+}
+
+.btn-vitalcare-patient:hover {
+    background: linear-gradient(135deg, #218838 0%, #1e7e34 100%);
+    box-shadow: var(--shadow-md);
+    color: white;
+    transform: translateY(-1px);
+}
+
+.btn-vitalcare-dark {
+    background: linear-gradient(135deg, #343a40 0%, #495057 100%);
+    border: none;
+    color: white;
+    font-weight: 500;
+    box-shadow: var(--shadow-sm);
+    transition: all var(--transition-fast);
+}
+
+.btn-vitalcare-dark:hover {
+    background: linear-gradient(135deg, #23272b 0%, #343a40 100%);
+    box-shadow: var(--shadow-md);
+    color: white;
+    transform: translateY(-1px);
+}
+
+/* === NAVBAR OPTIMIZADO === */
+.navbar {
+    transition: background-color var(--transition-normal);
+    backdrop-filter: blur(10px);
+}
+
+.navbar:hover {
+    backdrop-filter: blur(15px);
+}
+
+/* === FEATURE CARDS - CONSOLIDADO === */
+.feature-card-hover {
+    transition: all var(--transition-normal);
+    position: relative;
+    overflow: hidden;
+    background: rgba(255,255,255,0.95);
+    backdrop-filter: blur(5px);
+    border: 1px solid rgba(0,0,0,0.1);
+}
+
+.feature-card-hover:hover {
+    transform: translateY(-10px) scale(1.03);
+    box-shadow: 0 20px 40px rgba(0,0,0,0.15);
+}
+
+/* === SPARKLES SIEMPRE VISIBLES === */
+.feature-sparkles {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    pointer-events: none;
+    opacity: 1;
+    z-index: 2;
+}
+
+.sparkle {
+    position: absolute;
+    width: 6px;
+    height: 6px;
+    background: linear-gradient(45deg, #ffd700, #ffed4e, #ffffff);
+    border-radius: 50%;
+    animation: sparkleFloat 2s ease-in-out infinite;
+    box-shadow: 0 0 8px rgba(255,215,0,0.6);
+}
+
+.sparkle-1 {
+    top: 20%;
+    left: 15%;
+    animation-delay: 0s;
+}
+
+.sparkle-2 {
+    top: 60%;
+    right: 20%;
+    animation-delay: 0.7s;
+}
+
+.sparkle-3 {
+    bottom: 25%;
+    left: 25%;
+    animation-delay: 1.4s;
+}
+
+@keyframes sparkleFloat {
+    0%, 100% {
+        opacity: 0;
+        transform: translateY(0) scale(0.5);
+    }
+    50% {
+        opacity: 1;
+        transform: translateY(-12px) scale(1.2);
+    }
+}
+
+/* En hover, hacer sparkles más activos */
+.feature-card-hover:hover .sparkle {
+    animation-duration: 1.5s;
+}
+
+/* === ICON EFFECTS === */
+.feature-icon-wrapper {
+    position: relative;
+    display: inline-block;
+    padding: 1rem;
+}
+
+.feature-icon-main {
+    transition: transform var(--transition-slow);
+    display: block;
+    position: relative;
+    z-index: 3;
+}
+
+.feature-card-hover:hover .feature-icon-main {
+    transform: rotateY(360deg) scale(1.1);
+    filter: drop-shadow(0 8px 16px rgba(0,0,0,0.2));
+}
+
+/* === BOTONES MEJORADOS === */
+.btn {
+    position: relative;
+    overflow: hidden;
+    transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.btn::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+    transition: left 0.5s ease;
+    z-index: 1;
+}
+
+.btn:hover::before {
+    left: 100%;
+}
+
+.btn:hover {
+    transform: translateY(-2px) scale(1.02);
+    box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+}
+
+.btn span, .btn i {
+    position: relative;
+    z-index: 2;
+}
+
+.btn-primary {
+    background: linear-gradient(135deg, #007bff 0%, #0056b3 100%);
+    border: none;
+}
+
+.btn-primary:hover {
+    background: linear-gradient(135deg, #0056b3 0%, #004085 100%);
+}
+
+.btn-success {
+    background: linear-gradient(135deg, #28a745 0%, #1e7e34 100%);
+    border: none;
+}
+
+.btn-success:hover {
+    background: linear-gradient(135deg, #1e7e34 0%, #155724 100%);
+}
+
+.btn-info {
+    background: linear-gradient(135deg, #17a2b8 0%, #117a8b 100%);
+    border: none;
+}
+
+.btn-info:hover {
+    background: linear-gradient(135deg, #117a8b 0%, #0c5460 100%);
+}
+
+.btn-warning {
+    background: linear-gradient(135deg, #ffc107 0%, #e0a800 100%);
+    border: none;
+}
+
+.btn-warning:hover {
+    background: linear-gradient(135deg, #e0a800 0%, #d39e00 100%);
+}
+
+.btn-danger {
+    background: linear-gradient(135deg, #dc3545 0%, #c82333 100%);
+    border: none;
+}
+
+.btn-danger:hover {
+    background: linear-gradient(135deg, #c82333 0%, #bd2130 100%);
+}
+
+.btn-light {
+    background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+    color: #495057;
+    border: none;
+}
+
+.btn-light:hover {
+    background: linear-gradient(135deg, #e9ecef 0%, #dee2e6 100%);
+    color: #212529;
+}
+
+/* === PREMIUM FEATURE CARDS === */
+.features-card-premium {
+    position: relative;
+    overflow: hidden;
+    background: linear-gradient(135deg, #007bff 0%, #0056b3 100%);
+    color: white;
+}
+
+.premium-icon {
+    transition: all 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    color: white !important;
+}
+
+.features-card-premium:hover .premium-icon {
+    transform: rotateY(360deg) scale(1.3);
+    filter: drop-shadow(0 15px 30px rgba(0,0,0,0.4));
+}
+
+/* === STAT CARDS === */
+.stat-card {
+    transition: all var(--transition-normal);
+    position: relative;
+    overflow: hidden;
+}
+
+.stat-card:hover {
+    transform: translateY(-5px) scale(1.02);
+    box-shadow: 0 15px 30px rgba(0,0,0,0.15);
+}
+
+/* === ACTION CARDS === */
+.action-card-hover {
+    transition: all var(--transition-normal);
+    position: relative;
+    overflow: hidden;
+}
+
+.action-card-hover:hover {
+    transform: translateY(-8px) scale(1.03);
+    box-shadow: 0 20px 40px rgba(0,0,0,0.15);
+}
+
+/* === RESPONSIVE ADJUSTMENTS === */
+@media (max-width: 768px) {
+    .feature-card-hover:hover {
+        transform: translateY(-5px) scale(1.02);
+    }
+    
+    .sparkle {
+        width: 3px;
+        height: 3px;
+    }
+    
+    .btn:hover {
+        transform: translateY(-1px) scale(1.01);
+    }
+    
+    .stat-card:hover {
+        transform: translateY(-3px) scale(1.01);
+    }
+    
+    .action-card-hover:hover {
+        transform: translateY(-4px) scale(1.02);
+    }
+}
+
+/* === DARK THEME ADJUSTMENTS === */
+[data-bs-theme="dark"] .feature-card-hover {
+    background: rgba(30,30,30,0.95);
+    border-color: rgba(255,255,255,0.1);
+}
+
+[data-bs-theme="dark"] .feature-card-hover:hover {
+    box-shadow: 0 20px 40px rgba(0,0,0,0.3);
+}
+
+[data-bs-theme="dark"] .sparkle {
+    background: linear-gradient(45deg, #ffd700, #ffffff, #87ceeb);
+    box-shadow: 0 0 8px rgba(255,255,255,0.6);
+}
+
+/* === FORMS OPTIMIZADOS === */
+.form-control {
+    transition: border-color var(--transition-fast), box-shadow var(--transition-fast);
+}
+
+[data-bs-theme="dark"] .form-control {
+    background-color: #2b3035;
+    color: var(--body-color);
+    border-color: #495057;
+}
+
+.form-control:focus {
+    border-color: var(--bs-link-color);
+    box-shadow: 0 0 0 0.25rem rgba(110, 168, 254, 0.25);
+}
+
+/* === NOTIFICATIONS OPTIMIZADAS === */
+.notification-item {
+    transition: background-color var(--transition-fast);
+}
+
+.notification-item:hover {
+    background-color: rgba(0,0,0,0.05);
+}
+
+[data-bs-theme="dark"] .notification-item:hover {
+    background-color: rgba(255,255,255,0.05);
+}
+
+/* === NAV PILLS OPTIMIZADOS === */
+.manage-nav-pills .nav-link {
+    transition: all var(--transition-fast);
+    border-radius: 0.375rem;
+}
+
+.manage-nav-pills .nav-link:not(.active):hover {
+    background-color: rgba(0,123,255,0.1);
+    transform: translateY(-1px);
+}
+
+.manage-nav-pills-patient .nav-link {
+    transition: all var(--transition-fast);
+    border-radius: 0.375rem;
+}
+
+.manage-nav-pills-patient .nav-link:not(.active):hover {
+    background-color: rgba(40,167,69,0.1);
+    transform: translateY(-1px);
+} 

@@ -1,0 +1,343 @@
+/* === VITALCARE CSS OPTIMIZADO === */
+/* 
+ * Archivo principal optimizado que reemplaza site.css
+ * Organizado en módulos para mejor mantenimiento y rendimiento
+ * Solo efectos en hover para dispositivos de bajos recursos
+ */
+
+/* === IMPORTS OPTIMIZADOS === */
+/* Importar en orden de prioridad para mejor rendimiento */
+@import url('./base.css');         /* Variables y estilos base críticos */
+@import url('./components.css');   /* Componentes principales */
+@import url('./layout.css');       /* Layout y estructura */
+@import url('./utilities.css');    /* Utilidades y optimizaciones */
+
+/* === DARK THEME CORE OPTIMIZATIONS === */
+/* Optimizaciones específicas para modo oscuro */
+[data-bs-theme="dark"] {
+    /* Optimizar transiciones en modo oscuro */
+    color-scheme: dark;
+}
+
+[data-bs-theme="dark"] html {
+    background-color: var(--body-bg);
+    color: var(--body-color);
+}
+
+[data-bs-theme="dark"] body {
+    background-color: var(--body-bg);
+    color: var(--body-color);
+}
+
+/* === NAVBAR DARK THEME OPTIMIZATIONS === */
+[data-bs-theme="dark"] .navbar:not([class*="bg-"]) {
+    background-color: #212529 !important; 
+    --bs-navbar-color: rgba(255, 255, 255, 0.75);
+    --bs-navbar-hover-color: rgba(255, 255, 255, 0.95);
+}
+
+[data-bs-theme="dark"] .navbar.bg-white {
+    background-color: #212529 !important; 
+    --bs-navbar-color: rgba(255, 255, 255, 0.75) !important;
+    --bs-navbar-hover-color: rgba(255, 255, 255, 0.95) !important;
+}
+
+[data-bs-theme="dark"] .navbar.bg-white .nav-link {
+    color: rgba(255, 255, 255, 0.75) !important;
+}
+
+[data-bs-theme="dark"] .navbar.bg-white .nav-link:hover {
+    color: rgba(255, 255, 255, 0.95) !important;
+}
+
+/* === TABLE DARK THEME === */
+[data-bs-theme="dark"] .table {
+    --bs-table-color: var(--body-color);
+    --bs-table-bg: var(--card-bg);
+    --bs-table-border-color: var(--card-border-color);
+    --bs-table-striped-bg: rgba(255,255,255,0.05);
+    --bs-table-hover-bg: rgba(255,255,255,0.075);
+}
+
+/* === DROPDOWN DARK THEME === */
+[data-bs-theme="dark"] .dropdown-menu {
+    --bs-dropdown-bg: var(--card-bg);
+    --bs-dropdown-link-color: var(--body-color);
+    --bs-dropdown-link-hover-bg: rgba(255,255,255,0.15);
+    --bs-dropdown-border-color: var(--card-border-color);
+}
+
+/* === FORM CONTROLS DARK THEME === */
+[data-bs-theme="dark"] .form-control,
+[data-bs-theme="dark"] .form-select {
+    background-color: #2b3035;
+    color: var(--body-color);
+    border-color: #495057;
+}
+
+[data-bs-theme="dark"] .form-control:focus {
+    background-color: #2b3035;
+    border-color: #6ea8fe;
+    box-shadow: 0 0 0 0.25rem rgba(110, 168, 254, 0.25);
+}
+
+/* === ALERTS DARK THEME === */
+[data-bs-theme="dark"] .alert {
+    border-width: 1px;
+}
+
+[data-bs-theme="dark"] .alert-primary {
+    background-color: rgba(110, 168, 254, 0.15);
+    border-color: rgba(110, 168, 254, 0.3);
+    color: #6ea8fe;
+}
+
+[data-bs-theme="dark"] .alert-success {
+    background-color: rgba(25, 135, 84, 0.15);
+    border-color: rgba(25, 135, 84, 0.3);
+    color: #75b798;
+}
+
+[data-bs-theme="dark"] .alert-danger {
+    background-color: rgba(220, 53, 69, 0.15);
+    border-color: rgba(220, 53, 69, 0.3);
+    color: #ea868f;
+}
+
+[data-bs-theme="dark"] .alert-warning {
+    background-color: rgba(255, 193, 7, 0.15);
+    border-color: rgba(255, 193, 7, 0.3);
+    color: #ffda6a;
+}
+
+/* === MODAL DARK THEME === */
+[data-bs-theme="dark"] .modal-content {
+    background-color: var(--card-bg);
+    border-color: var(--card-border-color);
+}
+
+[data-bs-theme="dark"] .modal-header,
+[data-bs-theme="dark"] .modal-footer {
+    border-color: var(--card-border-color);
+}
+
+/* === BUTTONS DARK THEME === */
+[data-bs-theme="dark"] .btn-light {
+    background-color: #495057;
+    border-color: #495057;
+    color: #f8f9fa;
+}
+
+[data-bs-theme="dark"] .btn-light:hover {
+    background-color: #5a6268;
+    border-color: #545b62;
+    color: #f8f9fa;
+}
+
+[data-bs-theme="dark"] .btn-outline-secondary {
+    border-color: #6c757d;
+    color: #6c757d;
+}
+
+[data-bs-theme="dark"] .btn-outline-secondary:hover {
+    background-color: #6c757d;
+    border-color: #6c757d;
+    color: #fff;
+}
+
+/* === BADGE DARK THEME === */
+[data-bs-theme="dark"] .badge.bg-light {
+    background-color: #495057 !important;
+    color: #f8f9fa !important;
+}
+
+/* === LIST GROUP DARK THEME === */
+[data-bs-theme="dark"] .list-group-item {
+    background-color: var(--card-bg);
+    border-color: var(--card-border-color);
+    color: var(--body-color);
+}
+
+[data-bs-theme="dark"] .list-group-item-action:hover {
+    background-color: rgba(255,255,255,0.05);
+    color: var(--body-color);
+}
+
+/* === ROLE-SPECIFIC BUTTON OPTIMIZATIONS === */
+/* Consolidar estilos de botones específicos por rol */
+body.patient-body-bg .btn-primary,
+body.patient-body-bg .btn-success {
+    background: linear-gradient(135deg, #28a745 0%, #20c997 100%);
+    border: none;
+    color: white;
+    font-weight: 500;
+    text-shadow: 0 1px 2px rgba(0,0,0,0.2);
+    transition: all var(--transition-fast);
+}
+
+body.patient-body-bg .btn-primary:hover,
+body.patient-body-bg .btn-success:hover {
+    background: linear-gradient(135deg, #218838 0%, #1e7e34 100%);
+    color: white;
+    transform: translateY(-1px);
+    box-shadow: var(--shadow-md);
+}
+
+body.doctor-body-bg .btn-primary,
+body.doctor-body-bg .btn-info {
+    background: linear-gradient(135deg, #17a2b8 0%, #20c997 100%);
+    border: none;
+    color: white;
+    font-weight: 500;
+    text-shadow: 0 1px 2px rgba(0,0,0,0.2);
+    transition: all var(--transition-fast);
+}
+
+body.doctor-body-bg .btn-primary:hover,
+body.doctor-body-bg .btn-info:hover {
+    background: linear-gradient(135deg, #138496 0%, #1e7e34 100%);
+    color: white;
+    transform: translateY(-1px);
+    box-shadow: var(--shadow-md);
+}
+
+/* === PERFORMANCE CRITICAL STYLES === */
+/* Estilos que deben cargarse con alta prioridad */
+.navbar {
+    backdrop-filter: blur(10px);
+    transition: background-color var(--transition-normal);
+}
+
+.navbar:hover {
+    backdrop-filter: blur(15px);
+}
+
+/* === HERO SECTION OPTIMIZATIONS === */
+.hero-section .btn {
+    position: relative;
+    overflow: hidden;
+    transition: all var(--transition-normal);
+    will-change: auto;
+}
+
+.hero-section .btn::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+    transition: left var(--transition-slow);
+}
+
+.hero-section .btn:hover {
+    will-change: transform;
+    transform: translateY(-2px);
+}
+
+.hero-section .btn:hover::before {
+    left: 100%;
+}
+
+/* === STATISTICS ANIMATIONS - SOLO EN HOVER === */
+@keyframes statPulse {
+    0%, 100% { transform: scale(1); }
+    50% { transform: scale(1.05); }
+}
+
+/* Solo animar en hover para mejor rendimiento */
+.fw-bold.text-success:hover,
+.fw-bold.text-info:hover,
+.fw-bold.text-warning:hover {
+    animation: statPulse 0.6s ease-in-out;
+}
+
+/* === CONTENT VISIBILITY OPTIMIZATIONS === */
+/* Mejorar renderizado de contenido fuera de viewport */
+.feature-card-hover {
+    content-visibility: auto;
+    contain-intrinsic-size: 300px;
+}
+
+.stat-card {
+    content-visibility: auto;
+    contain-intrinsic-size: 200px;
+}
+
+/* === INTERSECTION OBSERVER READY === */
+/* Clases para lazy loading y animaciones basadas en viewport */
+.animate-on-scroll {
+    opacity: 0;
+    transform: translateY(20px);
+    transition: all 0.6s ease;
+}
+
+.animate-on-scroll.in-view {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* === CRITICAL FLOATING ANIMATION === */
+/* Solo para iconos realmente importantes */
+@keyframes float {
+    0%, 100% { transform: translateY(0px); }
+    50% { transform: translateY(-10px); }
+}
+
+.feature-icon-mega::after {
+    content: '';
+    position: absolute;
+    top: -5px;
+    right: -5px;
+    width: 20px;
+    height: 20px;
+    background: linear-gradient(45deg, #007bff, #0056b3);
+    border-radius: 50%;
+    opacity: 0;
+    transition: opacity var(--transition-normal);
+}
+
+.features-card-premium:hover .feature-icon-mega::after {
+    opacity: 1;
+    animation: float 2s ease-in-out infinite;
+}
+
+/* === RESPONSIVE OPTIMIZATIONS === */
+@media (max-width: 768px) {
+    /* Simplificar en dispositivos móviles */
+    .features-card-premium:hover {
+        transform: translateY(-2px) scale(1.01);
+    }
+    
+    .feature-icon-mega {
+        font-size: 2rem;
+    }
+    
+    .features-card-premium:hover .feature-icon-mega {
+        transform: scale(1.05);
+    }
+    
+    /* Desactivar backdrop-filter en móviles */
+    .navbar {
+        backdrop-filter: none !important;
+    }
+}
+
+/* === FINAL OPTIMIZATIONS === */
+/* Optimizaciones finales para mejor rendimiento */
+.trust-card,
+.features-card-premium {
+    will-change: auto;
+}
+
+.trust-card:hover,
+.features-card-premium:hover {
+    will-change: transform, box-shadow;
+}
+
+/* Reset will-change después del hover */
+.trust-card:not(:hover),
+.features-card-premium:not(:hover) {
+    will-change: auto;
+} 

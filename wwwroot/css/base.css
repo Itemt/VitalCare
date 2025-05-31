@@ -1,0 +1,82 @@
+/* === CSS VARIABLES Y BASE === */
+/* Optimizado para rendimiento - Solo variables esenciales */
+:root {
+    /* Colores principales */
+    --bs-light-rgb: 248,249,250;
+    --bs-dark-rgb: 33,37,41;
+    --body-bg: #f8f9fa; 
+    --body-color: #212529; 
+    --card-bg: #fff; 
+    --card-border-color: rgba(0,0,0,.125);
+    
+    /* Footer gradientes - consolidados */
+    --app-footer-default-bg: linear-gradient(135deg, #005f9e 0%, #004a7c 100%);
+    --app-footer-patient-bg: linear-gradient(135deg, #206A5D 0%, #1A5348 100%);
+    --app-footer-doctor-bg: linear-gradient(135deg, #0dcaf0 0%, #0aa3c2 100%);
+    
+    /* Colores de texto */
+    --app-footer-text: #f8f9fa;
+    --app-footer-link: #e0e0e0;
+    --app-footer-link-hover: #ffffff;
+    --app-footer-muted: #ced4da;
+    
+    /* Backgrounds específicos por rol */
+    --patient-body-bg: #e0f2f1;
+    --doctor-body-bg: #e0f7fa;
+    
+    /* Sombras optimizadas */
+    --shadow-sm: 0 1px 3px rgba(0,0,0,0.12);
+    --shadow-md: 0 4px 6px rgba(0,0,0,0.15);
+    --shadow-lg: 0 10px 20px rgba(0,0,0,0.15);
+    
+    /* Transiciones estándar */
+    --transition-fast: 0.2s ease;
+    --transition-normal: 0.3s ease;
+    --transition-slow: 0.4s ease;
+}
+
+/* Dark theme overrides */
+[data-bs-theme="dark"] {
+    --body-bg: #121212;
+    --body-color: #e0e0e0;
+    --card-bg: #1e1e1e;
+    --card-border-color: rgba(255,255,255,.125);
+    --bs-body-bg: var(--body-bg);
+    --bs-body-color: var(--body-color);
+    --bs-tertiary-bg: #2b3035;
+    --bs-border-color: #495057;
+    --bs-link-color: #6ea8fe;
+    --bs-link-hover-color: #8bb9fe;
+}
+
+/* Base styles optimizados */
+html {
+    font-size: 14px;
+    scroll-behavior: smooth;
+}
+
+@media (min-width: 768px) {
+    html {
+        font-size: 16px;
+    }
+}
+
+body {
+    background-color: var(--body-bg);
+    color: var(--body-color);
+    transition: background-color var(--transition-normal), color var(--transition-normal);
+}
+
+/* Performance: Reduce composite layers */
+* {
+    box-sizing: border-box;
+}
+
+/* Disable animations for users who prefer reduced motion */
+@media (prefers-reduced-motion: reduce) {
+    *, ::before, ::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+    }
+} 

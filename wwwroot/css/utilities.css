@@ -1,0 +1,293 @@
+/* === UTILIDADES Y OPTIMIZACIONES === */
+/* Clases de utilidad y optimizaciones para mejor rendimiento */
+
+/* === TEXT SHADOWS OPTIMIZADAS === */
+.text-shadow-custom {
+    text-shadow: 0 1px 3px rgba(0,0,0,0.3);
+}
+
+[data-bs-theme="dark"] .text-shadow-custom {
+    text-shadow: 0 1px 3px rgba(0,0,0,0.8);
+}
+
+/* === ROLE-SPECIFIC THEME CLASSES === */
+.bg-vitalcare-patient-profile-theme {
+    background: linear-gradient(135deg, #e8f5e8 0%, #c8e6c9 100%) !important;
+}
+
+/* === OPTIMIZACIONES PARA DISPOSITIVOS DE BAJOS RECURSOS === */
+/* Aplicar solo cuando el usuario no prefiere animaciones reducidas */
+@media (prefers-reduced-motion: no-preference) {
+    /* Animaciones solo para dispositivos más potentes */
+    @media (min-width: 768px) and (min-resolution: 96dpi) {
+        .feature-card-hover {
+            transition: all var(--transition-normal);
+        }
+        
+        .btn {
+            transition: all var(--transition-fast);
+        }
+    }
+}
+
+/* === PERFORMANCE HINTS === */
+/* Optimizar capas de composición */
+.card,
+.btn,
+.navbar {
+    contain: layout;
+}
+
+/* Hints para el navegador sobre qué optimizar */
+.feature-card-hover,
+.stat-card,
+.action-card-hover {
+    contain: layout style;
+}
+
+/* === CRITICAL CSS - Estilos que deben cargarse inmediatamente === */
+.visually-hidden {
+    position: absolute !important;
+    width: 1px !important;
+    height: 1px !important;
+    padding: 0 !important;
+    margin: -1px !important;
+    overflow: hidden !important;
+    clip: rect(0, 0, 0, 0) !important;
+    white-space: nowrap !important;
+    border: 0 !important;
+}
+
+/* === LOADING STATES === */
+.loading-skeleton {
+    background: linear-gradient(90deg, #f0f0f0 25%, #e0e0e0 50%, #f0f0f0 75%);
+    background-size: 200% 100%;
+    animation: loading 1.5s infinite;
+}
+
+@keyframes loading {
+    0% {
+        background-position: 200% 0;
+    }
+    100% {
+        background-position: -200% 0;
+    }
+}
+
+[data-bs-theme="dark"] .loading-skeleton {
+    background: linear-gradient(90deg, #2a2a2a 25%, #3a3a3a 50%, #2a2a2a 75%);
+    background-size: 200% 100%;
+}
+
+/* === ACCESSIBILITY IMPROVEMENTS === */
+/* Mejores contrastes para accesibilidad */
+.text-high-contrast {
+    color: #000 !important;
+}
+
+[data-bs-theme="dark"] .text-high-contrast {
+    color: #fff !important;
+}
+
+/* === PRINT STYLES === */
+@media print {
+    /* Ocultar elementos no necesarios en impresión */
+    .navbar,
+    .app-footer,
+    .btn,
+    .floating-icon,
+    .particle,
+    .sparkle {
+        display: none !important;
+    }
+    
+    /* Optimizar colores para impresión */
+    .card {
+        border: 1px solid #000 !important;
+        box-shadow: none !important;
+    }
+    
+    /* Evitar saltos de página en elementos importantes */
+    .card,
+    .feature-card-hover {
+        page-break-inside: avoid;
+    }
+}
+
+/* === SCROLL OPTIMIZATIONS === */
+/* Mejoras en el scroll para mejor rendimiento */
+.scroll-smooth {
+    scroll-behavior: smooth;
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .scroll-smooth {
+        scroll-behavior: auto;
+    }
+}
+
+/* === GPU ACCELERATION HINTS === */
+/* Solo para elementos que realmente lo necesitan en hover */
+.gpu-accelerated {
+    transform: translateZ(0);
+    backface-visibility: hidden;
+    perspective: 1000px;
+}
+
+/* === ENERGY EFFICIENT ANIMATIONS === */
+/* Usar transform en lugar de cambiar layout */
+.efficient-hover {
+    transform: translateY(0);
+    transition: transform var(--transition-fast);
+}
+
+.efficient-hover:hover {
+    transform: translateY(-2px);
+}
+
+/* === MEMORY OPTIMIZATION === */
+/* Limpiar transforms cuando no se usan */
+.reset-transform {
+    transform: none;
+}
+
+/* === REDUCED MOTION FALLBACKS === */
+@media (prefers-reduced-motion: reduce) {
+    /* Reemplazar animaciones con cambios instantáneos */
+    .feature-card-hover:hover,
+    .stat-card:hover,
+    .action-card-hover:hover,
+    .btn:hover {
+        animation: none !important;
+        transition: none !important;
+        transform: none !important;
+    }
+    
+    /* Mantener feedback visual pero sin movimiento */
+    .feature-card-hover:hover {
+        box-shadow: var(--shadow-lg) !important;
+        border-color: var(--bs-primary) !important;
+    }
+    
+    .btn:hover {
+        filter: brightness(1.1) !important;
+    }
+}
+
+/* === LOW-END DEVICE OPTIMIZATIONS === */
+/* Detectar dispositivos con menor capacidad de procesamiento */
+@media (max-width: 768px), (max-height: 600px) {
+    /* Simplificar efectos en pantallas pequeñas */
+    .feature-card-hover:hover {
+        transform: none !important;
+        animation: none !important;
+    }
+    
+    /* Reducir blur para mejor rendimiento */
+    .navbar {
+        backdrop-filter: none !important;
+    }
+    
+    /* Desactivar gradientes complejos */
+    .app-footer {
+        background: #343a40 !important;
+    }
+    
+    /* Simplificar sombras */
+    .card {
+        box-shadow: 0 1px 3px rgba(0,0,0,0.1) !important;
+    }
+}
+
+/* === BATTERY SAVING MODE === */
+/* Para dispositivos con batería baja, simplificar efectos */
+@media (prefers-reduced-data: reduce) {
+    /* Remover animaciones que consumen más recursos */
+    * {
+        animation: none !important;
+        transition: none !important;
+    }
+    
+    /* Mantener solo cambios esenciales */
+    .btn:hover {
+        background-color: var(--bs-primary) !important;
+    }
+    
+    .card:hover {
+        border-color: var(--bs-primary) !important;
+    }
+}
+
+/* === CONTENT VISIBILITY OPTIMIZATION === */
+/* Optimizar renderizado de contenido no visible */
+.lazy-render {
+    content-visibility: auto;
+    contain-intrinsic-size: 200px;
+}
+
+/* === FONT OPTIMIZATION === */
+/* Mejorar renderizado de fuentes */
+body {
+    text-rendering: optimizeSpeed;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+/* Para títulos importantes, usar mejor calidad */
+h1, h2, h3, .navbar-brand {
+    text-rendering: optimizeLegibility;
+}
+
+/* === COLOR SCHEME OPTIMIZATION === */
+/* Optimizar para diferentes esquemas de color del sistema */
+@media (prefers-color-scheme: dark) {
+    :root {
+        color-scheme: dark;
+    }
+}
+
+@media (prefers-color-scheme: light) {
+    :root {
+        color-scheme: light;
+    }
+}
+
+/* === NETWORK OPTIMIZATION === */
+/* Hints para precarga de recursos críticos */
+.preload-hint {
+    /* Esta clase puede ser usada para elementos que necesitan precarga */
+    will-change: transform;
+}
+
+/* === FORM OPTIMIZATIONS === */
+/* Mejorar rendimiento de formularios grandes */
+.form-control {
+    contain: layout;
+}
+
+.form-control:focus {
+    contain: none; /* Permitir efectos de focus */
+}
+
+/* === MICRO-INTERACTIONS OPTIMIZADAS === */
+/* Efectos sutiles que no consumen muchos recursos */
+.subtle-interaction {
+    transition: opacity var(--transition-fast);
+}
+
+.subtle-interaction:hover {
+    opacity: 0.8;
+}
+
+/* === CRITICAL ANIMATIONS ONLY === */
+/* Solo animaciones realmente importantes para UX */
+.critical-fade {
+    opacity: 0;
+    animation: fadeIn 0.3s ease forwards;
+}
+
+@keyframes fadeIn {
+    to {
+        opacity: 1;
+    }
+} 

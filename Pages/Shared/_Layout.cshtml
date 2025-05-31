@@ -64,10 +64,22 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
     @* Flatpickr CSS for date pickers *@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
-    @* Site specific CSS *@
-    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+    
+    @* === CSS OPTIMIZADO PARA RENDIMIENTO === *@
+    @* Archivo CSS principal optimizado que reemplaza site.css y enhanced-features.css *@
+    <link rel="stylesheet" href="~/css/site-optimized.css" asp-append-version="true" />
+    
+    @* Archivo con efectos avanzados y estilos del footer *@
     <link rel="stylesheet" href="~/css/enhanced-features.css" asp-append-version="true" />
+    
+    @* Carga condicional de efectos avanzados solo para dispositivos más potentes *@
+    <link rel="stylesheet" href="~/css/effects-hover.css" 
+          media="(min-width: 768px) and (prefers-reduced-motion: no-preference)" 
+          asp-append-version="true" />
+    
+    @* Estilos específicos del proyecto *@
     <link rel="stylesheet" href="~/CitasEPS.styles.css" asp-append-version="true" />
+    
     @await RenderSectionAsync("Styles", required: false) @* Added to render page-specific styles *@
 </head>
 <body class="@bodyClass">
@@ -399,6 +411,10 @@
     <script src="~/js/passwordToggle.js" asp-append-version="true"></script> 
     <script src="~/js/notifications.js" asp-append-version="true"></script> @* <<< Add notifications.js *@
     <script src="~/js/themeSwitcher.js" asp-append-version="true"></script> @* Add new theme switcher JS *@
+    
+    @* === OPTIMIZADOR DE RENDIMIENTO === *@
+    @* Script opcional para optimización dinámica de animaciones *@
+    <script src="~/js/performance-optimizer.js" asp-append-version="true"></script>
 
     @await RenderSectionAsync("Scripts", required: false)
 </body>

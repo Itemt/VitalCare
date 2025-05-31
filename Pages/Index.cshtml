@@ -14,14 +14,6 @@
 
 <!-- Enhanced Hero Section -->
 <div class="container-fluid bg-dark text-white text-center py-5 mb-4 shadow-lg hero-section-enhanced" style="background-image: linear-gradient(135deg, rgba(0,20,40,0.95), rgba(0,40,80,0.9)), url('/images/INDEX.png'); background-size: cover; background-position: center center; background-attachment: fixed; position: relative; overflow: hidden;">
-    <!-- Animated Background Elements -->
-    <div class="hero-particles">
-        <div class="particle-circle particle-1"></div>
-        <div class="particle-circle particle-2"></div>
-        <div class="particle-circle particle-3"></div>
-        <div class="particle-circle particle-4"></div>
-        <div class="particle-circle particle-5"></div>
-    </div>
     
     <!-- Floating Icons -->
     <div class="floating-medical-icons">
@@ -34,7 +26,7 @@
     </div>
     
     <!-- Hero Content Container -->
-    <div class="hero-content-container" style="background: linear-gradient(135deg, rgba(0, 40, 80, 0.9), rgba(0, 60, 120, 0.85)); padding: 4rem 2rem; border-radius: 1.5rem; max-width: 90%; width: 900px; position: relative; z-index: 10; backdrop-filter: blur(20px); border: 1px solid rgba(255,255,255,0.1);">
+    <div class="hero-content-container mx-auto d-flex flex-column justify-content-center align-items-center" style="background: linear-gradient(135deg, rgba(0, 40, 80, 0.9), rgba(0, 60, 120, 0.85)); padding: 4rem 2rem; border-radius: 1.5rem; max-width: 900px; width: 90%; position: relative; z-index: 10; backdrop-filter: blur(20px); border: 1px solid rgba(255,255,255,0.1);">
         <!-- Glowing Border Effect -->
         <div class="hero-glow-border"></div>
         
@@ -1092,8 +1084,10 @@
     <style>
         /* FLOATING ICONS ENHANCED - OVERRIDE CACHE */
         .floating-icon {
+            display: none !important; /* Ocultar temporalmente para eliminar círculos */
             position: absolute !important;
-            font-size: 1.8rem !important;
+            font-size: 1rem !important;
+            /* Default colors for light mode */
             color: rgba(0,123,255,0.8) !important;
             animation: iconFloat 12s ease-in-out infinite !important;
             cursor: pointer !important;
@@ -1102,13 +1096,13 @@
             border-radius: 50% !important;
             width: 60px !important;
             height: 60px !important;
-            display: flex !important;
+            /* display: flex !important; */
             align-items: center !important;
             justify-content: center !important;
             background: rgba(255,255,255,0.15) !important;
             backdrop-filter: blur(5px) !important;
             border: 1px solid rgba(255,255,255,0.3) !important;
-            position: relative !important;
+            /* position: relative !important; */
             overflow: hidden !important;
             z-index: 5 !important;
         }

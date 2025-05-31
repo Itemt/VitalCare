@@ -614,8 +614,7 @@
     left: 0;
     right: 0;
     bottom: 0;
-    background: radial-gradient(circle at 30% 20%, rgba(0,123,255,0.1) 0%, transparent 50%),
-                radial-gradient(circle at 70% 80%, rgba(40,167,69,0.1) 0%, transparent 50%);
+    background: transparent;
     animation: heroGradientShift 8s ease-in-out infinite;
     z-index: 1;
 }
@@ -623,86 +622,6 @@
 @keyframes heroGradientShift {
     0%, 100% { opacity: 0.7; }
     50% { opacity: 1; }
-}
-
-/* Hero Particles */
-.hero-particles {
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    z-index: 2;
-    pointer-events: none;
-}
-
-.particle-circle {
-    position: absolute;
-    border: 2px solid rgba(255,255,255,0.1);
-    border-radius: 50%;
-    animation: particleFloat 15s linear infinite;
-}
-
-.particle-1 {
-    width: 100px;
-    height: 100px;
-    top: 10%;
-    left: 10%;
-    animation-delay: 0s;
-    animation-duration: 20s;
-}
-
-.particle-2 {
-    width: 60px;
-    height: 60px;
-    top: 70%;
-    right: 15%;
-    animation-delay: 2s;
-    animation-duration: 25s;
-}
-
-.particle-3 {
-    width: 80px;
-    height: 80px;
-    top: 40%;
-    left: 80%;
-    animation-delay: 4s;
-    animation-duration: 18s;
-}
-
-.particle-4 {
-    width: 120px;
-    height: 120px;
-    bottom: 20%;
-    left: 20%;
-    animation-delay: 6s;
-    animation-duration: 22s;
-}
-
-.particle-5 {
-    width: 40px;
-    height: 40px;
-    top: 30%;
-    right: 30%;
-    animation-delay: 8s;
-    animation-duration: 16s;
-}
-
-@keyframes particleFloat {
-    0% {
-        transform: translateY(0) translateX(0) rotate(0deg);
-        opacity: 0;
-    }
-    10% {
-        opacity: 1;
-    }
-    90% {
-        opacity: 1;
-    }
-    100% {
-        transform: translateY(-100px) translateX(50px) rotate(360deg);
-        opacity: 0;
-    }
 }
 
 /* Floating Medical Icons in Hero Section */
@@ -718,7 +637,7 @@
 
 .floating-icon {
     position: absolute;
-    font-size: 1.8rem;
+    font-size: 1rem;
     /* Default colors for light mode */
     color: rgba(0,123,255,0.7);
     animation: iconFloat 12s ease-in-out infinite;
@@ -1283,7 +1202,7 @@
         font-size: 1rem;
     }
     
-    .particle-circle {
+    .footer-particle {
         display: none; /* Hide particles on mobile for performance */
     }
 }
