@@ -13,8 +13,8 @@
 }
 
 .feature-card-hover:hover .feature-icon-main {
-    transform: rotateY(360deg) scale(1.1);
-    filter: drop-shadow(0 8px 16px rgba(0,0,0,0.2));
+    transform: scale(1.1);
+    filter: none;
 }
 
 /* === Premium Icon Effects for Services Page === */
@@ -32,8 +32,8 @@
 }
 
 .features-card-premium:hover .premium-icon {
-    transform: rotateY(360deg) scale(1.2);
-    filter: drop-shadow(0 10px 20px rgba(0,0,0,0.3));
+    transform: scale(1.15);
+    filter: none;
 }
 
 /* Icon Particle Effects - Small dots like before */
@@ -54,7 +54,7 @@
     background: linear-gradient(45deg, #fff, rgba(255,255,255,0.8));
     border-radius: 50%;
     opacity: 0;
-    animation: particleFloat 3s ease-in-out infinite;
+    animation: none;
     box-shadow: 0 0 4px rgba(255,255,255,0.6);
 }
 
@@ -82,27 +82,8 @@
     animation-delay: 2.4s;
 }
 
-@keyframes particleFloat {
-    0%, 100% {
-        opacity: 0;
-        transform: translateY(0) translateX(0) scale(0.5);
-    }
-    25% {
-        opacity: 0.8;
-        transform: translateY(-6px) translateX(2px) scale(1);
-    }
-    50% {
-        opacity: 1;
-        transform: translateY(-10px) translateX(-1px) scale(1.2);
-    }
-    75% {
-        opacity: 0.8;
-        transform: translateY(-6px) translateX(3px) scale(1);
-    }
-}
-
 .features-card-premium:hover .particle {
-    animation-duration: 2s;
+    animation: particleFloat 2s ease-in-out infinite;
 }
 
 /* === Services Page Specific Styles === */
@@ -187,13 +168,8 @@
 }
 
 .stat-card-premium:hover .stat-icon i {
-    transform: rotateY(360deg) scale(1.1);
-    animation: iconPulse 1s ease-in-out;
-}
-
-@keyframes iconPulse {
-    0%, 100% { filter: brightness(1); }
-    50% { filter: brightness(1.3); }
+    transform: scale(1.1);
+    animation: none;
 }
 
 /* Tech Specs Animation */
@@ -233,7 +209,6 @@
 
 .advanced-service-card {
     background: rgba(255,255,255,0.95);
-    backdrop-filter: blur(10px);
     border: 1px solid rgba(255,255,255,0.2);
     transition: all 0.4s ease;
     position: relative;
@@ -272,7 +247,7 @@
 }
 
 .advanced-service-card:hover .advanced-icon-wrapper {
-    transform: rotateY(360deg) scale(1.1);
+    transform: scale(1.1);
     background: linear-gradient(135deg, rgba(0,123,255,0.1), rgba(0,123,255,0.05));
 }
 
@@ -338,8 +313,8 @@
 }
 
 .partner-logo-container:hover .partner-logo {
-    transform: rotateY(360deg) scale(1.2);
-    filter: brightness(1.2);
+    transform: scale(1.15);
+    filter: none;
 }
 
 .partner-name {
@@ -384,7 +359,7 @@
     background: linear-gradient(45deg, #ffd700, #ffed4e);
     border-radius: 50%;
     opacity: 0;
-    animation: sparkleFloat 2s ease-in-out infinite;
+    animation: none;
 }
 
 .sparkle-1 {
@@ -405,19 +380,8 @@
     animation-delay: 1.4s;
 }
 
-@keyframes sparkleFloat {
-    0%, 100% {
-        opacity: 0;
-        transform: translateY(0) scale(0.5);
-    }
-    50% {
-        opacity: 1;
-        transform: translateY(-10px) scale(1);
-    }
-}
-
 .feature-card-hover:hover .sparkle {
-    animation-duration: 1.5s;
+    animation: sparkleFloat 1.5s ease-in-out infinite;
 }
 
 /* Feature Stats Animation */
@@ -550,7 +514,7 @@
 }
 
 .feature-card-hover:not(:hover) {
-    animation: cardBreathe 4s ease-in-out infinite;
+    /* Sin animación constante */
 }
 
 .feature-card-hover:nth-child(1) { animation-delay: 0s; }
@@ -1771,4 +1735,35 @@ body {
 [data-bs-theme="dark"] body {
     background-image: none !important;
     background-color: #121212;
+}
+
+/* Keyframes optimizados */
+@keyframes particleFloat {
+    0%, 100% {
+        opacity: 0;
+        transform: translateY(0) translateX(0) scale(0.5);
+    }
+    25% {
+        opacity: 0.8;
+        transform: translateY(-6px) translateX(2px) scale(1);
+    }
+    50% {
+        opacity: 1;
+        transform: translateY(-10px) translateX(-1px) scale(1.2);
+    }
+    75% {
+        opacity: 0.8;
+        transform: translateY(-6px) translateX(3px) scale(1);
+    }
+}
+
+@keyframes sparkleFloat {
+    0%, 100% {
+        opacity: 0;
+        transform: translateY(0) scale(0.5);
+    }
+    50% {
+        opacity: 1;
+        transform: translateY(-10px) scale(1);
+    }
 } 
