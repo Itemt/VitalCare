@@ -638,7 +638,6 @@
     align-items: center;
     justify-content: center;
     background: rgba(255,255,255,0.1);
-    backdrop-filter: blur(5px);
     border: 1px solid rgba(255,255,255,0.2);
     position: relative;
     overflow: hidden;
@@ -791,21 +790,11 @@
     opacity: 0 !important;
     animation: none !important;
     transition: opacity 0.3s ease;
-    will-change: background-position, opacity;
 }
 
 .hero-content-container:hover .hero-glow-border {
     opacity: 0.3 !important;
-    animation: borderGlow 6s linear infinite !important;
-}
-
-@keyframes borderGlow {
-    0% {
-        background-position: 0% 50%;
-    }
-    100% {
-        background-position: 400% 50%;
-    }
+    animation: none !important;
 }
 
 /* Hero Title Styling */
@@ -846,7 +835,6 @@
 
 .hero-stat-card {
     background: rgba(255,255,255,0.1);
-    backdrop-filter: blur(10px);
     border: 1px solid rgba(255,255,255,0.2);
     border-radius: 1rem;
     padding: 1.5rem 1rem;
@@ -1014,7 +1002,6 @@
     align-items: center;
     gap: 0.5rem;
     background: rgba(255,255,255,0.1);
-    backdrop-filter: blur(5px);
     padding: 0.5rem 1rem;
     border-radius: 2rem;
     border: 1px solid rgba(255,255,255,0.2);
@@ -1047,25 +1034,13 @@
     transform: translateX(-50%);
     color: rgba(255,255,255,0.7);
     font-size: 1.5rem;
-    animation: scrollBounce 2s ease-in-out infinite;
+    animation: none;
     cursor: pointer;
     z-index: 10;
 }
 
 .scroll-indicator:hover {
     color: #f39c12;
-}
-
-@keyframes scrollBounce {
-    0%, 20%, 50%, 80%, 100% {
-        transform: translateX(-50%) translateY(0);
-    }
-    40% {
-        transform: translateX(-50%) translateY(-10px);
-    }
-    60% {
-        transform: translateX(-50%) translateY(-5px);
-    }
 }
 
 /* Dark Mode Adaptations */
