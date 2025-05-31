@@ -578,15 +578,7 @@ body {
 }
 
 .hero-section-enhanced::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background: transparent;
-    animation: none;
-    z-index: 1;
+    display: none; /* ELIMINADO: No añade valor visual */
 }
 
 /* Floating Medical Icons in Hero Section */
@@ -630,26 +622,6 @@ body {
     background: rgba(255,255,255,0.15);
     border-color: rgba(255,255,255,0.4);
     box-shadow: 0 5px 15px rgba(255,255,255,0.2);
-}
-
-/* Small particles for rotation animation */
-.floating-icon::after {
-    content: '';
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    width: 4px;
-    height: 4px;
-    background: linear-gradient(45deg, rgba(255,255,255,0.8), rgba(255,255,255,0.4));
-    border-radius: 50%;
-    transform: translate(-50%, -50%);
-    opacity: 0;
-    animation: none;
-}
-
-.floating-icon:hover::after {
-    opacity: 1;
-    animation-duration: 1s;
 }
 
 /* Individual icon colors for light mode */
@@ -712,10 +684,6 @@ body {
     box-shadow: 0 10px 25px rgba(255,255,255,0.1);
 }
 
-[data-bs-theme="dark"] .floating-icon::after {
-    background: linear-gradient(45deg, rgba(255,255,255,0.8), rgba(255,255,255,0.4));
-}
-
 /* All icons in dark mode use same white color */
 [data-bs-theme="dark"] .icon-1,
 [data-bs-theme="dark"] .icon-2,
@@ -724,25 +692,6 @@ body {
 [data-bs-theme="dark"] .icon-5,
 [data-bs-theme="dark"] .icon-6 {
     color: rgba(255,255,255,0.7);
-}
-
-@keyframes iconFloat {
-    0%, 100% {
-        transform: translateY(0px) scale(1) rotateZ(0deg);
-        opacity: 0.8;
-    }
-    25% {
-        transform: translateY(-20px) scale(1.05) rotateZ(5deg);
-        opacity: 1;
-    }
-    50% {
-        transform: translateY(-10px) scale(0.95) rotateZ(-3deg);
-        opacity: 0.9;
-    }
-    75% {
-        transform: translateY(-30px) scale(1.1) rotateZ(3deg);
-        opacity: 1;
-    }
 }
 
 /* Hero Content Container */
@@ -787,10 +736,7 @@ body {
 }
 
 .hero-title-highlight {
-    background: linear-gradient(45deg, #007bff, #0056b3);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-clip: text;
+    color: #007bff; /* SIMPLIFICADO: Color sólido en lugar de gradient */
 }
 
 .hero-title-main {
@@ -803,14 +749,11 @@ body {
 
 .hero-name-highlight {
     color: #ffc107;
-    text-shadow: 0 0 10px rgba(255,193,7,0.5);
+    /* ELIMINADO: text-shadow pesado */
 }
 
 .hero-highlight-text {
-    background: linear-gradient(45deg, #28a745, #20c997);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-clip: text;
+    color: #28a745; /* SIMPLIFICADO: Color sólido en lugar de gradient */
 }
 
 /* Hero Stats Cards */
@@ -941,24 +884,6 @@ body {
     color: #212529;
 }
 
-/* Button Ripple Effect */
-.btn-ripple {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    width: 0;
-    height: 0;
-    border-radius: 50%;
-    background: rgba(255,255,255,0.3);
-    transform: translate(-50%, -50%);
-    transition: all 0.6s ease;
-}
-
-.hero-btn:active .btn-ripple {
-    width: 300px;
-    height: 300px;
-}
-
 /* Trust Badges */
 .hero-trust-badges {
     display: flex;
@@ -987,14 +912,8 @@ body {
 }
 
 @keyframes badgesFadeIn {
-    0% {
-        opacity: 0;
-        transform: translateY(20px);
-    }
-    100% {
-        opacity: 1;
-        transform: translateY(0);
-    }
+    0% { opacity: 0; }
+    100% { opacity: 1; }
 }
 
 /* Scroll Indicator */

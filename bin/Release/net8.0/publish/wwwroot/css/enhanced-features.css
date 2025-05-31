@@ -565,15 +565,7 @@
 }
 
 .hero-section-enhanced::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background: transparent;
-    animation: none;
-    z-index: 1;
+    display: none;
 }
 
 /* Floating Medical Icons in Hero Section */
@@ -616,22 +608,11 @@
 
 /* Small particles for rotation animation */
 .floating-icon::after {
-    content: '';
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    width: 4px;
-    height: 4px;
-    background: linear-gradient(45deg, rgba(255,255,255,0.8), rgba(255,255,255,0.4));
-    border-radius: 50%;
-    transform: translate(-50%, -50%);
-    opacity: 0;
-    animation: none;
+    display: none;
 }
 
 .floating-icon:hover::after {
-    opacity: 1;
-    animation-duration: 1s;
+    display: none;
 }
 
 /* Individual icon colors for light mode */
@@ -695,7 +676,7 @@
 }
 
 [data-bs-theme="dark"] .floating-icon::after {
-    background: linear-gradient(45deg, rgba(255,255,255,0.8), rgba(255,255,255,0.4));
+    display: none;
 }
 
 /* All icons in dark mode use same white color */
@@ -749,10 +730,7 @@
 }
 
 .hero-title-highlight {
-    background: linear-gradient(45deg, #007bff, #0056b3);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-clip: text;
+    color: #007bff;
 }
 
 .hero-title-main {
@@ -765,14 +743,10 @@
 
 .hero-name-highlight {
     color: #ffc107;
-    text-shadow: 0 0 10px rgba(255,193,7,0.5);
 }
 
 .hero-highlight-text {
-    background: linear-gradient(45deg, #28a745, #20c997);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-clip: text;
+    color: #28a745;
 }
 
 /* Hero Stats Cards */
@@ -912,20 +886,11 @@
 
 /* Button Ripple Effect */
 .btn-ripple {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    width: 0;
-    height: 0;
-    border-radius: 50%;
-    background: rgba(255,255,255,0.3);
-    transform: translate(-50%, -50%);
-    transition: all 0.6s ease;
+    display: none;
 }
 
 .hero-btn:active .btn-ripple {
-    width: 300px;
-    height: 300px;
+    display: none;
 }
 
 /* Trust Badges */
@@ -956,14 +921,8 @@
 }
 
 @keyframes badgesFadeIn {
-    0% {
-        opacity: 0;
-        transform: translateY(20px);
-    }
-    100% {
-        opacity: 1;
-        transform: translateY(0);
-    }
+    0% { opacity: 0; }
+    100% { opacity: 1; }
 }
 
 /* Scroll Indicator */
