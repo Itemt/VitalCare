@@ -24,7 +24,7 @@
 }
 
 .premium-icon {
-    transition: all 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    transition: all 0.4s ease;
     display: block;
     position: relative;
     z-index: 3;
@@ -51,11 +51,12 @@
     position: absolute;
     width: 2px;
     height: 2px;
-    background: linear-gradient(45deg, #fff, rgba(255,255,255,0.8));
+    background: linear-gradient(45deg, #007bff, #0056b3);
     border-radius: 50%;
-    opacity: 0;
-    animation: none;
-    box-shadow: 0 0 4px rgba(255,255,255,0.6);
+    opacity: 0 !important;
+    animation: none !important;
+    box-shadow: 0 0 6px rgba(0,123,255,0.8);
+    display: none !important;
 }
 
 .particle-1 {
@@ -83,7 +84,9 @@
 }
 
 .features-card-premium:hover .particle {
-    animation: particleFloat 2s ease-in-out infinite;
+    display: block !important;
+    opacity: 1 !important;
+    animation: particleFloat 2s ease-in-out infinite !important;
 }
 
 /* === Services Page Specific Styles === */
@@ -100,12 +103,7 @@
     right: 0;
     bottom: 0;
     background: linear-gradient(45deg, transparent, rgba(0,123,255,0.1), transparent);
-    animation: heroShimmer 4s ease-in-out infinite;
-}
-
-@keyframes heroShimmer {
-    0%, 100% { transform: translateX(-100%); }
-    50% { transform: translateX(100%); }
+    animation: none;
 }
 
 .service-badge {
@@ -151,7 +149,7 @@
     height: 200%;
     background: linear-gradient(45deg, transparent, rgba(0,123,255,0.05), transparent);
     transform: rotate(-45deg) translateX(-100%);
-    transition: transform 0.8s ease;
+    transition: transform 0.5s ease;
 }
 
 .stat-card-premium:hover::before {
@@ -199,12 +197,7 @@
     right: 0;
     bottom: 0;
     background-image: none;
-    animation: backgroundPulse 8s ease-in-out infinite;
-}
-
-@keyframes backgroundPulse {
-    0%, 100% { opacity: 0.5; }
-    50% { opacity: 1; }
+    animation: none;
 }
 
 .advanced-service-card {
@@ -296,7 +289,7 @@
     height: 200%;
     background: linear-gradient(45deg, transparent, rgba(255,255,255,0.3), transparent);
     transform: rotate(-45deg) translateX(-100%);
-    transition: transform 0.6s ease;
+    transition: transform 0.4s ease;
 }
 
 .partner-logo-container:hover::before {
@@ -341,7 +334,7 @@
     text-shadow: 0 0 10px rgba(0,123,255,0.3);
 }
 
-/* Sparkle Effects */
+/* Sparkle Effects - CORREGIDO CON ALTA ESPECIFICIDAD */
 .feature-sparkles {
     position: absolute;
     top: 0;
@@ -352,15 +345,17 @@
     z-index: 3;
 }
 
+/* SPARKLES BASE - Asegurar que no aparezcan por defecto */
 .sparkle {
     position: absolute;
     width: 8px;
     height: 8px;
-    background: linear-gradient(45deg, #ffd700, #ffed4e, #ffffff);
+    background: linear-gradient(45deg, #007bff, #0056b3, #007bff);
     border-radius: 50%;
-    opacity: 0;
-    animation: none;
-    box-shadow: 0 0 12px rgba(255,215,0,0.8);
+    opacity: 0 !important;
+    display: none !important;
+    animation: none !important;
+    box-shadow: 0 0 15px rgba(0,123,255,0.9);
 }
 
 .sparkle-1 {
@@ -381,100 +376,27 @@
     animation-delay: 1.4s;
 }
 
-.feature-card-hover:hover .sparkle {
-    animation: sparkleFloat 1.5s ease-in-out infinite;
+/* MODO CLARO: Sparkles dorados en hover - MÁXIMA ESPECIFICIDAD */
+body:not([data-bs-theme="dark"]) .feature-card-hover:hover .sparkle {
+    display: block !important;
+    opacity: 1 !important;
+    animation: sparkleFloat 1.5s ease-in-out infinite !important;
+    background: linear-gradient(45deg, #ffd700, #ff8c00, #ffed4e) !important;
+    box-shadow: 0 0 15px rgba(255,215,0,0.9) !important;
 }
 
-/* Feature Stats Animation */
-.feature-stats {
-    opacity: 0;
-    transform: translateY(10px);
-    transition: all 0.4s ease;
+/* MODO OSCURO: Sparkles dorados en hover - MÁXIMA ESPECIFICIDAD */
+[data-bs-theme="dark"] .sparkle {
+    background: linear-gradient(45deg, #ffd700, #ff8c00, #ffed4e) !important;
+    box-shadow: 0 0 15px rgba(255,215,0,0.9) !important;
+    opacity: 0 !important;
+    display: none !important;
 }
 
-.feature-card-hover:hover .feature-stats {
-    opacity: 1;
-    transform: translateY(0);
-    transition-delay: 0.2s;
-}
-
-.feature-stats small {
-    position: relative;
-    overflow: hidden;
-}
-
-.feature-stats small::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: -100%;
-    width: 100%;
-    height: 100%;
-    background: linear-gradient(90deg, transparent, rgba(40,167,69,0.2), transparent);
-    transition: left 0.6s ease;
-}
-
-.feature-card-hover:hover .feature-stats small::before {
-    left: 100%;
-}
-
-/* Enhanced Section Background */
-.features-section-bg {
-    background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 50%, #f8f9fa 100%);
-    position: relative;
-}
-
-.features-section-bg::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background-image: none;
-    pointer-events: none;
-}
-
-/* Divider Styling */
-.divider-primary {
-    border-top: 4px solid var(--bs-primary);
-    width: 60px;
-    border-radius: 2px;
-}
-
-/* Enhanced Feature Card Hover Effects Override */
-.feature-card-hover {
-    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275) !important;
-    position: relative;
-    background: linear-gradient(135deg, #fff 0%, #f8f9fa 100%) !important;
-    overflow: hidden;
-}
-
-.feature-card-hover::before {
-    content: '';
-    position: absolute;
-    top: -50%;
-    left: -50%;
-    width: 200%;
-    height: 200%;
-    background: linear-gradient(45deg, transparent, rgba(0,123,255,0.1), transparent);
-    transform: rotate(-45deg) translateX(-100%);
-    transition: transform 0.8s ease;
-    z-index: 1;
-}
-
-.feature-card-hover:hover::before {
-    transform: rotate(-45deg) translateX(100%);
-}
-
-.feature-card-hover .card-body {
-    position: relative;
-    z-index: 2;
-}
-
-.feature-card-hover:hover {
-    transform: translateY(-12px) scale(1.03) !important;
-    box-shadow: 0 25px 50px rgba(0,0,0,0.15), 0 0 0 1px rgba(0,123,255,0.1) !important;
+[data-bs-theme="dark"] .feature-card-hover:hover .sparkle {
+    display: block !important;
+    opacity: 1 !important;
+    animation: sparkleFloat 1.5s ease-in-out infinite !important;
 }
 
 /* Dark Mode Enhancements for Feature Cards */
@@ -999,7 +921,7 @@ body {
     }
 }
 
-/* === MODERN FOOTER STYLES === */
+/* === MODERN FOOTER CON MAYOR ESPACIADO === */
 .modern-footer {
     background: linear-gradient(135deg, #0f1419 0%, #1a1a2e 50%, #16213e 100%);
     position: relative;
@@ -1041,7 +963,8 @@ body {
     position: absolute;
     border: 1px solid rgba(255,255,255,0.1);
     border-radius: 50%;
-    animation: footerParticleFloat 20s linear infinite;
+    animation: none;
+    opacity: 0.1;
 }
 
 .footer-particle-1 {
@@ -1089,20 +1012,6 @@ body {
     animation-duration: 26s;
 }
 
-@keyframes footerParticleFloat {
-    0% {
-        transform: translateY(0) translateX(0) rotate(0deg);
-        opacity: 0.1;
-    }
-    50% {
-        opacity: 0.3;
-    }
-    100% {
-        transform: translateY(-50px) translateX(30px) rotate(360deg);
-        opacity: 0.1;
-    }
-}
-
 .footer-gradient-overlay {
     position: absolute;
     top: 0;
@@ -1112,9 +1021,20 @@ body {
     background: transparent;
 }
 
+.modern-footer .container {
+    padding-left: 2rem;
+    padding-right: 2rem;
+}
+
+.modern-footer .row {
+    --bs-gutter-x: 3rem; /* Aumentado de 1.5rem a 3rem para mayor separación */
+    --bs-gutter-y: 2rem;
+}
+
 .footer-brand-section {
     position: relative;
     z-index: 10;
+    padding-right: 2rem;
 }
 
 .footer-logo-container {
@@ -1234,6 +1154,8 @@ body {
 .footer-links-section {
     position: relative;
     z-index: 10;
+    padding-left: 1rem;
+    padding-right: 1rem;
 }
 
 .footer-links-list {
@@ -1290,6 +1212,8 @@ body {
 .footer-contact-section {
     position: relative;
     z-index: 10;
+    padding-left: 1rem;
+    padding-right: 1rem;
 }
 
 .contact-info-list {
@@ -1364,6 +1288,7 @@ body {
 .footer-social-section {
     position: relative;
     z-index: 10;
+    padding-left: 2rem;
 }
 
 .social-icons-container {
@@ -1627,11 +1552,24 @@ body {
     background: transparent;
 }
 
-/* Mobile Responsiveness for Footer */
+/* Mobile: Reducir espaciado en móviles */
 @media (max-width: 768px) {
-    .modern-footer {
-        padding: 3rem 0 0;
-        margin-top: 4rem;
+    .modern-footer .container {
+        padding-left: 1rem;
+        padding-right: 1rem;
+    }
+    
+    .modern-footer .row {
+        --bs-gutter-x: 1.5rem;
+        --bs-gutter-y: 2rem;
+    }
+    
+    .footer-brand-section,
+    .footer-links-section,
+    .footer-contact-section,
+    .footer-social-section {
+        padding-left: 0;
+        padding-right: 0;
     }
     
     .footer-brand-title {
@@ -1671,36 +1609,5 @@ body {
     
     .footer-particle {
         display: none; /* Hide particles on mobile for performance */
-    }
-}
-
-/* Keyframes necesarios para animaciones de hover */
-@keyframes particleFloat {
-    0%, 100% {
-        opacity: 0;
-        transform: translateY(0) translateX(0) scale(0.5);
-    }
-    25% {
-        opacity: 0.8;
-        transform: translateY(-6px) translateX(2px) scale(1);
-    }
-    50% {
-        opacity: 1;
-        transform: translateY(-10px) translateX(-1px) scale(1.2);
-    }
-    75% {
-        opacity: 0.8;
-        transform: translateY(-6px) translateX(3px) scale(1);
-    }
-}
-
-@keyframes sparkleFloat {
-    0%, 100% {
-        opacity: 0;
-        transform: translateY(0) scale(0.5);
-    }
-    50% {
-        opacity: 1;
-        transform: translateY(-10px) scale(1);
     }
 } 

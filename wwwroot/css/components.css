@@ -95,62 +95,6 @@
     box-shadow: 0 20px 40px rgba(0,0,0,0.15);
 }
 
-/* === SPARKLES SIEMPRE VISIBLES === */
-.feature-sparkles {
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    pointer-events: none;
-    opacity: 1;
-    z-index: 2;
-}
-
-.sparkle {
-    position: absolute;
-    width: 6px;
-    height: 6px;
-    background: linear-gradient(45deg, #ffd700, #ffed4e, #ffffff);
-    border-radius: 50%;
-    animation: sparkleFloat 2s ease-in-out infinite;
-    box-shadow: 0 0 8px rgba(255,215,0,0.6);
-}
-
-.sparkle-1 {
-    top: 20%;
-    left: 15%;
-    animation-delay: 0s;
-}
-
-.sparkle-2 {
-    top: 60%;
-    right: 20%;
-    animation-delay: 0.7s;
-}
-
-.sparkle-3 {
-    bottom: 25%;
-    left: 25%;
-    animation-delay: 1.4s;
-}
-
-@keyframes sparkleFloat {
-    0%, 100% {
-        opacity: 0;
-        transform: translateY(0) scale(0.5);
-    }
-    50% {
-        opacity: 1;
-        transform: translateY(-12px) scale(1.2);
-    }
-}
-
-/* En hover, hacer sparkles más activos */
-.feature-card-hover:hover .sparkle {
-    animation-duration: 1.5s;
-}
-
 /* === ICON EFFECTS === */
 .feature-icon-wrapper {
     position: relative;
@@ -307,11 +251,6 @@
         transform: translateY(-5px) scale(1.02);
     }
     
-    .sparkle {
-        width: 3px;
-        height: 3px;
-    }
-    
     .btn:hover {
         transform: translateY(-1px) scale(1.01);
     }
@@ -333,11 +272,6 @@
 
 [data-bs-theme="dark"] .feature-card-hover:hover {
     box-shadow: 0 20px 40px rgba(0,0,0,0.3);
-}
-
-[data-bs-theme="dark"] .sparkle {
-    background: linear-gradient(45deg, #ffd700, #ffffff, #87ceeb);
-    box-shadow: 0 0 8px rgba(255,255,255,0.6);
 }
 
 /* === FORMS OPTIMIZADOS === */
