@@ -608,13 +608,8 @@
     right: 0;
     bottom: 0;
     background: transparent;
-    animation: heroGradientShift 8s ease-in-out infinite;
+    animation: none;
     z-index: 1;
-}
-
-@keyframes heroGradientShift {
-    0%, 100% { opacity: 0.7; }
-    50% { opacity: 1; }
 }
 
 /* Floating Medical Icons in Hero Section */
@@ -631,9 +626,8 @@
 .floating-icon {
     position: absolute;
     font-size: 1rem;
-    /* Default colors for light mode */
     color: rgba(255,255,255,0.8);
-    animation: iconFloat 12s ease-in-out infinite;
+    animation: none;
     cursor: pointer;
     pointer-events: auto;
     transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
@@ -687,29 +681,12 @@
     border-radius: 50%;
     transform: translate(-50%, -50%);
     opacity: 0;
-    animation: smallParticleOrbit 2s ease-in-out infinite;
+    animation: none;
 }
 
 .floating-icon:hover::after {
     opacity: 1;
     animation-duration: 1s;
-}
-
-@keyframes smallParticleOrbit {
-    0% {
-        transform: translate(-50%, -50%) rotate(0deg) translateX(20px) rotate(0deg);
-        opacity: 0;
-    }
-    25% {
-        opacity: 1;
-    }
-    75% {
-        opacity: 1;
-    }
-    100% {
-        transform: translate(-50%, -50%) rotate(360deg) translateX(20px) rotate(-360deg);
-        opacity: 0;
-    }
 }
 
 /* Individual icon colors for light mode */
@@ -744,7 +721,7 @@
 .icon-5 {
     bottom: 15%;
     right: 25%;
-    animation-delay: 8s;
+    animation: 8s;
     color: rgba(108,117,125,0.8); /* People - gray */
 }
 
@@ -784,25 +761,6 @@
 [data-bs-theme="dark"] .icon-5,
 [data-bs-theme="dark"] .icon-6 {
     color: rgba(255,255,255,0.7);
-}
-
-@keyframes iconFloat {
-    0%, 100% {
-        transform: translateY(0px) scale(1) rotateZ(0deg);
-        opacity: 0.8;
-    }
-    25% {
-        transform: translateY(-20px) scale(1.05) rotateZ(5deg);
-        opacity: 1;
-    }
-    50% {
-        transform: translateY(-10px) scale(0.95) rotateZ(-3deg);
-        opacity: 0.9;
-    }
-    75% {
-        transform: translateY(-30px) scale(1.1) rotateZ(3deg);
-        opacity: 1;
-    }
 }
 
 /* Hero Content Container */
@@ -922,7 +880,7 @@
     font-size: 2rem;
     color: rgba(255, 255, 255, 0.9);
     margin-bottom: 0.5rem;
-    animation: iconPulse 2s ease-in-out infinite;
+    animation: none;
 }
 
 /* Colores variados para los iconos de estadísticas */
@@ -948,15 +906,6 @@
 .hero-stat-label {
     font-size: 0.9rem;
     color: rgba(255,255,255,0.8);
-}
-
-@keyframes iconPulse {
-    0%, 100% {
-        transform: scale(1);
-    }
-    50% {
-        transform: scale(1.1);
-    }
 }
 
 /* Enhanced Hero Buttons */
@@ -1130,6 +1079,17 @@
     border-color: rgba(255,255,255,0.1);
 }
 
+/* Botón light en modo oscuro */
+[data-bs-theme="dark"] .hero-btn-light {
+    background: linear-gradient(135deg, #343a40 0%, #495057 100%);
+    color: #ffffff;
+}
+
+[data-bs-theme="dark"] .hero-btn-light:hover {
+    background: linear-gradient(135deg, #495057 0%, #6c757d 100%);
+    color: #ffffff;
+}
+
 /* Mobile Responsiveness */
 @media (max-width: 768px) {
     .hero-section-enhanced {
@@ -1140,6 +1100,7 @@
     .hero-content-container {
         width: 95% !important;
         padding: 2rem 1rem !important;
+        margin: 0 auto !important;
     }
     
     .hero-title {

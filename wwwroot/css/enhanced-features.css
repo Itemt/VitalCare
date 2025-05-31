@@ -621,13 +621,8 @@ body {
     right: 0;
     bottom: 0;
     background: transparent;
-    animation: heroGradientShift 8s ease-in-out infinite;
+    animation: none;
     z-index: 1;
-}
-
-@keyframes heroGradientShift {
-    0%, 100% { opacity: 0.7; }
-    50% { opacity: 1; }
 }
 
 /* Floating Medical Icons in Hero Section */
@@ -644,9 +639,8 @@ body {
 .floating-icon {
     position: absolute;
     font-size: 1rem;
-    /* Default colors for light mode */
     color: rgba(255,255,255,0.8);
-    animation: iconFloat 12s ease-in-out infinite;
+    animation: none;
     cursor: pointer;
     pointer-events: auto;
     transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
@@ -700,29 +694,12 @@ body {
     border-radius: 50%;
     transform: translate(-50%, -50%);
     opacity: 0;
-    animation: smallParticleOrbit 2s ease-in-out infinite;
+    animation: none;
 }
 
 .floating-icon:hover::after {
     opacity: 1;
     animation-duration: 1s;
-}
-
-@keyframes smallParticleOrbit {
-    0% {
-        transform: translate(-50%, -50%) rotate(0deg) translateX(20px) rotate(0deg);
-        opacity: 0;
-    }
-    25% {
-        opacity: 1;
-    }
-    75% {
-        opacity: 1;
-    }
-    100% {
-        transform: translate(-50%, -50%) rotate(360deg) translateX(20px) rotate(-360deg);
-        opacity: 0;
-    }
 }
 
 /* Individual icon colors for light mode */
@@ -852,16 +829,7 @@ body {
 
 .hero-content-container:hover .hero-glow-border {
     opacity: 0.3 !important;
-    animation: borderGlow 6s linear infinite !important;
-}
-
-@keyframes borderGlow {
-    0% {
-        background-position: 0% 50%;
-    }
-    100% {
-        background-position: 400% 50%;
-    }
+    animation: none !important;
 }
 
 /* Hero Title Styling */
@@ -936,21 +904,8 @@ body {
     font-size: 2rem;
     color: rgba(255, 255, 255, 0.9);
     margin-bottom: 0.5rem;
-    animation: iconPulse 2s ease-in-out infinite;
+    animation: none;
 }
-
-/* Eliminar colores variados - usar blanco para todos */
-/* .hero-stat-card:nth-child(1) .hero-stat-icon {
-    color: #e74c3c;
-}
-
-.hero-stat-card:nth-child(2) .hero-stat-icon {
-    color: #f39c12;
-}
-
-.hero-stat-card:nth-child(3) .hero-stat-icon {
-    color: #2ecc71;
-} */
 
 .hero-stat-number {
     font-size: 2rem;
@@ -962,15 +917,6 @@ body {
 .hero-stat-label {
     font-size: 0.9rem;
     color: rgba(255,255,255,0.8);
-}
-
-@keyframes iconPulse {
-    0%, 100% {
-        transform: scale(1);
-    }
-    50% {
-        transform: scale(1.1);
-    }
 }
 
 /* Enhanced Hero Buttons */
@@ -1144,6 +1090,17 @@ body {
     border-color: rgba(255,255,255,0.1);
 }
 
+/* Botón light en modo oscuro */
+[data-bs-theme="dark"] .hero-btn-light {
+    background: linear-gradient(135deg, #343a40 0%, #495057 100%);
+    color: #ffffff;
+}
+
+[data-bs-theme="dark"] .hero-btn-light:hover {
+    background: linear-gradient(135deg, #495057 0%, #6c757d 100%);
+    color: #ffffff;
+}
+
 /* Mobile Responsiveness */
 @media (max-width: 768px) {
     .hero-section-enhanced {
@@ -1154,6 +1111,7 @@ body {
     .hero-content-container {
         width: 95% !important;
         padding: 2rem 1rem !important;
+        margin: 0 auto !important;
     }
     
     .hero-title {
