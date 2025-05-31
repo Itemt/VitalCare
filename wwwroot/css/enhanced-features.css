@@ -222,10 +222,7 @@
     left: 0;
     right: 0;
     bottom: 0;
-    background-image: 
-        radial-gradient(circle at 20% 80%, rgba(0,123,255,0.1) 0%, transparent 50%),
-        radial-gradient(circle at 80% 20%, rgba(40,167,69,0.1) 0%, transparent 50%),
-        radial-gradient(circle at 40% 40%, rgba(255,193,7,0.05) 0%, transparent 50%);
+    background-image: none;
     animation: backgroundPulse 8s ease-in-out infinite;
 }
 
@@ -470,9 +467,7 @@
     left: 0;
     right: 0;
     bottom: 0;
-    background-image: 
-        radial-gradient(circle at 25% 25%, rgba(0,123,255,0.05) 0%, transparent 70%),
-        radial-gradient(circle at 75% 75%, rgba(40,167,69,0.05) 0%, transparent 70%);
+    background-image: none;
     pointer-events: none;
 }
 
@@ -532,9 +527,7 @@
 }
 
 [data-bs-theme="dark"] .features-section-bg::before {
-    background-image: 
-        radial-gradient(circle at 25% 25%, rgba(0,123,255,0.08) 0%, transparent 70%),
-        radial-gradient(circle at 75% 75%, rgba(40,167,69,0.08) 0%, transparent 70%);
+    background-image: none;
 }
 
 [data-bs-theme="dark"] .stat-card-premium {
@@ -598,6 +591,18 @@
     }
 }
 
+/* === FONDO COLORIDO Y BALANCEADO === */
+body {
+    background-image: none;
+    background-color: #f8f9fa;
+}
+
+/* Eliminar fondo en modo oscuro */
+[data-bs-theme="dark"] body {
+    background-image: none !important;
+    background-color: #121212;
+}
+
 /* === Enhanced Hero Section Styles === */
 .hero-section-enhanced {
     min-height: 100vh;
@@ -640,7 +645,7 @@
     position: absolute;
     font-size: 1rem;
     /* Default colors for light mode */
-    color: rgba(0,123,255,0.7);
+    color: rgba(255,255,255,0.8);
     animation: iconFloat 12s ease-in-out infinite;
     cursor: pointer;
     pointer-events: auto;
@@ -658,7 +663,7 @@
     overflow: hidden;
 }
 
-/* Blue hover animation like cards */
+/* Hover animation con colores variados */
 .floating-icon::before {
     content: '';
     position: absolute;
@@ -666,7 +671,7 @@
     left: -50%;
     width: 200%;
     height: 200%;
-    background: linear-gradient(45deg, transparent, rgba(0,123,255,0.3), transparent);
+    background: linear-gradient(45deg, transparent, rgba(255,255,255,0.2), transparent);
     transform: rotate(-45deg) translateX(-100%);
     transition: transform 0.8s ease;
     z-index: 1;
@@ -678,9 +683,9 @@
 
 .floating-icon:hover {
     transform: translateY(-8px) scale(1.15) rotateY(360deg);
-    background: rgba(0,123,255,0.15);
-    border-color: rgba(0,123,255,0.4);
-    box-shadow: 0 10px 25px rgba(0,123,255,0.2);
+    background: rgba(255,255,255,0.15);
+    border-color: rgba(255,255,255,0.4);
+    box-shadow: 0 10px 25px rgba(255,255,255,0.2);
 }
 
 /* Small particles for rotation animation */
@@ -691,7 +696,7 @@
     left: 50%;
     width: 4px;
     height: 4px;
-    background: linear-gradient(45deg, rgba(0,123,255,0.8), rgba(0,123,255,0.4));
+    background: linear-gradient(45deg, rgba(255,255,255,0.8), rgba(255,255,255,0.4));
     border-radius: 50%;
     transform: translate(-50%, -50%);
     opacity: 0;
@@ -817,47 +822,51 @@
 .hero-content-container {
     position: relative;
     z-index: 10;
-    animation: heroContentFadeIn 1.5s ease-out;
 }
 
-@keyframes heroContentFadeIn {
-    0% {
-        opacity: 0;
-        transform: translateY(50px) scale(0.9);
-    }
-    100% {
-        opacity: 1;
-        transform: translateY(0) scale(1);
-    }
-}
-
+/* EFECTO ARCOÍRIS SOLO EN HOVER - CORREGIDO */
 .hero-glow-border {
     position: absolute;
     top: -2px;
     left: -2px;
     right: -2px;
     bottom: -2px;
-    background: linear-gradient(45deg, #007bff, #28a745, #ffc107, #dc3545, #007bff);
-    background-size: 400% 400%;
+    background: linear-gradient(90deg, 
+        #e74c3c, 
+        #f39c12, 
+        #f1c40f, 
+        #2ecc71, 
+        #3498db, 
+        #9b59b6, 
+        #e91e63, 
+        #e74c3c
+    );
+    background-size: 400% 100%;
     border-radius: 1.6rem;
     z-index: -1;
-    animation: borderGlow 8s ease-in-out infinite;
-    opacity: 0.4;
+    opacity: 0 !important;
+    animation: none !important;
+    transition: opacity 0.3s ease;
+    will-change: background-position, opacity;
+}
+
+.hero-content-container:hover .hero-glow-border {
+    opacity: 0.3 !important;
+    animation: borderGlow 6s linear infinite !important;
 }
 
 @keyframes borderGlow {
-    0%, 100% {
+    0% {
         background-position: 0% 50%;
     }
-    50% {
-        background-position: 100% 50%;
+    100% {
+        background-position: 400% 50%;
     }
 }
 
 /* Hero Title Styling */
 .hero-title {
     position: relative;
-    animation: titleGlow 3s ease-in-out infinite;
 }
 
 .hero-title-highlight {
@@ -865,34 +874,14 @@
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-clip: text;
-    animation: textShimmer 2s ease-in-out infinite;
 }
 
 .hero-title-main {
     color: #ffffff;
 }
 
-@keyframes titleGlow {
-    0%, 100% {
-        text-shadow: 0 0 20px rgba(0,123,255,0.3);
-    }
-    50% {
-        text-shadow: 0 0 40px rgba(0,123,255,0.6), 0 0 60px rgba(0,123,255,0.4);
-    }
-}
-
-@keyframes textShimmer {
-    0%, 100% {
-        background-position: 0% 50%;
-    }
-    50% {
-        background-position: 100% 50%;
-    }
-}
-
 /* Hero Subtitle */
 .hero-subtitle {
-    animation: subtitleFadeIn 2s ease-out 0.5s both;
 }
 
 .hero-name-highlight {
@@ -907,20 +896,8 @@
     background-clip: text;
 }
 
-@keyframes subtitleFadeIn {
-    0% {
-        opacity: 0;
-        transform: translateY(20px);
-    }
-    100% {
-        opacity: 1;
-        transform: translateY(0);
-    }
-}
-
 /* Hero Stats Cards */
 .hero-stats {
-    animation: statsSlideIn 1.5s ease-out 1s both;
 }
 
 .hero-stat-card {
@@ -957,10 +934,23 @@
 
 .hero-stat-icon {
     font-size: 2rem;
-    color: #007bff;
+    color: rgba(255, 255, 255, 0.9);
     margin-bottom: 0.5rem;
     animation: iconPulse 2s ease-in-out infinite;
 }
+
+/* Eliminar colores variados - usar blanco para todos */
+/* .hero-stat-card:nth-child(1) .hero-stat-icon {
+    color: #e74c3c;
+}
+
+.hero-stat-card:nth-child(2) .hero-stat-icon {
+    color: #f39c12;
+}
+
+.hero-stat-card:nth-child(3) .hero-stat-icon {
+    color: #2ecc71;
+} */
 
 .hero-stat-number {
     font-size: 2rem;
@@ -972,17 +962,6 @@
 .hero-stat-label {
     font-size: 0.9rem;
     color: rgba(255,255,255,0.8);
-}
-
-@keyframes statsSlideIn {
-    0% {
-        opacity: 0;
-        transform: translateX(-50px);
-    }
-    100% {
-        opacity: 1;
-        transform: translateX(0);
-    }
 }
 
 @keyframes iconPulse {
@@ -1139,7 +1118,7 @@
 }
 
 .scroll-indicator:hover {
-    color: #007bff;
+    color: #f39c12;
 }
 
 @keyframes scrollBounce {
@@ -1215,6 +1194,20 @@
     padding: 4rem 0 0;
     margin-top: 6rem;
     overflow: hidden;
+    isolation: isolate;
+    z-index: 1;
+}
+
+.modern-footer::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(135deg, #0f1419 0%, #1a1a2e 50%, #16213e 100%);
+    z-index: 0;
+    pointer-events: none;
 }
 
 .footer-background {
@@ -1304,14 +1297,7 @@
     left: 0;
     right: 0;
     bottom: 0;
-    background: radial-gradient(circle at 30% 20%, rgba(0,123,255,0.15) 0%, transparent 50%),
-                radial-gradient(circle at 70% 80%, rgba(40,167,69,0.15) 0%, transparent 50%);
-    animation: footerGradientShift 15s ease-in-out infinite;
-}
-
-@keyframes footerGradientShift {
-    0%, 100% { opacity: 0.7; }
-    50% { opacity: 1; }
+    background: transparent;
 }
 
 .footer-brand-section {
@@ -1346,18 +1332,6 @@
 .footer-brand-icon {
     color: #007bff;
     margin-right: 0.5rem;
-    animation: brandIconPulse 3s ease-in-out infinite;
-}
-
-@keyframes brandIconPulse {
-    0%, 100% {
-        transform: scale(1);
-        color: #007bff;
-    }
-    50% {
-        transform: scale(1.1);
-        color: #0056b3;
-    }
 }
 
 .footer-brand-text {
@@ -1374,18 +1348,8 @@
 .footer-brand-underline {
     width: 60px;
     height: 3px;
-    background: linear-gradient(45deg, #007bff, #28a745);
+    background: #007bff;
     border-radius: 2px;
-    animation: underlineGlow 2s ease-in-out infinite;
-}
-
-@keyframes underlineGlow {
-    0%, 100% {
-        box-shadow: 0 0 5px rgba(0,123,255,0.3);
-    }
-    50% {
-        box-shadow: 0 0 15px rgba(0,123,255,0.6);
-    }
 }
 
 .footer-description {
@@ -1452,7 +1416,7 @@
     left: 0;
     width: 30px;
     height: 2px;
-    background: linear-gradient(45deg, #007bff, #28a745);
+    background: #007bff;
     border-radius: 1px;
 }
 
@@ -1504,7 +1468,7 @@
     left: 0;
     width: 0;
     height: 2px;
-    background: linear-gradient(45deg, #007bff, #28a745);
+    background: #007bff;
     transition: width 0.4s ease;
 }
 
@@ -1849,8 +1813,7 @@
 }
 
 [data-bs-theme="dark"] .footer-gradient-overlay {
-    background: radial-gradient(circle at 30% 20%, rgba(0,123,255,0.1) 0%, transparent 50%),
-                radial-gradient(circle at 70% 80%, rgba(40,167,69,0.1) 0%, transparent 50%);
+    background: transparent;
 }
 
 /* Mobile Responsiveness for Footer */

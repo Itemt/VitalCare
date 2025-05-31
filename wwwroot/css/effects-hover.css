@@ -358,75 +358,11 @@
 }
 
 .footer-particles {
-    position: absolute;
-    width: 100%;
-    height: 100%;
+    display: none;
 }
 
 .footer-particle {
-    position: absolute;
-    border: 1px solid rgba(255,255,255,0.1);
-    border-radius: 50%;
-    animation: footerParticleFloat 20s linear infinite;
-}
-
-.footer-particle-1 {
-    width: 80px;
-    height: 80px;
-    top: 10%;
-    left: 10%;
-    animation-delay: 0s;
-    animation-duration: 25s;
-}
-
-.footer-particle-2 {
-    width: 60px;
-    height: 60px;
-    top: 60%;
-    right: 15%;
-    animation-delay: 5s;
-    animation-duration: 30s;
-}
-
-.footer-particle-3 {
-    width: 100px;
-    height: 100px;
-    bottom: 30%;
-    left: 70%;
-    animation-delay: 10s;
-    animation-duration: 22s;
-}
-
-.footer-particle-4 {
-    width: 40px;
-    height: 40px;
-    top: 30%;
-    right: 40%;
-    animation-delay: 15s;
-    animation-duration: 28s;
-}
-
-.footer-particle-5 {
-    width: 120px;
-    height: 120px;
-    bottom: 10%;
-    left: 30%;
-    animation-delay: 20s;
-    animation-duration: 26s;
-}
-
-@keyframes footerParticleFloat {
-    0% {
-        transform: translateY(0) translateX(0) rotate(0deg);
-        opacity: 0.1;
-    }
-    50% {
-        opacity: 0.3;
-    }
-    100% {
-        transform: translateY(-50px) translateX(30px) rotate(360deg);
-        opacity: 0.1;
-    }
+    display: none;
 }
 
 .footer-gradient-overlay {
@@ -435,14 +371,8 @@
     left: 0;
     right: 0;
     bottom: 0;
-    background: radial-gradient(circle at 30% 20%, rgba(0,123,255,0.15) 0%, transparent 50%),
-                radial-gradient(circle at 70% 80%, rgba(40,167,69,0.15) 0%, transparent 50%);
-    animation: footerGradientShift 15s ease-in-out infinite;
-}
-
-@keyframes footerGradientShift {
-    0%, 100% { opacity: 0.7; }
-    50% { opacity: 1; }
+    background: transparent;
+    animation: none;
 }
 
 /* === PERFORMANCE OPTIMIZATIONS === */

@@ -13,7 +13,7 @@
 }
 
 <!-- Enhanced Hero Section -->
-<div class="container-fluid bg-dark text-white text-center py-5 mb-4 shadow-lg hero-section-enhanced" style="background-image: linear-gradient(135deg, rgba(0,20,40,0.95), rgba(0,40,80,0.9)), url('/images/INDEX.png'); background-size: cover; background-position: center center; background-attachment: fixed; position: relative; overflow: hidden;">
+<div class="container-fluid bg-dark text-white text-center py-5 mb-4 shadow-lg hero-section-enhanced" style="background-image: linear-gradient(135deg, rgba(0,20,40,0.95), rgba(0,40,80,0.9)), url('/images/INDEX.png'); background-size: cover; background-position: center center; background-attachment: fixed; position: relative; overflow: hidden; border-radius: 2rem; margin: 1rem;">
     
     <!-- Floating Icons -->
     <div class="floating-medical-icons">
@@ -26,11 +26,11 @@
     </div>
     
     <!-- Hero Content Container -->
-    <div class="hero-content-container mx-auto d-flex flex-column justify-content-center align-items-center" style="background: linear-gradient(135deg, rgba(0, 40, 80, 0.9), rgba(0, 60, 120, 0.85)); padding: 4rem 2rem; border-radius: 1.5rem; max-width: 900px; width: 90%; position: relative; z-index: 10; backdrop-filter: blur(20px); border: 1px solid rgba(255,255,255,0.1);">
+    <div class="hero-content-container mx-auto d-flex flex-column justify-content-center align-items-center" style="background: linear-gradient(135deg, rgba(0, 40, 80, 0.9), rgba(0, 60, 120, 0.85)); padding: 3rem 1.5rem; border-radius: 1.5rem; max-width: 1000px; width: 90%; position: relative; z-index: 10; backdrop-filter: blur(20px); border: 1px solid rgba(255,255,255,0.1);">
         <!-- Glowing Border Effect -->
         <div class="hero-glow-border"></div>
         
-        <h1 class="display-1 fw-bolder text-shadow-custom mb-4 hero-title">
+        <h1 class="display-2 fw-bolder text-shadow-custom mb-3 hero-title text-center">
             <span class="hero-title-highlight">Vital</span><span class="hero-title-main">Care</span>
         </h1>
         
@@ -38,57 +38,56 @@
         {
             if (isDoctor)
             {
-                <p class="lead fs-2 mb-4 text-shadow-custom hero-subtitle">Hola Dr(a). <span class="fw-semibold hero-name-highlight">@userFirstName</span>, ¿listo para gestionar la salud de sus pacientes?</p>
+                <p class="lead fs-4 mb-4 text-shadow-custom hero-subtitle text-center">Hola Dr(a). <span class="fw-semibold hero-name-highlight">@userFirstName</span>, ¿listo para gestionar la salud de sus pacientes?</p>
             }
             else
             {
-                <p class="lead fs-2 mb-4 text-shadow-custom hero-subtitle">Hola <span class="fw-semibold hero-name-highlight">@userFirstName</span>, ¿listo para gestionar tu salud?</p>
+                <p class="lead fs-4 mb-4 text-shadow-custom hero-subtitle text-center">Hola <span class="fw-semibold hero-name-highlight">@userFirstName</span>, ¿listo para gestionar tu salud?</p>
             }
         }
         else
         {
-            <p class="lead fs-3 mb-4 text-shadow-custom hero-subtitle">Su salud es nuestra prioridad. Experimente la <span class="hero-highlight-text">medicina del futuro</span> con tecnología de vanguardia.</p>
+            <p class="lead fs-4 mb-4 text-shadow-custom hero-subtitle text-center">Su salud es nuestra prioridad. Experimente la <span class="hero-highlight-text">medicina del futuro</span> con tecnología de vanguardia.</p>
         }
         
         <!-- Enhanced Stats Row -->
-        <div class="row g-3 mb-4 hero-stats">
-            <div class="col-md-4">
-                <div class="hero-stat-card">
+        <div class="row g-4 mb-4 hero-stats w-100 justify-content-center">
+            <div class="col-4">
+                <div class="hero-stat-card text-center">
                     <div class="hero-stat-icon">
                         <i class="bi bi-people-fill"></i>
                     </div>
-                    <div class="hero-stat-number" data-target="25000">0</div>
-                    <div class="hero-stat-label">Pacientes Confiaron</div>
+                    <div class="hero-stat-number fs-3 fw-bold" data-target="25000">0</div>
+                    <div class="hero-stat-label small">Pacientes Confiaron</div>
                 </div>
             </div>
-            <div class="col-md-4">
-                <div class="hero-stat-card">
+            <div class="col-4">
+                <div class="hero-stat-card text-center">
                     <div class="hero-stat-icon">
                         <i class="bi bi-hospital"></i>
                     </div>
-                    <div class="hero-stat-number" data-target="350">0</div>
-                    <div class="hero-stat-label">Especialistas</div>
+                    <div class="hero-stat-number fs-3 fw-bold" data-target="350">0</div>
+                    <div class="hero-stat-label small">Especialistas</div>
                 </div>
             </div>
-            <div class="col-md-4">
-                <div class="hero-stat-card">
+            <div class="col-4">
+                <div class="hero-stat-card text-center">
                     <div class="hero-stat-icon">
                         <i class="bi bi-star-fill"></i>
                     </div>
-                    <div class="hero-stat-number" data-target="98">0</div>
-                    <div class="hero-stat-label">% Satisfacción</div>
+                    <div class="hero-stat-number fs-3 fw-bold" data-target="98">0</div>
+                    <div class="hero-stat-label small">% Satisfacción</div>
                 </div>
             </div>
         </div>
         
         <!-- Enhanced Action Buttons -->
-        <hr class="my-4 border-light opacity-25 hero-divider">
         <div class="d-grid gap-3 d-sm-flex justify-content-sm-center">
             @if (UserManagerAccessor.IsSignedIn(User))
             {
                 if (User.IsInRole("Admin"))
                 {
-                    <a class="btn btn-primary btn-lg px-5 py-3 hero-btn hero-btn-primary" href="#adminPanelDashboard" role="button">
+                    <a class="btn btn-primary btn-lg px-4 py-2 hero-btn hero-btn-primary" href="#adminPanelDashboard" role="button">
                         <i class="bi bi-speedometer2 me-2"></i> 
                         <span>Ir al Panel Admin</span>
                         <div class="btn-ripple"></div>
@@ -96,7 +95,7 @@
                 }
                 else if (User.IsInRole("Paciente"))
                 {
-                    <a class="btn btn-success btn-lg px-5 py-3 hero-btn hero-btn-success" href="#patientPanelDashboard" role="button">
+                    <a class="btn btn-success btn-lg px-4 py-2 hero-btn hero-btn-success" href="#patientPanelDashboard" role="button">
                         <i class="bi bi-person-vcard me-2"></i> 
                         <span>Mi Portal Paciente</span>
                         <div class="btn-ripple"></div>
@@ -104,7 +103,7 @@
                 }
                 else if (User.IsInRole("Doctor"))
                 {
-                    <a class="btn btn-info btn-lg px-5 py-3 hero-btn hero-btn-info" href="#doctorPanelDashboard" role="button">
+                    <a class="btn btn-info btn-lg px-4 py-2 hero-btn hero-btn-info" href="#doctorPanelDashboard" role="button">
                         <i class="bi bi-clipboard-pulse me-2"></i> 
                         <span>Mi Portal Médico</span>
                         <div class="btn-ripple"></div>
@@ -117,12 +116,12 @@
             }
             else
             {
-                <a class="btn btn-light btn-lg px-5 py-3 me-sm-3 hero-btn hero-btn-light" asp-area="Identity" asp-page="/Account/Login" role="button">
+                <a class="btn btn-light btn-lg px-4 py-2 me-sm-3 hero-btn hero-btn-light" asp-area="Identity" asp-page="/Account/Login" role="button">
                     <i class="bi bi-box-arrow-in-right me-2"></i> 
                     <span>Iniciar Sesión</span>
                     <div class="btn-ripple"></div>
                 </a>
-                <a class="btn btn-primary btn-lg px-5 py-3 hero-btn hero-btn-primary" asp-area="Identity" asp-page="/Account/Register" role="button">
+                <a class="btn btn-primary btn-lg px-4 py-2 hero-btn hero-btn-primary" asp-area="Identity" asp-page="/Account/Register" role="button">
                     <i class="bi bi-person-plus me-2"></i> 
                     <span>Registrarse Gratis</span>
                     <div class="btn-ripple"></div>
@@ -130,8 +129,11 @@
             }
         </div>
         
+        <!-- Divider Line after buttons -->
+        <hr style="border: 0.5px solid white; width: 60%; margin: 30px auto;">
+        
         <!-- Trust Badges -->
-        <div class="hero-trust-badges mt-4">
+        <div class="hero-trust-badges mt-3">
             <div class="trust-badge-item">
                 <i class="bi bi-shield-check-fill me-1"></i>
                 <span>ISO 27001</span>
