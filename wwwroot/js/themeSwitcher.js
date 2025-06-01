@@ -11,10 +11,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const themeIconSunMobile = document.getElementById('themeIconSunMobile');
     const themeIconMoonMobile = document.getElementById('themeIconMoonMobile');
 
-    const currentTheme = localStorage.getItem('theme') || 'light';
-
-    const applyTheme = (theme) => {
-        document.documentElement.setAttribute('data-bs-theme', theme);
+    const updateIcons = (theme) => {
         if (theme === 'dark') {
             // Desktop button icons
             if (themeIconSun) themeIconSun.style.display = 'none';
@@ -32,13 +29,18 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     };
 
-    // Apply initial theme
-    applyTheme(currentTheme);
+    // Get current theme (already applied in head) and update icons
+    const currentTheme = document.documentElement.getAttribute('data-bs-theme') || 'light';
+    updateIcons(currentTheme);
 
     const handleToggleClick = () => {
-        let newTheme = document.documentElement.getAttribute('data-bs-theme') === 'dark' ? 'light' : 'dark';
+        const currentTheme = document.documentElement.getAttribute('data-bs-theme');
+        const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
+        
+        // Apply theme with smooth transition
+        document.documentElement.setAttribute('data-bs-theme', newTheme);
         localStorage.setItem('theme', newTheme);
-        applyTheme(newTheme);
+        updateIcons(newTheme);
     };
 
     if (themeToggleBtn) {
