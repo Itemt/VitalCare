@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "B2abABlzNNNxxQaUONFfm1rxcm513DA4redGGrchKdg=",
+  "Hash": "1SlolXazYUVhaKCEkkQNuwZL8PC85oiqFkDg6sZDjbI=",
   "Source": "CitasEPS",
   "BasePath": "_content/CitasEPS",
   "Mode": "Default",
@@ -1396,8 +1396,8 @@
       "RelatedAsset": "",
       "AssetTraitName": "",
       "AssetTraitValue": "",
-      "Fingerprint": "x0o760hjf1",
-      "Integrity": "YQtRBimTDslE9pnlufUl3TyHLSAXh+QUzYr+dS/IYng=",
+      "Fingerprint": "a9tt9lvqq5",
+      "Integrity": "XsZetbM0n0og5duYKsoclIabCyJ+QCqxfYuRRPikv2k=",
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\css\\enhanced-features.css"
@@ -1422,27 +1422,6 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\css\\layout.css"
-    },
-    {
-      "Identity": "C:\\Users\\CristianPC\\Desktop\\vitalcare\\wwwroot\\css\\README-OPTIMIZACION.md",
-      "SourceId": "CitasEPS",
-      "SourceType": "Discovered",
-      "ContentRoot": "C:\\Users\\CristianPC\\Desktop\\vitalcare\\wwwroot\\",
-      "BasePath": "_content/CitasEPS",
-      "RelativePath": "css/README-OPTIMIZACION#[.{fingerprint}]?.md",
-      "AssetKind": "All",
-      "AssetMode": "All",
-      "AssetRole": "Primary",
-      "AssetMergeBehavior": "",
-      "AssetMergeSource": "",
-      "RelatedAsset": "",
-      "AssetTraitName": "",
-      "AssetTraitValue": "",
-      "Fingerprint": "g2wm0hbabn",
-      "Integrity": "KKA/hkUG2R+EeAyC8keIbhTWn5tFhLUbWSuZK8GzNEk=",
-      "CopyToOutputDirectory": "Never",
-      "CopyToPublishDirectory": "PreserveNewest",
-      "OriginalItemSpec": "wwwroot\\css\\README-OPTIMIZACION.md"
     },
     {
       "Identity": "C:\\Users\\CristianPC\\Desktop\\vitalcare\\wwwroot\\css\\site-optimized.css",
@@ -1858,8 +1837,8 @@
       "RelatedAsset": "",
       "AssetTraitName": "",
       "AssetTraitValue": "",
-      "Fingerprint": "vag4yqp9ii",
-      "Integrity": "efr9Q//nkSSR0nIcaU4nBYQir/ObgjV/ehPqcCs7Zaw=",
+      "Fingerprint": "hrx7wb2dje",
+      "Integrity": "rTLRMSv0SXAYSnV6TntbhTNK1RUNlhgXcJdI06r63g0=",
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\js\\themeSwitcher.js"
@@ -3086,7 +3065,7 @@
         },
         {
           "Name": "Last-Modified",
-          "Value": "Sat, 31 May 2025 16:10:20 GMT"
+          "Value": "Sun, 01 Jun 2025 00:24:31 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -3123,7 +3102,7 @@
         },
         {
           "Name": "Last-Modified",
-          "Value": "Sat, 31 May 2025 16:10:20 GMT"
+          "Value": "Sun, 01 Jun 2025 00:24:31 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -3160,7 +3139,7 @@
         },
         {
           "Name": "Last-Modified",
-          "Value": "Sat, 31 May 2025 16:10:20 GMT"
+          "Value": "Sun, 01 Jun 2025 00:24:31 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -3205,7 +3184,7 @@
         },
         {
           "Name": "Last-Modified",
-          "Value": "Sat, 31 May 2025 16:10:20 GMT"
+          "Value": "Sun, 01 Jun 2025 00:24:31 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -3474,6 +3453,51 @@
       ]
     },
     {
+      "Route": "css/enhanced-features.a9tt9lvqq5.css",
+      "AssetFile": "C:\\Users\\CristianPC\\Desktop\\vitalcare\\wwwroot\\css\\enhanced-features.css",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "41019"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "text/css"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"XsZetbM0n0og5duYKsoclIabCyJ+QCqxfYuRRPikv2k=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Sun, 01 Jun 2025 00:53:56 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=31536000, immutable"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "fingerprint",
+          "Value": "a9tt9lvqq5"
+        },
+        {
+          "Name": "label",
+          "Value": "css/enhanced-features.css"
+        },
+        {
+          "Name": "integrity",
+          "Value": "sha256-XsZetbM0n0og5duYKsoclIabCyJ+QCqxfYuRRPikv2k="
+        }
+      ]
+    },
+    {
       "Route": "css/enhanced-features.css",
       "AssetFile": "C:\\Users\\CristianPC\\Desktop\\vitalcare\\wwwroot\\css\\enhanced-features.css",
       "Selectors": [],
@@ -3484,7 +3508,7 @@
         },
         {
           "Name": "Content-Length",
-          "Value": "34534"
+          "Value": "41019"
         },
         {
           "Name": "Content-Type",
@@ -3492,11 +3516,11 @@
         },
         {
           "Name": "ETag",
-          "Value": "\"YQtRBimTDslE9pnlufUl3TyHLSAXh+QUzYr+dS/IYng=\""
+          "Value": "\"XsZetbM0n0og5duYKsoclIabCyJ+QCqxfYuRRPikv2k=\""
         },
         {
           "Name": "Last-Modified",
-          "Value": "Sat, 31 May 2025 22:06:41 GMT"
+          "Value": "Sun, 01 Jun 2025 00:53:56 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -3506,52 +3530,7 @@
       "EndpointProperties": [
         {
           "Name": "integrity",
-          "Value": "sha256-YQtRBimTDslE9pnlufUl3TyHLSAXh+QUzYr+dS/IYng="
-        }
-      ]
-    },
-    {
-      "Route": "css/enhanced-features.x0o760hjf1.css",
-      "AssetFile": "C:\\Users\\CristianPC\\Desktop\\vitalcare\\wwwroot\\css\\enhanced-features.css",
-      "Selectors": [],
-      "ResponseHeaders": [
-        {
-          "Name": "Accept-Ranges",
-          "Value": "bytes"
-        },
-        {
-          "Name": "Content-Length",
-          "Value": "34534"
-        },
-        {
-          "Name": "Content-Type",
-          "Value": "text/css"
-        },
-        {
-          "Name": "ETag",
-          "Value": "\"YQtRBimTDslE9pnlufUl3TyHLSAXh+QUzYr+dS/IYng=\""
-        },
-        {
-          "Name": "Last-Modified",
-          "Value": "Sat, 31 May 2025 22:06:41 GMT"
-        },
-        {
-          "Name": "Cache-Control",
-          "Value": "max-age=31536000, immutable"
-        }
-      ],
-      "EndpointProperties": [
-        {
-          "Name": "fingerprint",
-          "Value": "x0o760hjf1"
-        },
-        {
-          "Name": "label",
-          "Value": "css/enhanced-features.css"
-        },
-        {
-          "Name": "integrity",
-          "Value": "sha256-YQtRBimTDslE9pnlufUl3TyHLSAXh+QUzYr+dS/IYng="
+          "Value": "sha256-XsZetbM0n0og5duYKsoclIabCyJ+QCqxfYuRRPikv2k="
         }
       ]
     },
@@ -3634,88 +3613,6 @@
         {
           "Name": "integrity",
           "Value": "sha256-6gV2ajg3Ywa5giv0VurFpwycYvYO3zbxR4/42oDvQMk="
-        }
-      ]
-    },
-    {
-      "Route": "css/README-OPTIMIZACION.g2wm0hbabn.md",
-      "AssetFile": "C:\\Users\\CristianPC\\Desktop\\vitalcare\\wwwroot\\css\\README-OPTIMIZACION.md",
-      "Selectors": [],
-      "ResponseHeaders": [
-        {
-          "Name": "Accept-Ranges",
-          "Value": "bytes"
-        },
-        {
-          "Name": "Content-Length",
-          "Value": "7173"
-        },
-        {
-          "Name": "Content-Type",
-          "Value": "text/markdown"
-        },
-        {
-          "Name": "ETag",
-          "Value": "\"KKA/hkUG2R+EeAyC8keIbhTWn5tFhLUbWSuZK8GzNEk=\""
-        },
-        {
-          "Name": "Last-Modified",
-          "Value": "Sat, 31 May 2025 16:15:39 GMT"
-        },
-        {
-          "Name": "Cache-Control",
-          "Value": "max-age=31536000, immutable"
-        }
-      ],
-      "EndpointProperties": [
-        {
-          "Name": "fingerprint",
-          "Value": "g2wm0hbabn"
-        },
-        {
-          "Name": "label",
-          "Value": "css/README-OPTIMIZACION.md"
-        },
-        {
-          "Name": "integrity",
-          "Value": "sha256-KKA/hkUG2R+EeAyC8keIbhTWn5tFhLUbWSuZK8GzNEk="
-        }
-      ]
-    },
-    {
-      "Route": "css/README-OPTIMIZACION.md",
-      "AssetFile": "C:\\Users\\CristianPC\\Desktop\\vitalcare\\wwwroot\\css\\README-OPTIMIZACION.md",
-      "Selectors": [],
-      "ResponseHeaders": [
-        {
-          "Name": "Accept-Ranges",
-          "Value": "bytes"
-        },
-        {
-          "Name": "Content-Length",
-          "Value": "7173"
-        },
-        {
-          "Name": "Content-Type",
-          "Value": "text/markdown"
-        },
-        {
-          "Name": "ETag",
-          "Value": "\"KKA/hkUG2R+EeAyC8keIbhTWn5tFhLUbWSuZK8GzNEk=\""
-        },
-        {
-          "Name": "Last-Modified",
-          "Value": "Sat, 31 May 2025 16:15:39 GMT"
-        },
-        {
-          "Name": "Cache-Control",
-          "Value": "no-cache"
-        }
-      ],
-      "EndpointProperties": [
-        {
-          "Name": "integrity",
-          "Value": "sha256-KKA/hkUG2R+EeAyC8keIbhTWn5tFhLUbWSuZK8GzNEk="
         }
       ]
     },
@@ -3824,7 +3721,7 @@
         },
         {
           "Name": "Last-Modified",
-          "Value": "Sat, 31 May 2025 15:50:51 GMT"
+          "Value": "Sun, 01 Jun 2025 00:30:53 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -3861,7 +3758,7 @@
         },
         {
           "Name": "Last-Modified",
-          "Value": "Sat, 31 May 2025 15:50:51 GMT"
+          "Value": "Sun, 01 Jun 2025 00:30:53 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -7438,7 +7335,7 @@
         },
         {
           "Name": "Last-Modified",
-          "Value": "Fri, 30 May 2025 08:57:15 GMT"
+          "Value": "Sun, 01 Jun 2025 00:38:46 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -7475,7 +7372,7 @@
         },
         {
           "Name": "Last-Modified",
-          "Value": "Fri, 30 May 2025 08:57:15 GMT"
+          "Value": "Sun, 01 Jun 2025 00:38:46 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -7498,6 +7395,51 @@
       ]
     },
     {
+      "Route": "js/themeSwitcher.hrx7wb2dje.js",
+      "AssetFile": "C:\\Users\\CristianPC\\Desktop\\vitalcare\\wwwroot\\js\\themeSwitcher.js",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "2565"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "text/javascript"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"rTLRMSv0SXAYSnV6TntbhTNK1RUNlhgXcJdI06r63g0=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Sun, 01 Jun 2025 00:41:49 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=31536000, immutable"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "fingerprint",
+          "Value": "hrx7wb2dje"
+        },
+        {
+          "Name": "label",
+          "Value": "js/themeSwitcher.js"
+        },
+        {
+          "Name": "integrity",
+          "Value": "sha256-rTLRMSv0SXAYSnV6TntbhTNK1RUNlhgXcJdI06r63g0="
+        }
+      ]
+    },
+    {
       "Route": "js/themeSwitcher.js",
       "AssetFile": "C:\\Users\\CristianPC\\Desktop\\vitalcare\\wwwroot\\js\\themeSwitcher.js",
       "Selectors": [],
@@ -7508,7 +7450,7 @@
         },
         {
           "Name": "Content-Length",
-          "Value": "2541"
+          "Value": "2565"
         },
         {
           "Name": "Content-Type",
@@ -7516,11 +7458,11 @@
         },
         {
           "Name": "ETag",
-          "Value": "\"efr9Q//nkSSR0nIcaU4nBYQir/ObgjV/ehPqcCs7Zaw=\""
+          "Value": "\"rTLRMSv0SXAYSnV6TntbhTNK1RUNlhgXcJdI06r63g0=\""
         },
         {
           "Name": "Last-Modified",
-          "Value": "Sat, 24 May 2025 19:47:12 GMT"
+          "Value": "Sun, 01 Jun 2025 00:41:49 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -7530,52 +7472,7 @@
       "EndpointProperties": [
         {
           "Name": "integrity",
-          "Value": "sha256-efr9Q//nkSSR0nIcaU4nBYQir/ObgjV/ehPqcCs7Zaw="
-        }
-      ]
-    },
-    {
-      "Route": "js/themeSwitcher.vag4yqp9ii.js",
-      "AssetFile": "C:\\Users\\CristianPC\\Desktop\\vitalcare\\wwwroot\\js\\themeSwitcher.js",
-      "Selectors": [],
-      "ResponseHeaders": [
-        {
-          "Name": "Accept-Ranges",
-          "Value": "bytes"
-        },
-        {
-          "Name": "Content-Length",
-          "Value": "2541"
-        },
-        {
-          "Name": "Content-Type",
-          "Value": "text/javascript"
-        },
-        {
-          "Name": "ETag",
-          "Value": "\"efr9Q//nkSSR0nIcaU4nBYQir/ObgjV/ehPqcCs7Zaw=\""
-        },
-        {
-          "Name": "Last-Modified",
-          "Value": "Sat, 24 May 2025 19:47:12 GMT"
-        },
-        {
-          "Name": "Cache-Control",
-          "Value": "max-age=31536000, immutable"
-        }
-      ],
-      "EndpointProperties": [
-        {
-          "Name": "fingerprint",
-          "Value": "vag4yqp9ii"
-        },
-        {
-          "Name": "label",
-          "Value": "js/themeSwitcher.js"
-        },
-        {
-          "Name": "integrity",
-          "Value": "sha256-efr9Q//nkSSR0nIcaU4nBYQir/ObgjV/ehPqcCs7Zaw="
+          "Value": "sha256-rTLRMSv0SXAYSnV6TntbhTNK1RUNlhgXcJdI06r63g0="
         }
       ]
     },

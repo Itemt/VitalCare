@@ -1,34 +1,34 @@
 document.addEventListener('DOMContentLoaded', () => {
     // Buttons
-    const themeToggleBtnXs = document.getElementById('themeToggleBtnXs');
-    const themeToggleBtnSmUp = document.getElementById('themeToggleBtnSmUp');
+    const themeToggleBtn = document.getElementById('themeToggleBtn');
+    const themeToggleBtnMobile = document.getElementById('themeToggleBtnMobile');
 
-    // Icons for XS button
-    const themeIconSunXs = document.getElementById('themeIconSunXs');
-    const themeIconMoonXs = document.getElementById('themeIconMoonXs');
+    // Icons for desktop button
+    const themeIconSun = document.getElementById('themeIconSun');
+    const themeIconMoon = document.getElementById('themeIconMoon');
 
-    // Icons for SM+ button
-    const themeIconSunSmUp = document.getElementById('themeIconSunSmUp');
-    const themeIconMoonSmUp = document.getElementById('themeIconMoonSmUp');
+    // Icons for mobile button
+    const themeIconSunMobile = document.getElementById('themeIconSunMobile');
+    const themeIconMoonMobile = document.getElementById('themeIconMoonMobile');
 
     const currentTheme = localStorage.getItem('theme') || 'light';
 
     const applyTheme = (theme) => {
         document.documentElement.setAttribute('data-bs-theme', theme);
         if (theme === 'dark') {
-            // XS button icons
-            if (themeIconSunXs) themeIconSunXs.style.display = 'none';
-            if (themeIconMoonXs) themeIconMoonXs.style.display = 'inline-block';
-            // SM+ button icons
-            if (themeIconSunSmUp) themeIconSunSmUp.style.display = 'none';
-            if (themeIconMoonSmUp) themeIconMoonSmUp.style.display = 'inline-block';
+            // Desktop button icons
+            if (themeIconSun) themeIconSun.style.display = 'none';
+            if (themeIconMoon) themeIconMoon.style.display = 'inline-block';
+            // Mobile button icons
+            if (themeIconSunMobile) themeIconSunMobile.style.display = 'none';
+            if (themeIconMoonMobile) themeIconMoonMobile.style.display = 'inline-block';
         } else {
-            // XS button icons
-            if (themeIconSunXs) themeIconSunXs.style.display = 'inline-block';
-            if (themeIconMoonXs) themeIconMoonXs.style.display = 'none';
-            // SM+ button icons
-            if (themeIconSunSmUp) themeIconSunSmUp.style.display = 'inline-block';
-            if (themeIconMoonSmUp) themeIconMoonSmUp.style.display = 'none';
+            // Desktop button icons
+            if (themeIconSun) themeIconSun.style.display = 'inline-block';
+            if (themeIconMoon) themeIconMoon.style.display = 'none';
+            // Mobile button icons
+            if (themeIconSunMobile) themeIconSunMobile.style.display = 'inline-block';
+            if (themeIconMoonMobile) themeIconMoonMobile.style.display = 'none';
         }
     };
 
@@ -41,12 +41,12 @@ document.addEventListener('DOMContentLoaded', () => {
         applyTheme(newTheme);
     };
 
-    if (themeToggleBtnXs) {
-        themeToggleBtnXs.addEventListener('click', handleToggleClick);
+    if (themeToggleBtn) {
+        themeToggleBtn.addEventListener('click', handleToggleClick);
     }
 
-    if (themeToggleBtnSmUp) {
-        themeToggleBtnSmUp.addEventListener('click', handleToggleClick);
+    if (themeToggleBtnMobile) {
+        themeToggleBtnMobile.addEventListener('click', handleToggleClick);
     }
 
     // Optional: Add a listener for system theme changes if you want to be more reactive
