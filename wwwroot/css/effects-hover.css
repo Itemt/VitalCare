@@ -7,7 +7,7 @@
     overflow: hidden;
 }
 
-/* === EFECTO ARCOÍRIS SUAVIZADO DEL LETRERO === */
+/* === EFECTO ARCOÍRIS SOLO EN HOVER === */
 .hero-glow-border {
     position: absolute;
     top: -2px;
@@ -18,8 +18,14 @@
     background-size: 400% 400%;
     border-radius: 1.6rem;
     z-index: -1;
-    animation: borderGlow 6s ease-in-out infinite;
-    opacity: 0.3;
+    opacity: 0; /* Inicialmente invisible */
+    animation: none; /* Sin animación por defecto */
+    transition: opacity 0.3s ease;
+}
+
+.hero-content-container:hover .hero-glow-border {
+    opacity: 0.4; /* Solo visible en hover */
+    animation: borderGlow 6s ease-in-out infinite; /* Animación solo en hover */
 }
 
 @keyframes borderGlow {
@@ -31,7 +37,7 @@
     }
 }
 
-/* === SPARKLES SIEMPRE VISIBLES (NO SOLO EN HOVER) === */
+/* === SPARKLES SOLO EN HOVER === */
 .feature-sparkles {
     position: absolute;
     top: 0;
@@ -39,8 +45,13 @@
     right: 0;
     bottom: 0;
     pointer-events: none;
-    opacity: 1; /* Siempre visibles */
+    opacity: 0; /* Inicialmente invisible */
     z-index: 1;
+    transition: opacity 0.3s ease;
+}
+
+.feature-card-hover:hover .feature-sparkles {
+    opacity: 1; /* Solo visibles en hover */
 }
 
 .sparkle {
@@ -227,12 +238,14 @@
 
 .hero-btn-light {
     background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
-    color: #495057;
+    color: #212529 !important; /* Color oscuro para contraste */
+    border: 1px solid rgba(0,0,0,0.1);
 }
 
 .hero-btn-light:hover {
     background: linear-gradient(135deg, #e9ecef 0%, #dee2e6 100%);
-    color: #212529;
+    color: #000000 !important; /* Negro sólido en hover */
+    border-color: rgba(0,0,0,0.2);
 }
 
 /* Button Ripple Effect */
@@ -339,42 +352,6 @@
     }
 }
 
-/* === MODERN FOOTER STYLES RESTAURADOS === */
-.modern-footer {
-    background: linear-gradient(135deg, #0f1419 0%, #1a1a2e 50%, #16213e 100%);
-    position: relative;
-    padding: 4rem 0 0;
-    margin-top: 6rem;
-    overflow: hidden;
-}
-
-.footer-background {
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    z-index: 1;
-}
-
-.footer-particles {
-    display: none;
-}
-
-.footer-particle {
-    display: none;
-}
-
-.footer-gradient-overlay {
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background: transparent;
-    animation: none;
-}
-
 /* === PERFORMANCE OPTIMIZATIONS === */
 /* Solo aplicar will-change cuando es necesario */
 .feature-card-hover,
@@ -414,10 +391,6 @@
     .advanced-service-card:hover {
         transform: translateY(-3px) scale(1.01);
     }
-    
-    .footer-particle {
-        display: none; /* Ocultar partículas del footer en móviles */
-    }
 }
 
 /* === DARK THEME ADJUSTMENTS === */
@@ -437,8 +410,4 @@
 
 [data-bs-theme="dark"] .floating-icon:hover {
     background: rgba(0,0,0,0.3);
-}
-
-[data-bs-theme="dark"] .modern-footer {
-    background: linear-gradient(135deg, #000000 0%, #1a1a1a 50%, #2d2d2d 100%);
 } 
