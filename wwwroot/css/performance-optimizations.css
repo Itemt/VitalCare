@@ -1,0 +1,213 @@
+/* === OPTIMIZACIONES DE RENDIMIENTO PARA HERO SECTION === */
+/* Este archivo contiene optimizaciones específicas para mejorar el rendimiento sin perder efectos visuales */
+
+/* === CONTENEDOR PRINCIPAL OPTIMIZADO === */
+.hero-section-enhanced {
+    /* Hardware acceleration optimizations */
+    transform: translate3d(0, 0, 0);
+    backface-visibility: hidden;
+    perspective: 1000px;
+    
+    /* Reduce repaints */
+    contain: layout style paint;
+    
+    /* Optimize compositing */
+    isolation: isolate;
+}
+
+/* === FLOATING ICONS PERFORMANCE === */
+.floating-medical-icons {
+    /* Use GPU compositing only when needed */
+    will-change: auto;
+    contain: layout style;
+}
+
+.floating-icon {
+    /* Optimize individual icon performance */
+    backface-visibility: hidden;
+    transform: translate3d(0, 0, 0);
+    will-change: auto;
+}
+
+/* Only activate hardware acceleration on hover */
+.floating-icon:hover {
+    will-change: transform;
+}
+
+/* === HERO CONTENT CONTAINER OPTIMIZATION === */
+.hero-content-container {
+    /* Enable hardware acceleration for smooth animations */
+    transform: translate3d(0, 0, 0);
+    backface-visibility: hidden;
+    
+    /* Optimize rendering */
+    contain: layout style paint;
+}
+
+/* === GLOW BORDER OPTIMIZATION === */
+.hero-glow-border {
+    /* Only use hardware acceleration when animated */
+    will-change: auto;
+    backface-visibility: hidden;
+    transform: translate3d(0, 0, 0);
+}
+
+.hero-content-container:hover .hero-glow-border {
+    will-change: background-position, opacity;
+}
+
+/* === STATISTICS CARDS OPTIMIZATION === */
+.hero-stat-card {
+    /* Optimize individual stat cards */
+    contain: layout style;
+    transform: translate3d(0, 0, 0);
+    will-change: auto;
+}
+
+.hero-stat-card:hover {
+    will-change: transform, box-shadow;
+}
+
+/* === TRUST BADGES OPTIMIZATION === */
+.trust-badge-item {
+    /* Lightweight optimization for badges */
+    contain: layout style;
+    transform: translate3d(0, 0, 0);
+    will-change: auto;
+}
+
+.trust-badge-item:hover {
+    will-change: transform, background-color;
+}
+
+/* === BUTTON OPTIMIZATION === */
+.hero-btn {
+    /* Optimize button rendering */
+    contain: layout style;
+    transform: translate3d(0, 0, 0);
+    will-change: auto;
+}
+
+.hero-btn:hover {
+    will-change: transform, box-shadow;
+}
+
+.hero-btn::before {
+    /* Optimize ripple effect */
+    backface-visibility: hidden;
+    transform: translate3d(0, 0, 0);
+}
+
+/* === SCROLL INDICATOR OPTIMIZATION === */
+.scroll-indicator {
+    /* Optimize scroll indicator */
+    contain: layout style;
+    transform: translate3d(-50%, 0, 0);
+    will-change: auto;
+}
+
+.scroll-indicator:hover {
+    will-change: transform, color, background-color;
+}
+
+/* === MOBILE PERFORMANCE OPTIMIZATIONS === */
+@media (max-width: 768px) {
+    /* Reduce effects on mobile for better performance */
+    .hero-section-enhanced {
+        /* Simplify mobile rendering */
+        contain: layout;
+    }
+    
+    .floating-icon {
+        /* Disable some animations on mobile */
+        animation-duration: 12s;
+        animation-timing-function: ease-out;
+    }
+    
+    /* Reduce blur effects on mobile */
+    .hero-content-container {
+        backdrop-filter: blur(10px);
+    }
+    
+    .scroll-indicator {
+        backdrop-filter: blur(5px);
+    }
+}
+
+/* === REDUCED MOTION SUPPORT === */
+@media (prefers-reduced-motion: reduce) {
+    /* Disable animations for users who prefer reduced motion */
+    .floating-icon,
+    .hero-glow-border,
+    .scroll-indicator {
+        animation: none !important;
+    }
+    
+    .hero-btn::before,
+    .sparkle,
+    .particle {
+        animation: none !important;
+    }
+    
+    /* Keep only essential hover effects */
+    .hero-btn:hover {
+        transform: none !important;
+    }
+    
+    .floating-icon:hover {
+        transform: scale(1.1) translate3d(0, 0, 0) !important;
+    }
+}
+
+/* === FOCUS PERFORMANCE === */
+.hero-btn:focus,
+.scroll-indicator:focus {
+    /* Optimize focus states */
+    outline: 2px solid #00d4ff;
+    outline-offset: 2px;
+}
+
+/* === PRINT OPTIMIZATIONS === */
+@media print {
+    /* Disable all animations and effects for printing */
+    .hero-section-enhanced *,
+    .hero-section-enhanced *::before,
+    .hero-section-enhanced *::after {
+        animation: none !important;
+        transition: none !important;
+        transform: none !important;
+        filter: none !important;
+        backdrop-filter: none !important;
+        box-shadow: none !important;
+    }
+}
+
+/* === PERFORMANCE MONITORING === */
+/* Use this class to temporarily disable effects for performance testing */
+.performance-test .hero-section-enhanced * {
+    animation: none !important;
+    transition: none !important;
+    transform: none !important;
+    will-change: auto !important;
+    filter: none !important;
+    backdrop-filter: none !important;
+}
+
+/* === HIGH CONTRAST MODE SUPPORT === */
+@media (prefers-contrast: high) {
+    .hero-title-vital {
+        color: #ffffff !important;
+        text-shadow: 2px 2px 4px #000000 !important;
+    }
+    
+    .hero-title-care {
+        color: #ffffff !important;
+        text-shadow: 2px 2px 4px #000000 !important;
+    }
+    
+    .scroll-indicator {
+        background: #000000 !important;
+        color: #ffffff !important;
+        border: 2px solid #ffffff !important;
+    }
+} 

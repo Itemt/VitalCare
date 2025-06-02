@@ -322,4 +322,444 @@
 .manage-nav-pills-patient .nav-link:not(.active):hover {
     background-color: rgba(40,167,69,0.1);
     transform: translateY(-1px);
+}
+
+/* === VITALCARE COMPONENTS CSS === */
+/* Componentes mejorados y elegantes para el sistema */
+
+/* === DASHBOARD CARDS REDISEÑADAS === */
+
+/* Contenedores principales de dashboard */
+.patient-dashboard-bg,
+.doctor-dashboard-bg {
+    padding: 2rem 0;
+    min-height: 100vh;
+    position: relative;
+}
+
+/* Tarjetas principales del dashboard */
+.patient-dashboard-bg .card,
+.doctor-dashboard-bg .card {
+    border: none;
+    border-radius: var(--border-radius-lg);
+    box-shadow: var(--shadow-elegant);
+    backdrop-filter: blur(20px);
+    background: rgba(255, 255, 255, 0.95);
+    transition: var(--transition-smooth);
+    overflow: hidden;
+    position: relative;
+}
+
+.patient-dashboard-bg .card:hover,
+.doctor-dashboard-bg .card:hover {
+    transform: translateY(-5px);
+    box-shadow: var(--shadow-hover);
+}
+
+/* Headers mejorados */
+.patient-dashboard-bg .card-header {
+    background: linear-gradient(135deg, var(--patient-primary) 0%, var(--patient-primary-dark) 100%);
+    border: none;
+    padding: 2.5rem 2rem;
+    position: relative;
+    overflow: hidden;
+}
+
+.doctor-dashboard-bg .card-header {
+    background: linear-gradient(135deg, var(--doctor-primary) 0%, var(--doctor-primary-dark) 100%);
+    border: none;
+    padding: 2.5rem 2rem;
+    position: relative;
+    overflow: hidden;
+}
+
+/* Efecto de brillo en headers */
+.patient-dashboard-bg .card-header::before,
+.doctor-dashboard-bg .card-header::before {
+    content: '';
+    position: absolute;
+    top: -50%;
+    right: -50%;
+    width: 100%;
+    height: 200%;
+    background: linear-gradient(45deg, transparent, rgba(255, 255, 255, 0.15), transparent);
+    transform: rotate(45deg) translateX(-100%);
+    transition: var(--transition-smooth);
+}
+
+.patient-dashboard-bg .card-header:hover::before,
+.doctor-dashboard-bg .card-header:hover::before {
+    transform: rotate(45deg) translateX(100%);
+}
+
+.patient-dashboard-bg .card-header h2,
+.doctor-dashboard-bg .card-header h2 {
+    color: white;
+    font-weight: 600;
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+    margin: 0;
+    position: relative;
+    z-index: 1;
+    font-size: 1.75rem;
+}
+
+/* === TARJETAS DE ACCIÓN REDISEÑADAS === */
+.action-card-hover {
+    border: none;
+    border-radius: 18px;
+    transition: var(--transition-smooth);
+    background: rgba(255, 255, 255, 0.95);
+    backdrop-filter: blur(15px);
+    position: relative;
+    overflow: hidden;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+}
+
+.action-card-hover::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+    transition: var(--transition-smooth);
+}
+
+.action-card-hover:hover::before {
+    left: 100%;
+}
+
+.action-card-hover:hover {
+    transform: translateY(-10px) scale(1.02);
+    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.12);
+}
+
+/* Estilos específicos para pacientes */
+.patient-dashboard-bg .action-card-hover {
+    border: 2px solid var(--patient-border-subtle);
+    position: relative;
+}
+
+.patient-dashboard-bg .action-card-hover::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 4px;
+    background: linear-gradient(90deg, var(--patient-primary), var(--patient-primary-light));
+    border-radius: 18px 18px 0 0;
+    transform: scaleX(0);
+    transition: var(--transition-smooth);
+}
+
+.patient-dashboard-bg .action-card-hover:hover::after {
+    transform: scaleX(1);
+}
+
+.patient-dashboard-bg .action-card-hover:hover {
+    border-color: var(--patient-primary);
+    background: rgba(255, 255, 255, 0.98);
+}
+
+/* Estilos específicos para doctores */
+.doctor-dashboard-bg .action-card-hover {
+    border: 2px solid var(--doctor-border-subtle);
+    position: relative;
+}
+
+.doctor-dashboard-bg .action-card-hover::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 4px;
+    background: linear-gradient(90deg, var(--doctor-primary), var(--doctor-primary-light));
+    border-radius: 18px 18px 0 0;
+    transform: scaleX(0);
+    transition: var(--transition-smooth);
+}
+
+.doctor-dashboard-bg .action-card-hover:hover::after {
+    transform: scaleX(1);
+}
+
+.doctor-dashboard-bg .action-card-hover:hover {
+    border-color: var(--doctor-primary);
+    background: rgba(255, 255, 255, 0.98);
+}
+
+/* === ICONOS MEJORADOS === */
+.feature-icon-wrapper {
+    position: relative;
+    transition: var(--transition-smooth);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 80px;
+    height: 80px;
+    margin: 0 auto;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.1);
+}
+
+.feature-icon-wrapper:hover {
+    transform: scale(1.1) rotate(5deg);
+}
+
+.feature-icon-main {
+    font-size: 2.5rem !important;
+    z-index: 2;
+    position: relative;
+}
+
+.patient-dashboard-bg .feature-icon-wrapper {
+    background: linear-gradient(135deg, var(--patient-bg-subtle), rgba(255, 255, 255, 0.8));
+    border: 2px solid var(--patient-border-subtle);
+}
+
+.doctor-dashboard-bg .feature-icon-wrapper {
+    background: linear-gradient(135deg, var(--doctor-bg-subtle), rgba(255, 255, 255, 0.8));
+    border: 2px solid var(--doctor-border-subtle);
+}
+
+/* === EFECTOS DE SPARKLES === */
+.feature-sparkles {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    pointer-events: none;
+    z-index: 1;
+}
+
+.sparkle {
+    position: absolute;
+    width: 6px;
+    height: 6px;
+    background: var(--patient-primary);
+    border-radius: 50%;
+    opacity: 0;
+    animation: sparkleGlow 2.5s infinite ease-in-out;
+}
+
+.doctor-dashboard-bg .sparkle {
+    background: var(--doctor-primary);
+}
+
+.sparkle-1 { 
+    top: 15%; 
+    right: 15%; 
+    animation-delay: 0s; 
+}
+.sparkle-2 { 
+    top: 65%; 
+    right: 75%; 
+    animation-delay: 0.8s; 
+}
+.sparkle-3 { 
+    bottom: 25%; 
+    left: 25%; 
+    animation-delay: 1.6s; 
+}
+
+@keyframes sparkleGlow {
+    0%, 100% { 
+        opacity: 0; 
+        transform: scale(0) rotate(0deg); 
+    }
+    50% { 
+        opacity: 1; 
+        transform: scale(1) rotate(180deg); 
+    }
+}
+
+/* === TARJETAS DE ESTADÍSTICAS === */
+.stat-card {
+    border-radius: 16px;
+    transition: var(--transition-smooth);
+    position: relative;
+    overflow: hidden;
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    background: rgba(255, 255, 255, 0.9);
+}
+
+.stat-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 4px;
+    background: linear-gradient(90deg, var(--patient-primary), var(--patient-primary-light));
+    transform: scaleX(0);
+    transition: var(--transition-smooth);
+}
+
+.doctor-dashboard-bg .stat-card::before {
+    background: linear-gradient(90deg, var(--doctor-primary), var(--doctor-primary-light));
+}
+
+.stat-card:hover::before {
+    transform: scaleX(1);
+}
+
+.stat-card:hover {
+    transform: translateY(-5px);
+    box-shadow: var(--shadow-hover);
+}
+
+/* === WIDGETS LATERALES === */
+.quick-links-widget,
+.announcements-widget,
+.health-summary-widget,
+.messages-widget {
+    border-radius: 16px;
+    background: rgba(255, 255, 255, 0.95);
+    backdrop-filter: blur(15px);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    transition: var(--transition-smooth);
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+}
+
+.quick-links-widget:hover,
+.announcements-widget:hover,
+.health-summary-widget:hover,
+.messages-widget:hover {
+    transform: translateY(-3px);
+    box-shadow: var(--shadow-elegant);
+}
+
+.list-group-item {
+    border: none !important;
+    border-radius: 12px !important;
+    margin-bottom: 0.5rem;
+    transition: var(--transition-smooth);
+    background: rgba(248, 249, 250, 0.5);
+}
+
+.list-group-item:hover {
+    background: rgba(248, 249, 250, 0.8);
+    transform: translateX(5px);
+}
+
+/* === CARD FOOTERS === */
+.card-footer {
+    background: rgba(248, 249, 250, 0.8) !important;
+    backdrop-filter: blur(10px);
+    border-top: 1px solid rgba(0, 0, 0, 0.05) !important;
+    border-radius: 0 0 var(--border-radius-lg) var(--border-radius-lg) !important;
+    padding: 1.5rem 2rem;
+}
+
+.card-footer .row .col-md-3 {
+    transition: var(--transition-smooth);
+}
+
+.card-footer .row .col-md-3:hover {
+    transform: translateY(-2px);
+}
+
+.card-footer .row .col-md-3 i {
+    transition: var(--transition-smooth);
+    font-size: 1.25rem;
+}
+
+.card-footer .row .col-md-3:hover i {
+    transform: scale(1.2);
+}
+
+/* === TEMA OSCURO === */
+[data-bs-theme="dark"] .patient-dashboard-bg .card,
+[data-bs-theme="dark"] .doctor-dashboard-bg .card {
+    background: rgba(33, 37, 41, 0.95);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+[data-bs-theme="dark"] .action-card-hover {
+    background: rgba(33, 37, 41, 0.95);
+    border-color: rgba(255, 255, 255, 0.1);
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+}
+
+[data-bs-theme="dark"] .stat-card {
+    background: rgba(33, 37, 41, 0.9);
+}
+
+[data-bs-theme="dark"] .quick-links-widget,
+[data-bs-theme="dark"] .announcements-widget,
+[data-bs-theme="dark"] .health-summary-widget,
+[data-bs-theme="dark"] .messages-widget {
+    background: rgba(33, 37, 41, 0.95);
+    border-color: rgba(255, 255, 255, 0.1);
+}
+
+[data-bs-theme="dark"] .card-footer {
+    background: rgba(33, 37, 41, 0.8) !important;
+    border-top-color: rgba(255, 255, 255, 0.1) !important;
+}
+
+[data-bs-theme="dark"] .list-group-item {
+    background: rgba(255, 255, 255, 0.05);
+}
+
+[data-bs-theme="dark"] .list-group-item:hover {
+    background: rgba(255, 255, 255, 0.1);
+}
+
+/* === ANIMACIONES DE ENTRADA === */
+@keyframes cardFadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.patient-dashboard-bg .card,
+.doctor-dashboard-bg .card {
+    animation: cardFadeInUp 0.8s ease-out;
+}
+
+.action-card-hover {
+    animation: cardFadeInUp 0.6s ease-out;
+    animation-fill-mode: both;
+}
+
+.action-card-hover:nth-child(1) { animation-delay: 0.1s; }
+.action-card-hover:nth-child(2) { animation-delay: 0.2s; }
+.action-card-hover:nth-child(3) { animation-delay: 0.3s; }
+.action-card-hover:nth-child(4) { animation-delay: 0.4s; }
+
+/* === RESPONSIVE === */
+@media (max-width: 768px) {
+    .patient-dashboard-bg,
+    .doctor-dashboard-bg {
+        padding: 1rem 0;
+    }
+    
+    .action-card-hover:hover {
+        transform: translateY(-5px) scale(1.01);
+    }
+    
+    .feature-icon-wrapper:hover {
+        transform: scale(1.05);
+    }
+    
+    .patient-dashboard-bg .card-header,
+    .doctor-dashboard-bg .card-header {
+        padding: 2rem 1.5rem;
+    }
+    
+    .patient-dashboard-bg .card-header h2,
+    .doctor-dashboard-bg .card-header h2 {
+        font-size: 1.5rem;
+    }
 } 

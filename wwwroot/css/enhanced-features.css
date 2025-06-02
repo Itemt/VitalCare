@@ -876,4 +876,449 @@ body {
         border-radius: 0 20px 20px 0;
         padding: 0.6rem 1.2rem;
     }
+}
+
+/* === HERO TITLE COLORS - VITALCARE LOGO === */
+.hero-title-vital {
+    color: #00d4ff !important;
+    text-shadow: 0 0 20px rgba(0, 212, 255, 0.3);
+    transition: all 0.3s ease;
+    display: inline-block;
+}
+
+.hero-title-care {
+    color: #28a745 !important;
+    text-shadow: 0 0 20px rgba(40, 167, 69, 0.3);
+    transition: all 0.3s ease;
+    display: inline-block;
+}
+
+.hero-title:hover .hero-title-vital {
+    text-shadow: 0 0 30px rgba(0, 212, 255, 0.6);
+    transform: scale(1.02);
+}
+
+.hero-title:hover .hero-title-care {
+    text-shadow: 0 0 30px rgba(40, 167, 69, 0.6);
+    transform: scale(1.02);
+}
+
+/* Dark theme adjustments for logo */
+[data-bs-theme="dark"] .hero-title-vital {
+    color: #66e6ff !important;
+    text-shadow: 0 0 25px rgba(102, 230, 255, 0.4);
+}
+
+[data-bs-theme="dark"] .hero-title-care {
+    color: #40e065 !important;
+    text-shadow: 0 0 25px rgba(64, 224, 101, 0.4);
+}
+
+[data-bs-theme="dark"] .hero-title:hover .hero-title-vital {
+    text-shadow: 0 0 35px rgba(102, 230, 255, 0.7);
+}
+
+[data-bs-theme="dark"] .hero-title:hover .hero-title-care {
+    text-shadow: 0 0 35px rgba(64, 224, 101, 0.7);
+}
+
+/* Mobile optimizations for logo */
+@media (max-width: 768px) {
+    .hero-title-vital,
+    .hero-title-care {
+        text-shadow: 0 0 15px rgba(0, 212, 255, 0.2);
+    }
+    
+    .hero-title:hover .hero-title-vital,
+    .hero-title:hover .hero-title-care {
+        transform: scale(1.01);
+        text-shadow: 0 0 20px rgba(0, 212, 255, 0.4);
+    }
+}
+
+/* === SCROLL INDICATOR OPTIMIZADO === */
+.scroll-indicator {
+    position: absolute;
+    bottom: 15px; /* Posición más baja como se solicitó */
+    left: 50%;
+    transform: translateX(-50%) translateZ(0);
+    color: rgba(255,255,255,0.8);
+    font-size: 1.8rem;
+    cursor: pointer;
+    z-index: 15;
+    transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    animation: scrollBounce 2s ease-in-out infinite;
+    will-change: auto;
+    padding: 0.5rem;
+    border-radius: 50%;
+    background: rgba(255,255,255,0.1);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255,255,255,0.2);
+}
+
+.scroll-indicator:hover {
+    color: #00d4ff;
+    background: rgba(0, 212, 255, 0.15);
+    border-color: rgba(0, 212, 255, 0.3);
+    transform: translateX(-50%) translateY(-3px) scale(1.1) translateZ(0);
+    animation: none;
+    will-change: transform, color, background;
+    box-shadow: 0 8px 25px rgba(0, 212, 255, 0.3);
+}
+
+.scroll-indicator i {
+    display: block;
+    transition: transform 0.3s ease;
+    transform: translateZ(0);
+}
+
+.scroll-indicator:hover i {
+    transform: translateY(2px) translateZ(0);
+}
+
+@keyframes scrollBounce {
+    0%, 20%, 50%, 80%, 100% {
+        transform: translateX(-50%) translateY(0) translateZ(0);
+    }
+    40% {
+        transform: translateX(-50%) translateY(-8px) translateZ(0);
+    }
+    60% {
+        transform: translateX(-50%) translateY(-4px) translateZ(0);
+    }
+}
+
+/* Dark theme scroll indicator */
+[data-bs-theme="dark"] .scroll-indicator {
+    color: rgba(255,255,255,0.9);
+    background: rgba(255,255,255,0.05);
+    border-color: rgba(255,255,255,0.1);
+}
+
+[data-bs-theme="dark"] .scroll-indicator:hover {
+    color: #66e6ff;
+    background: rgba(102, 230, 255, 0.15);
+    border-color: rgba(102, 230, 255, 0.3);
+    box-shadow: 0 8px 25px rgba(102, 230, 255, 0.3);
+}
+
+/* Mobile optimizations for scroll indicator */
+@media (max-width: 768px) {
+    .scroll-indicator {
+        font-size: 1.5rem;
+        bottom: 10px;
+        padding: 0.4rem;
+    }
+    
+    .scroll-indicator:hover {
+        transform: translateX(-50%) translateY(-2px) scale(1.05) translateZ(0);
+    }
+    
+    @keyframes scrollBounce {
+        0%, 20%, 50%, 80%, 100% {
+            transform: translateX(-50%) translateY(0) translateZ(0);
+        }
+        40% {
+            transform: translateX(-50%) translateY(-5px) translateZ(0);
+        }
+        60% {
+            transform: translateX(-50%) translateY(-2px) translateZ(0);
+        }
+    }
+}
+
+/* === NAVBAR COLORS CORREGIDOS === */
+/* Color verde más suave y profesional para pacientes */
+.bg-patient {
+    background: linear-gradient(135deg, #22816b 0%, #1e7460 50%, #1a6b55 100%) !important;
+}
+
+.border-patient {
+    border-color: #22816b !important;
+}
+
+/* Dark mode adjustments for patient navbar */
+[data-bs-theme="dark"] .bg-patient {
+    background: linear-gradient(135deg, #1a6b55 0%, #167052 50%, #13654e 100%) !important;
+}
+
+[data-bs-theme="dark"] .border-patient {
+    border-color: #1a6b55 !important;
+}
+
+/* === HERO SIMPLIFICADO PARA USUARIOS LOGUEADOS === */
+.user-welcome-section {
+    background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+    border-radius: 1rem;
+    margin: 0 1rem 2rem;
+    position: relative;
+    overflow: hidden;
+}
+
+.user-welcome-section::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(45deg, rgba(0,123,255,0.02), rgba(40,167,69,0.02));
+    z-index: 1;
+}
+
+.welcome-card {
+    position: relative;
+    z-index: 2;
+    background: rgba(255,255,255,0.9);
+    padding: 2rem;
+    border-radius: 0.75rem;
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255,255,255,0.2);
+    transition: all 0.3s ease;
+}
+
+.welcome-card:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 25px rgba(0,0,0,0.1);
+}
+
+.doctor-welcome {
+    border-left: 4px solid #17a2b8;
+}
+
+.patient-welcome {
+    border-left: 4px solid #22816b;
+}
+
+.welcome-title {
+    color: #2c3e50;
+    font-weight: 600;
+    margin-bottom: 0.5rem;
+}
+
+.welcome-title i {
+    font-size: 1.5rem;
+}
+
+.doctor-welcome .welcome-title {
+    color: #17a2b8;
+}
+
+.patient-welcome .welcome-title {
+    color: #22816b;
+}
+
+.welcome-subtitle {
+    color: #6c757d;
+    font-size: 1.1rem;
+    margin: 0;
+    line-height: 1.5;
+}
+
+/* Dark mode para hero simplificado */
+[data-bs-theme="dark"] .user-welcome-section {
+    background: linear-gradient(135deg, #2d3748 0%, #1a202c 100%);
+}
+
+[data-bs-theme="dark"] .welcome-card {
+    background: rgba(45,55,72,0.9);
+    border-color: rgba(255,255,255,0.1);
+}
+
+[data-bs-theme="dark"] .welcome-title {
+    color: #e2e8f0;
+}
+
+[data-bs-theme="dark"] .doctor-welcome .welcome-title {
+    color: #63b3ed;
+}
+
+[data-bs-theme="dark"] .patient-welcome .welcome-title {
+    color: #68d391;
+}
+
+[data-bs-theme="dark"] .welcome-subtitle {
+    color: #a0aec0;
+}
+
+/* Mobile responsive para hero simplificado */
+@media (max-width: 768px) {
+    .user-welcome-section {
+        margin: 0 0.5rem 1.5rem;
+    }
+    
+    .welcome-card {
+        padding: 1.5rem 1rem;
+    }
+    
+    .welcome-title {
+        font-size: 1.4rem;
+    }
+    
+    .welcome-subtitle {
+        font-size: 1rem;
+    }
+}
+
+/* === CORRECCIONES PARA MODO OSCURO === */
+
+/* Corregir inconsistencias en panel de pacientes */
+[data-bs-theme="dark"] .bg-patient {
+    background: linear-gradient(135deg, #1a6b55 0%, #167052 50%, #13654e 100%) !important;
+}
+
+[data-bs-theme="dark"] .card-header.bg-patient {
+    background: linear-gradient(135deg, #1a6b55 0%, #167052 100%) !important;
+    border-bottom: 1px solid rgba(255,255,255,0.1);
+}
+
+[data-bs-theme="dark"] .stat-card {
+    background: rgba(45,55,72,0.8) !important;
+    border-color: rgba(255,255,255,0.1) !important;
+}
+
+[data-bs-theme="dark"] .health-summary-widget .list-group-item {
+    background: rgba(45,55,72,0.5) !important;
+    border-color: rgba(255,255,255,0.1) !important;
+    color: #e2e8f0 !important;
+}
+
+[data-bs-theme="dark"] .messages-widget {
+    background: rgba(45,55,72,0.8) !important;
+    border-color: rgba(255,255,255,0.1) !important;
+}
+
+[data-bs-theme="dark"] .messages-widget .card-body {
+    color: #e2e8f0 !important;
+}
+
+/* Trust indicators en modo oscuro */
+[data-bs-theme="dark"] .card-footer {
+    background: rgba(33,37,41,0.8) !important;
+    border-top: 1px solid rgba(255,255,255,0.1) !important;
+}
+
+/* === NOTIFICACIONES TOAST === */
+.search-results-dropdown {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    background: #fff;
+    border: 1px solid #dee2e6;
+    border-radius: 0.375rem;
+    box-shadow: 0 0.5rem 1rem rgba(0,0,0,0.15);
+    z-index: 1000;
+    max-height: 300px;
+    overflow-y: auto;
+}
+
+.search-result-item {
+    padding: 0.75rem 1rem;
+    border-bottom: 1px solid #dee2e6;
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+}
+
+.search-result-item:hover {
+    background-color: #f8f9fa;
+}
+
+.search-result-item:last-child {
+    border-bottom: none;
+}
+
+[data-bs-theme="dark"] .search-results-dropdown {
+    background: #2d3748;
+    border-color: rgba(255,255,255,0.1);
+}
+
+[data-bs-theme="dark"] .search-result-item {
+    border-bottom-color: rgba(255,255,255,0.1);
+    color: #e2e8f0;
+}
+
+[data-bs-theme="dark"] .search-result-item:hover {
+    background-color: rgba(255,255,255,0.1);
+}
+
+/* === MEJORAS PARA ESTADOS DE CARGA === */
+.loading-placeholder {
+    background: linear-gradient(90deg, #f0f0f0 25%, #e0e0e0 50%, #f0f0f0 75%);
+    background-size: 200% 100%;
+    animation: loading 1.5s infinite;
+    border-radius: 0.25rem;
+    height: 1.2em;
+}
+
+@keyframes loading {
+    0% {
+        background-position: 200% 0;
+    }
+    100% {
+        background-position: -200% 0;
+    }
+}
+
+[data-bs-theme="dark"] .loading-placeholder {
+    background: linear-gradient(90deg, #4a5568 25%, #2d3748 50%, #4a5568 75%);
+    background-size: 200% 100%;
+}
+
+/* === MEJORAS DE ACCESIBILIDAD === */
+.stat-card:focus,
+.welcome-card:focus,
+.health-summary-widget:focus {
+    outline: 2px solid #0d6efd;
+    outline-offset: 2px;
+}
+
+/* === RESPONSIVE IMPROVEMENTS === */
+@media (max-width: 992px) {
+    .dropdown-menu-end {
+        right: auto !important;
+        left: 0 !important;
+    }
+}
+
+@media (max-width: 576px) {
+    .navbar-nav .dropdown-menu {
+        border: none !important;
+        box-shadow: none !important;
+        background: transparent !important;
+    }
+    
+    .navbar-nav .dropdown-item {
+        color: inherit !important;
+        padding: 0.5rem 1rem !important;
+    }
+    
+    [data-bs-theme="dark"] .navbar-nav .dropdown-item {
+        color: rgba(255,255,255,0.9) !important;
+    }
+}
+
+/* === CORRECCIÓN DE COLORES EN NAVBAR === */
+/* Asegurar que el texto sea legible en todos los temas */
+.navbar-dark .navbar-nav .nav-link,
+.navbar-dark .navbar-brand {
+    color: rgba(255,255,255,0.9) !important;
+}
+
+.navbar-dark .navbar-nav .nav-link:hover,
+.navbar-dark .navbar-nav .nav-link:focus {
+    color: rgba(255,255,255,1) !important;
+}
+
+/* === EFECTOS SUAVES PARA TRANSICIONES === */
+.stat-card,
+.welcome-card,
+.list-group-item,
+.card {
+    transition: all 0.3s ease !important;
+}
+
+/* === ICONOS HIPAA CORREGIDOS === */
+.trust-badge-item .bi-shield-fill-check::before {
+    content: "\f86c"; /* Bootstrap icon shield-fill-check */
 } 

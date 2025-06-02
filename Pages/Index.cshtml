@@ -10,112 +10,69 @@
     var currentUser = await AspNetUserManager.GetUserAsync(User);
     var userFirstName = currentUser?.FirstName;
     var isDoctor = User.IsInRole("Doctor");
+    var isPatient = User.IsInRole("Paciente");
+    var isLoggedIn = UserManagerAccessor.IsSignedIn(User);
 }
 
-<!-- Enhanced Hero Section -->
-<div class="container-fluid bg-dark text-white text-center py-5 mb-4 shadow-lg hero-section-enhanced" style="background-image: linear-gradient(135deg, rgba(0,20,40,0.95), rgba(0,40,80,0.9)), url('/images/INDEX.png'); background-size: cover; background-position: center center; background-attachment: fixed; position: relative; overflow: hidden; border-radius: 2rem; margin: 1rem;">
-    
-    <!-- Floating Icons -->
-    <div class="floating-medical-icons">
-        <i class="bi bi-heart-pulse floating-icon icon-1"></i>
-        <i class="bi bi-shield-check floating-icon icon-2"></i>
-        <i class="bi bi-calendar-plus floating-icon icon-3"></i>
-        <i class="bi bi-graph-up floating-icon icon-4"></i>
-        <i class="bi bi-people floating-icon icon-5"></i>
-        <i class="bi bi-clock floating-icon icon-6"></i>
-    </div>
-    
-    <!-- Hero Content Container -->
-    <div class="hero-content-container mx-auto d-flex flex-column justify-content-center align-items-center" style="background: linear-gradient(135deg, rgba(0, 40, 80, 0.9), rgba(0, 60, 120, 0.85)); padding: 3rem 1.5rem; border-radius: 1.5rem; max-width: 1000px; width: 90%; position: relative; z-index: 10; backdrop-filter: blur(20px); border: 1px solid rgba(255,255,255,0.1);">
-        <!-- Glowing Border Effect -->
-        <div class="hero-glow-border"></div>
+@if (!isLoggedIn)
+{
+    <!-- Enhanced Hero Section - Solo para usuarios no logueados -->
+    <div class="container-fluid bg-dark text-white text-center py-5 mb-4 shadow-lg hero-section-enhanced" style="background-image: linear-gradient(135deg, rgba(0,20,40,0.95), rgba(0,40,80,0.9)), url('/images/INDEX.png'); background-size: cover; background-position: center center; background-attachment: fixed; position: relative; overflow: hidden; border-radius: 2rem; margin: 1rem;">
         
-        <h1 class="display-2 fw-bolder text-shadow-custom mb-3 hero-title text-center">
-            <span class="hero-title-highlight">Vital</span><span class="hero-title-main">Care</span>
-        </h1>
-        
-        @if (UserManagerAccessor.IsSignedIn(User) && !string.IsNullOrEmpty(userFirstName))
-        {
-            if (isDoctor)
-            {
-                <p class="lead fs-4 mb-4 text-shadow-custom hero-subtitle text-center">Hola Dr(a). <span class="fw-semibold hero-name-highlight">@userFirstName</span>, ¿listo para gestionar la salud de sus pacientes?</p>
-            }
-            else
-            {
-                <p class="lead fs-4 mb-4 text-shadow-custom hero-subtitle text-center">Hola <span class="fw-semibold hero-name-highlight">@userFirstName</span>, ¿listo para gestionar tu salud?</p>
-            }
-        }
-        else
-        {
-            <p class="lead fs-4 mb-4 text-shadow-custom hero-subtitle text-center">Su salud es nuestra prioridad. Experimente la <span class="hero-highlight-text">medicina del futuro</span> con tecnología de vanguardia.</p>
-        }
-        
-        <!-- Enhanced Stats Row - Individual Cards -->
-        <div class="row g-3 mb-4 hero-stats w-100 justify-content-center">
-            <div class="col-md-4 col-lg-3">
-                <div class="hero-stat-card text-center">
-                    <div class="hero-stat-icon">
-                        <i class="bi bi-people-fill"></i>
-                    </div>
-                    <div class="hero-stat-number fs-3 fw-bold" data-target="25000">0</div>
-                    <div class="hero-stat-label small">Pacientes Confiaron</div>
-                </div>
-            </div>
-            <div class="col-md-4 col-lg-3">
-                <div class="hero-stat-card text-center">
-                    <div class="hero-stat-icon">
-                        <i class="bi bi-hospital"></i>
-                    </div>
-                    <div class="hero-stat-number fs-3 fw-bold" data-target="350">0</div>
-                    <div class="hero-stat-label small">Especialistas</div>
-                </div>
-            </div>
-            <div class="col-md-4 col-lg-3">
-                <div class="hero-stat-card text-center">
-                    <div class="hero-stat-icon">
-                        <i class="bi bi-star-fill"></i>
-                    </div>
-                    <div class="hero-stat-number fs-3 fw-bold" data-target="98">0</div>
-                    <div class="hero-stat-label small">% Satisfacción</div>
-                </div>
-            </div>
+        <!-- Floating Icons - Optimized Performance -->
+        <div class="floating-medical-icons">
+            <i class="bi bi-heart-pulse floating-icon icon-1"></i>
+            <i class="bi bi-shield-check floating-icon icon-2"></i>
+            <i class="bi bi-calendar-plus floating-icon icon-3"></i>
+            <i class="bi bi-graph-up floating-icon icon-4"></i>
+            <i class="bi bi-people floating-icon icon-5"></i>
+            <i class="bi bi-clock floating-icon icon-6"></i>
         </div>
         
-        <!-- Enhanced Action Buttons -->
-        <div class="d-grid gap-3 d-sm-flex justify-content-sm-center">
-            @if (UserManagerAccessor.IsSignedIn(User))
-            {
-                if (User.IsInRole("Admin"))
-                {
-                    <a class="btn btn-primary btn-lg px-4 py-2 hero-btn hero-btn-primary" href="#adminPanelDashboard" role="button">
-                        <i class="bi bi-speedometer2 me-2"></i> 
-                        <span>Ir al Panel Admin</span>
-                        <div class="btn-ripple"></div>
-                    </a>
-                }
-                else if (User.IsInRole("Paciente"))
-                {
-                    <a class="btn btn-success btn-lg px-4 py-2 hero-btn hero-btn-success" href="#patientPanelDashboard" role="button">
-                        <i class="bi bi-person-vcard me-2"></i> 
-                        <span>Mi Portal Paciente</span>
-                        <div class="btn-ripple"></div>
-                    </a>
-                }
-                else if (User.IsInRole("Doctor"))
-                {
-                    <a class="btn btn-info btn-lg px-4 py-2 hero-btn hero-btn-info" href="#doctorPanelDashboard" role="button">
-                        <i class="bi bi-clipboard-pulse me-2"></i> 
-                        <span>Mi Portal Médico</span>
-                        <div class="btn-ripple"></div>
-                    </a>
-                }
-                else
-                {
-                    <p class="text-light hero-welcome">Bienvenido. Explore nuestros servicios de salud digital.</p>
-                }
-            }
-            else
-            {
+        <!-- Hero Content Container -->
+        <div class="hero-content-container mx-auto d-flex flex-column justify-content-center align-items-center" style="background: linear-gradient(135deg, rgba(0, 40, 80, 0.9), rgba(0, 60, 120, 0.85)); padding: 3rem 1.5rem; border-radius: 1.5rem; max-width: 1000px; width: 90%; position: relative; z-index: 10; backdrop-filter: blur(20px); border: 1px solid rgba(255,255,255,0.1);">
+            <!-- Glowing Border Effect - Only on Hover -->
+            <div class="hero-glow-border"></div>
+            
+            <h1 class="display-2 fw-bolder text-shadow-custom mb-3 hero-title text-center">
+                <span class="hero-title-vital" style="color: #00d4ff;">Vital</span><span class="hero-title-care" style="color: #28a745;">Care</span>
+            </h1>
+            
+            <p class="lead fs-4 mb-4 text-shadow-custom hero-subtitle text-center">Su salud es nuestra prioridad. Experimente la <span class="hero-highlight-text">medicina del futuro</span> con tecnología de vanguardia.</p>
+            
+            <!-- Enhanced Stats Row - Individual Cards -->
+            <div class="row g-3 mb-4 hero-stats w-100 justify-content-center">
+                <div class="col-md-4 col-lg-3">
+                    <div class="hero-stat-card text-center">
+                        <div class="hero-stat-icon">
+                            <i class="bi bi-people-fill"></i>
+                        </div>
+                        <div class="hero-stat-number fs-3 fw-bold" data-target="25000">0</div>
+                        <div class="hero-stat-label small">Pacientes Confiaron</div>
+                    </div>
+                </div>
+                <div class="col-md-4 col-lg-3">
+                    <div class="hero-stat-card text-center">
+                        <div class="hero-stat-icon">
+                            <i class="bi bi-hospital"></i>
+                        </div>
+                        <div class="hero-stat-number fs-3 fw-bold" data-target="350">0</div>
+                        <div class="hero-stat-label small">Especialistas</div>
+                    </div>
+                </div>
+                <div class="col-md-4 col-lg-3">
+                    <div class="hero-stat-card text-center">
+                        <div class="hero-stat-icon">
+                            <i class="bi bi-star-fill"></i>
+                        </div>
+                        <div class="hero-stat-number fs-3 fw-bold" data-target="98">0</div>
+                        <div class="hero-stat-label small">% Satisfacción</div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Enhanced Action Buttons -->
+            <div class="d-grid gap-3 d-sm-flex justify-content-sm-center">
                 <a class="btn btn-light btn-lg px-4 py-2 me-sm-3 hero-btn hero-btn-light" asp-area="Identity" asp-page="/Account/Login" role="button">
                     <i class="bi bi-box-arrow-in-right me-2"></i> 
                     <span>Iniciar Sesión</span>
@@ -126,40 +83,88 @@
                     <span>Registrarse Gratis</span>
                     <div class="btn-ripple"></div>
                 </a>
-            }
+            </div>
+            
+            <!-- Divider Line after buttons -->
+            <hr style="border: 0.5px solid white; width: 60%; margin: 30px auto;">
+            
+            <!-- Trust Badges - Individual Cards with Icons -->
+            <div class="row g-3 mt-3 justify-content-center">
+                <div class="col-md-4 col-lg-3">
+                    <div class="trust-badge-item">
+                        <i class="bi bi-award-fill me-2"></i>
+                        <span>ISO 27001</span>
+                    </div>
+                </div>
+                <div class="col-md-4 col-lg-3">
+                    <div class="trust-badge-item">
+                        <i class="bi bi-shield-fill-check me-2"></i>
+                        <span>HIPAA Compliant</span>
+                    </div>
+                </div>
+                <div class="col-md-4 col-lg-3">
+                    <div class="trust-badge-item">
+                        <i class="bi bi-patch-check-fill me-2"></i>
+                        <span>SSL Secured</span>
+                    </div>
+                </div>
+            </div>
         </div>
         
-        <!-- Divider Line after buttons -->
-        <hr style="border: 0.5px solid white; width: 60%; margin: 30px auto;">
-        
-        <!-- Trust Badges - Individual Cards -->
-        <div class="row g-3 mt-3 justify-content-center">
-            <div class="col-md-4 col-lg-3">
-                <div class="trust-badge-item">
-                    <i class="bi bi-award-fill me-2"></i>
-                    <span>ISO 27001</span>
-                </div>
-            </div>
-            <div class="col-md-4 col-lg-3">
-                <div class="trust-badge-item">
-                    <i class="bi bi-shield-check-fill me-2"></i>
-                    <span>HIPAA Compliant</span>
-                </div>
-            </div>
-            <div class="col-md-4 col-lg-3">
-                <div class="trust-badge-item">
-                    <i class="bi bi-patch-check-fill me-2"></i>
-                    <span>SSL Secured</span>
+        <!-- Scroll Indicator - Positioned Lower -->
+        <div class="scroll-indicator" style="bottom: 15px;">
+            <i class="bi bi-chevron-down"></i>
+        </div>
+    </div>
+}
+else if (isDoctor || isPatient)
+{
+    <!-- Hero Simplificado para Usuarios Logueados -->
+    <div class="container-fluid text-center py-4 mb-4 user-welcome-section">
+        <div class="row justify-content-center">
+            <div class="col-lg-8">
+                <div class="welcome-card @(isDoctor ? "doctor-welcome" : "patient-welcome")">
+                    <h2 class="welcome-title mb-3">
+                        @if (isDoctor)
+                        {
+                            <i class="bi bi-clipboard-pulse me-2"></i>
+                            if (!string.IsNullOrEmpty(userFirstName))
+                            {
+                                <span>Bienvenido Dr(a). <strong>@userFirstName</strong></span>
+                            }
+                            else
+                            {
+                                <span>Portal Médico</span>
+                            }
+                        }
+                        else if (isPatient)
+                        {
+                            <i class="bi bi-person-vcard me-2"></i>
+                            if (!string.IsNullOrEmpty(userFirstName))
+                            {
+                                <span>Bienvenido <strong>@userFirstName</strong></span>
+                            }
+                            else
+                            {
+                                <span>Portal del Paciente</span>
+                            }
+                        }
+                    </h2>
+                    <p class="welcome-subtitle">
+                        @if (isDoctor)
+                        {
+                            <span>Gestione su agenda, consulte pacientes y acceda a su panel profesional</span>
+                        }
+                        else if (isPatient)
+                        {
+                            <span>Aquí puede gestionar sus citas y consultar su información médica</span>
+                        }
+                    </p>
                 </div>
             </div>
         </div>
     </div>
-    
-    <!-- Scroll Indicator -->
-    <div class="scroll-indicator">
-        <i class="bi bi-chevron-down"></i>
-    </div>
-</div>
+}
 
 <!-- Main Content Section - Dynamic based on Role -->
 <div class="container mt-5 py-2">
@@ -480,8 +485,8 @@
             <div id="patientPanelDashboard" class="row justify-content-center patient-dashboard-bg">
                 <div class="col-lg-10 col-xl-9">
                     <div class="card shadow-lg modern-card-hover">
-                        <div class="card-header bg-success text-white text-center text-shadow-custom">
-                            <h2 class="my-2"><i class="bi bi-person-vcard"></i> Portal del Paciente</h2>
+                        <div class="card-header bg-patient text-white text-center text-shadow-custom">
+                            <h2 class="my-2"><i class="bi bi-person-heart"></i> Portal del Paciente</h2>
                         </div>
                         <div class="card-body p-4">
                             @if (!string.IsNullOrEmpty(userFirstName))
@@ -491,22 +496,28 @@
                                 <p class="lead text-center mb-4">Bienvenido al portal de pacientes. Aquí puedes gestionar tus citas y ver tu información médica.</p>
                             }
 
-                            <!-- Quick Overview Row -->
-                            <div class="row g-3 mb-4 text-center">
+                            <!-- Real Patient Data Overview -->
+                            <div class="row g-3 mb-4 text-center" id="patientRealDataOverview">
                                 <div class="col-md-6">
                                     <div class="stat-card p-3 border border-primary-subtle rounded bg-primary-subtle modern-card-hover">
-                                        <h5 class="stat-value mb-1 fs-4 fw-semibold text-primary-emphasis" id="patientProximaCitaStat">25 Jul, 10:00 AM</h5>
+                                        <h5 class="stat-value mb-1 fs-5 fw-semibold text-primary-emphasis" id="patientNextAppointmentDisplay">
+                                            <i class="bi bi-calendar-week text-primary me-2"></i>
+                                            <span>Cargando...</span>
+                                        </h5>
                                         <p class="stat-label mb-0 text-muted small text-uppercase">Próxima Cita</p>
                                     </div>
                                 </div>
                                 <div class="col-md-6">
-                                    <div class="stat-card p-3 border border-danger-subtle rounded bg-danger-subtle modern-card-hover">
-                                        <h5 class="stat-value mb-1 fs-2 fw-bold text-danger-emphasis" id="patientNuevasRecetasStat">3</h5>
-                                        <p class="stat-label mb-0 text-muted small text-uppercase">Recetas Nuevas</p>
+                                    <div class="stat-card p-3 border border-success-subtle rounded bg-success-subtle modern-card-hover">
+                                        <h5 class="stat-value mb-1 fs-2 fw-bold text-success-emphasis" id="patientPrescriptionsCount">
+                                            <i class="bi bi-prescription2 text-success me-2"></i>
+                                            <span>0</span>
+                                        </h5>
+                                        <p class="stat-label mb-0 text-muted small text-uppercase">Recetas Activas</p>
                                     </div>
                                 </div>
                             </div>
-                            <!-- End Quick Overview Row -->
+                            <!-- End Real Patient Data Overview -->
 
                             <hr class="my-4">
 
@@ -580,45 +591,48 @@
                                         </div>
                                     </div>
                                 </div>
-                                @* Add more Patient specific cards here if needed *@
                             </div>
 
                             <hr class="my-4">
 
                             <div class="row g-4">
                                 <div class="col-lg-6">
-                                    <h5 class="mb-3 text-success-emphasis"><i class="bi bi-heart-pulse me-2"></i>Estado de Salud Rápido</h5>
-                                    <div class="list-group shadow-sm health-summary-widget">
+                                    <h5 class="mb-3 text-success-emphasis"><i class="bi bi-heart-pulse me-2"></i>Estado de Salud</h5>
+                                    <div class="list-group shadow-sm health-summary-widget" id="patientHealthStatus">
                                         <div class="list-group-item d-flex justify-content-between align-items-center">
-                                            Presión Arterial
-                                            <span class="badge bg-success rounded-pill">Normal</span>
+                                            <span><i class="bi bi-activity text-primary me-2"></i>Última Consulta</span>
+                                            <small class="text-muted" id="lastConsultationDate">Cargando...</small>
                                         </div>
                                         <div class="list-group-item d-flex justify-content-between align-items-center">
-                                            Última Consulta
-                                            <small class="text-muted">15 Jun, 2024</small>
+                                            <span><i class="bi bi-calendar-plus text-warning me-2"></i>Próximo Chequeo</span>
+                                            <small class="text-muted" id="nextCheckupDate">Cargando...</small>
                                         </div>
                                         <div class="list-group-item d-flex justify-content-between align-items-center">
-                                            Próximo Chequeo
-                                            <small class="text-warning fw-bold">25 Jul, 2024</small>
+                                            <span><i class="bi bi-bell text-info me-2"></i>Recordatorios Activos</span>
+                                            <span class="badge bg-info rounded-pill" id="activeRemindersCount">0</span>
                                         </div>
-                                        <div class="list-group-item d-flex justify-content-between align-items-center">
-                                            Recordatorios Activos
-                                            <span class="badge bg-info rounded-pill">3</span>
+                                        <div class="list-group-item text-center">
+                                            <a href="/Patient/HealthStatus" class="btn btn-outline-primary btn-sm">
+                                                <i class="bi bi-plus-circle me-1"></i>Ver Estado Completo
+                                            </a>
                                         </div>
                                     </div>
                                 </div>
                                 <div class="col-lg-6">
                                     <h5 class="mb-3 text-success-emphasis"><i class="bi bi-chat-dots me-2"></i>Mensajes y Notificaciones</h5>
-                                    <div class="card shadow-sm messages-widget">
+                                    <div class="card shadow-sm messages-widget" id="patientMessagesWidget">
                                         <div class="card-body">
-                                            <p class="card-text text-muted small">
-                                                <strong><i class="bi bi-bell-fill text-info me-1"></i>Nuevo:</strong> Resultado de laboratorio disponible para consulta.
-                                            </p>
+                                            <div id="messagesContainer">
+                                                <p class="card-text text-muted small">
+                                                    <strong><i class="bi bi-info-circle text-info me-1"></i>Sistema:</strong> 
+                                                    Bienvenido a su portal de paciente. Aquí aparecerán sus mensajes médicos.
+                                                </p>
+                                            </div>
                                             <hr class="my-2">
-                                            <p class="card-text text-muted small">
-                                                <strong><i class="bi bi-calendar-event text-warning me-1"></i>Recordatorio:</strong> Cita con Dr. García el próximo martes.
-                                            </p>
-                                            <a href="#" class="btn btn-sm btn-outline-success mt-2 float-end">Ver todos</a>
+                                            <div class="d-flex justify-content-between">
+                                                <a href="/Patient/Messages" class="btn btn-sm btn-outline-success">Ver todos</a>
+                                                <span class="badge bg-success" id="unreadMessagesCount">0</span>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
@@ -1025,46 +1039,31 @@
                 });
             });
 
+            // Patient Dashboard: Load Real Data instead of Mock Data
+            if (document.getElementById('patientNextAppointmentDisplay')) {
+                loadPatientRealData();
+            }
+
             // Doctor Dashboard: Dynamic Citas Hoy Stat
             const citasHoyStatElement = document.getElementById('doctorCitasHoyStat');
             if (citasHoyStatElement) {
-                citasHoyStatElement.textContent = Math.floor(Math.random() * 11); // Random number 0-10
+                loadDoctorDashboardData();
             }
 
-            // Doctor Dashboard: Patient Search Form Simulation
+            // Doctor Dashboard: Patient Search Form
             const doctorPatientSearchForm = document.getElementById('doctorPatientSearchForm');
             if (doctorPatientSearchForm) {
                 doctorPatientSearchForm.addEventListener('submit', function (event) {
-                    event.preventDefault(); // Prevent actual form submission
+                    event.preventDefault();
                     const searchInput = document.getElementById('doctorPatientSearchInput');
                     if (searchInput && searchInput.value.trim() !== '') {
-                        alert('Buscando paciente: ' + searchInput.value.trim());
-                        // Here you would typically make an AJAX call to the server
-                        // For now, we just alert and clear the input.
-                        searchInput.value = ''; 
+                        // Implementar búsqueda real de pacientes
+                        searchPatients(searchInput.value.trim());
+                        searchInput.value = '';
                     } else {
-                        alert('Por favor ingrese un término de búsqueda.');
+                        showNotification('Por favor ingrese un término de búsqueda.', 'warning');
                     }
                 });
-            }
-
-            // Patient Dashboard: Dynamic Próxima Cita Stat (Placeholder)
-            const proximaCitaStatElement = document.getElementById('patientProximaCitaStat');
-            if (proximaCitaStatElement) {
-                // In a real app, this would come from the server or a more complex client-side logic
-                const citasPlaceholders = [
-                    "28 Jul, 09:30 AM - Dr. Aal H", 
-                    "02 Ago, 02:00 PM - Dra. Smith R", 
-                    "No hay citas próximas",
-                    "15 Ago, 11:00 AM - Dr. Jones P"
-                ];
-                proximaCitaStatElement.textContent = citasPlaceholders[Math.floor(Math.random() * citasPlaceholders.length)];
-            }
-
-            // Patient Dashboard: Dynamic Nuevas Recetas Stat
-            const nuevasRecetasStatElement = document.getElementById('patientNuevasRecetasStat');
-            if (nuevasRecetasStatElement) {
-                nuevasRecetasStatElement.textContent = Math.floor(Math.random() * 5); // Random number 0-4
             }
             
             // Scroll to Top Button Functionality
@@ -1088,6 +1087,184 @@
                 });
             }
         });
+
+        // Función para cargar datos reales del paciente
+        async function loadPatientRealData() {
+            try {
+                // Cargar próxima cita
+                const nextAppointmentResponse = await fetch('/api/patient/next-appointment');
+                if (nextAppointmentResponse.ok) {
+                    const nextAppointment = await nextAppointmentResponse.json();
+                    const nextAppointmentElement = document.getElementById('patientNextAppointmentDisplay');
+                    if (nextAppointment && nextAppointment.appointmentDate) {
+                        const date = new Date(nextAppointment.appointmentDate);
+                        nextAppointmentElement.innerHTML = `
+                            <i class="bi bi-calendar-week text-primary me-2"></i>
+                            <span>${date.toLocaleDateString('es-CO', { 
+                                month: 'short', 
+                                day: 'numeric',
+                                hour: '2-digit',
+                                minute: '2-digit'
+                            })} - ${nextAppointment.doctorName}</span>
+                        `;
+                    } else {
+                        nextAppointmentElement.innerHTML = `
+                            <i class="bi bi-calendar-x text-muted me-2"></i>
+                            <span>No hay citas programadas</span>
+                        `;
+                    }
+                }
+
+                // Cargar recetas activas
+                const prescriptionsResponse = await fetch('/api/patient/active-prescriptions-count');
+                if (prescriptionsResponse.ok) {
+                    const prescriptions = await prescriptionsResponse.json();
+                    document.getElementById('patientPrescriptionsCount').innerHTML = `
+                        <i class="bi bi-prescription2 text-success me-2"></i>
+                        <span>${prescriptions.count || 0}</span>
+                    `;
+                }
+
+                // Cargar estado de salud
+                const healthResponse = await fetch('/api/patient/health-status');
+                if (healthResponse.ok) {
+                    const healthData = await healthResponse.json();
+                    
+                    // Actualizar última consulta
+                    const lastConsultationElement = document.getElementById('lastConsultationDate');
+                    if (healthData.lastConsultation) {
+                        const date = new Date(healthData.lastConsultation);
+                        lastConsultationElement.textContent = date.toLocaleDateString('es-CO');
+                    } else {
+                        lastConsultationElement.textContent = 'Sin consultas previas';
+                    }
+
+                    // Actualizar próximo chequeo
+                    const nextCheckupElement = document.getElementById('nextCheckupDate');
+                    if (healthData.nextCheckup) {
+                        const date = new Date(healthData.nextCheckup);
+                        nextCheckupElement.textContent = date.toLocaleDateString('es-CO');
+                        nextCheckupElement.classList.add('text-warning', 'fw-bold');
+                    } else {
+                        nextCheckupElement.textContent = 'No programado';
+                    }
+
+                    // Actualizar recordatorios
+                    document.getElementById('activeRemindersCount').textContent = healthData.reminders || 0;
+                }
+
+                // Cargar mensajes
+                const messagesResponse = await fetch('/api/patient/recent-messages');
+                if (messagesResponse.ok) {
+                    const messages = await messagesResponse.json();
+                    const messagesContainer = document.getElementById('messagesContainer');
+                    
+                    if (messages.length > 0) {
+                        messagesContainer.innerHTML = messages.map(msg => `
+                            <p class="card-text text-muted small">
+                                <strong><i class="bi bi-${msg.type === 'medical' ? 'stethoscope' : 'info-circle'} text-info me-1"></i>${msg.sender}:</strong> 
+                                ${msg.content}
+                            </p>
+                        `).join('<hr class="my-1">');
+                    }
+                    
+                    document.getElementById('unreadMessagesCount').textContent = messages.filter(m => !m.read).length;
+                }
+
+            } catch (error) {
+                console.error('Error cargando datos del paciente:', error);
+                // Fallback a datos por defecto si hay error
+                loadPatientFallbackData();
+            }
+        }
+
+        // Función fallback con datos por defecto
+        function loadPatientFallbackData() {
+            document.getElementById('patientNextAppointmentDisplay').innerHTML = `
+                <i class="bi bi-calendar-plus text-primary me-2"></i>
+                <span>Agende su próxima cita</span>
+            `;
+            document.getElementById('lastConsultationDate').textContent = 'No disponible';
+            document.getElementById('nextCheckupDate').textContent = 'No programado';
+        }
+
+        // Función para cargar datos reales del doctor
+        async function loadDoctorDashboardData() {
+            try {
+                const response = await fetch('/api/doctor/dashboard-stats');
+                if (response.ok) {
+                    const stats = await response.json();
+                    document.getElementById('doctorCitasHoyStat').textContent = stats.todayAppointments || 0;
+                }
+            } catch (error) {
+                console.error('Error cargando datos del doctor:', error);
+                document.getElementById('doctorCitasHoyStat').textContent = '0';
+            }
+        }
+
+        // Función para buscar pacientes
+        async function searchPatients(searchTerm) {
+            try {
+                const response = await fetch(`/api/doctor/search-patients?term=${encodeURIComponent(searchTerm)}`);
+                if (response.ok) {
+                    const patients = await response.json();
+                    displaySearchResults(patients);
+                } else {
+                    showNotification('Error al buscar pacientes', 'error');
+                }
+            } catch (error) {
+                console.error('Error en búsqueda de pacientes:', error);
+                showNotification('Error de conexión al buscar pacientes', 'error');
+            }
+        }
+
+        // Función para mostrar resultados de búsqueda
+        function displaySearchResults(patients) {
+            if (patients.length === 0) {
+                showNotification('No se encontraron pacientes con ese término', 'info');
+                return;
+            }
+
+            // Crear modal o dropdown con resultados
+            let resultsHtml = '<div class="search-results-dropdown">';
+            patients.forEach(patient => {
+                resultsHtml += `
+                    <div class="search-result-item" onclick="selectPatient('${patient.id}')">
+                        <strong>${patient.name}</strong><br>
+                        <small>${patient.email} - ${patient.phone}</small>
+                    </div>
+                `;
+            });
+            resultsHtml += '</div>';
+            
+            showNotification(`Encontrados ${patients.length} paciente(s)`, 'success');
+        }
+
+        // Función para seleccionar un paciente
+        function selectPatient(patientId) {
+            window.location.href = `/Doctor/PatientDetail/${patientId}`;
+        }
+
+        // Función para mostrar notificaciones
+        function showNotification(message, type = 'info') {
+            // Implementar sistema de notificaciones toast
+            const notification = document.createElement('div');
+            notification.className = `alert alert-${type === 'error' ? 'danger' : type} alert-dismissible fade show position-fixed`;
+            notification.style.cssText = 'top: 20px; right: 20px; z-index: 9999; min-width: 300px;';
+            notification.innerHTML = `
+                ${message}
+                <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+            `;
+            
+            document.body.appendChild(notification);
+            
+            // Auto-remove after 5 seconds
+            setTimeout(() => {
+                if (notification.parentNode) {
+                    notification.remove();
+                }
+            }, 5000);
+        }
     </script>
     <style>
         /* FLOATING ICONS ENHANCED - OVERRIDE CACHE */

@@ -33,21 +33,21 @@
     var navClass = "navbar-light bg-white border-bottom"; // Default
     var textClass = "text-primary"; // Default for brand
     var linkTextClass = "text-dark"; // Default for nav links
-    var headerTextShadowClass = ""; // New variable for text shadow
+    var headerTextShadowClass = ""; // Text shadow class
 
     if (isDoctorLoggedIn)
     {
-        navClass = "navbar-dark bg-info border-info";
+        navClass = "navbar-dark bg-doctor border-doctor";
         textClass = "text-white";
         linkTextClass = "text-white";
-        headerTextShadowClass = "text-shadow-custom"; // Apply shadow for doctor
+        headerTextShadowClass = "text-shadow-custom";
     }
     else if (isPatientLoggedIn)
     {
-        navClass = "navbar-dark bg-success border-success";
+        navClass = "navbar-dark bg-patient border-patient";
         textClass = "text-white";
         linkTextClass = "text-white";
-        headerTextShadowClass = "text-shadow-custom"; // Apply shadow for patient
+        headerTextShadowClass = "text-shadow-custom";
     }
 }
 
@@ -211,6 +211,9 @@
                                         <li><a class="dropdown-item d-flex align-items-center" asp-page="/Admin/ManageSpecialties">
                                             <i class="bi bi-bookmark-star-fill me-2"></i> Gestionar Especialidades
                                         </a></li>
+                                        <li><a class="dropdown-item d-flex align-items-center" asp-page="/Admin/Medications/Index">
+                                            <i class="bi bi-capsule-pill me-2"></i> Medicamentos
+                                        </a></li>
                                     </ul>
                                 </div>
                             } 
@@ -218,15 +221,15 @@
                             {
                                 <div class="dropdown me-2">
                                     <a class="nav-link dropdown-toggle @linkTextClass @headerTextShadowClass d-flex align-items-center" href="#" id="doctorDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                                        <i class="bi bi-clipboard-pulse me-2"></i> Portal Médico
+                                        <i class="bi bi-clipboard-pulse me-2"></i> Herramientas Médicas
                                     </a>
                                     <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="doctorDropdown">
                                         <li><h6 class="dropdown-header">Agenda y Citas</h6></li>
                                         <li><a class="dropdown-item d-flex align-items-center" asp-page="/Doctor/Agenda">
                                             <i class="bi bi-calendar-week-fill me-2"></i> Mi Agenda
                                         </a></li>
-                                        <li><a class="dropdown-item d-flex align-items-center" asp-page="/Doctor/Appointments">
-                                            <i class="bi bi-calendar-event me-2"></i> Citas del Día
+                                        <li><a class="dropdown-item d-flex align-items-center" asp-page="/Appointments/Index">
+                                            <i class="bi bi-calendar-event me-2"></i> Ver Todas las Citas
                                         </a></li>
                                         <li><hr class="dropdown-divider"></li>
                                         <li><h6 class="dropdown-header">Pacientes</h6></li>
@@ -237,9 +240,12 @@
                                             <i class="bi bi-journal-medical me-2"></i> Historial Médico
                                         </a></li>
                                         <li><hr class="dropdown-divider"></li>
-                                        <li><h6 class="dropdown-header">Herramientas</h6></li>
+                                        <li><h6 class="dropdown-header">Herramientas Clínicas</h6></li>
                                         <li><a class="dropdown-item d-flex align-items-center" asp-page="/Doctor/Prescriptions">
-                                            <i class="bi bi-prescription2 me-2"></i> Prescripciones
+                                            <i class="bi bi-prescription2 me-2"></i> Generar Recetas
+                                        </a></li>
+                                        <li><a class="dropdown-item d-flex align-items-center" asp-page="/Admin/Medications/Index">
+                                            <i class="bi bi-capsule-pill me-2"></i> Base de Medicamentos
                                         </a></li>
                                     </ul>
                                 </div>
@@ -248,23 +254,31 @@
                             {
                                 <div class="dropdown me-2">
                                     <a class="nav-link dropdown-toggle @linkTextClass @headerTextShadowClass d-flex align-items-center" href="#" id="patientDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                                        <i class="bi bi-person-vcard me-2"></i> Portal Paciente
+                                        <i class="bi bi-person-heart me-2"></i> Mi Salud
                                     </a>
                                     <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="patientDropdown">
-                                        <li><h6 class="dropdown-header">Citas Médicas</h6></li>
+                                        <li><h6 class="dropdown-header">Gestión de Citas</h6></li>
                                         <li><a class="dropdown-item d-flex align-items-center" asp-page="/Appointments/Create">
-                                            <i class="bi bi-calendar-plus-fill me-2"></i> Agendar Cita
+                                            <i class="bi bi-calendar-plus-fill me-2"></i> Agendar Nueva Cita
                                         </a></li>
                                         <li><a class="dropdown-item d-flex align-items-center" asp-page="/Appointments/Index">
-                                            <i class="bi bi-calendar-event-fill me-2"></i> Mis Citas
+                                            <i class="bi bi-calendar-event-fill me-2"></i> Mis Citas Programadas
                                         </a></li>
                                         <li><hr class="dropdown-divider"></li>
-                                        <li><h6 class="dropdown-header">Historial Médico</h6></li>
+                                        <li><h6 class="dropdown-header">Mi Información Médica</h6></li>
                                         <li><a class="dropdown-item d-flex align-items-center" asp-page="/Appointments/MyPrescriptions">
-                                            <i class="bi bi-journal-medical me-2"></i> Mis Recetas
+                                            <i class="bi bi-journal-medical me-2"></i> Mis Recetas Médicas
+                                        </a></li>
+                                        <li><a class="dropdown-item d-flex align-items-center" asp-page="/Patient/HealthStatus">
+                                            <i class="bi bi-heart-pulse-fill me-2"></i> Estado de Salud
                                         </a></li>
                                         <li><a class="dropdown-item d-flex align-items-center" asp-page="/Patient/MedicalHistory">
-                                            <i class="bi bi-file-medical me-2"></i> Mi Historial
+                                            <i class="bi bi-file-medical me-2"></i> Mi Historial Completo
+                                        </a></li>
+                                        <li><hr class="dropdown-divider"></li>
+                                        <li><h6 class="dropdown-header">Comunicación</h6></li>
+                                        <li><a class="dropdown-item d-flex align-items-center" asp-page="/Patient/Messages">
+                                            <i class="bi bi-chat-dots-fill me-2"></i> Mensajes Médicos
                                         </a></li>
                                     </ul>
                                 </div>

@@ -33,6 +33,43 @@
     --transition-fast: 0.2s ease;
     --transition-normal: 0.3s ease;
     --transition-slow: 0.4s ease;
+
+    /* === COLORES PRIMARIOS UNIFICADOS === */
+    
+    /* Pacientes - Verde Médico Profesional */
+    --patient-primary: #2d8469;
+    --patient-primary-rgb: 45, 132, 105;
+    --patient-primary-dark: #1e5c49;
+    --patient-primary-light: #4a9e84;
+    --patient-bg-subtle: #e8f4f1;
+    --patient-border-subtle: #b3d9cf;
+    --patient-text-emphasis: #1e5c49;
+    
+    /* Doctores - Azul Médico Profesional */
+    --doctor-primary: #0d6efd;
+    --doctor-primary-rgb: 13, 110, 253;
+    --doctor-primary-dark: #0a58ca;
+    --doctor-primary-light: #3d8bfd;
+    --doctor-bg-subtle: #e7f1ff;
+    --doctor-border-subtle: #b6d4fe;
+    --doctor-text-emphasis: #0a58ca;
+    
+    /* === TRANSICIONES Y EFECTOS === */
+    --transition-smooth: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    --shadow-elegant: 0 8px 25px rgba(0, 0, 0, 0.1);
+    --shadow-hover: 0 12px 35px rgba(0, 0, 0, 0.15);
+    
+    /* === VARIABLES DE LAYOUT === */
+    --navbar-height: 80px;
+    --sidebar-width: 280px;
+    --border-radius: 12px;
+    --border-radius-lg: 20px;
+    
+    /* === OVERRIDES BOOTSTRAP VARIABLES === */
+    --bs-success: var(--patient-primary);
+    --bs-success-rgb: var(--patient-primary-rgb);
+    --bs-info: var(--doctor-primary);
+    --bs-info-rgb: var(--doctor-primary-rgb);
 }
 
 /* Dark theme overrides */
@@ -47,6 +84,20 @@
     --bs-border-color: #495057;
     --bs-link-color: #6ea8fe;
     --bs-link-hover-color: #8bb9fe;
+
+    /* === DARK THEME VARIABLES === */
+    --patient-primary: #4a9e84;
+    --patient-primary-dark: #2d8469;
+    --patient-bg-subtle: rgba(77, 158, 132, 0.1);
+    --patient-border-subtle: rgba(77, 158, 132, 0.2);
+    
+    --doctor-primary: #3d8bfd;
+    --doctor-primary-dark: #0d6efd;
+    --doctor-bg-subtle: rgba(61, 139, 253, 0.1);
+    --doctor-border-subtle: rgba(61, 139, 253, 0.2);
+    
+    --shadow-elegant: 0 8px 25px rgba(0, 0, 0, 0.3);
+    --shadow-hover: 0 12px 35px rgba(0, 0, 0, 0.4);
 }
 
 /* Base styles optimizados */
@@ -78,5 +129,134 @@ body {
         animation-duration: 0.01ms !important;
         animation-iteration-count: 1 !important;
         transition-duration: 0.01ms !important;
+    }
+}
+
+/* === CLASES AUXILIARES PARA LAYOUT === */
+
+/* Clase para fondo de pacientes en navbar */
+.bg-patient {
+    background: linear-gradient(135deg, var(--patient-primary) 0%, var(--patient-primary-dark) 100%) !important;
+    border-color: var(--patient-primary-dark) !important;
+}
+
+.border-patient {
+    border-color: var(--patient-primary) !important;
+}
+
+/* Clase para fondo de doctores en navbar */
+.bg-doctor {
+    background: linear-gradient(135deg, var(--doctor-primary) 0%, var(--doctor-primary-dark) 100%) !important;
+    border-color: var(--doctor-primary-dark) !important;
+}
+
+.border-doctor {
+    border-color: var(--doctor-primary) !important;
+}
+
+/* === EFECTOS DE TEXTO === */
+.text-shadow-custom {
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3) !important;
+}
+
+[data-bs-theme="dark"] .text-shadow-custom {
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.6) !important;
+}
+
+/* === CLASES DE UTILIDAD PARA COLORES === */
+.text-patient {
+    color: var(--patient-primary) !important;
+}
+
+.text-doctor {
+    color: var(--doctor-primary) !important;
+}
+
+.bg-patient-subtle {
+    background-color: var(--patient-bg-subtle) !important;
+}
+
+.bg-doctor-subtle {
+    background-color: var(--doctor-bg-subtle) !important;
+}
+
+/* === RESET Y NORMALIZACIONES === */
+* {
+    box-sizing: border-box;
+}
+
+html {
+    font-size: 16px;
+    line-height: 1.6;
+    scroll-behavior: smooth;
+}
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-weight: 400;
+    line-height: 1.6;
+    color: var(--bs-body-color);
+    background-color: var(--bs-body-bg);
+    -webkit-text-size-adjust: 100%;
+    -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+}
+
+/* === MEJORAS DE ACCESIBILIDAD === */
+*:focus {
+    outline: 2px solid var(--bs-primary);
+    outline-offset: 2px;
+}
+
+.sr-only {
+    position: absolute !important;
+    width: 1px !important;
+    height: 1px !important;
+    padding: 0 !important;
+    margin: -1px !important;
+    overflow: hidden !important;
+    clip: rect(0, 0, 0, 0) !important;
+    white-space: nowrap !important;
+    border: 0 !important;
+}
+
+/* === ANIMACIONES GLOBALES === */
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+@keyframes slideInUp {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes pulse {
+    0%, 100% { transform: scale(1); }
+    50% { transform: scale(1.05); }
+}
+
+/* === RESPONSIVE BREAKPOINTS === */
+@media (max-width: 575.98px) {
+    .container-fluid {
+        padding-left: 1rem;
+        padding-right: 1rem;
+    }
+}
+
+@media (max-width: 767.98px) {
+    :root {
+        --navbar-height: 70px;
+    }
+}
+
+@media (max-width: 991.98px) {
+    :root {
+        --sidebar-width: 250px;
     }
 } 
