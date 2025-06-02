@@ -103,6 +103,28 @@ class PerformanceOptimizer {
             .card {
                 box-shadow: 0 1px 3px rgba(0,0,0,0.1) !important;
             }
+            
+            /* Hero section specific optimizations */
+            .hero-glow-border {
+                display: none !important;
+            }
+            
+            .floating-icon {
+                display: none !important;
+            }
+            
+            .hero-content-container {
+                backdrop-filter: none !important;
+                background: rgba(0, 40, 80, 0.95) !important;
+            }
+            
+            .hero-stat-card::before {
+                display: none !important;
+            }
+            
+            .hero-btn::before {
+                display: none !important;
+            }
         `;
         document.head.appendChild(style);
 
@@ -141,7 +163,7 @@ class PerformanceOptimizer {
 
         // Observar elementos que tienen animaciones
         const animatedElements = document.querySelectorAll(
-            '.feature-card-hover, .stat-card, .action-card-hover, .animate-on-scroll'
+            '.feature-card-hover, .stat-card, .action-card-hover, .animate-on-scroll, .hero-section-enhanced'
         );
         
         animatedElements.forEach(element => {
@@ -152,7 +174,35 @@ class PerformanceOptimizer {
                 element.style.opacity = '0';
                 element.style.transform = 'translateY(20px)';
             }
+            
+            // Para hero section, marcar cuando está fuera de vista
+            if (element.classList.contains('hero-section-enhanced')) {
+                observer.observe(element);
+            }
         });
+        
+        // Observer especial para elementos hero
+        const heroObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                const heroSection = entry.target;
+                if (entry.isIntersecting) {
+                    heroSection.classList.remove('hero-out-of-view');
+                    heroSection.classList.add('hero-in-view');
+                } else {
+                    heroSection.classList.add('hero-out-of-view');
+                    heroSection.classList.remove('hero-in-view');
+                }
+            });
+        }, {
+            threshold: 0.1,
+            rootMargin: '50px'
+        });
+        
+        // Observar hero section específicamente
+        const heroSection = document.querySelector('.hero-section-enhanced');
+        if (heroSection) {
+            heroObserver.observe(heroSection);
+        }
     }
 
     /**

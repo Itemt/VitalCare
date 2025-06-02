@@ -110,6 +110,51 @@
     will-change: transform, color, background-color;
 }
 
+/* === SCROLL-SPECIFIC OPTIMIZATIONS === */
+/* Nuevas optimizaciones para trabajar con scroll-performance-fix.js */
+
+/* Durante scroll, pausar animaciones costosas */
+.scrolling .hero-glow-border {
+    animation-play-state: paused !important;
+    will-change: auto !important;
+}
+
+.scrolling .floating-icon {
+    animation-play-state: paused !important;
+    will-change: auto !important;
+    transition: opacity 0.1s linear !important;
+}
+
+.scrolling .hero-stat-card::before {
+    transition: none !important;
+}
+
+.scrolling .trust-badge-item:hover {
+    transform: none !important;
+    will-change: auto !important;
+}
+
+/* Optimizar backdrop-filter durante scroll */
+.scrolling .hero-content-container {
+    backdrop-filter: blur(10px) !important; /* Reducir blur durante scroll */
+}
+
+.scrolling .scroll-indicator {
+    backdrop-filter: blur(5px) !important;
+}
+
+/* === VIEWPORT-BASED OPTIMIZATIONS === */
+/* Cuando el hero está fuera de vista */
+.hero-out-of-view .floating-icon {
+    animation-play-state: paused !important;
+    opacity: 0.1 !important;
+}
+
+.hero-out-of-view .hero-glow-border {
+    animation-play-state: paused !important;
+    opacity: 0 !important;
+}
+
 /* === MOBILE PERFORMANCE OPTIMIZATIONS === */
 @media (max-width: 768px) {
     /* Reduce effects on mobile for better performance */
@@ -131,6 +176,15 @@
     
     .scroll-indicator {
         backdrop-filter: blur(5px);
+    }
+    
+    /* Durante scroll en móvil, eliminar efectos costosos */
+    .scrolling .hero-content-container {
+        backdrop-filter: none !important;
+    }
+    
+    .scrolling .floating-icon {
+        display: none !important;
     }
 }
 
@@ -157,6 +211,45 @@
     .floating-icon:hover {
         transform: scale(1.1) translate3d(0, 0, 0) !important;
     }
+}
+
+/* === SCROLL DIRECTION OPTIMIZATIONS === */
+/* Optimizaciones basadas en dirección del scroll */
+.scroll-down .hero-stat-card {
+    transition: transform 0.1s ease-out !important;
+}
+
+.scroll-up .hero-stat-card {
+    transition: transform 0.2s ease-in-out !important;
+}
+
+/* === INTERSECTION OBSERVER OPTIMIZATIONS === */
+/* Para elementos que usan Intersection Observer */
+.in-viewport .floating-icon {
+    animation-play-state: running;
+}
+
+.out-of-viewport .floating-icon {
+    animation-play-state: paused;
+    opacity: 0.1;
+}
+
+/* === CPU INTENSIVE EFFECT CONTROLS === */
+/* Control granular de efectos costosos */
+.performance-mode .hero-glow-border,
+.performance-mode .floating-icon,
+.performance-mode .sparkle,
+.performance-mode .particle {
+    display: none !important;
+}
+
+.performance-mode .hero-content-container {
+    backdrop-filter: none !important;
+    background: rgba(0, 40, 80, 0.95) !important; /* Fallback sólido */
+}
+
+.performance-mode .hero-stat-card::before {
+    display: none !important;
 }
 
 /* === FOCUS PERFORMANCE === */
@@ -209,5 +302,141 @@
         background: #000000 !important;
         color: #ffffff !important;
         border: 2px solid #ffffff !important;
+    }
+}
+
+/* === RESIZE OPTIMIZATIONS === */
+/* Durante resize del viewport */
+.resizing * {
+    animation-play-state: paused !important;
+    transition: none !important;
+}
+
+.resizing .hero-content-container {
+    will-change: auto !important;
+}
+
+/* === LOW-END DEVICE OPTIMIZATIONS === */
+/* Para dispositivos detectados como de bajos recursos */
+.low-end-device .floating-icon {
+    display: none !important;
+}
+
+.low-end-device .hero-glow-border {
+    display: none !important;
+}
+
+.low-end-device .hero-content-container {
+    backdrop-filter: none !important;
+    background: rgba(0, 40, 80, 0.95) !important;
+}
+
+.low-end-device .hero-stat-card::before {
+    display: none !important;
+}
+
+.low-end-device .sparkle,
+.low-end-device .particle {
+    display: none !important;
+}
+
+/* === SCROLL LAG SPECIFIC FIXES === */
+/* Optimizaciones específicas para eliminar lag durante scroll */
+
+/* Simplificar animaciones durante scroll activo */
+.scrolling .hero-section-enhanced * {
+    animation-duration: 0.1s !important;
+}
+
+.scrolling .floating-icon {
+    animation: none !important;
+    transform: translateZ(0) !important;
+}
+
+/* Eliminar efectos costosos durante scroll rápido */
+.scrolling .hero-content-container {
+    box-shadow: none !important;
+}
+
+.scrolling .hero-stat-card {
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1) !important;
+    transition: none !important;
+}
+
+/* GPU acceleration optimizations durante scroll */
+.scrolling .hero-section-enhanced {
+    transform: translateZ(0) !important;
+    will-change: auto !important;
+}
+
+/* Eliminar transitions costosas durante scroll */
+.scrolling .trust-badge-item,
+.scrolling .hero-btn,
+.scrolling .scroll-indicator {
+    transition: none !important;
+}
+
+/* === OPTIMIZACIONES PARA ESPECÍFICAMENTE HERO === */
+/* Contenedor del hero optimizado para scroll suave */
+.hero-section-enhanced {
+    /* Forzar layer de composición */
+    will-change: auto;
+    transform: translateZ(0);
+    
+    /* Optimizar rendering de contenido */
+    contain: layout style paint;
+}
+
+/* Elementos flotantes optimizados */
+.floating-medical-icons {
+    /* Reducir repaints */
+    will-change: auto;
+    transform: translateZ(0);
+}
+
+/* Botones hero optimizados */
+.hero-btn {
+    /* Evitar layout shifts */
+    contain: layout;
+    transform: translateZ(0);
+}
+
+/* Stats cards optimizadas */
+.hero-stat-card {
+    /* Optimizar hover states */
+    contain: layout style;
+    backface-visibility: hidden;
+}
+
+/* === THRESHOLD-BASED OPTIMIZATIONS === */
+/* Optimizaciones basadas en umbrales de rendimiento */
+
+/* Para dispositivos con menos de 4GB RAM */
+@media (max-device-width: 1024px) and (max-device-height: 768px) {
+    .floating-icon {
+        display: none !important;
+    }
+    
+    .hero-glow-border {
+        animation: none !important;
+    }
+    
+    .hero-content-container {
+        backdrop-filter: blur(5px) !important;
+    }
+}
+
+/* Para conexiones lentas */
+@media (prefers-reduced-data: reduce) {
+    .floating-icon,
+    .hero-glow-border,
+    .sparkle,
+    .particle {
+        display: none !important;
+    }
+    
+    .hero-content-container {
+        backdrop-filter: none !important;
+        background: rgba(0, 40, 80, 0.95) !important;
     }
 } 

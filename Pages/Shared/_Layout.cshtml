@@ -1233,6 +1233,16 @@
     @* === OPTIMIZADOR DE RENDIMIENTO === *@
     @* Script opcional para optimización dinámica de animaciones *@
     <script src="~/js/performance-optimizer.js" asp-append-version="true"></script>
+    
+    @* === FIX ESPECÍFICO PARA LAG DE SCROLL EN HERO === *@
+    @* Script especializado para eliminar lag durante scrolling *@
+    <script src="~/js/scroll-performance-fix.js" asp-append-version="true"></script>
+    
+    @* === PERFORMANCE TESTING (Solo desarrollo) === *@
+    @if (Context.Request.Host.Host.Contains("localhost"))
+    {
+        <script src="~/js/scroll-performance-test.js" asp-append-version="true"></script>
+    }
 
     @await RenderSectionAsync("Scripts", required: false)
     
