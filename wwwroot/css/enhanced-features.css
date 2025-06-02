@@ -2,7 +2,10 @@
 .feature-icon-wrapper {
     position: relative;
     display: inline-block;
-    padding: 1rem;
+    padding: 0;
+    background: none !important;
+    border: none !important;
+    border-radius: 0 !important;
 }
 
 .feature-icon-main {
@@ -10,11 +13,227 @@
     display: block;
     position: relative;
     z-index: 2;
+    background: none !important;
+    border: none !important;
+    border-radius: 0 !important;
+    padding: 0;
+    font-size: 3rem;
 }
 
 .feature-card-hover:hover .feature-icon-main {
-    transform: scale(1.1);
+    transform: scale(1.15) rotate(15deg);
     filter: none;
+}
+
+/* Remove all circular backgrounds from icons */
+.feature-icon-wrapper,
+.feature-icon-main,
+.rounded-circle,
+.feature-icon-round,
+.contact-icon-modern,
+.auth-logo {
+    background: none !important;
+    border: none !important;
+    border-radius: 0 !important;
+}
+
+/* Override specific circular styles */
+.contact-icon-modern {
+    width: auto !important;
+    height: auto !important;
+    background: none !important;
+    border-radius: 0 !important;
+    display: inline-block !important;
+    font-size: 2rem !important;
+}
+
+/* Sparkles animation for light mode */
+.feature-card-hover:hover .feature-icon-wrapper::before,
+.feature-card-hover:hover .feature-icon-wrapper::after {
+    content: "✨";
+    position: absolute;
+    color: #ffd700;
+    font-size: 0.8rem;
+    animation: sparkle 1.5s ease-in-out infinite;
+    z-index: 1;
+    pointer-events: none;
+}
+
+.feature-card-hover:hover .feature-icon-wrapper::before {
+    top: -10px;
+    right: -10px;
+    animation-delay: 0s;
+}
+
+.feature-card-hover:hover .feature-icon-wrapper::after {
+    bottom: -10px;
+    left: -10px;
+    animation-delay: 0.3s;
+}
+
+/* Sparkles animation for dark mode */
+[data-bs-theme="dark"] .feature-card-hover:hover .feature-icon-wrapper::before,
+[data-bs-theme="dark"] .feature-card-hover:hover .feature-icon-wrapper::after {
+    color: #ffffff;
+}
+
+/* Sparkle keyframes */
+@keyframes sparkle {
+    0%, 100% {
+        opacity: 0;
+        transform: scale(0) rotate(0deg);
+    }
+    50% {
+        opacity: 1;
+        transform: scale(1) rotate(180deg);
+    }
+}
+
+/* Color variations for different icons - no more same colors */
+/* Healthcare/Medical icons - Red */
+.feature-card-hover .bi-heart-pulse,
+.feature-card-hover .bi-heart-pulse-fill,
+.feature-card-hover .bi-activity {
+    color: #dc3545 !important;
+}
+
+/* Emergency/Time icons - Orange */
+.feature-card-hover .bi-clock,
+.feature-card-hover .bi-clock-fill,
+.feature-card-hover .bi-alarm,
+.feature-card-hover .bi-stopwatch {
+    color: #fd7e14 !important;
+}
+
+/* Pharmacy/Medicine icons - Blue (darker blue) */
+.feature-card-hover .bi-capsule,
+.feature-card-hover .bi-capsule-pill,
+.feature-card-hover .bi-prescription,
+.feature-card-hover .bi-bag-plus,
+.feature-card-hover .bi-bag-plus-fill {
+    color: #0056b3 !important;
+}
+
+/* Technology/Digital icons - Purple */
+.feature-card-hover .bi-phone,
+.feature-card-hover .bi-tablet,
+.feature-card-hover .bi-laptop,
+.feature-card-hover .bi-wifi,
+.feature-card-hover .bi-router {
+    color: #6f42c1 !important;
+}
+
+/* Quality/Certification icons - Green */
+.feature-card-hover .bi-shield-check,
+.feature-card-hover .bi-shield-fill-check,
+.feature-card-hover .bi-award,
+.feature-card-hover .bi-trophy {
+    color: #198754 !important;
+}
+
+/* Location/Network icons - Teal */
+.feature-card-hover .bi-geo-alt,
+.feature-card-hover .bi-geo-alt-fill,
+.feature-card-hover .bi-globe,
+.feature-card-hover .bi-pin-map {
+    color: #20c997 !important;
+}
+
+/* User/People icons - Indigo */
+.feature-card-hover .bi-people,
+.feature-card-hover .bi-people-fill,
+.feature-card-hover .bi-person-check,
+.feature-card-hover .bi-person-plus {
+    color: #6610f2 !important;
+}
+
+/* Document/Data icons - Gray */
+.feature-card-hover .bi-file-medical,
+.feature-card-hover .bi-clipboard-data,
+.feature-card-hover .bi-graph-up,
+.feature-card-hover .bi-bar-chart {
+    color: #6c757d !important;
+}
+
+/* Authentication logo exception - keep its own style */
+.auth-logo {
+    width: 80px !important;
+    height: 80px !important;
+    background: linear-gradient(135deg, #003366, #002244) !important;
+    border-radius: 50% !important;
+    display: inline-flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+}
+
+/* Contact icons in footer - keep some styling but no circles */
+.contact-icon-modern {
+    color: #60a5fa !important;
+    padding: 0.5rem;
+    transition: all 0.3s ease;
+}
+
+.contact-item-modern:hover .contact-icon-modern {
+    transform: scale(1.1) rotate(10deg);
+    color: #3b82f6 !important;
+}
+
+/* Dark mode icon adjustments */
+[data-bs-theme="dark"] .feature-card-hover .bi-heart-pulse,
+[data-bs-theme="dark"] .feature-card-hover .bi-heart-pulse-fill,
+[data-bs-theme="dark"] .feature-card-hover .bi-activity {
+    color: #ff6b7a !important;
+}
+
+[data-bs-theme="dark"] .feature-card-hover .bi-clock,
+[data-bs-theme="dark"] .feature-card-hover .bi-clock-fill,
+[data-bs-theme="dark"] .feature-card-hover .bi-alarm,
+[data-bs-theme="dark"] .feature-card-hover .bi-stopwatch {
+    color: #ffab70 !important;
+}
+
+[data-bs-theme="dark"] .feature-card-hover .bi-capsule,
+[data-bs-theme="dark"] .feature-card-hover .bi-capsule-pill,
+[data-bs-theme="dark"] .feature-card-hover .bi-prescription,
+[data-bs-theme="dark"] .feature-card-hover .bi-bag-plus,
+[data-bs-theme="dark"] .feature-card-hover .bi-bag-plus-fill {
+    color: #4dabf7 !important;
+}
+
+[data-bs-theme="dark"] .feature-card-hover .bi-phone,
+[data-bs-theme="dark"] .feature-card-hover .bi-tablet,
+[data-bs-theme="dark"] .feature-card-hover .bi-laptop,
+[data-bs-theme="dark"] .feature-card-hover .bi-wifi,
+[data-bs-theme="dark"] .feature-card-hover .bi-router {
+    color: #9775fa !important;
+}
+
+[data-bs-theme="dark"] .feature-card-hover .bi-shield-check,
+[data-bs-theme="dark"] .feature-card-hover .bi-shield-fill-check,
+[data-bs-theme="dark"] .feature-card-hover .bi-award,
+[data-bs-theme="dark"] .feature-card-hover .bi-trophy {
+    color: #51cf66 !important;
+}
+
+[data-bs-theme="dark"] .feature-card-hover .bi-geo-alt,
+[data-bs-theme="dark"] .feature-card-hover .bi-geo-alt-fill,
+[data-bs-theme="dark"] .feature-card-hover .bi-globe,
+[data-bs-theme="dark"] .feature-card-hover .bi-pin-map {
+    color: #63e6be !important;
+}
+
+[data-bs-theme="dark"] .feature-card-hover .bi-people,
+[data-bs-theme="dark"] .feature-card-hover .bi-people-fill,
+[data-bs-theme="dark"] .feature-card-hover .bi-person-check,
+[data-bs-theme="dark"] .feature-card-hover .bi-person-plus {
+    color: #9c88ff !important;
+}
+
+[data-bs-theme="dark"] .feature-card-hover .bi-file-medical,
+[data-bs-theme="dark"] .feature-card-hover .bi-clipboard-data,
+[data-bs-theme="dark"] .feature-card-hover .bi-graph-up,
+[data-bs-theme="dark"] .feature-card-hover .bi-bar-chart {
+    color: #adb5bd !important;
 }
 
 /* === NAVBAR STYLES FOR TRADITIONAL BOOTSTRAP NAVBAR === */
@@ -677,22 +896,22 @@ body {
 }
 
 .contact-icon-modern {
-    width: 40px;
-    height: 40px;
-    background: linear-gradient(135deg, #3b82f6, #1d4ed8);
-    border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 1.1rem;
-    color: #ffffff;
+    background: none !important;
+    border: none !important;
+    border-radius: 0 !important;
+    width: auto !important;
+    height: auto !important;
+    display: inline-block !important;
+    font-size: 1.5rem !important;
+    color: #60a5fa !important;
     flex-shrink: 0;
     transition: all 0.3s ease;
+    padding: 0.25rem;
 }
 
 .contact-item-modern:hover .contact-icon-modern {
-    transform: scale(1.05);
-    box-shadow: 0 6px 20px rgba(59, 130, 246, 0.4);
+    transform: scale(1.1) rotate(10deg);
+    color: #3b82f6 !important;
 }
 
 .contact-details-modern {
