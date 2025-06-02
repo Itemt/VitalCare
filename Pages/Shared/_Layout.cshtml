@@ -593,6 +593,36 @@
             background: rgba(33,37,41,0.8) !important;
             border-top: 1px solid rgba(255,255,255,0.1) !important;
         }
+
+        /* === NAVBAR RESPONSIVO INTELIGENTE === */
+        .nav-item-hideable {
+            transition: opacity 0.3s ease, transform 0.3s ease;
+        }
+        
+        .nav-item-hideable.hidden {
+            display: none !important;
+        }
+        
+        /* En pantallas móviles, ocultar siempre el menú "Más" */
+        @@media (max-width: 991.98px) {
+            #moreOptionsDropdown {
+                display: none !important;
+            }
+        }
+        
+        /* En pantallas grandes, el JavaScript controlará la visibilidad */
+        @@media (min-width: 992px) {
+            #moreOptionsDropdown {
+                display: none; /* Por defecto oculto, el JS lo mostrará si es necesario */
+            }
+        }
+        
+        /* Asegurar que los items principales estén visibles por defecto en pantallas grandes */
+        @@media (min-width: 992px) {
+            .nav-item-important {
+                display: block !important;
+            }
+        }
     </style>
 </head>
 <body class="@bodyClass">
@@ -813,10 +843,10 @@
                                 </li>
                             }
                         
-                            @* MENÚ "MÁS OPCIONES" SOLO EN PANTALLAS GRANDES *@
-                            <li class="nav-item dropdown d-none d-xl-block">
+                            @* MENÚ "MÁS OPCIONES" RESPONSIVO BASADO EN ESPACIO DISPONIBLE *@
+                            <li class="nav-item dropdown" id="moreOptionsDropdown" style="display: none;">
                                 <a class="nav-link dropdown-toggle d-flex align-items-center" href="#" id="mainMenuDropdown" role="button" data-bs-toggle="dropdown">
-                                    <i class="bi bi-three-dots me-2"></i> Más Opciones
+                                    <i class="bi bi-three-dots me-2"></i> Más
                                 </a>
                                 <ul class="dropdown-menu" aria-labelledby="mainMenuDropdown">
                                     @if (isAdminLoggedIn)
@@ -1205,5 +1235,86 @@
     <script src="~/js/performance-optimizer.js" asp-append-version="true"></script>
 
     @await RenderSectionAsync("Scripts", required: false)
+    
+    <script>
+        // NAVBAR RESPONSIVO INTELIGENTE - MEJORADO
+        document.addEventListener('DOMContentLoaded', function() {
+            function adjustNavbarResponsively() {
+                const navbarNav = document.querySelector('.navbar-nav.me-auto');
+                const moreDropdown = document.getElementById('moreOptionsDropdown');
+                const rightSide = document.querySelector('.d-flex.align-items-center');
+                const navbar = document.querySelector('.navbar .container-fluid');
+                
+                if (!navbarNav || !moreDropdown || !navbar) return;
+                
+                // Solo aplicar en pantallas grandes (donde el navbar está expandido)
+                if (window.innerWidth < 992) {
+                    moreDropdown.style.display = 'none';
+                    return;
+                }
+                
+                const navbarWidth = navbar.offsetWidth;
+                const brandWidth = document.querySelector('.navbar-brand')?.offsetWidth || 200;
+                const rightSideWidth = rightSide?.offsetWidth || 250;
+                const availableWidth = navbarWidth - brandWidth - rightSideWidth - 100; // 100px margen de seguridad
+                
+                // Obtener todos los items principales (excluyendo dropdowns móviles)
+                const mainNavItems = navbarNav.querySelectorAll('.nav-item:not(.dropdown.d-lg-none)');
+                let currentWidth = 0;
+                let itemsToHide = [];
+                
+                // Calcular qué items caben
+                mainNavItems.forEach((item, index) => {
+                    if (item.id === 'moreOptionsDropdown') return; // Saltar el dropdown "Más"
+                    
+                    const itemWidth = item.offsetWidth + 10; // 10px margen entre items
+                    
+                    if (currentWidth + itemWidth + 120 < availableWidth) { // 120px reservado para "Más"
+                        item.style.display = '';
+                        currentWidth += itemWidth;
+                    } else {
+                        item.style.display = 'none';
+                        itemsToHide.push(item);
+                    }
+                });
+                
+                // Mostrar/ocultar dropdown "Más" según necesidad
+                if (itemsToHide.length > 0) {
+                    moreDropdown.style.display = 'block';
+                } else {
+                    moreDropdown.style.display = 'none';
+                }
+            }
+            
+            // Función de debounce para optimizar rendimiento
+            function debounce(func, wait) {
+                let timeout;
+                return function executedFunction(...args) {
+                    const later = () => {
+                        clearTimeout(timeout);
+                        func(...args);
+                    };
+                    clearTimeout(timeout);
+                    timeout = setTimeout(later, wait);
+                };
+            }
+            
+            // Ejecutar al cargar
+            setTimeout(adjustNavbarResponsively, 100);
+            
+            // Ejecutar al redimensionar (con debounce para rendimiento)
+            window.addEventListener('resize', debounce(adjustNavbarResponsively, 150));
+            
+            // Ejecutar cuando cambie el estado del navbar collapse
+            const navbarCollapse = document.getElementById('navbarSupportedContent');
+            if (navbarCollapse) {
+                navbarCollapse.addEventListener('shown.bs.collapse', adjustNavbarResponsively);
+                navbarCollapse.addEventListener('hidden.bs.collapse', adjustNavbarResponsively);
+            }
+            
+            // Ejecutar cuando se complete la carga de fuentes (puede afectar el ancho)
+            document.fonts.ready.then(adjustNavbarResponsively);
+        });
+    </script>
 </body>
 </html>
