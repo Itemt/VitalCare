@@ -466,8 +466,8 @@ body.doctor-body-bg .btn-outline-info:hover {
     .feature-icon-wrapper:hover {
         transform: none;
     }
-}
-
+    }
+    
 /* === TRUST INDICATORS MEJORADOS === */
 .card-footer {
     background: rgba(248, 249, 250, 0.8);

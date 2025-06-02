@@ -35,7 +35,7 @@
             <div class="hero-glow-border"></div>
             
             <h1 class="display-2 fw-bolder text-shadow-custom mb-3 hero-title text-center">
-                <span class="hero-title-vital" style="color: #00d4ff;">Vital</span><span class="hero-title-care" style="color: #28a745;">Care</span>
+                <span class="hero-title-vital" style="color: #22c55e;">Vital</span><span class="hero-title-care" style="color: #0f172a;">Care</span>
             </h1>
             
             <p class="lead fs-4 mb-4 text-shadow-custom hero-subtitle text-center">Su salud es nuestra prioridad. Experimente la <span class="hero-highlight-text">medicina del futuro</span> con tecnología de vanguardia.</p>
@@ -78,7 +78,7 @@
                     <span>Iniciar Sesión</span>
                     <div class="btn-ripple"></div>
                 </a>
-                <a class="btn btn-primary btn-lg px-4 py-2 hero-btn hero-btn-primary" asp-area="Identity" asp-page="/Account/Register" role="button">
+                <a class="btn btn-dark-blue btn-lg px-4 py-2 hero-btn hero-btn-dark" asp-area="Identity" asp-page="/Account/Register" role="button">
                     <i class="bi bi-person-plus me-2"></i> 
                     <span>Registrarse Gratis</span>
                     <div class="btn-ripple"></div>
@@ -117,49 +117,59 @@
         </div>
     </div>
 }
-else if (isDoctor || isPatient)
+else if (isDoctor)
 {
-    <!-- Hero Simplificado para Usuarios Logueados -->
-    <div class="container-fluid text-center py-4 mb-4 user-welcome-section">
-        <div class="row justify-content-center">
-            <div class="col-lg-8">
-                <div class="welcome-card @(isDoctor ? "doctor-welcome" : "patient-welcome")">
-                    <h2 class="welcome-title mb-3">
-                        @if (isDoctor)
+    <!-- Hero para Doctor con Imagen -->
+    <div class="container-fluid text-center py-4 mb-4">
+        <div class="row justify-content-center align-items-center">
+            <div class="col-lg-6">
+                <div class="doctor-welcome-content">
+                    <h2 class="welcome-title mb-3 text-dark">
+                        <i class="bi bi-clipboard-pulse me-2 text-primary"></i>
+                        @if (!string.IsNullOrEmpty(userFirstName))
                         {
-                            <i class="bi bi-clipboard-pulse me-2"></i>
-                            if (!string.IsNullOrEmpty(userFirstName))
-                            {
-                                <span>Bienvenido Dr(a). <strong>@userFirstName</strong></span>
-                            }
-                            else
-                            {
-                                <span>Portal Médico</span>
-                            }
+                            <span>Bienvenido Dr(a). <strong>@userFirstName</strong></span>
                         }
-                        else if (isPatient)
+                        else
                         {
-                            <i class="bi bi-person-vcard me-2"></i>
-                            if (!string.IsNullOrEmpty(userFirstName))
-                            {
-                                <span>Bienvenido <strong>@userFirstName</strong></span>
-                            }
-                            else
-                            {
-                                <span>Portal del Paciente</span>
-                            }
+                            <span>Portal Médico</span>
                         }
                     </h2>
-                    <p class="welcome-subtitle">
-                        @if (isDoctor)
+                    <p class="welcome-subtitle text-muted">Gestione su agenda, consulte pacientes y acceda a su panel profesional</p>
+                </div>
+            </div>
+            <div class="col-lg-6">
+                <div class="doctor-image-container">
+                    <img src="~/images/doctor.png" alt="Portal Médico" class="img-fluid rounded-3 shadow-lg" style="max-height: 300px; width: auto;">
+                </div>
+            </div>
+        </div>
+    </div>
+}
+else if (isPatient)
+{
+    <!-- Hero para Paciente con Imagen -->
+    <div class="container-fluid text-center py-4 mb-4">
+        <div class="row justify-content-center align-items-center">
+            <div class="col-lg-6">
+                <div class="patient-welcome-content">
+                    <h2 class="welcome-title mb-3 text-dark">
+                        <i class="bi bi-person-heart me-2 text-success"></i>
+                        @if (!string.IsNullOrEmpty(userFirstName))
                         {
-                            <span>Gestione su agenda, consulte pacientes y acceda a su panel profesional</span>
+                            <span>Bienvenido <strong>@userFirstName</strong></span>
                         }
-                        else if (isPatient)
+                        else
                         {
-                            <span>Aquí puede gestionar sus citas y consultar su información médica</span>
+                            <span>Portal del Paciente</span>
                         }
-                    </p>
+                    </h2>
+                    <p class="welcome-subtitle text-muted">Aquí puede gestionar sus citas y consultar su información médica</p>
+                </div>
+            </div>
+            <div class="col-lg-6">
+                <div class="patient-image-container">
+                    <img src="~/images/Pacientes.png" alt="Portal del Paciente" class="img-fluid rounded-3 shadow-lg" style="max-height: 300px; width: auto;">
                 </div>
             </div>
         </div>
@@ -172,7 +182,7 @@ else if (isDoctor || isPatient)
     {
         @if (User.IsInRole("Admin"))
         {
-            <div id="adminPanelDashboard" class="row justify-content-center admin-dashboard-bg">
+            <div id="adminPanelDashboard" class="row justify-content-center">
                 <div class="col-lg-10 col-xl-9">
                     <div class="card shadow-lg modern-card-hover">
                         <div class="card-header bg-primary text-white text-center">
@@ -185,11 +195,12 @@ else if (isDoctor || isPatient)
                                     <div class="card h-100 shadow-lg border-primary action-card-hover feature-card-hover">
                                         <div class="card-body d-flex flex-column align-items-center">
                                             <div class="feature-icon-wrapper mb-3">
-                                                <i class="bi bi-people-fill fs-1 text-primary feature-icon-main"></i>
+                                                <i class="bi bi-people-fill fs-1 text-primary feature-icon-main rotating-icon"></i>
                                                 <div class="feature-sparkles">
                                                     <span class="sparkle sparkle-1"></span>
                                                     <span class="sparkle sparkle-2"></span>
                                                     <span class="sparkle sparkle-3"></span>
+                                                    <span class="sparkle sparkle-4"></span>
                                                 </div>
                                             </div>
                                             <h5 class="card-title">Usuarios</h5>
@@ -314,7 +325,7 @@ else if (isDoctor || isPatient)
         }
         else if (User.IsInRole("Doctor"))
         {
-            <div id="doctorPanelDashboard" class="row justify-content-center doctor-dashboard-bg">
+            <div id="doctorPanelDashboard" class="row justify-content-center">
                 <div class="col-lg-10 col-xl-9">
                     <div class="card shadow-lg modern-card-hover">
                         <div class="card-header bg-info text-white text-center text-shadow-custom">
@@ -359,11 +370,12 @@ else if (isDoctor || isPatient)
                                     <div class="card h-100 shadow-lg border-info action-card-hover feature-card-hover">
                                         <div class="card-body d-flex flex-column align-items-center p-4">
                                             <div class="feature-icon-wrapper mb-3">
-                                                <i class="bi bi-calendar-week-fill fs-1 text-info feature-icon-main"></i>
+                                                <i class="bi bi-calendar-week-fill fs-1 text-info feature-icon-main rotating-icon"></i>
                                                 <div class="feature-sparkles">
                                                     <span class="sparkle sparkle-1"></span>
                                                     <span class="sparkle sparkle-2"></span>
                                                     <span class="sparkle sparkle-3"></span>
+                                                    <span class="sparkle sparkle-4"></span>
                                                 </div>
                                             </div>
                                             <h5 class="card-title">Mi Agenda</h5>
@@ -376,11 +388,12 @@ else if (isDoctor || isPatient)
                                     <div class="card h-100 shadow-lg border-info action-card-hover feature-card-hover">
                                         <div class="card-body d-flex flex-column align-items-center p-4">
                                             <div class="feature-icon-wrapper mb-3">
-                                                <i class="bi bi-people-fill fs-1 text-info feature-icon-main"></i>
+                                                <i class="bi bi-people-fill fs-1 text-info feature-icon-main rotating-icon"></i>
                                                 <div class="feature-sparkles">
                                                     <span class="sparkle sparkle-1"></span>
                                                     <span class="sparkle sparkle-2"></span>
                                                     <span class="sparkle sparkle-3"></span>
+                                                    <span class="sparkle sparkle-4"></span>
                                                 </div>
                                             </div>
                                             <h5 class="card-title">Mis Pacientes</h5>
@@ -393,11 +406,12 @@ else if (isDoctor || isPatient)
                                     <div class="card h-100 shadow-lg border-info action-card-hover feature-card-hover">
                                         <div class="card-body d-flex flex-column align-items-center p-4">
                                             <div class="feature-icon-wrapper mb-3">
-                                                <i class="bi bi-person-fill-gear fs-1 text-info feature-icon-main"></i>
+                                                <i class="bi bi-person-fill-gear fs-1 text-info feature-icon-main rotating-icon"></i>
                                                 <div class="feature-sparkles">
                                                     <span class="sparkle sparkle-1"></span>
                                                     <span class="sparkle sparkle-2"></span>
                                                     <span class="sparkle sparkle-3"></span>
+                                                    <span class="sparkle sparkle-4"></span>
                                                 </div>
                                             </div>
                                             <h5 class="card-title">Mi Perfil</h5>
@@ -482,7 +496,7 @@ else if (isDoctor || isPatient)
         }
         else if (User.IsInRole("Paciente"))
         {
-            <div id="patientPanelDashboard" class="row justify-content-center patient-dashboard-bg">
+            <div id="patientPanelDashboard" class="row justify-content-center">
                 <div class="col-lg-10 col-xl-9">
                     <div class="card shadow-lg modern-card-hover">
                         <div class="card-header bg-patient text-white text-center text-shadow-custom">
@@ -527,11 +541,12 @@ else if (isDoctor || isPatient)
                                     <div class="card h-100 shadow-lg border-success action-card-hover feature-card-hover">
                                         <div class="card-body d-flex flex-column align-items-center p-4">
                                             <div class="feature-icon-wrapper mb-3">
-                                                <i class="bi bi-calendar-plus-fill fs-1 text-success feature-icon-main"></i>
+                                                <i class="bi bi-calendar-plus-fill fs-1 text-success feature-icon-main rotating-icon"></i>
                                                 <div class="feature-sparkles">
                                                     <span class="sparkle sparkle-1"></span>
                                                     <span class="sparkle sparkle-2"></span>
                                                     <span class="sparkle sparkle-3"></span>
+                                                    <span class="sparkle sparkle-4"></span>
                                                 </div>
                                             </div>
                                             <h5 class="card-title">Agendar Nueva Cita</h5>
@@ -544,11 +559,12 @@ else if (isDoctor || isPatient)
                                     <div class="card h-100 shadow-lg border-success action-card-hover feature-card-hover">
                                         <div class="card-body d-flex flex-column align-items-center p-4">
                                             <div class="feature-icon-wrapper mb-3">
-                                                <i class="bi bi-calendar-check-fill fs-1 text-success feature-icon-main"></i>
+                                                <i class="bi bi-calendar-check-fill fs-1 text-success feature-icon-main rotating-icon"></i>
                                                 <div class="feature-sparkles">
                                                     <span class="sparkle sparkle-1"></span>
                                                     <span class="sparkle sparkle-2"></span>
                                                     <span class="sparkle sparkle-3"></span>
+                                                    <span class="sparkle sparkle-4"></span>
                                                 </div>
                                             </div>
                                             <h5 class="card-title">Mis Citas</h5>

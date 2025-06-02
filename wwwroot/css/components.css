@@ -322,7 +322,7 @@
 .manage-nav-pills-patient .nav-link:not(.active):hover {
     background-color: rgba(40,167,69,0.1);
     transform: translateY(-1px);
-}
+} 
 
 /* === VITALCARE COMPONENTS CSS === */
 /* Componentes mejorados y elegantes para el sistema */
