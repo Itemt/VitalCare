@@ -1,0 +1,411 @@
+@page
+@model CitasEPS.Pages.FAQModel
+@{
+    ViewData["Title"] = "Preguntas Frecuentes - VitalCare";
+}
+
+<!-- Hero Section -->
+<div class="container-fluid bg-gradient-primary text-white text-center py-5 mb-5 shadow-lg hero-section" style="background-image: linear-gradient(135deg, rgba(0,123,255,0.9), rgba(0,86,179,0.9)), url('/images/INDEX.png'); background-size: cover; background-position: center center;">
+    <div class="hero-overlay" style="background-color: rgba(0, 40, 80, 0.85); padding: 4rem 1.5rem; display: inline-block; border-radius: 1rem; max-width: 90%; width: 800px;">
+        <h1 class="display-2 fw-bolder text-shadow-custom mb-4">Preguntas Frecuentes</h1>
+        <p class="lead fs-3 mb-4 text-shadow-custom">Encuentra respuestas rápidas a las consultas más comunes sobre VitalCare.</p>
+        <div class="service-badges mb-4">
+            <span class="badge bg-success fs-6 me-2 service-badge"><i class="bi bi-search me-1"></i>Búsqueda Rápida</span>
+            <span class="badge bg-warning fs-6 me-2 service-badge"><i class="bi bi-chat-square-text-fill me-1"></i>100+ Preguntas</span>
+            <span class="badge bg-info fs-6 service-badge"><i class="bi bi-lightbulb-fill me-1"></i>Respuestas Expertas</span>
+        </div>
+    </div>
+</div>
+
+<!-- Search Bar -->
+<div class="container mb-5">
+    <div class="row justify-content-center">
+        <div class="col-lg-8">
+            <div class="search-section">
+                <div class="input-group input-group-lg shadow-sm">
+                    <span class="input-group-text bg-primary text-white">
+                        <i class="bi bi-search"></i>
+                    </span>
+                    <input type="text" class="form-control" placeholder="Busca tu pregunta aquí..." id="faqSearch">
+                    <button class="btn btn-primary" type="button">Buscar</button>
+                </div>
+                <div class="popular-searches mt-3 text-center">
+                    <small class="text-muted">Búsquedas populares: </small>
+                    <span class="badge bg-light text-primary me-1 search-tag" onclick="searchFAQ('cita')">Citas</span>
+                    <span class="badge bg-light text-primary me-1 search-tag" onclick="searchFAQ('telemedicina')">Telemedicina</span>
+                    <span class="badge bg-light text-primary me-1 search-tag" onclick="searchFAQ('pago')">Pagos</span>
+                    <span class="badge bg-light text-primary search-tag" onclick="searchFAQ('emergencia')">Emergencias</span>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- FAQ Categories -->
+<div class="container mb-5">
+    <div class="row text-center mb-5">
+        <div class="col-lg-8 mx-auto">
+            <h2 class="display-6 fw-bold text-primary mb-3">Categorías Principales</h2>
+            <p class="lead text-muted">Navega por temas específicos para encontrar lo que necesitas</p>
+        </div>
+    </div>
+    
+    <div class="row g-4">
+        <div class="col-lg-3 col-md-6">
+            <div class="card h-100 shadow-sm border-0 category-card" onclick="showCategory('general')">
+                <div class="card-body text-center p-4">
+                    <div class="category-icon bg-primary text-white rounded-circle mx-auto mb-3 d-flex align-items-center justify-content-center" style="width: 80px; height: 80px;">
+                        <i class="bi bi-info-circle-fill fs-1"></i>
+                    </div>
+                    <h5 class="fw-bold text-primary">Información General</h5>
+                    <p class="text-muted mb-3">Preguntas básicas sobre VitalCare y nuestros servicios</p>
+                    <small class="text-success"><i class="bi bi-chat-square-text me-1"></i>15 preguntas</small>
+                </div>
+            </div>
+        </div>
+        
+        <div class="col-lg-3 col-md-6">
+            <div class="card h-100 shadow-sm border-0 category-card" onclick="showCategory('citas')">
+                <div class="card-body text-center p-4">
+                    <div class="category-icon bg-success text-white rounded-circle mx-auto mb-3 d-flex align-items-center justify-content-center" style="width: 80px; height: 80px;">
+                        <i class="bi bi-calendar-check-fill fs-1"></i>
+                    </div>
+                    <h5 class="fw-bold text-success">Citas Médicas</h5>
+                    <p class="text-muted mb-3">Todo sobre agendar, modificar y asistir a citas</p>
+                    <small class="text-success"><i class="bi bi-chat-square-text me-1"></i>20 preguntas</small>
+                </div>
+            </div>
+        </div>
+        
+        <div class="col-lg-3 col-md-6">
+            <div class="card h-100 shadow-sm border-0 category-card" onclick="showCategory('tecnologia')">
+                <div class="card-body text-center p-4">
+                    <div class="category-icon bg-info text-white rounded-circle mx-auto mb-3 d-flex align-items-center justify-content-center" style="width: 80px; height: 80px;">
+                        <i class="bi bi-laptop-fill fs-1"></i>
+                    </div>
+                    <h5 class="fw-bold text-info">Tecnología</h5>
+                    <p class="text-muted mb-3">Soporte técnico y problemas de la plataforma</p>
+                    <small class="text-success"><i class="bi bi-chat-square-text me-1"></i>18 preguntas</small>
+                </div>
+            </div>
+        </div>
+        
+        <div class="col-lg-3 col-md-6">
+            <div class="card h-100 shadow-sm border-0 category-card" onclick="showCategory('pagos')">
+                <div class="card-body text-center p-4">
+                    <div class="category-icon bg-warning text-white rounded-circle mx-auto mb-3 d-flex align-items-center justify-content-center" style="width: 80px; height: 80px;">
+                        <i class="bi bi-credit-card-fill fs-1"></i>
+                    </div>
+                    <h5 class="fw-bold text-warning">Pagos y Facturación</h5>
+                    <p class="text-muted mb-3">Métodos de pago, facturas y reembolsos</p>
+                    <small class="text-success"><i class="bi bi-chat-square-text me-1"></i>12 preguntas</small>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- FAQ Accordion -->
+<div class="container mb-5">
+    <div class="row">
+        <div class="col-lg-10 mx-auto">
+            <div class="faq-section">
+                <h3 class="text-center mb-4 fw-bold text-primary">
+                    <i class="bi bi-question-circle-fill me-2"></i>
+                    Preguntas Más Frecuentes
+                </h3>
+                
+                <div class="accordion accordion-flush" id="faqAccordion">
+                    <!-- General Questions -->
+                    <div class="accordion-item">
+                        <h2 class="accordion-header" id="faq1">
+                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapse1" aria-expanded="false" aria-controls="collapse1">
+                                <i class="bi bi-question-circle text-primary me-2"></i>
+                                <strong>¿Qué es VitalCare y cómo funciona?</strong>
+                            </button>
+                        </h2>
+                        <div id="collapse1" class="accordion-collapse collapse" aria-labelledby="faq1" data-bs-parent="#faqAccordion">
+                            <div class="accordion-body">
+                                <p>VitalCare es una plataforma de salud digital que conecta pacientes con profesionales médicos a través de tecnología avanzada. Ofrecemos:</p>
+                                <ul>
+                                    <li><strong>Telemedicina:</strong> Consultas médicas por video en tiempo real</li>
+                                    <li><strong>IA Médica:</strong> Diagnóstico asistido por inteligencia artificial</li>
+                                    <li><strong>Monitoreo IoT:</strong> Seguimiento de signos vitales en tiempo real</li>
+                                    <li><strong>Gestión digital:</strong> Historiales médicos y recetas electrónicas</li>
+                                </ul>
+                                <p>Todo funciona a través de nuestra plataforma web segura, disponible 24/7.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="accordion-item">
+                        <h2 class="accordion-header" id="faq2">
+                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapse2" aria-expanded="false" aria-controls="collapse2">
+                                <i class="bi bi-calendar-plus text-success me-2"></i>
+                                <strong>¿Cómo puedo agendar mi primera cita?</strong>
+                            </button>
+                        </h2>
+                        <div id="collapse2" class="accordion-collapse collapse" aria-labelledby="faq2" data-bs-parent="#faqAccordion">
+                            <div class="accordion-body">
+                                <p>Agendar una cita es muy sencillo:</p>
+                                <ol>
+                                    <li><strong>Regístrate:</strong> Crea tu cuenta en VitalCare</li>
+                                    <li><strong>Completa tu perfil:</strong> Añade información médica básica</li>
+                                    <li><strong>Selecciona especialidad:</strong> Elige el tipo de consulta que necesitas</li>
+                                    <li><strong>Escoge fecha y hora:</strong> Disponibilidad en tiempo real</li>
+                                    <li><strong>Confirma:</strong> Recibe confirmación por email y SMS</li>
+                                </ol>
+                                <div class="alert alert-info mt-3">
+                                    <i class="bi bi-info-circle me-2"></i>
+                                    <strong>Tip:</strong> Las citas de telemedicina están disponibles en minutos, mientras que las presenciales pueden requerir más tiempo.
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="accordion-item">
+                        <h2 class="accordion-header" id="faq3">
+                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapse3" aria-expanded="false" aria-controls="collapse3">
+                                <i class="bi bi-camera-video text-info me-2"></i>
+                                <strong>¿Necesito software especial para las videoconsultas?</strong>
+                            </button>
+                        </h2>
+                        <div id="collapse3" class="accordion-collapse collapse" aria-labelledby="faq3" data-bs-parent="#faqAccordion">
+                            <div class="accordion-body">
+                                <p><strong>No necesitas instalar nada.</strong> Nuestras videoconsultas funcionan directamente en tu navegador web.</p>
+                                
+                                <h6 class="fw-bold mt-3">Requisitos mínimos:</h6>
+                                <ul>
+                                    <li>Conexión a internet estable (mínimo 2 Mbps)</li>
+                                    <li>Navegador actualizado (Chrome, Firefox, Safari, Edge)</li>
+                                    <li>Cámara web y micrófono</li>
+                                    <li>Permiso para acceso a cámara y micrófono</li>
+                                </ul>
+                                
+                                <div class="row mt-3">
+                                    <div class="col-md-6">
+                                        <div class="card border-success">
+                                            <div class="card-body p-3">
+                                                <h6 class="text-success"><i class="bi bi-check-circle-fill me-2"></i>Navegadores compatibles</h6>
+                                                <small>Chrome 70+, Firefox 65+, Safari 12+, Edge 79+</small>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="card border-info">
+                                            <div class="card-body p-3">
+                                                <h6 class="text-info"><i class="bi bi-phone-fill me-2"></i>También en móvil</h6>
+                                                <small>Compatible con smartphones y tablets</small>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="accordion-item">
+                        <h2 class="accordion-header" id="faq4">
+                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapse4" aria-expanded="false" aria-controls="collapse4">
+                                <i class="bi bi-credit-card text-warning me-2"></i>
+                                <strong>¿Qué métodos de pago aceptan?</strong>
+                            </button>
+                        </h2>
+                        <div id="collapse4" class="accordion-collapse collapse" aria-labelledby="faq4" data-bs-parent="#faqAccordion">
+                            <div class="accordion-body">
+                                <p>Aceptamos múltiples métodos de pago para tu comodidad:</p>
+                                
+                                <div class="row g-3">
+                                    <div class="col-md-4">
+                                        <div class="payment-method text-center p-3 border rounded">
+                                            <i class="bi bi-credit-card-2-front fs-2 text-primary mb-2"></i>
+                                            <h6>Tarjetas de Crédito</h6>
+                                            <small class="text-muted">Visa, Mastercard, American Express</small>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <div class="payment-method text-center p-3 border rounded">
+                                            <i class="bi bi-credit-card fs-2 text-success mb-2"></i>
+                                            <h6>Tarjetas Débito</h6>
+                                            <small class="text-muted">Todas las tarjetas débito nacionales</small>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <div class="payment-method text-center p-3 border rounded">
+                                            <i class="bi bi-phone-fill fs-2 text-info mb-2"></i>
+                                            <h6>Pagos Móviles</h6>
+                                            <small class="text-muted">PSE, Nequi, Daviplata</small>
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                                <div class="alert alert-success mt-3">
+                                    <i class="bi bi-shield-check-fill me-2"></i>
+                                    <strong>Seguridad:</strong> Todos los pagos son procesados con cifrado SSL de 256 bits y cumplimos con estándares PCI DSS.
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="accordion-item">
+                        <h2 class="accordion-header" id="faq5">
+                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapse5" aria-expanded="false" aria-controls="collapse5">
+                                <i class="bi bi-clock text-danger me-2"></i>
+                                <strong>¿Qué hago en caso de emergencia médica?</strong>
+                            </button>
+                        </h2>
+                        <div id="collapse5" class="accordion-collapse collapse" aria-labelledby="faq5" data-bs-parent="#faqAccordion">
+                            <div class="accordion-body">
+                                <div class="alert alert-danger mb-3">
+                                    <h6><i class="bi bi-exclamation-triangle-fill me-2"></i>En emergencias graves:</h6>
+                                    <p class="mb-0"><strong>Llama inmediatamente al 123 o dirígete al hospital más cercano</strong></p>
+                                </div>
+                                
+                                <p>Para emergencias médicas, VitalCare ofrece:</p>
+                                
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <div class="emergency-option p-3 border-start border-danger border-3">
+                                            <h6 class="text-danger fw-bold">Línea de Emergencias 24/7</h6>
+                                            <p class="mb-2"><strong>+57 320 346 5135</strong></p>
+                                            <small>Atención médica inmediata por teléfono</small>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="emergency-option p-3 border-start border-warning border-3">
+                                            <h6 class="text-warning fw-bold">Evaluación Rápida Online</h6>
+                                            <p class="mb-2">Disponible en nuestra plataforma</p>
+                                            <small>Evaluación inicial de síntomas</small>
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                                <p class="mt-3"><strong>Recuerda:</strong> VitalCare no reemplaza la atención de emergencias tradicional. En situaciones críticas, siempre busca atención médica presencial inmediata.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="accordion-item">
+                        <h2 class="accordion-header" id="faq6">
+                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapse6" aria-expanded="false" aria-controls="collapse6">
+                                <i class="bi bi-shield-lock text-primary me-2"></i>
+                                <strong>¿Cómo protegen mi información médica?</strong>
+                            </button>
+                        </h2>
+                        <div id="collapse6" class="accordion-collapse collapse" aria-labelledby="faq6" data-bs-parent="#faqAccordion">
+                            <div class="accordion-body">
+                                <p>La seguridad de tu información es nuestra prioridad máxima. Implementamos:</p>
+                                
+                                <div class="row g-3">
+                                    <div class="col-md-6">
+                                        <div class="security-feature p-3 bg-light rounded">
+                                            <h6><i class="bi bi-shield-fill-check text-success me-2"></i>Cifrado Avanzado</h6>
+                                            <p class="mb-0 small">Cifrado AES-256 para datos en reposo y TLS 1.3 para transmisión</p>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="security-feature p-3 bg-light rounded">
+                                            <h6><i class="bi bi-fingerprint text-primary me-2"></i>Autenticación Múltiple</h6>
+                                            <p class="mb-0 small">Verificación en dos pasos y autenticación biométrica</p>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="security-feature p-3 bg-light rounded">
+                                            <h6><i class="bi bi-award text-warning me-2"></i>Certificaciones</h6>
+                                            <p class="mb-0 small">ISO 27001, HIPAA y certificaciones de seguridad internacionales</p>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="security-feature p-3 bg-light rounded">
+                                            <h6><i class="bi bi-eye-slash text-info me-2"></i>Acceso Controlado</h6>
+                                            <p class="mb-0 small">Solo personal autorizado puede acceder a tu información</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                                <div class="alert alert-info mt-3">
+                                    <i class="bi bi-info-circle me-2"></i>
+                                    <strong>Cumplimiento Legal:</strong> Cumplimos con todas las regulaciones de protección de datos médicos vigentes en Colombia y estándares internacionales.
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Contact Support -->
+<section class="py-5 bg-light">
+    <div class="container">
+        <div class="row text-center">
+            <div class="col-lg-8 mx-auto">
+                <h3 class="fw-bold text-primary mb-3">¿No encontraste lo que buscabas?</h3>
+                <p class="lead text-muted mb-4">Nuestro equipo de soporte está listo para ayudarte con cualquier pregunta específica.</p>
+                
+                <div class="row g-3 justify-content-center">
+                    <div class="col-auto">
+                        <a href="/Contact" class="btn btn-primary btn-lg">
+                            <i class="bi bi-envelope-fill me-2"></i>Contactar Soporte
+                        </a>
+                    </div>
+                    <div class="col-auto">
+                        <a href="tel:+573203465135" class="btn btn-outline-primary btn-lg">
+                            <i class="bi bi-telephone-fill me-2"></i>Llamar Ahora
+                        </a>
+                    </div>
+                    <div class="col-auto">
+                        <button class="btn btn-success btn-lg" data-bs-toggle="modal" data-bs-target="#chatModal">
+                            <i class="bi bi-chat-dots-fill me-2"></i>Chat en Vivo
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+@section Scripts {
+    <script>
+        function searchFAQ(term) {
+            document.getElementById('faqSearch').value = term;
+            // Here you would implement the actual search functionality
+            console.log('Searching for: ' + term);
+        }
+        
+        function showCategory(category) {
+            // Here you would filter the FAQs by category
+            console.log('Showing category: ' + category);
+            // For now, just scroll to the FAQ section
+            document.getElementById('faqAccordion').scrollIntoView({ behavior: 'smooth' });
+        }
+        
+        // Search functionality
+        document.getElementById('faqSearch').addEventListener('input', function(e) {
+            const searchTerm = e.target.value.toLowerCase();
+            const accordionItems = document.querySelectorAll('.accordion-item');
+            
+            accordionItems.forEach(item => {
+                const text = item.textContent.toLowerCase();
+                if (text.includes(searchTerm) || searchTerm === '') {
+                    item.style.display = 'block';
+                } else {
+                    item.style.display = 'none';
+                }
+            });
+        });
+        
+        // Category card hover effects
+        document.querySelectorAll('.category-card').forEach(card => {
+            card.addEventListener('mouseenter', function() {
+                this.style.transform = 'translateY(-5px)';
+                this.style.transition = 'transform 0.3s ease';
+            });
+            
+            card.addEventListener('mouseleave', function() {
+                this.style.transform = 'translateY(0)';
+            });
+        });
+    </script>
+} 

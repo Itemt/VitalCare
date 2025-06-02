@@ -66,8 +66,8 @@
       <RelatedAsset></RelatedAsset>
       <AssetTraitName></AssetTraitName>
       <AssetTraitValue></AssetTraitValue>
-      <Fingerprint>9ezv69czx6</Fingerprint>
-      <Integrity>8c7QHw1ViLsnxIAbrP1+Q18jz7aOfvFft8kgyE4PQRQ=</Integrity>
+      <Fingerprint>osg7defyu6</Fingerprint>
+      <Integrity>yOWjG2q8xwBzK+ZtUBvcb4Ag3mhWiepeFsDW5lQ5cEw=</Integrity>
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
       <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
       <OriginalItemSpec>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\css\effects-hover.css'))</OriginalItemSpec>
@@ -84,8 +84,8 @@
       <RelatedAsset></RelatedAsset>
       <AssetTraitName></AssetTraitName>
       <AssetTraitValue></AssetTraitValue>
-      <Fingerprint>npqifpwxu2</Fingerprint>
-      <Integrity>uwqm6IW6lClj9SGcxI9dHuCOVNWXSlZI/nw1dOtl+nk=</Integrity>
+      <Fingerprint>531ih663vh</Fingerprint>
+      <Integrity>AX94XvrBUD1I1HAJrQyJizM5jmAAYNkbhTmtYgRoTPI=</Integrity>
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
       <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
       <OriginalItemSpec>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\css\enhanced-features.css'))</OriginalItemSpec>
@@ -462,8 +462,8 @@
       <RelatedAsset></RelatedAsset>
       <AssetTraitName></AssetTraitName>
       <AssetTraitValue></AssetTraitValue>
-      <Fingerprint>4qt7a8zkbi</Fingerprint>
-      <Integrity>xNMlqfRX/eLU7atvpuS7aqXCwKB29wZ+Z7UJGKLL2GQ=</Integrity>
+      <Fingerprint>d8etqs35vs</Fingerprint>
+      <Integrity>TafMPpsExHFwzOvbbdye2HGrvMf3Zf8B2GoIn3PW/G4=</Integrity>
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
       <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
       <OriginalItemSpec>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\js\themeSwitcher.js'))</OriginalItemSpec>

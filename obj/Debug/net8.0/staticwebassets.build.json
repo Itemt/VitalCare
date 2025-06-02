@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "0dEzNcj1Sbufcl1YcPzjYTZBs5mAfP7Cnz8H92XjVIw=",
+  "Hash": "zXM8qsy8XKvFkrSxYnYcXnAo+7d3tnM6gOdxR9vTSAo=",
   "Source": "CitasEPS",
   "BasePath": "_content/CitasEPS",
   "Mode": "Default",
@@ -1375,8 +1375,8 @@
       "RelatedAsset": "",
       "AssetTraitName": "",
       "AssetTraitValue": "",
-      "Fingerprint": "9ezv69czx6",
-      "Integrity": "8c7QHw1ViLsnxIAbrP1+Q18jz7aOfvFft8kgyE4PQRQ=",
+      "Fingerprint": "osg7defyu6",
+      "Integrity": "yOWjG2q8xwBzK+ZtUBvcb4Ag3mhWiepeFsDW5lQ5cEw=",
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot/css/effects-hover.css"
@@ -1396,8 +1396,8 @@
       "RelatedAsset": "",
       "AssetTraitName": "",
       "AssetTraitValue": "",
-      "Fingerprint": "npqifpwxu2",
-      "Integrity": "uwqm6IW6lClj9SGcxI9dHuCOVNWXSlZI/nw1dOtl+nk=",
+      "Fingerprint": "531ih663vh",
+      "Integrity": "AX94XvrBUD1I1HAJrQyJizM5jmAAYNkbhTmtYgRoTPI=",
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot/css/enhanced-features.css"
@@ -1837,8 +1837,8 @@
       "RelatedAsset": "",
       "AssetTraitName": "",
       "AssetTraitValue": "",
-      "Fingerprint": "4qt7a8zkbi",
-      "Integrity": "xNMlqfRX/eLU7atvpuS7aqXCwKB29wZ+Z7UJGKLL2GQ=",
+      "Fingerprint": "d8etqs35vs",
+      "Integrity": "TafMPpsExHFwzOvbbdye2HGrvMf3Zf8B2GoIn3PW/G4=",
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot/js/themeSwitcher.js"
@@ -3371,51 +3371,6 @@
       ]
     },
     {
-      "Route": "css/effects-hover.9ezv69czx6.css",
-      "AssetFile": "/Users/cristianramos/Desktop/Proyectos/AplicativosWeb/CitasEPS/wwwroot/css/effects-hover.css",
-      "Selectors": [],
-      "ResponseHeaders": [
-        {
-          "Name": "Accept-Ranges",
-          "Value": "bytes"
-        },
-        {
-          "Name": "Content-Length",
-          "Value": "9902"
-        },
-        {
-          "Name": "Content-Type",
-          "Value": "text/css"
-        },
-        {
-          "Name": "ETag",
-          "Value": "\"8c7QHw1ViLsnxIAbrP1+Q18jz7aOfvFft8kgyE4PQRQ=\""
-        },
-        {
-          "Name": "Last-Modified",
-          "Value": "Sun, 01 Jun 2025 19:32:57 GMT"
-        },
-        {
-          "Name": "Cache-Control",
-          "Value": "max-age=31536000, immutable"
-        }
-      ],
-      "EndpointProperties": [
-        {
-          "Name": "fingerprint",
-          "Value": "9ezv69czx6"
-        },
-        {
-          "Name": "label",
-          "Value": "css/effects-hover.css"
-        },
-        {
-          "Name": "integrity",
-          "Value": "sha256-8c7QHw1ViLsnxIAbrP1+Q18jz7aOfvFft8kgyE4PQRQ="
-        }
-      ]
-    },
-    {
       "Route": "css/effects-hover.css",
       "AssetFile": "/Users/cristianramos/Desktop/Proyectos/AplicativosWeb/CitasEPS/wwwroot/css/effects-hover.css",
       "Selectors": [],
@@ -3426,7 +3381,7 @@
         },
         {
           "Name": "Content-Length",
-          "Value": "9902"
+          "Value": "9586"
         },
         {
           "Name": "Content-Type",
@@ -3434,11 +3389,11 @@
         },
         {
           "Name": "ETag",
-          "Value": "\"8c7QHw1ViLsnxIAbrP1+Q18jz7aOfvFft8kgyE4PQRQ=\""
+          "Value": "\"yOWjG2q8xwBzK+ZtUBvcb4Ag3mhWiepeFsDW5lQ5cEw=\""
         },
         {
           "Name": "Last-Modified",
-          "Value": "Sun, 01 Jun 2025 19:32:57 GMT"
+          "Value": "Sun, 01 Jun 2025 23:30:26 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -3448,7 +3403,97 @@
       "EndpointProperties": [
         {
           "Name": "integrity",
-          "Value": "sha256-8c7QHw1ViLsnxIAbrP1+Q18jz7aOfvFft8kgyE4PQRQ="
+          "Value": "sha256-yOWjG2q8xwBzK+ZtUBvcb4Ag3mhWiepeFsDW5lQ5cEw="
+        }
+      ]
+    },
+    {
+      "Route": "css/effects-hover.osg7defyu6.css",
+      "AssetFile": "/Users/cristianramos/Desktop/Proyectos/AplicativosWeb/CitasEPS/wwwroot/css/effects-hover.css",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "9586"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "text/css"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"yOWjG2q8xwBzK+ZtUBvcb4Ag3mhWiepeFsDW5lQ5cEw=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Sun, 01 Jun 2025 23:30:26 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=31536000, immutable"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "fingerprint",
+          "Value": "osg7defyu6"
+        },
+        {
+          "Name": "label",
+          "Value": "css/effects-hover.css"
+        },
+        {
+          "Name": "integrity",
+          "Value": "sha256-yOWjG2q8xwBzK+ZtUBvcb4Ag3mhWiepeFsDW5lQ5cEw="
+        }
+      ]
+    },
+    {
+      "Route": "css/enhanced-features.531ih663vh.css",
+      "AssetFile": "/Users/cristianramos/Desktop/Proyectos/AplicativosWeb/CitasEPS/wwwroot/css/enhanced-features.css",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "20445"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "text/css"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"AX94XvrBUD1I1HAJrQyJizM5jmAAYNkbhTmtYgRoTPI=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Sun, 01 Jun 2025 23:44:16 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=31536000, immutable"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "fingerprint",
+          "Value": "531ih663vh"
+        },
+        {
+          "Name": "label",
+          "Value": "css/enhanced-features.css"
+        },
+        {
+          "Name": "integrity",
+          "Value": "sha256-AX94XvrBUD1I1HAJrQyJizM5jmAAYNkbhTmtYgRoTPI="
         }
       ]
     },
@@ -3463,7 +3508,7 @@
         },
         {
           "Name": "Content-Length",
-          "Value": "39172"
+          "Value": "20445"
         },
         {
           "Name": "Content-Type",
@@ -3471,11 +3516,11 @@
         },
         {
           "Name": "ETag",
-          "Value": "\"uwqm6IW6lClj9SGcxI9dHuCOVNWXSlZI/nw1dOtl+nk=\""
+          "Value": "\"AX94XvrBUD1I1HAJrQyJizM5jmAAYNkbhTmtYgRoTPI=\""
         },
         {
           "Name": "Last-Modified",
-          "Value": "Sun, 01 Jun 2025 21:55:38 GMT"
+          "Value": "Sun, 01 Jun 2025 23:44:16 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -3485,52 +3530,7 @@
       "EndpointProperties": [
         {
           "Name": "integrity",
-          "Value": "sha256-uwqm6IW6lClj9SGcxI9dHuCOVNWXSlZI/nw1dOtl+nk="
-        }
-      ]
-    },
-    {
-      "Route": "css/enhanced-features.npqifpwxu2.css",
-      "AssetFile": "/Users/cristianramos/Desktop/Proyectos/AplicativosWeb/CitasEPS/wwwroot/css/enhanced-features.css",
-      "Selectors": [],
-      "ResponseHeaders": [
-        {
-          "Name": "Accept-Ranges",
-          "Value": "bytes"
-        },
-        {
-          "Name": "Content-Length",
-          "Value": "39172"
-        },
-        {
-          "Name": "Content-Type",
-          "Value": "text/css"
-        },
-        {
-          "Name": "ETag",
-          "Value": "\"uwqm6IW6lClj9SGcxI9dHuCOVNWXSlZI/nw1dOtl+nk=\""
-        },
-        {
-          "Name": "Last-Modified",
-          "Value": "Sun, 01 Jun 2025 21:55:38 GMT"
-        },
-        {
-          "Name": "Cache-Control",
-          "Value": "max-age=31536000, immutable"
-        }
-      ],
-      "EndpointProperties": [
-        {
-          "Name": "fingerprint",
-          "Value": "npqifpwxu2"
-        },
-        {
-          "Name": "label",
-          "Value": "css/enhanced-features.css"
-        },
-        {
-          "Name": "integrity",
-          "Value": "sha256-uwqm6IW6lClj9SGcxI9dHuCOVNWXSlZI/nw1dOtl+nk="
+          "Value": "sha256-AX94XvrBUD1I1HAJrQyJizM5jmAAYNkbhTmtYgRoTPI="
         }
       ]
     },
@@ -7395,7 +7395,7 @@
       ]
     },
     {
-      "Route": "js/themeSwitcher.4qt7a8zkbi.js",
+      "Route": "js/themeSwitcher.d8etqs35vs.js",
       "AssetFile": "/Users/cristianramos/Desktop/Proyectos/AplicativosWeb/CitasEPS/wwwroot/js/themeSwitcher.js",
       "Selectors": [],
       "ResponseHeaders": [
@@ -7405,7 +7405,7 @@
         },
         {
           "Name": "Content-Length",
-          "Value": "2507"
+          "Value": "2678"
         },
         {
           "Name": "Content-Type",
@@ -7413,11 +7413,11 @@
         },
         {
           "Name": "ETag",
-          "Value": "\"xNMlqfRX/eLU7atvpuS7aqXCwKB29wZ+Z7UJGKLL2GQ=\""
+          "Value": "\"TafMPpsExHFwzOvbbdye2HGrvMf3Zf8B2GoIn3PW/G4=\""
         },
         {
           "Name": "Last-Modified",
-          "Value": "Sun, 01 Jun 2025 19:32:57 GMT"
+          "Value": "Sun, 01 Jun 2025 23:47:37 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -7427,7 +7427,7 @@
       "EndpointProperties": [
         {
           "Name": "fingerprint",
-          "Value": "4qt7a8zkbi"
+          "Value": "d8etqs35vs"
         },
         {
           "Name": "label",
@@ -7435,7 +7435,7 @@
         },
         {
           "Name": "integrity",
-          "Value": "sha256-xNMlqfRX/eLU7atvpuS7aqXCwKB29wZ+Z7UJGKLL2GQ="
+          "Value": "sha256-TafMPpsExHFwzOvbbdye2HGrvMf3Zf8B2GoIn3PW/G4="
         }
       ]
     },
@@ -7450,7 +7450,7 @@
         },
         {
           "Name": "Content-Length",
-          "Value": "2507"
+          "Value": "2678"
         },
         {
           "Name": "Content-Type",
@@ -7458,11 +7458,11 @@
         },
         {
           "Name": "ETag",
-          "Value": "\"xNMlqfRX/eLU7atvpuS7aqXCwKB29wZ+Z7UJGKLL2GQ=\""
+          "Value": "\"TafMPpsExHFwzOvbbdye2HGrvMf3Zf8B2GoIn3PW/G4=\""
         },
         {
           "Name": "Last-Modified",
-          "Value": "Sun, 01 Jun 2025 19:32:57 GMT"
+          "Value": "Sun, 01 Jun 2025 23:47:37 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -7472,7 +7472,7 @@
       "EndpointProperties": [
         {
           "Name": "integrity",
-          "Value": "sha256-xNMlqfRX/eLU7atvpuS7aqXCwKB29wZ+Z7UJGKLL2GQ="
+          "Value": "sha256-TafMPpsExHFwzOvbbdye2HGrvMf3Zf8B2GoIn3PW/G4="
         }
       ]
     },

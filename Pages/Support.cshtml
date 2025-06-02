@@ -1,0 +1,399 @@
+@page
+@model CitasEPS.Pages.SupportModel
+@{
+    ViewData["Title"] = "Soporte Técnico - VitalCare";
+}
+
+<!-- Hero Section -->
+<div class="container-fluid bg-gradient-primary text-white text-center py-5 mb-5 shadow-lg hero-section" style="background-image: linear-gradient(135deg, rgba(0,123,255,0.9), rgba(0,86,179,0.9)), url('/images/INDEX.png'); background-size: cover; background-position: center center;">
+    <div class="hero-overlay" style="background-color: rgba(0, 40, 80, 0.85); padding: 4rem 1.5rem; display: inline-block; border-radius: 1rem; max-width: 90%; width: 800px;">
+        <h1 class="display-2 fw-bolder text-shadow-custom mb-4">Soporte Técnico</h1>
+        <p class="lead fs-3 mb-4 text-shadow-custom">Centro de ayuda especializado para resolver todas tus dudas técnicas de forma rápida y eficiente.</p>
+        <div class="service-badges mb-4">
+            <span class="badge bg-success fs-6 me-2 service-badge"><i class="bi bi-tools me-1"></i>Soporte 24/7</span>
+            <span class="badge bg-warning fs-6 me-2 service-badge"><i class="bi bi-lightning-charge-fill me-1"></i>Respuesta Inmediata</span>
+            <span class="badge bg-info fs-6 service-badge"><i class="bi bi-people-fill me-1"></i>Expertos Técnicos</span>
+        </div>
+    </div>
+</div>
+
+<!-- Quick Support Options -->
+<div class="container mb-5">
+    <div class="row text-center mb-5">
+        <div class="col-lg-8 mx-auto">
+            <h2 class="display-5 fw-bold text-primary mb-3">Opciones de Soporte Rápido</h2>
+            <p class="lead text-muted">Múltiples canales para resolver tus problemas técnicos</p>
+        </div>
+    </div>
+    
+    <div class="row g-4">
+        <div class="col-lg-3 col-md-6">
+            <div class="card h-100 shadow-lg border-0 support-card text-center">
+                <div class="card-body p-4">
+                    <div class="support-icon bg-primary text-white rounded-circle mx-auto mb-3 d-flex align-items-center justify-content-center" style="width: 80px; height: 80px;">
+                        <i class="bi bi-chat-dots-fill fs-1"></i>
+                    </div>
+                    <h5 class="card-title fw-bold text-primary">Chat en Vivo</h5>
+                    <p class="card-text text-muted mb-3">Conecta instantáneamente con nuestros técnicos especializados.</p>
+                    <div class="support-status mb-3">
+                        <span class="badge bg-success">Online</span>
+                        <small class="d-block text-muted mt-1">Tiempo de espera: < 1 min</small>
+                    </div>
+                    <button class="btn btn-primary">
+                        <i class="bi bi-chat-dots-fill me-2"></i>Iniciar Chat
+                    </button>
+                </div>
+            </div>
+        </div>
+        
+        <div class="col-lg-3 col-md-6">
+            <div class="card h-100 shadow-lg border-0 support-card text-center">
+                <div class="card-body p-4">
+                    <div class="support-icon bg-success text-white rounded-circle mx-auto mb-3 d-flex align-items-center justify-content-center" style="width: 80px; height: 80px;">
+                        <i class="bi bi-telephone-fill fs-1"></i>
+                    </div>
+                    <h5 class="card-title fw-bold text-success">Llamada Directa</h5>
+                    <p class="card-text text-muted mb-3">Soporte telefónico especializado disponible 24/7.</p>
+                    <div class="support-status mb-3">
+                        <span class="badge bg-success">24/7</span>
+                        <small class="d-block text-muted mt-1">+57 320 346 5135</small>
+                    </div>
+                    <button class="btn btn-success" onclick="window.location.href='tel:+573203465135'">
+                        <i class="bi bi-telephone-fill me-2"></i>Llamar Ahora
+                    </button>
+                </div>
+            </div>
+        </div>
+        
+        <div class="col-lg-3 col-md-6">
+            <div class="card h-100 shadow-lg border-0 support-card text-center">
+                <div class="card-body p-4">
+                    <div class="support-icon bg-info text-white rounded-circle mx-auto mb-3 d-flex align-items-center justify-content-center" style="width: 80px; height: 80px;">
+                        <i class="bi bi-ticket-detailed-fill fs-1"></i>
+                    </div>
+                    <h5 class="card-title fw-bold text-info">Ticket de Soporte</h5>
+                    <p class="card-text text-muted mb-3">Crea un ticket para seguimiento detallado de tu caso.</p>
+                    <div class="support-status mb-3">
+                        <span class="badge bg-info">Seguimiento</span>
+                        <small class="d-block text-muted mt-1">Respuesta en 2 horas</small>
+                    </div>
+                    <button class="btn btn-info">
+                        <i class="bi bi-ticket-detailed-fill me-2"></i>Crear Ticket
+                    </button>
+                </div>
+            </div>
+        </div>
+        
+        <div class="col-lg-3 col-md-6">
+            <div class="card h-100 shadow-lg border-0 support-card text-center">
+                <div class="card-body p-4">
+                    <div class="support-icon bg-warning text-white rounded-circle mx-auto mb-3 d-flex align-items-center justify-content-center" style="width: 80px; height: 80px;">
+                        <i class="bi bi-display fs-1"></i>
+                    </div>
+                    <h5 class="card-title fw-bold text-warning">Acceso Remoto</h5>
+                    <p class="card-text text-muted mb-3">Permite que nuestros técnicos accedan remotamente para solucionarlo.</p>
+                    <div class="support-status mb-3">
+                        <span class="badge bg-warning text-dark">Seguro</span>
+                        <small class="d-block text-muted mt-1">Conexión cifrada</small>
+                    </div>
+                    <button class="btn btn-warning text-dark">
+                        <i class="bi bi-display me-2"></i>Iniciar Sesión
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Knowledge Base -->
+<section class="py-5 bg-light">
+    <div class="container">
+        <div class="row text-center mb-5">
+            <div class="col-lg-8 mx-auto">
+                <h2 class="display-6 fw-bold text-primary mb-3">Base de Conocimientos</h2>
+                <p class="lead text-muted">Encuentra soluciones a los problemas más comunes</p>
+            </div>
+        </div>
+        
+        <div class="row g-4">
+            <div class="col-lg-4 col-md-6">
+                <div class="card h-100 shadow-sm border-0 kb-card">
+                    <div class="card-body p-4">
+                        <div class="d-flex align-items-center mb-3">
+                            <i class="bi bi-laptop fs-2 text-primary me-3"></i>
+                            <h5 class="card-title fw-bold mb-0">Problemas de Conexión</h5>
+                        </div>
+                        <p class="card-text text-muted mb-3">Soluciones para problemas de conectividad y acceso a la plataforma.</p>
+                        <div class="kb-articles">
+                            <a href="#" class="d-block text-decoration-none mb-2">
+                                <small class="text-primary"><i class="bi bi-file-text me-1"></i>No puedo acceder a mi cuenta</small>
+                            </a>
+                            <a href="#" class="d-block text-decoration-none mb-2">
+                                <small class="text-primary"><i class="bi bi-file-text me-1"></i>Problemas de video en consultas</small>
+                            </a>
+                            <a href="#" class="d-block text-decoration-none">
+                                <small class="text-primary"><i class="bi bi-file-text me-1"></i>Errores de conexión a internet</small>
+                            </a>
+                        </div>
+                        <div class="mt-3">
+                            <small class="text-success"><i class="bi bi-eye-fill me-1"></i>2,450 vistas</small>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="col-lg-4 col-md-6">
+                <div class="card h-100 shadow-sm border-0 kb-card">
+                    <div class="card-body p-4">
+                        <div class="d-flex align-items-center mb-3">
+                            <i class="bi bi-person-gear fs-2 text-success me-3"></i>
+                            <h5 class="card-title fw-bold mb-0">Configuración de Cuenta</h5>
+                        </div>
+                        <p class="card-text text-muted mb-3">Guías para configurar y personalizar tu perfil y preferencias.</p>
+                        <div class="kb-articles">
+                            <a href="#" class="d-block text-decoration-none mb-2">
+                                <small class="text-primary"><i class="bi bi-file-text me-1"></i>Cambiar contraseña</small>
+                            </a>
+                            <a href="#" class="d-block text-decoration-none mb-2">
+                                <small class="text-primary"><i class="bi bi-file-text me-1"></i>Actualizar información personal</small>
+                            </a>
+                            <a href="#" class="d-block text-decoration-none">
+                                <small class="text-primary"><i class="bi bi-file-text me-1"></i>Configurar notificaciones</small>
+                            </a>
+                        </div>
+                        <div class="mt-3">
+                            <small class="text-success"><i class="bi bi-eye-fill me-1"></i>1,890 vistas</small>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="col-lg-4 col-md-6">
+                <div class="card h-100 shadow-sm border-0 kb-card">
+                    <div class="card-body p-4">
+                        <div class="d-flex align-items-center mb-3">
+                            <i class="bi bi-calendar-check fs-2 text-info me-3"></i>
+                            <h5 class="card-title fw-bold mb-0">Gestión de Citas</h5>
+                        </div>
+                        <p class="card-text text-muted mb-3">Todo sobre agendar, modificar y cancelar citas médicas.</p>
+                        <div class="kb-articles">
+                            <a href="#" class="d-block text-decoration-none mb-2">
+                                <small class="text-primary"><i class="bi bi-file-text me-1"></i>Cómo agendar una cita</small>
+                            </a>
+                            <a href="#" class="d-block text-decoration-none mb-2">
+                                <small class="text-primary"><i class="bi bi-file-text me-1"></i>Reagendar o cancelar cita</small>
+                            </a>
+                            <a href="#" class="d-block text-decoration-none">
+                                <small class="text-primary"><i class="bi bi-file-text me-1"></i>Recordatorios de citas</small>
+                            </a>
+                        </div>
+                        <div class="mt-3">
+                            <small class="text-success"><i class="bi bi-eye-fill me-1"></i>3,120 vistas</small>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- System Status -->
+<div class="container py-5">
+    <div class="row text-center mb-5">
+        <div class="col-lg-8 mx-auto">
+            <h2 class="display-6 fw-bold text-primary mb-3">Estado del Sistema</h2>
+            <p class="lead text-muted">Monitoreo en tiempo real de todos nuestros servicios</p>
+        </div>
+    </div>
+    
+    <div class="row g-4">
+        <div class="col-lg-3 col-md-6">
+            <div class="card text-center h-100 shadow-sm border-success">
+                <div class="card-body p-4">
+                    <div class="system-status-icon mb-3">
+                        <i class="bi bi-check-circle-fill text-success fs-1"></i>
+                    </div>
+                    <h6 class="fw-bold">Plataforma Web</h6>
+                    <span class="badge bg-success mb-2">Operativo</span>
+                    <div class="system-metrics">
+                        <small class="d-block text-muted">Uptime: 99.9%</small>
+                        <small class="d-block text-muted">Tiempo de respuesta: 120ms</small>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="col-lg-3 col-md-6">
+            <div class="card text-center h-100 shadow-sm border-success">
+                <div class="card-body p-4">
+                    <div class="system-status-icon mb-3">
+                        <i class="bi bi-check-circle-fill text-success fs-1"></i>
+                    </div>
+                    <h6 class="fw-bold">Telemedicina</h6>
+                    <span class="badge bg-success mb-2">Operativo</span>
+                    <div class="system-metrics">
+                        <small class="d-block text-muted">Calidad video: HD</small>
+                        <small class="d-block text-muted">Latencia: 45ms</small>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="col-lg-3 col-md-6">
+            <div class="card text-center h-100 shadow-sm border-warning">
+                <div class="card-body p-4">
+                    <div class="system-status-icon mb-3">
+                        <i class="bi bi-exclamation-triangle-fill text-warning fs-1"></i>
+                    </div>
+                    <h6 class="fw-bold">Notificaciones</h6>
+                    <span class="badge bg-warning text-dark mb-2">Mantenimiento</span>
+                    <div class="system-metrics">
+                        <small class="d-block text-muted">Finaliza: 2:00 PM</small>
+                        <small class="d-block text-muted">Duración: 1 hora</small>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="col-lg-3 col-md-6">
+            <div class="card text-center h-100 shadow-sm border-success">
+                <div class="card-body p-4">
+                    <div class="system-status-icon mb-3">
+                        <i class="bi bi-check-circle-fill text-success fs-1"></i>
+                    </div>
+                    <h6 class="fw-bold">API Servicios</h6>
+                    <span class="badge bg-success mb-2">Operativo</span>
+                    <div class="system-metrics">
+                        <small class="d-block text-muted">Requests/min: 15,230</small>
+                        <small class="d-block text-muted">Error rate: 0.01%</small>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Support Team -->
+<section class="py-5 bg-gradient-primary text-white">
+    <div class="container">
+        <div class="row text-center mb-5">
+            <div class="col-lg-8 mx-auto">
+                <h2 class="display-6 fw-bold mb-3">Nuestro Equipo de Soporte</h2>
+                <p class="lead text-white-50">Especialistas disponibles para ayudarte</p>
+            </div>
+        </div>
+        
+        <div class="row g-4">
+            <div class="col-lg-4">
+                <div class="card bg-transparent border-light text-white text-center h-100">
+                    <div class="card-body p-4">
+                        <div class="team-avatar bg-light text-primary rounded-circle mx-auto mb-3 d-flex align-items-center justify-content-center" style="width: 80px; height: 80px;">
+                            <i class="bi bi-person-fill fs-1"></i>
+                        </div>
+                        <h5 class="fw-bold mb-2">Ing. Carlos Martínez</h5>
+                        <p class="text-white-50 mb-3">Especialista en Redes y Conectividad</p>
+                        <div class="expertise-tags">
+                            <span class="badge bg-light text-primary me-1 mb-1">Redes</span>
+                            <span class="badge bg-light text-primary me-1 mb-1">VPN</span>
+                            <span class="badge bg-light text-primary mb-1">Firewall</span>
+                        </div>
+                        <div class="mt-3">
+                            <small><i class="bi bi-clock-fill me-1"></i>Disponible: 8 AM - 8 PM</small>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="col-lg-4">
+                <div class="card bg-transparent border-light text-white text-center h-100">
+                    <div class="card-body p-4">
+                        <div class="team-avatar bg-light text-success rounded-circle mx-auto mb-3 d-flex align-items-center justify-content-center" style="width: 80px; height: 80px;">
+                            <i class="bi bi-person-fill fs-1"></i>
+                        </div>
+                        <h5 class="fw-bold mb-2">Lic. Ana Rodríguez</h5>
+                        <p class="text-white-50 mb-3">Especialista en Aplicaciones Médicas</p>
+                        <div class="expertise-tags">
+                            <span class="badge bg-light text-success me-1 mb-1">Apps</span>
+                            <span class="badge bg-light text-success me-1 mb-1">Móvil</span>
+                            <span class="badge bg-light text-success mb-1">UX</span>
+                        </div>
+                        <div class="mt-3">
+                            <small><i class="bi bi-clock-fill me-1"></i>Disponible: 10 AM - 10 PM</small>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="col-lg-4">
+                <div class="card bg-transparent border-light text-white text-center h-100">
+                    <div class="card-body p-4">
+                        <div class="team-avatar bg-light text-info rounded-circle mx-auto mb-3 d-flex align-items-center justify-content-center" style="width: 80px; height: 80px;">
+                            <i class="bi bi-person-fill fs-1"></i>
+                        </div>
+                        <h5 class="fw-bold mb-2">Dr. Miguel Torres</h5>
+                        <p class="text-white-50 mb-3">Especialista en Telemedicina</p>
+                        <div class="expertise-tags">
+                            <span class="badge bg-light text-info me-1 mb-1">Video</span>
+                            <span class="badge bg-light text-info me-1 mb-1">Audio</span>
+                            <span class="badge bg-light text-info mb-1">Streaming</span>
+                        </div>
+                        <div class="mt-3">
+                            <small><i class="bi bi-clock-fill me-1"></i>Disponible: 24/7</small>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Support Statistics -->
+<div class="container py-5">
+    <div class="row text-center">
+        <div class="col-lg-12">
+            <h2 class="display-6 fw-bold text-primary mb-4">Estadísticas de Soporte</h2>
+            <div class="row g-4">
+                <div class="col-md-3">
+                    <div class="stat-card-premium p-4 rounded-3 shadow-lg h-100">
+                        <div class="stat-icon mb-3">
+                            <i class="bi bi-clock-history fs-1 text-primary"></i>
+                        </div>
+                        <h3 class="fw-bold text-primary mb-1">< 1 min</h3>
+                        <p class="text-muted mb-0">Tiempo de Respuesta</p>
+                        <small class="text-success"><i class="bi bi-graph-up-arrow me-1"></i>Promedio actual</small>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="stat-card-premium p-4 rounded-3 shadow-lg h-100">
+                        <div class="stat-icon mb-3">
+                            <i class="bi bi-check-circle-fill fs-1 text-success"></i>
+                        </div>
+                        <h3 class="fw-bold text-success mb-1">98.5%</h3>
+                        <p class="text-muted mb-0">Casos Resueltos</p>
+                        <small class="text-info"><i class="bi bi-trophy-fill me-1"></i>En primera sesión</small>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="stat-card-premium p-4 rounded-3 shadow-lg h-100">
+                        <div class="stat-icon mb-3">
+                            <i class="bi bi-star-fill fs-1 text-warning"></i>
+                        </div>
+                        <h3 class="fw-bold text-warning mb-1">4.9/5</h3>
+                        <p class="text-muted mb-0">Satisfacción</p>
+                        <small class="text-success"><i class="bi bi-people-fill me-1"></i>Basado en 15K+ reseñas</small>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="stat-card-premium p-4 rounded-3 shadow-lg h-100">
+                        <div class="stat-icon mb-3">
+                            <i class="bi bi-headset fs-1 text-info"></i>
+                        </div>
+                        <h3 class="fw-bold text-info mb-1">24/7</h3>
+                        <p class="text-muted mb-0">Disponibilidad</p>
+                        <small class="text-warning"><i class="bi bi-lightning-charge-fill me-1"></i>Siempre activo</small>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div> 
