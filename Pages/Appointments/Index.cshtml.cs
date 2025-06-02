@@ -75,7 +75,7 @@ namespace CitasEPS.Pages.Appointments
                     {
                         _logger.LogInformation($"Attempting to create missing Patient record for user {user.Email} (ID: {user.Id}) on Index page");
                         
-                        var newPatient = new Patient
+                        var newPatient = new CitasEPS.Models.Patient
                         {
                             UserId = user.Id,
                             FirstName = user.FirstName ?? "Sin nombre",

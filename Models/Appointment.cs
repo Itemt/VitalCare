@@ -31,6 +31,9 @@ namespace CitasEPS.Models
         // Navigation property for prescriptions related to this appointment
         public virtual ICollection<Prescription>? Prescriptions { get; set; }
 
+        // Navigation property for rating related to this appointment
+        public virtual Rating? Rating { get; set; }
+
         // Doctor's clinical notes for the appointment
         [DataType(DataType.MultilineText)]
         [Display(Name = "Notas Clínicas")]

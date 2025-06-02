@@ -20,7 +20,7 @@ namespace CitasEPS.Pages.Admin
             _context = context;
         }
 
-        public IList<Patient> Patients { get;set; } = new List<Patient>();
+        public IList<CitasEPS.Models.Patient> Patients { get;set; } = new List<CitasEPS.Models.Patient>();
 
         public async Task OnGetAsync()
         {

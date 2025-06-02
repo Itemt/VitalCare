@@ -20,7 +20,7 @@ public class EditModel : PageModel
     }
 
     [BindProperty]
-    public Patient Patient { get; set; } = default!;
+    public CitasEPS.Models.Patient Patient { get; set; } = default!;
 
     public async Task<IActionResult> OnGetAsync(int id)
     {

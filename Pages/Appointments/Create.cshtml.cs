@@ -66,7 +66,7 @@ namespace CitasEPS.Pages.Appointments
                 {
                     _logger.LogInformation($"Attempting to create missing Patient record for user {user.Email} (ID: {user.Id})");
                     
-                    patient = new Patient
+                    patient = new CitasEPS.Models.Patient
                     {
                         UserId = user.Id,
                         FirstName = user.FirstName ?? "Sin nombre",
@@ -140,7 +140,7 @@ namespace CitasEPS.Pages.Appointments
                 {
                     _logger.LogInformation($"Attempting to create missing Patient record for user {user.Email} (ID: {user.Id}) during POST");
                     
-                    patient = new Patient
+                    patient = new CitasEPS.Models.Patient
                     {
                         UserId = user.Id,
                         FirstName = user.FirstName ?? "Sin nombre",

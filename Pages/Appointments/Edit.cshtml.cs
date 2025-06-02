@@ -249,7 +249,7 @@ namespace CitasEPS.Pages.Appointments
                                         .OrderBy(p => p.LastName)
                                         .ThenBy(p => p.FirstName)
                                         .ToListAsync();
-            PatientNameSL = new SelectList(patients, nameof(Patient.Id), nameof(Patient.FullName), selectedPatient);
+            PatientNameSL = new SelectList(patients, nameof(CitasEPS.Models.Patient.Id), nameof(CitasEPS.Models.Patient.FullName), selectedPatient);
 
             var doctors = await _context.Doctors
                                       .Include(d => d.Specialty) // Include specialty for better display name if needed

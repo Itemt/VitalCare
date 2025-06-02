@@ -20,6 +20,7 @@ namespace CitasEPS.Data
         public DbSet<Medication> Medications { get; set; } = default!;
         public DbSet<Prescription> Prescriptions { get; set; } = default!;
         public DbSet<Notification> Notifications { get; set; } = default!;
+        public DbSet<Rating> Ratings { get; set; } = default!;
         // DbSet<User> se hereda de IdentityDbContext
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
@@ -38,6 +39,13 @@ namespace CitasEPS.Data
                 .WithMany() // Una cita puede tener muchas notificaciones (no se necesita propiedad de navegación inversa explícita en Appointment para esto)
                 .HasForeignKey(n => n.AppointmentId)
                 .OnDelete(DeleteBehavior.Cascade); // Al eliminar una cita, eliminar sus notificaciones
+
+            // Configurar relación uno a uno entre Appointment y Rating
+            modelBuilder.Entity<Appointment>()
+                .HasOne(a => a.Rating)
+                .WithOne(r => r.Appointment)
+                .HasForeignKey<Rating>(r => r.AppointmentId)
+                .OnDelete(DeleteBehavior.Cascade);
 
             // La inicialización de usuarios (seeding) se ha eliminado, se maneja mediante la configuración de Identity o el registro manual/asignación de roles posteriormente.
 

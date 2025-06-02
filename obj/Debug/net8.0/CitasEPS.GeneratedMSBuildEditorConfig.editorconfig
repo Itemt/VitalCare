@@ -356,6 +356,10 @@ build_metadata.AdditionalFiles.CssScope =
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcRG9jdG9yXEVkaXRQcmVzY3JpcHRpb24uY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
+[C:/Users/CristianPC/Desktop/vitalcare/Pages/Doctor/GenerateRecipe.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcRG9jdG9yXEdlbmVyYXRlUmVjaXBlLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
 [C:/Users/CristianPC/Desktop/vitalcare/Pages/Doctor/PatientHistory.cshtml]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcRG9jdG9yXFBhdGllbnRIaXN0b3J5LmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
@@ -390,6 +394,10 @@ build_metadata.AdditionalFiles.CssScope =
 
 [C:/Users/CristianPC/Desktop/vitalcare/Pages/Mission.cshtml]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcTWlzc2lvbi5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/CristianPC/Desktop/vitalcare/Pages/Patient/RateAppointment.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcUGF0aWVudFxSYXRlQXBwb2ludG1lbnQuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
 [C:/Users/CristianPC/Desktop/vitalcare/Pages/Privacy.cshtml]

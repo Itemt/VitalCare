@@ -20,7 +20,7 @@ public class DeleteModel : PageModel
     }
 
     [BindProperty]
-    public Patient? Patient { get; set; }
+    public CitasEPS.Models.Patient? Patient { get; set; }
 
     public async Task<IActionResult> OnGetAsync(int id)
     {

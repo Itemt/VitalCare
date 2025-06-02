@@ -18,20 +18,16 @@
             <p class="lead">
                 Bienvenido, Dr. @Model.CurrentDoctor?.LastName. Aquí puede ver sus citas programadas.
             </p>
-            <div class="text-center my-4">
-                <img src="~/images/doctor-dashboard-bg.svg" alt="Agenda Médica" class="img-fluid rounded shadow" style="max-height: 200px;" />
-            </div>
             <hr />
 
-            <form method="get" class="mb-3">
+            <form method="get" class="mb-3" id="dateFilterForm">
                 <div class="row g-2 align-items-end">
                     <div class="col-md-4">
                         <label for="selectedDate" class="form-label fw-semibold">Filtrar por Fecha:</label>
-                        <input type="date" asp-for="SelectedDate" class="form-control" id="selectedDate" />
+                        <input type="date" asp-for="SelectedDate" class="form-control" id="selectedDate" onchange="document.getElementById('dateFilterForm').submit();" />
                     </div>
                     <div class="col-md-auto">
-                        <button type="submit" class="btn btn-primary"><i class="bi bi-funnel-fill"></i> Filtrar</button>
-                        <a asp-page="/Doctor/Agenda" class="btn btn-outline-secondary ms-2"><i class="bi bi-arrow-clockwise"></i> Mostrar Todas</a>
+                        <a asp-page="/Doctor/Agenda" class="btn btn-outline-secondary"><i class="bi bi-arrow-clockwise"></i> Mostrar Todas</a>
                     </div>
                 </div>
             </form>

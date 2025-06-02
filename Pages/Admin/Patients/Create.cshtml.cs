@@ -20,7 +20,7 @@ public class CreateModel : PageModel
     }
 
     [BindProperty]
-    public Patient Patient { get; set; } = new();
+    public CitasEPS.Models.Patient Patient { get; set; } = new();
 
     // Add SelectList properties here if needed for dropdowns (e.g., UserSL)
 
