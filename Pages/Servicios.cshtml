@@ -5,9 +5,12 @@
 }
 
 <!-- Hero Section for Services -->
-<div class="container-fluid bg-gradient-primary text-white text-center py-5 mb-4 shadow-lg hero-section services-hero" style="background-image: linear-gradient(135deg, rgba(0,123,255,0.9), rgba(0,86,179,0.9)), url('/images/INDEX.png'); background-size: cover; background-position: center center;">
-    <div class="hero-overlay" style="background-color: rgba(0, 40, 80, 0.85); padding: 4rem 1.5rem; display: inline-block; border-radius: 1rem; max-width: 90%; width: 800px;">
-        <h1 class="display-2 fw-bolder text-shadow-custom mb-4">Servicios VitalCare</h1>
+<div class="container-fluid bg-gradient-primary text-white text-center py-5 mb-4 shadow-lg hero-section services-hero" style="background: linear-gradient(135deg, #003366 0%, #002244 50%, #001122 100%);">
+    <div class="hero-overlay" style="background-color: rgba(0, 34, 68, 0.9); padding: 4rem 1.5rem; display: inline-block; border-radius: 1rem; max-width: 90%; width: 800px; backdrop-filter: blur(10px); border: 1px solid rgba(255,255,255,0.1);">
+        <h1 class="display-2 fw-bolder text-shadow-custom mb-4">
+            <span class="hero-title-vital">Servicios</span> 
+            <span class="hero-title-care">VitalCare</span>
+        </h1>
         <p class="lead fs-3 mb-4 text-shadow-custom">Descubre nuestra gama completa de servicios médicos de vanguardia, diseñados para brindar la mejor atención en salud digital.</p>
         <div class="service-badges mb-4">
             <span class="badge bg-success fs-6 me-2 service-badge"><i class="bi bi-check-circle-fill me-1"></i>Certificado ISO 9001</span>
@@ -21,12 +24,12 @@
 <div class="container mb-5">
     <div class="row text-center">
         <div class="col-lg-12">
-            <h2 class="display-6 fw-bold text-primary mb-4">En Números que Hablan</h2>
+            <h2 class="display-6 fw-bold mb-4" style="color: #003366;">En Números que Hablan</h2>
             <div class="row g-4">
                 <div class="col-md-3">
-                    <div class="stat-card-premium p-4 rounded-3 shadow-lg h-100">
-                        <div class="stat-icon mb-3">
-                            <i class="bi bi-people-fill fs-1 text-primary"></i>
+                    <div class="stat-card-premium p-4 rounded-3 shadow-lg h-100 feature-card-hover">
+                        <div class="feature-icon-wrapper">
+                            <i class="bi bi-people-fill feature-icon-main fs-1 text-primary"></i>
                         </div>
                         <h3 class="fw-bold text-primary mb-1 counter-number" data-target="25000">0</h3>
                         <p class="text-muted mb-0">Pacientes Satisfechos</p>
@@ -34,9 +37,9 @@
                     </div>
                 </div>
                 <div class="col-md-3">
-                    <div class="stat-card-premium p-4 rounded-3 shadow-lg h-100">
-                        <div class="stat-icon mb-3">
-                            <i class="bi bi-hospital fs-1 text-success"></i>
+                    <div class="stat-card-premium p-4 rounded-3 shadow-lg h-100 feature-card-hover">
+                        <div class="feature-icon-wrapper">
+                            <i class="bi bi-hospital feature-icon-main fs-1 text-success"></i>
                         </div>
                         <h3 class="fw-bold text-success mb-1 counter-number" data-target="350">0</h3>
                         <p class="text-muted mb-0">Especialistas Médicos</p>
@@ -44,9 +47,9 @@
                     </div>
                 </div>
                 <div class="col-md-3">
-                    <div class="stat-card-premium p-4 rounded-3 shadow-lg h-100">
-                        <div class="stat-icon mb-3">
-                            <i class="bi bi-clock-history fs-1 text-info"></i>
+                    <div class="stat-card-premium p-4 rounded-3 shadow-lg h-100 feature-card-hover">
+                        <div class="feature-icon-wrapper">
+                            <i class="bi bi-clock-history feature-icon-main fs-1 text-info"></i>
                         </div>
                         <h3 class="fw-bold text-info mb-1"><span class="counter-number" data-target="24">0</span>/7</h3>
                         <p class="text-muted mb-0">Disponibilidad</p>
@@ -54,9 +57,9 @@
                     </div>
                 </div>
                 <div class="col-md-3">
-                    <div class="stat-card-premium p-4 rounded-3 shadow-lg h-100">
-                        <div class="stat-icon mb-3">
-                            <i class="bi bi-star-fill fs-1 text-warning"></i>
+                    <div class="stat-card-premium p-4 rounded-3 shadow-lg h-100 feature-card-hover">
+                        <div class="feature-icon-wrapper">
+                            <i class="bi bi-star-fill feature-icon-main fs-1 text-warning"></i>
                         </div>
                         <h3 class="fw-bold text-warning mb-1"><span class="counter-number" data-target="98">0</span>%</h3>
                         <p class="text-muted mb-0">Satisfacción</p>
@@ -72,25 +75,19 @@
 <div class="container mb-5">
     <div class="row text-center mb-5">
         <div class="col-lg-8 mx-auto">
-            <h2 class="display-5 fw-bold text-primary mb-3">Servicios Premium</h2>
+            <h2 class="display-5 fw-bold mb-3" style="color: #003366;">Servicios Premium</h2>
             <p class="lead text-muted fs-5">Tecnología de vanguardia al servicio de tu salud</p>
         </div>
     </div>
     
     <div class="row g-4 mb-5">
         <div class="col-lg-4 col-md-6">
-            <div class="card h-100 shadow-lg features-card-premium border-0 bg-white">
+            <div class="card h-100 shadow-lg features-card-premium border-0 bg-white feature-card-hover">
                 <div class="card-body p-4 text-center">
-                    <div class="feature-icon-mega bg-gradient-primary text-white mb-4 mx-auto premium-icon-container">
-                        <i class="bi bi-robot premium-icon"></i>
-                        <div class="icon-particles">
-                            <span class="particle particle-1"></span>
-                            <span class="particle particle-2"></span>
-                            <span class="particle particle-3"></span>
-                            <span class="particle particle-4"></span>
-                        </div>
+                    <div class="feature-icon-wrapper mb-4">
+                        <i class="bi bi-robot feature-icon-main" style="font-size: 4rem; color: #003366;"></i>
                     </div>
-                    <h5 class="card-title fw-bold mb-3 text-dark">Inteligencia Artificial Médica</h5>
+                    <h5 class="card-title fw-bold mb-3" style="color: #003366;">Inteligencia Artificial Médica</h5>
                     <p class="card-text text-muted mb-3">Sistema de IA avanzado que analiza síntomas, historial médico y predice diagnósticos con 94% de precisión.</p>
                     <div class="feature-benefits mb-3">
                         <small class="d-block text-success mb-1"><i class="bi bi-check-circle-fill me-2"></i>Diagnóstico predictivo en tiempo real</small>
@@ -100,7 +97,7 @@
                     <div class="tech-specs mt-3">
                         <div class="row text-center">
                             <div class="col-4">
-                                <strong class="text-primary">94%</strong>
+                                <strong style="color: #003366;">94%</strong>
                                 <br><small class="text-muted">Precisión</small>
                             </div>
                             <div class="col-4">
@@ -118,18 +115,12 @@
         </div>
         
         <div class="col-lg-4 col-md-6">
-            <div class="card h-100 shadow-lg features-card-premium border-0 bg-white">
+            <div class="card h-100 shadow-lg features-card-premium border-0 bg-white feature-card-hover">
                 <div class="card-body p-4 text-center">
-                    <div class="feature-icon-mega bg-gradient-success text-white mb-4 mx-auto premium-icon-container">
-                        <i class="bi bi-camera-video premium-icon"></i>
-                        <div class="icon-particles">
-                            <span class="particle particle-1"></span>
-                            <span class="particle particle-2"></span>
-                            <span class="particle particle-3"></span>
-                            <span class="particle particle-4"></span>
-                        </div>
+                    <div class="feature-icon-wrapper mb-4">
+                        <i class="bi bi-camera-video feature-icon-main" style="font-size: 4rem; color: #003366;"></i>
                     </div>
-                    <h5 class="card-title fw-bold mb-3 text-dark">Telemedicina Avanzada</h5>
+                    <h5 class="card-title fw-bold mb-3" style="color: #003366;">Telemedicina Avanzada</h5>
                     <p class="card-text text-muted mb-3">Consultas médicas en HD con realidad aumentada, traducción en tiempo real y diagnóstico asistido por IA.</p>
                     <div class="feature-benefits mb-3">
                         <small class="d-block text-success mb-1"><i class="bi bi-check-circle-fill me-2"></i>Video 4K con audio cristalino</small>
@@ -139,7 +130,7 @@
                     <div class="tech-specs mt-3">
                         <div class="row text-center">
                             <div class="col-4">
-                                <strong class="text-primary">4K</strong>
+                                <strong style="color: #003366;">4K</strong>
                                 <br><small class="text-muted">Calidad</small>
                             </div>
                             <div class="col-4">
@@ -157,18 +148,12 @@
         </div>
         
         <div class="col-lg-4 col-md-6">
-            <div class="card h-100 shadow-lg features-card-premium border-0 bg-white">
+            <div class="card h-100 shadow-lg features-card-premium border-0 bg-white feature-card-hover">
                 <div class="card-body p-4 text-center">
-                    <div class="feature-icon-mega bg-gradient-info text-white mb-4 mx-auto premium-icon-container">
-                        <i class="bi bi-activity premium-icon"></i>
-                        <div class="icon-particles">
-                            <span class="particle particle-1"></span>
-                            <span class="particle particle-2"></span>
-                            <span class="particle particle-3"></span>
-                            <span class="particle particle-4"></span>
-                        </div>
+                    <div class="feature-icon-wrapper mb-4">
+                        <i class="bi bi-activity feature-icon-main" style="font-size: 4rem; color: #003366;"></i>
                     </div>
-                    <h5 class="card-title fw-bold mb-3 text-dark">Monitoreo Biométrico IoT</h5>
+                    <h5 class="card-title fw-bold mb-3" style="color: #003366;">Monitoreo Biométrico IoT</h5>
                     <p class="card-text text-muted mb-3">Sensores inteligentes que monitoreán signos vitales en tiempo real con alertas predictivas de emergencias.</p>
                     <div class="feature-benefits mb-3">
                         <small class="d-block text-success mb-1"><i class="bi bi-check-circle-fill me-2"></i>Sensores IoT de última generación</small>
@@ -178,7 +163,7 @@
                     <div class="tech-specs mt-3">
                         <div class="row text-center">
                             <div class="col-4">
-                                <strong class="text-primary">12</strong>
+                                <strong style="color: #003366;">12</strong>
                                 <br><small class="text-muted">Sensores</small>
                             </div>
                             <div class="col-4">
