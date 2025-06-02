@@ -85,6 +85,10 @@
       "PackagePath": "staticwebassets\\images\\patient-dashboard-bg.svg"
     },
     {
+      "Id": "C:\\Users\\CristianPC\\Desktop\\vitalcare\\wwwroot\\js\\navbarResponsive.js",
+      "PackagePath": "staticwebassets\\js\\navbarResponsive.js"
+    },
+    {
       "Id": "C:\\Users\\CristianPC\\Desktop\\vitalcare\\wwwroot\\js\\notifications.js",
       "PackagePath": "staticwebassets\\js\\notifications.js"
     },

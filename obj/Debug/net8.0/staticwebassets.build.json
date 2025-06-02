@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "CfQY5BiI8ldMxjLL8qFhTMUNBxQe3CVfTzt8VO1CEWQ=",
+  "Hash": "wyfSneZrGY+12ElYmiuMJeH25tm+Nlt6RbqKrrFS2W8=",
   "Source": "CitasEPS",
   "BasePath": "_content/CitasEPS",
   "Mode": "Default",
@@ -1739,6 +1739,27 @@
       "OriginalItemSpec": "wwwroot\\images\\patient-dashboard-bg.svg"
     },
     {
+      "Identity": "C:\\Users\\CristianPC\\Desktop\\vitalcare\\wwwroot\\js\\navbarResponsive.js",
+      "SourceId": "CitasEPS",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\CristianPC\\Desktop\\vitalcare\\wwwroot\\",
+      "BasePath": "_content/CitasEPS",
+      "RelativePath": "js/navbarResponsive#[.{fingerprint}]?.js",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "Fingerprint": "r0borxau41",
+      "Integrity": "NXOBjnaH+EuWM3JOM5Lh4k8VR7MIthKKFL21Q7CyrWs=",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\js\\navbarResponsive.js"
+    },
+    {
       "Identity": "C:\\Users\\CristianPC\\Desktop\\vitalcare\\wwwroot\\js\\notifications.js",
       "SourceId": "CitasEPS",
       "SourceType": "Discovered",
@@ -3128,7 +3149,7 @@
         },
         {
           "Name": "Last-Modified",
-          "Value": "Mon, 02 Jun 2025 07:28:49 GMT"
+          "Value": "Mon, 02 Jun 2025 20:21:48 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -3165,7 +3186,7 @@
         },
         {
           "Name": "Last-Modified",
-          "Value": "Mon, 02 Jun 2025 07:28:49 GMT"
+          "Value": "Mon, 02 Jun 2025 20:21:48 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -3202,7 +3223,7 @@
         },
         {
           "Name": "Last-Modified",
-          "Value": "Mon, 02 Jun 2025 07:28:49 GMT"
+          "Value": "Mon, 02 Jun 2025 20:21:48 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -3247,7 +3268,7 @@
         },
         {
           "Name": "Last-Modified",
-          "Value": "Mon, 02 Jun 2025 07:28:49 GMT"
+          "Value": "Mon, 02 Jun 2025 20:21:48 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -3784,7 +3805,7 @@
         },
         {
           "Name": "Last-Modified",
-          "Value": "Mon, 02 Jun 2025 07:28:49 GMT"
+          "Value": "Mon, 02 Jun 2025 20:45:56 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -3821,7 +3842,7 @@
         },
         {
           "Name": "Last-Modified",
-          "Value": "Mon, 02 Jun 2025 07:28:49 GMT"
+          "Value": "Mon, 02 Jun 2025 20:45:56 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -7130,6 +7151,88 @@
       ]
     },
     {
+      "Route": "js/navbarResponsive.js",
+      "AssetFile": "C:\\Users\\CristianPC\\Desktop\\vitalcare\\wwwroot\\js\\navbarResponsive.js",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "13836"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "text/javascript"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"NXOBjnaH+EuWM3JOM5Lh4k8VR7MIthKKFL21Q7CyrWs=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Mon, 02 Jun 2025 20:51:57 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "no-cache"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "integrity",
+          "Value": "sha256-NXOBjnaH+EuWM3JOM5Lh4k8VR7MIthKKFL21Q7CyrWs="
+        }
+      ]
+    },
+    {
+      "Route": "js/navbarResponsive.r0borxau41.js",
+      "AssetFile": "C:\\Users\\CristianPC\\Desktop\\vitalcare\\wwwroot\\js\\navbarResponsive.js",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "13836"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "text/javascript"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"NXOBjnaH+EuWM3JOM5Lh4k8VR7MIthKKFL21Q7CyrWs=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Mon, 02 Jun 2025 20:51:57 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=31536000, immutable"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "fingerprint",
+          "Value": "r0borxau41"
+        },
+        {
+          "Name": "label",
+          "Value": "js/navbarResponsive.js"
+        },
+        {
+          "Name": "integrity",
+          "Value": "sha256-NXOBjnaH+EuWM3JOM5Lh4k8VR7MIthKKFL21Q7CyrWs="
+        }
+      ]
+    },
+    {
       "Route": "js/notifications.3bodqhr7kt.js",
       "AssetFile": "C:\\Users\\CristianPC\\Desktop\\vitalcare\\wwwroot\\js\\notifications.js",
       "Selectors": [],
@@ -7644,7 +7747,7 @@
         },
         {
           "Name": "Last-Modified",
-          "Value": "Mon, 02 Jun 2025 07:28:49 GMT"
+          "Value": "Mon, 02 Jun 2025 20:45:56 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -7681,7 +7784,7 @@
         },
         {
           "Name": "Last-Modified",
-          "Value": "Mon, 02 Jun 2025 07:28:49 GMT"
+          "Value": "Mon, 02 Jun 2025 20:45:56 GMT"
         },
         {
           "Name": "Cache-Control",

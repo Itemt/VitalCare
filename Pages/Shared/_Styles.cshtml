@@ -1,0 +1,593 @@
+<style>
+        /* === VARIABLES DE COLORES MÉDICOS === */
+        :root {
+            /* Colores para Doctores - Azul médico MUY oscuro */
+            --doctor-primary: #0f172a;
+            --doctor-secondary: #1e293b;
+            --doctor-accent: #334155;
+            --doctor-light: #cbd5e1;
+            
+            /* Colores para Pacientes - Verde médico MÁS OSCURO */
+            --patient-primary: #0f4a2d;
+            --patient-secondary: #166534;
+            --patient-accent: #22c55e;
+            --patient-light: #dcfce7;
+            
+            /* Colores para Admins - Azul oscuro profesional */
+            --admin-primary: #0f172a;
+            --admin-secondary: #1e293b;
+            --admin-accent: #334155;
+            --admin-light: #cbd5e1;
+            
+            /* Colores base (no logueados) - Grises neutros */
+            --base-primary: #374151;
+            --base-secondary: #4b5563;
+            --base-accent: #6b7280;
+            --base-light: #f3f4f6;
+        }
+
+        /* === NAVBAR BASE - BLANCO PARA USUARIOS NO LOGUEADOS === */
+        .navbar {
+            background: white !important;
+            border-bottom: 1px solid #e5e7eb !important;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.1) !important;
+            padding: 0.75rem 0 !important;
+            transition: all 0.3s ease !important;
+        }
+
+        .navbar-brand,
+        .navbar-nav .nav-link {
+            color: #1f2937 !important;
+            font-weight: 500 !important;
+            transition: all 0.3s ease !important;
+            display: flex !important;
+            align-items: center !important;
+        }
+
+        .navbar-nav .nav-link:hover,
+        .navbar-nav .nav-link:focus {
+            color: #0f172a !important;
+        }
+
+        /* === NAVBAR PARA DOCTORES === */
+        body.doctor-body-bg .navbar {
+            background: linear-gradient(135deg, var(--doctor-primary) 0%, var(--doctor-secondary) 100%) !important;
+            border-bottom-color: var(--doctor-accent) !important;
+            box-shadow: 0 2px 20px rgba(15, 23, 42, 0.3) !important;
+        }
+
+        body.doctor-body-bg .navbar-brand,
+        body.doctor-body-bg .navbar-nav .nav-link {
+            color: rgba(255, 255, 255, 0.95) !important;
+        }
+
+        body.doctor-body-bg .navbar-nav .nav-link:hover,
+        body.doctor-body-bg .navbar-nav .nav-link:focus {
+            color: white !important;
+            transform: translateY(-1px) !important;
+        }
+
+        /* === NAVBAR PARA PACIENTES === */
+        body.patient-body-bg .navbar {
+            background: linear-gradient(135deg, var(--patient-primary) 0%, var(--patient-secondary) 100%) !important;
+            border-bottom-color: var(--patient-accent) !important;
+            box-shadow: 0 2px 20px rgba(22, 101, 52, 0.2) !important;
+        }
+
+        body.patient-body-bg .navbar-brand,
+        body.patient-body-bg .navbar-nav .nav-link {
+            color: rgba(255, 255, 255, 0.95) !important;
+        }
+
+        body.patient-body-bg .navbar-nav .nav-link:hover,
+        body.patient-body-bg .navbar-nav .nav-link:focus {
+            color: white !important;
+            transform: translateY(-1px) !important;
+        }
+
+        /* === NAVBAR PARA ADMINS === */
+        body.admin-body-bg .navbar {
+            background: linear-gradient(135deg, var(--admin-primary) 0%, var(--admin-secondary) 100%) !important;
+            border-bottom-color: var(--admin-accent) !important;
+            box-shadow: 0 2px 20px rgba(15, 23, 42, 0.3) !important;
+        }
+
+        body.admin-body-bg .navbar-brand,
+        body.admin-body-bg .navbar-nav .nav-link {
+            color: rgba(255, 255, 255, 0.95) !important;
+        }
+
+        body.admin-body-bg .navbar-nav .nav-link:hover,
+        body.admin-body-bg .navbar-nav .nav-link:focus {
+            color: white !important;
+            transform: translateY(-1px) !important;
+        }
+
+        /* === BRAND Y NAVEGACIÓN === */
+        .navbar-brand {
+            font-size: 1.5rem !important;
+            font-weight: 700 !important;
+        }
+
+        .brand-icon {
+            color: #22c55e !important; /* Verde médico para el corazón */
+            filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.3)) !important;
+            display: inline-flex !important;
+            align-items: center !important;
+            justify-content: center !important;
+        }
+
+        .brand-text .text-info {
+            color: #1e293b !important; /* Azul MUY oscuro para "Care" */
+        }
+
+        /* === ICONOS CENTRADOS === */
+        .nav-link i,
+        .dropdown-item i {
+            display: inline-flex !important;
+            align-items: center !important;
+            justify-content: center !important;
+            width: 1.2rem !important;
+            text-align: center !important;
+        }
+
+        /* === HERRAMIENTAS IMPORTANTES DESTACADAS === */
+        .nav-item-important .nav-link {
+            background: rgba(255, 255, 255, 0.15) !important;
+            border-radius: 8px !important;
+            margin: 0 0.25rem !important;
+            padding: 0.6rem 1.2rem !important;
+            font-weight: 600 !important;
+        }
+
+        .nav-item-important .nav-link:hover {
+            background: rgba(255, 255, 255, 0.25) !important;
+            transform: translateY(-2px) !important;
+        }
+
+        /* === DROPDOWNS === */
+        .dropdown-menu {
+            border: none !important;
+            border-radius: 12px !important;
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15) !important;
+            background: rgba(255, 255, 255, 0.98) !important;
+            backdrop-filter: blur(10px) !important;
+            padding: 0.75rem 0 !important;
+        }
+
+        .dropdown-item {
+            color: #374151 !important;
+            font-weight: 500 !important;
+            padding: 0.6rem 1.25rem !important;
+            transition: all 0.2s ease !important;
+            display: flex !important;
+            align-items: center !important;
+        }
+
+        .dropdown-item:hover {
+            background: rgba(51, 65, 85, 0.1) !important;
+            color: var(--base-primary) !important;
+            transform: translateX(5px) !important;
+        }
+
+        body.patient-body-bg .dropdown-item:hover {
+            background: rgba(34, 197, 94, 0.1) !important;
+            color: var(--patient-primary) !important;
+        }
+
+        body.doctor-body-bg .dropdown-item:hover {
+            background: rgba(51, 65, 85, 0.1) !important;
+            color: var(--doctor-primary) !important;
+        }
+
+        body.admin-body-bg .dropdown-item:hover {
+            background: rgba(51, 65, 85, 0.1) !important;
+            color: var(--admin-primary) !important;
+        }
+
+        .dropdown-header {
+            color: #6b7280 !important;
+            font-weight: 600 !important;
+            font-size: 0.75rem !important;
+            text-transform: uppercase !important;
+            letter-spacing: 0.5px !important;
+        }
+
+        /* === BOTONES === */
+        .btn-medical {
+            background: rgba(255, 255, 255, 0.1) !important;
+            border: 1px solid rgba(255, 255, 255, 0.2) !important;
+            color: rgba(255, 255, 255, 0.9) !important;
+            border-radius: 8px !important;
+            transition: all 0.3s ease !important;
+        }
+
+        .btn-medical:hover {
+            background: rgba(255, 255, 255, 0.2) !important;
+            color: white !important;
+            transform: translateY(-1px) !important;
+        }
+
+        /* === BOTONES PARA USUARIOS NO LOGUEADOS === */
+        .navbar .btn-theme-toggle {
+            background: rgba(0, 0, 0, 0.05) !important;
+            border: 1px solid rgba(0, 0, 0, 0.1) !important;
+            color: #374151 !important;
+            border-radius: 8px !important;
+            transition: all 0.3s ease !important;
+        }
+
+        .navbar .btn-theme-toggle:hover {
+            background: rgba(0, 0, 0, 0.1) !important;
+            color: #1f2937 !important;
+        }
+
+        /* Ícono de la luna blanco en modo claro */
+        .navbar .btn-theme-toggle #themeIconMoon {
+            color: white !important;
+        }
+
+        /* En modo oscuro, que sea el ícono del sol el que se vea blanco */
+        [data-bs-theme="dark"] .navbar .btn-theme-toggle #themeIconSun {
+            color: white !important;
+        }
+
+        .navbar .btn-login {
+            background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%) !important;
+            border: none !important;
+            color: white !important;
+            border-radius: 8px !important;
+            transition: all 0.3s ease !important;
+        }
+
+        .navbar .btn-login:hover {
+            background: linear-gradient(135deg, #1e293b 0%, #334155 100%) !important;
+            color: white !important;
+            transform: translateY(-1px) !important;
+        }
+
+        /* === RESPONSIVE === */
+        @@media (max-width: 991.98px) {
+            .navbar-nav {
+                background: rgba(0, 0, 0, 0.1);
+                border-radius: 8px;
+                padding: 1rem;
+                margin-top: 1rem;
+            }
+            
+            .nav-item-important .nav-link {
+                margin: 0.25rem 0 !important;
+            }
+        }
+
+        /* === CARDS Y BOTONES PRINCIPALES === */
+        .card {
+            border: none !important;
+            border-radius: 16px !important;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08) !important;
+        }
+
+        .card-header {
+            background: linear-gradient(135deg, var(--base-primary) 0%, var(--base-secondary) 100%) !important;
+            color: white !important;
+            border-radius: 16px 16px 0 0 !important;
+            border: none !important;
+        }
+
+        body.doctor-body-bg .card-header {
+            background: linear-gradient(135deg, var(--doctor-primary) 0%, var(--doctor-secondary) 100%) !important;
+        }
+
+        body.patient-body-bg .card-header {
+            background: linear-gradient(135deg, var(--patient-primary) 0%, var(--patient-secondary) 100%) !important;
+        }
+
+        body.admin-body-bg .card-header {
+            background: linear-gradient(135deg, var(--admin-primary) 0%, var(--admin-secondary) 100%) !important;
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, var(--base-primary) 0%, var(--base-secondary) 100%) !important;
+            border: none !important;
+            border-radius: 12px !important;
+        }
+
+        body.doctor-body-bg .btn-primary {
+            background: linear-gradient(135deg, var(--doctor-primary) 0%, var(--doctor-secondary) 100%) !important;
+        }
+
+        body.patient-body-bg .btn-primary {
+            background: linear-gradient(135deg, var(--patient-primary) 0%, var(--patient-secondary) 100%) !important;
+        }
+
+        body.admin-body-bg .btn-primary {
+            background: linear-gradient(135deg, var(--admin-primary) 0%, var(--admin-secondary) 100%) !important;
+        }
+
+        .btn-success {
+            background: linear-gradient(135deg, var(--patient-primary) 0%, var(--patient-secondary) 100%) !important;
+            border: none !important;
+            border-radius: 12px !important;
+        }
+
+        /* === BOTÓN AZUL OSCURO PARA HERO === */
+        .btn-dark-blue {
+            background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%) !important;
+            border: none !important;
+            color: white !important;
+            border-radius: 12px !important;
+            transition: all 0.3s ease !important;
+            font-weight: 600 !important;
+        }
+
+        .btn-dark-blue:hover {
+            background: linear-gradient(135deg, #1e293b 0%, #334155 100%) !important;
+            color: white !important;
+            transform: translateY(-2px) !important;
+            box-shadow: 0 8px 25px rgba(15, 23, 42, 0.3) !important;
+        }
+
+        /* === EFECTOS DE ICONOS === */
+        .feature-icon-wrapper {
+            position: relative !important;
+            display: inline-block !important;
+            padding: 1rem !important;
+        }
+
+        .rotating-icon {
+            transition: transform 0.6s ease !important;
+        }
+
+        .feature-card-hover:hover .rotating-icon {
+            transform: rotate(360deg) !important;
+        }
+
+        .feature-sparkles {
+            position: absolute !important;
+            top: 0 !important;
+            left: 0 !important;
+            right: 0 !important;
+            bottom: 0 !important;
+            pointer-events: none !important;
+        }
+
+        .sparkle {
+            position: absolute !important;
+            background: #ffd700 !important;
+            border-radius: 50% !important;
+            opacity: 0 !important;
+            animation: sparkleAnimation 2s infinite !important;
+        }
+
+        .sparkle-1 {
+            width: 4px !important;
+            height: 4px !important;
+            top: 10% !important;
+            left: 20% !important;
+            animation-delay: 0s !important;
+        }
+
+        .sparkle-2 {
+            width: 3px !important;
+            height: 3px !important;
+            top: 80% !important;
+            right: 15% !important;
+            animation-delay: 0.5s !important;
+        }
+
+        .sparkle-3 {
+            width: 5px !important;
+            height: 5px !important;
+            bottom: 20% !important;
+            left: 80% !important;
+            animation-delay: 1s !important;
+        }
+
+        .sparkle-4 {
+            width: 2px !important;
+            height: 2px !important;
+            top: 30% !important;
+            right: 30% !important;
+            animation-delay: 1.5s !important;
+        }
+
+        @@keyframes sparkleAnimation {
+            0%, 100% { opacity: 0; transform: scale(0); }
+            50% { opacity: 1; transform: scale(1); }
+        }
+
+        .feature-card-hover:hover .sparkle {
+            animation-play-state: running !important;
+        }
+
+        /* === DARK MODE === */
+        [data-bs-theme="dark"] .navbar {
+            background: linear-gradient(135deg, #0f1419 0%, #1a202c 100%) !important;
+            border-bottom-color: #2d3748 !important;
+        }
+
+        [data-bs-theme="dark"] .navbar-brand,
+        [data-bs-theme="dark"] .navbar-nav .nav-link {
+            color: rgba(255, 255, 255, 0.95) !important;
+        }
+
+        [data-bs-theme="dark"] .navbar-nav .nav-link:hover,
+        [data-bs-theme="dark"] .navbar-nav .nav-link:focus {
+            color: white !important;
+        }
+
+        /* Botón de tema en modo oscuro para usuarios no logueados */
+        [data-bs-theme="dark"] .navbar .btn-theme-toggle {
+            background: rgba(255, 255, 255, 0.1) !important;
+            border: 1px solid rgba(255, 255, 255, 0.2) !important;
+            color: rgba(255, 255, 255, 0.9) !important;
+        }
+
+        [data-bs-theme="dark"] .navbar .btn-theme-toggle:hover {
+            background: rgba(255, 255, 255, 0.2) !important;
+            color: white !important;
+        }
+
+        [data-bs-theme="dark"] .dropdown-menu {
+            background: rgba(26, 32, 44, 0.98) !important;
+            border: 1px solid rgba(255, 255, 255, 0.1) !important;
+        }
+
+        [data-bs-theme="dark"] .dropdown-item {
+            color: #e2e8f0 !important;
+        }
+
+        [data-bs-theme="dark"] .dropdown-item:hover {
+            background: rgba(59, 130, 246, 0.2) !important;
+            color: #93c5fd !important;
+        }
+
+        [data-bs-theme="dark"] .welcome-title,
+        [data-bs-theme="dark"] .text-dark {
+            color: #e2e8f0 !important;
+        }
+
+        [data-bs-theme="dark"] .welcome-subtitle,
+        [data-bs-theme="dark"] .text-muted {
+            color: #a0aec0 !important;
+        }
+
+        /* === CORRECCIONES PARA MODO OSCURO === */
+
+        /* Corregir inconsistencias en panel de pacientes */
+        [data-bs-theme="dark"] .bg-patient {
+            background: linear-gradient(135deg, #1a6b55 0%, #167052 50%, #13654e 100%) !important;
+        }
+
+        [data-bs-theme="dark"] .card-header.bg-patient {
+            background: linear-gradient(135deg, #1a6b55 0%, #167052 100%) !important;
+            border-bottom: 1px solid rgba(255,255,255,0.1);
+        }
+
+        [data-bs-theme="dark"] .stat-card {
+            background: rgba(45,55,72,0.8) !important;
+            border-color: rgba(255,255,255,0.1) !important;
+        }
+
+        [data-bs-theme="dark"] .health-summary-widget .list-group-item {
+            background: rgba(45,55,72,0.5) !important;
+            border-color: rgba(255,255,255,0.1) !important;
+            color: #e2e8f0 !important;
+        }
+
+        [data-bs-theme="dark"] .messages-widget {
+            background: rgba(45,55,72,0.8) !important;
+            border-color: rgba(255,255,255,0.1) !important;
+        }
+
+        [data-bs-theme="dark"] .messages-widget .card-body {
+            color: #e2e8f0 !important;
+        }
+
+        /* Trust indicators en modo oscuro */
+        [data-bs-theme="dark"] .card-footer {
+            background: rgba(33,37,41,0.8) !important;
+            border-top: 1px solid rgba(255,255,255,0.1) !important;
+        }
+
+        /* === NAVBAR RESPONSIVO INTELIGENTE === */
+        .nav-item-hideable {
+            transition: opacity 0.3s ease, transform 0.3s ease;
+        }
+        
+        .nav-item-hideable.hidden {
+            display: none !important;
+        }
+        
+        /* Clase para items movidos al menú "Más" */
+        .moved-to-more {
+            display: none !important;
+        }
+        
+        /* En pantallas móviles, ocultar siempre el menú "Más" */
+        @@media (max-width: 991.98px) {
+            #moreOptionsDropdown {
+                display: none !important;
+            }
+        }
+        
+        /* En pantallas grandes, el JavaScript controlará la visibilidad */
+        @@media (min-width: 992px) {
+            #moreOptionsDropdown {
+                display: none; /* Por defecto oculto, el JS lo mostrará si es necesario */
+            }
+            
+            /* Asegurar que los items principales estén visibles por defecto */
+            .nav-item:not(.dropdown.d-lg-none):not(#moreOptionsDropdown) {
+                display: block !important;
+            }
+            
+            /* Estilos para items dinámicos en el menú "Más" */
+            .dynamic-nav-item .dropdown-item {
+                font-weight: 500 !important;
+                color: #495057 !important;
+            }
+            
+            .dynamic-nav-item .dropdown-item:hover {
+                background: rgba(0, 123, 255, 0.1) !important;
+                color: #0056b3 !important;
+            }
+        }
+        
+        /* Asegurar que los items principales estén visibles por defecto en pantallas grandes */
+        @@media (min-width: 992px) {
+            .nav-item-important {
+                display: block !important;
+            }
+        }
+        
+        /* Optimizaciones para el cálculo de ancho */
+        .navbar-nav .nav-item {
+            white-space: nowrap; /* Evitar que el texto se divida */
+        }
+        
+        .navbar-nav .nav-link {
+            padding-left: 0.75rem;
+            padding-right: 0.75rem;
+        }
+        
+        /* Transiciones suaves para elementos del lado derecho */
+        .d-flex.align-items-center a,
+        .d-flex.align-items-center button {
+            transition: all 0.3s ease;
+        }
+        
+        .d-flex.align-items-center a span,
+        .d-flex.align-items-center button span {
+            transition: opacity 0.3s ease;
+        }
+        
+        /* Estilos para botones simplificados */
+        .btn-sm {
+            font-size: 0.8rem !important;
+            padding: 0.375rem 0.5rem !important;
+        }
+        
+        /* Mejor handling del overflow en el navbar */
+        .navbar .container-fluid {
+            overflow: visible;
+        }
+        
+        /* Asegurar que los elementos no se corten abruptamente */
+        .navbar-nav,
+        .d-flex.align-items-center {
+            flex-shrink: 1;
+            min-width: 0;
+        }
+        
+        /* Indicador visual para debugging en desarrollo */
+        .dev-highlight {
+            outline: 2px solid red !important;
+        }
+        
+        /* Indicador de overflow para debugging */
+        .navbar-debug-overflow {
+            background: rgba(255, 0, 0, 0.1) !important;
+            border: 1px solid red !important;
+        }
+    </style> 
