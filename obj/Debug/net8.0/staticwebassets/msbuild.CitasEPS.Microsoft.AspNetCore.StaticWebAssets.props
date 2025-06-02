@@ -390,8 +390,8 @@
       <RelatedAsset></RelatedAsset>
       <AssetTraitName></AssetTraitName>
       <AssetTraitValue></AssetTraitValue>
-      <Fingerprint>r0borxau41</Fingerprint>
-      <Integrity>NXOBjnaH+EuWM3JOM5Lh4k8VR7MIthKKFL21Q7CyrWs=</Integrity>
+      <Fingerprint>9l9vdt4241</Fingerprint>
+      <Integrity>szwHwa2flKHBXCiV95G8TTSmhojij9S9q+QJtwUi7yo=</Integrity>
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
       <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
       <OriginalItemSpec>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\js\navbarResponsive.js'))</OriginalItemSpec>

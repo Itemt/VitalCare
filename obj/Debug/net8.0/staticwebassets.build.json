@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "wyfSneZrGY+12ElYmiuMJeH25tm+Nlt6RbqKrrFS2W8=",
+  "Hash": "WMT6ABPBxnT6CuTBgqE24f3iKuRPhTK0hZANBWOHGe8=",
   "Source": "CitasEPS",
   "BasePath": "_content/CitasEPS",
   "Mode": "Default",
@@ -1753,8 +1753,8 @@
       "RelatedAsset": "",
       "AssetTraitName": "",
       "AssetTraitValue": "",
-      "Fingerprint": "r0borxau41",
-      "Integrity": "NXOBjnaH+EuWM3JOM5Lh4k8VR7MIthKKFL21Q7CyrWs=",
+      "Fingerprint": "9l9vdt4241",
+      "Integrity": "szwHwa2flKHBXCiV95G8TTSmhojij9S9q+QJtwUi7yo=",
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\js\\navbarResponsive.js"
@@ -3887,7 +3887,7 @@
         },
         {
           "Name": "Last-Modified",
-          "Value": "Mon, 02 Jun 2025 07:28:49 GMT"
+          "Value": "Mon, 02 Jun 2025 21:09:19 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -3924,7 +3924,7 @@
         },
         {
           "Name": "Last-Modified",
-          "Value": "Mon, 02 Jun 2025 07:28:49 GMT"
+          "Value": "Mon, 02 Jun 2025 21:09:19 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -7151,6 +7151,51 @@
       ]
     },
     {
+      "Route": "js/navbarResponsive.9l9vdt4241.js",
+      "AssetFile": "C:\\Users\\CristianPC\\Desktop\\vitalcare\\wwwroot\\js\\navbarResponsive.js",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "659"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "text/javascript"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"szwHwa2flKHBXCiV95G8TTSmhojij9S9q+QJtwUi7yo=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Mon, 02 Jun 2025 21:16:22 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=31536000, immutable"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "fingerprint",
+          "Value": "9l9vdt4241"
+        },
+        {
+          "Name": "label",
+          "Value": "js/navbarResponsive.js"
+        },
+        {
+          "Name": "integrity",
+          "Value": "sha256-szwHwa2flKHBXCiV95G8TTSmhojij9S9q+QJtwUi7yo="
+        }
+      ]
+    },
+    {
       "Route": "js/navbarResponsive.js",
       "AssetFile": "C:\\Users\\CristianPC\\Desktop\\vitalcare\\wwwroot\\js\\navbarResponsive.js",
       "Selectors": [],
@@ -7161,7 +7206,7 @@
         },
         {
           "Name": "Content-Length",
-          "Value": "13836"
+          "Value": "659"
         },
         {
           "Name": "Content-Type",
@@ -7169,11 +7214,11 @@
         },
         {
           "Name": "ETag",
-          "Value": "\"NXOBjnaH+EuWM3JOM5Lh4k8VR7MIthKKFL21Q7CyrWs=\""
+          "Value": "\"szwHwa2flKHBXCiV95G8TTSmhojij9S9q+QJtwUi7yo=\""
         },
         {
           "Name": "Last-Modified",
-          "Value": "Mon, 02 Jun 2025 20:51:57 GMT"
+          "Value": "Mon, 02 Jun 2025 21:16:22 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -7183,52 +7228,7 @@
       "EndpointProperties": [
         {
           "Name": "integrity",
-          "Value": "sha256-NXOBjnaH+EuWM3JOM5Lh4k8VR7MIthKKFL21Q7CyrWs="
-        }
-      ]
-    },
-    {
-      "Route": "js/navbarResponsive.r0borxau41.js",
-      "AssetFile": "C:\\Users\\CristianPC\\Desktop\\vitalcare\\wwwroot\\js\\navbarResponsive.js",
-      "Selectors": [],
-      "ResponseHeaders": [
-        {
-          "Name": "Accept-Ranges",
-          "Value": "bytes"
-        },
-        {
-          "Name": "Content-Length",
-          "Value": "13836"
-        },
-        {
-          "Name": "Content-Type",
-          "Value": "text/javascript"
-        },
-        {
-          "Name": "ETag",
-          "Value": "\"NXOBjnaH+EuWM3JOM5Lh4k8VR7MIthKKFL21Q7CyrWs=\""
-        },
-        {
-          "Name": "Last-Modified",
-          "Value": "Mon, 02 Jun 2025 20:51:57 GMT"
-        },
-        {
-          "Name": "Cache-Control",
-          "Value": "max-age=31536000, immutable"
-        }
-      ],
-      "EndpointProperties": [
-        {
-          "Name": "fingerprint",
-          "Value": "r0borxau41"
-        },
-        {
-          "Name": "label",
-          "Value": "js/navbarResponsive.js"
-        },
-        {
-          "Name": "integrity",
-          "Value": "sha256-NXOBjnaH+EuWM3JOM5Lh4k8VR7MIthKKFL21Q7CyrWs="
+          "Value": "sha256-szwHwa2flKHBXCiV95G8TTSmhojij9S9q+QJtwUi7yo="
         }
       ]
     },
