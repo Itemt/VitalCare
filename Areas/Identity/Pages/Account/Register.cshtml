@@ -5,112 +5,298 @@
     ViewData["Title"] = "Registrarse";
 }
 
-<div class="container mt-5 mb-5">
-    <div class="row justify-content-center">
-        <div class="col-lg-6 col-md-8"> @* Slightly wider column for register? *@
-            <div class="card shadow-sm">
-                <div class="card-body p-4">
-                    <h1 class="card-title text-center h3 mb-4">@ViewData["Title"]</h1>
-                    <h2 class="text-center h5 mb-3 fw-normal">Crear una nueva cuenta.</h2>
-                    <hr class="mb-4" />
+<div class="auth-page-wrapper">
+    <div class="container auth-container">
+        <div class="row justify-content-center">
+            <div class="col-lg-6 col-md-8 col-sm-10">
+                <div class="auth-card">
+                    <div class="card-body p-4 p-md-5">
+                        <!-- Header Section -->
+                        <div class="auth-header">
+                            <div class="auth-logo">
+                                <i class="bi bi-heart-pulse-fill"></i>
+                            </div>
+                            <h1 class="auth-title">VitalCare</h1>
+                            <p class="auth-subtitle">Crear una nueva cuenta</p>
+                        </div>
 
-                    <form id="registerForm" asp-route-returnUrl="@Model.ReturnUrl" method="post">
-                        <div asp-validation-summary="ModelOnly" class="text-danger mb-3" role="alert"></div>
-                        
-                        <div class="row">
-                            <div class="col-md-6">
-                                <div class="form-floating mb-3">
-                                    <input asp-for="Input.FirstName" class="form-control" placeholder="Nombres" />
-                                    <label asp-for="Input.FirstName"></label>
-                                    <span asp-validation-for="Input.FirstName" class="text-danger"></span>
+                        <!-- Main Register Form -->
+                        <form id="registerForm" asp-route-returnUrl="@Model.ReturnUrl" method="post" class="auth-form">
+                            <div asp-validation-summary="ModelOnly" class="auth-validation-summary" role="alert"></div>
+                            
+                            <!-- First Name and Last Name -->
+                            <div class="auth-row">
+                                <div class="auth-col">
+                                    <div class="auth-form-floating">
+                                        <i class="auth-form-icon bi bi-person-fill"></i>
+                                        <input asp-for="Input.FirstName" 
+                                               class="auth-form-control" 
+                                               placeholder=" " />
+                                        <label asp-for="Input.FirstName" class="auth-form-label">Nombres</label>
+                                        <span asp-validation-for="Input.FirstName" class="auth-validation-error"></span>
+                                    </div>
+                                </div>
+                                <div class="auth-col">
+                                    <div class="auth-form-floating">
+                                        <i class="auth-form-icon bi bi-person-badge-fill"></i>
+                                        <input asp-for="Input.LastName" 
+                                               class="auth-form-control" 
+                                               placeholder=" " />
+                                        <label asp-for="Input.LastName" class="auth-form-label">Apellidos</label>
+                                        <span asp-validation-for="Input.LastName" class="auth-validation-error"></span>
+                                    </div>
                                 </div>
                             </div>
-                            <div class="col-md-6">
-                                <div class="form-floating mb-3">
-                                    <input asp-for="Input.LastName" class="form-control" placeholder="Apellidos" />
-                                    <label asp-for="Input.LastName"></label>
-                                    <span asp-validation-for="Input.LastName" class="text-danger"></span>
+
+                            <!-- Document ID -->
+                            <div class="auth-form-floating">
+                                <i class="auth-form-icon bi bi-card-text"></i>
+                                <input asp-for="Input.DocumentId" 
+                                       class="auth-form-control" 
+                                       placeholder=" " />
+                                <label asp-for="Input.DocumentId" class="auth-form-label">Documento de Identidad</label>
+                                <span asp-validation-for="Input.DocumentId" class="auth-validation-error"></span>
+                            </div>
+
+                            <!-- Gender -->
+                            <div class="auth-form-floating">
+                                <i class="auth-form-icon bi bi-gender-ambiguous"></i>
+                                <select asp-for="Input.Gender" 
+                                        class="auth-select" 
+                                        asp-items="Html.GetEnumSelectList<Gender>()"
+                                        required>
+                                    <option value="" disabled selected>Seleccione Género...</option>
+                                </select>
+                                <label asp-for="Input.Gender" class="auth-form-label">Género</label>
+                                <span asp-validation-for="Input.Gender" class="auth-validation-error"></span>
+                            </div>
+
+                            <!-- Email -->
+                            <div class="auth-form-floating">
+                                <i class="auth-form-icon bi bi-envelope-fill"></i>
+                                <input asp-for="Input.Email" 
+                                       class="auth-form-control" 
+                                       autocomplete="username" 
+                                       aria-required="true" 
+                                       placeholder=" " />
+                                <label asp-for="Input.Email" class="auth-form-label">Correo Electrónico</label>
+                                <span asp-validation-for="Input.Email" class="auth-validation-error"></span>
+                            </div>
+
+                            <!-- Password -->
+                            <div class="auth-form-floating">
+                                <i class="auth-form-icon bi bi-lock-fill"></i>
+                                <input asp-for="Input.Password" 
+                                       class="auth-form-control" 
+                                       autocomplete="new-password" 
+                                       aria-required="true" 
+                                       placeholder=" " 
+                                       type="password"
+                                       id="registerPasswordInput" />
+                                <label asp-for="Input.Password" class="auth-form-label">Contraseña</label>
+                                <button type="button" class="password-toggle" id="toggleRegisterPassword">
+                                    <i class="bi bi-eye-slash"></i>
+                                </button>
+                                <span asp-validation-for="Input.Password" class="auth-validation-error"></span>
+                            </div>
+
+                            <!-- Confirm Password -->
+                            <div class="auth-form-floating">
+                                <i class="auth-form-icon bi bi-shield-lock-fill"></i>
+                                <input asp-for="Input.ConfirmPassword" 
+                                       class="auth-form-control" 
+                                       autocomplete="new-password" 
+                                       aria-required="true" 
+                                       placeholder=" " 
+                                       type="password"
+                                       id="confirmPasswordInput" />
+                                <label asp-for="Input.ConfirmPassword" class="auth-form-label">Confirmar Contraseña</label>
+                                <button type="button" class="password-toggle" id="toggleConfirmPassword">
+                                    <i class="bi bi-eye-slash"></i>
+                                </button>
+                                <span asp-validation-for="Input.ConfirmPassword" class="auth-validation-error"></span>
+                            </div>
+
+                            <!-- Phone and Date of Birth -->
+                            <div class="auth-row">
+                                <div class="auth-col">
+                                    <div class="auth-form-floating">
+                                        <i class="auth-form-icon bi bi-telephone-fill"></i>
+                                        <input asp-for="Input.PhoneNumber" 
+                                               class="auth-form-control" 
+                                               placeholder=" " />
+                                        <label asp-for="Input.PhoneNumber" class="auth-form-label">Teléfono</label>
+                                        <span asp-validation-for="Input.PhoneNumber" class="auth-validation-error"></span>
+                                    </div>
+                                </div>
+                                <div class="auth-col">
+                                    <div class="auth-form-floating">
+                                        <i class="auth-form-icon bi bi-calendar-date-fill"></i>
+                                        <input asp-for="Input.DateOfBirth" 
+                                               class="auth-form-control datepicker-register" 
+                                               type="text" 
+                                               placeholder=" " />
+                                        <label asp-for="Input.DateOfBirth" class="auth-form-label">Fecha de Nacimiento</label>
+                                        <span asp-validation-for="Input.DateOfBirth" class="auth-validation-error"></span>
+                                    </div>
                                 </div>
                             </div>
-                        </div>
 
-                        <div class="form-floating mb-3">
-                            <input asp-for="Input.DocumentId" class="form-control" placeholder="Documento de Identidad" />
-                            <label asp-for="Input.DocumentId"></label>
-                            <span asp-validation-for="Input.DocumentId" class="text-danger"></span>
-                        </div>
-
-                        <div class="form-floating mb-3">
-                            <select asp-for="Input.Gender" class="form-select" asp-items="Html.GetEnumSelectList<Gender>()">
-                                <option selected disabled value="">Seleccione Género...</option>
-                            </select>
-                            <label asp-for="Input.Gender"></label>
-                            <span asp-validation-for="Input.Gender" class="text-danger"></span>
-                        </div>
-
-                        <div class="form-floating mb-3">
-                            <input asp-for="Input.Email" class="form-control" autocomplete="username" aria-required="true" placeholder="nombre@ejemplo.com" />
-                            <label asp-for="Input.Email">Correo Electrónico</label>
-                            <span asp-validation-for="Input.Email" class="text-danger"></span>
-                        </div>
-                        <div class="form-floating mb-3 position-relative">
-                            <input asp-for="Input.Password" class="form-control" autocomplete="new-password" aria-required="true" placeholder="contraseña" id="registerPasswordInput" />
-                            <label asp-for="Input.Password">Contraseña</label>
-                            <button type="button" class="btn position-absolute end-0 me-2" id="toggleRegisterPassword" style="top: 50%; transform: translateY(-50%); border: none; background: transparent; padding: 0.375rem 0.75rem; z-index: 5; right: 0.5rem!important;">
-                                <i class="bi bi-eye-slash"></i>
+                            <!-- Submit Button -->
+                            <button id="registerSubmit" type="submit" class="auth-btn-primary">
+                                <i class="bi bi-person-plus me-2"></i>
+                                Registrarse
                             </button>
-                            <span asp-validation-for="Input.Password" class="text-danger"></span>
-                        </div>
-                        <div class="form-floating mb-3 position-relative">
-                            <input asp-for="Input.ConfirmPassword" class="form-control" autocomplete="new-password" aria-required="true" placeholder="confirmar contraseña" id="confirmPasswordInput" />
-                            <label asp-for="Input.ConfirmPassword">Confirmar Contraseña</label>
-                            <button type="button" class="btn position-absolute end-0 me-2" id="toggleConfirmPassword" style="top: 50%; transform: translateY(-50%); border: none; background: transparent; padding: 0.375rem 0.75rem; z-index: 5; right: 0.5rem!important;">
-                                <i class="bi bi-eye-slash"></i>
-                            </button>
-                            <span asp-validation-for="Input.ConfirmPassword" class="text-danger"></span>
-                        </div>
 
-                        <div class="form-floating mb-3">
-                            <input asp-for="Input.PhoneNumber" class="form-control" placeholder="Teléfono" />
-                            <label asp-for="Input.PhoneNumber"></label>
-                            <span asp-validation-for="Input.PhoneNumber" class="text-danger"></span>
-                        </div>
+                            <!-- Auth Links -->
+                            <div class="auth-links">
+                                <div>
+                                    <a asp-page="./Login" asp-route-returnUrl="@Model.ReturnUrl" class="auth-link">
+                                        <i class="bi bi-box-arrow-in-right me-1"></i>
+                                        ¿Ya tienes cuenta? Iniciar sesión
+                                    </a>
+                                </div>
+                            </div>
+                        </form>
 
-                        <div class="form-floating mb-3">
-                            <input asp-for="Input.DateOfBirth" class="form-control datepicker-register" type="text" placeholder="Fecha de Nacimiento" />
-                            <label asp-for="Input.DateOfBirth"></label>
-                            <span asp-validation-for="Input.DateOfBirth" class="text-danger"></span>
-                        </div>
-
-                        <div class="d-grid gap-2 mb-3">
-                            <button id="registerSubmit" type="submit" class="btn btn-lg btn-primary">Registrarse</button>
-                        </div>
-                    </form>
-
-                    @* External logins section *@
-                    @{
-                        if ((Model.ExternalLogins?.Count ?? 0) > 0)
-                        {
-                            <hr class="mt-4 mb-3">
-                            <section>
-                                <h3 class="text-center h5 mb-3 fw-normal">Usar otro servicio para registrarse.</h3>
-                                <form id="external-account" asp-page="./ExternalLogin" asp-route-returnUrl="@Model.ReturnUrl" method="post" class="form-horizontal">
-                                    <div class="text-center">
+                        <!-- External Logins Section -->
+                        @{
+                            if ((Model.ExternalLogins?.Count ?? 0) > 0)
+                            {
+                                <div class="auth-divider">
+                                    <span>O regístrate con</span>
+                                </div>
+                                <section>
+                                    <form id="external-account" asp-page="./ExternalLogin" asp-route-returnUrl="@Model.ReturnUrl" method="post">
                                         @foreach (var provider in Model.ExternalLogins!)
                                         {
-                                            <button type="submit" class="btn btn-outline-secondary m-1" name="provider" value="@provider.Name" title="Registrarse con su cuenta @provider.DisplayName">@provider.DisplayName</button>
+                                            <button type="submit" 
+                                                    class="auth-external-btn" 
+                                                    name="provider" 
+                                                    value="@provider.Name" 
+                                                    title="Registrarse con su cuenta @provider.DisplayName">
+                                                <i class="bi bi-@provider.Name.ToLower() me-2"></i>
+                                                Continuar con @provider.DisplayName
+                                            </button>
                                         }
-                                    </div>
-                                </form>
-                            </section>
+                                    </form>
+                                </section>
+                            }
                         }
-                    }
-                </div> @* End card-body *@
-            </div> @* End card *@
-        </div> @* End column *@
-    </div> @* End row *@
-</div> @* End container *@
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
 
 @section Scripts {
     <partial name="_ValidationScriptsPartial" />
+    <script>
+        // Hide all validation errors on page load
+        document.addEventListener('DOMContentLoaded', function() {
+            // Hide validation summaries and errors initially
+            document.querySelectorAll('.auth-validation-error, .auth-validation-summary').forEach(function(element) {
+                if (!element.textContent.trim()) {
+                    element.style.display = 'none';
+                }
+            });
+
+            // Auto-focus on first input
+            const firstInput = document.querySelector('.auth-form-control');
+            if (firstInput) {
+                firstInput.focus();
+            }
+
+            // Add event listeners to show validation only after user interaction
+            const inputs = document.querySelectorAll('.auth-form-control, .auth-select');
+            inputs.forEach(function(input) {
+                let hasInteracted = false;
+
+                // Mark as interacted on focus
+                input.addEventListener('focus', function() {
+                    hasInteracted = true;
+                });
+
+                // Show validation errors only after interaction
+                input.addEventListener('blur', function() {
+                    if (hasInteracted) {
+                        const validationElement = input.parentElement.querySelector('.auth-validation-error');
+                        if (validationElement && validationElement.textContent.trim()) {
+                            validationElement.style.display = 'flex';
+                        }
+                    }
+                });
+
+                // Also show on input if already interacted
+                input.addEventListener('input', function() {
+                    if (hasInteracted) {
+                        const validationElement = input.parentElement.querySelector('.auth-validation-error');
+                        if (validationElement) {
+                            // Small delay to allow validation to update
+                            setTimeout(function() {
+                                if (validationElement.textContent.trim()) {
+                                    validationElement.style.display = 'flex';
+                                } else {
+                                    validationElement.style.display = 'none';
+                                }
+                            }, 100);
+                        }
+                    }
+                });
+            });
+
+            // Initialize datepicker if available
+            if (typeof jQuery !== 'undefined' && jQuery.fn.datepicker) {
+                $('.datepicker-register').datepicker({
+                    format: 'dd/mm/yyyy',
+                    autoclose: true,
+                    todayHighlight: true,
+                    endDate: new Date(),
+                    language: 'es'
+                });
+            }
+        });
+
+        // Password visibility toggles
+        document.getElementById('toggleRegisterPassword').addEventListener('click', function() {
+            const passwordInput = document.getElementById('registerPasswordInput');
+            const icon = this.querySelector('i');
+            
+            if (passwordInput.type === 'password') {
+                passwordInput.type = 'text';
+                icon.className = 'bi bi-eye';
+            } else {
+                passwordInput.type = 'password';
+                icon.className = 'bi bi-eye-slash';
+            }
+        });
+
+        document.getElementById('toggleConfirmPassword').addEventListener('click', function() {
+            const passwordInput = document.getElementById('confirmPasswordInput');
+            const icon = this.querySelector('i');
+            
+            if (passwordInput.type === 'password') {
+                passwordInput.type = 'text';
+                icon.className = 'bi bi-eye';
+            } else {
+                passwordInput.type = 'password';
+                icon.className = 'bi bi-eye-slash';
+            }
+        });
+
+        // Loading state for submit button
+        document.getElementById('registerForm').addEventListener('submit', function() {
+            const submitBtn = document.getElementById('registerSubmit');
+            submitBtn.classList.add('auth-btn-loading');
+            submitBtn.disabled = true;
+            
+            // Show all validation errors on submit
+            document.querySelectorAll('.auth-validation-error, .auth-validation-summary').forEach(function(element) {
+                if (element.textContent.trim()) {
+                    element.style.display = 'flex';
+                }
+            });
+        });
+    </script>
 }
