@@ -120,8 +120,8 @@
       <RelatedAsset></RelatedAsset>
       <AssetTraitName></AssetTraitName>
       <AssetTraitValue></AssetTraitValue>
-      <Fingerprint>oil4qxw0rl</Fingerprint>
-      <Integrity>8MNtDBhmGb8vNcRVKA2Ad6RTMKtIFslQJ5Q/Bzo/oaI=</Integrity>
+      <Fingerprint>irq1vjcbie</Fingerprint>
+      <Integrity>vmgRC8UXQdUg8tyg6AQMZBawbkbN057c2KcrvPn+cE4=</Integrity>
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
       <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
       <OriginalItemSpec>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\css\performance-optimizations.css'))</OriginalItemSpec>
@@ -426,11 +426,47 @@
       <RelatedAsset></RelatedAsset>
       <AssetTraitName></AssetTraitName>
       <AssetTraitValue></AssetTraitValue>
-      <Fingerprint>buo77a6z5t</Fingerprint>
-      <Integrity>fZdWwUlTc2/6wRid37fErGP7efmbKKuuqHQ8siX40Ds=</Integrity>
+      <Fingerprint>0dz813og1m</Fingerprint>
+      <Integrity>/I3p/bOcbJCzG0v+ERMk07o/SYCxSvqMWB1W27FPFyE=</Integrity>
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
       <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
       <OriginalItemSpec>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\js\performance-optimizer.js'))</OriginalItemSpec>
+    </StaticWebAsset>
+    <StaticWebAsset Include="$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\js\scroll-performance-fix.js'))">
+      <SourceType>Package</SourceType>
+      <SourceId>CitasEPS</SourceId>
+      <ContentRoot>$(MSBuildThisFileDirectory)..\staticwebassets\</ContentRoot>
+      <BasePath>_content/CitasEPS</BasePath>
+      <RelativePath>js/scroll-performance-fix.js</RelativePath>
+      <AssetKind>All</AssetKind>
+      <AssetMode>All</AssetMode>
+      <AssetRole>Primary</AssetRole>
+      <RelatedAsset></RelatedAsset>
+      <AssetTraitName></AssetTraitName>
+      <AssetTraitValue></AssetTraitValue>
+      <Fingerprint>hy7tb1cbrh</Fingerprint>
+      <Integrity>dyOmVwcaoUeMYlYLwWGU3iuXVpmTCVpxjaC51cxMBhU=</Integrity>
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+      <OriginalItemSpec>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\js\scroll-performance-fix.js'))</OriginalItemSpec>
+    </StaticWebAsset>
+    <StaticWebAsset Include="$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\js\scroll-performance-test.js'))">
+      <SourceType>Package</SourceType>
+      <SourceId>CitasEPS</SourceId>
+      <ContentRoot>$(MSBuildThisFileDirectory)..\staticwebassets\</ContentRoot>
+      <BasePath>_content/CitasEPS</BasePath>
+      <RelativePath>js/scroll-performance-test.js</RelativePath>
+      <AssetKind>All</AssetKind>
+      <AssetMode>All</AssetMode>
+      <AssetRole>Primary</AssetRole>
+      <RelatedAsset></RelatedAsset>
+      <AssetTraitName></AssetTraitName>
+      <AssetTraitValue></AssetTraitValue>
+      <Fingerprint>nacpqqw9jo</Fingerprint>
+      <Integrity>f0z2jOZ2rLMWlIRQ7//jc131TFy0gmB2pssnu3dROqk=</Integrity>
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+      <OriginalItemSpec>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\js\scroll-performance-test.js'))</OriginalItemSpec>
     </StaticWebAsset>
     <StaticWebAsset Include="$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\js\site.js'))">
       <SourceType>Package</SourceType>

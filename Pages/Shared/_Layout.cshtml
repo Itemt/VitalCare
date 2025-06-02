@@ -603,6 +603,11 @@
             display: none !important;
         }
         
+        /* Clase para items movidos al menú "Más" */
+        .moved-to-more {
+            display: none !important;
+        }
+        
         /* En pantallas móviles, ocultar siempre el menú "Más" */
         @@media (max-width: 991.98px) {
             #moreOptionsDropdown {
@@ -615,6 +620,22 @@
             #moreOptionsDropdown {
                 display: none; /* Por defecto oculto, el JS lo mostrará si es necesario */
             }
+            
+            /* Asegurar que los items principales estén visibles por defecto */
+            .nav-item:not(.dropdown.d-lg-none):not(#moreOptionsDropdown) {
+                display: block !important;
+            }
+            
+            /* Estilos para items dinámicos en el menú "Más" */
+            .dynamic-nav-item .dropdown-item {
+                font-weight: 500 !important;
+                color: #495057 !important;
+            }
+            
+            .dynamic-nav-item .dropdown-item:hover {
+                background: rgba(0, 123, 255, 0.1) !important;
+                color: #0056b3 !important;
+            }
         }
         
         /* Asegurar que los items principales estén visibles por defecto en pantallas grandes */
@@ -622,6 +643,56 @@
             .nav-item-important {
                 display: block !important;
             }
+        }
+        
+        /* Optimizaciones para el cálculo de ancho */
+        .navbar-nav .nav-item {
+            white-space: nowrap; /* Evitar que el texto se divida */
+        }
+        
+        .navbar-nav .nav-link {
+            padding-left: 0.75rem;
+            padding-right: 0.75rem;
+        }
+        
+        /* Transiciones suaves para elementos del lado derecho */
+        .d-flex.align-items-center a,
+        .d-flex.align-items-center button {
+            transition: all 0.3s ease;
+        }
+        
+        .d-flex.align-items-center a span,
+        .d-flex.align-items-center button span {
+            transition: opacity 0.3s ease;
+        }
+        
+        /* Estilos para botones simplificados */
+        .btn-sm {
+            font-size: 0.8rem !important;
+            padding: 0.375rem 0.5rem !important;
+        }
+        
+        /* Mejor handling del overflow en el navbar */
+        .navbar .container-fluid {
+            overflow: visible;
+        }
+        
+        /* Asegurar que los elementos no se corten abruptamente */
+        .navbar-nav,
+        .d-flex.align-items-center {
+            flex-shrink: 1;
+            min-width: 0;
+        }
+        
+        /* Indicador visual para debugging en desarrollo */
+        .dev-highlight {
+            outline: 2px solid red !important;
+        }
+        
+        /* Indicador de overflow para debugging */
+        .navbar-debug-overflow {
+            background: rgba(255, 0, 0, 0.1) !important;
+            border: 1px solid red !important;
         }
     </style>
 </head>
@@ -655,15 +726,30 @@
                         {
                             @if (isAdminLoggedIn)
                             {
-                                @* ADMIN - SOLO ADMINISTRACIÓN Y GESTIÓN VISIBLE *@
-                                <li class="nav-item nav-item-important d-lg-block d-none">
+                                @* ADMIN - OPCIONES PRINCIPALES *@
+                                <li class="nav-item nav-item-important">
                                     <a class="nav-link d-flex align-items-center" asp-page="/Admin/ManageUsers">
                                         <i class="bi bi-person-gear me-2"></i> Administración
                                     </a>
                                 </li>
-                                <li class="nav-item nav-item-important d-lg-block d-none">
+                                <li class="nav-item nav-item-important">
                                     <a class="nav-link d-flex align-items-center" asp-page="/Admin/ManageAppointments">
                                         <i class="bi bi-calendar-check-fill me-2"></i> Gestionar Citas
+                                    </a>
+                                </li>
+                                <li class="nav-item nav-item-important">
+                                    <a class="nav-link d-flex align-items-center" asp-page="/Admin/ManageDoctors">
+                                        <i class="bi bi-file-medical-fill me-2"></i> Gestionar Médicos
+                                    </a>
+                                </li>
+                                <li class="nav-item nav-item-important">
+                                    <a class="nav-link d-flex align-items-center" asp-page="/Admin/ManagePatients">
+                                        <i class="bi bi-person-lines-fill me-2"></i> Gestionar Pacientes
+                                    </a>
+                                </li>
+                                <li class="nav-item nav-item-important">
+                                    <a class="nav-link d-flex align-items-center" asp-page="/Admin/Medications/Index">
+                                        <i class="bi bi-capsule-pill me-2"></i> Medicamentos
                                     </a>
                                 </li>
                                 
@@ -716,15 +802,30 @@
                             } 
                             else if (isDoctorLoggedIn)
                             {
-                                @* DOCTOR - SOLO MI AGENDA Y MIS PACIENTES VISIBLE *@
-                                <li class="nav-item nav-item-important d-lg-block d-none">
+                                @* DOCTOR - OPCIONES PRINCIPALES *@
+                                <li class="nav-item nav-item-important">
                                     <a class="nav-link d-flex align-items-center" asp-page="/Doctor/Agenda">
                                         <i class="bi bi-calendar-week-fill me-2"></i> Mi Agenda
                                     </a>
                                 </li>
-                                <li class="nav-item nav-item-important d-lg-block d-none">
+                                <li class="nav-item nav-item-important">
                                     <a class="nav-link d-flex align-items-center" asp-page="/Doctor/Patients">
                                         <i class="bi bi-person-badge-fill me-2"></i> Mis Pacientes
+                                    </a>
+                                </li>
+                                <li class="nav-item nav-item-important">
+                                    <a class="nav-link d-flex align-items-center" asp-page="/Doctor/GenerateRecipe">
+                                        <i class="bi bi-prescription2 me-2"></i> Generar Recetas
+                                    </a>
+                                </li>
+                                <li class="nav-item nav-item-important">
+                                    <a class="nav-link d-flex align-items-center" asp-page="/Appointments/Index">
+                                        <i class="bi bi-calendar-event me-2"></i> Ver Citas
+                                    </a>
+                                </li>
+                                <li class="nav-item nav-item-important">
+                                    <a class="nav-link d-flex align-items-center" asp-page="/Doctor/MedicalRecords">
+                                        <i class="bi bi-journal-medical me-2"></i> Historial
                                     </a>
                                 </li>
                                 
@@ -780,15 +881,25 @@
                             } 
                             else if (isPatientLoggedIn)
                             {
-                                @* PACIENTE - SOLO AGENDAR CITA Y MIS CITAS VISIBLE *@
-                                <li class="nav-item nav-item-important d-lg-block d-none">
+                                @* PACIENTE - OPCIONES PRINCIPALES *@
+                                <li class="nav-item nav-item-important">
                                     <a class="nav-link d-flex align-items-center" asp-page="/Appointments/Create">
                                         <i class="bi bi-calendar-plus-fill me-2"></i> Agendar Cita
                                     </a>
                                 </li>
-                                <li class="nav-item nav-item-important d-lg-block d-none">
+                                <li class="nav-item nav-item-important">
                                     <a class="nav-link d-flex align-items-center" asp-page="/Appointments/Index">
                                         <i class="bi bi-calendar-event-fill me-2"></i> Mis Citas
+                                    </a>
+                                </li>
+                                <li class="nav-item nav-item-important">
+                                    <a class="nav-link d-flex align-items-center" asp-page="/Appointments/MyPrescriptions">
+                                        <i class="bi bi-journal-medical me-2"></i> Mis Recetas
+                                    </a>
+                                </li>
+                                <li class="nav-item nav-item-important">
+                                    <a class="nav-link d-flex align-items-center" asp-page="/Patient/HealthStatus">
+                                        <i class="bi bi-heart-pulse-fill me-2"></i> Mi Salud
                                     </a>
                                 </li>
                                 
@@ -849,95 +960,78 @@
                                     <i class="bi bi-three-dots me-2"></i> Más
                                 </a>
                                 <ul class="dropdown-menu" aria-labelledby="mainMenuDropdown">
-                                    @if (isAdminLoggedIn)
-                                    {
-                                        <li><h6 class="dropdown-header">Opciones Adicionales</h6></li>
-                                        <li><a class="dropdown-item d-flex align-items-center" asp-page="/Admin/ManageDoctors">
-                                            <i class="bi bi-file-medical-fill me-2"></i> Gestionar Médicos
-                                        </a></li>
-                                        <li><a class="dropdown-item d-flex align-items-center" asp-page="/Admin/ManagePatients">
-                                            <i class="bi bi-person-lines-fill me-2"></i> Gestionar Pacientes
-                                        </a></li>
-                                        <li><a class="dropdown-item d-flex align-items-center" asp-page="/Admin/Medications/Index">
-                                            <i class="bi bi-capsule-pill me-2"></i> Medicamentos
-                                        </a></li>
-                                        <li><hr class="dropdown-divider"></li>
-                                    }
-                                    else if (isDoctorLoggedIn)
-                                    {
-                                        <li><h6 class="dropdown-header">Herramientas Adicionales</h6></li>
-                                        <li><a class="dropdown-item d-flex align-items-center" asp-page="/Doctor/GenerateRecipe">
-                                            <i class="bi bi-prescription2 me-2"></i> Generar Recetas
-                                        </a></li>
-                                        <li><a class="dropdown-item d-flex align-items-center" asp-page="/Appointments/Index">
-                                            <i class="bi bi-calendar-event me-2"></i> Ver Todas las Citas
-                                        </a></li>
-                                        <li><a class="dropdown-item d-flex align-items-center" asp-page="/Doctor/MedicalRecords">
-                                            <i class="bi bi-journal-medical me-2"></i> Historial Médico
-                                        </a></li>
-                                        <li><a class="dropdown-item d-flex align-items-center" asp-page="/Admin/Medications/Index">
-                                            <i class="bi bi-capsule-pill me-2"></i> Base Medicamentos
-                                        </a></li>
-                                        <li><hr class="dropdown-divider"></li>
-                                    }
-                                    else if (isPatientLoggedIn)
-                                    {
-                                        <li><h6 class="dropdown-header">Opciones de Salud</h6></li>
-                                        <li><a class="dropdown-item d-flex align-items-center" asp-page="/Appointments/MyPrescriptions">
-                                            <i class="bi bi-journal-medical me-2"></i> Mis Recetas
-                                        </a></li>
-                                        <li><a class="dropdown-item d-flex align-items-center" asp-page="/Patient/HealthStatus">
-                                            <i class="bi bi-heart-pulse-fill me-2"></i> Estado de Salud
-                                        </a></li>
-                                        <li><a class="dropdown-item d-flex align-items-center" asp-page="/Patient/MedicalHistory">
-                                            <i class="bi bi-file-medical me-2"></i> Historial Completo
-                                        </a></li>
-                                        <li><a class="dropdown-item d-flex align-items-center" asp-page="/Patient/Messages">
-                                            <i class="bi bi-chat-dots-fill me-2"></i> Mensajes Médicos
-                                        </a></li>
-                                        <li><hr class="dropdown-divider"></li>
-                                    }
+                                    @* Contenido dinámico será agregado por JavaScript aquí *@
                                     
-                                    <li><h6 class="dropdown-header">Información</h6></li>
-                                    <li><a class="dropdown-item d-flex align-items-center" asp-area="" asp-page="/Servicios">
-                                        <i class="bi bi-gear-fill me-2"></i> Nuestros Servicios
-                                    </a></li>
-                                    <li><a class="dropdown-item d-flex align-items-center" asp-area="" asp-page="/About">
-                                        <i class="bi bi-building me-2"></i> Nuestra Empresa
-                                    </a></li>
-                                    <li><a class="dropdown-item d-flex align-items-center" asp-area="" asp-page="/Team">
-                                        <i class="bi bi-people-fill me-2"></i> Nuestro Equipo
-                                    </a></li>
-                                    <li><hr class="dropdown-divider"></li>
-                                    <li><h6 class="dropdown-header">Soporte</h6></li>
-                                    <li><a class="dropdown-item d-flex align-items-center" asp-area="" asp-page="/Contact">
-                                        <i class="bi bi-envelope-fill me-2"></i> Contáctanos
-                                    </a></li>
-                                    <li><a class="dropdown-item d-flex align-items-center" asp-area="" asp-page="/Support">
-                                        <i class="bi bi-headset me-2"></i> Soporte Técnico
-                                    </a></li>
-                                    <li><a class="dropdown-item d-flex align-items-center" asp-area="" asp-page="/FAQ">
-                                        <i class="bi bi-question-circle-fill me-2"></i> FAQ
-                                    </a></li>
+                                    @* Contenido estático basado en rol *@
+                                    @if (SignInManager.IsSignedIn(User))
+                                    {
+                                        <li><h6 class="dropdown-header">Información</h6></li>
+                                        <li><a class="dropdown-item d-flex align-items-center" asp-area="" asp-page="/Servicios">
+                                            <i class="bi bi-gear-fill me-2"></i> Nuestros Servicios
+                                        </a></li>
+                                        <li><a class="dropdown-item d-flex align-items-center" asp-area="" asp-page="/About">
+                                            <i class="bi bi-building me-2"></i> Nuestra Empresa
+                                        </a></li>
+                                        <li><a class="dropdown-item d-flex align-items-center" asp-area="" asp-page="/Team">
+                                            <i class="bi bi-people-fill me-2"></i> Nuestro Equipo
+                                        </a></li>
+                                        <li><hr class="dropdown-divider"></li>
+                                        <li><h6 class="dropdown-header">Soporte</h6></li>
+                                        <li><a class="dropdown-item d-flex align-items-center" asp-area="" asp-page="/Contact">
+                                            <i class="bi bi-envelope-fill me-2"></i> Contáctanos
+                                        </a></li>
+                                        <li><a class="dropdown-item d-flex align-items-center" asp-area="" asp-page="/Support">
+                                            <i class="bi bi-headset me-2"></i> Soporte Técnico
+                                        </a></li>
+                                        <li><a class="dropdown-item d-flex align-items-center" asp-area="" asp-page="/FAQ">
+                                            <i class="bi bi-question-circle-fill me-2"></i> FAQ
+                                        </a></li>
+                                    }
+                                    else
+                                    {
+                                        <li><h6 class="dropdown-header">Soporte</h6></li>
+                                        <li><a class="dropdown-item d-flex align-items-center" asp-area="" asp-page="/Support">
+                                            <i class="bi bi-headset me-2"></i> Soporte Técnico
+                                        </a></li>
+                                        <li><a class="dropdown-item d-flex align-items-center" asp-area="" asp-page="/FAQ">
+                                            <i class="bi bi-question-circle-fill me-2"></i> FAQ
+                                        </a></li>
+                                    }
                                 </ul>
                             </li>
                         }
                         else
                         {
-                            @* USUARIOS NO LOGUEADOS - SOLO SERVICIOS VISIBLE *@
-                            <li class="nav-item d-lg-block d-none">
+                            @* USUARIOS NO LOGUEADOS - OPCIONES PRINCIPALES *@
+                            <li class="nav-item nav-item-important">
                                 <a class="nav-link d-flex align-items-center" asp-area="" asp-page="/Servicios">
                                     <i class="bi bi-gear-fill me-2"></i> Servicios
                                 </a>
                             </li>
+                            <li class="nav-item nav-item-important">
+                                <a class="nav-link d-flex align-items-center" asp-area="" asp-page="/About">
+                                    <i class="bi bi-building me-2"></i> Sobre Nosotros
+                                </a>
+                            </li>
+                            <li class="nav-item nav-item-important">
+                                <a class="nav-link d-flex align-items-center" asp-area="" asp-page="/Team">
+                                    <i class="bi bi-people-fill me-2"></i> Equipo
+                                </a>
+                            </li>
+                            <li class="nav-item nav-item-important">
+                                <a class="nav-link d-flex align-items-center" asp-area="" asp-page="/Contact">
+                                    <i class="bi bi-envelope-fill me-2"></i> Contacto
+                                </a>
+                            </li>
                             
                             @* MENÚ HAMBURGUESA PARA NO LOGUEADOS *@
-                            <li class="nav-item dropdown">
+                            <li class="nav-item dropdown d-lg-none">
                                 <a class="nav-link dropdown-toggle d-flex align-items-center" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                                    <i class="bi bi-list me-2"></i> <span class="d-lg-none">Menú</span><span class="d-none d-lg-inline">Más</span>
+                                    <i class="bi bi-list me-2"></i> Menú
                                 </a>
                                 <ul class="dropdown-menu dropdown-menu-end">
-                                    <li class="d-lg-none">
+                                    <li><h6 class="dropdown-header">Información</h6></li>
+                                    <li>
                                         <a class="dropdown-item d-flex align-items-center" asp-area="" asp-page="/Servicios">
                                             <i class="bi bi-gear-fill me-2"></i> Servicios
                                         </a>
@@ -953,6 +1047,7 @@
                                         </a>
                                     </li>
                                     <li><hr class="dropdown-divider"></li>
+                                    <li><h6 class="dropdown-header">Soporte</h6></li>
                                     <li>
                                         <a class="dropdown-item d-flex align-items-center" asp-area="" asp-page="/Contact">
                                             <i class="bi bi-envelope-fill me-2"></i> Contacto
@@ -1247,7 +1342,7 @@
     @await RenderSectionAsync("Scripts", required: false)
     
     <script>
-        // NAVBAR RESPONSIVO INTELIGENTE - MEJORADO
+        // NAVBAR RESPONSIVO INTELIGENTE - MEJORADO PARA INCLUIR ELEMENTOS DEL LADO DERECHO
         document.addEventListener('DOMContentLoaded', function() {
             function adjustNavbarResponsively() {
                 const navbarNav = document.querySelector('.navbar-nav.me-auto');
@@ -1255,44 +1350,246 @@
                 const rightSide = document.querySelector('.d-flex.align-items-center');
                 const navbar = document.querySelector('.navbar .container-fluid');
                 
-                if (!navbarNav || !moreDropdown || !navbar) return;
+                if (!navbarNav || !navbar || !rightSide) return;
                 
                 // Solo aplicar en pantallas grandes (donde el navbar está expandido)
                 if (window.innerWidth < 992) {
-                    moreDropdown.style.display = 'none';
+                    // En móviles, esconder el menú "Más" porque ya existe el menú hamburguesa
+                    if (moreDropdown) {
+                        moreDropdown.style.display = 'none';
+                    }
+                    // Mostrar todos los elementos principales (el menú hamburguesa los manejará)
+                    const allNavItems = navbarNav.querySelectorAll('.nav-item:not(.dropdown.d-lg-none)');
+                    allNavItems.forEach(item => {
+                        if (item.id !== 'moreOptionsDropdown') {
+                            item.style.display = '';
+                        }
+                    });
+                    // Mostrar elementos del lado derecho en móviles
+                    showRightSideElements();
                     return;
                 }
                 
+                // En pantallas grandes, manejar responsividad inteligente
                 const navbarWidth = navbar.offsetWidth;
                 const brandWidth = document.querySelector('.navbar-brand')?.offsetWidth || 200;
+                const moreDropdownWidth = 120; // Ancho estimado del botón "Más"
+                const marginSafety = 50; // Margen de seguridad
+                
+                // Calcular ancho real del lado derecho
                 const rightSideWidth = rightSide?.offsetWidth || 250;
-                const availableWidth = navbarWidth - brandWidth - rightSideWidth - 100; // 100px margen de seguridad
                 
-                // Obtener todos los items principales (excluyendo dropdowns móviles)
-                const mainNavItems = navbarNav.querySelectorAll('.nav-item:not(.dropdown.d-lg-none)');
-                let currentWidth = 0;
-                let itemsToHide = [];
+                const availableWidth = navbarWidth - brandWidth - rightSideWidth - marginSafety;
                 
-                // Calcular qué items caben
-                mainNavItems.forEach((item, index) => {
-                    if (item.id === 'moreOptionsDropdown') return; // Saltar el dropdown "Más"
-                    
-                    const itemWidth = item.offsetWidth + 10; // 10px margen entre items
-                    
-                    if (currentWidth + itemWidth + 120 < availableWidth) { // 120px reservado para "Más"
-                        item.style.display = '';
-                        currentWidth += itemWidth;
-                    } else {
-                        item.style.display = 'none';
-                        itemsToHide.push(item);
-                    }
+                // Obtener todos los items principales (excluyendo dropdowns móviles y el menú "Más")
+                const mainNavItems = Array.from(navbarNav.querySelectorAll('.nav-item:not(.dropdown.d-lg-none)'))
+                    .filter(item => item.id !== 'moreOptionsDropdown');
+                
+                // Mostrar todos inicialmente para medir
+                mainNavItems.forEach(item => {
+                    item.style.display = '';
                 });
                 
-                // Mostrar/ocultar dropdown "Más" según necesidad
-                if (itemsToHide.length > 0) {
-                    moreDropdown.style.display = 'block';
+                // Calcular ancho total necesario
+                let totalWidth = 0;
+                const itemWidths = [];
+                
+                mainNavItems.forEach(item => {
+                    const itemWidth = item.offsetWidth + 15; // 15px margen entre items
+                    itemWidths.push({ element: item, width: itemWidth });
+                    totalWidth += itemWidth;
+                });
+                
+                // Verificar si todo cabe (incluyendo verificación de overflow del lado derecho)
+                const isRightSideOverflowing = checkRightSideOverflow();
+                
+                if (totalWidth <= availableWidth && !isRightSideOverflowing) {
+                    // Todo cabe, no necesitamos el menú "Más"
+                    if (moreDropdown) {
+                        moreDropdown.style.display = 'none';
+                    }
+                    mainNavItems.forEach(item => {
+                        item.style.display = '';
+                        item.classList.remove('moved-to-more');
+                    });
+                    showRightSideElements();
                 } else {
-                    moreDropdown.style.display = 'none';
+                    // No todo cabe o el lado derecho se está cortando
+                    if (moreDropdown) {
+                        moreDropdown.style.display = '';
+                    }
+                    
+                    // Si el lado derecho se está cortando, reducir espacio disponible
+                    let adjustedAvailableWidth = availableWidth;
+                    if (isRightSideOverflowing) {
+                        adjustedAvailableWidth = availableWidth - 100; // Reducir espacio para el lado derecho
+                        handleRightSideOverflow();
+                    } else {
+                        showRightSideElements();
+                    }
+                    
+                    // Calcular cuántos items caben sin el menú "Más"
+                    const availableWidthWithMore = adjustedAvailableWidth - moreDropdownWidth;
+                    let currentWidth = 0;
+                    let itemsToShow = [];
+                    let itemsToHide = [];
+                    
+                    for (let i = 0; i < itemWidths.length; i++) {
+                        const { element, width } = itemWidths[i];
+                        
+                        if (currentWidth + width <= availableWidthWithMore) {
+                            currentWidth += width;
+                            itemsToShow.push(element);
+                        } else {
+                            itemsToHide.push(element);
+                        }
+                    }
+                    
+                    // Aplicar visibilidad
+                    itemsToShow.forEach(item => {
+                        item.style.display = '';
+                        item.classList.remove('moved-to-more');
+                    });
+                    
+                    itemsToHide.forEach(item => {
+                        item.style.display = 'none';
+                        item.classList.add('moved-to-more');
+                    });
+                    
+                    // Actualizar contenido del menú "Más" dinámicamente
+                    updateMoreDropdownContent(itemsToHide);
+                }
+            }
+            
+            /**
+             * Verificar si el lado derecho se está desbordando
+             */
+            function checkRightSideOverflow() {
+                const navbar = document.querySelector('.navbar .container-fluid');
+                const rightSide = document.querySelector('.d-flex.align-items-center');
+                
+                if (!navbar || !rightSide) return false;
+                
+                const navbarRect = navbar.getBoundingClientRect();
+                const rightSideRect = rightSide.getBoundingClientRect();
+                
+                // Verificar si el lado derecho se extiende más allá del navbar
+                return rightSideRect.right > navbarRect.right - 10; // 10px de margen
+            }
+            
+            /**
+             * Manejar overflow del lado derecho
+             */
+            function handleRightSideOverflow() {
+                // Para usuarios no logueados, simplificar los botones
+                const registerLink = document.querySelector('a[href*="Register"]');
+                const loginBtn = document.querySelector('.btn-login');
+                const themeBtn = document.getElementById('themeToggleBtn');
+                
+                if (registerLink && loginBtn) {
+                    // Ocultar texto "Registrarse" y solo mostrar ícono
+                    const registerText = registerLink.querySelector('.d-none.d-md-inline');
+                    if (registerText) {
+                        registerText.style.display = 'none';
+                    }
+                    
+                    // Simplificar botón de login
+                    const loginText = loginBtn.querySelector('span');
+                    if (loginText) {
+                        loginText.style.display = 'none';
+                    }
+                    
+                    // Hacer el botón de tema más pequeño
+                    if (themeBtn) {
+                        themeBtn.classList.add('btn-sm');
+                    }
+                }
+            }
+            
+            /**
+             * Mostrar elementos del lado derecho normalmente
+             */
+            function showRightSideElements() {
+                const registerLink = document.querySelector('a[href*="Register"]');
+                const loginBtn = document.querySelector('.btn-login');
+                const themeBtn = document.getElementById('themeToggleBtn');
+                
+                if (registerLink) {
+                    const registerText = registerLink.querySelector('span');
+                    if (registerText) {
+                        registerText.style.display = '';
+                    }
+                }
+                
+                if (loginBtn) {
+                    const loginText = loginBtn.querySelector('span');
+                    if (loginText) {
+                        loginText.style.display = '';
+                    }
+                }
+                
+                if (themeBtn) {
+                    themeBtn.classList.remove('btn-sm');
+                }
+            }
+            
+            /**
+             * Actualizar el contenido del menú "Más" con los items que no caben
+             */
+            function updateMoreDropdownContent(hiddenItems) {
+                const moreDropdownMenu = document.querySelector('#moreOptionsDropdown .dropdown-menu');
+                if (!moreDropdownMenu) return;
+                
+                // Limpiar contenido dinámico previo
+                const dynamicItems = moreDropdownMenu.querySelectorAll('.dynamic-nav-item');
+                dynamicItems.forEach(item => item.remove());
+                
+                if (hiddenItems.length > 0) {
+                    // Agregar separator si hay contenido estático
+                    const staticItems = moreDropdownMenu.querySelectorAll('li:not(.dynamic-nav-item)');
+                    if (staticItems.length > 0) {
+                        const separator = document.createElement('li');
+                        separator.className = 'dynamic-nav-item';
+                        separator.innerHTML = '<hr class="dropdown-divider">';
+                        moreDropdownMenu.insertBefore(separator, staticItems[0]);
+                        
+                        const header = document.createElement('li');
+                        header.className = 'dynamic-nav-item';
+                        header.innerHTML = '<h6 class="dropdown-header">Navegación Principal</h6>';
+                        moreDropdownMenu.insertBefore(header, staticItems[0]);
+                    }
+                    
+                    // Agregar items ocultos al dropdown
+                    hiddenItems.forEach(item => {
+                        const navLink = item.querySelector('.nav-link');
+                        if (navLink && !navLink.classList.contains('dropdown-toggle')) {
+                            const dropdownItem = document.createElement('li');
+                            dropdownItem.className = 'dynamic-nav-item';
+                            
+                            const link = document.createElement('a');
+                            link.className = 'dropdown-item d-flex align-items-center';
+                            link.href = navLink.href;
+                            link.innerHTML = navLink.innerHTML;
+                            
+                            // Copiar atributos asp-page si existen
+                            if (navLink.hasAttribute('asp-page')) {
+                                link.setAttribute('asp-page', navLink.getAttribute('asp-page'));
+                            }
+                            if (navLink.hasAttribute('asp-area')) {
+                                link.setAttribute('asp-area', navLink.getAttribute('asp-area'));
+                            }
+                            
+                            dropdownItem.appendChild(link);
+                            
+                            // Insertar antes del contenido estático
+                            const staticItems = moreDropdownMenu.querySelectorAll('li:not(.dynamic-nav-item)');
+                            if (staticItems.length > 0) {
+                                moreDropdownMenu.insertBefore(dropdownItem, staticItems[0]);
+                            } else {
+                                moreDropdownMenu.appendChild(dropdownItem);
+                            }
+                        }
+                    });
                 }
             }
             
@@ -1309,21 +1606,61 @@
                 };
             }
             
-            // Ejecutar al cargar
-            setTimeout(adjustNavbarResponsively, 100);
+            // Ejecutar al cargar con delay para asegurar que todo esté renderizado
+            setTimeout(adjustNavbarResponsively, 200);
             
             // Ejecutar al redimensionar (con debounce para rendimiento)
-            window.addEventListener('resize', debounce(adjustNavbarResponsively, 150));
+            window.addEventListener('resize', debounce(adjustNavbarResponsively, 100));
             
             // Ejecutar cuando cambie el estado del navbar collapse
             const navbarCollapse = document.getElementById('navbarSupportedContent');
             if (navbarCollapse) {
-                navbarCollapse.addEventListener('shown.bs.collapse', adjustNavbarResponsively);
-                navbarCollapse.addEventListener('hidden.bs.collapse', adjustNavbarResponsively);
+                navbarCollapse.addEventListener('shown.bs.collapse', () => {
+                    setTimeout(adjustNavbarResponsively, 100);
+                });
+                navbarCollapse.addEventListener('hidden.bs.collapse', () => {
+                    setTimeout(adjustNavbarResponsively, 100);
+                });
             }
             
             // Ejecutar cuando se complete la carga de fuentes (puede afectar el ancho)
-            document.fonts.ready.then(adjustNavbarResponsively);
+            if (document.fonts) {
+                document.fonts.ready.then(() => {
+                    setTimeout(adjustNavbarResponsively, 100);
+                });
+            }
+            
+            // Observar cambios en el DOM que puedan afectar el navbar
+            const observer = new MutationObserver(debounce(adjustNavbarResponsively, 200));
+            const navbarElement = document.querySelector('.navbar');
+            if (navbarElement) {
+                observer.observe(navbarElement, {
+                    childList: true,
+                    subtree: true,
+                    attributes: true,
+                    attributeFilter: ['class', 'style']
+                });
+            }
+            
+            // Log para debugging en desarrollo
+            if (window.location.hostname === 'localhost' || window.location.hostname.includes('127.0.0.1')) {
+                console.log('🧭 Navbar responsivo inteligente activado (con detección de overflow del lado derecho)');
+                
+                // Comando de debug mejorado
+                window.debugNavbar = () => {
+                    const rightSide = document.querySelector('.d-flex.align-items-center');
+                    console.log('Navbar Debug Info:', {
+                        navbarWidth: document.querySelector('.navbar .container-fluid')?.offsetWidth,
+                        brandWidth: document.querySelector('.navbar-brand')?.offsetWidth,
+                        rightSideWidth: rightSide?.offsetWidth,
+                        rightSideOverflowing: checkRightSideOverflow(),
+                        mainItems: document.querySelectorAll('.navbar-nav.me-auto .nav-item:not(.dropdown.d-lg-none)').length,
+                        moreDropdownVisible: document.getElementById('moreOptionsDropdown')?.style.display !== 'none',
+                        navbarRect: document.querySelector('.navbar .container-fluid')?.getBoundingClientRect(),
+                        rightSideRect: rightSide?.getBoundingClientRect()
+                    });
+                };
+            }
         });
     </script>
 </body>

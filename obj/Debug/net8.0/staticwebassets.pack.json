@@ -97,6 +97,14 @@
       "PackagePath": "staticwebassets\\js\\performance-optimizer.js"
     },
     {
+      "Id": "C:\\Users\\CristianPC\\Desktop\\vitalcare\\wwwroot\\js\\scroll-performance-fix.js",
+      "PackagePath": "staticwebassets\\js\\scroll-performance-fix.js"
+    },
+    {
+      "Id": "C:\\Users\\CristianPC\\Desktop\\vitalcare\\wwwroot\\js\\scroll-performance-test.js",
+      "PackagePath": "staticwebassets\\js\\scroll-performance-test.js"
+    },
+    {
       "Id": "C:\\Users\\CristianPC\\Desktop\\vitalcare\\wwwroot\\js\\site.flatpickr.js",
       "PackagePath": "staticwebassets\\js\\site.flatpickr.js"
     },
