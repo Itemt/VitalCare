@@ -47,45 +47,83 @@
     font-size: 2rem !important;
 }
 
-/* Sparkles animation for light mode */
+/* Sparkles animation for light mode - Multiple dots */
 .feature-card-hover:hover .feature-icon-wrapper::before,
 .feature-card-hover:hover .feature-icon-wrapper::after {
-    content: "✨";
+    content: "";
     position: absolute;
-    color: #ffd700;
-    font-size: 0.8rem;
-    animation: sparkle 1.5s ease-in-out infinite;
+    width: 4px;
+    height: 4px;
+    background: #ffd700;
+    border-radius: 50%;
+    animation: sparkleParticle 1.2s ease-in-out infinite;
     z-index: 1;
     pointer-events: none;
 }
 
 .feature-card-hover:hover .feature-icon-wrapper::before {
-    top: -10px;
-    right: -10px;
+    top: -8px;
+    right: -8px;
     animation-delay: 0s;
 }
 
 .feature-card-hover:hover .feature-icon-wrapper::after {
-    bottom: -10px;
-    left: -10px;
-    animation-delay: 0.3s;
+    bottom: -8px;
+    left: -8px;
+    animation-delay: 0.4s;
 }
 
-/* Sparkles animation for dark mode */
+/* Additional sparkle particles */
+.feature-card-hover .feature-icon-wrapper {
+    position: relative;
+}
+
+.feature-card-hover:hover .feature-icon-wrapper {
+    position: relative;
+}
+
+.feature-card-hover:hover .feature-icon-wrapper {
+    --sparkle1: radial-gradient(circle at 10px -5px, #ffd700 2px, transparent 2px);
+    --sparkle2: radial-gradient(circle at -5px 10px, #ffd700 2px, transparent 2px);
+    --sparkle3: radial-gradient(circle at 15px 12px, #ffd700 2px, transparent 2px);
+    --sparkle4: radial-gradient(circle at -3px -3px, #ffd700 2px, transparent 2px);
+    background-image: var(--sparkle1), var(--sparkle2), var(--sparkle3), var(--sparkle4);
+    background-size: 30px 30px;
+    background-repeat: no-repeat;
+    animation: sparkleMove 1.5s ease-in-out infinite;
+}
+
+/* Sparkles animation for dark mode - White dots */
 [data-bs-theme="dark"] .feature-card-hover:hover .feature-icon-wrapper::before,
 [data-bs-theme="dark"] .feature-card-hover:hover .feature-icon-wrapper::after {
-    color: #ffffff;
+    background: #ffffff;
+}
+
+[data-bs-theme="dark"] .feature-card-hover:hover .feature-icon-wrapper {
+    --sparkle1: radial-gradient(circle at 10px -5px, #ffffff 2px, transparent 2px);
+    --sparkle2: radial-gradient(circle at -5px 10px, #ffffff 2px, transparent 2px);
+    --sparkle3: radial-gradient(circle at 15px 12px, #ffffff 2px, transparent 2px);
+    --sparkle4: radial-gradient(circle at -3px -3px, #ffffff 2px, transparent 2px);
 }
 
 /* Sparkle keyframes */
-@keyframes sparkle {
+@keyframes sparkleParticle {
     0%, 100% {
         opacity: 0;
-        transform: scale(0) rotate(0deg);
+        transform: scale(0) translateY(0);
     }
     50% {
         opacity: 1;
-        transform: scale(1) rotate(180deg);
+        transform: scale(1) translateY(-5px);
+    }
+}
+
+@keyframes sparkleMove {
+    0%, 100% {
+        opacity: 0.7;
+    }
+    50% {
+        opacity: 1;
     }
 }
 
