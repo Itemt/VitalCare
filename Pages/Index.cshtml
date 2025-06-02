@@ -497,186 +497,200 @@ else if (isPatient)
         else if (User.IsInRole("Paciente"))
         {
             <div id="patientPanelDashboard" class="row justify-content-center">
-                <div class="col-lg-10 col-xl-9">
-                    <div class="card shadow-lg modern-card-hover">
-                        <div class="card-header bg-patient text-white text-center text-shadow-custom">
-                            <h2 class="my-2"><i class="bi bi-person-heart"></i> Portal del Paciente</h2>
+                <div class="col-lg-11 col-xl-10">
+                    <!-- Header simplificado -->
+                    <div class="row mb-4">
+                        <div class="col-12">
+                            <div class="card border-0 shadow-sm" style="background: linear-gradient(135deg, #0f4a2d 0%, #166534 100%); color: white;">
+                                <div class="card-body text-center py-4">
+                                    <h2 class="mb-2" style="color: white;">
+                                        <i class="bi bi-person-heart me-2" style="color: white;"></i>
+                                        @if (!string.IsNullOrEmpty(userFirstName))
+                                        {
+                                            <span style="color: white;">Bienvenido, <strong>@userFirstName</strong></span>
+                                        }
+                                        else
+                                        {
+                                            <span style="color: white;">Portal del Paciente</span>
+                                        }
+                                    </h2>
+                                    <p class="mb-0" style="color: rgba(255,255,255,0.85);">Gestiona tu salud de manera simple y segura</p>
+                                </div>
+                            </div>
                         </div>
-                        <div class="card-body p-4">
-                            @if (!string.IsNullOrEmpty(userFirstName))
-                            {
-                                <p class="lead text-center mb-4">Bienvenido de nuevo, <span class="fw-semibold">@userFirstName</span>. Aquí puedes gestionar tus citas y ver tu información médica.</p>
-                            } else {
-                                <p class="lead text-center mb-4">Bienvenido al portal de pacientes. Aquí puedes gestionar tus citas y ver tu información médica.</p>
-                            }
+                    </div>
 
-                            <!-- Real Patient Data Overview -->
-                            <div class="row g-3 mb-4 text-center" id="patientRealDataOverview">
-                                <div class="col-md-6">
-                                    <div class="stat-card p-3 border border-primary-subtle rounded bg-primary-subtle modern-card-hover">
-                                        <h5 class="stat-value mb-1 fs-5 fw-semibold text-primary-emphasis" id="patientNextAppointmentDisplay">
-                                            <i class="bi bi-calendar-week text-primary me-2"></i>
-                                            <span>Cargando...</span>
-                                        </h5>
-                                        <p class="stat-label mb-0 text-muted small text-uppercase">Próxima Cita</p>
-                                    </div>
-                                </div>
-                                <div class="col-md-6">
-                                    <div class="stat-card p-3 border border-success-subtle rounded bg-success-subtle modern-card-hover">
-                                        <h5 class="stat-value mb-1 fs-2 fw-bold text-success-emphasis" id="patientPrescriptionsCount">
-                                            <i class="bi bi-prescription2 text-success me-2"></i>
-                                            <span>0</span>
-                                        </h5>
-                                        <p class="stat-label mb-0 text-muted small text-uppercase">Recetas Activas</p>
-                                    </div>
+                    <!-- Dashboard rápido -->
+                    <div class="row g-3 mb-4">
+                        <div class="col-md-4">
+                            <div class="card border-0 shadow-sm h-100" style="background: linear-gradient(135deg, #0f4a2d, #166534);">
+                                <div class="card-body text-center py-4">
+                                    <i class="bi bi-calendar-week fs-2 mb-2" style="color: white;"></i>
+                                    <h6 class="card-title" style="color: white;">Próxima Cita</h6>
+                                    <p class="card-text small mb-0" id="patientNextAppointmentDisplay" style="color: rgba(255,255,255,0.85);">Cargando...</p>
                                 </div>
                             </div>
-                            <!-- End Real Patient Data Overview -->
-
-                            <hr class="my-4">
-
-                            <h4 class="mb-3 text-center fw-normal text-success-emphasis">Tu Espacio Personal</h4>
-                            <div class="row justify-content-center text-center g-4 mb-4">
-                                <div class="col-md-6 col-lg-4">
-                                    <div class="card h-100 shadow-lg border-success action-card-hover feature-card-hover">
-                                        <div class="card-body d-flex flex-column align-items-center p-4">
-                                            <div class="feature-icon-wrapper mb-3">
-                                                <i class="bi bi-calendar-plus-fill fs-1 text-success feature-icon-main rotating-icon"></i>
-                                                <div class="feature-sparkles">
-                                                    <span class="sparkle sparkle-1"></span>
-                                                    <span class="sparkle sparkle-2"></span>
-                                                    <span class="sparkle sparkle-3"></span>
-                                                    <span class="sparkle sparkle-4"></span>
-                                                </div>
-                                            </div>
-                                            <h5 class="card-title">Agendar Nueva Cita</h5>
-                                            <p class="card-text flex-grow-1 small text-muted">Busque disponibilidad y programe una nueva consulta médica.</p>
-                                            <a asp-page="/Appointments/Create" class="btn btn-success mt-auto w-100 fw-semibold"><i class="bi bi-arrow-right-circle me-1"></i> Agendar Ahora</a>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-md-6 col-lg-4">
-                                    <div class="card h-100 shadow-lg border-success action-card-hover feature-card-hover">
-                                        <div class="card-body d-flex flex-column align-items-center p-4">
-                                            <div class="feature-icon-wrapper mb-3">
-                                                <i class="bi bi-calendar-check-fill fs-1 text-success feature-icon-main rotating-icon"></i>
-                                                <div class="feature-sparkles">
-                                                    <span class="sparkle sparkle-1"></span>
-                                                    <span class="sparkle sparkle-2"></span>
-                                                    <span class="sparkle sparkle-3"></span>
-                                                    <span class="sparkle sparkle-4"></span>
-                                                </div>
-                                            </div>
-                                            <h5 class="card-title">Mis Citas</h5>
-                                            <p class="card-text flex-grow-1 small text-muted">Vea sus próximas citas, detalles, y gestione sus solicitudes.</p>
-                                            <a asp-page="/Appointments/Index" class="btn btn-success mt-auto w-100 fw-semibold"><i class="bi bi-list-check me-1"></i> Ver Mis Citas</a>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-md-6 col-lg-4">
-                                    <div class="card h-100 shadow-lg border-success action-card-hover feature-card-hover">
-                                        <div class="card-body d-flex flex-column align-items-center p-4">
-                                            <div class="feature-icon-wrapper mb-3">
-                                                <i class="bi bi-journal-medical fs-1 text-success feature-icon-main"></i>
-                                                <div class="feature-sparkles">
-                                                    <span class="sparkle sparkle-1"></span>
-                                                    <span class="sparkle sparkle-2"></span>
-                                                    <span class="sparkle sparkle-3"></span>
-                                                </div>
-                                            </div>
-                                            <h5 class="card-title">Mis Recetas</h5>
-                                            <p class="card-text flex-grow-1 small text-muted">Consulte las recetas médicas emitidas por sus doctores.</p>
-                                            <a asp-page="/Appointments/MyPrescriptions" class="btn btn-success mt-auto w-100 fw-semibold"><i class="bi bi-eye me-1"></i> Ver Mis Recetas</a>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-md-6 col-lg-4">
-                                    <div class="card h-100 shadow-lg border-success action-card-hover feature-card-hover">
-                                        <div class="card-body d-flex flex-column align-items-center p-4">
-                                            <div class="feature-icon-wrapper mb-3">
-                                                <i class="bi bi-person-fill-gear fs-1 text-success feature-icon-main"></i>
-                                                <div class="feature-sparkles">
-                                                    <span class="sparkle sparkle-1"></span>
-                                                    <span class="sparkle sparkle-2"></span>
-                                                    <span class="sparkle sparkle-3"></span>
-                                                </div>
-                                            </div>
-                                            <h5 class="card-title">Mi Perfil</h5>
-                                            <p class="card-text flex-grow-1 small text-muted">Actualice su información personal y de contacto.</p>
-                                            <a asp-area="Identity" asp-page="/Account/Manage/Index" class="btn btn-outline-success mt-auto w-100 fw-semibold"><i class="bi bi-pencil-square me-1"></i> Actualizar Perfil</a>
-                                        </div>
-                                    </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="card border-0 shadow-sm h-100" style="background: linear-gradient(135deg, #0f4a2d, #166534);">
+                                <div class="card-body text-center py-4">
+                                    <i class="bi bi-prescription2 fs-2 mb-2" style="color: white;"></i>
+                                    <h6 class="card-title" style="color: white;">Recetas Activas</h6>
+                                    <p class="card-text small mb-0" style="color: rgba(255,255,255,0.85);">
+                                        <span id="patientPrescriptionsCount">0</span> recetas vigentes
+                                    </p>
                                 </div>
                             </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="card border-0 shadow-sm h-100" style="background: linear-gradient(135deg, #0f4a2d, #166534);">
+                                <div class="card-body text-center py-4">
+                                    <i class="bi bi-bell fs-2 mb-2" style="color: white;"></i>
+                                    <h6 class="card-title" style="color: white;">Recordatorios</h6>
+                                    <p class="card-text small mb-0" style="color: rgba(255,255,255,0.85);">
+                                        <span id="activeRemindersCount">0</span> pendientes
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
 
-                            <hr class="my-4">
+                    <!-- Acciones principales -->
+                    <div class="row g-4 mb-4">
+                        <div class="col-md-4">
+                            <div class="card border-0 shadow-lg h-100 feature-card-hover">
+                                <div class="card-body text-center p-4">
+                                    <div class="feature-icon-wrapper mb-3">
+                                        <i class="bi bi-calendar-plus-fill fs-1 feature-icon-main" style="color: #0f4a2d;"></i>
+                                    </div>
+                                    <h5 class="card-title fw-bold mb-3">Agendar Cita</h5>
+                                    <p class="card-text text-muted mb-4">Programa una nueva consulta médica según tu disponibilidad</p>
+                                    <a asp-page="/Appointments/Create" class="btn btn-lg w-100 fw-bold text-white" style="background: linear-gradient(135deg, #0f4a2d, #166534); border: none;">
+                                        <i class="bi bi-arrow-right-circle me-2"></i>Agendar Ahora
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="card border-0 shadow-lg h-100 feature-card-hover">
+                                <div class="card-body text-center p-4">
+                                    <div class="feature-icon-wrapper mb-3">
+                                        <i class="bi bi-calendar-check-fill fs-1 feature-icon-main" style="color: #0f4a2d;"></i>
+                                    </div>
+                                    <h5 class="card-title fw-bold mb-3">Mis Citas</h5>
+                                    <p class="card-text text-muted mb-4">Revisa y gestiona todas tus citas médicas programadas</p>
+                                    <a asp-page="/Appointments/Index" class="btn btn-lg w-100 fw-bold text-white" style="background: linear-gradient(135deg, #0f4a2d, #166534); border: none;">
+                                        <i class="bi bi-list-check me-2"></i>Ver Mis Citas
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="card border-0 shadow-lg h-100 feature-card-hover">
+                                <div class="card-body text-center p-4">
+                                    <div class="feature-icon-wrapper mb-3">
+                                        <i class="bi bi-journal-medical fs-1 feature-icon-main" style="color: #0f4a2d;"></i>
+                                    </div>
+                                    <h5 class="card-title fw-bold mb-3">Mis Recetas</h5>
+                                    <p class="card-text text-muted mb-4">Consulta las recetas médicas emitidas por tus doctores</p>
+                                    <a asp-page="/Appointments/MyPrescriptions" class="btn btn-lg w-100 fw-bold text-white" style="background: linear-gradient(135deg, #0f4a2d, #166534); border: none;">
+                                        <i class="bi bi-eye me-2"></i>Ver Recetas
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
 
-                            <div class="row g-4">
-                                <div class="col-lg-6">
-                                    <h5 class="mb-3 text-success-emphasis"><i class="bi bi-heart-pulse me-2"></i>Estado de Salud</h5>
-                                    <div class="list-group shadow-sm health-summary-widget" id="patientHealthStatus">
-                                        <div class="list-group-item d-flex justify-content-between align-items-center">
-                                            <span><i class="bi bi-activity text-primary me-2"></i>Última Consulta</span>
-                                            <small class="text-muted" id="lastConsultationDate">Cargando...</small>
+                    <!-- Información adicional en acordeón -->
+                    <div class="row">
+                        <div class="col-12">
+                            <div class="accordion shadow-sm" id="patientInfoAccordion">
+                                <div class="accordion-item border-0">
+                                    <h2 class="accordion-header">
+                                        <button class="accordion-button collapsed fw-bold" type="button" data-bs-toggle="collapse" data-bs-target="#healthInfo">
+                                            <i class="bi bi-heart-pulse me-2 text-success"></i>
+                                            Estado de Salud y Historial
+                                        </button>
+                                    </h2>
+                                    <div id="healthInfo" class="accordion-collapse collapse" data-bs-parent="#patientInfoAccordion">
+                                        <div class="accordion-body">
+                                            <div class="row g-3">
+                                                <div class="col-md-6">
+                                                    <div class="list-group">
+                                                        <div class="list-group-item d-flex justify-content-between align-items-center">
+                                                            <span><i class="bi bi-activity text-primary me-2"></i>Última Consulta</span>
+                                                            <small class="text-muted" id="lastConsultationDate">Cargando...</small>
+                                                        </div>
+                                                        <div class="list-group-item d-flex justify-content-between align-items-center">
+                                                            <span><i class="bi bi-calendar-plus text-warning me-2"></i>Próximo Chequeo</span>
+                                                            <small class="text-muted" id="nextCheckupDate">Cargando...</small>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-6">
+                                                    <div class="d-grid gap-2">
+                                                        <a href="/Patient/HealthStatus" class="btn btn-lg fw-bold text-white" style="background: linear-gradient(135deg, #0f4a2d, #166534); border: none;">
+                                                            <i class="bi bi-clipboard-data me-2"></i>Ver Estado Completo
+                                                        </a>
+                                                        <a href="/Patient/MedicalHistory" class="btn btn-lg fw-bold text-white" style="background: linear-gradient(135deg, #0f4a2d, #166534); border: none;">
+                                                            <i class="bi bi-file-medical me-2"></i>Historial Médico
+                                                        </a>
+                                                    </div>
+                                                </div>
+                                            </div>
                                         </div>
-                                        <div class="list-group-item d-flex justify-content-between align-items-center">
-                                            <span><i class="bi bi-calendar-plus text-warning me-2"></i>Próximo Chequeo</span>
-                                            <small class="text-muted" id="nextCheckupDate">Cargando...</small>
+                                    </div>
+                                </div>
+                                
+                                <div class="accordion-item border-0">
+                                    <h2 class="accordion-header">
+                                        <button class="accordion-button collapsed fw-bold" type="button" data-bs-toggle="collapse" data-bs-target="#messagesInfo">
+                                            <i class="bi bi-chat-dots me-2 text-info"></i>
+                                            Mensajes y Comunicación
+                                        </button>
+                                    </h2>
+                                    <div id="messagesInfo" class="accordion-collapse collapse" data-bs-parent="#patientInfoAccordion">
+                                        <div class="accordion-body">
+                                            <div class="row g-3">
+                                                <div class="col-md-8">
+                                                    <div id="messagesContainer">
+                                                        <p class="text-muted small">
+                                                            <i class="bi bi-info-circle text-info me-1"></i>
+                                                            Aquí aparecerán los mensajes de tus médicos y notificaciones del sistema.
+                                                        </p>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-4">
+                                                    <div class="d-grid">
+                                                        <a href="/Patient/Messages" class="btn btn-lg fw-bold text-white" style="background: linear-gradient(135deg, #0f4a2d, #166534); border: none;">
+                                                            <i class="bi bi-envelope me-2"></i>
+                                                            Ver Mensajes 
+                                                            <span class="badge bg-light text-dark ms-2" id="unreadMessagesCount">0</span>
+                                                        </a>
+                                                    </div>
+                                                </div>
+                                            </div>
                                         </div>
-                                        <div class="list-group-item d-flex justify-content-between align-items-center">
-                                            <span><i class="bi bi-bell text-info me-2"></i>Recordatorios Activos</span>
-                                            <span class="badge bg-info rounded-pill" id="activeRemindersCount">0</span>
-                                        </div>
-                                        <div class="list-group-item text-center">
-                                            <a href="/Patient/HealthStatus" class="btn btn-outline-primary btn-sm">
-                                                <i class="bi bi-plus-circle me-1"></i>Ver Estado Completo
+                                    </div>
+                                </div>
+
+                                <div class="accordion-item border-0">
+                                    <h2 class="accordion-header">
+                                        <button class="accordion-button collapsed fw-bold" type="button" data-bs-toggle="collapse" data-bs-target="#profileInfo">
+                                            <i class="bi bi-person-gear me-2 text-secondary"></i>
+                                            Configuración de Perfil
+                                        </button>
+                                    </h2>
+                                    <div id="profileInfo" class="accordion-collapse collapse" data-bs-parent="#patientInfoAccordion">
+                                        <div class="accordion-body text-center">
+                                            <p class="text-muted mb-3">Mantén actualizada tu información personal y de contacto</p>
+                                            <a asp-area="Identity" asp-page="/Account/Manage/Index" class="btn btn-lg fw-bold text-white" style="background: linear-gradient(135deg, #0f4a2d, #166534); border: none;">
+                                                <i class="bi bi-pencil-square me-2"></i>Actualizar Mi Perfil
                                             </a>
                                         </div>
                                     </div>
                                 </div>
-                                <div class="col-lg-6">
-                                    <h5 class="mb-3 text-success-emphasis"><i class="bi bi-chat-dots me-2"></i>Mensajes y Notificaciones</h5>
-                                    <div class="card shadow-sm messages-widget" id="patientMessagesWidget">
-                                        <div class="card-body">
-                                            <div id="messagesContainer">
-                                                <p class="card-text text-muted small">
-                                                    <strong><i class="bi bi-info-circle text-info me-1"></i>Sistema:</strong> 
-                                                    Bienvenido a su portal de paciente. Aquí aparecerán sus mensajes médicos.
-                                                </p>
-                                            </div>
-                                            <hr class="my-2">
-                                            <div class="d-flex justify-content-between">
-                                                <a href="/Patient/Messages" class="btn btn-sm btn-outline-success">Ver todos</a>
-                                                <span class="badge bg-success" id="unreadMessagesCount">0</span>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
                             </div>
-
-                        </div>
-                        
-                        <!-- Trust Indicators for Patient -->
-                        <div class="card-footer bg-light text-center">
-                            <div class="row align-items-center text-muted">
-                                <div class="col-md-3 mb-2 mb-md-0">
-                                    <i class="bi bi-award-fill fs-5 text-warning"></i>
-                                    <div class="small">Certificado ISO 9001</div>
-                                </div>
-                                <div class="col-md-3 mb-2 mb-md-0">
-                                    <i class="bi bi-shield-check fs-5 text-success"></i>
-                                    <div class="small">Ministerio de Salud</div>
-                                </div>
-                                <div class="col-md-3 mb-2 mb-md-0">
-                                    <i class="bi bi-star-fill fs-5 text-info"></i>
-                                    <div class="small">Premio Innovación 2024</div>
-                                </div>
-                                <div class="col-md-3">
-                                    <i class="bi bi-globe fs-5 text-primary"></i>
-                                    <div class="small">Red Internacional</div>
-                                </div>
-                            </div>
-                            <p class="mb-0 text-muted small mt-2">Tu Portal de Salud Personal - Reconocido por Instituciones Líderes</p>
                         </div>
                     </div>
                 </div>

@@ -84,8 +84,8 @@
       <RelatedAsset></RelatedAsset>
       <AssetTraitName></AssetTraitName>
       <AssetTraitValue></AssetTraitValue>
-      <Fingerprint>71i2xa57mg</Fingerprint>
-      <Integrity>ywAfmVXydjlp6uj0hq+WPsNlY12TVIxhaEkg+LzNhRo=</Integrity>
+      <Fingerprint>at9wfrpdke</Fingerprint>
+      <Integrity>UnuLuYBizdv/vOy+r+/CONt6/k26wE5ae6XwMkDA1T4=</Integrity>
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
       <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
       <OriginalItemSpec>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\css\enhanced-features.css'))</OriginalItemSpec>
