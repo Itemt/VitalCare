@@ -5,48 +5,51 @@
 }
 
 <!-- Hero Section -->
-<div class="container-fluid bg-gradient-primary text-white text-center py-5 mb-5 shadow-lg hero-section" style="background-image: linear-gradient(135deg, rgba(0,123,255,0.9), rgba(0,86,179,0.9)), url('/images/INDEX.png'); background-size: cover; background-position: center center;">
-    <div class="hero-overlay" style="background-color: rgba(0, 40, 80, 0.85); padding: 4rem 1.5rem; display: inline-block; border-radius: 1rem; max-width: 90%; width: 800px;">
-        <h1 class="display-2 fw-bolder text-shadow-custom mb-4">Nuestro Equipo</h1>
-        <p class="lead fs-3 mb-4 text-shadow-custom">Conoce a los desarrolladores que hacen posible VitalCare, una plataforma moderna para el agendamiento de citas médicas.</p>
+<div class="container-fluid bg-gradient-primary text-white text-center py-5 mb-5 shadow-lg hero-section" style="background: linear-gradient(135deg, #003366 0%, #002244 50%, #001122 100%);">
+    <div class="hero-overlay" style="background-color: rgba(0, 34, 68, 0.9); padding: 4rem 1.5rem; display: inline-block; border-radius: 1rem; max-width: 90%; width: 800px; backdrop-filter: blur(10px); border: 1px solid rgba(255,255,255,0.1);">
+        <h1 class="display-2 fw-bolder text-shadow-custom mb-4">
+            <span class="hero-title-vital">Nuestro</span> 
+            <span class="hero-title-care">Equipo</span>
+        </h1>
+        <p class="lead fs-3 mb-4 text-shadow-custom">Conoce al talentoso equipo de desarrolladores detrás de VitalCare</p>
         <div class="service-badges mb-4">
-            <span class="badge bg-success fs-6 me-2 service-badge"><i class="bi bi-people-fill me-1"></i>6 Desarrolladores</span>
-            <span class="badge bg-warning fs-6 me-2 service-badge"><i class="bi bi-code-slash me-1"></i>Full Stack</span>
-            <span class="badge bg-info fs-6 service-badge"><i class="bi bi-heart-fill me-1"></i>Pasión por el Código</span>
+            <span class="badge bg-success fs-6 me-2 service-badge"><i class="bi bi-people-fill me-1"></i>6 Especialistas</span>
+            <span class="badge bg-warning fs-6 me-2 service-badge"><i class="bi bi-code-slash me-1"></i>15K+ Líneas</span>
+            <span class="badge bg-info fs-6 service-badge"><i class="bi bi-trophy-fill me-1"></i>100% Dedicación</span>
         </div>
     </div>
 </div>
 
-<!-- Development Team -->
+<!-- Team Members -->
 <div class="container mb-5">
     <div class="row text-center mb-5">
         <div class="col-lg-8 mx-auto">
-            <h2 class="display-5 fw-bold text-primary mb-3">Equipo de Desarrollo</h2>
-            <p class="lead text-muted">Los desarrolladores apasionados detrás de la plataforma VitalCare</p>
+            <h2 class="display-5 fw-bold mb-3" style="color: #003366;">Desarrolladores Especialistas</h2>
+            <p class="lead text-muted">Un equipo multidisciplinario comprometido con la excelencia tecnológica</p>
         </div>
     </div>
     
-    <div class="row g-4">
+    <div class="row g-4 mb-5">
         <div class="col-lg-4 col-md-6">
-            <div class="card h-100 shadow-lg border-0 team-card bg-white">
+            <div class="card h-100 shadow-lg border-0 team-card bg-white feature-card-hover">
                 <div class="position-relative">
-                    <div class="team-avatar bg-primary text-white d-flex align-items-center justify-content-center mx-auto mt-4" style="width: 120px; height: 120px; border-radius: 50%;">
-                        <i class="bi bi-person-fill" style="font-size: 4rem;"></i>
+                    <div class="team-avatar text-white d-flex align-items-center justify-content-center mx-auto mt-4 feature-icon-wrapper" style="width: 120px; height: 120px; border-radius: 50%; background: linear-gradient(135deg, #003366, #002244);">
+                        <i class="bi bi-person-fill feature-icon-main" style="font-size: 4rem;"></i>
                     </div>
                     <div class="position-absolute top-0 end-0 mt-3 me-3">
-                        <span class="badge bg-primary">Lead Developer</span>
+                        <span class="badge text-white" style="background: #003366;">Desarrollador Principal</span>
                     </div>
                 </div>
                 <div class="card-body text-center">
-                    <h5 class="card-title fw-bold text-dark">Cristian Ramos</h5>
-                    <p class="text-primary fw-semibold">Desarrollador Principal</p>
+                    <h5 class="card-title fw-bold" style="color: #003366;">Cristian Ramos</h5>
+                    <p class="fw-semibold" style="color: #003366;">Desarrollador Principal</p>
                     <p class="card-text text-muted mb-3">Estudiante de Ingeniería de Sistemas especializado en desarrollo web con ASP.NET Core y arquitectura de software.</p>
                     <div class="team-credentials mb-3">
-                        <small class="d-block text-success"><i class="bi bi-code-slash me-1"></i>ASP.NET Core & C#</small>
-                        <small class="d-block text-info"><i class="bi bi-bootstrap-fill me-1"></i>Bootstrap & Frontend</small>
+                        <small class="d-block text-success"><i class="bi bi-check-circle-fill me-2"></i>ASP.NET Core & C#</small>
+                        <small class="d-block text-success"><i class="bi bi-check-circle-fill me-2"></i>Bootstrap & Frontend</small>
                     </div>
                     <div class="social-links">
-                        <a href="#" class="btn btn-outline-primary btn-sm me-1"><i class="bi bi-linkedin"></i></a>
+                        <a href="#" class="btn btn-sm me-1" style="background: #003366; color: white;"><i class="bi bi-linkedin"></i></a>
                         <a href="#" class="btn btn-outline-secondary btn-sm"><i class="bi bi-github"></i></a>
                     </div>
                 </div>
@@ -54,25 +57,25 @@
         </div>
         
         <div class="col-lg-4 col-md-6">
-            <div class="card h-100 shadow-lg border-0 team-card bg-white">
+            <div class="card h-100 shadow-lg border-0 team-card bg-white feature-card-hover">
                 <div class="position-relative">
-                    <div class="team-avatar bg-success text-white d-flex align-items-center justify-content-center mx-auto mt-4" style="width: 120px; height: 120px; border-radius: 50%;">
-                        <i class="bi bi-person-fill" style="font-size: 4rem;"></i>
+                    <div class="team-avatar bg-success text-white d-flex align-items-center justify-content-center mx-auto mt-4 feature-icon-wrapper" style="width: 120px; height: 120px; border-radius: 50%;">
+                        <i class="bi bi-person-fill feature-icon-main" style="font-size: 4rem;"></i>
                     </div>
                     <div class="position-absolute top-0 end-0 mt-3 me-3">
-                        <span class="badge bg-success">Backend Dev</span>
+                        <span class="badge bg-success">Desarrollador Backend</span>
                     </div>
                 </div>
                 <div class="card-body text-center">
-                    <h5 class="card-title fw-bold text-dark">Frey Camargo</h5>
+                    <h5 class="card-title fw-bold" style="color: #003366;">Frey Cartagena</h5>
                     <p class="text-success fw-semibold">Desarrollador Backend</p>
                     <p class="card-text text-muted mb-3">Especialista en desarrollo backend, bases de datos y lógica de negocio para sistemas de gestión médica.</p>
                     <div class="team-credentials mb-3">
-                        <small class="d-block text-success"><i class="bi bi-database-fill me-1"></i>Entity Framework & SQL</small>
-                        <small class="d-block text-info"><i class="bi bi-gear-fill me-1"></i>APIs & Microservicios</small>
+                        <small class="d-block text-success"><i class="bi bi-check-circle-fill me-2"></i>Entity Framework & SQL</small>
+                        <small class="d-block text-success"><i class="bi bi-check-circle-fill me-2"></i>APIs & Microservicios</small>
                     </div>
                     <div class="social-links">
-                        <a href="#" class="btn btn-outline-primary btn-sm me-1"><i class="bi bi-linkedin"></i></a>
+                        <a href="#" class="btn btn-sm me-1" style="background: #003366; color: white;"><i class="bi bi-linkedin"></i></a>
                         <a href="#" class="btn btn-outline-secondary btn-sm"><i class="bi bi-github"></i></a>
                     </div>
                 </div>
@@ -80,51 +83,51 @@
         </div>
         
         <div class="col-lg-4 col-md-6">
-            <div class="card h-100 shadow-lg border-0 team-card bg-white">
+            <div class="card h-100 shadow-lg border-0 team-card bg-white feature-card-hover">
                 <div class="position-relative">
-                    <div class="team-avatar bg-info text-white d-flex align-items-center justify-content-center mx-auto mt-4" style="width: 120px; height: 120px; border-radius: 50%;">
-                        <i class="bi bi-person-fill" style="font-size: 4rem;"></i>
+                    <div class="team-avatar bg-info text-white d-flex align-items-center justify-content-center mx-auto mt-4 feature-icon-wrapper" style="width: 120px; height: 120px; border-radius: 50%;">
+                        <i class="bi bi-person-fill feature-icon-main" style="font-size: 4rem;"></i>
                     </div>
                     <div class="position-absolute top-0 end-0 mt-3 me-3">
-                        <span class="badge bg-info">UI/UX</span>
+                        <span class="badge bg-info">Diseñadora UI/UX</span>
                     </div>
                 </div>
                 <div class="card-body text-center">
-                    <h5 class="card-title fw-bold text-dark">Angie Almeida</h5>
+                    <h5 class="card-title fw-bold" style="color: #003366;">Anne Atencio</h5>
                     <p class="text-info fw-semibold">Diseñadora UI/UX</p>
                     <p class="card-text text-muted mb-3">Especialista en experiencia de usuario y diseño de interfaces, enfocada en la usabilidad del sistema.</p>
                     <div class="team-credentials mb-3">
-                        <small class="d-block text-success"><i class="bi bi-palette-fill me-1"></i>Diseño UI/UX</small>
-                        <small class="d-block text-info"><i class="bi bi-phone-fill me-1"></i>Responsive Design</small>
+                        <small class="d-block text-success"><i class="bi bi-check-circle-fill me-2"></i>Diseño UI/UX</small>
+                        <small class="d-block text-success"><i class="bi bi-check-circle-fill me-2"></i>Responsive Design</small>
                     </div>
                     <div class="social-links">
-                        <a href="#" class="btn btn-outline-primary btn-sm me-1"><i class="bi bi-linkedin"></i></a>
-                        <a href="#" class="btn btn-outline-secondary btn-sm"><i class="bi bi-instagram"></i></a>
+                        <a href="#" class="btn btn-sm me-1" style="background: #003366; color: white;"><i class="bi bi-linkedin"></i></a>
+                        <a href="#" class="btn btn-outline-secondary btn-sm"><i class="bi bi-github"></i></a>
                     </div>
                 </div>
             </div>
         </div>
         
         <div class="col-lg-4 col-md-6">
-            <div class="card h-100 shadow-lg border-0 team-card bg-white">
+            <div class="card h-100 shadow-lg border-0 team-card bg-white feature-card-hover">
                 <div class="position-relative">
-                    <div class="team-avatar bg-warning text-white d-flex align-items-center justify-content-center mx-auto mt-4" style="width: 120px; height: 120px; border-radius: 50%;">
-                        <i class="bi bi-person-fill" style="font-size: 4rem;"></i>
+                    <div class="team-avatar bg-warning text-white d-flex align-items-center justify-content-center mx-auto mt-4 feature-icon-wrapper" style="width: 120px; height: 120px; border-radius: 50%;">
+                        <i class="bi bi-person-fill feature-icon-main" style="font-size: 4rem;"></i>
                     </div>
                     <div class="position-absolute top-0 end-0 mt-3 me-3">
                         <span class="badge bg-warning text-dark">Frontend</span>
                     </div>
                 </div>
                 <div class="card-body text-center">
-                    <h5 class="card-title fw-bold text-dark">Thomas Rodriguez</h5>
+                    <h5 class="card-title fw-bold" style="color: #003366;">Thomas Rodriguez</h5>
                     <p class="text-warning fw-semibold">Desarrollador Frontend</p>
                     <p class="card-text text-muted mb-3">Especialista en desarrollo frontend con JavaScript, CSS y frameworks modernos para interfaces interactivas.</p>
                     <div class="team-credentials mb-3">
-                        <small class="d-block text-success"><i class="bi bi-filetype-js me-1"></i>JavaScript & CSS</small>
-                        <small class="d-block text-info"><i class="bi bi-bootstrap me-1"></i>Bootstrap & jQuery</small>
+                        <small class="d-block text-success"><i class="bi bi-check-circle-fill me-2"></i>JavaScript & CSS</small>
+                        <small class="d-block text-success"><i class="bi bi-check-circle-fill me-2"></i>Bootstrap & jQuery</small>
                     </div>
                     <div class="social-links">
-                        <a href="#" class="btn btn-outline-primary btn-sm me-1"><i class="bi bi-linkedin"></i></a>
+                        <a href="#" class="btn btn-sm me-1" style="background: #003366; color: white;"><i class="bi bi-linkedin"></i></a>
                         <a href="#" class="btn btn-outline-secondary btn-sm"><i class="bi bi-github"></i></a>
                     </div>
                 </div>
@@ -132,25 +135,25 @@
         </div>
         
         <div class="col-lg-4 col-md-6">
-            <div class="card h-100 shadow-lg border-0 team-card bg-white">
+            <div class="card h-100 shadow-lg border-0 team-card bg-white feature-card-hover">
                 <div class="position-relative">
-                    <div class="team-avatar bg-danger text-white d-flex align-items-center justify-content-center mx-auto mt-4" style="width: 120px; height: 120px; border-radius: 50%;">
-                        <i class="bi bi-person-fill" style="font-size: 4rem;"></i>
+                    <div class="team-avatar bg-danger text-white d-flex align-items-center justify-content-center mx-auto mt-4 feature-icon-wrapper" style="width: 120px; height: 120px; border-radius: 50%;">
+                        <i class="bi bi-person-fill feature-icon-main" style="font-size: 4rem;"></i>
                     </div>
                     <div class="position-absolute top-0 end-0 mt-3 me-3">
                         <span class="badge bg-danger">QA</span>
                     </div>
                 </div>
                 <div class="card-body text-center">
-                    <h5 class="card-title fw-bold text-dark">Pierre Molina</h5>
+                    <h5 class="card-title fw-bold" style="color: #003366;">Pierre Molina</h5>
                     <p class="text-danger fw-semibold">Quality Assurance</p>
                     <p class="card-text text-muted mb-3">Especialista en pruebas de software y aseguramiento de calidad, garantizando el funcionamiento óptimo del sistema.</p>
                     <div class="team-credentials mb-3">
-                        <small class="d-block text-success"><i class="bi bi-bug-fill me-1"></i>Testing & Debugging</small>
-                        <small class="d-block text-info"><i class="bi bi-shield-check me-1"></i>Quality Assurance</small>
+                        <small class="d-block text-success"><i class="bi bi-check-circle-fill me-2"></i>Testing & Debugging</small>
+                        <small class="d-block text-success"><i class="bi bi-check-circle-fill me-2"></i>Quality Assurance</small>
                     </div>
                     <div class="social-links">
-                        <a href="#" class="btn btn-outline-primary btn-sm me-1"><i class="bi bi-linkedin"></i></a>
+                        <a href="#" class="btn btn-sm me-1" style="background: #003366; color: white;"><i class="bi bi-linkedin"></i></a>
                         <a href="#" class="btn btn-outline-secondary btn-sm"><i class="bi bi-github"></i></a>
                     </div>
                 </div>
@@ -158,25 +161,25 @@
         </div>
         
         <div class="col-lg-4 col-md-6">
-            <div class="card h-100 shadow-lg border-0 team-card bg-white">
+            <div class="card h-100 shadow-lg border-0 team-card bg-white feature-card-hover">
                 <div class="position-relative">
-                    <div class="team-avatar bg-secondary text-white d-flex align-items-center justify-content-center mx-auto mt-4" style="width: 120px; height: 120px; border-radius: 50%;">
-                        <i class="bi bi-person-fill" style="font-size: 4rem;"></i>
+                    <div class="team-avatar bg-secondary text-white d-flex align-items-center justify-content-center mx-auto mt-4 feature-icon-wrapper" style="width: 120px; height: 120px; border-radius: 50%;">
+                        <i class="bi bi-person-fill feature-icon-main" style="font-size: 4rem;"></i>
                     </div>
                     <div class="position-absolute top-0 end-0 mt-3 me-3">
                         <span class="badge bg-secondary">DevOps</span>
                     </div>
                 </div>
                 <div class="card-body text-center">
-                    <h5 class="card-title fw-bold text-dark">Juan Jimenez</h5>
+                    <h5 class="card-title fw-bold" style="color: #003366;">Juan Jimenez</h5>
                     <p class="text-secondary fw-semibold">DevOps Engineer</p>
                     <p class="card-text text-muted mb-3">Especialista en infraestructura, despliegue y mantenimiento de sistemas en producción.</p>
                     <div class="team-credentials mb-3">
-                        <small class="d-block text-success"><i class="bi bi-cloud-fill me-1"></i>Cloud & Deployment</small>
-                        <small class="d-block text-info"><i class="bi bi-server me-1"></i>Server Management</small>
+                        <small class="d-block text-success"><i class="bi bi-check-circle-fill me-2"></i>Cloud & Deployment</small>
+                        <small class="d-block text-success"><i class="bi bi-check-circle-fill me-2"></i>Server Management</small>
                     </div>
                     <div class="social-links">
-                        <a href="#" class="btn btn-outline-primary btn-sm me-1"><i class="bi bi-linkedin"></i></a>
+                        <a href="#" class="btn btn-sm me-1" style="background: #003366; color: white;"><i class="bi bi-linkedin"></i></a>
                         <a href="#" class="btn btn-outline-secondary btn-sm"><i class="bi bi-github"></i></a>
                     </div>
                 </div>
@@ -190,32 +193,32 @@
     <div class="container">
         <div class="row text-center mb-5">
             <div class="col-lg-8 mx-auto">
-                <h2 class="display-6 fw-bold text-primary mb-3">Tecnologías que Utilizamos</h2>
+                <h2 class="display-6 fw-bold mb-3" style="color: #003366;">Tecnologías que Utilizamos</h2>
                 <p class="lead text-muted">El stack tecnológico detrás de VitalCare</p>
             </div>
         </div>
         
         <div class="row g-4">
             <div class="col-lg-3 col-md-6">
-                <div class="card text-center h-100 shadow-sm border-0 bg-white">
+                <div class="card text-center h-100 shadow-sm border-0 bg-white feature-card-hover">
                     <div class="card-body p-4">
-                        <div class="bg-primary text-white rounded-circle mx-auto mb-3 d-flex align-items-center justify-content-center" style="width: 80px; height: 80px;">
-                            <i class="bi bi-microsoft fs-1"></i>
+                        <div class="text-white rounded-circle mx-auto mb-3 d-flex align-items-center justify-content-center feature-icon-wrapper" style="width: 80px; height: 80px; background: linear-gradient(135deg, #003366, #002244);">
+                            <i class="bi bi-microsoft feature-icon-main fs-1"></i>
                         </div>
-                        <h6 class="fw-bold text-dark">ASP.NET Core</h6>
-                        <p class="text-primary small fw-semibold">Framework Principal</p>
+                        <h6 class="fw-bold" style="color: #003366;">ASP.NET Core</h6>
+                        <p class="small fw-semibold" style="color: #003366;">Framework Principal</p>
                         <small class="text-muted">Framework web moderno y robusto para el backend</small>
                     </div>
                 </div>
             </div>
             
             <div class="col-lg-3 col-md-6">
-                <div class="card text-center h-100 shadow-sm border-0 bg-white">
+                <div class="card text-center h-100 shadow-sm border-0 bg-white feature-card-hover">
                     <div class="card-body p-4">
-                        <div class="bg-success text-white rounded-circle mx-auto mb-3 d-flex align-items-center justify-content-center" style="width: 80px; height: 80px;">
-                            <i class="bi bi-bootstrap-fill fs-1"></i>
+                        <div class="bg-success text-white rounded-circle mx-auto mb-3 d-flex align-items-center justify-content-center feature-icon-wrapper" style="width: 80px; height: 80px;">
+                            <i class="bi bi-bootstrap-fill feature-icon-main fs-1"></i>
                         </div>
-                        <h6 class="fw-bold text-dark">Bootstrap 5</h6>
+                        <h6 class="fw-bold" style="color: #003366;">Bootstrap 5</h6>
                         <p class="text-success small fw-semibold">Framework CSS</p>
                         <small class="text-muted">Diseño responsive y componentes modernos</small>
                     </div>
@@ -223,12 +226,12 @@
             </div>
             
             <div class="col-lg-3 col-md-6">
-                <div class="card text-center h-100 shadow-sm border-0 bg-white">
+                <div class="card text-center h-100 shadow-sm border-0 bg-white feature-card-hover">
                     <div class="card-body p-4">
-                        <div class="bg-info text-white rounded-circle mx-auto mb-3 d-flex align-items-center justify-content-center" style="width: 80px; height: 80px;">
-                            <i class="bi bi-database-fill fs-1"></i>
+                        <div class="bg-info text-white rounded-circle mx-auto mb-3 d-flex align-items-center justify-content-center feature-icon-wrapper" style="width: 80px; height: 80px;">
+                            <i class="bi bi-database-fill feature-icon-main fs-1"></i>
                         </div>
-                        <h6 class="fw-bold text-dark">Entity Framework</h6>
+                        <h6 class="fw-bold" style="color: #003366;">Entity Framework</h6>
                         <p class="text-info small fw-semibold">ORM</p>
                         <small class="text-muted">Gestión eficiente de base de datos</small>
                     </div>
@@ -236,12 +239,12 @@
             </div>
             
             <div class="col-lg-3 col-md-6">
-                <div class="card text-center h-100 shadow-sm border-0 bg-white">
+                <div class="card text-center h-100 shadow-sm border-0 bg-white feature-card-hover">
                     <div class="card-body p-4">
-                        <div class="bg-warning text-white rounded-circle mx-auto mb-3 d-flex align-items-center justify-content-center" style="width: 80px; height: 80px;">
-                            <i class="bi bi-filetype-js fs-1"></i>
+                        <div class="bg-warning text-white rounded-circle mx-auto mb-3 d-flex align-items-center justify-content-center feature-icon-wrapper" style="width: 80px; height: 80px;">
+                            <i class="bi bi-filetype-js feature-icon-main fs-1"></i>
                         </div>
-                        <h6 class="fw-bold text-dark">JavaScript</h6>
+                        <h6 class="fw-bold" style="color: #003366;">JavaScript</h6>
                         <p class="text-warning small fw-semibold">Interactividad</p>
                         <small class="text-muted">Funcionalidades dinámicas del frontend</small>
                     </div>
@@ -255,22 +258,26 @@
 <div class="container py-5">
     <div class="row text-center">
         <div class="col-lg-12">
-            <h2 class="display-6 fw-bold text-primary mb-4">Nuestro Trabajo en Números</h2>
+            <h2 class="display-6 fw-bold mb-4" style="color: #003366;">Nuestro Trabajo en Números</h2>
             <div class="row g-4">
                 <div class="col-md-3">
-                    <div class="stat-card-premium p-4 rounded-3 shadow-lg h-100 bg-white" data-bs-theme-value="light">
+                    <div class="stat-card-premium p-4 rounded-3 shadow-lg h-100 bg-white feature-card-hover" data-bs-theme-value="light">
                         <div class="stat-icon mb-3">
-                            <i class="bi bi-code-slash fs-1 text-primary"></i>
+                            <div class="feature-icon-wrapper">
+                                <i class="bi bi-code-slash feature-icon-main fs-1" style="color: #003366;"></i>
+                            </div>
                         </div>
-                        <h3 class="fw-bold text-primary mb-1">15K+</h3>
+                        <h3 class="fw-bold mb-1" style="color: #003366;">15K+</h3>
                         <p class="text-muted mb-0">Líneas de Código</p>
                         <small class="text-success"><i class="bi bi-graph-up-arrow me-1"></i>Y creciendo</small>
                     </div>
                 </div>
                 <div class="col-md-3">
-                    <div class="stat-card-premium p-4 rounded-3 shadow-lg h-100 bg-white" data-bs-theme-value="light">
+                    <div class="stat-card-premium p-4 rounded-3 shadow-lg h-100 bg-white feature-card-hover" data-bs-theme-value="light">
                         <div class="stat-icon mb-3">
-                            <i class="bi bi-calendar-event fs-1 text-success"></i>
+                            <div class="feature-icon-wrapper">
+                                <i class="bi bi-calendar-event feature-icon-main fs-1 text-success"></i>
+                            </div>
                         </div>
                         <h3 class="fw-bold text-success mb-1">6</h3>
                         <p class="text-muted mb-0">Meses de Desarrollo</p>
@@ -278,9 +285,11 @@
                     </div>
                 </div>
                 <div class="col-md-3">
-                    <div class="stat-card-premium p-4 rounded-3 shadow-lg h-100 bg-white" data-bs-theme-value="light">
+                    <div class="stat-card-premium p-4 rounded-3 shadow-lg h-100 bg-white feature-card-hover" data-bs-theme-value="light">
                         <div class="stat-icon mb-3">
-                            <i class="bi bi-bug-fill fs-1 text-info"></i>
+                            <div class="feature-icon-wrapper">
+                                <i class="bi bi-bug-fill feature-icon-main fs-1 text-info"></i>
+                            </div>
                         </div>
                         <h3 class="fw-bold text-info mb-1">200+</h3>
                         <p class="text-muted mb-0">Bugs Resueltos</p>
@@ -288,9 +297,11 @@
                     </div>
                 </div>
                 <div class="col-md-3">
-                    <div class="stat-card-premium p-4 rounded-3 shadow-lg h-100 bg-white" data-bs-theme-value="light">
+                    <div class="stat-card-premium p-4 rounded-3 shadow-lg h-100 bg-white feature-card-hover" data-bs-theme-value="light">
                         <div class="stat-icon mb-3">
-                            <i class="bi bi-heart-fill fs-1 text-warning"></i>
+                            <div class="feature-icon-wrapper">
+                                <i class="bi bi-heart-fill feature-icon-main fs-1 text-warning"></i>
+                            </div>
                         </div>
                         <h3 class="fw-bold text-warning mb-1">100%</h3>
                         <p class="text-muted mb-0">Dedicación</p>
@@ -299,7 +310,5 @@
                 </div>
             </div>
         </div>
-    </div>
-</div> 
     </div>
 </div> 

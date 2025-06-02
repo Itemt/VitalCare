@@ -5,9 +5,12 @@
 }
 
 <!-- Hero Section -->
-<div class="container-fluid bg-gradient-primary text-white text-center py-5 mb-5 shadow-lg hero-section" style="background-image: linear-gradient(135deg, rgba(0,123,255,0.9), rgba(0,86,179,0.9)), url('/images/INDEX.png'); background-size: cover; background-position: center center;">
-    <div class="hero-overlay" style="background-color: rgba(0, 40, 80, 0.85); padding: 4rem 1.5rem; display: inline-block; border-radius: 1rem; max-width: 90%; width: 800px;">
-        <h1 class="display-2 fw-bolder text-shadow-custom mb-4">Preguntas Frecuentes</h1>
+<div class="container-fluid bg-gradient-primary text-white text-center py-5 mb-5 shadow-lg hero-section" style="background: linear-gradient(135deg, #003366 0%, #002244 50%, #001122 100%);">
+    <div class="hero-overlay" style="background-color: rgba(0, 34, 68, 0.9); padding: 4rem 1.5rem; display: inline-block; border-radius: 1rem; max-width: 90%; width: 800px; backdrop-filter: blur(10px); border: 1px solid rgba(255,255,255,0.1);">
+        <h1 class="display-2 fw-bolder text-shadow-custom mb-4">
+            <span class="hero-title-vital">Preguntas</span> 
+            <span class="hero-title-care">Frecuentes</span>
+        </h1>
         <p class="lead fs-3 mb-4 text-shadow-custom">Encuentra respuestas rápidas a las consultas más comunes sobre VitalCare.</p>
         <div class="service-badges mb-4">
             <span class="badge bg-success fs-6 me-2 service-badge"><i class="bi bi-search me-1"></i>Búsqueda Rápida</span>
@@ -23,18 +26,18 @@
         <div class="col-lg-8">
             <div class="search-section">
                 <div class="input-group input-group-lg shadow-sm">
-                    <span class="input-group-text bg-primary text-white">
+                    <span class="input-group-text text-white" style="background: #003366;">
                         <i class="bi bi-search"></i>
                     </span>
                     <input type="text" class="form-control" placeholder="Busca tu pregunta aquí..." id="faqSearch">
-                    <button class="btn btn-primary" type="button">Buscar</button>
+                    <button class="btn" type="button" style="background: #003366; color: white;">Buscar</button>
                 </div>
                 <div class="popular-searches mt-3 text-center">
                     <small class="text-muted">Búsquedas populares: </small>
-                    <span class="badge bg-light text-primary me-1 search-tag" onclick="searchFAQ('cita')">Citas</span>
-                    <span class="badge bg-light text-primary me-1 search-tag" onclick="searchFAQ('telemedicina')">Telemedicina</span>
-                    <span class="badge bg-light text-primary me-1 search-tag" onclick="searchFAQ('pago')">Pagos</span>
-                    <span class="badge bg-light text-primary search-tag" onclick="searchFAQ('emergencia')">Emergencias</span>
+                    <span class="badge bg-light me-1 search-tag" style="color: #003366;" onclick="searchFAQ('cita')">Citas</span>
+                    <span class="badge bg-light me-1 search-tag" style="color: #003366;" onclick="searchFAQ('telemedicina')">Telemedicina</span>
+                    <span class="badge bg-light me-1 search-tag" style="color: #003366;" onclick="searchFAQ('pago')">Pagos</span>
+                    <span class="badge bg-light search-tag" style="color: #003366;" onclick="searchFAQ('emergencia')">Emergencias</span>
                 </div>
             </div>
         </div>
@@ -45,19 +48,19 @@
 <div class="container mb-5">
     <div class="row text-center mb-5">
         <div class="col-lg-8 mx-auto">
-            <h2 class="display-6 fw-bold text-primary mb-3">Categorías Principales</h2>
+            <h2 class="display-6 fw-bold mb-3" style="color: #003366;">Categorías Principales</h2>
             <p class="lead text-muted">Navega por temas específicos para encontrar lo que necesitas</p>
         </div>
     </div>
     
     <div class="row g-4">
         <div class="col-lg-3 col-md-6">
-            <div class="card h-100 shadow-sm border-0 category-card" onclick="showCategory('general')">
+            <div class="card h-100 shadow-sm border-0 category-card feature-card-hover" onclick="showCategory('general')">
                 <div class="card-body text-center p-4">
-                    <div class="category-icon bg-primary text-white rounded-circle mx-auto mb-3 d-flex align-items-center justify-content-center" style="width: 80px; height: 80px;">
-                        <i class="bi bi-info-circle-fill fs-1"></i>
+                    <div class="category-icon text-white rounded-circle mx-auto mb-3 d-flex align-items-center justify-content-center feature-icon-wrapper" style="width: 80px; height: 80px; background: linear-gradient(135deg, #003366, #002244);">
+                        <i class="bi bi-info-circle-fill feature-icon-main fs-1"></i>
                     </div>
-                    <h5 class="fw-bold text-primary">Información General</h5>
+                    <h5 class="fw-bold" style="color: #003366;">Información General</h5>
                     <p class="text-muted mb-3">Preguntas básicas sobre VitalCare y nuestros servicios</p>
                     <small class="text-success"><i class="bi bi-chat-square-text me-1"></i>15 preguntas</small>
                 </div>
@@ -65,10 +68,10 @@
         </div>
         
         <div class="col-lg-3 col-md-6">
-            <div class="card h-100 shadow-sm border-0 category-card" onclick="showCategory('citas')">
+            <div class="card h-100 shadow-sm border-0 category-card feature-card-hover" onclick="showCategory('citas')">
                 <div class="card-body text-center p-4">
-                    <div class="category-icon bg-success text-white rounded-circle mx-auto mb-3 d-flex align-items-center justify-content-center" style="width: 80px; height: 80px;">
-                        <i class="bi bi-calendar-check-fill fs-1"></i>
+                    <div class="category-icon bg-success text-white rounded-circle mx-auto mb-3 d-flex align-items-center justify-content-center feature-icon-wrapper" style="width: 80px; height: 80px;">
+                        <i class="bi bi-calendar-check-fill feature-icon-main fs-1"></i>
                     </div>
                     <h5 class="fw-bold text-success">Citas Médicas</h5>
                     <p class="text-muted mb-3">Todo sobre agendar, modificar y asistir a citas</p>
@@ -78,10 +81,10 @@
         </div>
         
         <div class="col-lg-3 col-md-6">
-            <div class="card h-100 shadow-sm border-0 category-card" onclick="showCategory('tecnologia')">
+            <div class="card h-100 shadow-sm border-0 category-card feature-card-hover" onclick="showCategory('tecnologia')">
                 <div class="card-body text-center p-4">
-                    <div class="category-icon bg-info text-white rounded-circle mx-auto mb-3 d-flex align-items-center justify-content-center" style="width: 80px; height: 80px;">
-                        <i class="bi bi-laptop-fill fs-1"></i>
+                    <div class="category-icon bg-info text-white rounded-circle mx-auto mb-3 d-flex align-items-center justify-content-center feature-icon-wrapper" style="width: 80px; height: 80px;">
+                        <i class="bi bi-laptop-fill feature-icon-main fs-1"></i>
                     </div>
                     <h5 class="fw-bold text-info">Tecnología</h5>
                     <p class="text-muted mb-3">Soporte técnico y problemas de la plataforma</p>
@@ -91,10 +94,10 @@
         </div>
         
         <div class="col-lg-3 col-md-6">
-            <div class="card h-100 shadow-sm border-0 category-card" onclick="showCategory('pagos')">
+            <div class="card h-100 shadow-sm border-0 category-card feature-card-hover" onclick="showCategory('pagos')">
                 <div class="card-body text-center p-4">
-                    <div class="category-icon bg-warning text-white rounded-circle mx-auto mb-3 d-flex align-items-center justify-content-center" style="width: 80px; height: 80px;">
-                        <i class="bi bi-credit-card-fill fs-1"></i>
+                    <div class="category-icon bg-warning text-white rounded-circle mx-auto mb-3 d-flex align-items-center justify-content-center feature-icon-wrapper" style="width: 80px; height: 80px;">
+                        <i class="bi bi-credit-card-fill feature-icon-main fs-1"></i>
                     </div>
                     <h5 class="fw-bold text-warning">Pagos y Facturación</h5>
                     <p class="text-muted mb-3">Métodos de pago, facturas y reembolsos</p>
@@ -110,7 +113,7 @@
     <div class="row">
         <div class="col-lg-10 mx-auto">
             <div class="faq-section">
-                <h3 class="text-center mb-4 fw-bold text-primary">
+                <h3 class="text-center mb-4 fw-bold" style="color: #003366;">
                     <i class="bi bi-question-circle-fill me-2"></i>
                     Preguntas Más Frecuentes
                 </h3>
@@ -120,18 +123,18 @@
                     <div class="accordion-item">
                         <h2 class="accordion-header" id="faq1">
                             <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapse1" aria-expanded="false" aria-controls="collapse1">
-                                <i class="bi bi-question-circle text-primary me-2"></i>
+                                <i class="bi bi-question-circle me-2" style="color: #003366;"></i>
                                 <strong>¿Qué es VitalCare y cómo funciona?</strong>
                             </button>
                         </h2>
                         <div id="collapse1" class="accordion-collapse collapse" aria-labelledby="faq1" data-bs-parent="#faqAccordion">
                             <div class="accordion-body">
-                                <p>VitalCare es una plataforma de salud digital que conecta pacientes con profesionales médicos a través de tecnología avanzada. Ofrecemos:</p>
+                                <p>VitalCare es una plataforma de agendamiento de citas médicas que facilita el acceso a servicios de salud en Barrancabermeja. Ofrecemos:</p>
                                 <ul>
-                                    <li><strong>Telemedicina:</strong> Consultas médicas por video en tiempo real</li>
-                                    <li><strong>IA Médica:</strong> Diagnóstico asistido por inteligencia artificial</li>
-                                    <li><strong>Monitoreo IoT:</strong> Seguimiento de signos vitales en tiempo real</li>
-                                    <li><strong>Gestión digital:</strong> Historiales médicos y recetas electrónicas</li>
+                                    <li><strong>Agendamiento Digital:</strong> Reserva citas médicas desde cualquier dispositivo</li>
+                                    <li><strong>Gestión de Citas:</strong> Modifica, cancela o reagenda fácilmente</li>
+                                    <li><strong>Recordatorios:</strong> Notificaciones automáticas por SMS y email</li>
+                                    <li><strong>Historial Médico:</strong> Acceso seguro a tu información médica</li>
                                 </ul>
                                 <p>Todo funciona a través de nuestra plataforma web segura, disponible 24/7.</p>
                             </div>
@@ -150,14 +153,14 @@
                                 <p>Agendar una cita es muy sencillo:</p>
                                 <ol>
                                     <li><strong>Regístrate:</strong> Crea tu cuenta en VitalCare</li>
-                                    <li><strong>Completa tu perfil:</strong> Añade información médica básica</li>
+                                    <li><strong>Completa tu perfil:</strong> Añade información básica</li>
                                     <li><strong>Selecciona especialidad:</strong> Elige el tipo de consulta que necesitas</li>
                                     <li><strong>Escoge fecha y hora:</strong> Disponibilidad en tiempo real</li>
                                     <li><strong>Confirma:</strong> Recibe confirmación por email y SMS</li>
                                 </ol>
                                 <div class="alert alert-info mt-3">
                                     <i class="bi bi-info-circle me-2"></i>
-                                    <strong>Tip:</strong> Las citas de telemedicina están disponibles en minutos, mientras que las presenciales pueden requerir más tiempo.
+                                    <strong>Tip:</strong> Las citas están disponibles con disponibilidad inmediata según especialista.
                                 </div>
                             </div>
                         </div>
@@ -166,11 +169,44 @@
                     <div class="accordion-item">
                         <h2 class="accordion-header" id="faq3">
                             <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapse3" aria-expanded="false" aria-controls="collapse3">
+                                <i class="bi bi-hospital text-info me-2"></i>
+                                <strong>¿Qué especialidades médicas están disponibles?</strong>
+                            </button>
+                        </h2>
+                        <div id="collapse3" class="accordion-collapse collapse" aria-labelledby="faq3" data-bs-parent="#faqAccordion">
+                            <div class="accordion-body">
+                                <p><strong>Disponemos de más de 15 especialidades médicas:</strong></p>
+                                
+                                <div class="row mt-3">
+                                    <div class="col-md-6">
+                                        <div class="card border-success">
+                                            <div class="card-body p-3">
+                                                <h6 class="text-success"><i class="bi bi-check-circle-fill me-2"></i>Especialidades Principales</h6>
+                                                <small>Medicina General, Cardiología, Dermatología, Ginecología, Pediatría</small>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="card border-info">
+                                            <div class="card-body p-3">
+                                                <h6 class="text-info"><i class="bi bi-clock-fill me-2"></i>Disponibilidad</h6>
+                                                <small>Lunes a Viernes 7AM-7PM, Sábados 8AM-2PM</small>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="accordion-item">
+                        <h2 class="accordion-header" id="faq4">
+                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapse4" aria-expanded="false" aria-controls="collapse4">
                                 <i class="bi bi-camera-video text-info me-2"></i>
                                 <strong>¿Necesito software especial para las videoconsultas?</strong>
                             </button>
                         </h2>
-                        <div id="collapse3" class="accordion-collapse collapse" aria-labelledby="faq3" data-bs-parent="#faqAccordion">
+                        <div id="collapse4" class="accordion-collapse collapse" aria-labelledby="faq4" data-bs-parent="#faqAccordion">
                             <div class="accordion-body">
                                 <p><strong>No necesitas instalar nada.</strong> Nuestras videoconsultas funcionan directamente en tu navegador web.</p>
                                 
@@ -205,13 +241,13 @@
                     </div>
 
                     <div class="accordion-item">
-                        <h2 class="accordion-header" id="faq4">
-                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapse4" aria-expanded="false" aria-controls="collapse4">
+                        <h2 class="accordion-header" id="faq5">
+                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapse5" aria-expanded="false" aria-controls="collapse5">
                                 <i class="bi bi-credit-card text-warning me-2"></i>
                                 <strong>¿Qué métodos de pago aceptan?</strong>
                             </button>
                         </h2>
-                        <div id="collapse4" class="accordion-collapse collapse" aria-labelledby="faq4" data-bs-parent="#faqAccordion">
+                        <div id="collapse5" class="accordion-collapse collapse" aria-labelledby="faq5" data-bs-parent="#faqAccordion">
                             <div class="accordion-body">
                                 <p>Aceptamos múltiples métodos de pago para tu comodidad:</p>
                                 
@@ -248,13 +284,13 @@
                     </div>
 
                     <div class="accordion-item">
-                        <h2 class="accordion-header" id="faq5">
-                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapse5" aria-expanded="false" aria-controls="collapse5">
+                        <h2 class="accordion-header" id="faq6">
+                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapse6" aria-expanded="false" aria-controls="collapse6">
                                 <i class="bi bi-clock text-danger me-2"></i>
                                 <strong>¿Qué hago en caso de emergencia médica?</strong>
                             </button>
                         </h2>
-                        <div id="collapse5" class="accordion-collapse collapse" aria-labelledby="faq5" data-bs-parent="#faqAccordion">
+                        <div id="collapse6" class="accordion-collapse collapse" aria-labelledby="faq6" data-bs-parent="#faqAccordion">
                             <div class="accordion-body">
                                 <div class="alert alert-danger mb-3">
                                     <h6><i class="bi bi-exclamation-triangle-fill me-2"></i>En emergencias graves:</h6>
@@ -286,13 +322,13 @@
                     </div>
 
                     <div class="accordion-item">
-                        <h2 class="accordion-header" id="faq6">
-                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapse6" aria-expanded="false" aria-controls="collapse6">
+                        <h2 class="accordion-header" id="faq7">
+                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapse7" aria-expanded="false" aria-controls="collapse7">
                                 <i class="bi bi-shield-lock text-primary me-2"></i>
                                 <strong>¿Cómo protegen mi información médica?</strong>
                             </button>
                         </h2>
-                        <div id="collapse6" class="accordion-collapse collapse" aria-labelledby="faq6" data-bs-parent="#faqAccordion">
+                        <div id="collapse7" class="accordion-collapse collapse" aria-labelledby="faq7" data-bs-parent="#faqAccordion">
                             <div class="accordion-body">
                                 <p>La seguridad de tu información es nuestra prioridad máxima. Implementamos:</p>
                                 

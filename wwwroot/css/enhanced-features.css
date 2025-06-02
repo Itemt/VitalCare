@@ -47,83 +47,94 @@
     font-size: 2rem !important;
 }
 
-/* SPARKLES MEJORADOS - MÁS CERCA DE LOS ICONOS */
+/* SPARKLES CORREGIDOS - MÁS PUNTOS DORADOS ENCIMA DEL ÍCONO */
 .feature-card-hover:hover .feature-icon-wrapper::before,
 .feature-card-hover:hover .feature-icon-wrapper::after {
-    content: "✨";
+    content: "";
     position: absolute;
-    font-size: 0.8rem;
-    color: #ffd700;
-    animation: sparkleFloat 1.5s ease-in-out infinite;
-    z-index: 1;
+    width: 3px;
+    height: 3px;
+    background: #ffd700;
+    border-radius: 50%;
+    animation: sparkleFloat 1.8s ease-in-out infinite;
+    z-index: 3;
     pointer-events: none;
 }
 
 .feature-card-hover:hover .feature-icon-wrapper::before {
-    top: -10px;
-    right: -10px;
+    top: 0px;
+    right: 0px;
     animation-delay: 0s;
 }
 
 .feature-card-hover:hover .feature-icon-wrapper::after {
-    bottom: -10px;
-    left: -10px;
-    animation-delay: 0.6s;
+    bottom: 0px;
+    left: 0px;
+    animation-delay: 0.8s;
 }
 
-/* Sparkles adicionales usando pseudo-elementos múltiples */
+/* Sparkles adicionales usando gradientes radiales - MÁS CERCA */
 .feature-card-hover:hover .feature-icon-wrapper {
     position: relative;
 }
 
 .feature-card-hover:hover .feature-icon-wrapper {
-    --sparkle1: radial-gradient(circle at 5px -3px, #ffd700 1px, transparent 1px);
-    --sparkle2: radial-gradient(circle at -3px 5px, #ffd700 1px, transparent 1px);
-    --sparkle3: radial-gradient(circle at 8px 6px, #ffd700 1px, transparent 1px);
-    --sparkle4: radial-gradient(circle at -2px -2px, #ffd700 1px, transparent 1px);
-    background-image: var(--sparkle1), var(--sparkle2), var(--sparkle3), var(--sparkle4);
-    background-size: 15px 15px;
+    --sparkle1: radial-gradient(circle at 10% 10%, #ffd700 1.5px, transparent 1.5px);
+    --sparkle2: radial-gradient(circle at 90% 10%, #ffd700 1px, transparent 1px);
+    --sparkle3: radial-gradient(circle at 10% 90%, #ffd700 1px, transparent 1px);
+    --sparkle4: radial-gradient(circle at 90% 90%, #ffd700 1.5px, transparent 1.5px);
+    --sparkle5: radial-gradient(circle at 50% 0%, #ffd700 1px, transparent 1px);
+    --sparkle6: radial-gradient(circle at 0% 50%, #ffd700 1px, transparent 1px);
+    --sparkle7: radial-gradient(circle at 100% 50%, #ffd700 1px, transparent 1px);
+    --sparkle8: radial-gradient(circle at 50% 100%, #ffd700 1px, transparent 1px);
+    background-image: var(--sparkle1), var(--sparkle2), var(--sparkle3), var(--sparkle4), var(--sparkle5), var(--sparkle6), var(--sparkle7), var(--sparkle8);
+    background-size: 8px 8px;
     background-repeat: no-repeat;
-    animation: sparkleMove 1.8s ease-in-out infinite;
+    animation: sparkleMove 2s ease-in-out infinite;
 }
 
-/* Sparkles para modo oscuro - dorados más brillantes */
+/* Sparkles para modo oscuro - puntos blancos MÁS VISIBLES */
 [data-bs-theme="dark"] .feature-card-hover:hover .feature-icon-wrapper::before,
 [data-bs-theme="dark"] .feature-card-hover:hover .feature-icon-wrapper::after {
-    color: #ffeb3b;
+    background: #ffffff;
+    box-shadow: 0 0 3px rgba(255,255,255,0.8);
 }
 
 [data-bs-theme="dark"] .feature-card-hover:hover .feature-icon-wrapper {
-    --sparkle1: radial-gradient(circle at 5px -3px, #ffeb3b 1px, transparent 1px);
-    --sparkle2: radial-gradient(circle at -3px 5px, #ffeb3b 1px, transparent 1px);
-    --sparkle3: radial-gradient(circle at 8px 6px, #ffeb3b 1px, transparent 1px);
-    --sparkle4: radial-gradient(circle at -2px -2px, #ffeb3b 1px, transparent 1px);
+    --sparkle1: radial-gradient(circle at 10% 10%, #ffffff 1.5px, transparent 1.5px);
+    --sparkle2: radial-gradient(circle at 90% 10%, #ffffff 1px, transparent 1px);
+    --sparkle3: radial-gradient(circle at 10% 90%, #ffffff 1px, transparent 1px);
+    --sparkle4: radial-gradient(circle at 90% 90%, #ffffff 1.5px, transparent 1.5px);
+    --sparkle5: radial-gradient(circle at 50% 0%, #ffffff 1px, transparent 1px);
+    --sparkle6: radial-gradient(circle at 0% 50%, #ffffff 1px, transparent 1px);
+    --sparkle7: radial-gradient(circle at 100% 50%, #ffffff 1px, transparent 1px);
+    --sparkle8: radial-gradient(circle at 50% 100%, #ffffff 1px, transparent 1px);
 }
 
-/* Animaciones mejoradas */
+/* Animaciones mejoradas para puntos */
 @keyframes sparkleFloat {
     0%, 100% {
         opacity: 0;
-        transform: scale(0.5) translateY(0) rotate(0deg);
+        transform: scale(0.3) translateY(0);
     }
     50% {
         opacity: 1;
-        transform: scale(1) translateY(-3px) rotate(180deg);
+        transform: scale(1) translateY(-2px);
     }
 }
 
 @keyframes sparkleMove {
     0%, 100% {
-        opacity: 0.6;
+        opacity: 0.7;
         transform: scale(1);
     }
     25% {
         opacity: 1;
-        transform: scale(1.1);
+        transform: scale(1.05);
     }
     75% {
-        opacity: 0.8;
-        transform: scale(0.9);
+        opacity: 0.9;
+        transform: scale(0.95);
     }
 }
 

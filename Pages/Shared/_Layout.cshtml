@@ -326,6 +326,16 @@
             color: #1f2937 !important;
         }
 
+        /* Ícono de la luna blanco en modo claro */
+        .navbar .btn-theme-toggle #themeIconMoon {
+            color: white !important;
+        }
+
+        /* En modo oscuro, que sea el ícono del sol el que se vea blanco */
+        [data-bs-theme="dark"] .navbar .btn-theme-toggle #themeIconSun {
+            color: white !important;
+        }
+
         .navbar .btn-login {
             background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%) !important;
             border: none !important;
@@ -510,6 +520,18 @@
             color: white !important;
         }
 
+        /* Botón de tema en modo oscuro para usuarios no logueados */
+        [data-bs-theme="dark"] .navbar .btn-theme-toggle {
+            background: rgba(255, 255, 255, 0.1) !important;
+            border: 1px solid rgba(255, 255, 255, 0.2) !important;
+            color: rgba(255, 255, 255, 0.9) !important;
+        }
+
+        [data-bs-theme="dark"] .navbar .btn-theme-toggle:hover {
+            background: rgba(255, 255, 255, 0.2) !important;
+            color: white !important;
+        }
+
         [data-bs-theme="dark"] .dropdown-menu {
             background: rgba(26, 32, 44, 0.98) !important;
             border: 1px solid rgba(255, 255, 255, 0.1) !important;
@@ -649,7 +671,7 @@
                         }
                         else
                         {
-                            @* ENLACES SEPARADOS PARA USUARIOS NO LOGUEADOS *@
+                            @* ENLACES PRINCIPALES SIEMPRE VISIBLES *@
                             <li class="nav-item">
                                 <a class="nav-link d-flex align-items-center" asp-area="" asp-page="/Servicios">
                                     <i class="bi bi-gear-fill me-2"></i> Servicios
@@ -660,10 +682,57 @@
                                     <i class="bi bi-building me-2"></i> Sobre Nosotros
                                 </a>
                             </li>
-                            <li class="nav-item">
+                            
+                            @* ENLACES RESPONSIVE - OCULTOS EN PANTALLAS PEQUEÑAS *@
+                            <li class="nav-item d-lg-block d-none">
                                 <a class="nav-link d-flex align-items-center" asp-area="" asp-page="/Contact">
                                     <i class="bi bi-envelope-fill me-2"></i> Contacto
                                 </a>
+                            </li>
+                            <li class="nav-item d-lg-block d-none">
+                                <a class="nav-link d-flex align-items-center" asp-area="" asp-page="/Team">
+                                    <i class="bi bi-people-fill me-2"></i> Nuestro Equipo
+                                </a>
+                            </li>
+                            <li class="nav-item d-lg-block d-none">
+                                <a class="nav-link d-flex align-items-center" asp-area="" asp-page="/Support">
+                                    <i class="bi bi-headset me-2"></i> Soporte
+                                </a>
+                            </li>
+                            <li class="nav-item d-lg-block d-none">
+                                <a class="nav-link d-flex align-items-center" asp-area="" asp-page="/FAQ">
+                                    <i class="bi bi-question-circle-fill me-2"></i> FAQ
+                                </a>
+                            </li>
+                            
+                            @* MENÚ HAMBURGUESA PARA PANTALLAS PEQUEÑAS *@
+                            <li class="nav-item dropdown d-lg-none">
+                                <a class="nav-link dropdown-toggle d-flex align-items-center" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                    <i class="bi bi-three-dots me-2"></i> Más
+                                </a>
+                                <ul class="dropdown-menu dropdown-menu-end">
+                                    <li>
+                                        <a class="dropdown-item d-flex align-items-center" asp-area="" asp-page="/Contact">
+                                            <i class="bi bi-envelope-fill me-2"></i> Contacto
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a class="dropdown-item d-flex align-items-center" asp-area="" asp-page="/Team">
+                                            <i class="bi bi-people-fill me-2"></i> Nuestro Equipo
+                                        </a>
+                                    </li>
+                                    <li><hr class="dropdown-divider"></li>
+                                    <li>
+                                        <a class="dropdown-item d-flex align-items-center" asp-area="" asp-page="/Support">
+                                            <i class="bi bi-headset me-2"></i> Soporte Técnico
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a class="dropdown-item d-flex align-items-center" asp-area="" asp-page="/FAQ">
+                                            <i class="bi bi-question-circle-fill me-2"></i> Preguntas Frecuentes
+                                        </a>
+                                    </li>
+                                </ul>
                             </li>
                         }
                     </ul>
