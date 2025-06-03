@@ -1001,6 +1001,30 @@ else if (isPatient)
 @section Scripts {
     <script>
         document.addEventListener('DOMContentLoaded', function () {
+            // Scroll optimization - pause animations during scroll
+            let scrollTimer = null;
+            let isScrolling = false;
+
+            function handleScrollStart() {
+                if (!isScrolling) {
+                    document.body.classList.add('scrolling');
+                    isScrolling = true;
+                }
+            }
+
+            function handleScrollEnd() {
+                isScrolling = false;
+                document.body.classList.remove('scrolling');
+            }
+
+            window.addEventListener('scroll', function() {
+                handleScrollStart();
+                
+                // Clear timeout and set new one
+                clearTimeout(scrollTimer);
+                scrollTimer = setTimeout(handleScrollEnd, 150);
+            }, { passive: true });
+
             // Hero Counter Animation
             const heroCounters = document.querySelectorAll('.hero-stat-number');
             const heroObserverOptions = {
@@ -1009,10 +1033,10 @@ else if (isPatient)
             
             const heroObserver = new IntersectionObserver((entries) => {
                 entries.forEach(entry => {
-                    if (entry.isIntersecting) {
+                    if (entry.isIntersecting && !isScrolling) {
                         const counter = entry.target;
                         const target = parseInt(counter.getAttribute('data-target'));
-                        const duration = 1500;
+                        const duration = 1200; // Reduced duration
                         const step = target / (duration / 16);
                         let current = 0;
                         
@@ -1052,22 +1076,21 @@ else if (isPatient)
                 });
             }
             
-            // Enhanced Button Ripple Effect
-            const heroButtons = document.querySelectorAll('.hero-btn');
-            heroButtons.forEach(button => {
-                button.addEventListener('click', function(e) {
-                    const ripple = this.querySelector('.btn-ripple');
-                    if (ripple) {
-                        ripple.style.width = '300px';
-                        ripple.style.height = '300px';
-                        
-                        setTimeout(() => {
-                            ripple.style.width = '0';
-                            ripple.style.height = '0';
-                        }, 600);
-                    }
+            // Enhanced Button Ripple Effect - Only on desktop
+            if (window.innerWidth > 768) {
+                const heroButtons = document.querySelectorAll('.hero-btn');
+                heroButtons.forEach(button => {
+                    button.addEventListener('click', function(e) {
+                        if (!isScrolling) {
+                            // Simple ripple effect without lag
+                            this.style.transform = 'scale(0.95)';
+                            setTimeout(() => {
+                                this.style.transform = '';
+                            }, 100);
+                        }
+                    });
                 });
-            });
+            }
 
             // Patient Dashboard: Load Real Data instead of Mock Data
             if (document.getElementById('patientNextAppointmentDisplay')) {
@@ -1106,7 +1129,7 @@ else if (isPatient)
                     } else {
                         scrollToTopBtn.classList.remove('show');
                     }
-                });
+                }, { passive: true });
                 
                 // Scroll to top when clicked
                 scrollToTopBtn.addEventListener('click', function() {
@@ -1300,145 +1323,4 @@ else if (isPatient)
             }, 5000);
         }
     </script>
-    <style>
-        /* OPTIMIZED FLOATING ICONS - BETTER PERFORMANCE */
-        .floating-icon {
-            position: absolute !important;
-            font-size: 1rem !important;
-            color: rgba(0,123,255,0.6) !important;
-            cursor: pointer !important;
-            pointer-events: auto !important;
-            /* Simplified animation with better performance */
-            animation: iconFloatOptimized 8s ease-in-out infinite !important;
-            /* Use transform3d for hardware acceleration */
-            transform: translate3d(0, 0, 0);
-            will-change: transform, opacity;
-            backface-visibility: hidden;
-            z-index: 5 !important;
-        }
-
-        /* Simplified hover effects - no complex transforms */
-        .floating-icon:hover {
-            transform: translate3d(0, -5px, 0) scale(1.1) !important;
-            transition: transform 0.2s ease !important;
-        }
-
-        /* Remove complex pseudo-elements that cause lag */
-        .floating-icon::before,
-        .floating-icon::after {
-            display: none !important;
-        }
-
-        /* Optimized keyframe animation */
-        @@keyframes iconFloatOptimized {
-            0%, 100% {
-                transform: translate3d(0, 0, 0);
-                opacity: 0.6;
-            }
-            50% {
-                transform: translate3d(0, -15px, 0);
-                opacity: 0.8;
-            }
-        }
-
-        /* Individual icon colors for light mode */
-        .icon-1 { color: rgba(220,53,69,0.7) !important; }
-        .icon-2 { color: rgba(40,167,69,0.7) !important; }
-        .icon-3 { color: rgba(0,123,255,0.7) !important; }
-        .icon-4 { color: rgba(255,193,7,0.7) !important; }
-        .icon-5 { color: rgba(108,117,125,0.7) !important; }
-        .icon-6 { color: rgba(23,162,184,0.7) !important; }
-
-        /* Dark mode - simplified */
-        [data-bs-theme="dark"] .floating-icon {
-            color: rgba(255,255,255,0.6) !important;
-        }
-
-        [data-bs-theme="dark"] .icon-1,
-        [data-bs-theme="dark"] .icon-2,
-        [data-bs-theme="dark"] .icon-3,
-        [data-bs-theme="dark"] .icon-4,
-        [data-bs-theme="dark"] .icon-5,
-        [data-bs-theme="dark"] .icon-6 {
-            color: rgba(255,255,255,0.6) !important;
-        }
-
-        /* CORRECCIÓN PARA MODO OSCURO - COLORES BLANCOS */
-        [data-bs-theme="dark"] h1,
-        [data-bs-theme="dark"] h2,
-        [data-bs-theme="dark"] h3,
-        [data-bs-theme="dark"] h4,
-        [data-bs-theme="dark"] h5,
-        [data-bs-theme="dark"] h6 {
-            color: white !important;
-        }
-
-        [data-bs-theme="dark"] .feature-icon-main {
-            color: rgba(255,255,255,0.9) !important;
-        }
-
-        /* Iconos específicos en modo oscuro que deben ser blancos */
-        [data-bs-theme="dark"] i[style*="#0f172a"] {
-            color: rgba(255,255,255,0.9) !important;
-        }
-
-        /* You can also add page-specific CSS here if needed */
-        .divider-primary {
-            border-top: 3px solid var(--bs-primary);
-            width: 50px;
-        }
-        
-        /* Optimized Hero Counter Animation */
-        .hero-stat-number.counting {
-            color: #ffc107 !important;
-            transform: scale(1.05);
-            transition: transform 0.2s ease;
-        }
-
-        /* Optimized responsive animations */
-        @@media (max-width: 768px) {
-            .floating-icon {
-                animation: none !important; /* Disable animations on mobile */
-            }
-            
-            .feature-card-hover:hover {
-                transform: translateY(-3px) !important;
-            }
-        }
-        
-        /* Optimized trust card effects */
-        .trust-card-premium:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 8px 16px rgba(0,0,0,0.1) !important;
-            transition: all 0.2s ease;
-        }
-
-        /* Performance optimization for hero section */
-        .hero-section {
-            transform: translate3d(0, 0, 0);
-            backface-visibility: hidden;
-        }
-
-        .hero-content-container {
-            transform: translate3d(0, 0, 0);
-            backface-visibility: hidden;
-        }
-
-        /* Simplified button animations */
-        .hero-section .btn {
-            transition: transform 0.2s ease, box-shadow 0.2s ease;
-        }
-
-        .hero-section .btn:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 4px 8px rgba(0,0,0,0.15);
-        }
-
-        /* Remove complex pseudo-elements from buttons */
-        .hero-section .btn::before {
-            display: none !important;
-        }
-    </style>
 }
-
-
