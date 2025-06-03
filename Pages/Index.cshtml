@@ -343,19 +343,19 @@ else if (isPatient)
                             <div class="row g-3 mb-4 text-center">
                                 <div class="col-md-4">
                                     <div class="stat-card p-3 border border-info-subtle rounded bg-info-subtle modern-card-hover">
-                                        <h5 class="stat-value mb-1 fs-2 fw-bold text-info text-shadow-custom" id="doctorCitasHoyStat">5</h5>
+                                        <h5 class="stat-value mb-1 fs-2 fw-bold text-info text-shadow-custom" id="doctorCitasHoyStat">0</h5>
                                         <p class="stat-label mb-0 text-muted small text-uppercase">Citas Hoy</p>
                                     </div>
                                 </div>
                                 <div class="col-md-4">
-                                    <div class="stat-card p-3 border border-warning-subtle rounded bg-warning-subtle modern-card-hover">
-                                        <h5 class="stat-value mb-1 fs-2 fw-bold text-warning text-shadow-custom">2</h5>
-                                        <p class="stat-label mb-0 text-muted small text-uppercase">Resultados Pendientes</p>
+                                    <div class="stat-card p-3 border border-info-subtle rounded bg-info-subtle modern-card-hover">
+                                        <h5 class="stat-value mb-1 fs-2 fw-bold text-info text-shadow-custom" id="doctorCitasConfirmadasStat">0</h5>
+                                        <p class="stat-label mb-0 text-muted small text-uppercase">Citas Confirmadas</p>
                                     </div>
                                 </div>
                                 <div class="col-md-4">
-                                    <div class="stat-card p-3 border border-success-subtle rounded bg-success-subtle modern-card-hover">
-                                        <h5 class="stat-value mb-1 fs-2 fw-bold text-success text-shadow-custom">87%</h5>
+                                    <div class="stat-card p-3 border border-info-subtle rounded bg-info-subtle modern-card-hover">
+                                        <h5 class="stat-value mb-1 fs-2 fw-bold text-info text-shadow-custom" id="doctorSatisfaccionStat">0%</h5>
                                         <p class="stat-label mb-0 text-muted small text-uppercase">Satisfacción</p>
                                     </div>
                                 </div>
@@ -416,7 +416,7 @@ else if (isPatient)
                                             </div>
                                             <h5 class="card-title">Mi Perfil</h5>
                                             <p class="card-text flex-grow-1 small text-muted">Actualice su información profesional.</p>
-                                            <a asp-area="Identity" asp-page="/Account/Manage/Index" class="btn btn-outline-info mt-auto w-100 fw-semibold"><i class="bi bi-pencil-square me-1"></i> Actualizar Perfil</a>
+                                            <a asp-area="Identity" asp-page="/Account/Manage/Index" class="btn btn-info mt-auto w-100 fw-semibold"><i class="bi bi-pencil-square me-1"></i> Actualizar Perfil</a>
                                         </div>
                                     </div>
                                 </div>
@@ -469,26 +469,26 @@ else if (isPatient)
                         </div>
                         
                         <!-- Trust Indicators for Doctor -->
-                        <div class="card-footer bg-light text-center">
+                        <div class="card-footer bg-light text-center py-4">
                             <div class="row align-items-center text-muted">
-                                <div class="col-md-3 mb-2 mb-md-0">
-                                    <i class="bi bi-award-fill fs-5 text-warning"></i>
+                                <div class="col-md-3 mb-3 mb-md-0">
+                                    <i class="bi bi-award-fill fs-4 text-info mb-2 d-block"></i>
                                     <div class="small">Certificado ISO 9001</div>
                                 </div>
-                                <div class="col-md-3 mb-2 mb-md-0">
-                                    <i class="bi bi-shield-check fs-5 text-success"></i>
+                                <div class="col-md-3 mb-3 mb-md-0">
+                                    <i class="bi bi-shield-check fs-4 text-info mb-2 d-block"></i>
                                     <div class="small">Ministerio de Salud</div>
                                 </div>
-                                <div class="col-md-3 mb-2 mb-md-0">
-                                    <i class="bi bi-star-fill fs-5 text-info"></i>
+                                <div class="col-md-3 mb-3 mb-md-0">
+                                    <i class="bi bi-star-fill fs-4 text-info mb-2 d-block"></i>
                                     <div class="small">Premio Innovación 2024</div>
                                 </div>
-                                <div class="col-md-3">
-                                    <i class="bi bi-globe fs-5 text-primary"></i>
+                                <div class="col-md-3 mb-3 mb-md-0">
+                                    <i class="bi bi-globe fs-4 text-info mb-2 d-block"></i>
                                     <div class="small">Red Internacional</div>
                                 </div>
                             </div>
-                            <p class="mb-0 text-muted small mt-2">Herramientas para Profesionales de la Salud - Reconocido por Instituciones Líderes</p>
+                            <p class="mb-0 text-muted small mt-3">Herramientas para Profesionales de la Salud - Reconocido por Instituciones Líderes</p>
                         </div>
                     </div>
                 </div>
@@ -1225,10 +1225,14 @@ else if (isPatient)
                 if (response.ok) {
                     const stats = await response.json();
                     document.getElementById('doctorCitasHoyStat').textContent = stats.todayAppointments || 0;
+                    document.getElementById('doctorCitasConfirmadasStat').textContent = stats.confirmedAppointments || 0;
+                    document.getElementById('doctorSatisfaccionStat').textContent = (stats.satisfactionPercentage || 0) + '%';
                 }
             } catch (error) {
                 console.error('Error cargando datos del doctor:', error);
                 document.getElementById('doctorCitasHoyStat').textContent = '0';
+                document.getElementById('doctorCitasConfirmadasStat').textContent = '0';
+                document.getElementById('doctorSatisfaccionStat').textContent = '0%';
             }
         }
 
