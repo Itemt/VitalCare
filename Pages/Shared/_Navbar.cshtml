@@ -91,19 +91,35 @@
                                 </a>
                             </li>
                             <li class="nav-item nav-item-important">
-                                <a class="nav-link d-flex align-items-center" asp-page="/Doctor/GenerateRecipe">
-                                    <i class="bi bi-prescription2 me-2"></i> Generar Recetas
-                                </a>
-                            </li>
-                            <li class="nav-item nav-item-important">
                                 <a class="nav-link d-flex align-items-center" asp-page="/Appointments/Index">
                                     <i class="bi bi-calendar-event me-2"></i> Ver Citas
                                 </a>
                             </li>
-                            <li class="nav-item nav-item-important">
-                                <a class="nav-link d-flex align-items-center" asp-page="/Doctor/MedicalRecords">
-                                    <i class="bi bi-journal-medical me-2"></i> Historial
+                            @* MENÚ MÁS PARA DOCTOR *@
+                            <li class="nav-item dropdown nav-item-important">
+                                <a class="nav-link dropdown-toggle d-flex align-items-center" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                    <i class="bi bi-three-dots me-2"></i> Más
                                 </a>
+                                <ul class="dropdown-menu">
+                                    <li><a class="dropdown-item d-flex align-items-center" asp-area="" asp-page="/Servicios">
+                                        <i class="bi bi-gear-fill me-2"></i> Servicios
+                                    </a></li>
+                                    <li><a class="dropdown-item d-flex align-items-center" asp-area="" asp-page="/About">
+                                        <i class="bi bi-building me-2"></i> Sobre Nosotros
+                                    </a></li>
+                                    <li><a class="dropdown-item d-flex align-items-center" asp-area="" asp-page="/Team">
+                                        <i class="bi bi-people-fill me-2"></i> Equipo
+                                    </a></li>
+                                    <li><a class="dropdown-item d-flex align-items-center" asp-area="" asp-page="/Contact">
+                                        <i class="bi bi-envelope-fill me-2"></i> Contacto
+                                    </a></li>
+                                    <li><a class="dropdown-item d-flex align-items-center" asp-area="" asp-page="/Support">
+                                        <i class="bi bi-headset me-2"></i> Soporte Técnico
+                                    </a></li>
+                                    <li><a class="dropdown-item d-flex align-items-center" asp-area="" asp-page="/FAQ">
+                                        <i class="bi bi-question-circle-fill me-2"></i> FAQ
+                                    </a></li>
+                                </ul>
                             </li>
                         } 
                         else if (isPatientLoggedIn)
@@ -398,6 +414,13 @@
         body.admin-body-bg .navbar-expand-xl .navbar-nav .nav-item.nav-item-important .nav-link:hover {
             background: rgba(255,255,255,0.25) !important;
             color: #fff !important;
+        }
+
+        /* Espaciado aumentado para navbars de doctor y paciente específicamente */
+        body.doctor-body-bg .navbar-expand-xl .navbar-nav .nav-item .nav-link,
+        body.patient-body-bg .navbar-expand-xl .navbar-nav .nav-item .nav-link {
+            margin: 0 0.25rem !important; /* Aumentar margen horizontal */
+            padding: 0.5rem 0.8rem !important; /* Aumentar padding */
         }
     }
 
@@ -771,5 +794,46 @@
             position: absolute !important;
             left: -9999px !important;
         }
+    }
+    
+    /* === ESTILOS PARA MENÚ DESPLEGABLE "MÁS" === */
+    .navbar-nav .dropdown-menu {
+        border: 1px solid var(--bs-border-color);
+        box-shadow: 0 0.5rem 1rem rgba(0,0,0,0.15);
+        border-radius: 0.5rem;
+        padding: 0.5rem 0;
+        margin-top: 0.25rem;
+        min-width: 200px;
+    }
+    
+    .navbar-nav .dropdown-item {
+        padding: 0.5rem 1rem;
+        font-size: 0.9rem;
+        transition: background-color 0.15s ease;
+    }
+    
+    .navbar-nav .dropdown-item:hover {
+        background-color: var(--bs-secondary-bg);
+        color: var(--bs-emphasis-color);
+    }
+    
+    .navbar-nav .dropdown-item i {
+        width: 1.2rem;
+        text-align: center;
+    }
+    
+    /* Estilos específicos para temas de doctor */
+    body.doctor-body-bg .navbar-nav .dropdown-menu {
+        background-color: var(--bs-dark);
+        border-color: rgba(255,255,255,0.2);
+    }
+    
+    body.doctor-body-bg .navbar-nav .dropdown-item {
+        color: var(--bs-light);
+    }
+    
+    body.doctor-body-bg .navbar-nav .dropdown-item:hover {
+        background-color: rgba(255,255,255,0.1);
+        color: #fff;
     }
 </style> 
