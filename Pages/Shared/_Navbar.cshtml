@@ -565,7 +565,7 @@
             gap: 0.3rem !important; /* Espacio entre icono y texto */
         }
         
-        /* Botón de tema - tamaño específico */
+        /* Botón de tema - tamaño específico - SOLO PARA DESKTOP */
         .navbar-collapse > .d-flex.align-items-center #themeToggleBtn {
             flex: 0 0 auto !important;
             width: 40px !important;
@@ -575,6 +575,24 @@
             align-items: center !important;
             justify-content: center !important;
             gap: 0 !important; /* Sin gap para botón de tema */
+        }
+        
+        /* OCULTAR cualquier botón de tema en móvil dentro del collapse */
+        @@media (max-width: 1199.98px) {
+            .navbar-collapse #themeToggleBtn {
+                display: none !important;
+            }
+            
+            /* OCULTAR TODOS los botones de tema dentro del collapse móvil */
+            .navbar-collapse .btn-theme-toggle {
+                display: none !important;
+            }
+            
+            /* OCULTAR cualquier elemento con iconos de tema dentro del collapse */
+            .navbar-collapse .bi-sun-fill,
+            .navbar-collapse .bi-moon-stars-fill {
+                display: none !important;
+            }
         }
         
         /* MOSTRAR iconos y texto en botones móviles */
@@ -740,5 +758,18 @@
         align-items: center !important;
         justify-content: center !important;
         border-radius: 0.375rem !important;
+    }
+    
+    /* === FORZAR OCULTACIÓN DE BOTONES DE TEMA EN COLLAPSE === */
+    @@media (max-width: 1199.98px) {
+        .navbar-collapse button[id*="theme"],
+        .navbar-collapse .btn[id*="theme"],
+        .navbar-collapse [class*="theme-toggle"] {
+            display: none !important;
+            visibility: hidden !important;
+            opacity: 0 !important;
+            position: absolute !important;
+            left: -9999px !important;
+        }
     }
 </style> 
