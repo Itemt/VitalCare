@@ -292,4 +292,329 @@ body.doctor-body-bg .app-footer {
 
 #markAllAsReadLink:hover {
     color: #0056b3;
+}
+
+/* Layout Styles - VitalCare */
+
+/* ===========================================
+   NAVBAR
+   ========================================== */
+
+.navbar {
+    border-bottom: 2px solid transparent;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    transition: all 0.3s ease;
+}
+
+.navbar:hover {
+    box-shadow: 0 4px 8px rgba(0,0,0,0.15);
+}
+
+[data-bs-theme="dark"] .navbar:not([class*="bg-"]) {
+    background-color: #212529 !important;
+    --bs-navbar-color: rgba(255, 255, 255, 0.75);
+    --bs-navbar-hover-color: rgba(255, 255, 255, 0.95);
+    --bs-navbar-toggler-icon-bg: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3e%3cpath stroke='rgba%28255, 255, 255, 0.75%29' stroke-linecap='round' stroke-miterlimit='10' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e");
+}
+
+[data-bs-theme="dark"] .navbar.bg-white {
+    background-color: #212529 !important;
+    --bs-navbar-color: rgba(255, 255, 255, 0.75) !important;
+    --bs-navbar-hover-color: rgba(255, 255, 255, 0.95) !important;
+    --bs-navbar-brand-color: rgba(255, 255, 255, 0.95) !important;
+}
+
+[data-bs-theme="dark"] .navbar.bg-white .nav-link {
+    color: rgba(255, 255, 255, 0.75) !important;
+}
+
+[data-bs-theme="dark"] .navbar.bg-white .nav-link:hover,
+[data-bs-theme="dark"] .navbar.bg-white .nav-link:focus {
+    color: rgba(255, 255, 255, 0.95) !important;
+}
+
+/* ===========================================
+   FOOTER
+   ========================================== */
+
+.footer {
+    background-color: #343a40;
+    color: white;
+    padding: 2rem 0;
+    margin-top: auto;
+}
+
+.footer a {
+    color: #adb5bd;
+    text-decoration: none;
+}
+
+.app-footer {
+    background: linear-gradient(135deg, var(--app-footer-default-bg-start), var(--app-footer-default-bg-end));
+    color: var(--app-footer-themed-text);
+    padding: 2.5rem 0 1rem 0;
+    margin-top: auto;
+    border-top: 4px solid rgba(255,255,255,0.1);
+}
+
+.app-footer h5 {
+    color: var(--app-footer-themed-text);
+    font-weight: 600;
+}
+
+.app-footer p.small {
+    color: var(--app-footer-themed-muted-text);
+}
+
+.app-footer .footer-link {
+    color: var(--app-footer-themed-link-color);
+    text-decoration: none;
+}
+
+.app-footer .footer-link:hover {
+    color: var(--app-footer-themed-link-hover-color);
+}
+
+.copyright-footer {
+    background-color: #212529;
+    color: #adb5bd;
+    padding: 1rem 0;
+    text-align: center;
+    font-size: 0.875rem;
+}
+
+.footer-contact-column .contact-icon-wrapper {
+    width: 40px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.footer-contact-column .contact-item strong {
+    color: var(--app-footer-themed-text);
+}
+
+/* ===========================================
+   DARK MODE LAYOUT OVERRIDES
+   ========================================== */
+
+[data-bs-theme="dark"] .app-footer,
+[data-bs-theme="dark"] body.patient-body-bg .app-footer,
+[data-bs-theme="dark"] body.doctor-body-bg .app-footer {
+    background: linear-gradient(135deg, #1a1e21, #2c3034) !important;
+    color: #e9ecef !important;
+    border-top: 4px solid rgba(255,255,255,0.1) !important;
+}
+
+[data-bs-theme="dark"] .app-footer h5 {
+    color: #e9ecef !important;
+}
+
+[data-bs-theme="dark"] .app-footer p.small {
+    color: #adb5bd !important;
+}
+
+[data-bs-theme="dark"] .app-footer .footer-link {
+    color: #ced4da !important;
+}
+
+[data-bs-theme="dark"] .app-footer .footer-link:hover {
+    color: #f8f9fa !important;
+}
+
+[data-bs-theme="dark"] .footer-contact-column .contact-icon-wrapper i {
+    color: #6ea8fe !important;
+}
+
+[data-bs-theme="dark"] .footer-contact-column .contact-item strong {
+    color: #e9ecef !important;
+}
+
+[data-bs-theme="dark"] .copyright-footer {
+    background-color: #0d1117 !important;
+    color: #7d8590 !important;
+    border-top: 1px solid #21262d !important;
+}
+
+/* ===========================================
+   SOCIAL ICONS
+   ========================================== */
+
+body:not([data-bs-theme="dark"]) .app-footer .footer-social-icon i.text-primary,
+body:not([data-bs-theme="dark"]) .app-footer .footer-social-icon i.text-info {
+    color: var(--app-footer-themed-link-color) !important;
+}
+
+body:not([data-bs-theme="dark"]) .app-footer .footer-social-icon:hover i.text-primary,
+body:not([data-bs-theme="dark"]) .app-footer .footer-social-icon:hover i.text-info {
+    color: var(--app-footer-themed-link-hover-color) !important;
+}
+
+[data-bs-theme="dark"] .app-footer .footer-social-icon i.text-primary,
+[data-bs-theme="dark"] .app-footer .footer-social-icon i.text-info {
+    color: #6ea8fe !important;
+}
+
+[data-bs-theme="dark"] .app-footer .footer-social-icon:hover i.text-primary,
+[data-bs-theme="dark"] .app-footer .footer-social-icon:hover i.text-info {
+    color: #8bb9fe !important;
+}
+
+/* ===========================================
+   SECTIONS & FEATURES
+   ========================================== */
+
+.features-section-bg {
+    background-color: #f8f9fa;
+}
+
+[data-bs-theme="dark"] .features-section-bg {
+    background-color: var(--body-bg);
+}
+
+/* ===========================================
+   WIDGETS
+   ========================================== */
+
+.quick-links-widget .list-group-item {
+    border: none;
+    padding: 0.75rem 1rem;
+}
+
+.quick-links-widget .list-group-item i {
+    transition: color 0.2s ease;
+}
+
+.quick-links-widget .list-group-item:hover i {
+    color: var(--bs-primary) !important;
+}
+
+.announcements-widget .card-body {
+    padding: 1rem;
+}
+
+.announcements-widget hr {
+    margin: 0.5rem 0;
+}
+
+.useful-info-widget .list-group-item {
+    border: none;
+    padding: 0.75rem 1rem;
+}
+
+.useful-info-widget .list-group-item i {
+    transition: color 0.2s ease;
+}
+
+.useful-info-widget .list-group-item:hover i {
+    color: var(--bs-primary) !important;
+}
+
+.reminders-widget .card-body {
+    padding: 1rem;
+}
+
+.reminders-widget hr {
+    margin: 0.5rem 0;
+}
+
+/* ===========================================
+   DARK MODE WIDGET OVERRIDES
+   ========================================== */
+
+[data-bs-theme="dark"] .announcements-widget {
+    background-color: var(--card-bg);
+}
+
+[data-bs-theme="dark"] .quick-links-widget .list-group-item .text-muted {
+    color: #adb5bd !important;
+}
+
+[data-bs-theme="dark"] .announcements-widget .text-muted {
+    color: #adb5bd !important;
+}
+
+[data-bs-theme="dark"] .useful-info-widget .list-group-item .text-muted {
+    color: #adb5bd !important;
+}
+
+[data-bs-theme="dark"] .reminders-widget {
+    background-color: var(--card-bg);
+}
+
+[data-bs-theme="dark"] .reminders-widget .text-muted {
+    color: #adb5bd !important;
+}
+
+/* ===========================================
+   NOTIFICATIONS
+   ========================================== */
+
+.notification-item a.dropdown-item {
+    border-bottom: 1px solid rgba(0,0,0,0.1);
+}
+
+.notification-item.notification-unread .dropdown-item p {
+    font-weight: 600;
+}
+
+.notification-item.notification-unread .dropdown-item small {
+    color: var(--bs-primary);
+}
+
+.notification-item.notification-read .dropdown-item p {
+    font-weight: normal;
+}
+
+.notification-item.notification-read .dropdown-item small {
+    color: var(--bs-secondary);
+}
+
+[data-bs-theme="light"] .notification-item .dropdown-item:hover {
+    background-color: #f8f9fa;
+}
+[data-bs-theme="dark"] .notification-item .dropdown-item:hover {
+    background-color: #2b3035;
+}
+
+.notification-item .dropdown-item:hover p,
+.notification-item .dropdown-item:hover small {
+    color: var(--bs-emphasis-color);
+}
+
+#notificationBadge {
+    position: absolute;
+    top: -8px;
+    right: -8px;
+    background-color: #dc3545;
+    color: white;
+    border-radius: 50%;
+    padding: 2px 6px;
+    font-size: 0.75rem;
+}
+
+#notificationPanel {
+    max-height: 400px;
+    overflow-y: auto;
+}
+
+#notificationPanel .dropdown-item p {
+    margin: 0;
+    font-size: 0.9rem;
+}
+
+#notificationPanel .dropdown-item small {
+    font-size: 0.8rem;
+}
+
+#noNotificationsMessageDisplay {
+    padding: 1rem;
+    text-align: center;
+}
+
+#markAllAsReadLink {
+    padding: 0.5rem 1rem;
+    text-align: center;
+    border-top: 1px solid rgba(0,0,0,0.1);
 } 

@@ -70,9 +70,21 @@
     @* Flatpickr CSS for date pickers *@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
     
-    @* === CSS OPTIMIZADO PARA RENDIMIENTO === *@
-    @* Archivo CSS principal optimizado que reemplaza site.css y enhanced-features.css *@
-    <link rel="stylesheet" href="~/css/site-optimized.css" asp-append-version="true" />
+    @* === CSS MODULAR PARA MEJOR RENDIMIENTO === *@
+    @* Archivo CSS principal con variables y estilos base *@
+    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+    
+    @* Componentes específicos *@
+    <link rel="stylesheet" href="~/css/components.css" asp-append-version="true" />
+    
+    @* Temas por roles *@
+    <link rel="stylesheet" href="~/css/themes.css" asp-append-version="true" />
+    
+    @* Layout y estructura *@
+    <link rel="stylesheet" href="~/css/layout.css" asp-append-version="true" />
+    
+    @* Efectos arcoíris y animaciones especiales *@
+    <link rel="stylesheet" href="~/css/rainbow-effects.css" asp-append-version="true" />
     
     @* Archivo con efectos avanzados y estilos del footer *@
     <link rel="stylesheet" href="~/css/enhanced-features.css" asp-append-version="true" />

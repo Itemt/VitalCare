@@ -1,0 +1,292 @@
+/* Rainbow Effects - VitalCare */
+/* Efectos arcoíris optimizados para mejor rendimiento */
+
+/* ===========================================
+   RAINBOW CARD EFFECTS
+   ========================================== */
+
+.rainbow-card {
+    position: relative;
+    overflow: hidden;
+    background: linear-gradient(45deg, #ff6b6b, #4ecdc4, #45b7d1, #96ceb4, #feca57, #ff9ff3, #54a0ff);
+    background-size: 400% 400%;
+    background-clip: padding-box;
+    border: 2px solid transparent;
+    border-radius: 1rem;
+    transition: all 0.3s ease;
+}
+
+.rainbow-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(45deg, #ff6b6b, #4ecdc4, #45b7d1, #96ceb4, #feca57, #ff9ff3, #54a0ff);
+    background-size: 400% 400%;
+    opacity: 0;
+    z-index: -1;
+    border-radius: inherit;
+    transition: opacity 0.3s ease;
+    animation: rainbowShift 8s ease-in-out infinite;
+}
+
+.rainbow-card::after {
+    content: '';
+    position: absolute;
+    top: 2px;
+    left: 2px;
+    right: 2px;
+    bottom: 2px;
+    background: white;
+    border-radius: calc(1rem - 2px);
+    z-index: 0;
+}
+
+.rainbow-card .card-body {
+    position: relative;
+    z-index: 1;
+    background: transparent;
+}
+
+.rainbow-card:hover::before {
+    opacity: 1;
+    animation-duration: 2s;
+}
+
+.rainbow-card:hover {
+    transform: translateY(-8px) scale(1.02);
+    box-shadow: 0 20px 40px rgba(0,0,0,0.2);
+}
+
+/* Dark mode rainbow cards */
+[data-bs-theme="dark"] .rainbow-card::after {
+    background: var(--bs-body-bg, #212529);
+}
+
+/* ===========================================
+   RAINBOW ANIMATIONS
+   ========================================== */
+
+@keyframes rainbowShift {
+    0% {
+        background-position: 0% 50%;
+    }
+    25% {
+        background-position: 100% 50%;
+    }
+    50% {
+        background-position: 100% 100%;
+    }
+    75% {
+        background-position: 0% 100%;
+    }
+    100% {
+        background-position: 0% 50%;
+    }
+}
+
+@keyframes rainbowGlow {
+    0%, 100% {
+        filter: hue-rotate(0deg) brightness(1);
+    }
+    25% {
+        filter: hue-rotate(90deg) brightness(1.2);
+    }
+    50% {
+        filter: hue-rotate(180deg) brightness(1.1);
+    }
+    75% {
+        filter: hue-rotate(270deg) brightness(1.2);
+    }
+}
+
+/* ===========================================
+   ROTATING ICONS
+   ========================================== */
+
+.rotating-icon {
+    transition: transform 0.6s ease;
+}
+
+.rainbow-card:hover .rotating-icon {
+    transform: rotateY(360deg) scale(1.1);
+    animation: rainbowGlow 2s ease-in-out infinite;
+}
+
+/* ===========================================
+   SPARKLE EFFECTS
+   ========================================== */
+
+.feature-sparkles {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    pointer-events: none;
+    z-index: 1;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.rainbow-card:hover .feature-sparkles {
+    opacity: 1;
+}
+
+.sparkle {
+    position: absolute;
+    width: 8px;
+    height: 8px;
+    background: linear-gradient(45deg, #fff, #ffd700, #ff69b4, #00ffff);
+    border-radius: 50%;
+    animation: sparkleFloat 2s ease-in-out infinite;
+}
+
+.sparkle-1 { 
+    top: 15%; 
+    right: 15%; 
+    animation-delay: 0s; 
+}
+.sparkle-2 { 
+    top: 65%; 
+    right: 75%; 
+    animation-delay: 0.7s; 
+}
+.sparkle-3 { 
+    bottom: 25%; 
+    left: 25%; 
+    animation-delay: 1.4s; 
+}
+.sparkle-4 { 
+    top: 40%; 
+    left: 15%; 
+    animation-delay: 2.1s; 
+}
+
+@keyframes sparkleFloat {
+    0%, 100% { 
+        opacity: 0; 
+        transform: scale(0) rotate(0deg) translateY(0); 
+    }
+    25% {
+        opacity: 0.7;
+        transform: scale(0.8) rotate(90deg) translateY(-5px);
+    }
+    50% { 
+        opacity: 1; 
+        transform: scale(1) rotate(180deg) translateY(-10px); 
+    }
+    75% {
+        opacity: 0.7;
+        transform: scale(0.8) rotate(270deg) translateY(-5px);
+    }
+}
+
+/* ===========================================
+   RAINBOW HOVER BUTTON EFFECTS
+   ========================================== */
+
+.btn-rainbow {
+    position: relative;
+    background: linear-gradient(45deg, #ff6b6b, #4ecdc4, #45b7d1, #96ceb4);
+    background-size: 400% 400%;
+    border: none;
+    color: white;
+    font-weight: 600;
+    text-shadow: 0 1px 2px rgba(0,0,0,0.3);
+    transition: all 0.3s ease;
+    overflow: hidden;
+}
+
+.btn-rainbow:hover {
+    animation: rainbowShift 1.5s ease-in-out infinite;
+    transform: translateY(-2px) scale(1.05);
+    box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+    color: white;
+}
+
+.btn-rainbow::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
+    transition: left 0.5s ease;
+}
+
+.btn-rainbow:hover::before {
+    left: 100%;
+}
+
+/* ===========================================
+   PERFORMANCE OPTIMIZATIONS
+   ========================================== */
+
+/* Reduce animations on mobile for performance */
+@media (max-width: 768px) {
+    .rainbow-card:hover {
+        transform: translateY(-4px) scale(1.01);
+    }
+    
+    .rainbow-card::before {
+        animation-duration: 12s;
+    }
+    
+    .rainbow-card:hover::before {
+        animation-duration: 4s;
+    }
+    
+    .sparkle {
+        display: none; /* Hide sparkles on mobile */
+    }
+}
+
+/* Disable animations for users who prefer reduced motion */
+@media (prefers-reduced-motion: reduce) {
+    .rainbow-card,
+    .rainbow-card::before,
+    .rotating-icon,
+    .sparkle,
+    .btn-rainbow {
+        animation: none !important;
+        transition: none !important;
+    }
+    
+    .rainbow-card:hover {
+        transform: none;
+    }
+}
+
+/* ===========================================
+   TRUST BADGE RAINBOW EFFECTS
+   ========================================== */
+
+.trust-badge-rainbow {
+    position: relative;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    background-size: 200% 200%;
+    transition: all 0.3s ease;
+}
+
+.trust-badge-rainbow:hover {
+    background-position: 100% 100%;
+    transform: translateY(-2px) scale(1.05);
+    box-shadow: 0 8px 25px rgba(102, 126, 234, 0.4);
+}
+
+/* ===========================================
+   ICON RAINBOW GLOW
+   ========================================== */
+
+.icon-rainbow-glow {
+    transition: all 0.3s ease;
+}
+
+.icon-rainbow-glow:hover {
+    filter: hue-rotate(360deg) brightness(1.3) saturate(1.5);
+    animation: rainbowGlow 2s ease-in-out infinite;
+} 

@@ -29,12 +29,20 @@
       "PackagePath": "staticwebassets\\css\\performance-optimizations.css"
     },
     {
+      "Id": "C:\\Users\\CristianPC\\Desktop\\vitalcare\\wwwroot\\css\\rainbow-effects.css",
+      "PackagePath": "staticwebassets\\css\\rainbow-effects.css"
+    },
+    {
       "Id": "C:\\Users\\CristianPC\\Desktop\\vitalcare\\wwwroot\\css\\site-optimized.css",
       "PackagePath": "staticwebassets\\css\\site-optimized.css"
     },
     {
       "Id": "C:\\Users\\CristianPC\\Desktop\\vitalcare\\wwwroot\\css\\site.css",
       "PackagePath": "staticwebassets\\css\\site.css"
+    },
+    {
+      "Id": "C:\\Users\\CristianPC\\Desktop\\vitalcare\\wwwroot\\css\\themes.css",
+      "PackagePath": "staticwebassets\\css\\themes.css"
     },
     {
       "Id": "C:\\Users\\CristianPC\\Desktop\\vitalcare\\wwwroot\\css\\utilities.css",

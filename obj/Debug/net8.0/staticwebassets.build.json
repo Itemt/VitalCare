@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "9SXNR9O16LUXS4XwvTEBBrFdY/7RPrRtZTqkXgsb/4M=",
+  "Hash": "Pi0B5TN3j3zHMM36hyDy5Yj3Vcw2AkFjmPVgBhfciVE=",
   "Source": "CitasEPS",
   "BasePath": "_content/CitasEPS",
   "Mode": "Default",
@@ -1354,8 +1354,8 @@
       "RelatedAsset": "",
       "AssetTraitName": "",
       "AssetTraitValue": "",
-      "Fingerprint": "j4trx51ifw",
-      "Integrity": "M1HVnOLQA4xgjQnfb7WnpREpIgyVJ7D5GKmwy36ZwBg=",
+      "Fingerprint": "21lwg1rm42",
+      "Integrity": "iukHMRstupCOrkxJfm5oUjAMJIfhcmalrvUKaQziWEc=",
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\css\\components.css"
@@ -1417,8 +1417,8 @@
       "RelatedAsset": "",
       "AssetTraitName": "",
       "AssetTraitValue": "",
-      "Fingerprint": "aze9qfd60s",
-      "Integrity": "6gV2ajg3Ywa5giv0VurFpwycYvYO3zbxR4/42oDvQMk=",
+      "Fingerprint": "hcwgb8k6x3",
+      "Integrity": "Py2lgb5Yf1LunSXfNmGslVV2zJ0A2c+wjb/aJtzFZpE=",
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\css\\layout.css"
@@ -1443,6 +1443,27 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\css\\performance-optimizations.css"
+    },
+    {
+      "Identity": "C:\\Users\\CristianPC\\Desktop\\vitalcare\\wwwroot\\css\\rainbow-effects.css",
+      "SourceId": "CitasEPS",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\CristianPC\\Desktop\\vitalcare\\wwwroot\\",
+      "BasePath": "_content/CitasEPS",
+      "RelativePath": "css/rainbow-effects#[.{fingerprint}]?.css",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "Fingerprint": "cs3lh95kyl",
+      "Integrity": "lDSPlZeqVrGVCa3os49S1Kb3Mii+C+MAbPFepG/a0gQ=",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\css\\rainbow-effects.css"
     },
     {
       "Identity": "C:\\Users\\CristianPC\\Desktop\\vitalcare\\wwwroot\\css\\site-optimized.css",
@@ -1485,6 +1506,27 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\css\\site.css"
+    },
+    {
+      "Identity": "C:\\Users\\CristianPC\\Desktop\\vitalcare\\wwwroot\\css\\themes.css",
+      "SourceId": "CitasEPS",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\CristianPC\\Desktop\\vitalcare\\wwwroot\\",
+      "BasePath": "_content/CitasEPS",
+      "RelativePath": "css/themes#[.{fingerprint}]?.css",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "Fingerprint": "ova0mi00ft",
+      "Integrity": "7GoJ5x7a9hagbgbLXXb2Vflv4Etih97u1FpSBDTg6PY=",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\css\\themes.css"
     },
     {
       "Identity": "C:\\Users\\CristianPC\\Desktop\\vitalcare\\wwwroot\\css\\utilities.css",
@@ -3394,6 +3436,51 @@
       ]
     },
     {
+      "Route": "css/components.21lwg1rm42.css",
+      "AssetFile": "C:\\Users\\CristianPC\\Desktop\\vitalcare\\wwwroot\\css\\components.css",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "21770"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "text/css"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"iukHMRstupCOrkxJfm5oUjAMJIfhcmalrvUKaQziWEc=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Tue, 03 Jun 2025 06:24:29 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=31536000, immutable"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "fingerprint",
+          "Value": "21lwg1rm42"
+        },
+        {
+          "Name": "label",
+          "Value": "css/components.css"
+        },
+        {
+          "Name": "integrity",
+          "Value": "sha256-iukHMRstupCOrkxJfm5oUjAMJIfhcmalrvUKaQziWEc="
+        }
+      ]
+    },
+    {
       "Route": "css/components.css",
       "AssetFile": "C:\\Users\\CristianPC\\Desktop\\vitalcare\\wwwroot\\css\\components.css",
       "Selectors": [],
@@ -3404,7 +3491,7 @@
         },
         {
           "Name": "Content-Length",
-          "Value": "18906"
+          "Value": "21770"
         },
         {
           "Name": "Content-Type",
@@ -3412,11 +3499,11 @@
         },
         {
           "Name": "ETag",
-          "Value": "\"M1HVnOLQA4xgjQnfb7WnpREpIgyVJ7D5GKmwy36ZwBg=\""
+          "Value": "\"iukHMRstupCOrkxJfm5oUjAMJIfhcmalrvUKaQziWEc=\""
         },
         {
           "Name": "Last-Modified",
-          "Value": "Mon, 02 Jun 2025 07:28:49 GMT"
+          "Value": "Tue, 03 Jun 2025 06:24:29 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -3426,52 +3513,7 @@
       "EndpointProperties": [
         {
           "Name": "integrity",
-          "Value": "sha256-M1HVnOLQA4xgjQnfb7WnpREpIgyVJ7D5GKmwy36ZwBg="
-        }
-      ]
-    },
-    {
-      "Route": "css/components.j4trx51ifw.css",
-      "AssetFile": "C:\\Users\\CristianPC\\Desktop\\vitalcare\\wwwroot\\css\\components.css",
-      "Selectors": [],
-      "ResponseHeaders": [
-        {
-          "Name": "Accept-Ranges",
-          "Value": "bytes"
-        },
-        {
-          "Name": "Content-Length",
-          "Value": "18906"
-        },
-        {
-          "Name": "Content-Type",
-          "Value": "text/css"
-        },
-        {
-          "Name": "ETag",
-          "Value": "\"M1HVnOLQA4xgjQnfb7WnpREpIgyVJ7D5GKmwy36ZwBg=\""
-        },
-        {
-          "Name": "Last-Modified",
-          "Value": "Mon, 02 Jun 2025 07:28:49 GMT"
-        },
-        {
-          "Name": "Cache-Control",
-          "Value": "max-age=31536000, immutable"
-        }
-      ],
-      "EndpointProperties": [
-        {
-          "Name": "fingerprint",
-          "Value": "j4trx51ifw"
-        },
-        {
-          "Name": "label",
-          "Value": "css/components.css"
-        },
-        {
-          "Name": "integrity",
-          "Value": "sha256-M1HVnOLQA4xgjQnfb7WnpREpIgyVJ7D5GKmwy36ZwBg="
+          "Value": "sha256-iukHMRstupCOrkxJfm5oUjAMJIfhcmalrvUKaQziWEc="
         }
       ]
     },
@@ -3640,51 +3682,6 @@
       ]
     },
     {
-      "Route": "css/layout.aze9qfd60s.css",
-      "AssetFile": "C:\\Users\\CristianPC\\Desktop\\vitalcare\\wwwroot\\css\\layout.css",
-      "Selectors": [],
-      "ResponseHeaders": [
-        {
-          "Name": "Accept-Ranges",
-          "Value": "bytes"
-        },
-        {
-          "Name": "Content-Length",
-          "Value": "7603"
-        },
-        {
-          "Name": "Content-Type",
-          "Value": "text/css"
-        },
-        {
-          "Name": "ETag",
-          "Value": "\"6gV2ajg3Ywa5giv0VurFpwycYvYO3zbxR4/42oDvQMk=\""
-        },
-        {
-          "Name": "Last-Modified",
-          "Value": "Mon, 02 Jun 2025 07:28:49 GMT"
-        },
-        {
-          "Name": "Cache-Control",
-          "Value": "max-age=31536000, immutable"
-        }
-      ],
-      "EndpointProperties": [
-        {
-          "Name": "fingerprint",
-          "Value": "aze9qfd60s"
-        },
-        {
-          "Name": "label",
-          "Value": "css/layout.css"
-        },
-        {
-          "Name": "integrity",
-          "Value": "sha256-6gV2ajg3Ywa5giv0VurFpwycYvYO3zbxR4/42oDvQMk="
-        }
-      ]
-    },
-    {
       "Route": "css/layout.css",
       "AssetFile": "C:\\Users\\CristianPC\\Desktop\\vitalcare\\wwwroot\\css\\layout.css",
       "Selectors": [],
@@ -3695,7 +3692,7 @@
         },
         {
           "Name": "Content-Length",
-          "Value": "7603"
+          "Value": "15946"
         },
         {
           "Name": "Content-Type",
@@ -3703,11 +3700,11 @@
         },
         {
           "Name": "ETag",
-          "Value": "\"6gV2ajg3Ywa5giv0VurFpwycYvYO3zbxR4/42oDvQMk=\""
+          "Value": "\"Py2lgb5Yf1LunSXfNmGslVV2zJ0A2c+wjb/aJtzFZpE=\""
         },
         {
           "Name": "Last-Modified",
-          "Value": "Mon, 02 Jun 2025 07:28:49 GMT"
+          "Value": "Tue, 03 Jun 2025 06:16:05 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -3717,7 +3714,52 @@
       "EndpointProperties": [
         {
           "Name": "integrity",
-          "Value": "sha256-6gV2ajg3Ywa5giv0VurFpwycYvYO3zbxR4/42oDvQMk="
+          "Value": "sha256-Py2lgb5Yf1LunSXfNmGslVV2zJ0A2c+wjb/aJtzFZpE="
+        }
+      ]
+    },
+    {
+      "Route": "css/layout.hcwgb8k6x3.css",
+      "AssetFile": "C:\\Users\\CristianPC\\Desktop\\vitalcare\\wwwroot\\css\\layout.css",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "15946"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "text/css"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"Py2lgb5Yf1LunSXfNmGslVV2zJ0A2c+wjb/aJtzFZpE=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Tue, 03 Jun 2025 06:16:05 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=31536000, immutable"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "fingerprint",
+          "Value": "hcwgb8k6x3"
+        },
+        {
+          "Name": "label",
+          "Value": "css/layout.css"
+        },
+        {
+          "Name": "integrity",
+          "Value": "sha256-Py2lgb5Yf1LunSXfNmGslVV2zJ0A2c+wjb/aJtzFZpE="
         }
       ]
     },
@@ -3800,6 +3842,88 @@
         {
           "Name": "integrity",
           "Value": "sha256-vmgRC8UXQdUg8tyg6AQMZBawbkbN057c2KcrvPn+cE4="
+        }
+      ]
+    },
+    {
+      "Route": "css/rainbow-effects.cs3lh95kyl.css",
+      "AssetFile": "C:\\Users\\CristianPC\\Desktop\\vitalcare\\wwwroot\\css\\rainbow-effects.css",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "6780"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "text/css"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"lDSPlZeqVrGVCa3os49S1Kb3Mii+C+MAbPFepG/a0gQ=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Tue, 03 Jun 2025 06:23:10 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=31536000, immutable"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "fingerprint",
+          "Value": "cs3lh95kyl"
+        },
+        {
+          "Name": "label",
+          "Value": "css/rainbow-effects.css"
+        },
+        {
+          "Name": "integrity",
+          "Value": "sha256-lDSPlZeqVrGVCa3os49S1Kb3Mii+C+MAbPFepG/a0gQ="
+        }
+      ]
+    },
+    {
+      "Route": "css/rainbow-effects.css",
+      "AssetFile": "C:\\Users\\CristianPC\\Desktop\\vitalcare\\wwwroot\\css\\rainbow-effects.css",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "6780"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "text/css"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"lDSPlZeqVrGVCa3os49S1Kb3Mii+C+MAbPFepG/a0gQ=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Tue, 03 Jun 2025 06:23:10 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "no-cache"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "integrity",
+          "Value": "sha256-lDSPlZeqVrGVCa3os49S1Kb3Mii+C+MAbPFepG/a0gQ="
         }
       ]
     },
@@ -3964,6 +4088,88 @@
         {
           "Name": "integrity",
           "Value": "sha256-qLD4NRxYkMUuzLwpVfOD4x/s/hRBy3PL3gczkJ7js/o="
+        }
+      ]
+    },
+    {
+      "Route": "css/themes.css",
+      "AssetFile": "C:\\Users\\CristianPC\\Desktop\\vitalcare\\wwwroot\\css\\themes.css",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "7158"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "text/css"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"7GoJ5x7a9hagbgbLXXb2Vflv4Etih97u1FpSBDTg6PY=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Tue, 03 Jun 2025 06:15:32 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "no-cache"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "integrity",
+          "Value": "sha256-7GoJ5x7a9hagbgbLXXb2Vflv4Etih97u1FpSBDTg6PY="
+        }
+      ]
+    },
+    {
+      "Route": "css/themes.ova0mi00ft.css",
+      "AssetFile": "C:\\Users\\CristianPC\\Desktop\\vitalcare\\wwwroot\\css\\themes.css",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "7158"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "text/css"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"7GoJ5x7a9hagbgbLXXb2Vflv4Etih97u1FpSBDTg6PY=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Tue, 03 Jun 2025 06:15:32 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=31536000, immutable"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "fingerprint",
+          "Value": "ova0mi00ft"
+        },
+        {
+          "Name": "label",
+          "Value": "css/themes.css"
+        },
+        {
+          "Name": "integrity",
+          "Value": "sha256-7GoJ5x7a9hagbgbLXXb2Vflv4Etih97u1FpSBDTg6PY="
         }
       ]
     },

@@ -1,4 +1,4 @@
-﻿@page
+@page
 @model IndexModel
 @using Microsoft.AspNetCore.Identity
 @using CitasEPS.Models
@@ -19,20 +19,8 @@
     <!-- Enhanced Hero Section - Solo para usuarios no logueados -->
     <div class="container-fluid bg-dark text-white text-center py-5 mb-4 shadow-lg hero-section-enhanced" style="background-image: linear-gradient(135deg, rgba(0,20,40,0.95), rgba(0,40,80,0.9)), url('/images/INDEX.png'); background-size: cover; background-position: center center; background-attachment: fixed; position: relative; overflow: hidden; border-radius: 2rem; margin: 1rem;">
         
-        <!-- Floating Icons - Optimized Performance -->
-        <div class="floating-medical-icons">
-            <i class="bi bi-heart-pulse floating-icon icon-1"></i>
-            <i class="bi bi-shield-check floating-icon icon-2"></i>
-            <i class="bi bi-calendar-plus floating-icon icon-3"></i>
-            <i class="bi bi-graph-up floating-icon icon-4"></i>
-            <i class="bi bi-people floating-icon icon-5"></i>
-            <i class="bi bi-clock floating-icon icon-6"></i>
-        </div>
-        
         <!-- Hero Content Container -->
         <div class="hero-content-container mx-auto d-flex flex-column justify-content-center align-items-center" style="background: linear-gradient(135deg, rgba(0, 40, 80, 0.9), rgba(0, 60, 120, 0.85)); padding: 3rem 1.5rem; border-radius: 1.5rem; max-width: 1000px; width: 90%; position: relative; z-index: 10; backdrop-filter: blur(20px); border: 1px solid rgba(255,255,255,0.1);">
-            <!-- Glowing Border Effect - Only on Hover -->
-            <div class="hero-glow-border"></div>
             
             <h1 class="display-2 fw-bolder text-shadow-custom mb-3 hero-title text-center">
                 <span class="hero-title-vital" style="color: #22c55e;">Vital</span><span class="hero-title-care" style="color: #0f172a;">Care</span>
@@ -76,12 +64,10 @@
                 <a class="btn btn-light btn-lg px-4 py-2 me-sm-3 hero-btn hero-btn-light" asp-area="Identity" asp-page="/Account/Login" role="button">
                     <i class="bi bi-box-arrow-in-right me-2"></i> 
                     <span>Iniciar Sesión</span>
-                    <div class="btn-ripple"></div>
                 </a>
                 <a class="btn btn-dark-blue btn-lg px-4 py-2 hero-btn hero-btn-dark" asp-area="Identity" asp-page="/Account/Register" role="button">
                     <i class="bi bi-person-plus me-2"></i> 
                     <span>Registrarse Gratis</span>
-                    <div class="btn-ripple"></div>
                 </a>
             </div>
             
@@ -111,8 +97,8 @@
             </div>
         </div>
         
-        <!-- Scroll Indicator - Positioned Lower -->
-        <div class="scroll-indicator" style="bottom: 15px;">
+        <!-- Scroll Indicator - Fixed positioning -->
+        <div class="scroll-indicator" style="bottom: 15px; left: 50%; transform: translateX(-50%);">
             <i class="bi bi-chevron-down"></i>
         </div>
     </div>
@@ -192,7 +178,7 @@ else if (isPatient)
                             <p class="lead text-center mb-4">Gestione las entidades clave y configuraciones del sistema.</p>
                             <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4">
                                 <div class="col">
-                                    <div class="card h-100 shadow-lg border-primary action-card-hover feature-card-hover">
+                                    <div class="card h-100 shadow-lg border-primary action-card-hover feature-card-hover rainbow-card">
                                         <div class="card-body d-flex flex-column align-items-center">
                                             <div class="feature-icon-wrapper mb-3">
                                                 <i class="bi bi-people-fill fs-1 text-primary feature-icon-main rotating-icon"></i>
@@ -210,7 +196,7 @@ else if (isPatient)
                                     </div>
                                 </div>
                                 <div class="col">
-                                    <div class="card h-100 shadow-lg border-primary action-card-hover feature-card-hover">
+                                    <div class="card h-100 shadow-lg border-primary action-card-hover feature-card-hover rainbow-card">
                                         <div class="card-body d-flex flex-column align-items-center">
                                             <div class="feature-icon-wrapper mb-3">
                                                 <i class="bi bi-calendar-check-fill fs-1 text-primary feature-icon-main"></i>
@@ -227,7 +213,7 @@ else if (isPatient)
                                     </div>
                                 </div>
                                 <div class="col">
-                                    <div class="card h-100 shadow-lg border-primary action-card-hover feature-card-hover">
+                                    <div class="card h-100 shadow-lg border-primary action-card-hover feature-card-hover rainbow-card">
                                         <div class="card-body d-flex flex-column align-items-center">
                                             <div class="feature-icon-wrapper mb-3">
                                                 <i class="bi bi-file-medical-fill fs-1 text-primary feature-icon-main"></i>
@@ -244,7 +230,7 @@ else if (isPatient)
                                     </div>
                                 </div>
                                 <div class="col">
-                                    <div class="card h-100 shadow-lg border-primary action-card-hover feature-card-hover">
+                                    <div class="card h-100 shadow-lg border-primary action-card-hover feature-card-hover rainbow-card">
                                         <div class="card-body d-flex flex-column align-items-center">
                                             <div class="feature-icon-wrapper mb-3">
                                                 <i class="bi bi-bookmark-star-fill fs-1 text-primary feature-icon-main"></i>
@@ -261,7 +247,7 @@ else if (isPatient)
                                     </div>
                                 </div>
                                 <div class="col">
-                                    <div class="card h-100 shadow-lg border-primary action-card-hover feature-card-hover">
+                                    <div class="card h-100 shadow-lg border-primary action-card-hover feature-card-hover rainbow-card">
                                         <div class="card-body d-flex flex-column align-items-center">
                                             <div class="feature-icon-wrapper mb-3 mx-auto">
                                                 <i class="bi bi-capsule fs-1 feature-icon-main" style="color: #0f172a;"></i>
@@ -278,7 +264,7 @@ else if (isPatient)
                                     </div>
                                 </div>
                                  <div class="col">
-                                    <div class="card h-100 shadow-lg border-secondary action-card-hover feature-card-hover">
+                                    <div class="card h-100 shadow-lg border-secondary action-card-hover feature-card-hover rainbow-card">
                                         <div class="card-body d-flex flex-column align-items-center">
                                             <div class="feature-icon-wrapper mb-3">
                                                 <i class="bi bi-person-lines-fill fs-1 text-secondary feature-icon-main"></i>
@@ -458,7 +444,7 @@ else if (isPatient)
                                             </p>
                                             <hr class="my-2">
                                             <p class="card-text text-muted small">
-                                                <strong>10 Julio, 2024:</strong> Próxima jornada de capacitación sobre CIE-11 el 1 de Agosto. ¡Inscríbase!
+                                                <strong>10 Julio, 2024:</strong> Próxima jornada de capacitación sobre CIE-11 el 1 de Agosto. Inscríbase!
                                             </p>
                                             <a href="#" class="btn btn-sm btn-outline-info mt-2 float-end">Ver todos</a>
                                         </div>
@@ -741,22 +727,22 @@ else if (isPatient)
         <!-- Enhanced Welcome Section for Non-Logged Users -->
         <div class="row justify-content-center mb-5">
             <div class="col-lg-8 text-center">
-                <h2 class="display-6 fw-bold mb-3" style="color: #0f172a;">Tu Salud, Nuestra Tecnología</h2>
-                <p class="lead text-muted fs-5 mb-4">Únete a miles de pacientes que ya confían en VitalCare para gestionar su salud de manera inteligente y segura</p>
+                <h2 class="display-6 fw-bold mb-3" style="color: #1e293b;">IPS VitalCare - Tu Salud es Nuestra Prioridad</h2>
+                <p class="lead text-muted fs-5 mb-4">Institución Prestadora de Servicios de Salud en Barrancabermeja, Santander. Únete a miles de pacientes que confían en nuestro sistema de agendamiento de citas médicas</p>
                 <div class="d-flex justify-content-center align-items-center gap-4 mb-4">
                     <div class="text-center">
-                        <h4 class="fw-bold mb-0" style="color: #22c55e;">15,000+</h4>
-                        <small class="text-muted">Pacientes Activos</small>
+                        <h4 class="fw-bold mb-0" style="color: #059669;">12,500+</h4>
+                        <small class="text-muted">Pacientes Registrados</small>
                     </div>
                     <div class="vr" style="height: 2rem;"></div>
                     <div class="text-center">
-                        <h4 class="fw-bold mb-0" style="color: #0f172a;">250+</h4>
+                        <h4 class="fw-bold mb-0" style="color: #1e293b;">45+</h4>
                         <small class="text-muted">Médicos Especialistas</small>
                     </div>
                     <div class="vr" style="height: 2rem;"></div>
                     <div class="text-center">
-                        <h4 class="fw-bold mb-0" style="color: #f59e0b;">98%</h4>
-                        <small class="text-muted">Satisfacción</small>
+                        <h4 class="fw-bold mb-0" style="color: #d97706;">15+</h4>
+                        <small class="text-muted">Especialidades Médicas</small>
                     </div>
                 </div>
             </div>
@@ -768,29 +754,29 @@ else if (isPatient)
                 <div class="card h-100 shadow-lg feature-card-hover border-0">
                     <div class="card-body d-flex flex-column p-4">
                         <div class="feature-icon-wrapper mb-3 mx-auto">
-                            <i class="bi bi-heart-pulse fs-1 feature-icon-main" style="color: #0f172a;"></i>
+                            <i class="bi bi-hospital-fill fs-1 feature-icon-main feature-icon-blue"></i>
                             <div class="feature-sparkles">
                                 <span class="sparkle sparkle-1"></span>
                                 <span class="sparkle sparkle-2"></span>
                                 <span class="sparkle sparkle-3"></span>
                             </div>
                         </div>
-                        <h5 class="card-title fw-bold mb-3">Cuidado Integral 360°</h5>
-                        <p class="card-text text-muted mb-3 flex-grow-1">Atención médica completa que abarca prevención, diagnóstico, tratamiento y seguimiento personalizado para toda la familia.</p>
+                        <h5 class="card-title fw-bold mb-3" style="color: #1e293b;">IPS VitalCare Barrancabermeja</h5>
+                        <p class="card-text text-muted mb-3 flex-grow-1">Institución Prestadora de Servicios de Salud fundada en 1998, con sede principal en Barrancabermeja. Somos la IPS de referencia en el puerto petrolero de Colombia.</p>
                         <div class="feature-benefits mb-3">
-                            <small class="d-block text-success mb-1"><i class="bi bi-check-circle-fill me-2"></i>Planes familiares personalizados</small>
-                            <small class="d-block text-success mb-1"><i class="bi bi-check-circle-fill me-2"></i>Seguimiento continuo de salud</small>
-                            <small class="d-block text-success"><i class="bi bi-check-circle-fill me-2"></i>Programas de bienestar</small>
+                            <small class="d-block mb-1"><i class="bi bi-check-circle-fill me-2 feature-icon-green"></i><span class="feature-text-dark">Puerto Petrolero de Colombia</span></small>
+                            <small class="d-block mb-1"><i class="bi bi-check-circle-fill me-2 feature-icon-green"></i><span class="feature-text-dark">Fundada en 1998</span></small>
+                            <small class="d-block"><i class="bi bi-check-circle-fill me-2 feature-icon-green"></i><span class="feature-text-dark">IPS de Referencia Regional</span></small>
                         </div>
                         <div class="card-rating mt-3">
                             <div class="stars">
-                                <i class="bi bi-star-fill text-warning"></i>
-                                <i class="bi bi-star-fill text-warning"></i>
-                                <i class="bi bi-star-fill text-warning"></i>
-                                <i class="bi bi-star-fill text-warning"></i>
-                                <i class="bi bi-star-fill text-warning"></i>
+                                <i class="bi bi-star-fill" style="color: #d97706;"></i>
+                                <i class="bi bi-star-fill" style="color: #d97706;"></i>
+                                <i class="bi bi-star-fill" style="color: #d97706;"></i>
+                                <i class="bi bi-star-fill" style="color: #d97706;"></i>
+                                <i class="bi bi-star-fill" style="color: #d97706;"></i>
                             </div>
-                            <small class="text-muted">4.9/5 (8,450 familias)</small>
+                            <small class="text-muted">4.8/5 (12,500 pacientes)</small>
                         </div>
                     </div>
                 </div>
@@ -799,24 +785,24 @@ else if (isPatient)
                 <div class="card h-100 shadow-lg feature-card-hover border-0">
                     <div class="card-body d-flex flex-column p-4">
                         <div class="feature-icon-wrapper mb-3 mx-auto">
-                            <i class="bi bi-clock fs-1 feature-icon-main" style="color: #0f172a;"></i>
+                            <i class="bi bi-calendar2-week-fill fs-1 feature-icon-main feature-icon-green"></i>
                             <div class="feature-sparkles">
                                 <span class="sparkle sparkle-1"></span>
                                 <span class="sparkle sparkle-2"></span>
                                 <span class="sparkle sparkle-3"></span>
                             </div>
                         </div>
-                        <h5 class="card-title fw-bold mb-3">Atención de Emergencia 24/7</h5>
-                        <p class="card-text text-muted mb-3 flex-grow-1">Servicio de urgencias médicas disponible las 24 horas con ambulancias equipadas y personal especializado en emergencias.</p>
+                        <h5 class="card-title fw-bold mb-3" style="color: #1e293b;">Tecnología de Vanguardia</h5>
+                        <p class="card-text text-muted mb-3 flex-grow-1">Plataforma digital desarrollada especialmente para los santandereanos. Sistema inteligente de agendamiento con IA para optimizar horarios médicos.</p>
                         <div class="feature-benefits mb-3">
-                            <small class="d-block text-success mb-1"><i class="bi bi-check-circle-fill me-2"></i>Ambulancias con UCI móvil</small>
-                            <small class="d-block text-success mb-1"><i class="bi bi-check-circle-fill me-2"></i>Tiempo de respuesta &lt; 8 minutos</small>
-                            <small class="d-block text-success"><i class="bi bi-check-circle-fill me-2"></i>Paramédicos certificados</small>
+                            <small class="d-block mb-1"><i class="bi bi-check-circle-fill me-2 feature-icon-green"></i><span class="feature-text-dark">IA para optimización</span></small>
+                            <small class="d-block mb-1"><i class="bi bi-check-circle-fill me-2 feature-icon-green"></i><span class="feature-text-dark">App móvil nativa</span></small>
+                            <small class="d-block"><i class="bi bi-check-circle-fill me-2 feature-icon-green"></i><span class="feature-text-dark">WhatsApp integrado</span></small>
                         </div>
                         <div class="security-badges mt-3">
-                            <span class="badge bg-danger me-1">URGENCIAS</span>
-                            <span class="badge bg-warning me-1">TRAUMA</span>
-                            <span class="badge bg-info">CARDIOLOGÍA</span>
+                            <span class="badge" style="background-color: #059669; color: white;" class="me-1">SMART</span>
+                            <span class="badge" style="background-color: #059669; color: white;" class="me-1">IA</span>
+                            <span class="badge" style="background-color: #059669; color: white;">MÓVIL</span>
                         </div>
                     </div>
                 </div>
@@ -825,22 +811,22 @@ else if (isPatient)
                 <div class="card h-100 shadow-lg feature-card-hover border-0">
                     <div class="card-body d-flex flex-column p-4">
                         <div class="feature-icon-wrapper mb-3 mx-auto">
-                            <i class="bi bi-capsule fs-1 feature-icon-main" style="color: #0f172a;"></i>
+                            <i class="bi bi-people-fill fs-1 feature-icon-main feature-icon-purple"></i>
                             <div class="feature-sparkles">
                                 <span class="sparkle sparkle-1"></span>
                                 <span class="sparkle sparkle-2"></span>
                                 <span class="sparkle sparkle-3"></span>
                             </div>
                         </div>
-                        <h5 class="card-title fw-bold mb-3">Farmacia Digital Inteligente</h5>
-                        <p class="card-text text-muted mb-3 flex-grow-1">Sistema automatizado de medicamentos con entrega a domicilio, recordatorios inteligentes y verificación de interacciones.</p>
+                        <h5 class="card-title fw-bold mb-3" style="color: #1e293b;">Equipo Médico de Élite</h5>
+                        <p class="card-text text-muted mb-3 flex-grow-1">Profesionales graduados de las mejores universidades de Colombia. Especializados en distintas áreas de la salud.</p>
                         <div class="feature-benefits mb-3">
-                            <small class="d-block text-success mb-1"><i class="bi bi-check-circle-fill me-2"></i>Entrega en menos de 2 horas</small>
-                            <small class="d-block text-success mb-1"><i class="bi bi-check-circle-fill me-2"></i>Recordatorios automáticos</small>
-                            <small class="d-block text-success"><i class="bi bi-check-circle-fill me-2"></i>Verificación de seguridad IA</small>
+                            <small class="d-block mb-1"><i class="bi bi-check-circle-fill me-2 feature-icon-green"></i><span class="feature-text-dark">Mejores universidades de Colombia</span></small>
+                            <small class="d-block mb-1"><i class="bi bi-check-circle-fill me-2 feature-icon-green"></i><span class="feature-text-dark">Medicina de alta calidad</span></small>
+                            <small class="d-block"><i class="bi bi-check-circle-fill me-2 feature-icon-green"></i><span class="feature-text-dark">Certificación internacional</span></small>
                         </div>
                         <div class="time-savings mt-3">
-                            <small class="text-warning fw-bold"><i class="bi bi-truck me-1"></i>Disponible en 50+ ciudades</small>
+                            <small class="fw-bold" style="color: #d97706;"><i class="bi bi-check-circle-fill me-1 feature-icon-orange"></i>Formación médica de excelencia</small>
                         </div>
                     </div>
                 </div>
@@ -852,51 +838,51 @@ else if (isPatient)
             <div class="col-lg-8">
                 <div class="card trust-card shadow-lg border-0 feature-card-hover trust-card-premium">
                     <div class="card-body text-center p-4">
-                        <h5 class="fw-bold mb-3">Reconocido por Instituciones Líderes</h5>
+                        <h5 class="fw-bold mb-3" style="color: #1e293b;">Reconocimientos y Certificaciones</h5>
                         <div class="row align-items-center text-muted">
                             <div class="col-md-3 mb-3 mb-md-0">
                                 <div class="feature-icon-wrapper">
-                                    <i class="bi bi-award-fill fs-3 text-warning feature-icon-main"></i>
+                                    <i class="bi bi-patch-check-fill fs-3 feature-icon-main feature-icon-blue"></i>
                                     <div class="feature-sparkles">
                                         <span class="sparkle sparkle-1"></span>
                                         <span class="sparkle sparkle-2"></span>
                                         <span class="sparkle sparkle-3"></span>
                                     </div>
                                 </div>
-                                <div class="small">Certificado ISO 9001</div>
+                                <div class="small">Habilitación MinSalud</div>
                             </div>
                             <div class="col-md-3 mb-3 mb-md-0">
                                 <div class="feature-icon-wrapper">
-                                    <i class="bi bi-shield-check fs-3 text-success feature-icon-main"></i>
+                                    <i class="bi bi-clipboard2-check-fill fs-3 feature-icon-main feature-icon-green"></i>
                                     <div class="feature-sparkles">
                                         <span class="sparkle sparkle-1"></span>
                                         <span class="sparkle sparkle-2"></span>
                                         <span class="sparkle sparkle-3"></span>
                                     </div>
                                 </div>
-                                <div class="small">Ministerio de Salud</div>
+                                <div class="small">SGSSS Certificado</div>
                             </div>
                             <div class="col-md-3 mb-3 mb-md-0">
                                 <div class="feature-icon-wrapper">
-                                    <i class="bi bi-star-fill fs-3 text-info feature-icon-main"></i>
+                                    <i class="bi bi-bookmark-star-fill fs-3 feature-icon-main feature-icon-orange"></i>
                                     <div class="feature-sparkles">
                                         <span class="sparkle sparkle-1"></span>
                                         <span class="sparkle sparkle-2"></span>
                                         <span class="sparkle sparkle-3"></span>
                                     </div>
                                 </div>
-                                <div class="small">Premio Innovación 2024</div>
+                                <div class="small">ICONTEC Acreditado</div>
                             </div>
                             <div class="col-md-3">
                                 <div class="feature-icon-wrapper">
-                                    <i class="bi bi-globe fs-3 text-primary feature-icon-main"></i>
+                                    <i class="bi bi-shield-shaded fs-3 feature-icon-main feature-icon-red"></i>
                                     <div class="feature-sparkles">
                                         <span class="sparkle sparkle-1"></span>
                                         <span class="sparkle sparkle-2"></span>
                                         <span class="sparkle sparkle-3"></span>
                                     </div>
                                 </div>
-                                <div class="small">Red Internacional</div>
+                                <div class="small">Vigilado Supersalud</div>
                             </div>
                         </div>
                     </div>
@@ -909,9 +895,9 @@ else if (isPatient)
             <div class="container px-4 px-lg-5">
                 <div class="row gx-4 gx-lg-5 justify-content-center">
                     <div class="col-lg-8 text-center">
-                        <h2 class="mt-0 display-5 fw-bold" style="color: #0f172a;">¿Cómo VitalCare puede ayudarte?</h2>
+                        <h2 class="mt-0 display-5 fw-bold" style="color: #1e293b;">¿Cómo VitalCare IPS puede ayudarte?</h2>
                         <hr class="divider divider-primary my-4 mx-auto" />
-                        <p class="text-muted mb-5 fs-5">Gestiona tu salud de manera eficiente y cómoda desde un solo lugar. Descubre nuestras funcionalidades clave:</p>
+                        <p class="text-muted mb-5 fs-5">Como IPS de Barrancabermeja, ofrecemos servicios médicos integrales con tecnología de vanguardia. Descubre nuestras funcionalidades clave:</p>
                     </div>
                 </div>
                 <div class="row gx-4 gx-lg-5">
@@ -919,17 +905,17 @@ else if (isPatient)
                         <div class="mt-0 card shadow-lg feature-card-hover h-100 border-0">
                             <div class="card-body d-flex flex-column p-4">
                                 <div class="feature-icon-wrapper mb-3 mx-auto">
-                                    <i class="bi bi-calendar2-plus fs-1 feature-icon-main" style="color: #0f172a;"></i>
+                                    <i class="bi bi-hospital-fill fs-1 feature-icon-main feature-icon-blue"></i>
                                     <div class="feature-sparkles">
                                         <span class="sparkle sparkle-1"></span>
                                         <span class="sparkle sparkle-2"></span>
                                         <span class="sparkle sparkle-3"></span>
                                     </div>
                                 </div>
-                                <h3 class="h4 mb-2 fw-bold">Agenda Inteligente</h3>
-                                <p class="text-muted mb-3 flex-grow-1">Sistema de IA que encuentra automáticamente los mejores horarios según tu disponibilidad y preferencias médicas.</p>
+                                <h3 class="h4 mb-2 fw-bold" style="color: #1e293b;">Consulta Externa Especializada</h3>
+                                <p class="text-muted mb-3 flex-grow-1">Atención ambulatoria en nuestras modernas instalaciones ubicadas en el centro de Barrancabermeja. Consultorios equipados con tecnología diagnóstica avanzada.</p>
                                 <div class="feature-stats">
-                                    <small class="text-success fw-bold"><i class="bi bi-lightning-charge-fill me-1"></i>3x más rápido</small>
+                                    <small class="fw-bold"><i class="bi bi-geo-alt-fill me-1 feature-icon-green"></i><span class="feature-text-dark">Centro de Barrancabermeja</span></small>
                                 </div>
                             </div>
                         </div>
@@ -938,17 +924,17 @@ else if (isPatient)
                         <div class="mt-0 card shadow-lg feature-card-hover h-100 border-0">
                             <div class="card-body d-flex flex-column p-4">
                                 <div class="feature-icon-wrapper mb-3 mx-auto">
-                                    <i class="bi bi-shield-check fs-1 feature-icon-main" style="color: #0f172a;"></i>
+                                    <i class="bi bi-calendar2-plus-fill fs-1 feature-icon-main feature-icon-green"></i>
                                     <div class="feature-sparkles">
                                         <span class="sparkle sparkle-1"></span>
                                         <span class="sparkle sparkle-2"></span>
                                         <span class="sparkle sparkle-3"></span>
                                     </div>
                                 </div>
-                                <h3 class="h4 mb-2 fw-bold">Seguridad Máxima</h3>
-                                <p class="text-muted mb-3 flex-grow-1">Protección de datos de nivel bancario con encriptación end-to-end y respaldo en múltiples servidores certificados.</p>
+                                <h3 class="h4 mb-2 fw-bold" style="color: #1e293b;">Telemedicina Regional</h3>
+                                <p class="text-muted mb-3 flex-grow-1">Consultas virtuales para pacientes de municipios aledaños: Puerto Wilches, Sabana de Torres, San Vicente de Chucurí. Sin desplazamiento necesario.</p>
                                 <div class="feature-stats">
-                                    <small class="text-success fw-bold"><i class="bi bi-shield-fill-check me-1"></i>99.9% uptime</small>
+                                    <small class="fw-bold"><i class="bi bi-clock-fill me-1 feature-icon-orange"></i><span class="feature-text-dark">Cobertura municipal</span></small>
                                 </div>
                             </div>
                         </div>
@@ -957,17 +943,17 @@ else if (isPatient)
                         <div class="mt-0 card shadow-lg feature-card-hover h-100 border-0">
                             <div class="card-body d-flex flex-column p-4">
                                 <div class="feature-icon-wrapper mb-3 mx-auto">
-                                    <i class="bi bi-journal-medical fs-1 feature-icon-main" style="color: #0f172a;"></i>
+                                    <i class="bi bi-people-fill fs-1 feature-icon-main feature-icon-purple"></i>
                                     <div class="feature-sparkles">
                                         <span class="sparkle sparkle-1"></span>
                                         <span class="sparkle sparkle-2"></span>
                                         <span class="sparkle sparkle-3"></span>
                                     </div>
                                 </div>
-                                <h3 class="h4 mb-2 fw-bold">Historial Completo</h3>
-                                <p class="text-muted mb-3 flex-grow-1">Acceso instantáneo a tu historial médico completo, recetas, exámenes y recomendaciones en un solo lugar.</p>
+                                <h3 class="h4 mb-2 fw-bold" style="color: #1e293b;">Programas de Prevención</h3>
+                                <p class="text-muted mb-3 flex-grow-1">Jornadas de salud comunitaria en barrios de Barrancabermeja. Vacunación, tamizajes y educación en salud preventiva para toda la familia.</p>
                                 <div class="feature-stats">
-                                    <small class="text-success fw-bold"><i class="bi bi-cloud-check-fill me-1"></i>Siempre accesible</small>
+                                    <small class="fw-bold"><i class="bi bi-person-badge-fill me-1 feature-icon-purple"></i><span class="feature-text-dark">Salud comunitaria</span></small>
                                 </div>
                             </div>
                         </div>
@@ -976,17 +962,17 @@ else if (isPatient)
                         <div class="mt-0 card shadow-lg feature-card-hover h-100 border-0">
                             <div class="card-body d-flex flex-column p-4">
                                 <div class="feature-icon-wrapper mb-3 mx-auto">
-                                    <i class="bi bi-headset fs-1 feature-icon-main" style="color: #0f172a;"></i>
+                                    <i class="bi bi-briefcase-fill fs-1 feature-icon-main feature-icon-orange"></i>
                                     <div class="feature-sparkles">
                                         <span class="sparkle sparkle-1"></span>
                                         <span class="sparkle sparkle-2"></span>
                                         <span class="sparkle sparkle-3"></span>
                                     </div>
                                 </div>
-                                <h3 class="h4 mb-2 fw-bold">Soporte 24/7</h3>
-                                <p class="text-muted mb-3 flex-grow-1">Equipo especializado disponible las 24 horas para resolver cualquier consulta o emergencia médica.</p>
+                                <h3 class="h4 mb-2 fw-bold" style="color: #1e293b;">Convenios Empresariales</h3>
+                                <p class="text-muted mb-3 flex-grow-1">Servicios de medicina ocupacional para empresas del sector petrolero y industrial. Exámenes periódicos y atención prioritaria para trabajadores.</p>
                                 <div class="feature-stats">
-                                    <small class="text-success fw-bold"><i class="bi bi-telephone-fill me-1"></i>Respuesta &lt;2min</small>
+                                    <small class="fw-bold"><i class="bi bi-building-fill me-1 feature-icon-orange"></i><span class="feature-text-dark">Sector petrolero</span></small>
                                 </div>
                             </div>
                         </div>
@@ -1001,10 +987,10 @@ else if (isPatient)
 @section Scripts {
     <script>
         document.addEventListener('DOMContentLoaded', function () {
-            // Scroll optimization - pause animations during scroll
             let scrollTimer = null;
             let isScrolling = false;
-
+            
+            // Optimized scroll handler
             function handleScrollStart() {
                 if (!isScrolling) {
                     document.body.classList.add('scrolling');
@@ -1017,18 +1003,25 @@ else if (isPatient)
                 document.body.classList.remove('scrolling');
             }
 
+            // Optimized scroll event with requestAnimationFrame
+            let ticking = false;
             window.addEventListener('scroll', function() {
-                handleScrollStart();
-                
-                // Clear timeout and set new one
-                clearTimeout(scrollTimer);
-                scrollTimer = setTimeout(handleScrollEnd, 150);
+                if (!ticking) {
+                    requestAnimationFrame(() => {
+                        handleScrollStart();
+                        clearTimeout(scrollTimer);
+                        scrollTimer = setTimeout(handleScrollEnd, 100);
+                        ticking = false;
+                    });
+                    ticking = true;
+                }
             }, { passive: true });
 
-            // Hero Counter Animation
+            // Hero counters animation
             const heroCounters = document.querySelectorAll('.hero-stat-number');
             const heroObserverOptions = {
-                threshold: 0.7
+                threshold: 0.5,
+                rootMargin: '50px'
             };
             
             const heroObserver = new IntersectionObserver((entries) => {
@@ -1036,7 +1029,7 @@ else if (isPatient)
                     if (entry.isIntersecting && !isScrolling) {
                         const counter = entry.target;
                         const target = parseInt(counter.getAttribute('data-target'));
-                        const duration = 1200; // Reduced duration
+                        const duration = 1000;
                         const step = target / (duration / 16);
                         let current = 0;
                         
@@ -1068,40 +1061,32 @@ else if (isPatient)
                 scrollIndicator.addEventListener('click', function() {
                     const nextSection = document.querySelector('.container.mt-5');
                     if (nextSection) {
+                        document.body.classList.add('scrolling');
                         nextSection.scrollIntoView({ 
                             behavior: 'smooth',
                             block: 'start'
                         });
+                        setTimeout(() => {
+                            document.body.classList.remove('scrolling');
+                        }, 1000);
                     }
                 });
             }
             
-            // Enhanced Button Ripple Effect - Only on desktop
-            if (window.innerWidth > 768) {
-                const heroButtons = document.querySelectorAll('.hero-btn');
-                heroButtons.forEach(button => {
-                    button.addEventListener('click', function(e) {
-                        if (!isScrolling) {
-                            // Simple ripple effect without lag
-                            this.style.transform = 'scale(0.95)';
-                            setTimeout(() => {
-                                this.style.transform = '';
-                            }, 100);
-                        }
-                    });
-                });
-            }
-
-            // Patient Dashboard: Load Real Data instead of Mock Data
+            // Patient Dashboard - Load with delay
+                        setTimeout(() => {
             if (document.getElementById('patientNextAppointmentDisplay')) {
                 loadPatientRealData();
             }
+            }, 1000);
 
-            // Doctor Dashboard: Dynamic Citas Hoy Stat
+            // Doctor Dashboard - Load with delay
+            setTimeout(() => {
             const citasHoyStatElement = document.getElementById('doctorCitasHoyStat');
             if (citasHoyStatElement) {
                 loadDoctorDashboardData();
             }
+            }, 1000);
 
             // Doctor Dashboard: Patient Search Form
             const doctorPatientSearchForm = document.getElementById('doctorPatientSearchForm');
@@ -1110,7 +1095,6 @@ else if (isPatient)
                     event.preventDefault();
                     const searchInput = document.getElementById('doctorPatientSearchInput');
                     if (searchInput && searchInput.value.trim() !== '') {
-                        // Implementar búsqueda real de pacientes
                         searchPatients(searchInput.value.trim());
                         searchInput.value = '';
                     } else {
@@ -1119,24 +1103,27 @@ else if (isPatient)
                 });
             }
             
-            // Scroll to Top Button Functionality
+            // Scroll to Top Button
             const scrollToTopBtn = document.getElementById('scrollToTopBtn');
             if (scrollToTopBtn) {
-                // Show/hide button based on scroll position
+                let scrollToTopVisible = false;
                 window.addEventListener('scroll', function() {
-                    if (window.pageYOffset > 300) {
-                        scrollToTopBtn.classList.add('show');
-                    } else {
-                        scrollToTopBtn.classList.remove('show');
+                    const shouldShow = window.pageYOffset > 300;
+                    if (shouldShow !== scrollToTopVisible) {
+                        scrollToTopVisible = shouldShow;
+                        scrollToTopBtn.classList.toggle('show', shouldShow);
                     }
                 }, { passive: true });
                 
-                // Scroll to top when clicked
                 scrollToTopBtn.addEventListener('click', function() {
+                    document.body.classList.add('scrolling');
                     window.scrollTo({
                         top: 0,
                         behavior: 'smooth'
                     });
+                    setTimeout(() => {
+                        document.body.classList.remove('scrolling');
+                    }, 1000);
                 });
             }
         });
@@ -1226,7 +1213,6 @@ else if (isPatient)
 
             } catch (error) {
                 console.error('Error cargando datos del paciente:', error);
-                // Fallback a datos por defecto si hay error
                 loadPatientFallbackData();
             }
         }
@@ -1282,7 +1268,6 @@ else if (isPatient)
                 return;
             }
 
-            // Crear modal o dropdown con resultados
             let resultsHtml = '<div class="search-results-dropdown">';
             patients.forEach(patient => {
                 resultsHtml += `
@@ -1304,7 +1289,6 @@ else if (isPatient)
 
         // Función para mostrar notificaciones
         function showNotification(message, type = 'info') {
-            // Implementar sistema de notificaciones toast
             const notification = document.createElement('div');
             notification.className = `alert alert-${type === 'error' ? 'danger' : type} alert-dismissible fade show position-fixed`;
             notification.style.cssText = 'top: 20px; right: 20px; z-index: 9999; min-width: 300px;';
@@ -1315,7 +1299,6 @@ else if (isPatient)
             
             document.body.appendChild(notification);
             
-            // Auto-remove after 5 seconds
             setTimeout(() => {
                 if (notification.parentNode) {
                     notification.remove();
@@ -1324,3 +1307,220 @@ else if (isPatient)
         }
     </script>
 }
+
+<style>
+    /* === HERO SECTION OPTIMIZADO === */
+    
+    /* Scroll Indicator - Fixed positioning */
+    .scroll-indicator {
+        position: absolute;
+        bottom: 15px;
+        left: 50%;
+        width: 50px;
+        height: 50px;
+        border-radius: 50%;
+        background: rgba(255,255,255,0.2);
+        backdrop-filter: blur(8px);
+        border: 2px solid rgba(255,255,255,0.3);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        cursor: pointer;
+        z-index: 10;
+        transition: all 0.2s ease;
+        /* Fixed transform - no change on click */
+        transform: translateX(-50%);
+    }
+
+    .scroll-indicator:hover {
+        background: rgba(255,255,255,0.3);
+        border-color: rgba(255,255,255,0.5);
+        transform: translateX(-50%) translateY(-2px) scale(1.05);
+    }
+
+    .scroll-indicator:active {
+        transform: translateX(-50%) translateY(0px) scale(0.98);
+    }
+
+    .scroll-indicator i {
+        font-size: 1.2rem;
+        color: rgba(255,255,255,0.9);
+        animation: scrollBounce 2s ease-in-out infinite;
+    }
+
+    @@keyframes scrollBounce {
+        0%, 100% { transform: translateY(0); }
+        50% { transform: translateY(3px); }
+    }
+
+    /* === HERO CONTENT === */
+    .hero-title-vital,
+    .hero-title-care {
+        color: rgba(255,255,255,0.98) !important;
+        text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+    }
+
+    .hero-subtitle {
+        color: rgba(255,255,255,0.95) !important;
+        text-shadow: 1px 1px 2px rgba(0,0,0,0.3);
+    }
+
+    .hero-stat-card {
+        background: rgba(255,255,255,0.15) !important;
+        backdrop-filter: blur(10px);
+        border: 1px solid rgba(255,255,255,0.2);
+        border-radius: 0.5rem;
+        padding: 1rem;
+        transition: all 0.2s ease;
+    }
+
+    .hero-stat-card:hover {
+        background: rgba(255,255,255,0.2) !important;
+        transform: translateY(-2px);
+    }
+
+    .hero-stat-number {
+        color: rgba(255,255,255,0.98) !important;
+        text-shadow: 1px 1px 2px rgba(0,0,0,0.5);
+    }
+
+    .hero-stat-label {
+        color: rgba(255,255,255,0.9) !important;
+    }
+
+    .trust-badge-item {
+        color: rgba(255,255,255,0.95) !important;
+        padding: 0.5rem;
+        border-radius: 0.25rem;
+        background: rgba(255,255,255,0.1);
+        transition: all 0.2s ease;
+    }
+
+    .trust-badge-item:hover {
+        background: rgba(255,255,255,0.15);
+        transform: translateY(-1px);
+    }
+
+    /* === PERFORMANCE OPTIMIZATIONS === */
+    
+    /* Disable animations during scroll */
+    .scrolling * {
+        pointer-events: none;
+    }
+
+    /* Lazy loading for heavy animations */
+    .hero-ready .hero-stat-card {
+        animation: fadeInUp 0.6s ease-out;
+    }
+
+    @@keyframes fadeInUp {
+        from {
+            opacity: 0;
+            transform: translateY(20px);
+        }
+        to {
+                opacity: 1;
+            transform: translateY(0);
+        }
+    }
+
+    /* === RESPONSIVE === */
+    @@media (max-width: 768px) {
+        .scroll-indicator {
+            width: 45px;
+            height: 45px;
+        }
+        
+        .scroll-indicator i {
+            font-size: 1rem;
+        }
+        
+        .hero-stat-card:hover {
+            transform: translateY(-1px);
+        }
+    }
+
+    /* === DARK MODE COMPATIBILITY === */
+        [data-bs-theme="dark"] h1,
+        [data-bs-theme="dark"] h2,
+        [data-bs-theme="dark"] h3,
+        [data-bs-theme="dark"] h4,
+        [data-bs-theme="dark"] h5,
+        [data-bs-theme="dark"] h6 {
+            color: white !important;
+        }
+
+        [data-bs-theme="dark"] .feature-icon-main {
+            color: rgba(255,255,255,0.9) !important;
+        }
+
+        [data-bs-theme="dark"] i[style*="#0f172a"] {
+            color: rgba(255,255,255,0.9) !important;
+        }
+
+    /* === COLORED ICONS === */
+    
+    /* Light mode colors */
+    .feature-icon-blue {
+        color: #1a5c8a !important;
+    }
+    
+    .feature-icon-green {
+        color: #059669 !important;
+    }
+    
+    .feature-icon-purple {
+        color: #7c3aed !important;
+    }
+    
+    .feature-icon-orange {
+        color: #d97706 !important;
+    }
+    
+    .feature-icon-red {
+        color: #dc2626 !important;
+    }
+
+    /* Dark mode - all icons white */
+    [data-bs-theme="dark"] .feature-icon-blue,
+    [data-bs-theme="dark"] .feature-icon-green,
+    [data-bs-theme="dark"] .feature-icon-purple,
+    [data-bs-theme="dark"] .feature-icon-orange,
+    [data-bs-theme="dark"] .feature-icon-red {
+        color: rgba(255,255,255,0.9) !important;
+    }
+
+    /* Text colors for dark mode */
+    [data-bs-theme="dark"] .text-success {
+        color: rgba(255,255,255,0.8) !important;
+    }
+
+    [data-bs-theme="dark"] .text-muted {
+        color: rgba(255,255,255,0.7) !important;
+    }
+
+    /* Stars in dark mode */
+    [data-bs-theme="dark"] .stars i {
+        color: #fbbf24 !important;
+    }
+
+    /* Ensure icons are always visible */
+    .feature-icon-green,
+    .feature-icon-blue,
+    .feature-icon-orange,
+    .feature-icon-purple,
+    .feature-icon-red {
+        display: inline-block !important;
+        opacity: 1 !important;
+        visibility: visible !important;
+    }
+
+    /* Better text colors */
+    .feature-text-dark {
+        color: #374151 !important;
+    }
+
+    [data-bs-theme="dark"] .feature-text-dark {
+        color: rgba(255,255,255,0.9) !important;
+    }
+</style>

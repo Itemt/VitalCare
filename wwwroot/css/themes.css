@@ -1,0 +1,251 @@
+/* Role-Based Theme Styles - VitalCare */
+
+/* ===========================================
+   PATIENT THEME
+   ========================================== */
+
+body.patient-body-bg {
+    background-image: 
+        linear-gradient(
+            135deg, 
+            rgba(32, 106, 93, 0.3) 0%, 
+            rgba(26, 83, 72, 0.4) 50%, 
+            rgba(22, 66, 58, 0.5) 100%
+        ), 
+        url('/images/Pacientes.png');
+    background-size: cover;
+    background-position: center center;
+    background-attachment: fixed;
+    background-repeat: no-repeat;
+    color: var(--body-color);
+}
+
+body.patient-body-bg .navbar.bg-success {
+    background: linear-gradient(135deg, #1a8754, #28a745) !important;
+    border-bottom: 3px solid #1e7e34;
+    box-shadow: 0 2px 8px rgba(40, 167, 69, 0.3);
+}
+
+body.patient-body-bg .navbar.bg-success .navbar-brand,
+body.patient-body-bg .navbar.bg-success .nav-link {
+    color: rgba(255, 255, 255, 0.95) !important;
+    text-shadow: var(--header-text-shadow-patient);
+}
+
+body.patient-body-bg .btn-primary {
+    background: linear-gradient(135deg, #1a8754, #28a745);
+    border: none;
+    color: white;
+    font-weight: 600;
+    text-shadow: 0 1px 2px rgba(0,0,0,0.2);
+    box-shadow: 0 2px 4px rgba(40, 167, 69, 0.3);
+}
+
+body.patient-body-bg .btn-primary:hover {
+    background: linear-gradient(135deg, #157347, #1e7e34);
+    box-shadow: 0 4px 8px rgba(30, 126, 52, 0.4);
+    transform: translateY(-1px);
+}
+
+body.patient-body-bg .btn-success {
+    background: linear-gradient(135deg, #1a8754, #28a745);
+    border: none;
+    color: white;
+    font-weight: 600;
+    text-shadow: 0 1px 2px rgba(0,0,0,0.2);
+    box-shadow: 0 2px 4px rgba(40, 167, 69, 0.3);
+}
+
+body.patient-body-bg .btn-success:hover {
+    background: linear-gradient(135deg, #157347, #1e7e34);
+    box-shadow: 0 4px 8px rgba(30, 126, 52, 0.4);
+    transform: translateY(-1px);
+}
+
+body.patient-body-bg .app-footer {
+    background: linear-gradient(135deg, var(--app-footer-patient-bg-start), var(--app-footer-patient-bg-end));
+}
+
+.btn-vitalcare-patient {
+    background: linear-gradient(135deg, #1a8754, #28a745);
+    border: none;
+    color: white;
+    font-weight: 600;
+    text-shadow: 0 1px 2px rgba(0,0,0,0.2);
+    box-shadow: 0 2px 4px rgba(40, 167, 69, 0.3);
+}
+
+.btn-vitalcare-patient:hover {
+    background: linear-gradient(135deg, #157347, #1e7e34);
+    box-shadow: 0 4px 8px rgba(30, 126, 52, 0.4);
+    transform: translateY(-1px);
+}
+
+.manage-nav-pills-patient .nav-link {
+    color: #1a8754;
+    background-color: transparent;
+}
+
+.manage-nav-pills-patient .nav-link.active,
+.manage-nav-pills-patient .nav-link:hover {
+    background-color: #1a8754;
+    color: white;
+}
+
+/* ===========================================
+   DOCTOR THEME
+   ========================================== */
+
+body.doctor-body-bg {
+    background-image: 
+        linear-gradient(
+            135deg, 
+            rgba(13, 202, 240, 0.2) 0%, 
+            rgba(10, 163, 194, 0.3) 50%, 
+            rgba(8, 131, 156, 0.4) 100%
+        ), 
+        url('/images/doctor.png');
+    background-size: cover;
+    background-position: center center;
+    background-attachment: fixed;
+    background-repeat: no-repeat;
+    color: var(--body-color);
+}
+
+body.doctor-body-bg .btn-primary {
+    background: linear-gradient(135deg, #0dcaf0, #0aa3c2);
+    border: none;
+    color: white;
+    font-weight: 600;
+    text-shadow: 0 1px 2px rgba(0,0,0,0.2);
+    box-shadow: 0 2px 4px rgba(13, 202, 240, 0.3);
+}
+
+body.doctor-body-bg .btn-primary:hover {
+    background: linear-gradient(135deg, #31d2f2, #0dcaf0);
+    box-shadow: 0 4px 8px rgba(13, 202, 240, 0.4);
+    transform: translateY(-1px);
+}
+
+body.doctor-body-bg .btn-info {
+    background: linear-gradient(135deg, #0dcaf0, #0aa3c2);
+    border: none;
+    color: white;
+    font-weight: 600;
+    text-shadow: 0 1px 2px rgba(0,0,0,0.2);
+    box-shadow: 0 2px 4px rgba(13, 202, 240, 0.3);
+}
+
+body.doctor-body-bg .btn-info:hover {
+    background: linear-gradient(135deg, #31d2f2, #0dcaf0);
+    box-shadow: 0 4px 8px rgba(13, 202, 240, 0.4);
+    transform: translateY(-1px);
+}
+
+body.doctor-body-bg .app-footer {
+    background: linear-gradient(135deg, var(--app-footer-doctor-bg-start), var(--app-footer-doctor-bg-end));
+}
+
+.bg-vitalcare-doctor {
+    background: linear-gradient(135deg, #0dcaf0, #0aa3c2) !important;
+    color: white !important;
+}
+
+/* ===========================================
+   ADMIN THEME
+   ========================================== */
+
+.admin-dashboard-bg {
+    background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 50%, #dee2e6 100%);
+    min-height: 100vh;
+}
+
+.admin-dashboard-bg .card {
+    border: none;
+    box-shadow: 0 0.125rem 0.25rem rgba(0, 0, 0, 0.075);
+}
+
+.admin-dashboard-bg .card-header h2 {
+    font-weight: 600;
+    margin: 0;
+}
+
+body.admin-dashboard-bg .btn-danger {
+    background: linear-gradient(135deg, #dc3545, #c82333);
+    border: none;
+    color: white;
+    font-weight: 600;
+    text-shadow: 0 1px 2px rgba(0,0,0,0.2);
+    box-shadow: 0 2px 4px rgba(220, 53, 69, 0.3);
+}
+
+body.admin-dashboard-bg .btn-danger:hover {
+    background: linear-gradient(135deg, #e4606d, #dc3545);
+    box-shadow: 0 4px 8px rgba(220, 53, 69, 0.4);
+    transform: translateY(-1px);
+}
+
+/* ===========================================
+   GENERAL THEME UTILITIES
+   ========================================== */
+
+body:not(.patient-body-bg):not(.doctor-body-bg) {
+    background-color: var(--body-bg);
+    color: var(--body-color);
+}
+
+.btn-vitalcare-dark {
+    background: linear-gradient(135deg, #495057, #343a40);
+    border: none;
+    color: white;
+    font-weight: 600;
+    text-shadow: 0 1px 2px rgba(0,0,0,0.3);
+    box-shadow: 0 2px 4px rgba(73, 80, 87, 0.3);
+}
+
+.btn-vitalcare-dark:hover {
+    background: linear-gradient(135deg, #5a6268, #495057);
+    box-shadow: 0 4px 8px rgba(73, 80, 87, 0.4);
+    transform: translateY(-1px);
+}
+
+.manage-nav-pills .nav-link {
+    color: #495057;
+    background-color: transparent;
+}
+
+.manage-nav-pills .nav-link.active,
+.manage-nav-pills .nav-link:hover {
+    background-color: #495057;
+    color: white;
+}
+
+/* ===========================================
+   DARK MODE THEME OVERRIDES
+   ========================================== */
+
+[data-bs-theme="dark"] body.patient-body-bg,
+[data-bs-theme="dark"] body.doctor-body-bg {
+    background-image: none !important;
+    background-color: var(--body-bg) !important;
+}
+
+[data-bs-theme="dark"] .manage-nav-pills .nav-link {
+    color: #adb5bd;
+}
+
+[data-bs-theme="dark"] .manage-nav-pills .nav-link.active,
+[data-bs-theme="dark"] .manage-nav-pills .nav-link:hover {
+    background-color: #495057;
+    color: white;
+}
+
+[data-bs-theme="dark"] .manage-nav-pills-patient .nav-link {
+    color: #75b798;
+}
+
+[data-bs-theme="dark"] .manage-nav-pills-patient .nav-link.active,
+[data-bs-theme="dark"] .manage-nav-pills-patient .nav-link:hover {
+    background-color: #1a8754;
+    color: white;
+} 
