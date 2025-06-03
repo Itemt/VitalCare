@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "Pi0B5TN3j3zHMM36hyDy5Yj3Vcw2AkFjmPVgBhfciVE=",
+  "Hash": "+uOSwwY9z85cZcgpFlNnYTiNab9/pQlC7NDUh0YcNr8=",
   "Source": "CitasEPS",
   "BasePath": "_content/CitasEPS",
   "Mode": "Default",
@@ -1501,8 +1501,8 @@
       "RelatedAsset": "",
       "AssetTraitName": "",
       "AssetTraitValue": "",
-      "Fingerprint": "8wamk7gffm",
-      "Integrity": "qLD4NRxYkMUuzLwpVfOD4x/s/hRBy3PL3gczkJ7js/o=",
+      "Fingerprint": "vx81ov9lpd",
+      "Integrity": "g6dBf0jaCVVO3P7ai8/U8hXgTHAtnYHsucenF8+cY8g=",
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\css\\site.css"
@@ -4010,51 +4010,6 @@
       ]
     },
     {
-      "Route": "css/site.8wamk7gffm.css",
-      "AssetFile": "C:\\Users\\CristianPC\\Desktop\\vitalcare\\wwwroot\\css\\site.css",
-      "Selectors": [],
-      "ResponseHeaders": [
-        {
-          "Name": "Accept-Ranges",
-          "Value": "bytes"
-        },
-        {
-          "Name": "Content-Length",
-          "Value": "186958"
-        },
-        {
-          "Name": "Content-Type",
-          "Value": "text/css"
-        },
-        {
-          "Name": "ETag",
-          "Value": "\"qLD4NRxYkMUuzLwpVfOD4x/s/hRBy3PL3gczkJ7js/o=\""
-        },
-        {
-          "Name": "Last-Modified",
-          "Value": "Tue, 03 Jun 2025 05:49:53 GMT"
-        },
-        {
-          "Name": "Cache-Control",
-          "Value": "max-age=31536000, immutable"
-        }
-      ],
-      "EndpointProperties": [
-        {
-          "Name": "fingerprint",
-          "Value": "8wamk7gffm"
-        },
-        {
-          "Name": "label",
-          "Value": "css/site.css"
-        },
-        {
-          "Name": "integrity",
-          "Value": "sha256-qLD4NRxYkMUuzLwpVfOD4x/s/hRBy3PL3gczkJ7js/o="
-        }
-      ]
-    },
-    {
       "Route": "css/site.css",
       "AssetFile": "C:\\Users\\CristianPC\\Desktop\\vitalcare\\wwwroot\\css\\site.css",
       "Selectors": [],
@@ -4065,7 +4020,7 @@
         },
         {
           "Name": "Content-Length",
-          "Value": "186958"
+          "Value": "182228"
         },
         {
           "Name": "Content-Type",
@@ -4073,11 +4028,11 @@
         },
         {
           "Name": "ETag",
-          "Value": "\"qLD4NRxYkMUuzLwpVfOD4x/s/hRBy3PL3gczkJ7js/o=\""
+          "Value": "\"g6dBf0jaCVVO3P7ai8/U8hXgTHAtnYHsucenF8+cY8g=\""
         },
         {
           "Name": "Last-Modified",
-          "Value": "Tue, 03 Jun 2025 05:49:53 GMT"
+          "Value": "Tue, 03 Jun 2025 07:39:33 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -4087,7 +4042,52 @@
       "EndpointProperties": [
         {
           "Name": "integrity",
-          "Value": "sha256-qLD4NRxYkMUuzLwpVfOD4x/s/hRBy3PL3gczkJ7js/o="
+          "Value": "sha256-g6dBf0jaCVVO3P7ai8/U8hXgTHAtnYHsucenF8+cY8g="
+        }
+      ]
+    },
+    {
+      "Route": "css/site.vx81ov9lpd.css",
+      "AssetFile": "C:\\Users\\CristianPC\\Desktop\\vitalcare\\wwwroot\\css\\site.css",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "182228"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "text/css"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"g6dBf0jaCVVO3P7ai8/U8hXgTHAtnYHsucenF8+cY8g=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Tue, 03 Jun 2025 07:39:33 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=31536000, immutable"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "fingerprint",
+          "Value": "vx81ov9lpd"
+        },
+        {
+          "Name": "label",
+          "Value": "css/site.css"
+        },
+        {
+          "Name": "integrity",
+          "Value": "sha256-g6dBf0jaCVVO3P7ai8/U8hXgTHAtnYHsucenF8+cY8g="
         }
       ]
     },

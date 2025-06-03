@@ -785,7 +785,7 @@ else if (isPatient)
                 <div class="card h-100 shadow-lg feature-card-hover border-0">
                     <div class="card-body d-flex flex-column p-4">
                         <div class="feature-icon-wrapper mb-3 mx-auto">
-                            <i class="bi bi-calendar2-week-fill fs-1 feature-icon-main feature-icon-green"></i>
+                            <i class="bi bi-calendar-check-fill fs-1 feature-icon-main feature-icon-green"></i>
                             <div class="feature-sparkles">
                                 <span class="sparkle sparkle-1"></span>
                                 <span class="sparkle sparkle-2"></span>
@@ -1426,17 +1426,48 @@ else if (isPatient)
 
     /* === RESPONSIVE === */
     @@media (max-width: 768px) {
+        /* Fix hero alignment on mobile - minimal changes */
+        .hero-section-enhanced {
+            margin: 0.5rem !important; /* Reduce margin on mobile */
+            text-align: center !important;
+        }
+        
+        .hero-content-container {
+            width: 95% !important; /* Slightly wider on mobile */
+            margin: 0 auto !important; /* Ensure centering */
+            text-align: center !important;
+            left: 50% !important;
+            transform: translateX(-50%) !important;
+            position: relative !important;
+        }
+        
+        /* Keep scroll indicator centered */
         .scroll-indicator {
             width: 45px;
             height: 45px;
+            left: 50% !important;
+            transform: translateX(-50%) !important;
         }
         
         .scroll-indicator i {
             font-size: 1rem;
         }
         
+        /* Don't affect hover animations - keep them */
         .hero-stat-card:hover {
             transform: translateY(-1px);
+        }
+    }
+
+    /* Extra small devices - minimal adjustments */
+    @@media (max-width: 576px) {
+        .hero-section-enhanced {
+            margin: 0.25rem !important;
+        }
+        
+        .hero-content-container {
+            width: 98% !important;
+            padding: 2rem 1rem !important;
         }
     }
 
