@@ -1301,168 +1301,66 @@ else if (isPatient)
         }
     </script>
     <style>
-        /* FLOATING ICONS ENHANCED - OVERRIDE CACHE */
+        /* OPTIMIZED FLOATING ICONS - BETTER PERFORMANCE */
         .floating-icon {
-            display: none !important; /* Ocultar temporalmente para eliminar círculos */
             position: absolute !important;
             font-size: 1rem !important;
-            /* Default colors for light mode */
-            color: rgba(0,123,255,0.8) !important;
-            animation: iconFloat 12s ease-in-out infinite !important;
+            color: rgba(0,123,255,0.6) !important;
             cursor: pointer !important;
             pointer-events: auto !important;
-            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275) !important;
-            /* Eliminar círculos en todos los iconos */
-            border-radius: 0 !important;
-            width: auto !important;
-            height: auto !important;
-            /* display: flex !important; */
-            align-items: center !important;
-            justify-content: center !important;
-            background: transparent !important;
-            backdrop-filter: none !important;
-            border: none !important;
-            /* position: relative !important; */
-            overflow: hidden !important;
+            /* Simplified animation with better performance */
+            animation: iconFloatOptimized 8s ease-in-out infinite !important;
+            /* Use transform3d for hardware acceleration */
+            transform: translate3d(0, 0, 0);
+            will-change: transform, opacity;
+            backface-visibility: hidden;
             z-index: 5 !important;
         }
 
-        /* Blue hover animation like cards */
-        .floating-icon::before {
-            content: '' !important;
-            position: absolute !important;
-            top: -50% !important;
-            left: -50% !important;
-            width: 200% !important;
-            height: 200% !important;
-            background: linear-gradient(45deg, transparent, rgba(0,123,255,0.4), transparent) !important;
-            transform: rotate(-45deg) translateX(-100%) !important;
-            transition: transform 0.8s ease !important;
-            z-index: 1 !important;
-        }
-
-        .floating-icon:hover::before {
-            transform: rotate(-45deg) translateX(100%) !important;
-        }
-
+        /* Simplified hover effects - no complex transforms */
         .floating-icon:hover {
-            transform: translateY(-8px) scale(1.15) rotateY(360deg) !important;
-            background: rgba(0,123,255,0.25) !important;
-            border-color: rgba(0,123,255,0.5) !important;
-            box-shadow: 0 10px 25px rgba(0,123,255,0.3) !important;
+            transform: translate3d(0, -5px, 0) scale(1.1) !important;
+            transition: transform 0.2s ease !important;
         }
 
-        /* Small particles for rotation animation */
+        /* Remove complex pseudo-elements that cause lag */
+        .floating-icon::before,
         .floating-icon::after {
-            content: '' !important;
-            position: absolute !important;
-            top: 50% !important;
-            left: 50% !important;
-            width: 4px !important;
-            height: 4px !important;
-            background: linear-gradient(45deg, rgba(0,123,255,0.9), rgba(0,123,255,0.5)) !important;
-            border-radius: 50% !important;
-            transform: translate(-50%, -50%) !important;
-            opacity: 0 !important;
-            animation: smallParticleOrbit 2s ease-in-out infinite !important;
-            z-index: 3 !important;
+            display: none !important;
         }
 
-        .floating-icon:hover::after {
-            opacity: 1 !important;
-            animation-duration: 1s !important;
-        }
-
-        @@keyframes smallParticleOrbit {
-            0% {
-                transform: translate(-50%, -50%) rotate(0deg) translateX(20px) rotate(0deg);
-                opacity: 0;
+        /* Optimized keyframe animation */
+        @@keyframes iconFloatOptimized {
+            0%, 100% {
+                transform: translate3d(0, 0, 0);
+                opacity: 0.6;
             }
-            25% {
-                opacity: 1;
-            }
-            75% {
-                opacity: 1;
-            }
-            100% {
-                transform: translate(-50%, -50%) rotate(360deg) translateX(20px) rotate(-360deg);
-                opacity: 0;
+            50% {
+                transform: translate3d(0, -15px, 0);
+                opacity: 0.8;
             }
         }
 
         /* Individual icon colors for light mode */
-        .icon-1 {
-            color: rgba(220,53,69,0.9) !important; /* Heart - red */
-        }
+        .icon-1 { color: rgba(220,53,69,0.7) !important; }
+        .icon-2 { color: rgba(40,167,69,0.7) !important; }
+        .icon-3 { color: rgba(0,123,255,0.7) !important; }
+        .icon-4 { color: rgba(255,193,7,0.7) !important; }
+        .icon-5 { color: rgba(108,117,125,0.7) !important; }
+        .icon-6 { color: rgba(23,162,184,0.7) !important; }
 
-        .icon-2 {
-            color: rgba(40,167,69,0.9) !important; /* Shield - green */
-        }
-
-        .icon-3 {
-            color: rgba(0,123,255,0.9) !important; /* Calendar - blue */
-        }
-
-        .icon-4 {
-            color: rgba(255,193,7,0.9) !important; /* Graph - yellow */
-        }
-
-        .icon-5 {
-            color: rgba(108,117,125,0.9) !important; /* People - gray */
-        }
-
-        .icon-6 {
-            color: rgba(23,162,184,0.9) !important; /* Clock - info */
-        }
-
-        /* Dark mode - keep icons white */
+        /* Dark mode - simplified */
         [data-bs-theme="dark"] .floating-icon {
-            color: rgba(255,255,255,0.8) !important;
-            background: transparent !important;
-            border: none !important;
+            color: rgba(255,255,255,0.6) !important;
         }
 
-        [data-bs-theme="dark"] .floating-icon::before {
-            background: linear-gradient(45deg, transparent, rgba(255,255,255,0.3), transparent) !important;
-        }
-
-        [data-bs-theme="dark"] .floating-icon:hover {
-            background: transparent !important;
-            border: none !important;
-            box-shadow: none !important;
-        }
-
-        [data-bs-theme="dark"] .floating-icon::after {
-            background: linear-gradient(45deg, rgba(255,255,255,0.9), rgba(255,255,255,0.5)) !important;
-        }
-
-        /* All icons in dark mode use same white color */
         [data-bs-theme="dark"] .icon-1,
         [data-bs-theme="dark"] .icon-2,
         [data-bs-theme="dark"] .icon-3,
         [data-bs-theme="dark"] .icon-4,
         [data-bs-theme="dark"] .icon-5,
         [data-bs-theme="dark"] .icon-6 {
-            color: rgba(255,255,255,0.8) !important;
-        }
-
-        @@keyframes iconFloat {
-            0%, 100% {
-                transform: translateY(0px) scale(1) rotateZ(0deg);
-                opacity: 0.9;
-            }
-            25% {
-                transform: translateY(-20px) scale(1.05) rotateZ(5deg);
-                opacity: 1;
-            }
-            50% {
-                transform: translateY(-10px) scale(0.95) rotateZ(-3deg);
-                opacity: 0.95;
-            }
-            75% {
-                transform: translateY(-30px) scale(1.1) rotateZ(3deg);
-                opacity: 1;
-            }
+            color: rgba(255,255,255,0.6) !important;
         }
 
         /* CORRECCIÓN PARA MODO OSCURO - COLORES BLANCOS */
@@ -1490,46 +1388,57 @@ else if (isPatient)
             width: 50px;
         }
         
-        /* Hero Counter Counting Animation */
+        /* Optimized Hero Counter Animation */
         .hero-stat-number.counting {
             color: #ffc107 !important;
-            transform: scale(1.1);
-            text-shadow: 0 0 15px rgba(255,193,7,0.5);
-            transition: all 0.3s ease;
+            transform: scale(1.05);
+            transition: transform 0.2s ease;
         }
 
+        /* Optimized responsive animations */
         @@media (max-width: 768px) {
-            .feature-card-hover:hover {
-                transform: translateY(-6px) scale(1.02) !important;
+            .floating-icon {
+                animation: none !important; /* Disable animations on mobile */
             }
             
-            .feature-card-hover:not(:hover) {
-                animation: none !important;
+            .feature-card-hover:hover {
+                transform: translateY(-3px) !important;
             }
         }
         
-        /* Premium Trust Card Special Effects */
-        .trust-card-premium::before {
-            display: none !important;
-        }
-        
+        /* Optimized trust card effects */
         .trust-card-premium:hover {
-            box-shadow: 
-                0 25px 50px rgba(0,0,0,0.15), 
-                0 0 0 1px rgba(255,215,0,0.2),
-                0 0 30px rgba(255,193,7,0.1) !important;
-            border: 1px solid rgba(255,215,0,0.3) !important;
+            transform: translateY(-2px);
+            box-shadow: 0 8px 16px rgba(0,0,0,0.1) !important;
+            transition: all 0.2s ease;
         }
 
-        /* Premium sparkles for trust card */
-        .trust-card-premium .sparkle {
-            background: linear-gradient(45deg, #ffd700, #ffb347, #ffd700) !important;
-            box-shadow: 0 0 6px rgba(255,215,0,0.8) !important;
+        /* Performance optimization for hero section */
+        .hero-section {
+            transform: translate3d(0, 0, 0);
+            backface-visibility: hidden;
         }
 
-        .trust-card-premium:hover .sparkle {
-            animation-duration: 1s !important;
+        .hero-content-container {
+            transform: translate3d(0, 0, 0);
+            backface-visibility: hidden;
+        }
+
+        /* Simplified button animations */
+        .hero-section .btn {
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+        }
+
+        .hero-section .btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 8px rgba(0,0,0,0.15);
+        }
+
+        /* Remove complex pseudo-elements from buttons */
+        .hero-section .btn::before {
+            display: none !important;
         }
     </style>
 }
+
 
