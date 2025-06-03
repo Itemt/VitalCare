@@ -65,6 +65,10 @@
       "PackagePath": "staticwebassets\\images\\admin.png"
     },
     {
+      "Id": "C:\\Users\\CristianPC\\Desktop\\vitalcare\\wwwroot\\images\\doctor-dashboard-bg-clean.svg",
+      "PackagePath": "staticwebassets\\images\\doctor-dashboard-bg-clean.svg"
+    },
+    {
       "Id": "C:\\Users\\CristianPC\\Desktop\\vitalcare\\wwwroot\\images\\doctor-dashboard-bg-subtle.svg",
       "PackagePath": "staticwebassets\\images\\doctor-dashboard-bg-subtle.svg"
     },
