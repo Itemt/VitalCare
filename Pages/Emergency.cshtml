@@ -42,6 +42,8 @@
     min-height: 80vh;
     display: flex;
     align-items: center;
+    border-radius: 2rem;
+    margin: 1rem;
 }
 
 .hero-modern::before {
@@ -52,10 +54,9 @@
     right: 0;
     bottom: 0;
     background: 
-        radial-gradient(circle at 20% 80%, rgba(239, 68, 68, 0.15) 0%, transparent 50%),
-        radial-gradient(circle at 80% 20%, rgba(220, 38, 38, 0.15) 0%, transparent 50%),
-        radial-gradient(circle at 40% 40%, rgba(185, 28, 28, 0.1) 0%, transparent 50%);
-    animation: float 8s ease-in-out infinite;
+        radial-gradient(circle at 20% 80%, rgba(239, 68, 68, 0.1) 0%, transparent 30%),
+        radial-gradient(circle at 80% 20%, rgba(220, 38, 38, 0.1) 0%, transparent 30%);
+    border-radius: inherit;
 }
 
 .hero-content {
@@ -89,17 +90,19 @@
     height: 100%;
     overflow: hidden;
     pointer-events: none;
+    border-radius: inherit;
 }
 
 .particle {
     position: absolute;
-    background: rgba(239, 68, 68, 0.3);
+    background: rgba(239, 68, 68, 0.2);
     border-radius: 50%;
+    animation: float 6s ease-in-out infinite;
 }
 
-.particle:nth-child(1) { left: 10%; animation-delay: 0s; width: 10px; height: 10px; }
-.particle:nth-child(2) { left: 20%; animation-delay: 2s; width: 15px; height: 15px; }
-.particle:nth-child(3) { left: 30%; animation-delay: 4s; width: 8px; height: 8px; }
+.particle:nth-child(1) { left: 15%; top: 20%; width: 8px; height: 8px; animation-delay: 0s; }
+.particle:nth-child(2) { left: 75%; top: 60%; width: 6px; height: 6px; animation-delay: 2s; }
+.particle:nth-child(3) { left: 45%; top: 80%; width: 4px; height: 4px; animation-delay: 4s; }
 
 .animate-fade-up { animation: fadeInUp 0.8s ease-out; }
 
@@ -133,19 +136,19 @@
                         Atención inmediata las 24 horas del día. Tu salud no puede esperar, 
                         estamos aquí para ayudarte cuando más lo necesites.
                     </p>
-                    <div class="row g-3 mt-4 mb-4">
+                                         <div class="row g-3 mt-4 mb-4">
                         <div class="col-md-4">
-                            <div class="badge bg-danger bg-opacity-50 text-danger p-3 fs-6">
+                            <div class="badge text-white p-3 fs-6 fw-bold" style="background: linear-gradient(135deg, #ef4444, #dc2626); box-shadow: 0 4px 15px rgba(239, 68, 68, 0.3);">
                                 <i class="bi bi-heart-pulse-fill me-2"></i>Respuesta Inmediata
                             </div>
                         </div>
                         <div class="col-md-4">
-                            <div class="badge bg-warning bg-opacity-50 text-warning p-3 fs-6">
+                            <div class="badge text-white p-3 fs-6 fw-bold" style="background: linear-gradient(135deg, #f59e0b, #d97706); box-shadow: 0 4px 15px rgba(245, 158, 11, 0.3);">
                                 <i class="bi bi-telephone-fill me-2"></i>24/7 Disponible
                             </div>
                         </div>
                         <div class="col-md-4">
-                            <div class="badge bg-info bg-opacity-50 text-info p-3 fs-6">
+                            <div class="badge text-white p-3 fs-6 fw-bold" style="background: linear-gradient(135deg, #3b82f6, #2563eb); box-shadow: 0 4px 15px rgba(59, 130, 246, 0.3);">
                                 <i class="bi bi-hospital-fill me-2"></i>Red Nacional
                             </div>
                         </div>

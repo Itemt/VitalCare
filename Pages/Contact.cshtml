@@ -30,6 +30,8 @@
         min-height: 80vh;
         display: flex;
         align-items: center;
+        border-radius: 2rem;
+        margin: 1rem;
     }
     
     .hero-modern::before {
@@ -40,10 +42,9 @@
         right: 0;
         bottom: 0;
         background: 
-            radial-gradient(circle at 20% 80%, rgba(59, 130, 246, 0.15) 0%, transparent 50%),
-            radial-gradient(circle at 80% 20%, rgba(16, 185, 129, 0.15) 0%, transparent 50%),
-            radial-gradient(circle at 40% 40%, rgba(139, 92, 246, 0.1) 0%, transparent 50%);
-        animation: float 8s ease-in-out infinite;
+            radial-gradient(circle at 20% 80%, rgba(59, 130, 246, 0.1) 0%, transparent 30%),
+            radial-gradient(circle at 80% 20%, rgba(16, 185, 129, 0.1) 0%, transparent 30%);
+        border-radius: inherit;
     }
     
     .hero-content {
@@ -77,19 +78,19 @@
         height: 100%;
         overflow: hidden;
         pointer-events: none;
+        border-radius: inherit;
     }
     
     .particle {
         position: absolute;
-        background: rgba(59, 130, 246, 0.3);
+        background: rgba(59, 130, 246, 0.2);
         border-radius: 50%;
+        animation: float 6s ease-in-out infinite;
     }
     
-    .particle:nth-child(1) { left: 10%; animation-delay: 0s; width: 10px; height: 10px; }
-    .particle:nth-child(2) { left: 20%; animation-delay: 2s; width: 15px; height: 15px; }
-    .particle:nth-child(3) { left: 30%; animation-delay: 4s; width: 8px; height: 8px; }
-    .particle:nth-child(4) { left: 40%; animation-delay: 1s; width: 12px; height: 12px; }
-    .particle:nth-child(5) { left: 50%; animation-delay: 3s; width: 6px; height: 6px; }
+    .particle:nth-child(1) { left: 15%; top: 20%; width: 8px; height: 8px; animation-delay: 0s; }
+    .particle:nth-child(2) { left: 75%; top: 60%; width: 6px; height: 6px; animation-delay: 2s; }
+    .particle:nth-child(3) { left: 45%; top: 80%; width: 4px; height: 4px; animation-delay: 4s; }
     
     .animate-fade-up { animation: fadeInUp 0.8s ease-out; }
     
@@ -110,8 +111,6 @@
         <div class="particle"></div>
         <div class="particle"></div>
         <div class="particle"></div>
-        <div class="particle"></div>
-        <div class="particle"></div>
     </div>
     
     <div class="container">
@@ -127,17 +126,17 @@
                     </p>
                     <div class="row g-3 mt-4">
                         <div class="col-md-4">
-                            <div class="badge bg-success bg-opacity-50 text-success p-3 fs-6">
+                            <div class="badge text-white p-3 fs-6 fw-bold" style="background: linear-gradient(135deg, #22c55e, #16a34a); box-shadow: 0 4px 15px rgba(34, 197, 94, 0.3);">
                                 <i class="bi bi-telephone-fill me-2"></i>Línea Directa
                             </div>
                         </div>
                         <div class="col-md-4">
-                            <div class="badge bg-info bg-opacity-50 text-info p-3 fs-6">
+                            <div class="badge text-white p-3 fs-6 fw-bold" style="background: linear-gradient(135deg, #3b82f6, #2563eb); box-shadow: 0 4px 15px rgba(59, 130, 246, 0.3);">
                                 <i class="bi bi-chat-dots-fill me-2"></i>Chat en Línea
                             </div>
                         </div>
                         <div class="col-md-4">
-                            <div class="badge bg-warning bg-opacity-50 text-warning p-3 fs-6">
+                            <div class="badge text-white p-3 fs-6 fw-bold" style="background: linear-gradient(135deg, #f59e0b, #d97706); box-shadow: 0 4px 15px rgba(245, 158, 11, 0.3);">
                                 <i class="bi bi-geo-alt-fill me-2"></i>Ubicación Central
                             </div>
                         </div>
