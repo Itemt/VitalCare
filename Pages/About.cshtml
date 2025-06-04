@@ -4,164 +4,454 @@
     ViewData["Title"] = "Nuestra Empresa - VitalCare";
 }
 
-<!-- Hero Section -->
-<div class="container-fluid bg-gradient-primary text-white text-center py-5 mb-5 shadow-lg hero-section" style="background: linear-gradient(135deg, #003366 0%, #002244 50%, #001122 100%);">
-    <div class="hero-overlay" style="background-color: rgba(0, 34, 68, 0.9); padding: 4rem 1.5rem; display: inline-block; border-radius: 1rem; max-width: 90%; width: 800px; backdrop-filter: blur(10px); border: 1px solid rgba(255,255,255,0.1);">
-        <h1 class="display-2 fw-bolder text-shadow-custom mb-4">
-            <span class="hero-title-vital">Nuestra</span> 
-            <span class="hero-title-care">Empresa</span>
-        </h1>
-        <p class="lead fs-3 mb-4 text-shadow-custom">Conoce la historia, visión y compromiso de VitalCare con la innovación en agendamiento de citas médicas digitales.</p>
-        <div class="service-badges mb-4">
-            <span class="badge bg-success fs-6 me-2 service-badge"><i class="bi bi-building-fill me-1"></i>Fundada en 2020</span>
-            <span class="badge bg-warning fs-6 me-2 service-badge"><i class="bi bi-people-fill me-1"></i>50+ Desarrolladores</span>
-            <span class="badge bg-info fs-6 service-badge"><i class="bi bi-globe-americas me-1"></i>Colombia</span>
-        </div>
-    </div>
-</div>
+<style>
+    /* === PÁGINA ABOUT MODERNA Y SOFISTICADA === */
+    
+    /* Animaciones y transiciones */
+    @@keyframes fadeInUp {
+        from {
+            opacity: 0;
+            transform: translateY(30px);
+        }
+        to {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    }
+    
+    @@keyframes slideInLeft {
+        from {
+            opacity: 0;
+            transform: translateX(-50px);
+        }
+        to {
+            opacity: 1;
+            transform: translateX(0);
+        }
+    }
+    
+    @@keyframes slideInRight {
+        from {
+            opacity: 0;
+            transform: translateX(50px);
+        }
+        to {
+            opacity: 1;
+            transform: translateX(0);
+        }
+    }
+    
+    @@keyframes pulse {
+        0%, 100% { transform: scale(1); }
+        50% { transform: scale(1.05); }
+    }
+    
+    @@keyframes float {
+        0%, 100% { transform: translateY(0px); }
+        50% { transform: translateY(-10px); }
+    }
+    
+    @@keyframes shimmer {
+        0% { background-position: -200% 0; }
+        100% { background-position: 200% 0; }
+    }
+    
+    /* Clases de animación */
+    .animate-fade-up { animation: fadeInUp 0.8s ease-out; }
+    .animate-slide-left { animation: slideInLeft 0.8s ease-out; }
+    .animate-slide-right { animation: slideInRight 0.8s ease-out; }
+    .animate-float { animation: float 3s ease-in-out infinite; }
+    
+    /* Hero Section Mejorado */
+    .hero-modern {
+        background: linear-gradient(135deg, #0f172a 0%, #1e293b 25%, #334155 50%, #1e293b 75%, #0f172a 100%);
+        position: relative;
+        overflow: hidden;
+        min-height: 100vh;
+        display: flex;
+        align-items: center;
+    }
+    
+    .hero-modern::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background: 
+            radial-gradient(circle at 20% 80%, rgba(59, 130, 246, 0.15) 0%, transparent 50%),
+            radial-gradient(circle at 80% 20%, rgba(16, 185, 129, 0.15) 0%, transparent 50%),
+            radial-gradient(circle at 40% 40%, rgba(139, 92, 246, 0.1) 0%, transparent 50%);
+        animation: float 8s ease-in-out infinite;
+    }
+    
+    .hero-content {
+        position: relative;
+        z-index: 2;
+        backdrop-filter: blur(20px);
+        background: rgba(15, 23, 42, 0.8);
+        border: 1px solid rgba(255, 255, 255, 0.1);
+        border-radius: 2rem;
+        padding: 4rem;
+        box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
+    }
+    
+    .hero-title-gradient {
+        background: linear-gradient(135deg, #3b82f6 0%, #10b981 50%, #8b5cf6 100%);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+        font-size: 4.5rem;
+        font-weight: 900;
+        line-height: 1.1;
+        text-shadow: 0 0 30px rgba(59, 130, 246, 0.3);
+    }
+    
+    /* Estadísticas animadas */
+    .stats-card-modern {
+        background: linear-gradient(135deg, rgba(255,255,255,0.1) 0%, rgba(255,255,255,0.05) 100%);
+        backdrop-filter: blur(20px);
+        border: 1px solid rgba(255,255,255,0.1);
+        border-radius: 1.5rem;
+        padding: 2rem;
+        transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        position: relative;
+        overflow: hidden;
+    }
+    
+    .stats-card-modern::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: -100%;
+        width: 100%;
+        height: 100%;
+        background: linear-gradient(90deg, transparent, rgba(255,255,255,0.1), transparent);
+        transition: left 0.5s;
+    }
+    
+    .stats-card-modern:hover::before {
+        left: 100%;
+    }
+    
+    .stats-card-modern:hover {
+        transform: translateY(-10px);
+        box-shadow: 0 25px 50px rgba(0,0,0,0.2);
+    }
+    
+    .stats-number {
+        font-size: 3.5rem;
+        font-weight: 900;
+        background: linear-gradient(135deg, #3b82f6, #10b981);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+    }
+    
+    /* Cards modernas */
+    .modern-card {
+        background: linear-gradient(135deg, rgba(255,255,255,0.95) 0%, rgba(255,255,255,0.9) 100%);
+        backdrop-filter: blur(20px);
+        border: 1px solid rgba(255,255,255,0.2);
+        border-radius: 1.5rem;
+        padding: 2.5rem;
+        transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        position: relative;
+        overflow: hidden;
+        box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+    }
+    
+    .modern-card::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background: linear-gradient(135deg, rgba(59, 130, 246, 0.05) 0%, rgba(16, 185, 129, 0.05) 100%);
+        opacity: 0;
+        transition: opacity 0.3s;
+    }
+    
+    .modern-card:hover::before {
+        opacity: 1;
+    }
+    
+    .modern-card:hover {
+        transform: translateY(-15px) scale(1.02);
+        box-shadow: 0 40px 80px rgba(0,0,0,0.15);
+    }
+    
+    /* Iconos modernos */
+    .icon-modern {
+        width: 80px;
+        height: 80px;
+        border-radius: 20px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background: linear-gradient(135deg, #3b82f6 0%, #1d4ed8 100%);
+        color: white;
+        font-size: 2.5rem;
+        margin: 0 auto 1.5rem;
+        transition: all 0.3s;
+        position: relative;
+        overflow: hidden;
+    }
+    
+    .icon-modern::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: -100%;
+        width: 100%;
+        height: 100%;
+        background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+        transition: left 0.5s;
+    }
+    
+    .modern-card:hover .icon-modern::before {
+        left: 100%;
+    }
+    
+    .icon-modern.success {
+        background: linear-gradient(135deg, #10b981 0%, #059669 100%);
+    }
+    
+    .icon-modern.info {
+        background: linear-gradient(135deg, #06b6d4 0%, #0891b2 100%);
+    }
+    
+    .icon-modern.warning {
+        background: linear-gradient(135deg, #f59e0b 0%, #d97706 100%);
+    }
+    
+    /* Timeline moderna */
+    .timeline-modern {
+        position: relative;
+        padding: 2rem 0;
+    }
+    
+    .timeline-modern::before {
+        content: '';
+        position: absolute;
+        left: 50%;
+        top: 0;
+        bottom: 0;
+        width: 4px;
+        background: linear-gradient(to bottom, #3b82f6, #10b981, #8b5cf6);
+        transform: translateX(-50%);
+        border-radius: 2px;
+    }
+    
+    .timeline-item-modern {
+        position: relative;
+        margin: 3rem 0;
+        padding: 0 2rem;
+    }
+    
+    .timeline-item-modern:nth-child(odd) .timeline-content {
+        margin-right: 50%;
+        padding-right: 2rem;
+        text-align: right;
+    }
+    
+    .timeline-item-modern:nth-child(even) .timeline-content {
+        margin-left: 50%;
+        padding-left: 2rem;
+        text-align: left;
+    }
+    
+    .timeline-dot {
+        position: absolute;
+        left: 50%;
+        top: 50%;
+        transform: translate(-50%, -50%);
+        width: 20px;
+        height: 20px;
+        background: linear-gradient(135deg, #3b82f6, #10b981);
+        border-radius: 50%;
+        border: 4px solid white;
+        box-shadow: 0 0 20px rgba(59, 130, 246, 0.5);
+        z-index: 10;
+    }
+    
+    .timeline-content {
+        background: linear-gradient(135deg, rgba(255,255,255,0.95) 0%, rgba(255,255,255,0.9) 100%);
+        backdrop-filter: blur(20px);
+        border-radius: 1.5rem;
+        padding: 2rem;
+        border: 1px solid rgba(255,255,255,0.2);
+        box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+        transition: all 0.3s;
+    }
+    
+    .timeline-content:hover {
+        transform: scale(1.05);
+        box-shadow: 0 30px 60px rgba(0,0,0,0.15);
+    }
+    
+    /* Sección de misión mejorada */
+    .mission-section {
+        background: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%);
+        position: relative;
+        overflow: hidden;
+    }
+    
+    .mission-section::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background: 
+            radial-gradient(circle at 80% 20%, rgba(59, 130, 246, 0.1) 0%, transparent 50%),
+            radial-gradient(circle at 20% 80%, rgba(16, 185, 129, 0.1) 0%, transparent 50%);
+    }
+    
+    .mission-card {
+        background: linear-gradient(135deg, rgba(255,255,255,0.9) 0%, rgba(255,255,255,0.8) 100%);
+        backdrop-filter: blur(20px);
+        border-radius: 2rem;
+        padding: 3rem;
+        border: 1px solid rgba(255,255,255,0.3);
+        box-shadow: 0 25px 50px rgba(0,0,0,0.1);
+        position: relative;
+        z-index: 2;
+    }
+    
+    /* Efectos de partículas */
+    .particles {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        overflow: hidden;
+        pointer-events: none;
+    }
+    
+    .particle {
+        position: absolute;
+        background: rgba(59, 130, 246, 0.3);
+        border-radius: 50%;
+        animation: float 6s ease-in-out infinite;
+    }
+    
+    .particle:nth-child(1) { left: 10%; animation-delay: 0s; width: 10px; height: 10px; }
+    .particle:nth-child(2) { left: 20%; animation-delay: 2s; width: 15px; height: 15px; }
+    .particle:nth-child(3) { left: 30%; animation-delay: 4s; width: 8px; height: 8px; }
+    .particle:nth-child(4) { left: 40%; animation-delay: 1s; width: 12px; height: 12px; }
+    .particle:nth-child(5) { left: 50%; animation-delay: 3s; width: 6px; height: 6px; }
+    
+    /* Modo oscuro moderno */
+    [data-bs-theme="dark"] .hero-modern {
+        background: linear-gradient(135deg, #0f172a 0%, #1e293b 25%, #334155 50%, #1e293b 75%, #0f172a 100%);
+    }
+    
+    [data-bs-theme="dark"] .modern-card {
+        background: linear-gradient(135deg, rgba(30, 41, 59, 0.95) 0%, rgba(51, 65, 85, 0.9) 100%);
+        border-color: rgba(255,255,255,0.1);
+        color: #e2e8f0;
+    }
+    
+    [data-bs-theme="dark"] .stats-card-modern {
+        background: linear-gradient(135deg, rgba(30, 41, 59, 0.8) 0%, rgba(51, 65, 85, 0.6) 100%);
+        border-color: rgba(255,255,255,0.1);
+        color: #e2e8f0;
+    }
+    
+    [data-bs-theme="dark"] .timeline-content {
+        background: linear-gradient(135deg, rgba(30, 41, 59, 0.95) 0%, rgba(51, 65, 85, 0.9) 100%);
+        border-color: rgba(255,255,255,0.1);
+        color: #e2e8f0;
+    }
+    
+    [data-bs-theme="dark"] .mission-section {
+        background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
+    }
+    
+    [data-bs-theme="dark"] .mission-card {
+        background: linear-gradient(135deg, rgba(30, 41, 59, 0.9) 0%, rgba(51, 65, 85, 0.8) 100%);
+        color: #e2e8f0;
+    }
+    
+    [data-bs-theme="dark"] h2,
+    [data-bs-theme="dark"] h3,
+    [data-bs-theme="dark"] h4,
+    [data-bs-theme="dark"] h5 {
+        color: #60a5fa !important;
+    }
+    
+    [data-bs-theme="dark"] .text-muted,
+    [data-bs-theme="dark"] .lead {
+        color: #94a3b8 !important;
+    }
+    
+    [data-bs-theme="dark"] .timeline-dot {
+        border-color: #1e293b;
+    }
+    
+    /* Badge moderno */
+    .modern-badge {
+        background: linear-gradient(135deg, rgba(59, 130, 246, 0.1), rgba(16, 185, 129, 0.1));
+        border: 1px solid rgba(59, 130, 246, 0.2);
+        color: #003366;
+        padding: 0.5rem 1rem;
+        border-radius: 50px;
+        font-weight: 600;
+        font-size: 0.875rem;
+    }
+    
+    [data-bs-theme="dark"] .modern-badge {
+        background: linear-gradient(135deg, rgba(59, 130, 246, 0.2), rgba(16, 185, 129, 0.2));
+        border-color: rgba(59, 130, 246, 0.3);
+        color: #60a5fa;
+    }
+</style>
 
-<!-- Company Overview -->
-<div class="container mb-5">
-    <div class="row align-items-center">
-        <div class="col-lg-6">
-            <h2 class="display-5 fw-bold mb-4" style="color: #003366;">¿Quiénes Somos?</h2>
-            <p class="lead mb-4 text-body">VitalCare es una Institución Prestadora de Servicios de Salud (IPS) ubicada en Barrancabermeja, Santander, comprometida con brindar atención médica de calidad mediante tecnología moderna y eficiente.</p>
-            <p class="mb-4 text-body">Desde nuestra fundación, hemos trabajado para optimizar el acceso a servicios de salud en la región del Magdalena Medio, especializándonos en el desarrollo de sistemas digitales para el agendamiento de citas médicas.</p>
-            <div class="row">
-                <div class="col-6">
-                    <div class="text-center p-3 feature-card-hover">
-                        <div class="feature-icon-wrapper">
-                            <i class="bi bi-geo-alt-fill feature-icon-main" style="font-size: 2.5rem; color: #003366;"></i>
-                        </div>
-                        <h3 class="fw-bold" style="color: #003366;">IPS</h3>
-                        <p class="text-muted">Barrancabermeja, Santander</p>
-                    </div>
-                </div>
-                <div class="col-6">
-                    <div class="text-center p-3 feature-card-hover">
-                        <div class="feature-icon-wrapper">
-                            <i class="bi bi-people-fill feature-icon-main" style="font-size: 2.5rem; color: #22816b;"></i>
-                        </div>
-                        <h3 class="text-success fw-bold">15K+</h3>
-                        <p class="text-muted">Pacientes Atendidos</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="col-lg-6">
-            <div class="text-center">
-                <div class="bg-light rounded-3 p-5 shadow-sm feature-card-hover" data-bs-theme-value="light">
-                    <div class="feature-icon-wrapper">
-                        <i class="bi bi-hospital-fill feature-icon-main" style="font-size: 8rem; color: #003366;"></i>
-                    </div>
-                    <h4 class="mt-3" style="color: #003366;">IPS del Magdalena Medio</h4>
-                </div>
-            </div>
-        </div>
+<!-- Hero Section Moderno -->
+<section class="hero-modern">
+    <div class="particles">
+        <div class="particle"></div>
+        <div class="particle"></div>
+        <div class="particle"></div>
+        <div class="particle"></div>
+        <div class="particle"></div>
     </div>
-</div>
-
-<!-- Mission Section -->
-<div class="container mb-5">
-    <div class="row align-items-center">
-        <div class="col-lg-6">
-            <div class="text-center">
-                <div class="bg-gradient-primary text-white rounded-3 p-5 shadow-lg position-relative">
-                    <div class="position-absolute top-0 start-0 mt-3 ms-3">
-                        <span class="badge bg-light text-primary">MISIÓN</span>
-                    </div>
-                    <i class="bi bi-bullseye text-white mb-4" style="font-size: 5rem;"></i>
-                    <h3 class="fw-bold mb-3">Nuestro Propósito</h3>
-                    <div class="mission-stars mb-3">
-                        <i class="bi bi-star-fill text-warning me-1"></i>
-                        <i class="bi bi-star-fill text-warning me-1"></i>
-                        <i class="bi bi-star-fill text-warning me-1"></i>
-                        <i class="bi bi-star-fill text-warning me-1"></i>
-                        <i class="bi bi-star-fill text-warning"></i>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="col-lg-6">
-            <h2 class="display-5 fw-bold text-primary mb-4">Nuestra Misión</h2>
-            <div class="mission-statement p-4 bg-light rounded-3 border-start border-primary border-5" data-bs-theme-value="light">
-                <p class="lead fw-semibold text-primary mb-3">"Simplificar y digitalizar el proceso de agendamiento de citas médicas en la región del Magdalena Medio, proporcionando una plataforma moderna, intuitiva y confiable para pacientes y profesionales de la salud de Barrancabermeja y sus alrededores."</p>
-                <p class="mb-3 text-body">En VitalCare IPS creemos que la tecnología debe facilitar el acceso a la atención médica para las comunidades del Magdalena Medio. Trabajamos para eliminar las barreras del agendamiento tradicional y crear una experiencia fluida y eficiente para nuestros pacientes barranqueños.</p>
-                <div class="mission-pillars mt-4">
-                    <h5 class="fw-bold text-primary mb-3">Nuestros Pilares Fundamentales:</h5>
-                    <div class="row">
-                        <div class="col-md-6 mb-2">
-                            <div class="d-flex align-items-center">
-                                <i class="bi bi-check-circle-fill text-success me-2"></i>
-                                <span class="text-body">Atención Regional</span>
-                            </div>
-                        </div>
-                        <div class="col-md-6 mb-2">
-                            <div class="d-flex align-items-center">
-                                <i class="bi bi-check-circle-fill text-success me-2"></i>
-                                <span class="text-body">Tecnología Moderna</span>
-                            </div>
-                        </div>
-                        <div class="col-md-6 mb-2">
-                            <div class="d-flex align-items-center">
-                                <i class="bi bi-check-circle-fill text-success me-2"></i>
-                                <span class="text-body">Accesibilidad Total</span>
-                            </div>
-                        </div>
-                        <div class="col-md-6 mb-2">
-                            <div class="d-flex align-items-center">
-                                <i class="bi bi-check-circle-fill text-success me-2"></i>
-                                <span class="text-body">Seguridad de Datos</span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
-
-<!-- Our Values -->
-<section class="py-5 bg-light" data-bs-theme-value="light">
+    
     <div class="container">
-        <div class="row text-center mb-5">
-            <div class="col-lg-8 mx-auto">
-                <h2 class="display-5 fw-bold mb-3" style="color: #003366;">Nuestros Valores</h2>
-                <p class="lead text-muted">Los principios que guían cada línea de código y cada decisión en VitalCare</p>
-            </div>
-        </div>
-        
-        <div class="row g-4">
-            <div class="col-lg-4 col-md-6">
-                <div class="card h-100 shadow-sm border-0 text-center p-4 bg-white feature-card-hover">
-                    <div class="card-body">
-                        <div class="feature-icon-wrapper mb-3">
-                            <i class="bi bi-shield-check feature-icon-main" style="font-size: 4rem; color: #003366;"></i>
+        <div class="row justify-content-center">
+            <div class="col-lg-10">
+                <div class="hero-content animate-fade-up text-center">
+                    <h1 class="hero-title-gradient mb-4">
+                        Innovando el Futuro de la Salud Digital
+                    </h1>
+                    <p class="lead text-white mb-5 fs-3">
+                        Transformamos la experiencia médica en Barrancabermeja con tecnología de vanguardia, 
+                        creando un puente digital entre pacientes y profesionales de la salud.
+                    </p>
+                    <div class="row g-4 mt-5">
+                        <div class="col-md-4">
+                            <div class="stats-card-modern animate-slide-left">
+                                <div class="stats-number">2020</div>
+                                <h5 class="text-white-50">Año de Fundación</h5>
+                            </div>
                         </div>
-                        <h5 class="card-title fw-bold" style="color: #003366;">Confiabilidad</h5>
-                        <p class="card-text text-muted">Sistema robusto y seguro para el manejo de información médica sensible.</p>
-                    </div>
-                </div>
-            </div>
-            <div class="col-lg-4 col-md-6">
-                <div class="card h-100 shadow-sm border-0 text-center p-4 bg-white feature-card-hover">
-                    <div class="card-body">
-                        <div class="feature-icon-wrapper mb-3">
-                            <i class="bi bi-lightbulb feature-icon-main" style="font-size: 4rem; color: #22816b;"></i>
+                        <div class="col-md-4">
+                            <div class="stats-card-modern animate-fade-up">
+                                <div class="stats-number">15K+</div>
+                                <h5 class="text-white-50">Pacientes Atendidos</h5>
+                            </div>
                         </div>
-                        <h5 class="card-title fw-bold text-success">Innovación</h5>
-                        <p class="card-text text-muted">Uso de tecnologías modernas como ASP.NET Core y Bootstrap para una experiencia superior.</p>
-                    </div>
-                </div>
-            </div>
-            <div class="col-lg-4 col-md-6">
-                <div class="card h-100 shadow-sm border-0 text-center p-4 bg-white feature-card-hover">
-                    <div class="card-body">
-                        <div class="feature-icon-wrapper mb-3">
-                            <i class="bi bi-people feature-icon-main" style="font-size: 4rem; color: #17a2b8;"></i>
+                        <div class="col-md-4">
+                            <div class="stats-card-modern animate-slide-right">
+                                <div class="stats-number">50+</div>
+                                <h5 class="text-white-50">Desarrolladores</h5>
+                            </div>
                         </div>
-                        <h5 class="card-title fw-bold text-info">Accesibilidad</h5>
-                        <p class="card-text text-muted">Facilitamos el acceso a citas médicas desde cualquier dispositivo, en cualquier momento.</p>
                     </div>
                 </div>
             </div>
@@ -169,92 +459,115 @@
     </div>
 </section>
 
-<!-- Timeline -->
-<div class="container py-5">
-    <div class="row text-center mb-5">
-        <div class="col-lg-8 mx-auto">
-            <h2 class="display-5 fw-bold mb-3" style="color: #003366;">Nuestra Historia</h2>
-            <p class="lead text-muted">Un recorrido por los hitos más importantes del desarrollo de VitalCare</p>
+<!-- Quiénes Somos -->
+<section class="py-5">
+    <div class="container">
+        <div class="row align-items-center g-5">
+            <div class="col-lg-6 animate-slide-left">
+                <h2 class="display-4 fw-bold mb-4" style="color: #003366;">
+                    Revolucionando la Atención Médica
+                </h2>
+                <p class="lead mb-4">
+                    VitalCare no es solo una IPS tradicional. Somos pioneros en la digitalización de servicios de salud 
+                    en el Magdalena Medio, combinando experiencia médica con innovación tecnológica.
+                </p>
+                <p class="mb-4">
+                    Desde nuestras oficinas en Barrancabermeja, desarrollamos soluciones que eliminan las barreras 
+                    entre pacientes y profesionales de la salud, creando un ecosistema digital eficiente y confiable.
+                </p>
+                <div class="row g-3">
+                    <div class="col-6">
+                        <div class="d-flex align-items-center">
+                            <div class="icon-modern me-3" style="width: 50px; height: 50px;">
+                                <i class="bi bi-check-circle-fill"></i>
+                            </div>
+                            <div>
+                                <h6 class="mb-0 fw-bold">Certificación IPS</h6>
+                                <small class="text-muted">Santander</small>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-6">
+                        <div class="d-flex align-items-center">
+                            <div class="icon-modern success me-3" style="width: 50px; height: 50px;">
+                                <i class="bi bi-award-fill"></i>
+                            </div>
+                            <div>
+                                <h6 class="mb-0 fw-bold">Calidad Premium</h6>
+                                <small class="text-muted">ISO 27001</small>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-6 animate-slide-right">
+                <div class="modern-card text-center animate-float">
+                    <div class="icon-modern mb-4" style="width: 120px; height: 120px; font-size: 3.5rem;">
+                        <i class="bi bi-hospital-fill"></i>
+                    </div>
+                    <h3 class="fw-bold mb-3" style="color: #003366;">IPS Magdalena Medio</h3>
+                    <p class="text-muted">Centro de innovación en salud digital para la región</p>
+                </div>
+            </div>
         </div>
     </div>
-    
-    <div class="row">
-        <div class="col-lg-8 mx-auto">
-            <div class="timeline">
-                <div class="timeline-item mb-4">
-                    <div class="row align-items-center">
-                        <div class="col-3 text-center">
-                            <div class="rounded-circle mx-auto d-flex align-items-center justify-content-center feature-card-hover" style="width: 60px; height: 60px; background: linear-gradient(135deg, #003366, #002244); color: white;">
-                                <div class="feature-icon-wrapper">
-                                    <strong class="feature-icon-main">2020</strong>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-9">
-                            <div class="card shadow-sm border-start border-3 bg-white" style="border-left-color: #003366 !important;">
-                                <div class="card-body">
-                                    <h5 class="card-title" style="color: #003366;">Inicio del Proyecto</h5>
-                                    <p class="card-text text-body">Comienzo del desarrollo con un equipo de 6 estudiantes especializados en desarrollo web.</p>
-                                </div>
-                            </div>
-                        </div>
+</section>
+
+<!-- Misión Moderna -->
+<section class="mission-section py-5">
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-lg-10">
+                <div class="mission-card animate-fade-up">
+                    <div class="text-center mb-5">
+                        <h2 class="display-4 fw-bold mb-4" style="color: #003366;">Nuestra Misión</h2>
+                        <div class="mx-auto" style="width: 100px; height: 4px; background: linear-gradient(to right, #3b82f6, #10b981); border-radius: 2px;"></div>
                     </div>
-                </div>
-                
-                <div class="timeline-item mb-4">
+                    
                     <div class="row align-items-center">
-                        <div class="col-3 text-center">
-                            <div class="bg-success text-white rounded-circle mx-auto d-flex align-items-center justify-content-center feature-card-hover" style="width: 60px; height: 60px;">
-                                <div class="feature-icon-wrapper">
-                                    <strong class="feature-icon-main">2022</strong>
-                                </div>
+                        <div class="col-lg-6">
+                            <div class="icon-modern mb-4" style="width: 100px; height: 100px; font-size: 3rem;">
+                                <i class="bi bi-bullseye"></i>
                             </div>
+                            <h3 class="fw-bold mb-3" style="color: #003366;">Transformación Digital</h3>
+                            <p class="lead">
+                                "Democratizar el acceso a servicios de salud mediante tecnología innovadora, 
+                                creando un ecosistema digital que conecte pacientes y profesionales de manera eficiente."
+                            </p>
                         </div>
-                        <div class="col-9">
-                            <div class="card shadow-sm border-start border-success border-3 bg-white">
-                                <div class="card-body">
-                                    <h5 class="card-title text-success">Primera Versión Estable</h5>
-                                    <p class="card-text text-body">Lanzamiento de la versión 1.0 con funcionalidades básicas de agendamiento.</p>
+                        <div class="col-lg-6">
+                            <div class="row g-3">
+                                <div class="col-6">
+                                    <div class="modern-card text-center p-3">
+                                        <div class="icon-modern success" style="width: 60px; height: 60px; font-size: 1.5rem;">
+                                            <i class="bi bi-globe-americas"></i>
+                                        </div>
+                                        <h6 class="fw-bold mt-2">Cobertura Regional</h6>
+                                    </div>
                                 </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                
-                <div class="timeline-item mb-4">
-                    <div class="row align-items-center">
-                        <div class="col-3 text-center">
-                            <div class="bg-info text-white rounded-circle mx-auto d-flex align-items-center justify-content-center feature-card-hover" style="width: 60px; height: 60px;">
-                                <div class="feature-icon-wrapper">
-                                    <strong class="feature-icon-main">2023</strong>
+                                <div class="col-6">
+                                    <div class="modern-card text-center p-3">
+                                        <div class="icon-modern info" style="width: 60px; height: 60px; font-size: 1.5rem;">
+                                            <i class="bi bi-shield-check"></i>
+                                        </div>
+                                        <h6 class="fw-bold mt-2">Seguridad Total</h6>
+                                    </div>
                                 </div>
-                            </div>
-                        </div>
-                        <div class="col-9">
-                            <div class="card shadow-sm border-start border-info border-3 bg-white">
-                                <div class="card-body">
-                                    <h5 class="card-title text-info">Migración a ASP.NET Core</h5>
-                                    <p class="card-text text-body">Actualización completa de la arquitectura utilizando las últimas tecnologías.</p>
+                                <div class="col-6">
+                                    <div class="modern-card text-center p-3">
+                                        <div class="icon-modern warning" style="width: 60px; height: 60px; font-size: 1.5rem;">
+                                            <i class="bi bi-lightning-fill"></i>
+                                        </div>
+                                        <h6 class="fw-bold mt-2">Tecnología Avanzada</h6>
+                                    </div>
                                 </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                
-                <div class="timeline-item">
-                    <div class="row align-items-center">
-                        <div class="col-3 text-center">
-                            <div class="bg-warning text-white rounded-circle mx-auto d-flex align-items-center justify-content-center feature-card-hover" style="width: 60px; height: 60px;">
-                                <div class="feature-icon-wrapper">
-                                    <strong class="feature-icon-main">2024</strong>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-9">
-                            <div class="card shadow-sm border-start border-warning border-3 bg-white">
-                                <div class="card-body">
-                                    <h5 class="card-title text-warning">Versión Actual</h5>
-                                    <p class="card-text text-body">Sistema completo con gestión avanzada de citas, usuarios y funcionalidades administrativas.</p>
+                                <div class="col-6">
+                                    <div class="modern-card text-center p-3">
+                                        <div class="icon-modern" style="width: 60px; height: 60px; font-size: 1.5rem;">
+                                            <i class="bi bi-heart-fill"></i>
+                                        </div>
+                                        <h6 class="fw-bold mt-2">Atención Humana</h6>
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -263,4 +576,186 @@
             </div>
         </div>
     </div>
-</div> 
+</section>
+
+<!-- Valores Modernos -->
+<section class="py-5">
+    <div class="container">
+        <div class="text-center mb-5">
+            <h2 class="display-4 fw-bold mb-4" style="color: #003366;">Nuestros Valores</h2>
+            <p class="lead text-muted">Los pilares que sustentan cada línea de código y cada decisión estratégica</p>
+        </div>
+        
+        <div class="row g-4">
+            <div class="col-lg-4 animate-fade-up">
+                <div class="modern-card text-center h-100">
+                    <div class="icon-modern">
+                        <i class="bi bi-shield-check"></i>
+                    </div>
+                    <h4 class="fw-bold mb-3" style="color: #003366;">Confiabilidad</h4>
+                    <p class="text-muted">
+                        Infraestructura robusta con cifrado de extremo a extremo, respaldos automáticos 
+                        y monitoreo 24/7 para garantizar la disponibilidad total.
+                    </p>
+                    <div class="mt-4">
+                        <span class="modern-badge me-2">99.9% Uptime</span>
+                        <span class="modern-badge">SSL/TLS</span>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="col-lg-4 animate-fade-up" style="animation-delay: 0.2s;">
+                <div class="modern-card text-center h-100">
+                    <div class="icon-modern success">
+                        <i class="bi bi-lightbulb"></i>
+                    </div>
+                    <h4 class="fw-bold mb-3 text-success">Innovación</h4>
+                    <p class="text-muted">
+                        Desarrollo con tecnologías de vanguardia: ASP.NET Core 8, Bootstrap 5, 
+                        arquitectura en la nube y metodologías ágiles.
+                    </p>
+                    <div class="mt-4">
+                        <span class="modern-badge me-2">Cloud Native</span>
+                        <span class="modern-badge">DevOps</span>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="col-lg-4 animate-fade-up" style="animation-delay: 0.4s;">
+                <div class="modern-card text-center h-100">
+                    <div class="icon-modern info">
+                        <i class="bi bi-people"></i>
+                    </div>
+                    <h4 class="fw-bold mb-3 text-info">Accesibilidad</h4>
+                    <p class="text-muted">
+                        Diseño responsivo, compatible con lectores de pantalla, soporte multiidioma 
+                        y optimización para conexiones lentas.
+                    </p>
+                    <div class="mt-4">
+                        <span class="modern-badge me-2">WCAG 2.1</span>
+                        <span class="modern-badge">PWA</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Timeline Moderna -->
+<section class="py-5 bg-light">
+    <div class="container">
+        <div class="text-center mb-5">
+            <h2 class="display-4 fw-bold mb-4" style="color: #003366;">Nuestra Evolución</h2>
+            <p class="lead text-muted">Un viaje de transformación digital constante</p>
+        </div>
+        
+        <div class="timeline-modern">
+            <div class="timeline-item-modern animate-slide-left">
+                <div class="timeline-dot"></div>
+                <div class="timeline-content">
+                    <h4 class="fw-bold" style="color: #003366;">2020 - Genesis</h4>
+                    <p class="mb-3">Inicio del proyecto con un equipo multidisciplinario de 6 desarrolladores especializados en tecnologías web modernas.</p>
+                    <div>
+                        <span class="modern-badge me-2">React</span>
+                        <span class="modern-badge">Node.js</span>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="timeline-item-modern animate-slide-right">
+                <div class="timeline-dot"></div>
+                <div class="timeline-content">
+                    <h4 class="fw-bold text-success">2022 - Lanzamiento</h4>
+                    <p class="mb-3">Primera versión estable con funcionalidades core: gestión de citas, perfiles de usuario y panel administrativo.</p>
+                    <div>
+                        <span class="modern-badge me-2">MVP</span>
+                        <span class="modern-badge">Beta Testing</span>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="timeline-item-modern animate-slide-left">
+                <div class="timeline-dot"></div>
+                <div class="timeline-content">
+                    <h4 class="fw-bold text-info">2023 - Migración</h4>
+                    <p class="mb-3">Actualización completa a ASP.NET Core 8 con arquitectura de microservicios y implementación de CI/CD.</p>
+                    <div>
+                        <span class="modern-badge me-2">Microservicios</span>
+                        <span class="modern-badge">Docker</span>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="timeline-item-modern animate-slide-right">
+                <div class="timeline-dot"></div>
+                <div class="timeline-content">
+                    <h4 class="fw-bold text-warning">2024 - Expansión</h4>
+                    <p class="mb-3">Plataforma completa con IA para recomendaciones, telemedicina integrada y análisis predictivo de salud.</p>
+                    <div>
+                        <span class="modern-badge me-2">IA/ML</span>
+                        <span class="modern-badge">Telemedicina</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<script>
+    // Animaciones al hacer scroll
+    const observerOptions = {
+        threshold: 0.1,
+        rootMargin: '0px 0px -50px 0px'
+    };
+    
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.style.opacity = '1';
+                entry.target.style.transform = 'translateY(0)';
+            }
+        });
+    }, observerOptions);
+    
+    // Observar elementos animados
+    document.querySelectorAll('.animate-fade-up, .animate-slide-left, .animate-slide-right').forEach(el => {
+        el.style.opacity = '0';
+        el.style.transform = 'translateY(30px)';
+        el.style.transition = 'all 0.8s ease-out';
+        observer.observe(el);
+    });
+    
+    // Efecto de conteo animado para estadísticas
+    function animateCounter(element, target, duration = 2000) {
+        let start = 0;
+        const increment = target / (duration / 16);
+        
+        function updateCounter() {
+            start += increment;
+            if (start < target) {
+                element.textContent = Math.floor(start);
+                requestAnimationFrame(updateCounter);
+            } else {
+                element.textContent = target;
+            }
+        }
+        updateCounter();
+    }
+    
+    // Inicializar contadores cuando sean visibles
+    const counterObserver = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                const number = entry.target.textContent.replace(/[^\d]/g, '');
+                if (number) {
+                    animateCounter(entry.target, parseInt(number));
+                    counterObserver.unobserve(entry.target);
+                }
+            }
+        });
+    });
+    
+    document.querySelectorAll('.stats-number').forEach(counter => {
+        counterObserver.observe(counter);
+    });
+</script> 

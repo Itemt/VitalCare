@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "luBZtat0uN6nm0m+Ct/xluCaClz1aAmeyp6JD6BSkhg=",
+  "Hash": "Rs6ljX+it1Y4tr2//OtNUzIAfkx+yd2oNroy2xDKapo=",
   "Source": "CitasEPS",
   "BasePath": "_content/CitasEPS",
   "Mode": "Default",
@@ -1396,8 +1396,8 @@
       "RelatedAsset": "",
       "AssetTraitName": "",
       "AssetTraitValue": "",
-      "Fingerprint": "wvds8rqx29",
-      "Integrity": "TGm0vcWeqo8Ut+UMmCt2phnX0VQGwYayKqBDhPf+Sf0=",
+      "Fingerprint": "3xa6nwcsl6",
+      "Integrity": "Ocx4cx0hkzvREofcMTaayDI0lxGNWV4larkihE8nSmw=",
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot/css/enhanced-features.css"
@@ -3600,6 +3600,51 @@
       ]
     },
     {
+      "Route": "css/enhanced-features.3xa6nwcsl6.css",
+      "AssetFile": "/Users/cristianramos/Desktop/Proyectos/AplicativosWeb/CitasEPS/wwwroot/css/enhanced-features.css",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "65123"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "text/css"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"Ocx4cx0hkzvREofcMTaayDI0lxGNWV4larkihE8nSmw=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Wed, 04 Jun 2025 21:43:39 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=31536000, immutable"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "fingerprint",
+          "Value": "3xa6nwcsl6"
+        },
+        {
+          "Name": "label",
+          "Value": "css/enhanced-features.css"
+        },
+        {
+          "Name": "integrity",
+          "Value": "sha256-Ocx4cx0hkzvREofcMTaayDI0lxGNWV4larkihE8nSmw="
+        }
+      ]
+    },
+    {
       "Route": "css/enhanced-features.css",
       "AssetFile": "/Users/cristianramos/Desktop/Proyectos/AplicativosWeb/CitasEPS/wwwroot/css/enhanced-features.css",
       "Selectors": [],
@@ -3610,7 +3655,7 @@
         },
         {
           "Name": "Content-Length",
-          "Value": "61404"
+          "Value": "65123"
         },
         {
           "Name": "Content-Type",
@@ -3618,11 +3663,11 @@
         },
         {
           "Name": "ETag",
-          "Value": "\"TGm0vcWeqo8Ut+UMmCt2phnX0VQGwYayKqBDhPf+Sf0=\""
+          "Value": "\"Ocx4cx0hkzvREofcMTaayDI0lxGNWV4larkihE8nSmw=\""
         },
         {
           "Name": "Last-Modified",
-          "Value": "Wed, 04 Jun 2025 21:16:24 GMT"
+          "Value": "Wed, 04 Jun 2025 21:43:39 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -3632,52 +3677,7 @@
       "EndpointProperties": [
         {
           "Name": "integrity",
-          "Value": "sha256-TGm0vcWeqo8Ut+UMmCt2phnX0VQGwYayKqBDhPf+Sf0="
-        }
-      ]
-    },
-    {
-      "Route": "css/enhanced-features.wvds8rqx29.css",
-      "AssetFile": "/Users/cristianramos/Desktop/Proyectos/AplicativosWeb/CitasEPS/wwwroot/css/enhanced-features.css",
-      "Selectors": [],
-      "ResponseHeaders": [
-        {
-          "Name": "Accept-Ranges",
-          "Value": "bytes"
-        },
-        {
-          "Name": "Content-Length",
-          "Value": "61404"
-        },
-        {
-          "Name": "Content-Type",
-          "Value": "text/css"
-        },
-        {
-          "Name": "ETag",
-          "Value": "\"TGm0vcWeqo8Ut+UMmCt2phnX0VQGwYayKqBDhPf+Sf0=\""
-        },
-        {
-          "Name": "Last-Modified",
-          "Value": "Wed, 04 Jun 2025 21:16:24 GMT"
-        },
-        {
-          "Name": "Cache-Control",
-          "Value": "max-age=31536000, immutable"
-        }
-      ],
-      "EndpointProperties": [
-        {
-          "Name": "fingerprint",
-          "Value": "wvds8rqx29"
-        },
-        {
-          "Name": "label",
-          "Value": "css/enhanced-features.css"
-        },
-        {
-          "Name": "integrity",
-          "Value": "sha256-TGm0vcWeqo8Ut+UMmCt2phnX0VQGwYayKqBDhPf+Sf0="
+          "Value": "sha256-Ocx4cx0hkzvREofcMTaayDI0lxGNWV4larkihE8nSmw="
         }
       ]
     },
