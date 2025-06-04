@@ -25,10 +25,10 @@
     filter: none;
 }
 
-/* Remove all circular backgrounds from icons */
-.feature-icon-wrapper,
-.feature-icon-main,
-.rounded-circle,
+/* Remove all circular backgrounds from icons - EXCEPT team avatars and tech icons */
+.feature-icon-wrapper:not(.team-avatar):not(.tech-icon-container),
+.feature-icon-main:not(.tech-icon):not(.team-avatar .bi-person-fill),
+.rounded-circle:not(.team-avatar):not(.tech-icon-container),
 .feature-icon-round,
 .contact-icon-modern,
 .auth-logo {
@@ -37,7 +37,7 @@
     border-radius: 0 !important;
 }
 
-/* Override specific circular styles */
+/* Override specific circular styles - EXCEPT team and tech icons */
 .contact-icon-modern {
     width: auto !important;
     height: auto !important;
@@ -45,6 +45,67 @@
     border-radius: 0 !important;
     display: inline-block !important;
     font-size: 2rem !important;
+}
+
+/* === TEAM AND TECH ICONS PROTECTION === */
+
+/* Protect team avatar circular backgrounds */
+.team-avatar {
+    background: inherit !important;
+    border-radius: 50% !important;
+    width: 120px !important;
+    height: 120px !important;
+}
+
+/* Protect technology icon containers */
+.tech-icon-container {
+    background: inherit !important;
+    border-radius: 50% !important;
+    width: 80px !important;
+    height: 80px !important;
+}
+
+/* Team avatar icons - always visible */
+.team-avatar .bi-person-fill {
+    color: white !important;
+    opacity: 1 !important;
+    visibility: visible !important;
+    display: block !important;
+}
+
+/* Technology icons - proper visibility */
+.tech-icon {
+    opacity: 1 !important;
+    visibility: visible !important;
+    display: block !important;
+    color: white !important; /* Default white for light mode */
+}
+
+/* Dark mode technology icons */
+[data-bs-theme="dark"] .tech-icon-container {
+    background: rgba(255,255,255,0.1) !important;
+    border: 1px solid rgba(255,255,255,0.2) !important;
+}
+
+[data-bs-theme="dark"] .tech-icon {
+    color: rgba(255,255,255,0.9) !important;
+}
+
+/* Specific tech icon colors in dark mode */
+[data-bs-theme="dark"] .tech-icon.bi-microsoft {
+    color: #4FC3F7 !important;
+}
+
+[data-bs-theme="dark"] .tech-icon.bi-bootstrap-fill {
+    color: #7C4DFF !important;
+}
+
+[data-bs-theme="dark"] .tech-icon.bi-database-fill {
+    color: #4CAF50 !important;
+}
+
+[data-bs-theme="dark"] .tech-icon.bi-filetype-js {
+    color: #FFD54F !important;
 }
 
 /* SPARKLES CORREGIDOS - MÁS PUNTOS DORADOS ENCIMA DEL ÍCONO */

@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "Rs6ljX+it1Y4tr2//OtNUzIAfkx+yd2oNroy2xDKapo=",
+  "Hash": "ChX3LSdTzwjsP53XhLnG4fUS/38yc50z5E1zf9e8wjY=",
   "Source": "CitasEPS",
   "BasePath": "_content/CitasEPS",
   "Mode": "Default",
@@ -1396,8 +1396,8 @@
       "RelatedAsset": "",
       "AssetTraitName": "",
       "AssetTraitValue": "",
-      "Fingerprint": "3xa6nwcsl6",
-      "Integrity": "Ocx4cx0hkzvREofcMTaayDI0lxGNWV4larkihE8nSmw=",
+      "Fingerprint": "88iumt8v9r",
+      "Integrity": "yGFVnQTmREcsonNrC1L4KH2OQNaukmeGj9gS5Z9goSI=",
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot/css/enhanced-features.css"
@@ -3600,7 +3600,7 @@
       ]
     },
     {
-      "Route": "css/enhanced-features.3xa6nwcsl6.css",
+      "Route": "css/enhanced-features.88iumt8v9r.css",
       "AssetFile": "/Users/cristianramos/Desktop/Proyectos/AplicativosWeb/CitasEPS/wwwroot/css/enhanced-features.css",
       "Selectors": [],
       "ResponseHeaders": [
@@ -3610,7 +3610,7 @@
         },
         {
           "Name": "Content-Length",
-          "Value": "65123"
+          "Value": "66631"
         },
         {
           "Name": "Content-Type",
@@ -3618,11 +3618,11 @@
         },
         {
           "Name": "ETag",
-          "Value": "\"Ocx4cx0hkzvREofcMTaayDI0lxGNWV4larkihE8nSmw=\""
+          "Value": "\"yGFVnQTmREcsonNrC1L4KH2OQNaukmeGj9gS5Z9goSI=\""
         },
         {
           "Name": "Last-Modified",
-          "Value": "Wed, 04 Jun 2025 21:43:39 GMT"
+          "Value": "Wed, 04 Jun 2025 23:19:59 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -3632,7 +3632,7 @@
       "EndpointProperties": [
         {
           "Name": "fingerprint",
-          "Value": "3xa6nwcsl6"
+          "Value": "88iumt8v9r"
         },
         {
           "Name": "label",
@@ -3640,7 +3640,7 @@
         },
         {
           "Name": "integrity",
-          "Value": "sha256-Ocx4cx0hkzvREofcMTaayDI0lxGNWV4larkihE8nSmw="
+          "Value": "sha256-yGFVnQTmREcsonNrC1L4KH2OQNaukmeGj9gS5Z9goSI="
         }
       ]
     },
@@ -3655,7 +3655,7 @@
         },
         {
           "Name": "Content-Length",
-          "Value": "65123"
+          "Value": "66631"
         },
         {
           "Name": "Content-Type",
@@ -3663,11 +3663,11 @@
         },
         {
           "Name": "ETag",
-          "Value": "\"Ocx4cx0hkzvREofcMTaayDI0lxGNWV4larkihE8nSmw=\""
+          "Value": "\"yGFVnQTmREcsonNrC1L4KH2OQNaukmeGj9gS5Z9goSI=\""
         },
         {
           "Name": "Last-Modified",
-          "Value": "Wed, 04 Jun 2025 21:43:39 GMT"
+          "Value": "Wed, 04 Jun 2025 23:19:59 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -3677,7 +3677,7 @@
       "EndpointProperties": [
         {
           "Name": "integrity",
-          "Value": "sha256-Ocx4cx0hkzvREofcMTaayDI0lxGNWV4larkihE8nSmw="
+          "Value": "sha256-yGFVnQTmREcsonNrC1L4KH2OQNaukmeGj9gS5Z9goSI="
         }
       ]
     },

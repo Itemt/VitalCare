@@ -103,6 +103,165 @@
         background: rgba(13, 13, 13, 0.9);
         border-color: rgba(255,255,255,0.2);
     }
+
+    /* === CORRECCIONES PARA ICONOS DE TEAM === */
+    
+    /* Avatares del equipo - forzar fondos circulares */
+    .team-avatar {
+        background: inherit !important; /* Mantener el color de fondo */
+        border-radius: 50% !important; /* Forzar forma circular */
+        width: 120px !important;
+        height: 120px !important;
+        display: flex !important;
+        align-items: center !important;
+        justify-content: center !important;
+        position: relative !important;
+    }
+    
+    /* Iconos de personas en avatares - asegurar visibilidad */
+    .team-avatar .bi-person-fill {
+        color: white !important; /* Siempre blanco para contraste */
+        font-size: 4rem !important;
+        opacity: 1 !important;
+        display: block !important;
+        visibility: visible !important;
+    }
+    
+    /* Social links - centrar iconos */
+    .social-links {
+        display: flex !important;
+        justify-content: center !important;
+        align-items: center !important;
+        gap: 0.5rem !important;
+    }
+    
+    .social-links .btn {
+        display: flex !important;
+        align-items: center !important;
+        justify-content: center !important;
+        width: 40px !important;
+        height: 40px !important;
+        padding: 0 !important;
+    }
+    
+    .social-links .btn i {
+        color: inherit !important;
+        opacity: 1 !important;
+        visibility: visible !important;
+        display: block !important;
+    }
+    
+    /* === CORRECCIONES PARA ICONOS DE TECNOLOGÍAS === */
+    
+    /* Contenedores de iconos de tecnologías */
+    .tech-icon-container {
+        background: inherit !important; /* Mantener el color especificado */
+        border-radius: 50% !important;
+        width: 80px !important;
+        height: 80px !important;
+        display: flex !important;
+        align-items: center !important;
+        justify-content: center !important;
+        margin: 0 auto 1rem auto !important;
+    }
+    
+    /* Iconos de tecnologías - asegurar visibilidad en ambos modos */
+    .tech-icon {
+        opacity: 1 !important;
+        visibility: visible !important;
+        display: block !important;
+        font-size: 2.5rem !important;
+    }
+    
+    /* Modo claro - iconos blancos sobre fondos de color */
+    body:not([data-bs-theme="dark"]) .tech-icon {
+        color: white !important;
+    }
+    
+    /* Modo oscuro - iconos con colores específicos para mejor visibilidad */
+    [data-bs-theme="dark"] .tech-icon-container {
+        background: rgba(255,255,255,0.1) !important;
+        border: 1px solid rgba(255,255,255,0.2) !important;
+    }
+    
+    [data-bs-theme="dark"] .tech-icon {
+        color: rgba(255,255,255,0.9) !important;
+    }
+    
+    /* Colores específicos para iconos de tecnología en modo oscuro */
+    [data-bs-theme="dark"] .tech-icon.bi-microsoft {
+        color: #4FC3F7 !important; /* Azul claro para Microsoft */
+    }
+    
+    [data-bs-theme="dark"] .tech-icon.bi-bootstrap-fill {
+        color: #7C4DFF !important; /* Morado para Bootstrap */
+    }
+    
+    [data-bs-theme="dark"] .tech-icon.bi-database-fill {
+        color: #4CAF50 !important; /* Verde para Database */
+    }
+    
+    [data-bs-theme="dark"] .tech-icon.bi-filetype-js {
+        color: #FFD54F !important; /* Amarillo para JavaScript */
+    }
+    
+    /* === CORRECCIONES PARA TARJETAS DE ESTADÍSTICAS === */
+    
+    /* Iconos de estadísticas - visibilidad garantizada */
+    .stat-card-premium .feature-icon-main {
+        opacity: 1 !important;
+        visibility: visible !important;
+        display: block !important;
+    }
+    
+    /* Modo oscuro para tarjetas de estadísticas */
+    [data-bs-theme="dark"] .stat-card-premium {
+        background: linear-gradient(135deg, #1f2937 0%, #374151 100%) !important;
+        border-color: rgba(255,255,255,0.1) !important;
+        color: white !important;
+    }
+    
+    [data-bs-theme="dark"] .stat-card-premium h3,
+    [data-bs-theme="dark"] .stat-card-premium .fw-bold {
+        color: white !important;
+    }
+    
+    [data-bs-theme="dark"] .stat-card-premium .text-muted {
+        color: rgba(255,255,255,0.7) !important;
+    }
+    
+    /* === CORRECCIONES PARA TARJETAS DEL EQUIPO === */
+    
+    /* Modo oscuro para tarjetas del equipo */
+    [data-bs-theme="dark"] .team-card {
+        background: linear-gradient(135deg, #1f2937 0%, #374151 100%) !important;
+        border-color: rgba(255,255,255,0.1) !important;
+        color: white !important;
+    }
+    
+    [data-bs-theme="dark"] .team-card .card-title {
+        color: white !important;
+    }
+    
+    [data-bs-theme="dark"] .team-card .card-text,
+    [data-bs-theme="dark"] .team-card .text-muted {
+        color: rgba(255,255,255,0.7) !important;
+    }
+    
+    /* === CORRECCIONES PARA SECCIÓN DE TECNOLOGÍAS === */
+    
+    /* Asegurar visibilidad de la sección de tecnologías en modo oscuro */
+    [data-bs-theme="dark"] section.bg-light {
+        background: linear-gradient(135deg, #1f2937 0%, #111827 100%) !important;
+    }
+    
+    [data-bs-theme="dark"] section.bg-light h2 {
+        color: white !important;
+    }
+    
+    [data-bs-theme="dark"] section.bg-light .lead {
+        color: rgba(255,255,255,0.8) !important;
+    }
 </style>
 
 <!-- Hero Section Moderno -->
@@ -331,8 +490,8 @@
             <div class="col-lg-3 col-md-6">
                 <div class="card text-center h-100 shadow-sm border-0 bg-white feature-card-hover">
                     <div class="card-body p-4">
-                        <div class="text-white rounded-circle mx-auto mb-3 d-flex align-items-center justify-content-center feature-icon-wrapper" style="width: 80px; height: 80px; background: linear-gradient(135deg, #003366, #002244);">
-                            <i class="bi bi-microsoft feature-icon-main fs-1"></i>
+                        <div class="tech-icon-container" style="background: linear-gradient(135deg, #003366, #002244);">
+                            <i class="bi bi-microsoft tech-icon"></i>
                         </div>
                         <h6 class="fw-bold" style="color: #003366;">ASP.NET Core</h6>
                         <p class="small fw-semibold" style="color: #003366;">Framework Principal</p>
@@ -344,8 +503,8 @@
             <div class="col-lg-3 col-md-6">
                 <div class="card text-center h-100 shadow-sm border-0 bg-white feature-card-hover">
                     <div class="card-body p-4">
-                        <div class="bg-success text-white rounded-circle mx-auto mb-3 d-flex align-items-center justify-content-center feature-icon-wrapper" style="width: 80px; height: 80px;">
-                            <i class="bi bi-bootstrap-fill feature-icon-main fs-1"></i>
+                        <div class="tech-icon-container bg-success">
+                            <i class="bi bi-bootstrap-fill tech-icon"></i>
                         </div>
                         <h6 class="fw-bold" style="color: #003366;">Bootstrap 5</h6>
                         <p class="text-success small fw-semibold">Framework CSS</p>
@@ -357,8 +516,8 @@
             <div class="col-lg-3 col-md-6">
                 <div class="card text-center h-100 shadow-sm border-0 bg-white feature-card-hover">
                     <div class="card-body p-4">
-                        <div class="bg-info text-white rounded-circle mx-auto mb-3 d-flex align-items-center justify-content-center feature-icon-wrapper" style="width: 80px; height: 80px;">
-                            <i class="bi bi-database-fill feature-icon-main fs-1"></i>
+                        <div class="tech-icon-container bg-info">
+                            <i class="bi bi-database-fill tech-icon"></i>
                         </div>
                         <h6 class="fw-bold" style="color: #003366;">Entity Framework</h6>
                         <p class="text-info small fw-semibold">ORM</p>
@@ -370,8 +529,8 @@
             <div class="col-lg-3 col-md-6">
                 <div class="card text-center h-100 shadow-sm border-0 bg-white feature-card-hover">
                     <div class="card-body p-4">
-                        <div class="bg-warning text-white rounded-circle mx-auto mb-3 d-flex align-items-center justify-content-center feature-icon-wrapper" style="width: 80px; height: 80px;">
-                            <i class="bi bi-filetype-js feature-icon-main fs-1"></i>
+                        <div class="tech-icon-container bg-warning">
+                            <i class="bi bi-filetype-js tech-icon"></i>
                         </div>
                         <h6 class="fw-bold" style="color: #003366;">JavaScript</h6>
                         <p class="text-warning small fw-semibold">Interactividad</p>
