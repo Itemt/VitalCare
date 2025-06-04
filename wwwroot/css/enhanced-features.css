@@ -2359,9 +2359,26 @@ body {
 [data-bs-theme="dark"] .stat-card-premium,
 [data-bs-theme="dark"] .features-card-premium,
 [data-bs-theme="dark"] .contact-method-card {
-    background: rgba(45,55,72,0.9) !important;
+    background: linear-gradient(135deg, #212529 0%, #2d3748 100%) !important;
     border-color: rgba(255,255,255,0.1) !important;
     color: #e2e8f0 !important;
+}
+
+/* Ensure card backgrounds override any inline styles */
+[data-bs-theme="dark"] .card.features-card-premium,
+[data-bs-theme="dark"] .card.stat-card-premium,
+[data-bs-theme="dark"] .card.advanced-service-card,
+[data-bs-theme="dark"] .card.bg-white {
+    background: linear-gradient(135deg, #212529 0%, #2d3748 100%) !important;
+    border-color: rgba(255,255,255,0.1) !important;
+}
+
+/* Card hover effects in dark mode */
+[data-bs-theme="dark"] .features-card-premium:hover,
+[data-bs-theme="dark"] .stat-card-premium:hover,
+[data-bs-theme="dark"] .advanced-service-card:hover {
+    background: linear-gradient(135deg, #2d3748 0%, #3a4a5c 100%) !important;
+    box-shadow: 0 25px 50px rgba(255,255,255,0.08) !important;
 }
 
 [data-bs-theme="dark"] .card-title {
@@ -2537,3 +2554,91 @@ body {
 [data-bs-theme="dark"] .card-body h6 {
     color: #e2e8f0 !important;
 } 
+
+/* === ESPECÍFICAS PARA SERVICIOS EN MODO OSCURO - MÁXIMA ESPECIFICIDAD === */
+
+/* Tarjetas de estadísticas en servicios */
+[data-bs-theme="dark"] .container .row .col-md-3 .stat-card-premium,
+[data-bs-theme="dark"] .stat-card-premium.p-4.rounded-3.shadow-lg.h-100.feature-card-hover {
+    background: linear-gradient(135deg, #212529 0%, #2d3748 100%) !important;
+    background-color: #212529 !important;
+    border-color: rgba(255,255,255,0.1) !important;
+    color: #e2e8f0 !important;
+}
+
+/* Tarjetas principales de servicios médicos */
+[data-bs-theme="dark"] .card.h-100.shadow-lg.features-card-premium.border-0.bg-white.feature-card-hover,
+[data-bs-theme="dark"] .features-card-premium.border-0.bg-white.feature-card-hover,
+[data-bs-theme="dark"] .card.features-card-premium.bg-white,
+[data-bs-theme="dark"] .features-card-premium.bg-white {
+    background: linear-gradient(135deg, #212529 0%, #2d3748 100%) !important;
+    background-color: #212529 !important;
+    background-image: none !important;
+    border-color: rgba(255,255,255,0.1) !important;
+    color: #e2e8f0 !important;
+}
+
+/* Tarjetas de servicios adicionales */
+[data-bs-theme="dark"] .card.advanced-service-card.p-4.rounded-3.shadow-lg.h-100.bg-white.border-0.feature-card-hover,
+[data-bs-theme="dark"] .advanced-service-card.bg-white,
+[data-bs-theme="dark"] .card.advanced-service-card {
+    background: linear-gradient(135deg, #212529 0%, #2d3748 100%) !important;
+    background-color: #212529 !important;
+    background-image: none !important;
+    border-color: rgba(255,255,255,0.1) !important;
+    color: #e2e8f0 !important;
+}
+
+/* Tarjetas de EPS */
+[data-bs-theme="dark"] .eps-card.p-3.rounded-3.shadow-sm.h-100.bg-white.border.feature-card-hover,
+[data-bs-theme="dark"] .eps-card.bg-white,
+[data-bs-theme="dark"] .eps-card {
+    background: linear-gradient(135deg, #212529 0%, #2d3748 100%) !important;
+    background-color: #212529 !important;
+    background-image: none !important;
+    border-color: rgba(255,255,255,0.1) !important;
+    color: #e2e8f0 !important;
+}
+
+/* Sobrescribir estilos de Bootstrap específicos */
+[data-bs-theme="dark"] .bg-white.card,
+[data-bs-theme="dark"] .card.bg-white,
+[data-bs-theme="dark"] .bg-white.features-card-premium,
+[data-bs-theme="dark"] .bg-white.advanced-service-card,
+[data-bs-theme="dark"] .bg-white.eps-card {
+    background: linear-gradient(135deg, #212529 0%, #2d3748 100%) !important;
+    background-color: #212529 !important;
+    background-image: none !important;
+    border-color: rgba(255,255,255,0.1) !important;
+    color: #e2e8f0 !important;
+}
+
+/* Efectos hover para todas las tarjetas en modo oscuro */
+[data-bs-theme="dark"] .features-card-premium:hover,
+[data-bs-theme="dark"] .stat-card-premium:hover,
+[data-bs-theme="dark"] .advanced-service-card:hover,
+[data-bs-theme="dark"] .eps-card:hover {
+    background: linear-gradient(135deg, #2d3748 0%, #3a4a5c 100%) !important;
+    background-color: #2d3748 !important;
+    box-shadow: 0 25px 50px rgba(255,255,255,0.08) !important;
+    color: #ffffff !important;
+}
+
+/* Asegurar que los títulos de tarjetas se vean bien */
+[data-bs-theme="dark"] .features-card-premium .card-title,
+[data-bs-theme="dark"] .advanced-service-card .fw-bold,
+[data-bs-theme="dark"] .eps-card .fw-bold,
+[data-bs-theme="dark"] .stat-card-premium h3 {
+    color: #e2e8f0 !important;
+}
+
+/* Texto de las tarjetas */
+[data-bs-theme="dark"] .features-card-premium .card-text,
+[data-bs-theme="dark"] .features-card-premium .text-muted,
+[data-bs-theme="dark"] .advanced-service-card .text-muted,
+[data-bs-theme="dark"] .eps-card .text-muted,
+[data-bs-theme="dark"] .stat-card-premium .text-muted {
+    color: #a0aec0 !important;
+}
+
+/* Cards in dark mode */

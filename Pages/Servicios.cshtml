@@ -396,6 +396,61 @@
     </script>
     
     <style>
+        /* MODO OSCURO ESPECÍFICO PARA SERVICIOS - MÁXIMA ESPECIFICIDAD */
+        
+        /* Sobrescribir TODAS las tarjetas bg-white en modo oscuro */
+        [data-bs-theme="dark"] .features-card-premium.bg-white,
+        [data-bs-theme="dark"] .card.features-card-premium.border-0.bg-white,
+        [data-bs-theme="dark"] .card.h-100.shadow-lg.features-card-premium.border-0.bg-white.feature-card-hover,
+        [data-bs-theme="dark"] .advanced-service-card.bg-white,
+        [data-bs-theme="dark"] .card.advanced-service-card.p-4.rounded-3.shadow-lg.h-100.bg-white.border-0.feature-card-hover,
+        [data-bs-theme="dark"] .eps-card.bg-white,
+        [data-bs-theme="dark"] .eps-card.p-3.rounded-3.shadow-sm.h-100.bg-white.border.feature-card-hover,
+        [data-bs-theme="dark"] .stat-card-premium {
+            background: linear-gradient(135deg, #212529 0%, #2d3748 100%) !important;
+            background-color: #212529 !important;
+            background-image: none !important;
+            border-color: rgba(255,255,255,0.1) !important;
+            color: #e2e8f0 !important;
+        }
+        
+        /* Sobrescribir Bootstrap bg-white con máxima especificidad */
+        [data-bs-theme="dark"] .bg-white.card.features-card-premium,
+        [data-bs-theme="dark"] .bg-white.card.advanced-service-card,
+        [data-bs-theme="dark"] .bg-white.eps-card,
+        [data-bs-theme="dark"] .card.bg-white {
+            background: linear-gradient(135deg, #212529 0%, #2d3748 100%) !important;
+            background-color: #212529 !important;
+            background-image: none !important;
+        }
+        
+        /* Hover effects en modo oscuro */
+        [data-bs-theme="dark"] .features-card-premium:hover,
+        [data-bs-theme="dark"] .advanced-service-card:hover,
+        [data-bs-theme="dark"] .eps-card:hover,
+        [data-bs-theme="dark"] .stat-card-premium:hover {
+            background: linear-gradient(135deg, #2d3748 0%, #3a4a5c 100%) !important;
+            background-color: #2d3748 !important;
+            box-shadow: 0 25px 50px rgba(255,255,255,0.08) !important;
+            transform: translateY(-8px);
+        }
+        
+        /* Títulos y texto en modo oscuro */
+        [data-bs-theme="dark"] .features-card-premium .card-title,
+        [data-bs-theme="dark"] .advanced-service-card h5,
+        [data-bs-theme="dark"] .eps-card h6,
+        [data-bs-theme="dark"] .stat-card-premium h3 {
+            color: #e2e8f0 !important;
+        }
+        
+        [data-bs-theme="dark"] .features-card-premium .card-text,
+        [data-bs-theme="dark"] .features-card-premium .text-muted,
+        [data-bs-theme="dark"] .advanced-service-card .text-muted,
+        [data-bs-theme="dark"] .eps-card .text-muted,
+        [data-bs-theme="dark"] .stat-card-premium .text-muted {
+            color: #a0aec0 !important;
+        }
+        
         /* Force white background for service cards - Override any blue backgrounds */
         .features-card-premium.bg-white {
             background: white !important;
@@ -448,27 +503,23 @@
         }
         
         .advanced-service-card:hover .feature-icon-main {
-            transform: scale(1.15) rotate(5deg);
+            transform: scale(1.1) rotateY(360deg);
         }
         
-        /* Badge Improvements */
-        .feature-metrics .badge {
-            transition: all 0.3s ease;
+        /* Tarjeta de información de EPS en modo oscuro */
+        [data-bs-theme="dark"] .alert.alert-info.border-info.bg-light {
+            background: linear-gradient(135deg, #212529 0%, #2d3748 100%) !important;
+            background-color: #212529 !important;
+            border-color: rgba(96, 165, 250, 0.3) !important;
+            color: #e2e8f0 !important;
         }
         
-        .feature-metrics .badge:hover {
-            transform: scale(1.05);
+        [data-bs-theme="dark"] .alert.alert-info strong {
+            color: #60a5fa !important;
         }
         
-        /* Responsive adjustments */
-        @@media (max-width: 768px) {
-            .eps-card {
-                min-height: 100px;
-            }
-            
-            .eps-card .feature-icon-main {
-                font-size: 2rem !important;
-            }
+        [data-bs-theme="dark"] .alert.alert-info i {
+            color: #60a5fa !important;
         }
     </style>
 } 

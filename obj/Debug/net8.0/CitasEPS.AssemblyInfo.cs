@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("CitasEPS")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+529b0aa65a14d4858e70e55826fc98db5b5b8a9f")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+d37f0d1623f8a12fa5a9712ad727b7b515edfd3c")]
 [assembly: System.Reflection.AssemblyProductAttribute("CitasEPS")]
 [assembly: System.Reflection.AssemblyTitleAttribute("CitasEPS")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

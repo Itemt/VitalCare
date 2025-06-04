@@ -414,12 +414,13 @@
 }
 
 [data-bs-theme="dark"] .features-card-premium {
-    background-color: var(--card-bg);
-    border-color: var(--card-border-color);
+    background: linear-gradient(135deg, #212529 0%, #2d3748 100%) !important;
+    border-color: rgba(255,255,255,0.1) !important;
+    color: #e2e8f0 !important;
 }
 
 [data-bs-theme="dark"] .features-card-premium:hover {
-    background-color: rgba(255,255,255,0.05);
+    background: linear-gradient(135deg, #2d3748 0%, #3a4a5c 100%) !important;
 }
 
 [data-bs-theme="dark"] .trust-card {
@@ -859,12 +860,13 @@
 }
 
 [data-bs-theme="dark"] .features-card-premium {
-    background-color: var(--card-bg);
-    border-color: var(--card-border-color);
+    background: linear-gradient(135deg, #212529 0%, #2d3748 100%) !important;
+    border-color: rgba(255,255,255,0.1) !important;
+    color: #e2e8f0 !important;
 }
 
 [data-bs-theme="dark"] .features-card-premium:hover {
-    background-color: rgba(255,255,255,0.05);
+    background: linear-gradient(135deg, #2d3748 0%, #3a4a5c 100%) !important;
 }
 
 [data-bs-theme="dark"] .trust-card {
