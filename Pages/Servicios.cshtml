@@ -4,21 +4,150 @@
     ViewData["Title"] = "Servicios - VitalCare";
 }
 
-<!-- Hero Section for Services -->
-<div class="container-fluid bg-gradient-primary text-white text-center py-5 mb-4 shadow-lg hero-section services-hero" style="background: linear-gradient(135deg, #003366 0%, #002244 50%, #001122 100%);">
-    <div class="hero-overlay" style="background-color: rgba(0, 34, 68, 0.9); padding: 4rem 1.5rem; display: inline-block; border-radius: 1rem; max-width: 90%; width: 800px; backdrop-filter: blur(10px); border: 1px solid rgba(255,255,255,0.1);">
-        <h1 class="display-2 fw-bolder text-shadow-custom mb-4">
-            <span class="hero-title-vital">Servicios</span> 
-            <span class="hero-title-care">Médicos</span>
-        </h1>
-        <p class="lead fs-3 mb-4 text-shadow-custom">Servicios de salud integrales en Barrancabermeja, con tecnología moderna para el cuidado de tu bienestar.</p>
-        <div class="service-badges mb-4">
-            <span class="badge bg-success fs-6 me-2 service-badge"><i class="bi bi-check-circle-fill me-1"></i>Habilitación Supersalud</span>
-            <span class="badge bg-warning fs-6 me-2 service-badge"><i class="bi bi-award-fill me-1"></i>ISO 9001:2015</span>
-            <span class="badge bg-info fs-6 service-badge"><i class="bi bi-shield-check-fill me-1"></i>Datos Protegidos</span>
+<style>
+    /* === HERO MODERNO PARA SERVICIOS === */
+    
+    @@keyframes float {
+        0%, 100% { transform: translateY(0px); }
+        50% { transform: translateY(-10px); }
+    }
+    
+    @@keyframes fadeInUp {
+        from {
+            opacity: 0;
+            transform: translateY(30px);
+        }
+        to {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    }
+    
+    .hero-modern {
+        background: linear-gradient(135deg, #0f172a 0%, #1e293b 25%, #334155 50%, #1e293b 75%, #0f172a 100%);
+        position: relative;
+        overflow: hidden;
+        min-height: 80vh;
+        display: flex;
+        align-items: center;
+    }
+    
+    .hero-modern::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background: 
+            radial-gradient(circle at 20% 80%, rgba(59, 130, 246, 0.15) 0%, transparent 50%),
+            radial-gradient(circle at 80% 20%, rgba(16, 185, 129, 0.15) 0%, transparent 50%),
+            radial-gradient(circle at 40% 40%, rgba(139, 92, 246, 0.1) 0%, transparent 50%);
+        animation: float 8s ease-in-out infinite;
+    }
+    
+    .hero-content {
+        position: relative;
+        z-index: 2;
+        backdrop-filter: blur(20px);
+        background: rgba(15, 23, 42, 0.8);
+        border: 1px solid rgba(255, 255, 255, 0.1);
+        border-radius: 3rem;
+        padding: 4rem;
+        box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
+        margin: 2rem;
+    }
+    
+    .hero-title-gradient {
+        background: linear-gradient(135deg, #3b82f6 0%, #10b981 50%, #8b5cf6 100%);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+        font-size: 4.5rem;
+        font-weight: 900;
+        line-height: 1.1;
+        text-shadow: 0 0 30px rgba(59, 130, 246, 0.3);
+    }
+    
+    .particles {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        overflow: hidden;
+        pointer-events: none;
+    }
+    
+    .particle {
+        position: absolute;
+        background: rgba(59, 130, 246, 0.3);
+        border-radius: 50%;
+        animation: float 6s ease-in-out infinite;
+    }
+    
+    .particle:nth-child(1) { left: 10%; animation-delay: 0s; width: 10px; height: 10px; }
+    .particle:nth-child(2) { left: 20%; animation-delay: 2s; width: 15px; height: 15px; }
+    .particle:nth-child(3) { left: 30%; animation-delay: 4s; width: 8px; height: 8px; }
+    .particle:nth-child(4) { left: 40%; animation-delay: 1s; width: 12px; height: 12px; }
+    .particle:nth-child(5) { left: 50%; animation-delay: 3s; width: 6px; height: 6px; }
+    
+    .animate-fade-up { animation: fadeInUp 0.8s ease-out; }
+    
+    /* Modo oscuro */
+    [data-bs-theme="dark"] .hero-modern {
+        background: linear-gradient(135deg, #0f172a 0%, #1e293b 25%, #334155 50%, #1e293b 75%, #0f172a 100%);
+    }
+    
+    [data-bs-theme="dark"] .hero-content {
+        background: rgba(13, 13, 13, 0.9);
+        border-color: rgba(255,255,255,0.2);
+    }
+</style>
+
+<!-- Hero Section Moderno -->
+<section class="hero-modern mb-5">
+    <div class="particles">
+        <div class="particle"></div>
+        <div class="particle"></div>
+        <div class="particle"></div>
+        <div class="particle"></div>
+        <div class="particle"></div>
+    </div>
+    
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-lg-10">
+                <div class="hero-content animate-fade-up text-center">
+                    <h1 class="hero-title-gradient mb-4">
+                        Servicios Médicos Especializados
+                    </h1>
+                    <p class="lead text-white mb-5 fs-3">
+                        Ofrecemos una amplia gama de servicios médicos con tecnología de vanguardia 
+                        y profesionales altamente calificados para cuidar su salud integral.
+                    </p>
+                    <div class="row g-3 mt-4">
+                        <div class="col-md-4">
+                            <div class="badge bg-success bg-opacity-50 text-success p-3 fs-6">
+                                <i class="bi bi-hospital-fill me-2"></i>Atención 24/7
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="badge bg-info bg-opacity-50 text-info p-3 fs-6">
+                                <i class="bi bi-people-fill me-2"></i>Especialistas Certificados
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="badge bg-warning bg-opacity-50 text-warning p-3 fs-6">
+                                <i class="bi bi-award-fill me-2"></i>Tecnología Avanzada
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
-</div>
+</section>
 
 <!-- Services Statistics -->
 <div class="container mb-5">
