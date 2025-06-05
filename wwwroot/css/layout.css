@@ -108,7 +108,7 @@ body.doctor-body-bg .app-footer {
 
 .app-footer .footer-link:hover {
     color: var(--app-footer-link-hover);
-    transform: translateX(3px);
+    /* transform: translateX(3px); - REMOVED: Eliminado para evitar reordenamiento */
 }
 
 /* === FOOTER CONTACT SECTION === */
@@ -164,7 +164,7 @@ body.doctor-body-bg .app-footer {
 
 .quick-links-widget .list-group-item:hover {
     background: rgba(0,123,255,0.1);
-    transform: translateX(5px);
+    /* transform: translateX(5px); - REMOVED: Eliminado para evitar reordenamiento */
 }
 
 .quick-links-widget .list-group-item i {
@@ -186,7 +186,7 @@ body.doctor-body-bg .app-footer {
 
 .useful-info-widget .list-group-item:hover {
     background: rgba(40,167,69,0.1);
-    transform: translateX(5px);
+    /* transform: translateX(5px); - REMOVED: Eliminado para evitar reordenamiento */
 }
 
 .useful-info-widget .list-group-item i {

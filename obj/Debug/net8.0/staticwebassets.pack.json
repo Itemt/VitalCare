@@ -25,6 +25,10 @@
       "PackagePath": "staticwebassets\\css\\layout.css"
     },
     {
+      "Id": "C:\\Users\\CristianPC\\Desktop\\vitalcare\\wwwroot\\css\\navbar-fix.css",
+      "PackagePath": "staticwebassets\\css\\navbar-fix.css"
+    },
+    {
       "Id": "C:\\Users\\CristianPC\\Desktop\\vitalcare\\wwwroot\\css\\performance-optimizations.css",
       "PackagePath": "staticwebassets\\css\\performance-optimizations.css"
     },

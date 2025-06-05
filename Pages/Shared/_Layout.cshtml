@@ -97,6 +97,9 @@
     @* Estilos específicos del proyecto *@
     <link rel="stylesheet" href="~/CitasEPS.styles.css" asp-append-version="true" />
     
+    @* Fix para animaciones de navbar que causan reordenamiento *@
+    <link rel="stylesheet" href="~/css/navbar-fix.css" asp-append-version="true" />
+    
     <partial name="_Styles" /> @* Extracted inline styles *@
 
     @await RenderSectionAsync("Styles", required: false) @* Added to render page-specific styles *@

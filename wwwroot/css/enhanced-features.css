@@ -469,7 +469,7 @@ body:not([data-bs-theme="dark"]) .bi-filetype-js {
 
 .navbar-nav .nav-link:hover {
     background-color: rgba(255,255,255,0.1) !important;
-    transform: translateY(-1px) !important;
+    /* transform: translateY(-1px) !important; - REMOVED: Eliminado para evitar reordenamiento */
 }
 
 .navbar-nav .nav-link i {
@@ -531,7 +531,7 @@ body:not([data-bs-theme="dark"]) .bi-filetype-js {
 .dropdown-item:hover {
     background-color: rgba(0,123,255,0.25) !important;
     color: #0056b3 !important;
-    transform: translateX(3px) !important;
+    /* transform: translateX(3px) !important; - REMOVED: Eliminado para evitar reordenamiento */
 }
 
 .dropdown-item i {
@@ -624,7 +624,7 @@ body:not([data-bs-theme="dark"]) .bi-filetype-js {
     
     .navbar-nav .nav-link:hover {
         background-color: rgba(255,255,255,0.15) !important;
-        transform: translateX(3px) !important;
+        /* transform: translateX(3px) !important; - REMOVED: Eliminado para evitar reordenamiento */
     }
     
     .dropdown-menu {

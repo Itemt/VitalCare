@@ -50,7 +50,15 @@ public class EmailSender : IEmailSender
 
             _logger.LogInformation($"Calling Resend API to send email to {email}");
             var response = await _resend.EmailSendAsync(message);
-            _logger.LogInformation($"Email sent successfully to {email}. Response ID: {response?.Id}");
+            
+            if (response != null)
+            {
+                _logger.LogInformation($"Email sent successfully to {email}. Message ID: {response}");
+            }
+            else
+            {
+                _logger.LogWarning($"Email sending may have failed to {email}. No response received.");
+            }
         }
         catch (Exception ex)
         {

@@ -1,0 +1,58 @@
+/* =====================================================
+   NAVBAR ANIMATION FIXES - ELIMINAR REORDENAMIENTO
+   ===================================================== */
+
+/* Disable all transform animations on navbar nav-links to prevent reordering */
+.navbar-nav .nav-link:hover,
+.navbar-nav .nav-link:focus {
+    transform: none !important;
+}
+
+/* Disable all transform animations on dropdown items */
+.dropdown-item:hover,
+.dropdown-item:focus {
+    transform: none !important;
+}
+
+/* Disable problematic button hover animations */
+.btn:hover {
+    transform: none !important;
+}
+
+/* Disable footer link animations */
+.app-footer .footer-link:hover {
+    transform: none !important;
+}
+
+/* Disable widget item animations */
+.quick-links-widget .list-group-item:hover,
+.useful-info-widget .list-group-item:hover {
+    transform: none !important;
+}
+
+/* Disable all card hover animations that cause scaling/moving */
+.card:hover,
+.feature-card:hover,
+.stat-card:hover {
+    transform: none !important;
+}
+
+/* Disable any translateX/translateY animations globally for navigation elements */
+.navbar .nav-item:hover,
+.navbar .dropdown:hover,
+.navbar .dropdown-item:hover {
+    transform: none !important;
+}
+
+/* Fix for mobile navbar animations */
+@media (max-width: 1199.98px) {
+    .nav-item .nav-link:hover,
+    .nav-item .nav-link:focus {
+        transform: none !important;
+    }
+}
+
+/* Override any existing transform animations */
+* {
+    --hover-transform: none !important;
+} 

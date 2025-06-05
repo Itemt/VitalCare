@@ -84,8 +84,8 @@
       <RelatedAsset></RelatedAsset>
       <AssetTraitName></AssetTraitName>
       <AssetTraitValue></AssetTraitValue>
-      <Fingerprint>lcy81a0hln</Fingerprint>
-      <Integrity>G1fytund8B7yoybuqjcIpFtREFJr08DOIUHTlRDC0rg=</Integrity>
+      <Fingerprint>23afchgrrl</Fingerprint>
+      <Integrity>Mu8bxAsaORvmwhOfvi1HAp+rlZ2cb6+qGB9iQyVMY3w=</Integrity>
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
       <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
       <OriginalItemSpec>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\css\enhanced-features.css'))</OriginalItemSpec>
@@ -102,11 +102,29 @@
       <RelatedAsset></RelatedAsset>
       <AssetTraitName></AssetTraitName>
       <AssetTraitValue></AssetTraitValue>
-      <Fingerprint>hcwgb8k6x3</Fingerprint>
-      <Integrity>Py2lgb5Yf1LunSXfNmGslVV2zJ0A2c+wjb/aJtzFZpE=</Integrity>
+      <Fingerprint>3j3vd4um1m</Fingerprint>
+      <Integrity>Yb+bMBaznQTYigMl58oXpnsyB6UtySsgxHpGOwGzKP0=</Integrity>
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
       <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
       <OriginalItemSpec>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\css\layout.css'))</OriginalItemSpec>
+    </StaticWebAsset>
+    <StaticWebAsset Include="$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\css\navbar-fix.css'))">
+      <SourceType>Package</SourceType>
+      <SourceId>CitasEPS</SourceId>
+      <ContentRoot>$(MSBuildThisFileDirectory)..\staticwebassets\</ContentRoot>
+      <BasePath>_content/CitasEPS</BasePath>
+      <RelativePath>css/navbar-fix.css</RelativePath>
+      <AssetKind>All</AssetKind>
+      <AssetMode>All</AssetMode>
+      <AssetRole>Primary</AssetRole>
+      <RelatedAsset></RelatedAsset>
+      <AssetTraitName></AssetTraitName>
+      <AssetTraitValue></AssetTraitValue>
+      <Fingerprint>ofepuuin3s</Fingerprint>
+      <Integrity>rPRTecfKCsP+GnhVn6GSFcIoISEyLwXpHFDPnVY6sdY=</Integrity>
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+      <OriginalItemSpec>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\css\navbar-fix.css'))</OriginalItemSpec>
     </StaticWebAsset>
     <StaticWebAsset Include="$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\css\performance-optimizations.css'))">
       <SourceType>Package</SourceType>
