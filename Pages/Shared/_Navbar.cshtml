@@ -279,6 +279,13 @@
 
 @* MENÚ MÓVIL Y DE ESCRITORIO REFINADO *@
 <style>
+    /* ELIMINACIÓN INMEDIATA DE ANIMACIONES DEL NAVBAR */
+    .navbar *, .navbar *:hover, .navbar *:focus, .navbar *:active,
+    .navbar-nav *, .navbar-nav *:hover, .navbar-nav *:focus, .navbar-nav *:active {
+        transform: none !important;
+        animation: none !important;
+        transition: background-color 0.15s ease, color 0.15s ease, box-shadow 0.15s ease !important;
+    }
     /* === ANIMACIONES DE HAMBURGUESA PERSONALIZADAS === */
     .navbar-toggler {
         border: none !important;
