@@ -1,0 +1,192 @@
+/* ========================================
+   CORRECCIONES NAVBAR - VitalCare
+   Corrige animaciones problemáticas y mejora hovers
+   ======================================== */
+
+/* === ELIMINACIÓN DE ANIMACIONES HORIZONTALES PROBLEMÁTICAS === */
+/* Prevenir cualquier animación translateX en elementos del navbar */
+.navbar-nav .nav-link,
+.navbar-nav .nav-link:hover,
+.navbar-nav .nav-link:focus,
+.navbar-nav .nav-link:active {
+    transform: none !important;
+}
+
+.navbar-nav .nav-link i,
+.navbar-nav .nav-link:hover i,
+.navbar-nav .nav-link:focus i,
+.navbar-nav .nav-link:active i {
+    transform: none !important;
+}
+
+/* Prevenir animaciones en dropdown items del navbar */
+.navbar .dropdown-item,
+.navbar .dropdown-item:hover,
+.navbar .dropdown-item:focus,
+.navbar .dropdown-item:active {
+    transform: none !important;
+}
+
+.navbar .dropdown-item i,
+.navbar .dropdown-item:hover i,
+.navbar .dropdown-item:focus i,
+.navbar .dropdown-item:active i {
+    transform: none !important;
+}
+
+/* === CORRECCIONES ESPECÍFICAS PARA HOVERS DEL INDEX SIN LOGUEO === */
+/* Solo usuarios no logueados (más notorio) */
+body:not(.doctor-body-bg):not(.patient-body-bg):not(.admin-body-bg) .navbar-nav .nav-link {
+    transition: all 0.3s ease !important;
+}
+
+/* MODO CLARO - Estilos específicos para tema claro */
+[data-bs-theme="light"] body:not(.doctor-body-bg):not(.patient-body-bg):not(.admin-body-bg) .navbar-nav .nav-link:hover {
+    background-color: rgba(0,123,255,0.15) !important;
+    box-shadow: 0 4px 12px rgba(0,123,255,0.3) !important;
+    border-radius: 0.5rem !important;
+    color: #003366 !important;
+    text-shadow: none !important;
+    transform: none !important; /* Explícitamente sin transform */
+}
+
+[data-bs-theme="light"] body:not(.doctor-body-bg):not(.patient-body-bg):not(.admin-body-bg) .navbar-nav .nav-link:hover i {
+    color: #0066ff !important;
+    filter: brightness(1.1) saturate(1.3) !important;
+    text-shadow: none !important;
+    transform: none !important; /* Explícitamente sin transform */
+}
+
+/* MODO CLARO SIN ESPECIFICAR - Fallback para cuando no hay data-bs-theme */
+body:not(.doctor-body-bg):not(.patient-body-bg):not(.admin-body-bg):not([data-bs-theme]) .navbar-nav .nav-link:hover,
+body:not(.doctor-body-bg):not(.patient-body-bg):not(.admin-body-bg) .navbar-nav .nav-link:hover {
+    background-color: rgba(0,123,255,0.15) !important;
+    box-shadow: 0 4px 12px rgba(0,123,255,0.3) !important;
+    border-radius: 0.5rem !important;
+    color: #003366 !important;
+    text-shadow: none !important;
+    transform: none !important;
+}
+
+body:not(.doctor-body-bg):not(.patient-body-bg):not(.admin-body-bg):not([data-bs-theme]) .navbar-nav .nav-link:hover i,
+body:not(.doctor-body-bg):not(.patient-body-bg):not(.admin-body-bg) .navbar-nav .nav-link:hover i {
+    color: #0066ff !important;
+    filter: brightness(1.1) saturate(1.3) !important;
+    text-shadow: none !important;
+    transform: none !important;
+}
+
+/* === MODO OSCURO PARA INDEX SIN LOGUEO === */
+[data-bs-theme="dark"] body:not(.doctor-body-bg):not(.patient-body-bg):not(.admin-body-bg) .navbar-nav .nav-link:hover {
+    background-color: rgba(0,123,255,0.25) !important;
+    box-shadow: 0 4px 12px rgba(0,123,255,0.5) !important;
+    transform: none !important;
+}
+
+[data-bs-theme="dark"] body:not(.doctor-body-bg):not(.patient-body-bg):not(.admin-body-bg) .navbar-nav .nav-link:hover i {
+    color: #66b3ff !important;
+    filter: brightness(1.4) saturate(1.7) !important;
+    text-shadow: 0 0 12px rgba(102,179,255,0.6) !important;
+    transform: none !important;
+}
+
+[data-bs-theme="dark"] body:not(.doctor-body-bg):not(.patient-body-bg):not(.admin-body-bg) .navbar-nav .nav-link:hover {
+    color: #ffffff !important;
+    text-shadow: 0 0 10px rgba(255,255,255,0.7) !important;
+}
+
+/* === PRESERVAR HOVERS NORMALES PARA USUARIOS LOGUEADOS === */
+/* Los usuarios logueados mantienen el hover menos notorio */
+body.doctor-body-bg .navbar-nav .nav-link:hover,
+body.patient-body-bg .navbar-nav .nav-link:hover,
+body.admin-body-bg .navbar-nav .nav-link:hover {
+    transform: none !important; /* Sin animaciones horizontales */
+}
+
+body.doctor-body-bg .navbar-nav .nav-link:hover i,
+body.patient-body-bg .navbar-nav .nav-link:hover i,
+body.admin-body-bg .navbar-nav .nav-link:hover i {
+    transform: none !important; /* Sin animaciones horizontales */
+}
+
+/* === CORRECCIONES ESPECÍFICAS PARA MÓVIL === */
+@media (max-width: 1199.98px) {
+    .navbar-collapse .nav-link:hover {
+        transform: none !important; /* Sin animaciones en móvil */
+    }
+    
+    .navbar-collapse .nav-link:hover i {
+        transform: none !important; /* Sin animaciones de iconos en móvil */
+    }
+    
+    /* Hover mejorado para móvil en index sin logueo - MODO CLARO */
+    [data-bs-theme="light"] body:not(.doctor-body-bg):not(.patient-body-bg):not(.admin-body-bg) .navbar-collapse .nav-link:hover {
+        background: linear-gradient(135deg, #0066ff 0%, #0052cc 100%) !important;
+        color: white !important;
+        box-shadow: 0 4px 8px rgba(0,102,255,0.4) !important;
+        transform: none !important;
+    }
+    
+    [data-bs-theme="light"] body:not(.doctor-body-bg):not(.patient-body-bg):not(.admin-body-bg) .navbar-collapse .nav-link:hover i {
+        color: #ffffff !important;
+        filter: brightness(1.2) !important;
+        transform: none !important;
+    }
+    
+    /* Fallback para modo claro sin data-bs-theme */
+    body:not(.doctor-body-bg):not(.patient-body-bg):not(.admin-body-bg) .navbar-collapse .nav-link:hover {
+        background: linear-gradient(135deg, #0066ff 0%, #0052cc 100%) !important;
+        color: white !important;
+        box-shadow: 0 4px 8px rgba(0,102,255,0.4) !important;
+        transform: none !important;
+    }
+    
+    body:not(.doctor-body-bg):not(.patient-body-bg):not(.admin-body-bg) .navbar-collapse .nav-link:hover i {
+        color: #ffffff !important;
+        filter: brightness(1.2) !important;
+        transform: none !important;
+    }
+}
+
+/* === ASEGURAR QUE NO HAY ANIMACIONES GLOBALES PROBLEMÁTICAS === */
+.nav-item,
+.nav-item:hover,
+.nav-item:focus,
+.nav-item:active {
+    transform: none !important;
+}
+
+/* Dropdowns del navbar específicamente */
+.navbar .dropdown-menu {
+    transform: translateY(0) !important; /* Solo permitir animación vertical para dropdowns */
+}
+
+.navbar .dropdown-menu.show {
+    animation: dropdownFadeIn 0.2s ease !important;
+}
+
+@keyframes dropdownFadeIn {
+    0% {
+        opacity: 0;
+        transform: translateY(-10px); /* Solo vertical */
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0); /* Solo vertical */
+    }
+}
+
+/* === CORRECCIÓN FINAL - OVERRIDE CUALQUIER TRANSFORM HORIZONTAL === */
+.navbar *[style*="translateX"],
+.navbar-nav *[style*="translateX"],
+.nav-link *[style*="translateX"] {
+    transform: none !important;
+}
+
+/* Prevenir animaciones JavaScript que puedan causar movimiento horizontal */
+.navbar .animate,
+.navbar-nav .animate,
+.nav-link .animate {
+    animation: none !important;
+    transition: background-color 0.3s ease, color 0.3s ease, box-shadow 0.3s ease !important;
+} 

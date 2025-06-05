@@ -469,7 +469,7 @@ body:not([data-bs-theme="dark"]) .bi-filetype-js {
 
 .navbar-nav .nav-link:hover {
     background-color: rgba(255,255,255,0.1) !important;
-    /* transform: translateY(-1px) !important; - REMOVED: Eliminado para evitar reordenamiento */
+    /* Animaciones removidas para evitar reordenamiento de iconos */
 }
 
 .navbar-nav .nav-link i {
@@ -531,7 +531,7 @@ body:not([data-bs-theme="dark"]) .bi-filetype-js {
 .dropdown-item:hover {
     background-color: rgba(0,123,255,0.25) !important;
     color: #0056b3 !important;
-    /* transform: translateX(3px) !important; - REMOVED: Eliminado para evitar reordenamiento */
+    /* Animaciones removidas para evitar reordenamiento de iconos */
 }
 
 .dropdown-item i {
@@ -624,7 +624,7 @@ body:not([data-bs-theme="dark"]) .bi-filetype-js {
     
     .navbar-nav .nav-link:hover {
         background-color: rgba(255,255,255,0.15) !important;
-        /* transform: translateX(3px) !important; - REMOVED: Eliminado para evitar reordenamiento */
+        /* Animaciones removidas para evitar reordenamiento de iconos */
     }
     
     .dropdown-menu {
@@ -2960,4 +2960,30 @@ body {
 [data-bs-theme="dark"] .auth-security-notice {
     background: rgba(40, 167, 69, 0.1);
     border-left: 3px solid #51cf66;
+}
+
+/* === MEJORAS DE HOVER PARA INDEX SIN LOGUEO === */
+/* Solo aplicar a usuarios no logueados (sin clases específicas de roles) */
+body:not(.doctor-body-bg):not(.patient-body-bg):not(.admin-body-bg) .navbar-nav .nav-link:hover {
+    background-color: rgba(255,255,255,0.2) !important;
+    box-shadow: 0 2px 8px rgba(0,123,255,0.3) !important;
+    border-radius: 0.5rem !important;
+}
+
+body:not(.doctor-body-bg):not(.patient-body-bg):not(.admin-body-bg) .navbar-nav .nav-link:hover i {
+    color: #0066ff !important;
+    filter: brightness(1.2) saturate(1.5) !important;
+    text-shadow: 0 0 8px rgba(0,102,255,0.4) !important;
+}
+
+/* Modo oscuro para usuarios no logueados */
+[data-bs-theme="dark"] body:not(.doctor-body-bg):not(.patient-body-bg):not(.admin-body-bg) .navbar-nav .nav-link:hover {
+    background-color: rgba(0,123,255,0.2) !important;
+    box-shadow: 0 2px 8px rgba(0,123,255,0.4) !important;
+}
+
+[data-bs-theme="dark"] body:not(.doctor-body-bg):not(.patient-body-bg):not(.admin-body-bg) .navbar-nav .nav-link:hover i {
+    color: #66b3ff !important;
+    filter: brightness(1.3) saturate(1.6) !important;
+    text-shadow: 0 0 10px rgba(102,179,255,0.5) !important;
 }

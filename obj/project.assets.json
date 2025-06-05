@@ -8534,32 +8534,25 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\CristianPC\\.nuget\\packages\\": {},
-    "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages": {}
+    "/Users/cristianramos/.nuget/packages/": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\CristianPC\\Desktop\\vitalcare\\CitasEPS.csproj",
+      "projectUniqueName": "/Users/cristianramos/Desktop/Proyectos/AplicativosWeb/CitasEPS/CitasEPS.csproj",
       "projectName": "CitasEPS",
-      "projectPath": "C:\\Users\\CristianPC\\Desktop\\vitalcare\\CitasEPS.csproj",
-      "packagesPath": "C:\\Users\\CristianPC\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\CristianPC\\Desktop\\vitalcare\\obj\\",
+      "projectPath": "/Users/cristianramos/Desktop/Proyectos/AplicativosWeb/CitasEPS/CitasEPS.csproj",
+      "packagesPath": "/Users/cristianramos/.nuget/packages/",
+      "outputPath": "/Users/cristianramos/Desktop/Proyectos/AplicativosWeb/CitasEPS/obj/",
       "projectStyle": "PackageReference",
-      "fallbackFolders": [
-        "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
-      ],
       "configFilePaths": [
-        "C:\\Users\\CristianPC\\AppData\\Roaming\\NuGet\\NuGet.Config",
-        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
-        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        "/Users/cristianramos/.nuget/NuGet/NuGet.Config"
       ],
       "originalTargetFrameworks": [
         "net8.0"
       ],
       "sources": {
-        "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
-        "https://www.nuget.org/api/v2": {}
+        "https://api.nuget.org/v3/index.json": {}
       },
       "frameworks": {
         "net8.0": {
@@ -8637,7 +8630,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\9.0.203/PortableRuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "/usr/local/share/dotnet/sdk/9.0.201/PortableRuntimeIdentifierGraph.json"
       }
     }
   }

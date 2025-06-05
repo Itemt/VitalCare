@@ -279,14 +279,6 @@
 
 @* MENÚ MÓVIL Y DE ESCRITORIO REFINADO *@
 <style>
-    /* SOLO ELIMINAR TRANSFORMS - HOVERS SE MANEJAN EN navbar-fix.css */
-    .navbar .nav-link, .navbar .nav-link:hover,
-    .navbar .btn, .navbar .btn:hover {
-        transform: none !important;
-    }
-    
-    /* FORZAR CACHE REFRESH PARA HOVERS */
-    html { --navbar-hover-fix: 2024; }
     /* === ANIMACIONES DE HAMBURGUESA PERSONALIZADAS === */
     .navbar-toggler {
         border: none !important;
@@ -358,13 +350,7 @@
     
     .btn-register:hover {
         background: linear-gradient(135deg, #1d4ed8 0%, #2563eb 100%) !important;
-        /* SOMBRA AZUL DRAMÁTICA PARA BOTÓN REGISTRO */
-        box-shadow: 0 12px 35px rgba(29, 78, 216, 0.6), 
-                    0 8px 18px rgba(0, 0, 0, 0.4),
-                    0 4px 8px rgba(0, 0, 0, 0.3),
-                    inset 0 1px 0 rgba(255, 255, 255, 0.1) !important;
-        border-top: 3px solid #60a5fa !important;
-        border-bottom: 1px solid #1d4ed8 !important;
+        transform: translateY(-1px) !important;
     }
     
     /* Responsive - Ocultar iconos en móvil */
@@ -486,20 +472,17 @@
             box-shadow: 0 0.5rem 1rem rgba(0,0,0,0.3);
         }
 
-        /* LAYOUT EN COLUMNAS RESPONSIVO - SIN AUTO-FIT PARA EVITAR REORDENAMIENTO */
+        /* LAYOUT EN COLUMNAS RESPONSIVO */
         .navbar-nav {
-            display: flex !important;
-            flex-wrap: wrap !important;
+            display: grid !important;
+            grid-template-columns: repeat(auto-fit, minmax(140px, 1fr)) !important; /* Columnas adaptables */
             gap: 0.5rem !important;
             width: 100%;
             margin-bottom: 1rem !important;
-            align-items: stretch !important;
         }
 
         .nav-item {
-            flex: 1 1 auto !important;
-            min-width: 120px !important;
-            max-width: none !important;
+            width: 100% !important;
         }
 
         .nav-item .nav-link {
@@ -531,13 +514,8 @@
             background: linear-gradient(135deg, #1e293b 0%, #334155 100%) !important;
             color: white !important;
             border-color: #334155 !important;
-            /* SOMBRA DRAMÁTICA PARA SIMULAR ELEVACIÓN REAL */
-            box-shadow: 0 12px 40px rgba(30, 41, 59, 0.6), 
-                        0 8px 20px rgba(0, 0, 0, 0.4),
-                        0 4px 8px rgba(0, 0, 0, 0.3),
-                        inset 0 1px 0 rgba(255, 255, 255, 0.1) !important;
-            border-top: 3px solid #94a3b8 !important;
-            border-bottom: 1px solid #1e293b !important;
+            transform: translateY(-2px) !important; /* Efecto de elevación */
+            box-shadow: 0 4px 8px rgba(30, 41, 59, 0.3);
         }
 
         /* Estilos específicos para roles */
@@ -550,13 +528,6 @@
             background: linear-gradient(135deg, #059669 0%, #10b981 100%) !important;
             border-color: #10b981 !important;
             color: white !important;
-            /* SOMBRA VERDE DRAMÁTICA PARA TEMA PACIENTE */
-            box-shadow: 0 12px 40px rgba(5, 150, 105, 0.6), 
-                        0 8px 20px rgba(0, 0, 0, 0.4),
-                        0 4px 8px rgba(0, 0, 0, 0.3),
-                        inset 0 1px 0 rgba(255, 255, 255, 0.1) !important;
-            border-top: 3px solid #6ee7b7 !important;
-            border-bottom: 1px solid #059669 !important;
         }
 
         body.doctor-body-bg .navbar-collapse .nav-link,
@@ -570,13 +541,6 @@
             background: linear-gradient(135deg, #1e293b 0%, #334155 100%) !important;
             border-color: #334155 !important;
             color: white !important;
-            /* SOMBRA DRAMÁTICA PARA TEMAS DOCTOR/ADMIN */
-            box-shadow: 0 12px 40px rgba(30, 41, 59, 0.6), 
-                        0 8px 20px rgba(0, 0, 0, 0.4),
-                        0 4px 8px rgba(0, 0, 0, 0.3),
-                        inset 0 1px 0 rgba(255, 255, 255, 0.1) !important;
-            border-top: 3px solid #94a3b8 !important;
-            border-bottom: 1px solid #1e293b !important;
         }
 
         /* Botones inferiores - MEJORADOS PARA UNA SOLA LÍNEA */
@@ -676,30 +640,18 @@
         }
     }
 
-    /* TABLETS Y PANTALLAS MEDIANAS - USAR FLEXBOX PARA EVITAR REORDENAMIENTO */
+    /* TABLETS Y PANTALLAS MEDIANAS - 2-3 columnas */
     @@media (max-width: 1199.98px) and (min-width: 600px) {
         .navbar-nav {
-            display: flex !important;
-            flex-wrap: wrap !important;
-        }
-        
-        .nav-item {
-            flex: 1 1 calc(33.333% - 0.5rem) !important;
-            min-width: 140px !important;
+            grid-template-columns: repeat(auto-fit, minmax(160px, 1fr)) !important;
         }
     }
 
-    /* PANTALLAS PEQUEÑAS - FLEXBOX CON 2 COLUMNAS */
+    /* PANTALLAS PEQUEÑAS - 2 columnas */
     @@media (max-width: 599.98px) and (min-width: 400px) {
         .navbar-nav {
-            display: flex !important;
-            flex-wrap: wrap !important;
+            grid-template-columns: repeat(2, 1fr) !important;
             gap: 0.4rem !important;
-        }
-        
-        .nav-item {
-            flex: 1 1 calc(50% - 0.2rem) !important;
-            min-width: 120px !important;
         }
         .nav-item .nav-link {
             font-size: 0.8rem !important;
@@ -727,17 +679,11 @@
         }
     }
 
-    /* MÓVILES MUY ESTRECHOS - 1 columna CON FLEXBOX */
+    /* MÓVILES MUY ESTRECHOS - 1 columna */
     @@media (max-width: 399.98px) {
         .navbar-nav {
-            display: flex !important;
-            flex-direction: column !important; /* UNA SOLA COLUMNA */
+            grid-template-columns: 1fr !important; /* UNA SOLA COLUMNA */
             gap: 0.4rem !important;
-        }
-        
-        .nav-item {
-            flex: 1 1 100% !important;
-            width: 100% !important;
         }
         .nav-item .nav-link {
             font-size: 0.85rem !important;
