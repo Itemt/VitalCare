@@ -71,6 +71,9 @@
     opacity: 1 !important;
     visibility: visible !important;
     display: block !important;
+    z-index: 10 !important;
+    position: relative !important;
+    text-shadow: 0 1px 3px rgba(0,0,0,0.5) !important;
 }
 
 /* Technology icons - proper visibility */
@@ -78,34 +81,114 @@
     opacity: 1 !important;
     visibility: visible !important;
     display: block !important;
-    color: white !important; /* Default white for light mode */
+    color: #495057 !important; /* Default dark gray for light mode */
+    z-index: 10 !important;
+    position: relative !important;
+    text-shadow: 0 1px 3px rgba(255,255,255,0.5) !important; /* Sombra blanca */
 }
 
-/* Dark mode technology icons */
+/* Force light mode icon visibility - COLORIDOS */
+body:not([data-bs-theme="dark"]) .team-avatar .bi-person-fill {
+    color: #1a365d !important; /* Azul oscuro para personas */
+    text-shadow: 0 1px 2px rgba(255,255,255,0.5) !important;
+    filter: brightness(1.1) contrast(1.3) !important;
+}
+
+/* Colores vibrantes específicos para tecnologías en modo claro */
+body:not([data-bs-theme="dark"]) .tech-icon.bi-microsoft {
+    color: #0078d4 !important; /* Azul Microsoft oficial */
+    text-shadow: 0 1px 2px rgba(255,255,255,0.5) !important;
+}
+
+body:not([data-bs-theme="dark"]) .tech-icon.bi-bootstrap-fill {
+    color: #7952b3 !important; /* Morado Bootstrap oficial */
+    text-shadow: 0 1px 2px rgba(255,255,255,0.5) !important;
+}
+
+body:not([data-bs-theme="dark"]) .tech-icon.bi-database-fill {
+    color: #28a745 !important; /* Verde para Database */
+    text-shadow: 0 1px 2px rgba(255,255,255,0.5) !important;
+}
+
+body:not([data-bs-theme="dark"]) .tech-icon.bi-filetype-js {
+    color: #f7df1e !important; /* Amarillo JavaScript oficial */
+    text-shadow: 0 1px 2px rgba(0,0,0,0.3) !important; /* Sombra oscura para amarillo */
+}
+
+/* Override any conflicting styles in light mode */
+body:not([data-bs-theme="dark"]) .team-avatar .feature-icon-main,
+body:not([data-bs-theme="dark"]) .tech-icon-container .feature-icon-main {
+    opacity: 1 !important;
+    visibility: visible !important;
+    display: block !important;
+}
+
+/* Ensure Bootstrap icons are always visible */
+body:not([data-bs-theme="dark"]) .bi-person-fill,
+body:not([data-bs-theme="dark"]) .bi-microsoft,
+body:not([data-bs-theme="dark"]) .bi-bootstrap-fill,
+body:not([data-bs-theme="dark"]) .bi-database-fill,
+body:not([data-bs-theme="dark"]) .bi-filetype-js {
+    opacity: 1 !important;
+    visibility: visible !important;
+    display: inline-block !important;
+}
+
+/* Dark mode technology icons - SIN RECTÁNGULOS Y COMPLETAMENTE BLANCOS */
 [data-bs-theme="dark"] .tech-icon-container {
-    background: rgba(255,255,255,0.1) !important;
-    border: 1px solid rgba(255,255,255,0.2) !important;
+    background: transparent !important;
+    border: none !important;
+    border-radius: 0 !important;
+    width: auto !important;
+    height: auto !important;
+    box-shadow: none !important;
+    outline: none !important;
+    margin: 0 auto !important;
+    padding: 0 !important;
 }
 
 [data-bs-theme="dark"] .tech-icon {
-    color: rgba(255,255,255,0.9) !important;
+    color: #ffffff !important;
+    text-shadow: none !important;
+    background: none !important;
+    border: none !important;
+    outline: none !important;
 }
 
-/* Specific tech icon colors in dark mode */
-[data-bs-theme="dark"] .tech-icon.bi-microsoft {
-    color: #4FC3F7 !important;
+/* Dark mode team avatars - SIN RECTÁNGULOS Y COMPLETAMENTE BLANCOS */
+[data-bs-theme="dark"] .team-avatar {
+    background: transparent !important;
+    border: none !important;
+    border-radius: 0 !important;
+    width: auto !important;
+    height: auto !important;
+    box-shadow: none !important;
+    outline: none !important;
+    margin: 0 !important;
+    padding: 0 !important;
 }
 
-[data-bs-theme="dark"] .tech-icon.bi-bootstrap-fill {
-    color: #7C4DFF !important;
+[data-bs-theme="dark"] .team-avatar .bi-person-fill {
+    color: #ffffff !important;
+    text-shadow: none !important;
+    background: none !important;
+    border: none !important;
+    outline: none !important;
 }
 
-[data-bs-theme="dark"] .tech-icon.bi-database-fill {
-    color: #4CAF50 !important;
-}
-
-[data-bs-theme="dark"] .tech-icon.bi-filetype-js {
-    color: #FFD54F !important;
+/* TODOS los iconos COMPLETAMENTE BLANCOS en modo oscuro - SIN EXCEPCIONES */
+[data-bs-theme="dark"] .tech-icon.bi-microsoft,
+[data-bs-theme="dark"] .tech-icon.bi-bootstrap-fill,
+[data-bs-theme="dark"] .tech-icon.bi-database-fill,
+[data-bs-theme="dark"] .tech-icon.bi-filetype-js,
+[data-bs-theme="dark"] .bi-person-fill,
+[data-bs-theme="dark"] i[class*="bi-"] {
+    color: #ffffff !important;
+    text-shadow: none !important;
+    background: none !important;
+    border: none !important;
+    outline: none !important;
+    box-shadow: none !important;
 }
 
 /* SPARKLES CORREGIDOS - MÁS PUNTOS DORADOS ENCIMA DEL ÍCONO */

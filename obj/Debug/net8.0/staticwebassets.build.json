@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "ChX3LSdTzwjsP53XhLnG4fUS/38yc50z5E1zf9e8wjY=",
+  "Hash": "uSCq6N2YYiu0lZ5IdCQhHLlJOEwaflW48e43Gcg2w9M=",
   "Source": "CitasEPS",
   "BasePath": "_content/CitasEPS",
   "Mode": "Default",
@@ -1396,8 +1396,8 @@
       "RelatedAsset": "",
       "AssetTraitName": "",
       "AssetTraitValue": "",
-      "Fingerprint": "88iumt8v9r",
-      "Integrity": "yGFVnQTmREcsonNrC1L4KH2OQNaukmeGj9gS5Z9goSI=",
+      "Fingerprint": "mowq4n0xjc",
+      "Integrity": "9qe3zX0cEhldpwNG9MDuN5lV7F2sPTiewOznNPXe6aM=",
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot/css/enhanced-features.css"
@@ -3600,51 +3600,6 @@
       ]
     },
     {
-      "Route": "css/enhanced-features.88iumt8v9r.css",
-      "AssetFile": "/Users/cristianramos/Desktop/Proyectos/AplicativosWeb/CitasEPS/wwwroot/css/enhanced-features.css",
-      "Selectors": [],
-      "ResponseHeaders": [
-        {
-          "Name": "Accept-Ranges",
-          "Value": "bytes"
-        },
-        {
-          "Name": "Content-Length",
-          "Value": "66631"
-        },
-        {
-          "Name": "Content-Type",
-          "Value": "text/css"
-        },
-        {
-          "Name": "ETag",
-          "Value": "\"yGFVnQTmREcsonNrC1L4KH2OQNaukmeGj9gS5Z9goSI=\""
-        },
-        {
-          "Name": "Last-Modified",
-          "Value": "Wed, 04 Jun 2025 23:19:59 GMT"
-        },
-        {
-          "Name": "Cache-Control",
-          "Value": "max-age=31536000, immutable"
-        }
-      ],
-      "EndpointProperties": [
-        {
-          "Name": "fingerprint",
-          "Value": "88iumt8v9r"
-        },
-        {
-          "Name": "label",
-          "Value": "css/enhanced-features.css"
-        },
-        {
-          "Name": "integrity",
-          "Value": "sha256-yGFVnQTmREcsonNrC1L4KH2OQNaukmeGj9gS5Z9goSI="
-        }
-      ]
-    },
-    {
       "Route": "css/enhanced-features.css",
       "AssetFile": "/Users/cristianramos/Desktop/Proyectos/AplicativosWeb/CitasEPS/wwwroot/css/enhanced-features.css",
       "Selectors": [],
@@ -3655,7 +3610,7 @@
         },
         {
           "Name": "Content-Length",
-          "Value": "66631"
+          "Value": "70040"
         },
         {
           "Name": "Content-Type",
@@ -3663,11 +3618,11 @@
         },
         {
           "Name": "ETag",
-          "Value": "\"yGFVnQTmREcsonNrC1L4KH2OQNaukmeGj9gS5Z9goSI=\""
+          "Value": "\"9qe3zX0cEhldpwNG9MDuN5lV7F2sPTiewOznNPXe6aM=\""
         },
         {
           "Name": "Last-Modified",
-          "Value": "Wed, 04 Jun 2025 23:19:59 GMT"
+          "Value": "Wed, 04 Jun 2025 23:49:37 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -3677,7 +3632,52 @@
       "EndpointProperties": [
         {
           "Name": "integrity",
-          "Value": "sha256-yGFVnQTmREcsonNrC1L4KH2OQNaukmeGj9gS5Z9goSI="
+          "Value": "sha256-9qe3zX0cEhldpwNG9MDuN5lV7F2sPTiewOznNPXe6aM="
+        }
+      ]
+    },
+    {
+      "Route": "css/enhanced-features.mowq4n0xjc.css",
+      "AssetFile": "/Users/cristianramos/Desktop/Proyectos/AplicativosWeb/CitasEPS/wwwroot/css/enhanced-features.css",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "70040"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "text/css"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"9qe3zX0cEhldpwNG9MDuN5lV7F2sPTiewOznNPXe6aM=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Wed, 04 Jun 2025 23:49:37 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=31536000, immutable"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "fingerprint",
+          "Value": "mowq4n0xjc"
+        },
+        {
+          "Name": "label",
+          "Value": "css/enhanced-features.css"
+        },
+        {
+          "Name": "integrity",
+          "Value": "sha256-9qe3zX0cEhldpwNG9MDuN5lV7F2sPTiewOznNPXe6aM="
         }
       ]
     },
