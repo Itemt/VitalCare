@@ -157,27 +157,39 @@ namespace CitasEPS.Areas.Identity.Pages.Account
 
         public async Task<IActionResult> OnPostAsync(string returnUrl = null)
         {
+            var traceId = System.Diagnostics.Activity.Current?.Id ?? HttpContext.TraceIdentifier;
+            
             try
             {
                 returnUrl ??= Url.Content("~/");
                 ExternalLogins = (await _signInManager.GetExternalAuthenticationSchemesAsync()).ToList();
                 
-                _logger.LogInformation($"Iniciando proceso de registro para email: {Input?.Email}");
+                _logger.LogInformation($"[{traceId}] Iniciando proceso de registro para email: {Input?.Email}");
                 
                 if (ModelState.IsValid)
                 {
-                    _logger.LogInformation($"ModelState es válido, procediendo con validaciones para: {Input?.Email}");
+                    _logger.LogInformation($"[{traceId}] ModelState es válido, procediendo con validaciones para: {Input?.Email}");
                     
                     // Check for unique constraints before creating user
-                    await ValidateUniqueFields();
+                    try
+                    {
+                        await ValidateUniqueFields();
+                        _logger.LogInformation($"[{traceId}] ValidateUniqueFields completado exitosamente");
+                    }
+                    catch (Exception ex)
+                    {
+                        _logger.LogError(ex, $"[{traceId}] Error en ValidateUniqueFields para {Input?.Email}");
+                        ModelState.AddModelError(string.Empty, "Error interno durante la validación. Por favor intenta de nuevo.");
+                        return Page();
+                    }
                     
                     if (!ModelState.IsValid)
                     {
-                        _logger.LogWarning($"Validación de campos únicos falló para email: {Input?.Email}");
+                        _logger.LogWarning($"[{traceId}] Validación de campos únicos falló para email: {Input?.Email}");
                         return Page();
                     }
                 var user = CreateUser();
-                _logger.LogInformation($"Usuario creado en memoria para email: {Input.Email}");
+                _logger.LogInformation($"[{traceId}] Usuario creado en memoria para email: {Input.Email}");
 
                 user.FirstName = Input.FirstName;
                 user.LastName = Input.LastName;
@@ -188,16 +200,16 @@ namespace CitasEPS.Areas.Identity.Pages.Account
                 await _userStore.SetUserNameAsync(user, Input.Email, CancellationToken.None);
                 await _emailStore.SetEmailAsync(user, Input.Email, CancellationToken.None);
                 
-                _logger.LogInformation($"Intentando crear usuario en base de datos para email: {Input.Email}");
+                _logger.LogInformation($"[{traceId}] Intentando crear usuario en base de datos para email: {Input.Email}");
                 var result = await _userManager.CreateAsync(user, Input.Password);
                 
                 if (result.Succeeded)
                 {
-                    _logger.LogInformation($"Usuario creado exitosamente en base de datos para email: {Input.Email}");
+                    _logger.LogInformation($"[{traceId}] Usuario creado exitosamente en base de datos para email: {Input.Email}");
                 }
                 else
                 {
-                    _logger.LogWarning($"Error al crear usuario en base de datos para email: {Input.Email}. Errores: {string.Join(", ", result.Errors.Select(e => e.Description))}");
+                    _logger.LogWarning($"[{traceId}] Error al crear usuario en base de datos para email: {Input.Email}. Errores: {string.Join(", ", result.Errors.Select(e => e.Description))}");
                 }
 
                 if (result.Succeeded)
@@ -397,7 +409,7 @@ namespace CitasEPS.Areas.Identity.Pages.Account
             }
             catch (Exception ex)
             {
-                _logger.LogError(ex, $"Error inesperado durante el proceso de registro para email: {Input?.Email}");
+                _logger.LogError(ex, $"[{traceId}] Error inesperado durante el proceso de registro para email: {Input?.Email}");
                 ModelState.AddModelError(string.Empty, "Ocurrió un error inesperado durante el registro. Por favor intenta nuevamente.");
                 return Page();
             }

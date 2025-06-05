@@ -66,8 +66,8 @@
       <RelatedAsset></RelatedAsset>
       <AssetTraitName></AssetTraitName>
       <AssetTraitValue></AssetTraitValue>
-      <Fingerprint>qf2b4z9hho</Fingerprint>
-      <Integrity>FqEd4I+01ERVq/dZ1rtPJiQXsKdKO3RvZvGTAi4h3JE=</Integrity>
+      <Fingerprint>vkka20rclz</Fingerprint>
+      <Integrity>UYfSzWN/NETHYkJ8uO1nNMm2lROXlZbz4+WN865yJIg=</Integrity>
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
       <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
       <OriginalItemSpec>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\css\effects-hover.css'))</OriginalItemSpec>
@@ -84,8 +84,8 @@
       <RelatedAsset></RelatedAsset>
       <AssetTraitName></AssetTraitName>
       <AssetTraitValue></AssetTraitValue>
-      <Fingerprint>s3d8w98a1k</Fingerprint>
-      <Integrity>WNhhQhtZbihCwtBXEYJjIFTq8q5So4SSZXJau020mI8=</Integrity>
+      <Fingerprint>lcy81a0hln</Fingerprint>
+      <Integrity>G1fytund8B7yoybuqjcIpFtREFJr08DOIUHTlRDC0rg=</Integrity>
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
       <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
       <OriginalItemSpec>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\css\enhanced-features.css'))</OriginalItemSpec>
