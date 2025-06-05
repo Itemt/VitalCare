@@ -28,7 +28,16 @@ namespace CitasEPS.Data
             base.OnModelCreating(modelBuilder);
 
             // Configurar relaciones y restricciones si es necesario
-            // Ejemplo: Asegurar que DocumentId sea único para los Pacientes
+            // Asegurar que DocumentId y PhoneNumber sean únicos para los Usuarios
+            modelBuilder.Entity<User>()
+                .HasIndex(u => u.DocumentId)
+                .IsUnique();
+                
+            modelBuilder.Entity<User>()
+                .HasIndex(u => u.PhoneNumber)
+                .IsUnique();
+            
+            // Asegurar que DocumentId sea único para los Pacientes también
             modelBuilder.Entity<Patient>()
                 .HasIndex(p => p.DocumentId)
                 .IsUnique();

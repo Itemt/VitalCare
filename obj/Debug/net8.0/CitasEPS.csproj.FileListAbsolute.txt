@@ -1891,3 +1891,4 @@ C:\Users\CristianPC\Desktop\vitalcare\obj\Debug\net8.0\refint\CitasEPS.dll
 C:\Users\CristianPC\Desktop\vitalcare\obj\Debug\net8.0\CitasEPS.pdb
 C:\Users\CristianPC\Desktop\vitalcare\obj\Debug\net8.0\CitasEPS.genruntimeconfig.cache
 C:\Users\CristianPC\Desktop\vitalcare\obj\Debug\net8.0\ref\CitasEPS.dll
+C:\Users\CristianPC\Desktop\vitalcare\bin\Debug\net8.0\appsettings.Production.json

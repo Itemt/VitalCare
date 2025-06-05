@@ -201,7 +201,35 @@ namespace CitasEPS.Areas.Identity.Pages.Account
                 await _emailStore.SetEmailAsync(user, Input.Email, CancellationToken.None);
                 
                 _logger.LogInformation($"[{traceId}] Intentando crear usuario en base de datos para email: {Input.Email}");
-                var result = await _userManager.CreateAsync(user, Input.Password);
+                IdentityResult result;
+                try
+                {
+                    result = await _userManager.CreateAsync(user, Input.Password);
+                }
+                catch (Exception ex) when (ex.Message.Contains("duplicate key") || ex.Message.Contains("UNIQUE constraint"))
+                {
+                    _logger.LogWarning($"[{traceId}] Violación de restricción UNIQUE al crear usuario {Input.Email}: {ex.Message}");
+                    
+                    // Determinar qué campo está duplicado basándose en el mensaje de error
+                    if (ex.Message.Contains("DocumentId") || ex.Message.Contains("IX_AspNetUsers_DocumentId"))
+                    {
+                        ModelState.AddModelError("Input.DocumentId", "Este documento de identidad ya está registrado. Verifica el número o inicia sesión si ya tienes cuenta.");
+                    }
+                    else if (ex.Message.Contains("PhoneNumber") || ex.Message.Contains("IX_AspNetUsers_PhoneNumber"))
+                    {
+                        ModelState.AddModelError("Input.PhoneNumber", "Este número de teléfono ya está registrado. Intenta con otro o inicia sesión.");
+                    }
+                    else if (ex.Message.Contains("Email") || ex.Message.Contains("IX_AspNetUsers_Email"))
+                    {
+                        ModelState.AddModelError("Input.Email", "Este correo electrónico ya está registrado. Intenta con otro o inicia sesión.");
+                    }
+                    else
+                    {
+                        ModelState.AddModelError(string.Empty, "Los datos proporcionados ya están en uso. Verifica la información o inicia sesión si ya tienes cuenta.");
+                    }
+                    
+                    return Page();
+                }
                 
                 if (result.Succeeded)
                 {
