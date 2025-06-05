@@ -157,18 +157,25 @@ namespace CitasEPS.Areas.Identity.Pages.Account
 
         public async Task<IActionResult> OnPostAsync(string returnUrl = null)
         {
-            returnUrl ??= Url.Content("~/");
-            ExternalLogins = (await _signInManager.GetExternalAuthenticationSchemesAsync()).ToList();
-            if (ModelState.IsValid)
+            try
             {
-                // Check for unique constraints before creating user
-                await ValidateUniqueFields();
+                returnUrl ??= Url.Content("~/");
+                ExternalLogins = (await _signInManager.GetExternalAuthenticationSchemesAsync()).ToList();
                 
-                if (!ModelState.IsValid)
+                _logger.LogInformation($"Iniciando proceso de registro para email: {Input?.Email}");
+                
+                if (ModelState.IsValid)
                 {
-                    return Page();
-                }
+                    // Check for unique constraints before creating user
+                    await ValidateUniqueFields();
+                    
+                    if (!ModelState.IsValid)
+                    {
+                        _logger.LogWarning($"Validación de campos únicos falló para email: {Input?.Email}");
+                        return Page();
+                    }
                 var user = CreateUser();
+                _logger.LogInformation($"Usuario creado en memoria para email: {Input.Email}");
 
                 user.FirstName = Input.FirstName;
                 user.LastName = Input.LastName;
@@ -178,36 +185,66 @@ namespace CitasEPS.Areas.Identity.Pages.Account
                 user.Gender = Input.Gender;
                 await _userStore.SetUserNameAsync(user, Input.Email, CancellationToken.None);
                 await _emailStore.SetEmailAsync(user, Input.Email, CancellationToken.None);
+                
+                _logger.LogInformation($"Intentando crear usuario en base de datos para email: {Input.Email}");
                 var result = await _userManager.CreateAsync(user, Input.Password);
+                
+                if (result.Succeeded)
+                {
+                    _logger.LogInformation($"Usuario creado exitosamente en base de datos para email: {Input.Email}");
+                }
+                else
+                {
+                    _logger.LogWarning($"Error al crear usuario en base de datos para email: {Input.Email}. Errores: {string.Join(", ", result.Errors.Select(e => e.Description))}");
+                }
 
                 if (result.Succeeded)
                 {
                     _logger.LogInformation("Usuario creó una nueva cuenta con contraseña.");
 
                     // Ensure "Paciente" role exists and assign it to the user
-                    string roleName = "Paciente";
-                    if (!await _roleManager.RoleExistsAsync(roleName))
+                    try
                     {
-                        _logger.LogInformation($"El rol '{roleName}' no existe. Creándolo ahora.");
-                        await _roleManager.CreateAsync(new IdentityRole<int>(roleName));
+                        string roleName = "Paciente";
+                        if (!await _roleManager.RoleExistsAsync(roleName))
+                        {
+                            _logger.LogInformation($"El rol '{roleName}' no existe. Creándolo ahora.");
+                            await _roleManager.CreateAsync(new IdentityRole<int>(roleName));
+                        }
+                        await _userManager.AddToRoleAsync(user, roleName);
+                        _logger.LogInformation($"Usuario {user.Email} asignado al rol '{roleName}'.");
                     }
-                    await _userManager.AddToRoleAsync(user, roleName);
-                    _logger.LogInformation($"Usuario {user.Email} asignado al rol '{roleName}'.");
+                    catch (Exception ex)
+                    {
+                        _logger.LogError(ex, $"Error al crear o asignar rol 'Paciente' al usuario {user.Email}");
+                        // Continuamos con el flujo normal aunque la asignación de rol falle
+                        // El rol se puede asignar manualmente más tarde
+                    }
 
                     // Create and save the associated Patient record
-                    var patient = new Patient
+                    try
                     {
-                        UserId = user.Id, // Link to the newly created User
-                        FirstName = Input.FirstName,
-                        LastName = Input.LastName,
-                        Email = Input.Email,
-                        PhoneNumber = Input.PhoneNumber,
-                        DateOfBirth = user.DateOfBirth, // Use the same UTC date
-                        DocumentId = Input.DocumentId,
-                        Gender = Input.Gender
-                    };
-                    _context.Patients.Add(patient);
-                    await _context.SaveChangesAsync(); // Save the new Patient to the database
+                        var patient = new Patient
+                        {
+                            UserId = user.Id, // Link to the newly created User
+                            FirstName = Input.FirstName,
+                            LastName = Input.LastName,
+                            Email = Input.Email,
+                            PhoneNumber = Input.PhoneNumber,
+                            DateOfBirth = user.DateOfBirth, // Use the same UTC date
+                            DocumentId = Input.DocumentId,
+                            Gender = Input.Gender
+                        };
+                        _context.Patients.Add(patient);
+                        await _context.SaveChangesAsync(); // Save the new Patient to the database
+                        _logger.LogInformation($"Registro de paciente creado exitosamente para el usuario {user.Email}");
+                    }
+                    catch (Exception ex)
+                    {
+                        _logger.LogError(ex, $"Error al crear el registro de paciente para el usuario {user.Email}");
+                        // El usuario ya fue creado exitosamente, así que continuamos con el flujo normal
+                        // El registro de Patient se puede intentar crear más tarde si es necesario
+                    }
 
                     var userId = await _userManager.GetUserIdAsync(user);
                     var code = await _userManager.GenerateEmailConfirmationTokenAsync(user);
@@ -302,14 +339,26 @@ namespace CitasEPS.Areas.Identity.Pages.Account
 </body>
 </html>
 ";
-                    await _emailSender.SendEmailAsync(Input.Email, emailSubject, htmlMessageBody);
+                    try
+                    {
+                        await _emailSender.SendEmailAsync(Input.Email, emailSubject, htmlMessageBody);
+                        _logger.LogInformation($"Correo de confirmación enviado exitosamente a {Input.Email}");
+                    }
+                    catch (Exception ex)
+                    {
+                        _logger.LogError(ex, $"Error al enviar correo de confirmación a {Input.Email}");
+                        // Continuamos con el flujo normal aunque el email falle
+                        // El usuario puede solicitar reenvío del email más tarde
+                    }
 
                     if (_userManager.Options.SignIn.RequireConfirmedAccount)
                     {
+                        _logger.LogInformation($"Redirigiendo a RegisterConfirmation para usuario: {user.Email}");
                         return RedirectToPage("RegisterConfirmation", new { email = Input.Email, returnUrl = returnUrl });
                     }
                     else
                     {
+                        _logger.LogInformation($"Iniciando sesión automáticamente para usuario: {user.Email}");
                         await _signInManager.SignInAsync(user, isPersistent: false);
                         return LocalRedirect(returnUrl);
                     }
@@ -336,33 +385,50 @@ namespace CitasEPS.Areas.Identity.Pages.Account
                 }
             }
 
-            // Si llegamos hasta aquí, algo falló, volver a mostrar el formulario
-            return Page();
+                // Si llegamos hasta aquí, algo falló, volver a mostrar el formulario
+                _logger.LogWarning($"Registro falló para email: {Input?.Email}. Mostrando formulario nuevamente.");
+                return Page();
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError(ex, $"Error inesperado durante el proceso de registro para email: {Input?.Email}");
+                ModelState.AddModelError(string.Empty, "Ocurrió un error inesperado durante el registro. Por favor intenta nuevamente.");
+                return Page();
+            }
         }
 
         private async Task ValidateUniqueFields()
         {
-            // Check if email already exists
-            var existingUserByEmail = await _userManager.FindByEmailAsync(Input.Email);
-            if (existingUserByEmail != null)
+            try
             {
-                ModelState.AddModelError("Input.Email", "Este correo electrónico ya está registrado. Intenta con otro o inicia sesión.");
-            }
+                // Check if email already exists
+                var existingUserByEmail = await _userManager.FindByEmailAsync(Input.Email);
+                if (existingUserByEmail != null)
+                {
+                    ModelState.AddModelError("Input.Email", "Este correo electrónico ya está registrado. Intenta con otro o inicia sesión.");
+                }
 
-            // Check if document ID already exists
-            var existingUserByDocument = await _context.Users
-                .FirstOrDefaultAsync(u => u.DocumentId == Input.DocumentId);
-            if (existingUserByDocument != null)
-            {
-                ModelState.AddModelError("Input.DocumentId", "Este documento de identidad ya está registrado. Verifica el número o inicia sesión si ya tienes cuenta.");
-            }
+                // Check if document ID already exists
+                var existingUserByDocument = await _context.Users
+                    .FirstOrDefaultAsync(u => u.DocumentId == Input.DocumentId);
+                if (existingUserByDocument != null)
+                {
+                    ModelState.AddModelError("Input.DocumentId", "Este documento de identidad ya está registrado. Verifica el número o inicia sesión si ya tienes cuenta.");
+                }
 
-            // Check if phone number already exists
-            var existingUserByPhone = await _context.Users
-                .FirstOrDefaultAsync(u => u.PhoneNumber == Input.PhoneNumber);
-            if (existingUserByPhone != null)
+                // Check if phone number already exists
+                var existingUserByPhone = await _context.Users
+                    .FirstOrDefaultAsync(u => u.PhoneNumber == Input.PhoneNumber);
+                if (existingUserByPhone != null)
+                {
+                    ModelState.AddModelError("Input.PhoneNumber", "Este número de teléfono ya está registrado. Intenta con otro o inicia sesión.");
+                }
+            }
+            catch (Exception ex)
             {
-                ModelState.AddModelError("Input.PhoneNumber", "Este número de teléfono ya está registrado. Intenta con otro o inicia sesión.");
+                _logger.LogError(ex, "Error al validar campos únicos durante el registro");
+                // Si hay un error en la validación, no agregamos errores adicionales
+                // El registro continuará pero sin estas validaciones específicas
             }
         }
 

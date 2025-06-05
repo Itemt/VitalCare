@@ -155,29 +155,11 @@
     height: 2px;
     background: linear-gradient(45deg, #fff, rgba(255,255,255,0.8));
     border-radius: 50%;
-    animation: particleFloat 2s ease-in-out infinite;
     box-shadow: 0 0 4px rgba(255,255,255,0.6);
     transform: translateZ(0);
 }
 
-@keyframes particleFloat {
-    0%, 100% {
-        transform: translateY(0) translateX(0) scale(0.5) translateZ(0);
-        opacity: 0;
-    }
-    25% {
-        opacity: 0.8;
-        transform: translateY(-10px) translateX(5px) scale(1) translateZ(0);
-    }
-    50% {
-        opacity: 1;
-        transform: translateY(-20px) translateX(-5px) scale(1.2) translateZ(0);
-    }
-    75% {
-        opacity: 0.8;
-        transform: translateY(-10px) translateX(8px) scale(1) translateZ(0);
-    }
-}
+/* Animaciones partículas removidas para mejorar rendimiento */
 
 /* === TRUST CARD EFFECTS === */
 .trust-card .col-md-3 i {
@@ -350,7 +332,6 @@
     position: absolute;
     color: rgba(255,255,255,0.15);
     font-size: 1.5rem;
-    animation: iconFloat 8s ease-in-out infinite;
     transition: all 0.3s ease;
     transform: translateZ(0);
     will-change: auto;
@@ -369,20 +350,7 @@
     will-change: transform, color;
 }
 
-@keyframes iconFloat {
-    0%, 100% {
-        transform: translateY(0px) translateZ(0);
-    }
-    25% {
-        transform: translateY(-10px) translateZ(0);
-    }
-    50% {
-        transform: translateY(-5px) translateZ(0);
-    }
-    75% {
-        transform: translateY(-15px) translateZ(0);
-    }
-}
+/* Animaciones float removidas para mejorar rendimiento */
 
 /* Card effects optimizados */
 .feature-card-hover,
