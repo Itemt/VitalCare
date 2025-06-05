@@ -382,125 +382,60 @@
         fill: #f7df1e !important;
     }
     
-    /* === FORZAR CAMBIOS EN MODO OSCURO CON ULTRA ESPECIFICIDAD === */
+    /* === MODO OSCURO - SOLO CSS, SIN FLASH === */
     
-    /* MEGA ESPECÍFICO - Iconos blancos */
-    html body[data-bs-theme="dark"] .team-card .team-avatar .bi-person-fill,
-    html body[data-bs-theme="dark"] .card .tech-icon-container .tech-icon,
-    html body[data-bs-theme="dark"] .card .tech-icon-container i,
-    html body[data-bs-theme="dark"] .team-avatar .feature-icon-main,
-    html body[data-bs-theme="dark"] .tech-icon-container .feature-icon-main,
-    html body[data-bs-theme="dark"] div.team-avatar i.bi-person-fill,
-    html body[data-bs-theme="dark"] div.tech-icon-container i.tech-icon,
-    html body[data-bs-theme="dark"] i.bi-person-fill,
-    html body[data-bs-theme="dark"] i.bi-microsoft,
-    html body[data-bs-theme="dark"] i.bi-bootstrap-fill,
-    html body[data-bs-theme="dark"] i.bi-database-fill,
-    html body[data-bs-theme="dark"] i.bi-filetype-js {
-        color: #ffffff !important;
-        fill: #ffffff !important;
+    /* ICONOS BLANCOS - ULTRA ESPECÍFICO */
+    html[data-bs-theme="dark"] body .team-avatar .bi-person-fill,
+    html[data-bs-theme="dark"] body .team-avatar .feature-icon-main,
+    html[data-bs-theme="dark"] body .tech-icon-container .tech-icon,
+    html[data-bs-theme="dark"] body .tech-icon-container i,
+    html[data-bs-theme="dark"] body i[class*="bi-"] {
+        color: white !important;
+        fill: white !important;
         text-shadow: none !important;
-        background: none !important;
-        border: none !important;
-        outline: none !important;
-        box-shadow: none !important;
-        filter: none !important;
+        background: transparent !important;
+        background-color: transparent !important;
+        background-image: none !important;
     }
     
-    /* MEGA ESPECÍFICO - Quitar contenedores */
-    html body[data-bs-theme="dark"] .team-card .position-relative .team-avatar,
-    html body[data-bs-theme="dark"] .card .card-body .tech-icon-container,
-    html body[data-bs-theme="dark"] div.team-avatar,
-    html body[data-bs-theme="dark"] div.tech-icon-container {
+    /* CONTENEDORES TRANSPARENTES - MANTENER TAMAÑO */
+    html[data-bs-theme="dark"] body .team-avatar,
+    html[data-bs-theme="dark"] body .tech-icon-container {
         background: transparent !important;
         background-color: transparent !important;
         background-image: none !important;
         border: none !important;
-        outline: none !important;
-        box-shadow: none !important;
         border-radius: 0 !important;
-        width: auto !important;
-        height: auto !important;
+        box-shadow: none !important;
+        outline: none !important;
+        /* CRÍTICO: NO cambiar width/height para mantener tamaño de tarjetas */
+        /* width: 120px !important; */
+        /* height: 120px !important; */
+    }
+    
+    /* SOBRESCRIBIR CLASES BG- EN MODO OSCURO */
+    html[data-bs-theme="dark"] body .team-avatar.bg-success,
+    html[data-bs-theme="dark"] body .team-avatar.bg-info,
+    html[data-bs-theme="dark"] body .team-avatar.bg-warning,
+    html[data-bs-theme="dark"] body .team-avatar.bg-danger,
+    html[data-bs-theme="dark"] body .team-avatar.bg-secondary,
+    html[data-bs-theme="dark"] body .tech-icon-container.bg-success,
+    html[data-bs-theme="dark"] body .tech-icon-container.bg-info,
+    html[data-bs-theme="dark"] body .tech-icon-container.bg-warning {
+        background: transparent !important;
+        background-color: transparent !important;
+        background-image: none !important;
+    }
+    
+    /* TRANSICIÓN SUAVE PARA EVITAR FLASH */
+    .team-avatar, .tech-icon-container {
+        transition: background-color 0.05s ease, background-image 0.05s ease;
     }
  </style>
 
 <script>
-// SOLUCIÓN ABSOLUTA - MODO OSCURO
-document.addEventListener('DOMContentLoaded', function() {
-    function bruteForceDarkMode() {
-        if (document.body.getAttribute('data-bs-theme') === 'dark') {
-            console.log('🚀 FUERZA BRUTA MODO OSCURO');
-            
-            // 1. ELIMINAR ESTILOS INLINE PROBLEMÁTICOS
-            document.querySelectorAll('.team-avatar').forEach(avatar => {
-                // ELIMINAR atributo style completamente
-                avatar.removeAttribute('style');
-                console.log('🔥 Style eliminado de avatar');
-                
-                // APLICAR estilos nuevos
-                avatar.style.cssText = 'background: transparent !important; border-radius: 0 !important; border: none !important; box-shadow: none !important; display: flex !important; align-items: center !important; justify-content: center !important; margin: 0 auto !important; width: auto !important; height: auto !important;';
-            });
-            
-            // 2. FORZAR ICONOS BLANCOS - ULTRA DIRECTO
-            document.querySelectorAll('.bi-person-fill, .feature-icon-main, .tech-icon, [class*="bi-"]').forEach(icon => {
-                // Eliminar style existente y aplicar nuevo
-                icon.removeAttribute('style');
-                icon.style.cssText = 'color: white !important; font-size: 4rem !important; background: transparent !important; text-shadow: none !important;';
-                console.log('⚪ Icono forzado a blanco:', icon.classList[0]);
-            });
-            
-            // 3. LIMPIAR CONTENEDORES DE TECNOLOGÍA
-            document.querySelectorAll('.tech-icon-container').forEach(container => {
-                container.removeAttribute('style');
-                container.className = container.className.replace(/bg-\w+/g, ''); // Quitar clases bg-*
-                container.style.cssText = 'background: transparent !important; border-radius: 0 !important; width: auto !important; height: auto !important; display: flex !important; justify-content: center !important; align-items: center !important;';
-                console.log('📦 Contenedor tech limpiado');
-            });
-            
-            // 4. BUSCAR Y DESTRUIR GRADIENTES
-            document.querySelectorAll('div[style*="linear-gradient"]').forEach(gradientDiv => {
-                gradientDiv.removeAttribute('style');
-                gradientDiv.style.cssText = 'background: transparent !important;';
-                console.log('🎨 Gradiente eliminado');
-            });
-            
-            // 5. LIMPIAR CLASES DE BOOTSTRAP COLOREADAS
-            document.querySelectorAll('.bg-success, .bg-info, .bg-warning, .bg-danger, .bg-secondary').forEach(bgElement => {
-                if (bgElement.closest('.team-avatar') || bgElement.closest('.tech-icon-container')) {
-                    bgElement.className = bgElement.className.replace(/bg-\w+/g, '');
-                    bgElement.style.cssText = 'background: transparent !important;';
-                    console.log('🏷️ Clase BG eliminada');
-                }
-            });
-            
-            console.log('✅ MODO OSCURO APLICADO CON FUERZA BRUTA');
-        } else {
-            console.log('☀️ Modo claro - restaurando estilos originales');
-            // En modo claro, no hacer nada para mantener los estilos originales
-        }
-    }
-    
-    // EJECUTAR MÚLTIPLES VECES PARA ASEGURAR ÉXITO
-    bruteForceDarkMode();
-    setTimeout(bruteForceDarkMode, 50);
-    setTimeout(bruteForceDarkMode, 200);
-    setTimeout(bruteForceDarkMode, 500);
-    setTimeout(bruteForceDarkMode, 1000);
-    
-    // OBSERVAR CAMBIOS DE TEMA
-    new MutationObserver(function(mutations) {
-        mutations.forEach(function(mutation) {
-            if (mutation.type === 'attributes' && mutation.attributeName === 'data-bs-theme') {
-                console.log('🔄 Cambio de tema detectado');
-                setTimeout(bruteForceDarkMode, 10);
-                setTimeout(bruteForceDarkMode, 100);
-            }
-        });
-    }).observe(document.body, {
-        attributes: true,
-        attributeFilter: ['data-bs-theme']
-    });
-});
+// SOLO CSS - SIN JAVASCRIPT PARA EVITAR FLASH
+console.log('✅ Modo oscuro manejado solo por CSS - sin JavaScript interferente');
 </script>
 
 <!-- Hero Section Moderno -->
