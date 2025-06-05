@@ -343,14 +343,136 @@
     }
     
     /* === ESTILOS PARA BOTONES DE REGISTRO Y LOGIN === */
+    .btn-login, .btn-register {
+        border: 1px solid transparent !important;
+        box-sizing: border-box !important;
+        font-weight: 500 !important;
+        padding: 0.5rem 1rem !important;
+        min-width: 120px !important;
+        height: 38px !important;
+        display: inline-flex !important;
+        align-items: center !important;
+        justify-content: center !important;
+        text-align: center !important;
+        white-space: nowrap !important;
+        line-height: 1.5 !important;
+        font-size: 0.875rem !important;
+    }
+    
     .btn-register {
         background: linear-gradient(135deg, #1e40af 0%, #1d4ed8 100%) !important;
-        border: none !important;
     }
     
     .btn-register:hover {
         background: linear-gradient(135deg, #1d4ed8 0%, #2563eb 100%) !important;
         transform: translateY(-1px) !important;
+    }
+    
+    /* === ESTILOS PARA MODO OSCURO === */
+    [data-bs-theme="dark"] .btn-login,
+    body[data-bs-theme="dark"] .btn-login {
+        background: linear-gradient(135deg, #374151 0%, #1f2937 100%) !important;
+        border-color: #374151 !important;
+        color: #e5e7eb !important;
+    }
+    
+    [data-bs-theme="dark"] .btn-login:hover,
+    body[data-bs-theme="dark"] .btn-login:hover {
+        background: linear-gradient(135deg, #1f2937 0%, #111827 100%) !important;
+        border-color: #1f2937 !important;
+        color: #ffffff !important;
+        transform: translateY(-1px) !important;
+    }
+    
+    [data-bs-theme="dark"] .btn-register,
+    body[data-bs-theme="dark"] .btn-register {
+        background: linear-gradient(135deg, #374151 0%, #1f2937 100%) !important;
+        border-color: #374151 !important;
+        color: #e5e7eb !important;
+    }
+    
+    [data-bs-theme="dark"] .btn-register:hover,
+    body[data-bs-theme="dark"] .btn-register:hover {
+        background: linear-gradient(135deg, #1f2937 0%, #111827 100%) !important;
+        border-color: #1f2937 !important;
+        color: #ffffff !important;
+        transform: translateY(-1px) !important;
+    }
+    
+    /* === FORZAR DIMENSIONES EXACTAS PARA EVITAR CAMBIOS DE TAMAÑO === */
+    .btn-login, .btn-register {
+        width: auto !important;
+        min-width: 120px !important;
+        height: 38px !important;
+        padding: 0.5rem 1rem !important;
+        box-sizing: border-box !important;
+        display: inline-flex !important;
+        align-items: center !important;
+        justify-content: center !important;
+        font-size: 0.875rem !important;
+        line-height: 1.5 !important;
+        font-weight: 500 !important;
+        border-width: 1px !important;
+        border-style: solid !important;
+        text-align: center !important;
+        white-space: nowrap !important;
+    }
+    
+    [data-bs-theme="dark"] .btn-login,
+    [data-bs-theme="dark"] .btn-register,
+    body[data-bs-theme="dark"] .btn-login,
+    body[data-bs-theme="dark"] .btn-register {
+        width: auto !important;
+        min-width: 120px !important;
+        height: 38px !important;
+        padding: 0.5rem 1rem !important;
+        box-sizing: border-box !important;
+        display: inline-flex !important;
+        align-items: center !important;
+        justify-content: center !important;
+        font-size: 0.875rem !important;
+        line-height: 1.5 !important;
+        font-weight: 500 !important;
+        border-width: 1px !important;
+        border-style: solid !important;
+        text-align: center !important;
+        white-space: nowrap !important;
+    }
+    
+    /* === REGLA FINAL DE FORZADO DE DIMENSIONES === */
+    .d-flex .btn-login, .d-flex .btn-register,
+    .navbar .btn-login, .navbar .btn-register,
+    .mobile-buttons-container .btn-login, .mobile-buttons-container .btn-register {
+        width: auto !important;
+        min-width: 120px !important;
+        height: 38px !important;
+        padding: 0.5rem 1rem !important;
+        font-size: 0.875rem !important;
+        line-height: 1.5 !important;
+        box-sizing: border-box !important;
+        border-width: 1px !important;
+        border-style: solid !important;
+    }
+    
+    /* === LOGO VITALCARE EN MODO OSCURO === */
+    [data-bs-theme="dark"] .navbar-brand,
+    body[data-bs-theme="dark"] .navbar-brand {
+        color: #ffffff !important;
+    }
+    
+    [data-bs-theme="dark"] .navbar-brand .brand-text,
+    body[data-bs-theme="dark"] .navbar-brand .brand-text {
+        color: #ffffff !important;
+    }
+    
+    [data-bs-theme="dark"] .navbar-brand .text-info,
+    body[data-bs-theme="dark"] .navbar-brand .text-info {
+        color: #ffffff !important;
+    }
+    
+    [data-bs-theme="dark"] .navbar-brand .brand-icon,
+    body[data-bs-theme="dark"] .navbar-brand .brand-icon {
+        color: #ffffff !important;
     }
     
     /* Responsive - Ocultar iconos en móvil */
@@ -359,8 +481,18 @@
             display: none !important;
         }
         
+        .btn-login, .btn-register {
+            font-size: 0.8rem !important;
+            min-width: 100px !important;
+            height: 36px !important;
+            padding: 0.4rem 0.8rem !important;
+            box-sizing: border-box !important;
+            border-width: 1px !important;
+            border-style: solid !important;
+        }
+        
         .btn-login span, .btn-register span {
-            font-size: 0.85rem !important;
+            font-size: inherit !important;
         }
     }
     

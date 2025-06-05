@@ -3,6 +3,89 @@
    Corrige animaciones problemáticas y mejora hovers
    ======================================== */
 
+/* === EFECTOS LOGO BRILLANTE (SOLO MODO OSCURO) === */
+/* Base para logo - sin cambios de tamaño entre modos */
+.navbar-brand .brand-text {
+    font-weight: 600;
+    font-size: 1.2rem;
+    letter-spacing: 0.5px;
+    transition: all 0.3s ease;
+}
+
+.navbar-brand .brand-icon {
+    transition: all 0.3s ease;
+}
+
+.navbar-brand .text-info {
+    transition: all 0.3s ease;
+}
+
+/* Efectos SOLO para modo oscuro */
+/* "Vital" en blanco brillante (solo modo oscuro) */
+[data-bs-theme="dark"] .navbar-brand .brand-text {
+    color: #ffffff !important;
+    text-shadow: 0 0 20px rgba(255, 255, 255, 0.3);
+}
+
+/* "Care" en gris más claro diferenciable (solo modo oscuro) */
+[data-bs-theme="dark"] .navbar-brand .text-info {
+    color: #a8b2bd !important; /* Gris claro pero diferenciable del blanco */
+    text-shadow: 0 0 20px rgba(168, 178, 189, 0.4);
+}
+
+/* Icono del corazón - mantener color original con efecto brillante (solo modo oscuro) */
+[data-bs-theme="dark"] .navbar-brand .brand-icon {
+    color: #dc3545 !important; /* Color original rojo */
+    text-shadow: 0 0 15px rgba(220, 53, 69, 0.4);
+}
+
+/* Efectos hover para el logo - SIN CAMBIOS DE ESCALA (solo modo oscuro) */
+[data-bs-theme="dark"] .navbar-brand:hover .brand-text {
+    text-shadow: 0 0 30px rgba(255, 255, 255, 0.6);
+    /* Sin transform para evitar cambios de tamaño */
+}
+
+[data-bs-theme="dark"] .navbar-brand:hover .text-info {
+    color: #bdc7d1 !important; /* Un poco más claro en hover pero diferenciable */
+    text-shadow: 0 0 30px rgba(189, 199, 209, 0.6);
+    /* Sin transform para evitar cambios de tamaño */
+}
+
+[data-bs-theme="dark"] .navbar-brand:hover .brand-icon {
+    text-shadow: 0 0 25px rgba(220, 53, 69, 0.7);
+    /* Sin transform para evitar cambios de tamaño */
+}
+
+/* Optimización para móvil del logo (solo modo oscuro) */
+@media (max-width: 768px) {
+    [data-bs-theme="dark"] .navbar-brand .brand-text {
+        text-shadow: 0 0 15px rgba(255, 255, 255, 0.2);
+    }
+    
+    [data-bs-theme="dark"] .navbar-brand .text-info {
+        text-shadow: 0 0 15px rgba(168, 178, 189, 0.3);
+    }
+    
+    [data-bs-theme="dark"] .navbar-brand:hover .brand-text {
+        text-shadow: 0 0 20px rgba(255, 255, 255, 0.4);
+        /* Sin cambios de escala en móvil */
+    }
+    
+    [data-bs-theme="dark"] .navbar-brand:hover .text-info {
+        text-shadow: 0 0 20px rgba(189, 199, 209, 0.5);
+        /* Sin cambios de escala en móvil */
+    }
+    
+    [data-bs-theme="dark"] .navbar-brand .brand-icon {
+        text-shadow: 0 0 10px rgba(220, 53, 69, 0.3);
+    }
+    
+    [data-bs-theme="dark"] .navbar-brand:hover .brand-icon {
+        text-shadow: 0 0 15px rgba(220, 53, 69, 0.5);
+        /* Sin cambios de escala en móvil */
+    }
+}
+
 /* === ELIMINACIÓN DE ANIMACIONES HORIZONTALES PROBLEMÁTICAS === */
 /* Prevenir cualquier animación translateX en elementos del navbar */
 .navbar-nav .nav-link,
