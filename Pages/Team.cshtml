@@ -382,38 +382,33 @@
         fill: #f7df1e !important;
     }
     
-    /* === MODO OSCURO - INSTANTÁNEO SIN FLASH === */
+    /* === MODO OSCURO - SIN FLASH NI CAMBIO DE POSICIÓN === */
     
-    /* ICONOS BLANCOS - INMEDIATO */
-    html[data-bs-theme="dark"] .team-avatar .bi-person-fill,
-    html[data-bs-theme="dark"] .team-avatar .feature-icon-main,
-    html[data-bs-theme="dark"] .tech-icon-container .tech-icon,
-    html[data-bs-theme="dark"] .tech-icon-container i,
+    /* ICONOS BLANCOS - ESPECÍFICO */
+    html[data-bs-theme="dark"] .bi-person-fill,
+    html[data-bs-theme="dark"] .feature-icon-main,
+    html[data-bs-theme="dark"] .tech-icon,
     html[data-bs-theme="dark"] i[class*="bi-"] {
         color: white !important;
         fill: white !important;
         text-shadow: none !important;
-        background: none !important;
+        background: transparent !important;
+        background-color: transparent !important;
+        background-image: none !important;
+        border: none !important;
+        box-shadow: none !important;
     }
     
-    /* CONTENEDORES TRANSPARENTES - INSTANTÁNEO */
+    /* CONTENEDORES TRANSPARENTES - MANTENER POSICIÓN EXACTA */
     html[data-bs-theme="dark"] .team-avatar,
     html[data-bs-theme="dark"] .tech-icon-container {
         background: transparent !important;
         background-color: transparent !important;
         background-image: none !important;
         border: none !important;
-        border-radius: 0 !important;
         box-shadow: none !important;
         outline: none !important;
-        /* MANTENER TAMAÑO Y CENTRADO */
-        width: 120px !important;
-        height: 120px !important;
-        display: flex !important;
-        align-items: center !important;
-        justify-content: center !important;
-        margin: 0 auto !important;
-        margin-top: 1rem !important;
+        /* NO tocar margin, width, height aquí - usar reglas base */
     }
     
     /* SOBRESCRIBIR CLASES BG- EN MODO OSCURO */
@@ -430,39 +425,40 @@
         background-image: none !important;
     }
     
-    /* SIN TRANSICIONES - EVITAR FLASH EN AMBOS MODOS */
-    .team-avatar, .tech-icon-container {
-        /* NO transition para evitar flash visual */
-    }
+    /* === SOLUCIÓN SIMPLE Y DEFINITIVA === */
     
-    /* === FORZAR MISMO TAMAÑO DE TARJETAS EN AMBOS MODOS === */
+    /* TAMAÑO FIJO PARA TARJETAS - NO CAMBIA NUNCA */
     .team-card {
-        min-height: 420px !important;
-        height: auto !important;
-        max-height: none !important;
+        height: 450px !important;
+        min-height: 450px !important;
+        max-height: 450px !important;
     }
     
-    /* CENTRAR TARJETAS EN CONTENEDORES */
-    .team-card .position-relative,
-    .team-card .card-body {
-        text-align: center !important;
+    /* SOLO CAMBIAR COLORES EN MODO OSCURO */
+    html[data-bs-theme="dark"] .team-avatar {
+        background: transparent !important;
+        background-color: transparent !important;
+        background-image: none !important;
+        border-radius: 0 !important;
+        border: none !important;
+        box-shadow: none !important;
     }
     
-    /* FORZAR DIMENSIONES FIJAS DE AVATARES EN AMBOS MODOS */
-    .team-avatar {
-        width: 120px !important;
-        height: 120px !important;
-        display: flex !important;
-        align-items: center !important;
-        justify-content: center !important;
-        margin: 0 auto !important;
+    html[data-bs-theme="dark"] .team-avatar i {
+        color: white !important;
+        fill: white !important;
     }
     
-    /* === ASEGURAR QUE MODO CLARO MANTENGA SUS ESTILOS === */
-    html[data-bs-theme="light"] .team-avatar,
-    html:not([data-bs-theme="dark"]) .team-avatar {
-        /* Mantener estilos originales en modo claro */
-        border-radius: 50% !important;
+    html[data-bs-theme="dark"] .tech-icon-container {
+        background: transparent !important;
+        background-color: transparent !important;
+        background-image: none !important;
+        border-radius: 0 !important;
+    }
+    
+    html[data-bs-theme="dark"] .tech-icon {
+        color: white !important;
+        fill: white !important;
     }
  </style>
 
