@@ -263,32 +263,32 @@ namespace CitasEPS.Areas.Identity.Pages.Account
                         // El rol se puede asignar manualmente más tarde
                     }
 
-                    // Create and save the associated Patient record (temporarily disabled for testing)
-                    _logger.LogInformation($"Saltando creación de registro Patient temporalmente para usuario {user.Email}");
+                    // Create and save the associated Patient record
+                    _logger.LogInformation($"[{traceId}] Intentando crear registro Patient para usuario {user.Email}");
                     
-                    // try
-                    // {
-                    //     var patient = new Patient
-                    //     {
-                    //         UserId = user.Id, // Link to the newly created User
-                    //         FirstName = Input.FirstName,
-                    //         LastName = Input.LastName,
-                    //         Email = Input.Email,
-                    //         PhoneNumber = Input.PhoneNumber,
-                    //         DateOfBirth = user.DateOfBirth, // Use the same UTC date
-                    //         DocumentId = Input.DocumentId,
-                    //         Gender = Input.Gender
-                    //     };
-                    //     _context.Patients.Add(patient);
-                    //     await _context.SaveChangesAsync(); // Save the new Patient to the database
-                    //     _logger.LogInformation($"Registro de paciente creado exitosamente para el usuario {user.Email}");
-                    // }
-                    // catch (Exception ex)
-                    // {
-                    //     _logger.LogError(ex, $"Error al crear el registro de paciente para el usuario {user.Email}");
-                    //     // El usuario ya fue creado exitosamente, así que continuamos con el flujo normal
-                    //     // El registro de Patient se puede intentar crear más tarde si es necesario
-                    // }
+                    try
+                    {
+                        var patient = new Patient
+                        {
+                            UserId = user.Id, // Link to the newly created User
+                            FirstName = Input.FirstName,
+                            LastName = Input.LastName,
+                            Email = Input.Email,
+                            PhoneNumber = Input.PhoneNumber,
+                            DateOfBirth = user.DateOfBirth, // Use the same UTC date
+                            DocumentId = Input.DocumentId,
+                            Gender = Input.Gender
+                        };
+                        _context.Patients.Add(patient);
+                        await _context.SaveChangesAsync(); // Save the new Patient to the database
+                        _logger.LogInformation($"[{traceId}] Registro de paciente creado exitosamente para el usuario {user.Email}");
+                    }
+                    catch (Exception ex)
+                    {
+                        _logger.LogError(ex, $"[{traceId}] Error al crear el registro de paciente para el usuario {user.Email}");
+                        // El usuario ya fue creado exitosamente, así que continuamos con el flujo normal
+                        // El registro de Patient se puede intentar crear más tarde si es necesario
+                    }
 
                     var userId = await _userManager.GetUserIdAsync(user);
                     var code = await _userManager.GenerateEmailConfirmationTokenAsync(user);
@@ -383,19 +383,19 @@ namespace CitasEPS.Areas.Identity.Pages.Account
 </body>
 </html>
 ";
-                    _logger.LogInformation($"Saltando envío de email temporalmente para {Input.Email}");
+                    _logger.LogInformation($"[{traceId}] Intentando enviar correo de confirmación a {Input.Email}");
                     
-                    // try
-                    // {
-                    //     await _emailSender.SendEmailAsync(Input.Email, emailSubject, htmlMessageBody);
-                    //     _logger.LogInformation($"Correo de confirmación enviado exitosamente a {Input.Email}");
-                    // }
-                    // catch (Exception ex)
-                    // {
-                    //     _logger.LogError(ex, $"Error al enviar correo de confirmación a {Input.Email}");
-                    //     // Continuamos con el flujo normal aunque el email falle
-                    //     // El usuario puede solicitar reenvío del email más tarde
-                    // }
+                    try
+                    {
+                        await _emailSender.SendEmailAsync(Input.Email, emailSubject, htmlMessageBody);
+                        _logger.LogInformation($"[{traceId}] Correo de confirmación enviado exitosamente a {Input.Email}");
+                    }
+                    catch (Exception ex)
+                    {
+                        _logger.LogError(ex, $"[{traceId}] Error al enviar correo de confirmación a {Input.Email}");
+                        // Continuamos con el flujo normal aunque el email falle
+                        // El usuario puede solicitar reenvío del email más tarde
+                    }
 
                     if (_userManager.Options.SignIn.RequireConfirmedAccount)
                     {
