@@ -382,25 +382,23 @@
         fill: #f7df1e !important;
     }
     
-    /* === MODO OSCURO - SOLO CSS, SIN FLASH === */
+    /* === MODO OSCURO - INSTANTÁNEO SIN FLASH === */
     
-    /* ICONOS BLANCOS - ULTRA ESPECÍFICO */
-    html[data-bs-theme="dark"] body .team-avatar .bi-person-fill,
-    html[data-bs-theme="dark"] body .team-avatar .feature-icon-main,
-    html[data-bs-theme="dark"] body .tech-icon-container .tech-icon,
-    html[data-bs-theme="dark"] body .tech-icon-container i,
-    html[data-bs-theme="dark"] body i[class*="bi-"] {
+    /* ICONOS BLANCOS - INMEDIATO */
+    html[data-bs-theme="dark"] .team-avatar .bi-person-fill,
+    html[data-bs-theme="dark"] .team-avatar .feature-icon-main,
+    html[data-bs-theme="dark"] .tech-icon-container .tech-icon,
+    html[data-bs-theme="dark"] .tech-icon-container i,
+    html[data-bs-theme="dark"] i[class*="bi-"] {
         color: white !important;
         fill: white !important;
         text-shadow: none !important;
-        background: transparent !important;
-        background-color: transparent !important;
-        background-image: none !important;
+        background: none !important;
     }
     
-    /* CONTENEDORES TRANSPARENTES - MANTENER TAMAÑO */
-    html[data-bs-theme="dark"] body .team-avatar,
-    html[data-bs-theme="dark"] body .tech-icon-container {
+    /* CONTENEDORES TRANSPARENTES - INSTANTÁNEO */
+    html[data-bs-theme="dark"] .team-avatar,
+    html[data-bs-theme="dark"] .tech-icon-container {
         background: transparent !important;
         background-color: transparent !important;
         background-image: none !important;
@@ -408,28 +406,63 @@
         border-radius: 0 !important;
         box-shadow: none !important;
         outline: none !important;
-        /* CRÍTICO: NO cambiar width/height para mantener tamaño de tarjetas */
-        /* width: 120px !important; */
-        /* height: 120px !important; */
+        /* MANTENER TAMAÑO Y CENTRADO */
+        width: 120px !important;
+        height: 120px !important;
+        display: flex !important;
+        align-items: center !important;
+        justify-content: center !important;
+        margin: 0 auto !important;
+        margin-top: 1rem !important;
     }
     
     /* SOBRESCRIBIR CLASES BG- EN MODO OSCURO */
-    html[data-bs-theme="dark"] body .team-avatar.bg-success,
-    html[data-bs-theme="dark"] body .team-avatar.bg-info,
-    html[data-bs-theme="dark"] body .team-avatar.bg-warning,
-    html[data-bs-theme="dark"] body .team-avatar.bg-danger,
-    html[data-bs-theme="dark"] body .team-avatar.bg-secondary,
-    html[data-bs-theme="dark"] body .tech-icon-container.bg-success,
-    html[data-bs-theme="dark"] body .tech-icon-container.bg-info,
-    html[data-bs-theme="dark"] body .tech-icon-container.bg-warning {
+    html[data-bs-theme="dark"] .team-avatar.bg-success,
+    html[data-bs-theme="dark"] .team-avatar.bg-info,
+    html[data-bs-theme="dark"] .team-avatar.bg-warning,
+    html[data-bs-theme="dark"] .team-avatar.bg-danger,
+    html[data-bs-theme="dark"] .team-avatar.bg-secondary,
+    html[data-bs-theme="dark"] .tech-icon-container.bg-success,
+    html[data-bs-theme="dark"] .tech-icon-container.bg-info,
+    html[data-bs-theme="dark"] .tech-icon-container.bg-warning {
         background: transparent !important;
         background-color: transparent !important;
         background-image: none !important;
     }
     
-    /* TRANSICIÓN SUAVE PARA EVITAR FLASH */
+    /* SIN TRANSICIONES - EVITAR FLASH EN AMBOS MODOS */
     .team-avatar, .tech-icon-container {
-        transition: background-color 0.05s ease, background-image 0.05s ease;
+        /* NO transition para evitar flash visual */
+    }
+    
+    /* === FORZAR MISMO TAMAÑO DE TARJETAS EN AMBOS MODOS === */
+    .team-card {
+        min-height: 420px !important;
+        height: auto !important;
+        max-height: none !important;
+    }
+    
+    /* CENTRAR TARJETAS EN CONTENEDORES */
+    .team-card .position-relative,
+    .team-card .card-body {
+        text-align: center !important;
+    }
+    
+    /* FORZAR DIMENSIONES FIJAS DE AVATARES EN AMBOS MODOS */
+    .team-avatar {
+        width: 120px !important;
+        height: 120px !important;
+        display: flex !important;
+        align-items: center !important;
+        justify-content: center !important;
+        margin: 0 auto !important;
+    }
+    
+    /* === ASEGURAR QUE MODO CLARO MANTENGA SUS ESTILOS === */
+    html[data-bs-theme="light"] .team-avatar,
+    html:not([data-bs-theme="dark"]) .team-avatar {
+        /* Mantener estilos originales en modo claro */
+        border-radius: 50% !important;
     }
  </style>
 
