@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "j4NDKfQ8DW0LyMfl/IghlT1XrM2+gqZYLuseOAlrwD4=",
+  "Hash": "Ybfaa9d9yhKz1H8/2arv1jgSfj0noV+df64TvQyWK7M=",
   "Source": "CitasEPS",
   "BasePath": "_content/CitasEPS",
   "Mode": "Default",
@@ -1438,8 +1438,8 @@
       "RelatedAsset": "",
       "AssetTraitName": "",
       "AssetTraitValue": "",
-      "Fingerprint": "ofepuuin3s",
-      "Integrity": "rPRTecfKCsP+GnhVn6GSFcIoISEyLwXpHFDPnVY6sdY=",
+      "Fingerprint": "362uofkgr1",
+      "Integrity": "e1ocPpS/aut8jbDrXUFYzMd30XOe03aujCXT00EWqn4=",
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\css\\navbar-fix.css"
@@ -3827,6 +3827,51 @@
       ]
     },
     {
+      "Route": "css/navbar-fix.362uofkgr1.css",
+      "AssetFile": "C:\\Users\\CristianPC\\Desktop\\vitalcare\\wwwroot\\css\\navbar-fix.css",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "1067"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "text/css"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"e1ocPpS/aut8jbDrXUFYzMd30XOe03aujCXT00EWqn4=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Thu, 05 Jun 2025 19:38:23 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=31536000, immutable"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "fingerprint",
+          "Value": "362uofkgr1"
+        },
+        {
+          "Name": "label",
+          "Value": "css/navbar-fix.css"
+        },
+        {
+          "Name": "integrity",
+          "Value": "sha256-e1ocPpS/aut8jbDrXUFYzMd30XOe03aujCXT00EWqn4="
+        }
+      ]
+    },
+    {
       "Route": "css/navbar-fix.css",
       "AssetFile": "C:\\Users\\CristianPC\\Desktop\\vitalcare\\wwwroot\\css\\navbar-fix.css",
       "Selectors": [],
@@ -3837,7 +3882,7 @@
         },
         {
           "Name": "Content-Length",
-          "Value": "1531"
+          "Value": "1067"
         },
         {
           "Name": "Content-Type",
@@ -3845,11 +3890,11 @@
         },
         {
           "Name": "ETag",
-          "Value": "\"rPRTecfKCsP+GnhVn6GSFcIoISEyLwXpHFDPnVY6sdY=\""
+          "Value": "\"e1ocPpS/aut8jbDrXUFYzMd30XOe03aujCXT00EWqn4=\""
         },
         {
           "Name": "Last-Modified",
-          "Value": "Thu, 05 Jun 2025 19:16:26 GMT"
+          "Value": "Thu, 05 Jun 2025 19:38:23 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -3859,52 +3904,7 @@
       "EndpointProperties": [
         {
           "Name": "integrity",
-          "Value": "sha256-rPRTecfKCsP+GnhVn6GSFcIoISEyLwXpHFDPnVY6sdY="
-        }
-      ]
-    },
-    {
-      "Route": "css/navbar-fix.ofepuuin3s.css",
-      "AssetFile": "C:\\Users\\CristianPC\\Desktop\\vitalcare\\wwwroot\\css\\navbar-fix.css",
-      "Selectors": [],
-      "ResponseHeaders": [
-        {
-          "Name": "Accept-Ranges",
-          "Value": "bytes"
-        },
-        {
-          "Name": "Content-Length",
-          "Value": "1531"
-        },
-        {
-          "Name": "Content-Type",
-          "Value": "text/css"
-        },
-        {
-          "Name": "ETag",
-          "Value": "\"rPRTecfKCsP+GnhVn6GSFcIoISEyLwXpHFDPnVY6sdY=\""
-        },
-        {
-          "Name": "Last-Modified",
-          "Value": "Thu, 05 Jun 2025 19:16:26 GMT"
-        },
-        {
-          "Name": "Cache-Control",
-          "Value": "max-age=31536000, immutable"
-        }
-      ],
-      "EndpointProperties": [
-        {
-          "Name": "fingerprint",
-          "Value": "ofepuuin3s"
-        },
-        {
-          "Name": "label",
-          "Value": "css/navbar-fix.css"
-        },
-        {
-          "Name": "integrity",
-          "Value": "sha256-rPRTecfKCsP+GnhVn6GSFcIoISEyLwXpHFDPnVY6sdY="
+          "Value": "sha256-e1ocPpS/aut8jbDrXUFYzMd30XOe03aujCXT00EWqn4="
         }
       ]
     },

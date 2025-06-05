@@ -1,96 +1,106 @@
 /* =====================================================
-   NAVBAR ANIMATION FIXES - ELIMINAR REORDENAMIENTO
+   NAVBAR TRANSFORM FIX - SOLO PREVENIR TRANSFORMS
    ===================================================== */
 
-/* ELIMINACIÓN ABSOLUTA DE TODAS LAS ANIMACIONES DEL NAVBAR */
-/* Usar !important en todo para sobrescribir cualquier regla */
+/* ELIMINAR SOLO TRANSFORMS - NADA MÁS */
+/* Los hovers de color/background funcionarán normalmente */
 
-/* Resetear todas las transformaciones en hover/focus/active */
-.navbar *,
-.navbar *:hover,
-.navbar *:focus,
-.navbar *:active,
-.navbar *:visited,
 .navbar .nav-link,
 .navbar .nav-link:hover,
-.navbar .nav-link:focus,
-.navbar .nav-link:active,
-.navbar .nav-item,
-.navbar .nav-item:hover,
-.navbar .nav-item:focus,
-.navbar .nav-item:active,
+.navbar .nav-item .nav-link,
+.navbar .nav-item .nav-link:hover,
 .navbar .btn,
 .navbar .btn:hover,
-.navbar .btn:focus,
-.navbar .btn:active,
 .navbar .dropdown-item,
-.navbar .dropdown-item:hover,
-.navbar .dropdown-item:focus,
-.navbar .dropdown-item:active,
-.navbar-nav .nav-item .nav-link,
-.navbar-nav .nav-item .nav-link:hover,
-.navbar-nav .nav-item .nav-link:focus,
-.navbar-nav .nav-item .nav-link:active {
+.navbar .dropdown-item:hover {
     transform: none !important;
-    -webkit-transform: none !important;
-    -moz-transform: none !important;
-    -ms-transform: none !important;
-    -o-transform: none !important;
-    animation: none !important;
-    -webkit-animation: none !important;
-    -moz-animation: none !important;
-    -ms-animation: none !important;
-    -o-animation: none !important;
 }
 
-/* Deshabilitar todas las transiciones problemáticas */
-.navbar *,
-.navbar .nav-link,
-.navbar .nav-item,
-.navbar .btn,
-.navbar .dropdown-item {
-    transition: background-color 0.15s ease, 
-                color 0.15s ease, 
-                box-shadow 0.15s ease, 
-                border-color 0.15s ease !important;
-}
-
-/* Mobile navbar fix */
+/* También en mobile */
 @media (max-width: 1199.98px) {
-    .navbar-collapse *,
-    .navbar-collapse *:hover,
-    .navbar-collapse *:focus,
-    .navbar-collapse *:active {
+    .navbar-collapse .nav-link,
+    .navbar-collapse .nav-link:hover,
+    .navbar-collapse .btn,
+    .navbar-collapse .btn:hover {
         transform: none !important;
-        -webkit-transform: none !important;
-        -moz-transform: none !important;
-        -ms-transform: none !important;
-        -o-transform: none !important;
-        animation: none !important;
-        -webkit-animation: none !important;
-        -moz-animation: none !important;
-        -ms-animation: none !important;
-        -o-animation: none !important;
     }
 }
 
-/* Global override más específico */
-body .navbar *,
-body .navbar *:hover,
-body .navbar *:focus,
-body .navbar *:active,
-body .navbar-nav *,
-body .navbar-nav *:hover,
-body .navbar-nav *:focus,
-body .navbar-nav *:active {
+/* Eliminar transforms en footer y widgets */
+.footer-link:hover,
+.list-group-item:hover {
     transform: none !important;
-    -webkit-transform: none !important;
-    -moz-transform: none !important;
-    -ms-transform: none !important;
-    -o-transform: none !important;
-    animation: none !important;
-    -webkit-animation: none !important;
-    -moz-animation: none !important;
-    -ms-animation: none !important;
-    -o-animation: none !important;
+}
+
+/* =====================================================
+   ASEGURAR HOVERS FUNCIONAN - ESPECIFICIDAD ULTRA ALTA
+   ===================================================== */
+
+/* HOVERS ESPECÍFICOS PARA ASEGURAR QUE FUNCIONEN */
+/* Reglas ultra-específicas para sobreescribir Bootstrap */
+
+/* Hover general para nav-links móviles */
+@media (max-width: 1199.98px) {
+    body .navbar-collapse .navbar-nav .nav-item .nav-link:hover,
+    body .navbar-collapse .navbar-nav .nav-item .nav-link:focus {
+        background: linear-gradient(135deg, #1e293b 0%, #334155 100%) !important;
+        color: white !important;
+        border-color: #334155 !important;
+        /* SOMBRA MUY PRONUNCIADA PARA SIMULAR ELEVACIÓN REAL */
+        box-shadow: 0 12px 40px rgba(30, 41, 59, 0.6), 
+                    0 8px 20px rgba(0, 0, 0, 0.4),
+                    0 4px 8px rgba(0, 0, 0, 0.3),
+                    inset 0 1px 0 rgba(255, 255, 255, 0.1) !important;
+        border-top: 3px solid #94a3b8 !important;
+        border-bottom: 1px solid #1e293b !important;
+    }
+    
+    /* Hover para tema paciente */
+    body.patient-body-bg .navbar-collapse .navbar-nav .nav-item .nav-link:hover,
+    body.patient-body-bg .navbar-collapse .navbar-nav .nav-item .nav-link:focus {
+        background: linear-gradient(135deg, #059669 0%, #10b981 100%) !important;
+        border-color: #10b981 !important;
+        color: white !important;
+        /* SOMBRA VERDE INTENSA PARA TEMA PACIENTE */
+        box-shadow: 0 12px 40px rgba(5, 150, 105, 0.6), 
+                    0 8px 20px rgba(0, 0, 0, 0.4),
+                    0 4px 8px rgba(0, 0, 0, 0.3),
+                    inset 0 1px 0 rgba(255, 255, 255, 0.1) !important;
+        border-top: 3px solid #6ee7b7 !important;
+        border-bottom: 1px solid #059669 !important;
+    }
+    
+    /* Hover para temas doctor/admin */
+    body.doctor-body-bg .navbar-collapse .navbar-nav .nav-item .nav-link:hover,
+    body.doctor-body-bg .navbar-collapse .navbar-nav .nav-item .nav-link:focus,
+    body.admin-body-bg .navbar-collapse .navbar-nav .nav-item .nav-link:hover,
+    body.admin-body-bg .navbar-collapse .navbar-nav .nav-item .nav-link:focus {
+        background: linear-gradient(135deg, #1e293b 0%, #334155 100%) !important;
+        border-color: #334155 !important;
+        color: white !important;
+        /* SOMBRA INTENSA PARA TEMAS DOCTOR/ADMIN */
+        box-shadow: 0 12px 40px rgba(30, 41, 59, 0.6), 
+                    0 8px 20px rgba(0, 0, 0, 0.4),
+                    0 4px 8px rgba(0, 0, 0, 0.3),
+                    inset 0 1px 0 rgba(255, 255, 255, 0.1) !important;
+        border-top: 3px solid #94a3b8 !important;
+        border-bottom: 1px solid #1e293b !important;
+    }
+}
+
+/* Hover para botón de registro - especificidad ultra alta */
+body .navbar .btn-register:hover,
+body .navbar .btn-register:focus {
+    background: linear-gradient(135deg, #1d4ed8 0%, #2563eb 100%) !important;
+    /* SOMBRA AZUL INTENSA PARA BOTÓN REGISTRO */
+    box-shadow: 0 12px 35px rgba(29, 78, 216, 0.6), 
+                0 8px 18px rgba(0, 0, 0, 0.4),
+                0 4px 8px rgba(0, 0, 0, 0.3),
+                inset 0 1px 0 rgba(255, 255, 255, 0.1) !important;
+    border-top: 3px solid #60a5fa !important;
+    border-bottom: 1px solid #1d4ed8 !important;
+}
+
+/* NOTA: Los efectos hover de colores, backgrounds, shadows funcionarán normalmente */
+/* Solo están deshabilitados los transforms que causan reordenamiento */ 
 } 

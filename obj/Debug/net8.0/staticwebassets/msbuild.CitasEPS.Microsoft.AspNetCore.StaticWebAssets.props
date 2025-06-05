@@ -120,8 +120,8 @@
       <RelatedAsset></RelatedAsset>
       <AssetTraitName></AssetTraitName>
       <AssetTraitValue></AssetTraitValue>
-      <Fingerprint>ofepuuin3s</Fingerprint>
-      <Integrity>rPRTecfKCsP+GnhVn6GSFcIoISEyLwXpHFDPnVY6sdY=</Integrity>
+      <Fingerprint>362uofkgr1</Fingerprint>
+      <Integrity>e1ocPpS/aut8jbDrXUFYzMd30XOe03aujCXT00EWqn4=</Integrity>
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
       <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
       <OriginalItemSpec>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\css\navbar-fix.css'))</OriginalItemSpec>
