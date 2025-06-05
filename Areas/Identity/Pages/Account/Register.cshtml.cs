@@ -166,17 +166,16 @@ namespace CitasEPS.Areas.Identity.Pages.Account
                 
                 if (ModelState.IsValid)
                 {
-                    // Temporarily skip unique validation to test if this is causing the error
-                    _logger.LogInformation($"ModelState es válido, procediendo con la creación del usuario: {Input?.Email}");
+                    _logger.LogInformation($"ModelState es válido, procediendo con validaciones para: {Input?.Email}");
                     
-                    // Check for unique constraints before creating user (temporarily disabled)
-                    // await ValidateUniqueFields();
+                    // Check for unique constraints before creating user
+                    await ValidateUniqueFields();
                     
-                    // if (!ModelState.IsValid)
-                    // {
-                    //     _logger.LogWarning($"Validación de campos únicos falló para email: {Input?.Email}");
-                    //     return Page();
-                    // }
+                    if (!ModelState.IsValid)
+                    {
+                        _logger.LogWarning($"Validación de campos únicos falló para email: {Input?.Email}");
+                        return Page();
+                    }
                 var user = CreateUser();
                 _logger.LogInformation($"Usuario creado en memoria para email: {Input.Email}");
 
@@ -408,28 +407,37 @@ namespace CitasEPS.Areas.Identity.Pages.Account
         {
             try
             {
-                // Check if email already exists
+                _logger.LogInformation($"Iniciando validación de campos únicos para: {Input.Email}");
+                
+                // Check if email already exists - usando solo UserManager por ahora
                 var existingUserByEmail = await _userManager.FindByEmailAsync(Input.Email);
                 if (existingUserByEmail != null)
                 {
+                    _logger.LogWarning($"Email {Input.Email} ya existe en el sistema");
                     ModelState.AddModelError("Input.Email", "Este correo electrónico ya está registrado. Intenta con otro o inicia sesión.");
+                    return; // Salir temprano si el email ya existe
                 }
 
-                // Check if document ID already exists
-                var existingUserByDocument = await _context.Users
-                    .FirstOrDefaultAsync(u => u.DocumentId == Input.DocumentId);
+                _logger.LogInformation($"Email {Input.Email} está disponible");
+                
+                // Simplificar validaciones - solo usar UserManager para evitar problemas de Entity Framework
+                var allUsers = _userManager.Users.ToList(); // Cargar en memoria para evitar problemas async
+                
+                var existingUserByDocument = allUsers.FirstOrDefault(u => u.DocumentId == Input.DocumentId);
                 if (existingUserByDocument != null)
                 {
+                    _logger.LogWarning($"Documento {Input.DocumentId} ya existe en el sistema");
                     ModelState.AddModelError("Input.DocumentId", "Este documento de identidad ya está registrado. Verifica el número o inicia sesión si ya tienes cuenta.");
                 }
 
-                // Check if phone number already exists
-                var existingUserByPhone = await _context.Users
-                    .FirstOrDefaultAsync(u => u.PhoneNumber == Input.PhoneNumber);
+                var existingUserByPhone = allUsers.FirstOrDefault(u => u.PhoneNumber == Input.PhoneNumber);
                 if (existingUserByPhone != null)
                 {
+                    _logger.LogWarning($"Teléfono {Input.PhoneNumber} ya existe en el sistema");
                     ModelState.AddModelError("Input.PhoneNumber", "Este número de teléfono ya está registrado. Intenta con otro o inicia sesión.");
                 }
+                
+                _logger.LogInformation($"Validación de campos únicos completada para: {Input.Email}");
             }
             catch (Exception ex)
             {

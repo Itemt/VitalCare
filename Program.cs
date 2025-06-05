@@ -138,7 +138,11 @@ using (var scope = app.Services.CreateScope())
 }
 
 // Configurar el pipeline de solicitud HTTP.
-if (!app.Environment.IsDevelopment())
+if (app.Environment.IsDevelopment())
+{
+    app.UseDeveloperExceptionPage();
+}
+else
 {
     app.UseExceptionHandler("/Error");
     // El valor HSTS predeterminado es 30 días. Puede cambiar esto para escenarios de producción, ver https://aka.ms/aspnetcore-hsts.
