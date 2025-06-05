@@ -18,7 +18,17 @@ builder.Services.AddDbContext<ApplicationDbContext>(options =>
     options.UseNpgsql(connectionString)); // Usar proveedor apropiado (UseSqlite, UseNpgsql, etc.) si no es SQL Server
 
 // Añadir servicios de Identity
-builder.Services.AddIdentity<User, IdentityRole<int>>(options => options.SignIn.RequireConfirmedAccount = true) // Usando nuestra clase User y especificando el tipo de Rol
+builder.Services.AddIdentity<User, IdentityRole<int>>(options => {
+    options.SignIn.RequireConfirmedAccount = true;
+    
+    // Configuración de contraseña más simple
+    options.Password.RequiredLength = 4; // Mínimo 4 caracteres
+    options.Password.RequireDigit = false; // No requiere números
+    options.Password.RequireUppercase = false; // No requiere mayúsculas
+    options.Password.RequireLowercase = false; // No requiere minúsculas
+    options.Password.RequireNonAlphanumeric = false; // No requiere caracteres especiales
+    options.Password.RequiredUniqueChars = 1; // Solo requiere 1 caracter único
+}) // Usando nuestra clase User y especificando el tipo de Rol
     .AddEntityFrameworkStores<ApplicationDbContext>()
     .AddDefaultTokenProviders()
     .AddRoles<IdentityRole<int>>()

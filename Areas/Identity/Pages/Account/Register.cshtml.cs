@@ -22,6 +22,7 @@ using Microsoft.Extensions.Logging;
 using CitasEPS.Data;
 using Microsoft.Extensions.Configuration;
 using CitasEPS.Models.Enums;
+using Microsoft.EntityFrameworkCore;
 
 namespace CitasEPS.Areas.Identity.Pages.Account
 {
@@ -99,7 +100,7 @@ namespace CitasEPS.Areas.Identity.Pages.Account
 
             [Required(ErrorMessage = "El campo Documento de Identidad es obligatorio.")]
             [Display(Name = "Documento de Identidad")]
-            [StringLength(20, ErrorMessage = "El campo Documento de Identidad no puede exceder los 20 caracteres.")]
+            [RegularExpression(@"^\d+$", ErrorMessage = "El Documento de Identidad debe contener solo números.")]
             public string DocumentId { get; set; }
 
             [Required(ErrorMessage = "El campo Género es obligatorio.")]
@@ -116,7 +117,7 @@ namespace CitasEPS.Areas.Identity.Pages.Account
             public string Email { get; set; }
 
             [Required(ErrorMessage = "El campo Teléfono es obligatorio.")]
-            [Phone(ErrorMessage = "El formato del Teléfono no es válido.")]
+            [RegularExpression(@"^\d+$", ErrorMessage = "El Teléfono debe contener solo números.")]
             [Display(Name = "Teléfono")]
             public string PhoneNumber { get; set; }
 
@@ -131,7 +132,7 @@ namespace CitasEPS.Areas.Identity.Pages.Account
             ///     directamente desde tu código. Esta API puede cambiar o ser eliminada en futuras versiones.
             /// </summary>
             [Required(ErrorMessage = "El campo Contraseña es obligatorio.")]
-            [StringLength(100, ErrorMessage = "La {0} debe tener al menos {2} y como máximo {1} caracteres.", MinimumLength = 6)]
+            [StringLength(100, ErrorMessage = "La {0} debe tener al menos {2} y como máximo {1} caracteres.", MinimumLength = 4)]
             [DataType(DataType.Password)]
             [Display(Name = "Contraseña")]
             public string Password { get; set; }
@@ -140,6 +141,7 @@ namespace CitasEPS.Areas.Identity.Pages.Account
             ///     Esta API soporta la infraestructura UI por defecto de ASP.NET Core Identity y no está pensada para ser usada
             ///     directamente desde tu código. Esta API puede cambiar o ser eliminada en futuras versiones.
             /// </summary>
+            [Required(ErrorMessage = "El campo Confirmar Contraseña es obligatorio.")]
             [DataType(DataType.Password)]
             [Display(Name = "Confirmar contraseña")]
             [Compare("Password", ErrorMessage = "La contraseña y la contraseña de confirmación no coinciden.")]
@@ -159,6 +161,13 @@ namespace CitasEPS.Areas.Identity.Pages.Account
             ExternalLogins = (await _signInManager.GetExternalAuthenticationSchemesAsync()).ToList();
             if (ModelState.IsValid)
             {
+                // Check for unique constraints before creating user
+                await ValidateUniqueFields();
+                
+                if (!ModelState.IsValid)
+                {
+                    return Page();
+                }
                 var user = CreateUser();
 
                 user.FirstName = Input.FirstName;
@@ -307,12 +316,54 @@ namespace CitasEPS.Areas.Identity.Pages.Account
                 }
                 foreach (var error in result.Errors)
                 {
-                    ModelState.AddModelError(string.Empty, TranslateIdentityError(error.Description));
+                    // Try to map errors to specific fields
+                    if (error.Code.Contains("Password") || error.Description.Contains("password"))
+                    {
+                        ModelState.AddModelError("Input.Password", TranslateIdentityError(error.Description));
+                    }
+                    else if (error.Code.Contains("Email") || error.Description.Contains("email") || error.Description.Contains("taken"))
+                    {
+                        ModelState.AddModelError("Input.Email", TranslateIdentityError(error.Description));
+                    }
+                    else if (error.Code.Contains("Username") || error.Description.Contains("username"))
+                    {
+                        ModelState.AddModelError("Input.Email", TranslateIdentityError(error.Description));
+                    }
+                    else
+                    {
+                        ModelState.AddModelError(string.Empty, TranslateIdentityError(error.Description));
+                    }
                 }
             }
 
             // Si llegamos hasta aquí, algo falló, volver a mostrar el formulario
             return Page();
+        }
+
+        private async Task ValidateUniqueFields()
+        {
+            // Check if email already exists
+            var existingUserByEmail = await _userManager.FindByEmailAsync(Input.Email);
+            if (existingUserByEmail != null)
+            {
+                ModelState.AddModelError("Input.Email", "Este correo electrónico ya está registrado. Intenta con otro o inicia sesión.");
+            }
+
+            // Check if document ID already exists
+            var existingUserByDocument = await _context.Users
+                .FirstOrDefaultAsync(u => u.DocumentId == Input.DocumentId);
+            if (existingUserByDocument != null)
+            {
+                ModelState.AddModelError("Input.DocumentId", "Este documento de identidad ya está registrado. Verifica el número o inicia sesión si ya tienes cuenta.");
+            }
+
+            // Check if phone number already exists
+            var existingUserByPhone = await _context.Users
+                .FirstOrDefaultAsync(u => u.PhoneNumber == Input.PhoneNumber);
+            if (existingUserByPhone != null)
+            {
+                ModelState.AddModelError("Input.PhoneNumber", "Este número de teléfono ya está registrado. Intenta con otro o inicia sesión.");
+            }
         }
 
         private User CreateUser()
@@ -340,6 +391,7 @@ namespace CitasEPS.Areas.Identity.Pages.Account
 
         private string TranslateIdentityError(string englishError)
         {
+            // Con la nueva configuración, estos errores NO deberían ocurrir, pero los mantenemos por si acaso
             if (englishError.Contains("Passwords must have at least one digit"))
                 return "Las contraseñas deben tener al menos un dígito ('0'-'9').";
             if (englishError.Contains("Passwords must have at least one lowercase"))
@@ -348,8 +400,23 @@ namespace CitasEPS.Areas.Identity.Pages.Account
                  return "Las contraseñas deben tener al menos una mayúscula ('A'-'Z').";
             if (englishError.Contains("Passwords must have at least one non alphanumeric character"))
                  return "Las contraseñas deben tener al menos un caracter no alfanumérico.";
+            if (englishError.Contains("Passwords must be at least") && englishError.Contains("characters"))
+                 return "La contraseña debe tener al menos 4 caracteres.";
             if (englishError.Contains("is already taken"))
-                 return "El nombre de usuario o correo ya está en uso.";
+                 return "El correo electrónico ya está en uso por otro usuario.";
+            if (englishError.Contains("User name") && englishError.Contains("is already taken"))
+                 return "El correo electrónico ya está en uso por otro usuario.";
+            if (englishError.Contains("Invalid email"))
+                 return "El formato del correo electrónico no es válido.";
+            if (englishError.Contains("Email") && englishError.Contains("is already taken"))
+                 return "El correo electrónico ya está en uso por otro usuario.";
+            
+            // Mensajes por defecto más amigables
+            if (englishError.Contains("Password"))
+                return "Hay un problema con la contraseña. Debe tener al menos 4 caracteres.";
+            if (englishError.Contains("Email") || englishError.Contains("email"))
+                return "Hay un problema con el correo electrónico proporcionado.";
+                
             return englishError;
         }
     }

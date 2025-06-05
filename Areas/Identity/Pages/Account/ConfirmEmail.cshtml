@@ -1,38 +1,97 @@
 ﻿@page
 @model ConfirmEmailModel
 @{
-    ViewData["Title"] = "Correo Confirmado";
+    ViewData["Title"] = "Confirmación de Correo";
+    Layout = "_AuthLayout";
 }
 
-<div class="container text-center mt-5">
-    <div class="row">
-        <div class="col-md-8 offset-md-2 col-lg-6 offset-lg-3">
-            @if (Model.StatusMessage.ToLower().Contains("gracias")) // O una forma más robusta de verificar éxito si es posible desde el modelo
-            {
-                <i class="bi bi-check-circle-fill text-success mb-3" style="font-size: 5rem; display: block;"></i>
-            }
-            else
-            {
-                <i class="bi bi-x-circle-fill text-danger mb-3" style="font-size: 5rem; display: block;"></i>
-            }
-            
-            <h1>@ViewData["Title"]</h1>
-            <div class="alert @(Model.StatusMessage.ToLower().Contains("gracias") ? "alert-success" : "alert-danger")" role="alert">
-                @Model.StatusMessage
+<!-- Confirmation Section -->
+<div class="auth-container-modern">
+    <div class="container-fluid h-100">
+        <div class="row h-100 align-items-center justify-content-center">
+            <div class="col-lg-10 col-xl-8">
+                <div class="auth-card-confirmation">
+                    <div class="auth-card-body text-center">
+                        <!-- Status Icon -->
+                        <div class="auth-status-icon mb-4">
+                            @if (Model.StatusMessage.ToLower().Contains("gracias") || Model.StatusMessage.ToLower().Contains("confirmado"))
+                            {
+                                <div class="auth-success-icon">
+                                    <i class="bi bi-check-circle-fill"></i>
+                                </div>
+                            }
+                            else
+                            {
+                                <div class="auth-error-icon">
+                                    <i class="bi bi-x-circle-fill"></i>
+                                </div>
+                            }
+                        </div>
+
+                        <!-- Title -->
+                        <h1 class="auth-title-confirmation mb-4">
+                            @if (Model.StatusMessage.ToLower().Contains("gracias") || Model.StatusMessage.ToLower().Contains("confirmado"))
+                            {
+                                <span>¡Correo Confirmado!</span>
+                            }
+                            else
+                            {
+                                <span>Error de Confirmación</span>
+                            }
+                        </h1>
+
+                        <!-- Status Message -->
+                        <div class="auth-message-card @(Model.StatusMessage.ToLower().Contains("gracias") || Model.StatusMessage.ToLower().Contains("confirmado") ? "success" : "error") mb-4">
+                            <div class="auth-message-content">
+                                @if (Model.StatusMessage.ToLower().Contains("gracias") || Model.StatusMessage.ToLower().Contains("confirmado"))
+                                {
+                                    <h5 class="mb-3">¡Bienvenido a VitalCare!</h5>
+                                    <p class="mb-0">Tu cuenta ha sido confirmada exitosamente. Ya puedes iniciar sesión y acceder a todos nuestros servicios.</p>
+                                }
+                                else
+                                {
+                                    <h5 class="mb-3">No se pudo confirmar el correo</h5>
+                                    <p class="mb-0">@Model.StatusMessage</p>
+                                }
+                            </div>
+                        </div>
+
+                        <!-- Action Buttons -->
+                        <div class="auth-confirmation-actions">
+                            @if (Model.StatusMessage.ToLower().Contains("gracias") || Model.StatusMessage.ToLower().Contains("confirmado"))
+                            {
+                                <a asp-page="./Login" class="auth-btn-primary auth-btn-large me-3">
+                                    <i class="bi bi-box-arrow-in-right me-2"></i>
+                                    Iniciar Sesión
+                                </a>
+                                <a asp-page="/Index" class="auth-btn-secondary auth-btn-large">
+                                    <i class="bi bi-house me-2"></i>
+                                    Ir al Inicio
+                                </a>
+                            }
+                            else
+                            {
+                                <a asp-page="./Register" class="auth-btn-primary auth-btn-large me-3">
+                                    <i class="bi bi-person-plus me-2"></i>
+                                    Registrarse de Nuevo
+                                </a>
+                                <a asp-page="/Index" class="auth-btn-secondary auth-btn-large">
+                                    <i class="bi bi-house me-2"></i>
+                                    Volver al Inicio
+                                </a>
+                            }
+                        </div>
+
+                        <!-- Additional Info -->
+                        <div class="auth-additional-info mt-5">
+                            <small class="text-muted">
+                                <i class="bi bi-shield-check me-1"></i>
+                                VitalCare - Tu salud es nuestra prioridad
+                            </small>
+                        </div>
+                    </div>
+                </div>
             </div>
-            
-            @if (Model.StatusMessage.ToLower().Contains("gracias"))
-            {
-                <p>
-                    <a asp-page="./Login" class="btn btn-primary mt-3">Iniciar Sesión</a>
-                </p>
-            }
-            else
-            {
-                 <p>
-                    <a asp-page="/Index" class="btn btn-secondary mt-3">Volver al Inicio</a>
-                </p>
-            }
         </div>
     </div>
 </div>

@@ -1971,26 +1971,44 @@ body {
 .password-toggle {
     position: absolute;
     right: 1rem;
-    top: 1rem;
-    background: none;
-    border: none;
+    top: 50%;
+    transform: translateY(-50%);
+    background: none !important;
+    border: none !important;
     color: #003366;
     font-size: 1.1rem;
-    cursor: pointer;
-    z-index: 4;
+    cursor: pointer !important;
+    z-index: 15 !important;
     padding: 0.5rem;
     border-radius: 50%;
     transition: all 0.3s ease;
-    display: flex;
+    display: flex !important;
     align-items: center;
     justify-content: center;
     width: 40px;
     height: 40px;
+    pointer-events: auto !important;
+    user-select: none;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
 }
 
 .password-toggle:hover {
-    background: rgba(0, 51, 102, 0.1);
-    color: #002244;
+    background: rgba(0, 51, 102, 0.1) !important;
+    color: #002244 !important;
+}
+
+.password-toggle:active {
+    background: rgba(0, 51, 102, 0.2) !important;
+    transform: translateY(-50%) scale(0.95) !important;
+}
+
+/* Debug styles - remove after testing */
+.password-toggle {
+    /* Add a subtle background to make it visible for debugging */
+    background: rgba(0, 51, 102, 0.05) !important;
+    border: 1px solid rgba(0, 51, 102, 0.1) !important;
 }
 
 .auth-checkbox {
@@ -2357,10 +2375,14 @@ body {
     }
 
     .password-toggle {
-        width: 35px;
-        height: 35px;
-        right: 0.875rem;
-        top: 0.875rem;
+        width: 35px !important;
+        height: 35px !important;
+        right: 0.875rem !important;
+        top: 50% !important;
+        transform: translateY(-50%) !important;
+        z-index: 15 !important;
+        pointer-events: auto !important;
+        cursor: pointer !important;
     }
 }
 
@@ -2786,3 +2808,157 @@ body {
 }
 
 /* Cards in dark mode */
+
+/* === CONFIRMATION PAGES STYLES === */
+
+/* Modern Confirmation Container */
+.auth-container-modern {
+    min-height: 100vh;
+    background: linear-gradient(135deg, rgba(45, 156, 219, 0.1), rgba(0, 51, 102, 0.05));
+    display: flex;
+    align-items: center;
+    padding: 2rem 0;
+}
+
+/* Confirmation Card */
+.auth-card-confirmation {
+    background: rgba(255, 255, 255, 0.95);
+    border-radius: 20px;
+    box-shadow: 0 20px 60px rgba(45, 156, 219, 0.1);
+    backdrop-filter: blur(20px);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    overflow: hidden;
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 3rem;
+}
+
+/* Status Icons */
+.auth-status-icon {
+    position: relative;
+}
+
+.auth-success-icon,
+.auth-error-icon,
+.auth-email-icon {
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto;
+    font-size: 3.5rem;
+    color: white;
+    position: relative;
+    overflow: hidden;
+}
+
+.auth-success-icon {
+    background: linear-gradient(135deg, #28a745, #20c997);
+    box-shadow: 0 10px 30px rgba(40, 167, 69, 0.3);
+}
+
+.auth-error-icon {
+    background: linear-gradient(135deg, #dc3545, #fd7e14);
+    box-shadow: 0 10px 30px rgba(220, 53, 69, 0.3);
+}
+
+.auth-email-icon {
+    background: linear-gradient(135deg, #2d9cdb, #0066cc);
+    box-shadow: 0 10px 30px rgba(45, 156, 219, 0.3);
+}
+
+/* Confirmation Title */
+.auth-title-confirmation {
+    color: #2c3e50;
+    font-weight: 700;
+    font-size: 2.5rem;
+    margin-bottom: 1.5rem;
+}
+
+/* Message Cards */
+.auth-message-card {
+    background: rgba(255, 255, 255, 0.8);
+    border-radius: 15px;
+    padding: 2rem;
+    border: none;
+    position: relative;
+    overflow: hidden;
+}
+
+.auth-message-card.success {
+    border-left: 5px solid #28a745;
+    background: linear-gradient(135deg, rgba(40, 167, 69, 0.05), rgba(32, 201, 151, 0.05));
+}
+
+.auth-message-card.error {
+    border-left: 5px solid #dc3545;
+    background: linear-gradient(135deg, rgba(220, 53, 69, 0.05), rgba(253, 126, 20, 0.05));
+}
+
+.auth-message-content h5 {
+    color: #2c3e50;
+    font-weight: 600;
+}
+
+/* Email Highlight */
+.auth-email-highlight {
+    background: rgba(45, 156, 219, 0.1);
+    padding: 0.75rem 1rem;
+    border-radius: 10px;
+    color: #2d9cdb;
+    font-weight: 600;
+    display: inline-block;
+}
+
+/* Instructions Section */
+.auth-instructions {
+    background: rgba(248, 249, 250, 0.8);
+    border-radius: 15px;
+    padding: 1.5rem;
+    margin: 1.5rem 0;
+}
+
+.auth-instruction-item {
+    display: flex;
+    align-items: center;
+    padding: 0.5rem 0;
+    color: #495057;
+    font-weight: 500;
+}
+
+.auth-instruction-item i {
+    color: #2d9cdb;
+    margin-right: 0.75rem;
+    font-size: 1.2rem;
+}
+
+/* === PASSWORD RECOVERY ADDITIONAL STYLES === */
+
+/* Password Requirements */
+.auth-password-requirements {
+    background: rgba(248, 249, 250, 0.8);
+    border-radius: 8px;
+    padding: 0.75rem 1rem;
+    border-left: 3px solid #17a2b8;
+}
+
+/* Security Notice */
+.auth-security-notice {
+    background: rgba(40, 167, 69, 0.05);
+    border-radius: 10px;
+    padding: 1rem;
+    border-left: 3px solid #28a745;
+}
+
+/* Dark Mode for Password Recovery Elements */
+[data-bs-theme="dark"] .auth-password-requirements {
+    background: rgba(52, 58, 64, 0.8);
+    border-left: 3px solid #74c0fc;
+}
+
+[data-bs-theme="dark"] .auth-security-notice {
+    background: rgba(40, 167, 69, 0.1);
+    border-left: 3px solid #51cf66;
+}

@@ -1,34 +1,114 @@
 ﻿@page
 @model RegisterConfirmationModel
 @{
-    ViewData["Title"] = "Confirmación de registro";
+    ViewData["Title"] = "Confirmación de Registro";
+    Layout = "_AuthLayout";
 }
 
-<div class="container text-center mt-5">
-    <div class="row">
-        <div class="col-md-8 offset-md-2 col-lg-6 offset-lg-3">
-            <i class="bi bi-envelope-check-fill text-primary mb-3" style="font-size: 5rem; display: block;"></i>
-            <h1>@ViewData["Title"]</h1>
-            <p class="lead">
-                Por favor, revisa tu correo electrónico para confirmar tu cuenta.
-            </p>
-            <p>
-                Hemos enviado un enlace de confirmación a la dirección de correo que nos proporcionaste. Si no lo encuentras, revisa tu carpeta de spam.
-            </p>
-            <hr class="my-4">
-            <p>
-                ¿No recibiste el correo? 
-                @if (!string.IsNullOrEmpty(Model.Email)){
-                    <a asp-page="./ResendEmailConfirmation" asp-route-email="@Model.Email">Reenviar el correo de confirmación</a>
-                }
-                else
-                {
-                    <span class="text-muted">No podemos reenviar el correo en este momento.</span>
-                }
-            </p>
-            <p>
-                <a asp-page="/Index" class="btn btn-primary mt-3">Volver al Inicio</a>
-            </p>
+<!-- Registration Confirmation Section -->
+<div class="auth-container-modern">
+    <div class="container-fluid h-100">
+        <div class="row h-100 align-items-center justify-content-center">
+            <div class="col-lg-10 col-xl-8">
+                <div class="auth-card-confirmation">
+                    <div class="auth-card-body text-center">
+                        <!-- Email Icon -->
+                        <div class="auth-status-icon mb-4">
+                            <div class="auth-email-icon">
+                                <i class="bi bi-envelope-check-fill"></i>
+                            </div>
+                        </div>
+
+                        <!-- Title -->
+                        <h1 class="auth-title-confirmation mb-4">
+                            <span>¡Registro Exitoso!</span>
+                        </h1>
+
+                        <!-- Main Message -->
+                        <div class="auth-message-card success mb-4">
+                            <div class="auth-message-content">
+                                <h5 class="mb-3">Confirma tu correo electrónico</h5>
+                                <p class="mb-3">Hemos enviado un enlace de confirmación a tu dirección de correo electrónico.</p>
+                                <div class="auth-email-highlight">
+                                    @if (!string.IsNullOrEmpty(Model.Email))
+                                    {
+                                        <i class="bi bi-envelope-at me-2"></i>
+                                        <strong>@Model.Email</strong>
+                                    }
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Instructions -->
+                        <div class="auth-instructions mb-4">
+                            <div class="row text-start">
+                                <div class="col-md-6 mb-3">
+                                    <div class="auth-instruction-item">
+                                        <i class="bi bi-1-circle-fill me-2"></i>
+                                        <span>Revisa tu bandeja de entrada</span>
+                                    </div>
+                                </div>
+                                <div class="col-md-6 mb-3">
+                                    <div class="auth-instruction-item">
+                                        <i class="bi bi-2-circle-fill me-2"></i>
+                                        <span>Busca también en spam/promociones</span>
+                                    </div>
+                                </div>
+                                <div class="col-md-6 mb-3">
+                                    <div class="auth-instruction-item">
+                                        <i class="bi bi-3-circle-fill me-2"></i>
+                                        <span>Haz clic en el enlace de confirmación</span>
+                                    </div>
+                                </div>
+                                <div class="col-md-6 mb-3">
+                                    <div class="auth-instruction-item">
+                                        <i class="bi bi-4-circle-fill me-2"></i>
+                                        <span>¡Ya podrás iniciar sesión!</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Action Buttons -->
+                        <div class="auth-confirmation-actions mb-4">
+                            @if (!string.IsNullOrEmpty(Model.Email))
+                            {
+                                <a asp-page="./ResendEmailConfirmation" asp-route-email="@Model.Email" class="auth-btn-primary auth-btn-large me-3">
+                                    <i class="bi bi-arrow-clockwise me-2"></i>
+                                    Reenviar Correo
+                                </a>
+                            }
+                            <a asp-page="/Index" class="auth-btn-secondary auth-btn-large">
+                                <i class="bi bi-house me-2"></i>
+                                Ir al Inicio
+                            </a>
+                        </div>
+
+                        <!-- Additional Help -->
+                        <div class="auth-help-section">
+                            <details class="auth-details">
+                                <summary>¿No recibiste el correo?</summary>
+                                <div class="auth-help-content mt-3">
+                                    <ul class="list-unstyled text-start">
+                                        <li><i class="bi bi-check2 me-2"></i>Verifica que la dirección de correo sea correcta</li>
+                                        <li><i class="bi bi-check2 me-2"></i>Revisa tu carpeta de spam o correo no deseado</li>
+                                        <li><i class="bi bi-check2 me-2"></i>El correo puede tardar unos minutos en llegar</li>
+                                        <li><i class="bi bi-check2 me-2"></i>Puedes reenviar el correo usando el botón de arriba</li>
+                                    </ul>
+                                </div>
+                            </details>
+                        </div>
+
+                        <!-- Additional Info -->
+                        <div class="auth-additional-info mt-5">
+                            <small class="text-muted">
+                                <i class="bi bi-shield-check me-1"></i>
+                                VitalCare protege tu información personal
+                            </small>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
 </div>

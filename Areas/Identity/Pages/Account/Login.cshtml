@@ -123,9 +123,10 @@
 
 @section Scripts {
     <partial name="_ValidationScriptsPartial" />
+    <script src="~/js/password-toggle.js"></script>
     <script>
         // Hide all validation errors on page load
-        document.addEventListener('DOMContentLoaded', function() {
+        function initializeLoginPage() {
             // Hide validation summaries and errors initially
             document.querySelectorAll('.auth-validation-error, .auth-validation-summary').forEach(function(element) {
                 if (!element.textContent.trim()) {
@@ -176,21 +177,51 @@
                     }
                 });
             });
-        });
+        }
 
-        // Password visibility toggle
-        document.getElementById('toggleLoginPassword').addEventListener('click', function() {
-            const passwordInput = document.getElementById('loginPasswordInput');
-            const icon = this.querySelector('i');
+        // Initialize on DOMContentLoaded
+        document.addEventListener('DOMContentLoaded', initializeLoginPage);
+        
+        // Backup initialization in case DOMContentLoaded already fired
+        if (document.readyState === 'loading') {
+            document.addEventListener('DOMContentLoaded', initializeLoginPage);
+        } else {
+            setTimeout(initializeLoginPage, 100);
+        }
+
+        // Password visibility toggle - with error handling
+        const toggleButton = document.getElementById('toggleLoginPassword');
+        const passwordInput = document.getElementById('loginPasswordInput');
+        
+        console.log('Toggle button found:', toggleButton);
+        console.log('Password input found:', passwordInput);
+        
+        if (toggleButton && passwordInput) {
+            toggleButton.addEventListener('click', function(e) {
+                e.preventDefault();
+                e.stopPropagation();
+                
+                console.log('Toggle button clicked');
+                const icon = this.querySelector('i');
+                
+                if (passwordInput.type === 'password') {
+                    passwordInput.type = 'text';
+                    icon.className = 'bi bi-eye';
+                    console.log('Password shown');
+                } else {
+                    passwordInput.type = 'password';
+                    icon.className = 'bi bi-eye-slash';
+                    console.log('Password hidden');
+                }
+            });
             
-            if (passwordInput.type === 'password') {
-                passwordInput.type = 'text';
-                icon.className = 'bi bi-eye';
-            } else {
-                passwordInput.type = 'password';
-                icon.className = 'bi bi-eye-slash';
-            }
-        });
+            // Also add with mousedown event as backup
+            toggleButton.addEventListener('mousedown', function(e) {
+                e.preventDefault();
+            });
+        } else {
+            console.error('Password toggle elements not found');
+        }
 
         // Loading state for submit button
         document.getElementById('account').addEventListener('submit', function() {

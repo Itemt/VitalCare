@@ -1017,43 +1017,76 @@ else if (isPatient)
                 }
             }, { passive: true });
 
-            // Hero counters animation
+            // Hero counters animation with fallback for first load
             const heroCounters = document.querySelectorAll('.hero-stat-number');
+            let countersAnimated = false;
+            
+            function animateCounters() {
+                if (countersAnimated) return;
+                countersAnimated = true;
+                
+                heroCounters.forEach(counter => {
+                    const target = parseInt(counter.getAttribute('data-target'));
+                    const duration = 1500;
+                    const step = target / (duration / 16);
+                    let current = 0;
+                    
+                    counter.classList.add('counting');
+                    
+                    const timer = setInterval(() => {
+                        current += step;
+                        if (current >= target) {
+                            counter.textContent = target.toLocaleString();
+                            counter.classList.remove('counting');
+                            clearInterval(timer);
+                        } else {
+                            counter.textContent = Math.floor(current).toLocaleString();
+                        }
+                    }, 16);
+                });
+            }
+            
+            // Try immediate animation if hero is visible
+            setTimeout(() => {
+                const heroSection = document.querySelector('.hero-section');
+                if (heroSection) {
+                    const rect = heroSection.getBoundingClientRect();
+                    const isVisible = rect.top < window.innerHeight && rect.bottom > 0;
+                    
+                    if (isVisible && !countersAnimated) {
+                        animateCounters();
+                    }
+                }
+            }, 500);
+            
+            // Fallback with IntersectionObserver
             const heroObserverOptions = {
-                threshold: 0.5,
-                rootMargin: '50px'
+                threshold: 0.1,
+                rootMargin: '100px'
             };
             
             const heroObserver = new IntersectionObserver((entries) => {
                 entries.forEach(entry => {
-                    if (entry.isIntersecting && !isScrolling) {
-                        const counter = entry.target;
-                        const target = parseInt(counter.getAttribute('data-target'));
-                        const duration = 1000;
-                        const step = target / (duration / 16);
-                        let current = 0;
-                        
-                        counter.classList.add('counting');
-                        
-                        const timer = setInterval(() => {
-                            current += step;
-                            if (current >= target) {
-                                counter.textContent = target.toLocaleString();
-                                counter.classList.remove('counting');
-                                clearInterval(timer);
-                            } else {
-                                counter.textContent = Math.floor(current).toLocaleString();
-                            }
-                        }, 16);
-                        
-                        heroObserver.unobserve(counter);
+                    if (entry.isIntersecting && !countersAnimated) {
+                        animateCounters();
+                        heroObserver.unobserve(entry.target);
                     }
                 });
             }, heroObserverOptions);
             
-            heroCounters.forEach(counter => {
-                heroObserver.observe(counter);
-            });
+            // Observe the hero stats container
+            const heroStats = document.querySelector('.hero-stats');
+            if (heroStats) {
+                heroObserver.observe(heroStats);
+            }
+            
+            // Additional fallback - animate after 2 seconds if still not animated
+            setTimeout(() => {
+                if (!countersAnimated) {
+                    console.log('Fallback animation triggered for hero counters');
+                    animateCounters();
+                }
+            }, 2000);
             
             // Scroll Indicator Click Handler
             const scrollIndicator = document.querySelector('.scroll-indicator');
