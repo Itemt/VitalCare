@@ -13,6 +13,10 @@
       "PackagePath": "staticwebassets/css/components.css"
     },
     {
+      "Id": "/Users/cristianramos/Desktop/Proyectos/AplicativosWeb/CitasEPS/wwwroot/css/contact-fix.css",
+      "PackagePath": "staticwebassets/css/contact-fix.css"
+    },
+    {
       "Id": "/Users/cristianramos/Desktop/Proyectos/AplicativosWeb/CitasEPS/wwwroot/css/effects-hover.css",
       "PackagePath": "staticwebassets/css/effects-hover.css"
     },
@@ -27,6 +31,10 @@
     {
       "Id": "/Users/cristianramos/Desktop/Proyectos/AplicativosWeb/CitasEPS/wwwroot/css/navbar-fixes.css",
       "PackagePath": "staticwebassets/css/navbar-fixes.css"
+    },
+    {
+      "Id": "/Users/cristianramos/Desktop/Proyectos/AplicativosWeb/CitasEPS/wwwroot/css/navbar-ultimate-fix.css",
+      "PackagePath": "staticwebassets/css/navbar-ultimate-fix.css"
     },
     {
       "Id": "/Users/cristianramos/Desktop/Proyectos/AplicativosWeb/CitasEPS/wwwroot/css/performance-optimizations.css",

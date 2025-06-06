@@ -97,9 +97,6 @@
     @* Estilos específicos del proyecto *@
     <link rel="stylesheet" href="~/CitasEPS.styles.css" asp-append-version="true" />
     
-    @* Fix para animaciones de navbar que causan reordenamiento *@
-    <link rel="stylesheet" href="~/css/navbar-fixes.css" asp-append-version="true" />
-    
     <partial name="_Styles" /> @* Extracted inline styles *@
 
     @await RenderSectionAsync("Styles", required: false) @* Added to render page-specific styles *@
@@ -149,8 +146,8 @@
     @* Script especializado para eliminar lag durante scrolling *@
     <script src="~/js/scroll-performance-fix.js" asp-append-version="true"></script>
     
-    @* === NAVBAR RESPONSIVO === *@
-    <script src="~/js/navbarResponsive.js" asp-append-version="true"></script> 
+    @* === NAVBAR RESPONSIVO (DESACTIVADO TEMPORALMENTE) === *@
+    @* <script src="~/js/navbarResponsive.js" asp-append-version="true"></script> *@
 
     @* === PERFORMANCE TESTING (Solo desarrollo) === *@
     @if (Context.Request.Host.Host.Contains("localhost"))

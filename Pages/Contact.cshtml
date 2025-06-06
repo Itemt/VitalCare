@@ -5,6 +5,63 @@
 }
 
 <style>
+    /* === FIX DEFINITIVO PARA TARJETAS Y NAVBAR === */
+
+    /* 1. Arreglo del Navbar: Desactivar solo transformaciones en los enlaces */
+    .navbar-nav .nav-link {
+        transform: none !important;
+        animation: none !important;
+        transition: background-color 0.2s ease, color 0.2s ease !important;
+    }
+
+    /* 2. Centrado de Tarjetas de Contacto Superiores */
+    .contact-cards-container {
+        display: flex;
+        justify-content: center;
+        flex-wrap: wrap;
+        gap: 2rem;
+        padding: 1rem 0;
+    }
+
+    .contact-card {
+        width: 100%;
+        max-width: 350px;
+        flex-grow: 1;
+        flex-basis: 300px;
+        border-radius: 1rem !important;
+        transition: transform 0.3s ease, box-shadow 0.3s ease !important;
+    }
+    
+    .contact-card:hover {
+        transform: translateY(-8px) !important;
+        box-shadow: 0 15px 30px rgba(0,0,0,0.15) !important;
+    }
+
+    /* 3. Tarjetas de Información de Oficina */
+    .info-card {
+        background-color: var(--bs-light);
+        border: 1px solid var(--bs-border-color);
+        border-radius: 0.75rem;
+        padding: 1rem;
+        height: 100%;
+        transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+    }
+    .info-card:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 8px 16px rgba(0,0,0,0.1);
+    }
+    .info-card .info-icon {
+        font-size: 2.5rem;
+        margin-bottom: 1rem;
+        display: block;
+    }
+    .info-card .info-title {
+        font-weight: 700;
+        color: var(--bs-dark);
+        margin-bottom: 0.5rem;
+    }
+
+
     /* === HERO MODERNO PARA CONTACT === */
     
     @@keyframes float {
@@ -33,8 +90,6 @@
         border-radius: 2rem;
         margin: 1rem;
     }
-    
-    /* Elementos de fondo removidos para mejorar rendimiento */
     
     .hero-content {
         position: relative;
@@ -83,7 +138,6 @@
     
     .animate-fade-up { animation: fadeInUp 0.8s ease-out; }
     
-    /* Modo oscuro */
     [data-bs-theme="dark"] .hero-modern {
         background: linear-gradient(135deg, #0f172a 0%, #1e293b 25%, #334155 50%, #1e293b 75%, #0f172a 100%);
     }
@@ -92,12 +146,11 @@
         background: rgba(13, 13, 13, 0.9);
         border-color: rgba(255,255,255,0.2);
     }
+
 </style>
 
 <!-- Hero Section Moderno -->
 <section class="hero-modern mb-5">
-    <!-- Partículas removidas para mejorar rendimiento -->
-    
     <div class="container">
         <div class="row justify-content-center">
             <div class="col-lg-10">
@@ -141,64 +194,58 @@
         </div>
     </div>
     
-    <div class="row g-4 mb-5">
-        <div class="col-lg-4 col-md-6">
-            <div class="card h-100 shadow-lg border-0 contact-method-card text-center feature-card-hover">
-                <div class="card-body p-4">
-                    <div class="feature-icon-wrapper mb-3">
-                        <i class="bi bi-telephone-fill feature-icon-main" style="font-size: 4rem; color: #003366;"></i>
-                    </div>
-                    <h5 class="card-title fw-bold" style="color: #003366;">Llámanos</h5>
-                    <p class="card-text text-muted mb-3">Atención telefónica personalizada las 24 horas del día, los 7 días de la semana.</p>
-                    <h4 class="fw-bold text-success mb-3">+57 320 346 5135</h4>
-                    <div class="contact-details">
-                        <small class="d-block text-success mb-1"><i class="bi bi-clock-fill me-1"></i>Disponible 24/7</small>
-                        <small class="d-block text-info"><i class="bi bi-chat-square-text-fill me-1"></i>Español e Inglés</small>
-                    </div>
-                    <button class="btn mt-3" style="background: linear-gradient(135deg, #003366, #002244); color: white;" onclick="window.location.href='tel:+573203465135'">
-                        <i class="bi bi-telephone-fill me-2"></i>Llamar Ahora
-                    </button>
+    <div class="contact-cards-container">
+        <div class="card shadow-lg border-0 contact-card text-center">
+            <div class="card-body p-4">
+                <div class="mb-3">
+                    <i class="bi bi-telephone-fill" style="font-size: 4rem; color: #003366;"></i>
                 </div>
+                <h5 class="card-title fw-bold" style="color: #003366;">Llámanos</h5>
+                <p class="card-text text-muted mb-3">Atención telefónica personalizada las 24 horas del día, los 7 días de la semana.</p>
+                <h4 class="fw-bold text-success mb-3">+57 320 346 5135</h4>
+                <div class="contact-details">
+                    <small class="d-block text-success mb-1"><i class="bi bi-clock-fill me-1"></i>Disponible 24/7</small>
+                    <small class="d-block text-info"><i class="bi bi-chat-square-text-fill me-1"></i>Español e Inglés</small>
+                </div>
+                <button class="btn mt-3" style="background: linear-gradient(135deg, #003366, #002244); color: white;" onclick="window.location.href='tel:+573203465135'">
+                    <i class="bi bi-telephone-fill me-2"></i>Llamar Ahora
+                </button>
             </div>
         </div>
         
-        <div class="col-lg-4 col-md-6">
-            <div class="card h-100 shadow-lg border-0 contact-method-card text-center feature-card-hover">
-                <div class="card-body p-4">
-                    <div class="feature-icon-wrapper mb-3">
-                        <i class="bi bi-envelope-fill feature-icon-main" style="font-size: 4rem; color: #22816b;"></i>
-                    </div>
-                    <h5 class="card-title fw-bold text-success">Escríbenos</h5>
-                    <p class="card-text text-muted mb-3">Envíanos un correo electrónico y te responderemos en menos de 2 horas.</p>
-                    <h4 class="fw-bold mb-3" style="color: #003366;">cramos5@udi.edu.co</h4>
-                    <div class="contact-details">
-                        <small class="d-block text-success mb-1"><i class="bi bi-clock-fill me-1"></i>Respuesta en 2h</small>
-                        <small class="d-block text-info"><i class="bi bi-shield-check-fill me-1"></i>Cifrado SSL</small>
-                    </div>
-                    <button class="btn btn-success mt-3" onclick="window.location.href='mailto:cramos5@udi.edu.co'">
-                        <i class="bi bi-envelope-fill me-2"></i>Enviar Email
-                    </button>
+        <div class="card shadow-lg border-0 contact-card text-center">
+            <div class="card-body p-4">
+                <div class="mb-3">
+                    <i class="bi bi-envelope-fill" style="font-size: 4rem; color: #22816b;"></i>
                 </div>
+                <h5 class="card-title fw-bold text-success">Escríbenos</h5>
+                <p class="card-text text-muted mb-3">Envíanos un correo electrónico y te responderemos en menos de 2 horas.</p>
+                <h4 class="fw-bold mb-3" style="color: #003366;">cramos5@udi.edu.co</h4>
+                <div class="contact-details">
+                    <small class="d-block text-success mb-1"><i class="bi bi-clock-fill me-1"></i>Respuesta en 2h</small>
+                    <small class="d-block text-info"><i class="bi bi-shield-check-fill me-1"></i>Cifrado SSL</small>
+                </div>
+                <button class="btn btn-success mt-3" onclick="window.location.href='mailto:cramos5@udi.edu.co'">
+                    <i class="bi bi-envelope-fill me-2"></i>Enviar Email
+                </button>
             </div>
         </div>
         
-        <div class="col-lg-4 col-md-6">
-            <div class="card h-100 shadow-lg border-0 contact-method-card text-center feature-card-hover">
-                <div class="card-body p-4">
-                    <div class="feature-icon-wrapper mb-3">
-                        <i class="bi bi-chat-dots-fill feature-icon-main" style="font-size: 4rem; color: #17a2b8;"></i>
-                    </div>
-                    <h5 class="card-title fw-bold text-info">Chat en Vivo</h5>
-                    <p class="card-text text-muted mb-3">Chatea con nuestros especialistas en tiempo real para resolver tus dudas.</p>
-                    <h4 class="fw-bold text-warning mb-3">Respuesta Inmediata</h4>
-                    <div class="contact-details">
-                        <small class="d-block text-success mb-1"><i class="bi bi-lightning-charge-fill me-1"></i>Tiempo real</small>
-                        <small class="d-block text-info"><i class="bi bi-people-fill me-1"></i>Especialistas online</small>
-                    </div>
-                    <button class="btn btn-info mt-3" data-bs-toggle="modal" data-bs-target="#chatModal">
-                        <i class="bi bi-chat-dots-fill me-2"></i>Iniciar Chat
-                    </button>
+        <div class="card shadow-lg border-0 contact-card text-center">
+            <div class="card-body p-4">
+                <div class="mb-3">
+                    <i class="bi bi-chat-dots-fill" style="font-size: 4rem; color: #17a2b8;"></i>
                 </div>
+                <h5 class="card-title fw-bold text-info">Chat en Vivo</h5>
+                <p class="card-text text-muted mb-3">Chatea con nuestros especialistas en tiempo real para resolver tus dudas.</p>
+                <h4 class="fw-bold text-warning mb-3">Respuesta Inmediata</h4>
+                <div class="contact-details">
+                    <small class="d-block text-success mb-1"><i class="bi bi-lightning-charge-fill me-1"></i>Tiempo real</small>
+                    <small class="d-block text-info"><i class="bi bi-people-fill me-1"></i>Especialistas online</small>
+                </div>
+                <button class="btn btn-info mt-3" data-bs-toggle="modal" data-bs-target="#chatModal">
+                    <i class="bi bi-chat-dots-fill me-2"></i>Iniciar Chat
+                </button>
             </div>
         </div>
     </div>
@@ -209,6 +256,15 @@
     <div class="container">
         <div class="row">
             <div class="col-lg-8 mx-auto">
+                @if (!string.IsNullOrEmpty(Model.StatusMessage))
+                {
+                    <div class="alert @(Model.StatusMessage.StartsWith("Error") ? "alert-danger" : "alert-success") alert-dismissible fade show mb-4" role="alert">
+                        <i class="bi @(Model.StatusMessage.StartsWith("Error") ? "bi-exclamation-triangle-fill" : "bi-check-circle-fill") me-2"></i>
+                        @Model.StatusMessage
+                        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                    </div>
+                }
+                
                 <div class="card shadow-lg border-0">
                     <div class="card-header text-white text-center py-4" style="background: linear-gradient(135deg, #003366, #002244);">
                         <h3 class="fw-bold mb-0">
@@ -218,58 +274,69 @@
                         <p class="mb-0 text-white-50">Completa el formulario y nos comunicaremos contigo</p>
                     </div>
                     <div class="card-body p-5">
-                        <form>
+                        <form method="post">
+                            <div asp-validation-summary="ModelOnly" class="text-danger mb-3" role="alert"></div>
+                            
                             <div class="row g-3">
                                 <div class="col-md-6">
-                                    <label for="firstName" class="form-label fw-semibold">
+                                    <label asp-for="Input.FirstName" class="form-label fw-semibold">
                                         <i class="bi bi-person-fill me-1" style="color: #003366;"></i>Nombre
                                     </label>
-                                    <input type="text" class="form-control form-control-lg" id="firstName" required>
+                                    <input asp-for="Input.FirstName" class="form-control form-control-lg" placeholder="Tu nombre">
+                                    <span asp-validation-for="Input.FirstName" class="text-danger small"></span>
                                 </div>
                                 <div class="col-md-6">
-                                    <label for="lastName" class="form-label fw-semibold">
+                                    <label asp-for="Input.LastName" class="form-label fw-semibold">
                                         <i class="bi bi-person-fill me-1" style="color: #003366;"></i>Apellido
                                     </label>
-                                    <input type="text" class="form-control form-control-lg" id="lastName" required>
+                                    <input asp-for="Input.LastName" class="form-control form-control-lg" placeholder="Tu apellido">
+                                    <span asp-validation-for="Input.LastName" class="text-danger small"></span>
                                 </div>
                                 <div class="col-md-6">
-                                    <label for="email" class="form-label fw-semibold">
+                                    <label asp-for="Input.Email" class="form-label fw-semibold">
                                         <i class="bi bi-envelope-fill me-1" style="color: #003366;"></i>Correo Electrónico
                                     </label>
-                                    <input type="email" class="form-control form-control-lg" id="email" required>
+                                    <input asp-for="Input.Email" type="email" class="form-control form-control-lg" placeholder="tu@email.com">
+                                    <span asp-validation-for="Input.Email" class="text-danger small"></span>
                                 </div>
                                 <div class="col-md-6">
-                                    <label for="phone" class="form-label fw-semibold">
+                                    <label asp-for="Input.Phone" class="form-label fw-semibold">
                                         <i class="bi bi-telephone-fill me-1" style="color: #003366;"></i>Teléfono
                                     </label>
-                                    <input type="tel" class="form-control form-control-lg" id="phone">
+                                    <input asp-for="Input.Phone" type="tel" class="form-control form-control-lg" placeholder="Tu número de teléfono">
+                                    <span asp-validation-for="Input.Phone" class="text-danger small"></span>
                                 </div>
                                 <div class="col-12">
-                                    <label for="subject" class="form-label fw-semibold">
+                                    <label asp-for="Input.Subject" class="form-label fw-semibold">
                                         <i class="bi bi-tag-fill me-1" style="color: #003366;"></i>Asunto
                                     </label>
-                                    <select class="form-select form-select-lg" id="subject" required>
+                                    <select asp-for="Input.Subject" class="form-select form-select-lg">
                                         <option value="">Selecciona un asunto</option>
-                                        <option value="consulta">Consulta General</option>
-                                        <option value="soporte">Soporte Técnico</option>
-                                        <option value="cita">Agendar Cita</option>
-                                        <option value="emergencia">Emergencia Médica</option>
-                                        <option value="facturacion">Facturación</option>
-                                        <option value="otro">Otro</option>
+                                        <option value="Consulta General">Consulta General</option>
+                                        <option value="Soporte Técnico">Soporte Técnico</option>
+                                        <option value="Agendar Cita">Agendar Cita</option>
+                                        <option value="Emergencia Médica">Emergencia Médica</option>
+                                        <option value="Facturación">Facturación</option>
+                                        <option value="Otro">Otro</option>
                                     </select>
+                                    <span asp-validation-for="Input.Subject" class="text-danger small"></span>
                                 </div>
                                 <div class="col-12">
-                                    <label for="message" class="form-label fw-semibold">
+                                    <label asp-for="Input.Message" class="form-label fw-semibold">
                                         <i class="bi bi-chat-square-text-fill me-1" style="color: #003366;"></i>Mensaje
                                     </label>
-                                    <textarea class="form-control" id="message" rows="5" placeholder="Describe tu consulta o solicitud..." required></textarea>
+                                    <textarea asp-for="Input.Message" class="form-control" rows="5" placeholder="Describe tu consulta o solicitud en detalle..."></textarea>
+                                    <span asp-validation-for="Input.Message" class="text-danger small"></span>
                                 </div>
                                 <div class="col-12">
                                     <div class="form-check">
-                                        <input class="form-check-input" type="checkbox" id="privacy" required>
+                                        <input asp-for="Input.AcceptPrivacy" class="form-check-input" type="checkbox" id="privacy">
                                         <label class="form-check-label" for="privacy">
                                             Acepto la <a href="#" style="color: #003366;">política de privacidad</a> y el tratamiento de mis datos personales
                                         </label>
+                                        <div>
+                                            <span asp-validation-for="Input.AcceptPrivacy" class="text-danger small"></span>
+                                        </div>
                                     </div>
                                 </div>
                                 <div class="col-12 text-center">
@@ -286,6 +353,10 @@
     </div>
 </section>
 
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}
+
 <!-- Office Location con Google Maps -->
 <div class="container py-5">
     <div class="row text-center mb-5">
@@ -295,62 +366,62 @@
         </div>
     </div>
     
-    <div class="row align-items-center">
+    <div class="row align-items-stretch justify-content-center g-5">
         <div class="col-lg-6">
-            <div class="office-info p-4">
-                <h3 class="fw-bold mb-4 text-center" style="color: #003366;">
-                    <i class="bi bi-building-fill me-2"></i>Oficina Principal
-                </h3>
-                <div class="office-details">
-                    <div class="d-flex align-items-center mb-3 feature-card-hover justify-content-center">
-                        <div class="feature-icon-wrapper me-3">
-                            <i class="bi bi-geo-alt-fill feature-icon-main" style="font-size: 1.5rem; color: #003366;"></i>
-                        </div>
-                        <div class="text-center">
-                            <h6 class="fw-bold mb-1">Dirección</h6>
-                            <p class="text-muted mb-0">Barrancabermeja, Santander<br>Colombia</p>
+             <h3 class="fw-bold mb-4 text-center" style="color: #003366;">
+                <i class="bi bi-building-fill me-2"></i>Oficina Principal
+            </h3>
+            <div class="row g-4">
+                <!-- Card 1: Dirección -->
+                <div class="col-md-6">
+                    <div class="card info-card text-center h-100">
+                        <div class="card-body d-flex flex-column justify-content-center">
+                            <i class="bi bi-geo-alt-fill info-icon" style="color: #003366;"></i>
+                            <h6 class="info-title">Dirección</h6>
+                            <p class="text-muted mb-0 small">Barrancabermeja, Santander<br>Colombia</p>
                         </div>
                     </div>
-                    <div class="d-flex align-items-center mb-3 feature-card-hover justify-content-center">
-                        <div class="feature-icon-wrapper me-3">
-                            <i class="bi bi-clock-fill feature-icon-main" style="font-size: 1.5rem; color: #22816b;"></i>
-                        </div>
-                        <div class="text-center">
-                            <h6 class="fw-bold mb-1">Horarios de Atención</h6>
-                            <p class="text-muted mb-0">
-                                Lunes a Viernes: 7:00 AM - 7:00 PM<br>
-                                Sábados: 8:00 AM - 2:00 PM<br>
-                                Domingos: Emergencias 24h
+                </div>
+                <!-- Card 2: Horarios -->
+                <div class="col-md-6">
+                    <div class="card info-card text-center h-100">
+                        <div class="card-body d-flex flex-column justify-content-center">
+                            <i class="bi bi-clock-fill info-icon" style="color: #22816b;"></i>
+                            <h6 class="info-title">Horarios de Atención</h6>
+                            <p class="text-muted mb-0 small">
+                                L-V: 7am - 7pm<br>Sáb: 8am - 2pm
                             </p>
                         </div>
                     </div>
-                    <div class="d-flex align-items-center mb-3 feature-card-hover justify-content-center">
-                        <div class="feature-icon-wrapper me-3">
-                            <i class="bi bi-telephone-fill feature-icon-main" style="font-size: 1.5rem; color: #17a2b8;"></i>
-                        </div>
-                        <div class="text-center">
-                            <h6 class="fw-bold mb-1">Teléfono Principal</h6>
-                            <p class="text-muted mb-0">+57 320 346 5135</p>
+                </div>
+                <!-- Card 3: Teléfono -->
+                <div class="col-md-6">
+                    <div class="card info-card text-center h-100">
+                        <div class="card-body d-flex flex-column justify-content-center">
+                            <i class="bi bi-telephone-fill info-icon" style="color: #17a2b8;"></i>
+                            <h6 class="info-title">Teléfono</h6>
+                            <p class="text-muted mb-0 small">+57 320 346 5135</p>
                         </div>
                     </div>
-                    <div class="d-flex align-items-center feature-card-hover justify-content-center">
-                        <div class="feature-icon-wrapper me-3">
-                            <i class="bi bi-envelope-fill feature-icon-main" style="font-size: 1.5rem; color: #dc3545;"></i>
-                        </div>
-                        <div class="text-center">
-                            <h6 class="fw-bold mb-1">Correo Electrónico</h6>
-                            <p class="text-muted mb-0">cramos5@udi.edu.co</p>
+                </div>
+                <!-- Card 4: Email -->
+                <div class="col-md-6">
+                    <div class="card info-card text-center h-100">
+                        <div class="card-body d-flex flex-column justify-content-center">
+                            <i class="bi bi-envelope-fill info-icon" style="color: #dc3545;"></i>
+                            <h6 class="info-title">Correo</h6>
+                            <p class="text-muted mb-0 small">cramos5@udi.edu.co</p>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-        <div class="col-lg-6">
-            <div class="map-container" style="border-radius: 1rem; overflow: hidden; box-shadow: 0 10px 30px rgba(0,0,0,0.15);">
+        <div class="col-lg-6 d-flex flex-column">
+            <div class="map-container flex-grow-1" style="border-radius: 1rem; overflow: hidden; box-shadow: 0 10px 30px rgba(0,0,0,0.15); min-height: 400px;">
                 <iframe 
                     src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d62759.89793089987!2d-73.89081632671885!3d7.066108999999999!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x8e683f2b6b36b2fb%3A0x4d8e1d7f8ca6a6f2!2sBarrancabermeja%2C%20Santander%2C%20Colombia!5e0!3m2!1sen!2sus!4v1629872987654!5m2!1sen!2sus"
                     width="100%" 
-                    height="400" 
+                    height="100%" 
                     style="border:0;" 
                     allowfullscreen="" 
                     loading="lazy"
@@ -379,8 +450,8 @@
             <div class="modal-body p-4">
                 <div class="chat-container" style="height: 400px; border: 1px solid #dee2e6; border-radius: 0.5rem; background: #f8f9fa; display: flex; align-items: center; justify-content: center;">
                     <div class="text-center">
-                        <div class="feature-icon-wrapper mb-3">
-                            <i class="bi bi-chat-heart feature-icon-main" style="font-size: 4rem; color: #003366;"></i>
+                        <div class="mb-3">
+                            <i class="bi bi-chat-heart" style="font-size: 4rem; color: #003366;"></i>
                         </div>
                         <h5 style="color: #003366;">Chat en Vivo Próximamente</h5>
                         <p class="text-muted">Estamos implementando nuestro sistema de chat en tiempo real.</p>

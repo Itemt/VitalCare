@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "EiErO5z3pPB+xDrfK+4qj2kg6GsgkwejO2MtmYq0l3I=",
+  "Hash": "Obzw0npc42EzIT0yGEpJkm+FXBkOscoZGtfXsxpFcVo=",
   "Source": "CitasEPS",
   "BasePath": "_content/CitasEPS",
   "Mode": "Default",
@@ -1361,6 +1361,27 @@
       "OriginalItemSpec": "wwwroot/css/components.css"
     },
     {
+      "Identity": "/Users/cristianramos/Desktop/Proyectos/AplicativosWeb/CitasEPS/wwwroot/css/contact-fix.css",
+      "SourceId": "CitasEPS",
+      "SourceType": "Discovered",
+      "ContentRoot": "/Users/cristianramos/Desktop/Proyectos/AplicativosWeb/CitasEPS/wwwroot/",
+      "BasePath": "_content/CitasEPS",
+      "RelativePath": "css/contact-fix#[.{fingerprint}]?.css",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "Fingerprint": "gcvzbzpfg1",
+      "Integrity": "kM8FQqv4JviIvHXnMtg13NAu6n8C7/EUD2OY9ZLX6GE=",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot/css/contact-fix.css"
+    },
+    {
       "Identity": "/Users/cristianramos/Desktop/Proyectos/AplicativosWeb/CitasEPS/wwwroot/css/effects-hover.css",
       "SourceId": "CitasEPS",
       "SourceType": "Discovered",
@@ -1438,11 +1459,32 @@
       "RelatedAsset": "",
       "AssetTraitName": "",
       "AssetTraitValue": "",
-      "Fingerprint": "p5v5pfmw61",
-      "Integrity": "Ax7OndxzId+0GBuPyF0P/PVlyDdcfg2OlQyF7W+tKLU=",
+      "Fingerprint": "6k24ul5ssk",
+      "Integrity": "9ocJLsYgmWcmKuRTPNBeBIWTg4IjuGvPN8UNsUPdWWo=",
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot/css/navbar-fixes.css"
+    },
+    {
+      "Identity": "/Users/cristianramos/Desktop/Proyectos/AplicativosWeb/CitasEPS/wwwroot/css/navbar-ultimate-fix.css",
+      "SourceId": "CitasEPS",
+      "SourceType": "Discovered",
+      "ContentRoot": "/Users/cristianramos/Desktop/Proyectos/AplicativosWeb/CitasEPS/wwwroot/",
+      "BasePath": "_content/CitasEPS",
+      "RelativePath": "css/navbar-ultimate-fix#[.{fingerprint}]?.css",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "Fingerprint": "a4pxwgf3tz",
+      "Integrity": "lvKT06qq15uOEAy2jt/UPs8XFCvu9RVCkHAAcs7f6nc=",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot/css/navbar-ultimate-fix.css"
     },
     {
       "Identity": "/Users/cristianramos/Desktop/Proyectos/AplicativosWeb/CitasEPS/wwwroot/css/performance-optimizations.css",
@@ -3275,7 +3317,7 @@
         },
         {
           "Name": "Last-Modified",
-          "Value": "Sun, 01 Jun 2025 21:55:57 GMT"
+          "Value": "Fri, 06 Jun 2025 15:31:17 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -3312,7 +3354,7 @@
         },
         {
           "Name": "Last-Modified",
-          "Value": "Sun, 01 Jun 2025 21:55:57 GMT"
+          "Value": "Fri, 06 Jun 2025 15:31:17 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -3349,7 +3391,7 @@
         },
         {
           "Name": "Last-Modified",
-          "Value": "Sun, 01 Jun 2025 21:55:57 GMT"
+          "Value": "Fri, 06 Jun 2025 15:31:17 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -3394,7 +3436,7 @@
         },
         {
           "Name": "Last-Modified",
-          "Value": "Sun, 01 Jun 2025 21:55:57 GMT"
+          "Value": "Fri, 06 Jun 2025 15:31:17 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -3577,6 +3619,88 @@
         {
           "Name": "integrity",
           "Value": "sha256-jnAWre52iYixsK1RWEh80ujlre5py5V3oauIn68PN00="
+        }
+      ]
+    },
+    {
+      "Route": "css/contact-fix.css",
+      "AssetFile": "/Users/cristianramos/Desktop/Proyectos/AplicativosWeb/CitasEPS/wwwroot/css/contact-fix.css",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "2744"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "text/css"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"kM8FQqv4JviIvHXnMtg13NAu6n8C7/EUD2OY9ZLX6GE=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Fri, 06 Jun 2025 15:40:22 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "no-cache"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "integrity",
+          "Value": "sha256-kM8FQqv4JviIvHXnMtg13NAu6n8C7/EUD2OY9ZLX6GE="
+        }
+      ]
+    },
+    {
+      "Route": "css/contact-fix.gcvzbzpfg1.css",
+      "AssetFile": "/Users/cristianramos/Desktop/Proyectos/AplicativosWeb/CitasEPS/wwwroot/css/contact-fix.css",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "2744"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "text/css"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"kM8FQqv4JviIvHXnMtg13NAu6n8C7/EUD2OY9ZLX6GE=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Fri, 06 Jun 2025 15:40:22 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=31536000, immutable"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "fingerprint",
+          "Value": "gcvzbzpfg1"
+        },
+        {
+          "Name": "label",
+          "Value": "css/contact-fix.css"
+        },
+        {
+          "Name": "integrity",
+          "Value": "sha256-kM8FQqv4JviIvHXnMtg13NAu6n8C7/EUD2OY9ZLX6GE="
         }
       ]
     },
@@ -3827,6 +3951,51 @@
       ]
     },
     {
+      "Route": "css/navbar-fixes.6k24ul5ssk.css",
+      "AssetFile": "/Users/cristianramos/Desktop/Proyectos/AplicativosWeb/CitasEPS/wwwroot/css/navbar-fixes.css",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "9823"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "text/css"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"9ocJLsYgmWcmKuRTPNBeBIWTg4IjuGvPN8UNsUPdWWo=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Thu, 05 Jun 2025 22:51:17 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=31536000, immutable"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "fingerprint",
+          "Value": "6k24ul5ssk"
+        },
+        {
+          "Name": "label",
+          "Value": "css/navbar-fixes.css"
+        },
+        {
+          "Name": "integrity",
+          "Value": "sha256-9ocJLsYgmWcmKuRTPNBeBIWTg4IjuGvPN8UNsUPdWWo="
+        }
+      ]
+    },
+    {
       "Route": "css/navbar-fixes.css",
       "AssetFile": "/Users/cristianramos/Desktop/Proyectos/AplicativosWeb/CitasEPS/wwwroot/css/navbar-fixes.css",
       "Selectors": [],
@@ -3837,7 +4006,7 @@
         },
         {
           "Name": "Content-Length",
-          "Value": "5669"
+          "Value": "9823"
         },
         {
           "Name": "Content-Type",
@@ -3845,11 +4014,11 @@
         },
         {
           "Name": "ETag",
-          "Value": "\"Ax7OndxzId+0GBuPyF0P/PVlyDdcfg2OlQyF7W+tKLU=\""
+          "Value": "\"9ocJLsYgmWcmKuRTPNBeBIWTg4IjuGvPN8UNsUPdWWo=\""
         },
         {
           "Name": "Last-Modified",
-          "Value": "Thu, 05 Jun 2025 22:34:45 GMT"
+          "Value": "Thu, 05 Jun 2025 22:51:17 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -3859,13 +4028,13 @@
       "EndpointProperties": [
         {
           "Name": "integrity",
-          "Value": "sha256-Ax7OndxzId+0GBuPyF0P/PVlyDdcfg2OlQyF7W+tKLU="
+          "Value": "sha256-9ocJLsYgmWcmKuRTPNBeBIWTg4IjuGvPN8UNsUPdWWo="
         }
       ]
     },
     {
-      "Route": "css/navbar-fixes.p5v5pfmw61.css",
-      "AssetFile": "/Users/cristianramos/Desktop/Proyectos/AplicativosWeb/CitasEPS/wwwroot/css/navbar-fixes.css",
+      "Route": "css/navbar-ultimate-fix.a4pxwgf3tz.css",
+      "AssetFile": "/Users/cristianramos/Desktop/Proyectos/AplicativosWeb/CitasEPS/wwwroot/css/navbar-ultimate-fix.css",
       "Selectors": [],
       "ResponseHeaders": [
         {
@@ -3874,7 +4043,7 @@
         },
         {
           "Name": "Content-Length",
-          "Value": "5669"
+          "Value": "3728"
         },
         {
           "Name": "Content-Type",
@@ -3882,11 +4051,11 @@
         },
         {
           "Name": "ETag",
-          "Value": "\"Ax7OndxzId+0GBuPyF0P/PVlyDdcfg2OlQyF7W+tKLU=\""
+          "Value": "\"lvKT06qq15uOEAy2jt/UPs8XFCvu9RVCkHAAcs7f6nc=\""
         },
         {
           "Name": "Last-Modified",
-          "Value": "Thu, 05 Jun 2025 22:34:45 GMT"
+          "Value": "Fri, 06 Jun 2025 15:47:48 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -3896,15 +4065,52 @@
       "EndpointProperties": [
         {
           "Name": "fingerprint",
-          "Value": "p5v5pfmw61"
+          "Value": "a4pxwgf3tz"
         },
         {
           "Name": "label",
-          "Value": "css/navbar-fixes.css"
+          "Value": "css/navbar-ultimate-fix.css"
         },
         {
           "Name": "integrity",
-          "Value": "sha256-Ax7OndxzId+0GBuPyF0P/PVlyDdcfg2OlQyF7W+tKLU="
+          "Value": "sha256-lvKT06qq15uOEAy2jt/UPs8XFCvu9RVCkHAAcs7f6nc="
+        }
+      ]
+    },
+    {
+      "Route": "css/navbar-ultimate-fix.css",
+      "AssetFile": "/Users/cristianramos/Desktop/Proyectos/AplicativosWeb/CitasEPS/wwwroot/css/navbar-ultimate-fix.css",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "3728"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "text/css"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"lvKT06qq15uOEAy2jt/UPs8XFCvu9RVCkHAAcs7f6nc=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Fri, 06 Jun 2025 15:47:48 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "no-cache"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "integrity",
+          "Value": "sha256-lvKT06qq15uOEAy2jt/UPs8XFCvu9RVCkHAAcs7f6nc="
         }
       ]
     },
