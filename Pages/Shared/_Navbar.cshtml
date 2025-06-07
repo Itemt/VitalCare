@@ -198,8 +198,8 @@
                                                 <span>Inicio</span>
                                             </a>
                                         </div>
-                                        @if (SignInManager.IsSignedIn(User))
-                                        {
+                    @if (SignInManager.IsSignedIn(User))
+                    {
                                             @if (isAdminLoggedIn)
                                             {
                                                 <div class="col-md-6 col-12">
@@ -281,9 +281,9 @@
                                                     </a>
                                                 </div>
                                             }
-                                        }
-                                        else
-                                        {
+                    }
+                    else
+                    {
                                             @* USUARIOS NO LOGUEADOS *@
                                             <div class="col-md-6 col-12">
                                                 <a class="mobile-menu-item" asp-area="" asp-page="/Servicios">
@@ -453,16 +453,16 @@
                         @* BOTONES DE AUTENTICACIÓN - MOBILE *@
                         <div class="d-xl-none w-100 mt-3">
                             <div class="d-flex gap-2 justify-content-center">
-                                <a class="btn btn-auth btn-register btn-sm" asp-area="Identity" asp-page="/Account/Register">
+                                <a class="btn btn-auth btn-register" asp-area="Identity" asp-page="/Account/Register">
                                     <i class="bi bi-person-plus me-1"></i>
-                                <span>Registrarse</span>
+                                    <span>Registrarse</span>
                                     <div class="btn-sweep"></div>
-                            </a>
-                                <a class="btn btn-auth btn-login btn-sm" asp-area="Identity" asp-page="/Account/Login">
+                                </a>
+                                <a class="btn btn-auth btn-login" asp-area="Identity" asp-page="/Account/Login">
                                     <i class="bi bi-box-arrow-in-right me-1"></i>
-                                <span>Iniciar Sesión</span>
+                                    <span>Iniciar Sesión</span>
                                     <div class="btn-sweep"></div>
-                            </a>
+                                </a>
                             </div>
                         </div>
                     }
@@ -513,9 +513,9 @@
     padding: 0.5rem 1rem !important;
     border-radius: 8px;
     transition: color 0.2s ease, background-color 0.2s ease;
-    position: relative;
-    display: flex !important;
-    align-items: center;
+        position: relative;
+        display: flex !important;
+        align-items: center;
     white-space: nowrap;
     min-height: 40px;
 }
@@ -573,14 +573,16 @@
     border: 2px solid transparent;
     border-radius: 8px;
     font-weight: 600;
-    padding: 0.5rem 1.2rem;
+    padding: 0.5rem 1.2rem !important;
     transition: background-color 0.2s ease, color 0.2s ease, box-shadow 0.2s ease;
     text-decoration: none;
     display: inline-flex;
     align-items: center;
     z-index: 1;
     white-space: nowrap;
-    min-height: 40px;
+    min-height: 40px !important;
+    font-size: 0.875rem !important;
+    line-height: 1.5;
     }
     
     .btn-register {
@@ -593,6 +595,17 @@
     background: transparent;
     color: #0f172a !important;
     border-color: #0f172a;
+}
+
+.btn-auth i {
+    font-size: 0.875rem !important;
+    width: 1rem;
+    text-align: center;
+    flex-shrink: 0;
+}
+
+.btn-auth span {
+    flex-shrink: 0;
 }
 
 /* Elemento de barrido */
@@ -806,7 +819,7 @@
         position: absolute;
         top: 0;
         left: -100%;
-        width: 100%;
+            width: 100%;
         height: 100%;
         background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.15), transparent);
         transition: left 0.4s ease;
@@ -843,8 +856,8 @@
 
 [data-bs-theme="dark"] .mobile-menu-item:hover {
     background: #1a202c;
-    color: white !important;
-}
+            color: white !important;
+        }
 
 [data-bs-theme="dark"] .mobile-menu-item:hover i {
     color: white;
@@ -944,14 +957,14 @@
 
 /* === RESPONSIVE === */
 @@media (max-width: 1199.98px) {
-    .btn-auth i {
-        font-size: 0.9rem !important;
+    .btn-auth {
+        padding: 0.45rem 1rem !important;
+        font-size: 0.85rem !important;
+        min-height: 38px !important;
     }
     
-    .btn-auth {
-        padding: 0.4rem 0.8rem !important;
-        font-size: 0.875rem !important;
-        min-height: 38px;
+    .btn-auth i {
+        font-size: 0.85rem !important;
     }
 }
 
@@ -976,6 +989,16 @@
     .custom-hamburger {
         width: 45px !important;
         height: 45px !important;
+    }
+    
+    .btn-auth {
+        padding: 0.4rem 0.9rem !important;
+        font-size: 0.8rem !important;
+        min-height: 36px !important;
+    }
+    
+    .btn-auth i {
+        font-size: 0.8rem !important;
     }
 }
 
@@ -1009,6 +1032,16 @@
     
     .line {
         height: 2.5px !important;
+    }
+    
+    .btn-auth {
+        padding: 0.35rem 0.8rem !important;
+        font-size: 0.75rem !important;
+        min-height: 34px !important;
+    }
+    
+    .btn-auth i {
+        font-size: 0.75rem !important;
     }
 }
 </style>
