@@ -13,36 +13,40 @@
 }
 
 <header class="sticky-top">
-    <nav class="navbar navbar-expand-xl">
-        <div class="container-fluid">
+    <nav class="navbar navbar-expand-xl bg-white shadow-sm">
+        <div class="container-fluid px-3">
             @* LOGO *@
             <a class="navbar-brand d-flex align-items-center" asp-area="" asp-page="/Index">
-                <i class="bi bi-heart-pulse-fill me-2 brand-icon" style="font-size: 1.4rem;"></i> 
-                <span class="brand-text">Vital<span class="text-info">Care</span></span>
+                <i class="bi bi-heart-pulse-fill me-2 brand-icon"></i> 
+                <span class="brand-text">Vital<span class="text-primary">Care</span></span>
             </a>
             
-            @* CONTROLES MÓVILES (HAMBURGUESA + TEMA) *@
+            @* CONTROLES MÓVILES *@
             <div class="d-xl-none d-flex align-items-center gap-2">
                 @if (!SignInManager.IsSignedIn(User))
                 {
-                    <button class="btn btn-theme-toggle" type="button" id="themeToggleBtnMobile" title="Cambiar tema">
-                        <i class="bi bi-sun-fill" id="themeIconSunMobile"></i>
-                        <i class="bi bi-moon-stars-fill" id="themeIconMoonMobile" style="display:none;"></i>
+                    <button class="btn btn-outline-secondary btn-sm" type="button" id="themeToggleMobile">
+                        <i class="bi bi-sun-fill theme-icon-sun"></i>
+                        <i class="bi bi-moon-stars-fill theme-icon-moon d-none"></i>
                     </button>
                 }
-                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent">
-                    <span class="navbar-toggler-icon"></span>
+                <button class="navbar-toggler border-0 custom-hamburger" type="button" data-bs-toggle="collapse" data-bs-target="#navbarContent">
+                    <div class="hamburger-lines">
+                        <span class="line line1"></span>
+                        <span class="line line2"></span>
+                        <span class="line line3"></span>
+                    </div>
                 </button>
             </div>
             
-            @* MENÚ PRINCIPAL *@
-            <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                @* NAVEGACIÓN PRINCIPAL *@
-                <ul class="navbar-nav me-auto mb-2 mb-xl-0">
-                    @* INICIO SIEMPRE VISIBLE *@
-                    <li class="nav-item nav-item-important">
-                        <a class="nav-link d-flex align-items-center" asp-area="" asp-page="/Index">
-                            <i class="bi bi-house-door-fill me-2"></i> Inicio
+            @* CONTENIDO PRINCIPAL *@
+            <div class="collapse navbar-collapse" id="navbarContent">
+                @* NAVEGACIÓN DESKTOP *@
+                <ul class="navbar-nav me-auto mb-2 mb-xl-0 d-none d-xl-flex">
+                    @* INICIO *@
+                    <li class="nav-item">
+                        <a class="nav-link nav-link-custom" asp-area="" asp-page="/Index">
+                            <i class="bi bi-house-door-fill me-1"></i> Inicio
                         </a>
                     </li>
 
@@ -50,73 +54,70 @@
                     {
                         @if (isAdminLoggedIn)
                         {
-                            @* ADMIN - OPCIONES PRINCIPALES *@
-                            <li class="nav-item nav-item-important">
-                                <a class="nav-link d-flex align-items-center" asp-page="/Admin/ManageUsers">
-                                    <i class="bi bi-person-gear me-2"></i> Administración
+                            <li class="nav-item">
+                                <a class="nav-link nav-link-custom" asp-page="/Admin/ManageUsers">
+                                    <i class="bi bi-person-gear me-1"></i> Administración
                                 </a>
                             </li>
-                            <li class="nav-item nav-item-important">
-                                <a class="nav-link d-flex align-items-center" asp-page="/Admin/ManageAppointments">
-                                    <i class="bi bi-calendar-check-fill me-2"></i> Gestionar Citas
+                            <li class="nav-item">
+                                <a class="nav-link nav-link-custom" asp-page="/Admin/ManageAppointments">
+                                    <i class="bi bi-calendar-check-fill me-1"></i> Gestionar Citas
                                 </a>
                             </li>
-                            <li class="nav-item nav-item-important">
-                                <a class="nav-link d-flex align-items-center" asp-page="/Admin/ManageDoctors">
-                                    <i class="bi bi-file-medical-fill me-2"></i> Gestionar Médicos
+                            <li class="nav-item">
+                                <a class="nav-link nav-link-custom" asp-page="/Admin/ManageDoctors">
+                                    <i class="bi bi-file-medical-fill me-1"></i> Gestionar Médicos
                                 </a>
                             </li>
-                            <li class="nav-item nav-item-important">
-                                <a class="nav-link d-flex align-items-center" asp-page="/Admin/ManagePatients">
-                                    <i class="bi bi-person-lines-fill me-2"></i> Gestionar Pacientes
+                            <li class="nav-item">
+                                <a class="nav-link nav-link-custom" asp-page="/Admin/ManagePatients">
+                                    <i class="bi bi-person-lines-fill me-1"></i> Gestionar Pacientes
                                 </a>
                             </li>
-                            <li class="nav-item nav-item-important">
-                                <a class="nav-link d-flex align-items-center" asp-page="/Admin/Medications/Index">
-                                    <i class="bi bi-capsule-pill me-2"></i> Medicamentos
+                            <li class="nav-item">
+                                <a class="nav-link nav-link-custom" asp-page="/Admin/Medications/Index">
+                                    <i class="bi bi-capsule-pill me-1"></i> Medicamentos
                                 </a>
                             </li>
                         } 
                         else if (isDoctorLoggedIn)
                         {
-                            @* DOCTOR - OPCIONES PRINCIPALES *@
-                            <li class="nav-item nav-item-important">
-                                <a class="nav-link d-flex align-items-center" asp-page="/Doctor/Agenda">
-                                    <i class="bi bi-calendar-week-fill me-2"></i> Mi Agenda
+                            <li class="nav-item">
+                                <a class="nav-link nav-link-custom" asp-page="/Doctor/Agenda">
+                                    <i class="bi bi-calendar-week-fill me-1"></i> Mi Agenda
                                 </a>
                             </li>
-                            <li class="nav-item nav-item-important">
-                                <a class="nav-link d-flex align-items-center" asp-page="/Doctor/Patients">
-                                    <i class="bi bi-person-badge-fill me-2"></i> Mis Pacientes
+                            <li class="nav-item">
+                                <a class="nav-link nav-link-custom" asp-page="/Doctor/Patients">
+                                    <i class="bi bi-person-badge-fill me-1"></i> Mis Pacientes
                                 </a>
                             </li>
-                            <li class="nav-item nav-item-important">
-                                <a class="nav-link d-flex align-items-center" asp-page="/Appointments/Index">
-                                    <i class="bi bi-calendar-event me-2"></i> Ver Citas
+                            <li class="nav-item">
+                                <a class="nav-link nav-link-custom" asp-page="/Appointments/Index">
+                                    <i class="bi bi-calendar-event me-1"></i> Ver Citas
                                 </a>
                             </li>
-                            @* MENÚ MÁS PARA DOCTOR *@
-                            <li class="nav-item dropdown nav-item-important">
-                                <a class="nav-link dropdown-toggle d-flex align-items-center" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                                    <i class="bi bi-three-dots me-2"></i> Más
+                            <li class="nav-item dropdown">
+                                <a class="nav-link nav-link-custom dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown">
+                                    <i class="bi bi-three-dots me-1"></i> Más
                                 </a>
-                                <ul class="dropdown-menu">
-                                    <li><a class="dropdown-item d-flex align-items-center" asp-area="" asp-page="/Servicios">
+                                <ul class="dropdown-menu dropdown-menu-custom">
+                                    <li><a class="dropdown-item dropdown-item-custom" asp-area="" asp-page="/Servicios">
                                         <i class="bi bi-gear-fill me-2"></i> Servicios
                                     </a></li>
-                                    <li><a class="dropdown-item d-flex align-items-center" asp-area="" asp-page="/About">
+                                    <li><a class="dropdown-item dropdown-item-custom" asp-area="" asp-page="/About">
                                         <i class="bi bi-building me-2"></i> Sobre Nosotros
                                     </a></li>
-                                    <li><a class="dropdown-item d-flex align-items-center" asp-area="" asp-page="/Team">
+                                    <li><a class="dropdown-item dropdown-item-custom" asp-area="" asp-page="/Team">
                                         <i class="bi bi-people-fill me-2"></i> Equipo
                                     </a></li>
-                                    <li><a class="dropdown-item d-flex align-items-center" asp-area="" asp-page="/Contact">
+                                    <li><a class="dropdown-item dropdown-item-custom" asp-area="" asp-page="/Contact">
                                         <i class="bi bi-envelope-fill me-2"></i> Contacto
                                     </a></li>
-                                    <li><a class="dropdown-item d-flex align-items-center" asp-area="" asp-page="/Support">
+                                    <li><a class="dropdown-item dropdown-item-custom" asp-area="" asp-page="/Support">
                                         <i class="bi bi-headset me-2"></i> Soporte Técnico
                                     </a></li>
-                                    <li><a class="dropdown-item d-flex align-items-center" asp-area="" asp-page="/FAQ">
+                                    <li><a class="dropdown-item dropdown-item-custom" asp-area="" asp-page="/FAQ">
                                         <i class="bi bi-question-circle-fill me-2"></i> FAQ
                                     </a></li>
                                 </ul>
@@ -124,84 +125,260 @@
                         } 
                         else if (isPatientLoggedIn)
                         {
-                            @* PACIENTE - OPCIONES PRINCIPALES *@
-                            <li class="nav-item nav-item-important">
-                                <a class="nav-link d-flex align-items-center" asp-page="/Appointments/Create">
-                                    <i class="bi bi-calendar-plus-fill me-2"></i> Agendar Cita
+                            <li class="nav-item">
+                                <a class="nav-link nav-link-custom" asp-page="/Appointments/Create">
+                                    <i class="bi bi-calendar-plus-fill me-1"></i> Agendar Cita
                                 </a>
                             </li>
-                            <li class="nav-item nav-item-important">
-                                <a class="nav-link d-flex align-items-center" asp-page="/Appointments/Index">
-                                    <i class="bi bi-calendar-event-fill me-2"></i> Mis Citas
+                            <li class="nav-item">
+                                <a class="nav-link nav-link-custom" asp-page="/Appointments/Index">
+                                    <i class="bi bi-calendar-event-fill me-1"></i> Mis Citas
                                 </a>
                             </li>
-                            <li class="nav-item nav-item-important">
-                                <a class="nav-link d-flex align-items-center" asp-page="/Appointments/MyPrescriptions">
-                                    <i class="bi bi-journal-medical me-2"></i> Mis Recetas
+                            <li class="nav-item">
+                                <a class="nav-link nav-link-custom" asp-page="/Appointments/MyPrescriptions">
+                                    <i class="bi bi-journal-medical me-1"></i> Mis Recetas
                                 </a>
                             </li>
-                            <li class="nav-item nav-item-important">
-                                <a class="nav-link d-flex align-items-center" asp-page="/Patient/HealthStatus">
-                                    <i class="bi bi-heart-pulse-fill me-2"></i> Mi Salud
+                            <li class="nav-item">
+                                <a class="nav-link nav-link-custom" asp-page="/Patient/HealthStatus">
+                                    <i class="bi bi-heart-pulse-fill me-1"></i> Mi Salud
                                 </a>
                             </li>
                         }
                     }
                     else
                     {
-                        @* USUARIOS NO LOGUEADOS - OPCIONES PRINCIPALES *@
-                        <li class="nav-item nav-item-important">
-                            <a class="nav-link d-flex align-items-center" asp-area="" asp-page="/Servicios">
-                                <i class="bi bi-gear-fill me-2"></i> Servicios
+                        @* USUARIOS NO LOGUEADOS *@
+                        <li class="nav-item">
+                            <a class="nav-link nav-link-custom" asp-area="" asp-page="/Servicios">
+                                <i class="bi bi-gear-fill me-1"></i> Servicios
                             </a>
                         </li>
-                        <li class="nav-item nav-item-important">
-                            <a class="nav-link d-flex align-items-center" asp-area="" asp-page="/About">
-                                <i class="bi bi-building me-2"></i> Sobre Nosotros
+                        <li class="nav-item">
+                            <a class="nav-link nav-link-custom" asp-area="" asp-page="/About">
+                                <i class="bi bi-building me-1"></i> Sobre Nosotros
                             </a>
                         </li>
-                        <li class="nav-item nav-item-important">
-                            <a class="nav-link d-flex align-items-center" asp-area="" asp-page="/Team">
-                                <i class="bi bi-people-fill me-2"></i> Equipo
+                        <li class="nav-item">
+                            <a class="nav-link nav-link-custom" asp-area="" asp-page="/Team">
+                                <i class="bi bi-people-fill me-1"></i> Equipo
                             </a>
                         </li>
-                        <li class="nav-item nav-item-important">
-                            <a class="nav-link d-flex align-items-center" asp-area="" asp-page="/Contact">
-                                <i class="bi bi-envelope-fill me-2"></i> Contacto
+                        <li class="nav-item">
+                            <a class="nav-link nav-link-custom" asp-area="" asp-page="/Contact">
+                                <i class="bi bi-envelope-fill me-1"></i> Contacto
                             </a>
                         </li>
-                        <li class="nav-item nav-item-important">
-                            <a class="nav-link d-flex align-items-center" asp-area="" asp-page="/Support">
-                                <i class="bi bi-headset me-2"></i> Soporte Técnico
+                        <li class="nav-item">
+                            <a class="nav-link nav-link-custom" asp-area="" asp-page="/Support">
+                                <i class="bi bi-headset me-1"></i> Soporte Técnico
                             </a>
                         </li>
-                        <li class="nav-item nav-item-important">
-                            <a class="nav-link d-flex align-items-center" asp-area="" asp-page="/FAQ">
-                                <i class="bi bi-question-circle-fill me-2"></i> FAQ
+                        <li class="nav-item">
+                            <a class="nav-link nav-link-custom" asp-area="" asp-page="/FAQ">
+                                <i class="bi bi-question-circle-fill me-1"></i> FAQ
                             </a>
                         </li>
                     }
                 </ul>
 
+                @* NAVEGACIÓN MÓVIL EN COLUMNAS *@
+                <div class="d-xl-none mobile-menu-container">
+                    <div class="container-fluid">
+                        <div class="row g-3">
+                            @* COLUMNA PRINCIPAL *@
+                            <div class="col-12">
+                                <div class="mobile-menu-section">
+                                    <h6 class="mobile-menu-title">Navegación Principal</h6>
+                                                                        <div class="row">
+                                        <div class="col-md-6 col-12">
+                                            <a class="mobile-menu-item" asp-area="" asp-page="/Index">
+                                                <i class="bi bi-house-door-fill me-2"></i> 
+                                                <span>Inicio</span>
+                                            </a>
+                                        </div>
+                                        @if (SignInManager.IsSignedIn(User))
+                                        {
+                                            @if (isAdminLoggedIn)
+                                            {
+                                                <div class="col-md-6 col-12">
+                                                    <a class="mobile-menu-item" asp-page="/Admin/ManageUsers">
+                                                        <i class="bi bi-person-gear me-2"></i> 
+                                                        <span>Administración</span>
+                                                    </a>
+                                                </div>
+                                                <div class="col-md-6 col-12">
+                                                    <a class="mobile-menu-item" asp-page="/Admin/ManageAppointments">
+                                                        <i class="bi bi-calendar-check-fill me-2"></i> 
+                                                        <span>Gestionar Citas</span>
+                                                    </a>
+                                                </div>
+                                                <div class="col-md-6 col-12">
+                                                    <a class="mobile-menu-item" asp-page="/Admin/ManageDoctors">
+                                                        <i class="bi bi-file-medical-fill me-2"></i> 
+                                                        <span>Gestionar Médicos</span>
+                                                    </a>
+                                                </div>
+                                                <div class="col-md-6 col-12">
+                                                    <a class="mobile-menu-item" asp-page="/Admin/ManagePatients">
+                                                        <i class="bi bi-person-lines-fill me-2"></i> 
+                                                        <span>Gestionar Pacientes</span>
+                                                    </a>
+                                                </div>
+                                                <div class="col-md-6 col-12">
+                                                    <a class="mobile-menu-item" asp-page="/Admin/Medications/Index">
+                                                        <i class="bi bi-capsule-pill me-2"></i> 
+                                                        <span>Medicamentos</span>
+                                                    </a>
+                                                </div>
+                                            } 
+                                            else if (isDoctorLoggedIn)
+                                            {
+                                                <div class="col-md-6 col-12">
+                                                    <a class="mobile-menu-item" asp-page="/Doctor/Agenda">
+                                                        <i class="bi bi-calendar-week-fill me-2"></i> 
+                                                        <span>Mi Agenda</span>
+                                                    </a>
+                                                </div>
+                                                <div class="col-md-6 col-12">
+                                                    <a class="mobile-menu-item" asp-page="/Doctor/Patients">
+                                                        <i class="bi bi-person-badge-fill me-2"></i> 
+                                                        <span>Mis Pacientes</span>
+                                                    </a>
+                                                </div>
+                                                <div class="col-md-6 col-12">
+                                                    <a class="mobile-menu-item" asp-page="/Appointments/Index">
+                                                        <i class="bi bi-calendar-event me-2"></i> 
+                                                        <span>Ver Citas</span>
+                                                    </a>
+                                                </div>
+                                            } 
+                                            else if (isPatientLoggedIn)
+                                            {
+                                                <div class="col-md-6 col-12">
+                                                    <a class="mobile-menu-item" asp-page="/Appointments/Create">
+                                                        <i class="bi bi-calendar-plus-fill me-2"></i> 
+                                                        <span>Agendar Cita</span>
+                                                    </a>
+                                                </div>
+                                                <div class="col-md-6 col-12">
+                                                    <a class="mobile-menu-item" asp-page="/Appointments/Index">
+                                                        <i class="bi bi-calendar-event-fill me-2"></i> 
+                                                        <span>Mis Citas</span>
+                                                    </a>
+                                                </div>
+                                                <div class="col-md-6 col-12">
+                                                    <a class="mobile-menu-item" asp-page="/Appointments/MyPrescriptions">
+                                                        <i class="bi bi-journal-medical me-2"></i> 
+                                                        <span>Mis Recetas</span>
+                                                    </a>
+                                                </div>
+                                                <div class="col-md-6 col-12">
+                                                    <a class="mobile-menu-item" asp-page="/Patient/HealthStatus">
+                                                        <i class="bi bi-heart-pulse-fill me-2"></i> 
+                                                        <span>Mi Salud</span>
+                                                    </a>
+                                                </div>
+                                            }
+                                        }
+                                        else
+                                        {
+                                            @* USUARIOS NO LOGUEADOS *@
+                                            <div class="col-md-6 col-12">
+                                                <a class="mobile-menu-item" asp-area="" asp-page="/Servicios">
+                                                    <i class="bi bi-gear-fill me-2"></i> 
+                                                    <span>Servicios</span>
+                                                </a>
+                                            </div>
+                                            <div class="col-md-6 col-12">
+                                                <a class="mobile-menu-item" asp-area="" asp-page="/About">
+                                                    <i class="bi bi-building me-2"></i> 
+                                                    <span>Sobre Nosotros</span>
+                                                </a>
+                                            </div>
+                                            <div class="col-md-6 col-12">
+                                                <a class="mobile-menu-item" asp-area="" asp-page="/Team">
+                                                    <i class="bi bi-people-fill me-2"></i> 
+                                                    <span>Equipo</span>
+                                                </a>
+                                            </div>
+                                            <div class="col-md-6 col-12">
+                                                <a class="mobile-menu-item" asp-area="" asp-page="/Contact">
+                                                    <i class="bi bi-envelope-fill me-2"></i> 
+                                                    <span>Contacto</span>
+                                                </a>
+                                            </div>
+                                            <div class="col-md-6 col-12">
+                                                <a class="mobile-menu-item" asp-area="" asp-page="/Support">
+                                                    <i class="bi bi-headset me-2"></i> 
+                                                    <span>Soporte Técnico</span>
+                                                </a>
+                                            </div>
+                                            <div class="col-md-6 col-12">
+                                                <a class="mobile-menu-item" asp-area="" asp-page="/FAQ">
+                                                    <i class="bi bi-question-circle-fill me-2"></i> 
+                                                    <span>FAQ</span>
+                                                </a>
+                                            </div>
+                                        }
+                                    </div>
+                                </div>
+                            </div>
+
+                            @* SECCIÓN ADICIONAL PARA DOCTORES *@
+                            @if (SignInManager.IsSignedIn(User) && isDoctorLoggedIn)
+                            {
+                                <div class="col-12">
+                                    <div class="mobile-menu-section">
+                                        <h6 class="mobile-menu-title">Información y Soporte</h6>
+                                        <div class="row">
+                                            <div class="col-md-6 col-12">
+                                                <a class="mobile-menu-item" asp-area="" asp-page="/Servicios">
+                                                    <i class="bi bi-gear-fill me-2"></i> 
+                                                    <span>Servicios</span>
+                                                </a>
+                                            </div>
+                                            <div class="col-md-6 col-12">
+                                                <a class="mobile-menu-item" asp-area="" asp-page="/About">
+                                                    <i class="bi bi-building me-2"></i> 
+                                                    <span>Sobre Nosotros</span>
+                                                </a>
+                                            </div>
+                                            <div class="col-md-6 col-12">
+                                                <a class="mobile-menu-item" asp-area="" asp-page="/Team">
+                                                    <i class="bi bi-people-fill me-2"></i> 
+                                                    <span>Equipo</span>
+                                                </a>
+                                            </div>
+                                            <div class="col-md-6 col-12">
+                                                <a class="mobile-menu-item" asp-area="" asp-page="/Contact">
+                                                    <i class="bi bi-envelope-fill me-2"></i> 
+                                                    <span>Contacto</span>
+                                                </a>
+                                            </div>
+                                            <div class="col-md-6 col-12">
+                                                <a class="mobile-menu-item" asp-area="" asp-page="/Support">
+                                                    <i class="bi bi-headset me-2"></i> 
+                                                    <span>Soporte Técnico</span>
+                                                </a>
+                                            </div>
+                                            <div class="col-md-6 col-12">
+                                                <a class="mobile-menu-item" asp-area="" asp-page="/FAQ">
+                                                    <i class="bi bi-question-circle-fill me-2"></i> 
+                                                    <span>FAQ</span>
+                                                </a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            }
+                        </div>
+                    </div>
+                </div>
+
                 @* LADO DERECHO *@
                 <div class="d-flex align-items-center">
-                    @if (SignInManager.IsSignedIn(User))
-                    {
-                        @* TEMA PARA USUARIOS LOGUEADOS *@
-                        <button class="btn btn-medical me-3 d-none d-xl-flex" type="button" id="themeToggleBtn" title="Cambiar tema">
-                            <i class="bi bi-sun-fill" id="themeIconSun"></i>
-                            <i class="bi bi-moon-stars-fill" id="themeIconMoon" style="display:none;"></i>
-                        </button>
-                    }
-                    else
-                    {
-                        @* TEMA PARA USUARIOS NO LOGUEADOS - DESKTOP *@
-                        <button class="btn btn-theme-toggle me-3 d-none d-xl-flex align-items-center" type="button" id="themeToggleBtn" title="Cambiar tema">
-                            <i class="bi bi-sun-fill" id="themeIconSun"></i>
-                            <i class="bi bi-moon-stars-fill" id="themeIconMoon" style="display:none;"></i>
-                        </button>
-                    }
-
                     @if (SignInManager.IsSignedIn(User))
                     {
                         var currentUser = await UserManager.GetUserAsync(User);
@@ -211,13 +388,19 @@
                             displayName = UserManager.GetUserName(User);
                         }
 
+                        @* BOTÓN DE TEMA *@
+                        <button class="btn btn-outline-secondary btn-sm me-3 d-none d-xl-flex" type="button" id="themeToggle">
+                            <i class="bi bi-sun-fill theme-icon-sun"></i>
+                            <i class="bi bi-moon-stars-fill theme-icon-moon d-none"></i>
+                        </button>
+
                         @* NOTIFICACIONES *@
                         <div class="dropdown me-3">
-                            <button class="btn btn-medical position-relative" type="button" id="notificationDropdown" data-bs-toggle="dropdown">
+                            <button class="btn btn-outline-primary btn-sm position-relative" type="button" data-bs-toggle="dropdown">
                                 <i class="bi bi-bell-fill"></i>
-                                <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger" id="notificationBadge" style="display: none;">1</span>
+                                <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger d-none" id="notificationBadge">1</span>
                             </button>
-                            <ul class="dropdown-menu dropdown-menu-end" style="width: 300px;">
+                            <ul class="dropdown-menu dropdown-menu-end dropdown-menu-custom" style="width: 300px;">
                                 <li><h6 class="dropdown-header">Notificaciones</h6></li>
                                 <li><hr class="dropdown-divider"></li>
                                 <li><div class="text-center p-3 text-muted">Sin notificaciones</div></li>
@@ -226,18 +409,18 @@
 
                         @* USUARIO *@
                         <div class="dropdown">
-                            <a class="nav-link dropdown-toggle d-flex align-items-center" href="#" role="button" data-bs-toggle="dropdown">
-                                <i class="bi bi-person-circle me-2"></i> 
+                            <a class="nav-link dropdown-toggle user-dropdown" href="#" role="button" data-bs-toggle="dropdown">
+                                <i class="bi bi-person-circle me-1"></i> 
                                 <span class="d-none d-md-inline">@displayName</span>
                             </a>
-                            <ul class="dropdown-menu dropdown-menu-end">
-                                <li><a class="dropdown-item d-flex align-items-center" asp-area="Identity" asp-page="/Account/Manage/Index">
+                            <ul class="dropdown-menu dropdown-menu-end dropdown-menu-custom">
+                                <li><a class="dropdown-item dropdown-item-custom" asp-area="Identity" asp-page="/Account/Manage/Index">
                                     <i class="bi bi-gear me-2"></i> Mi Cuenta
                                 </a></li>
                                 <li><hr class="dropdown-divider"></li>
                                 <li>
                                     <form asp-area="Identity" asp-page="/Account/Logout" asp-route-returnUrl="@Url.Page("/Index", new { area = "" })">
-                                        <button type="submit" class="dropdown-item d-flex align-items-center">
+                                        <button type="submit" class="dropdown-item dropdown-item-custom">
                                             <i class="bi bi-box-arrow-right me-2"></i> Cerrar Sesión
                                         </button>
                                     </form>
@@ -247,28 +430,40 @@
                     }
                     else
                     {
-                        @* NO LOGUEADOS - BOTONES DESKTOP *@
+                        @* BOTÓN DE TEMA PARA NO LOGUEADOS - DESKTOP *@
+                        <button class="btn btn-outline-secondary btn-sm me-3 d-none d-xl-flex" type="button" id="themeToggle">
+                            <i class="bi bi-sun-fill theme-icon-sun"></i>
+                            <i class="bi bi-moon-stars-fill theme-icon-moon d-none"></i>
+                        </button>
+
+                        @* BOTONES DE AUTENTICACIÓN - DESKTOP *@
                         <div class="d-none d-xl-flex gap-2">
-                            <a class="btn btn-login btn-register d-flex align-items-center" asp-area="Identity" asp-page="/Account/Register">
-                                <i class="bi bi-person-plus me-2"></i> 
+                            <a class="btn btn-auth btn-register" asp-area="Identity" asp-page="/Account/Register">
+                                <i class="bi bi-person-plus me-1"></i> 
                                 <span>Registrarse</span>
+                                <div class="btn-sweep"></div>
                             </a>
-                            <a class="btn btn-login d-flex align-items-center" asp-area="Identity" asp-page="/Account/Login">
-                                <i class="bi bi-box-arrow-in-right me-2"></i> 
+                            <a class="btn btn-auth btn-login" asp-area="Identity" asp-page="/Account/Login">
+                                <i class="bi bi-box-arrow-in-right me-1"></i> 
                                 <span>Iniciar Sesión</span>
+                                <div class="btn-sweep"></div>
                             </a>
                         </div>
                         
-                        @* NO LOGUEADOS - BOTONES MOBILE (dentro del collapse) *@
-                        <div class="d-xl-none mobile-buttons-container">
-                            <a class="btn btn-login btn-register me-2" asp-area="Identity" asp-page="/Account/Register">
-                                <i class="bi bi-person-plus"></i>
+                        @* BOTONES DE AUTENTICACIÓN - MOBILE *@
+                        <div class="d-xl-none w-100 mt-3">
+                            <div class="d-flex gap-2 justify-content-center">
+                                <a class="btn btn-auth btn-register btn-sm" asp-area="Identity" asp-page="/Account/Register">
+                                    <i class="bi bi-person-plus me-1"></i>
                                 <span>Registrarse</span>
+                                    <div class="btn-sweep"></div>
                             </a>
-                            <a class="btn btn-login" asp-area="Identity" asp-page="/Account/Login">
-                                <i class="bi bi-box-arrow-in-right"></i>
+                                <a class="btn btn-auth btn-login btn-sm" asp-area="Identity" asp-page="/Account/Login">
+                                    <i class="bi bi-box-arrow-in-right me-1"></i>
                                 <span>Iniciar Sesión</span>
+                                    <div class="btn-sweep"></div>
                             </a>
+                            </div>
                         </div>
                     }
                 </div>
@@ -277,695 +472,579 @@
     </nav>
 </header>
 
-@* MENÚ MÓVIL Y DE ESCRITORIO REFINADO *@
 <style>
-    /* === ANIMACIONES DE HAMBURGUESA PERSONALIZADAS === */
-    .navbar-toggler {
-        border: none !important;
-        padding: 0.5rem;
-        width: 50px;
-        height: 50px;
-        position: relative;
-        background: transparent !important;
-        border-radius: 8px !important;
+/* === NAVBAR BASE === */
+.navbar {
+    background: rgba(255, 255, 255, 0.95) !important;
+    backdrop-filter: blur(10px);
+    border-bottom: 1px solid rgba(0, 0, 0, 0.1);
         transition: all 0.3s ease;
-    }
-    
-    .navbar-toggler:focus {
-        box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.25) !important;
-    }
-    
-    .navbar-toggler-icon {
-        background: none !important;
-        width: 100% !important;
-        height: 100% !important;
+    padding: 0.75rem 0;
+}
+
+/* === BRAND === */
+.navbar-brand {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: #1a202c !important;
+    text-decoration: none;
+}
+
+.brand-icon {
+    color: #22c55e !important;
+    font-size: 1.4rem;
+}
+
+.brand-text .text-primary {
+    color: #1e40af !important;
+}
+
+/* === NAVEGACIÓN === */
+.nav-link-custom {
+    color: #4a5568 !important;
+    font-weight: 500;
+    padding: 0.5rem 1rem !important;
+    border-radius: 8px;
+    transition: all 0.3s ease;
         position: relative;
         display: flex !important;
         align-items: center;
-        justify-content: center;
-    }
-    
-    .hamburger-lines {
-        width: 25px;
-        height: 20px;
-        position: relative;
-        display: flex;
-        flex-direction: column;
-        justify-content: space-between;
-    }
-    
-    .hamburger-lines .line {
-        width: 100%;
-        height: 3px;
-        background-color: currentColor;
-        border-radius: 2px;
-        transition: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
-        transform-origin: center;
-    }
-    
-    /* Animación cuando está activo (abierto) */
-    .navbar-toggler.active .line1 {
-        transform: translateY(8.5px) rotate(45deg);
-    }
-    
-    .navbar-toggler.active .line2 {
-        opacity: 0;
-        transform: scaleX(0);
-    }
-    
-    .navbar-toggler.active .line3 {
-        transform: translateY(-8.5px) rotate(-45deg);
-    }
-    
-    /* Hover effects */
-    .navbar-toggler:hover .line {
-        background-color: #007bff;
-    }
-    
-    /* === ESTILOS PARA BOTONES DE REGISTRO Y LOGIN === */
-    .btn-login, .btn-register {
-        border: 1px solid transparent !important;
-        box-sizing: border-box !important;
-        font-weight: 500 !important;
-        padding: 0.5rem 1rem !important;
-        min-width: 120px !important;
-        height: 38px !important;
-        display: inline-flex !important;
-        align-items: center !important;
-        justify-content: center !important;
-        text-align: center !important;
-        white-space: nowrap !important;
-        line-height: 1.5 !important;
-        font-size: 0.875rem !important;
+}
+
+.nav-link-custom:hover {
+    color: #1e40af !important;
+    background: rgba(30, 64, 175, 0.1);
+    transform: translateY(-1px);
+}
+
+.nav-link-custom i {
+    font-size: 1rem;
+    width: 1.2rem;
+    text-align: center;
+}
+
+/* === DROPDOWNS === */
+.dropdown-menu-custom {
+    border: none;
+    border-radius: 12px;
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+    background: rgba(255, 255, 255, 0.98);
+    backdrop-filter: blur(10px);
+    padding: 0.5rem 0;
+}
+
+.dropdown-item-custom {
+    color: #4a5568 !important;
+    font-weight: 500;
+    padding: 0.5rem 1rem;
+    transition: all 0.2s ease;
+    display: flex;
+    align-items: center;
+}
+
+.dropdown-item-custom:hover {
+    background: rgba(30, 64, 175, 0.1) !important;
+    color: #1e40af !important;
+    transform: translateX(5px);
+}
+
+.user-dropdown {
+    color: #4a5568 !important;
+    font-weight: 500;
+    text-decoration: none;
+}
+
+.user-dropdown:hover {
+    color: #1e40af !important;
+}
+
+/* === BOTONES DE AUTENTICACIÓN CON ANIMACIÓN DE BARRIDO === */
+.btn-auth {
+    position: relative;
+    overflow: hidden;
+    border: 2px solid transparent;
+    border-radius: 8px;
+    font-weight: 600;
+    padding: 0.5rem 1.2rem;
+    transition: all 0.3s ease;
+    text-decoration: none;
+    display: inline-flex;
+    align-items: center;
+    z-index: 1;
     }
     
     .btn-register {
-        background: linear-gradient(135deg, #1e40af 0%, #1d4ed8 100%) !important;
-    }
-    
-    .btn-register:hover {
-        background: linear-gradient(135deg, #1d4ed8 0%, #2563eb 100%) !important;
-        transform: translateY(-1px) !important;
-    }
-    
-    /* === ESTILOS PARA MODO OSCURO === */
-    [data-bs-theme="dark"] .btn-login,
-    body[data-bs-theme="dark"] .btn-login {
-        background: linear-gradient(135deg, #374151 0%, #1f2937 100%) !important;
-        border-color: #374151 !important;
-        color: #e5e7eb !important;
-    }
-    
-    [data-bs-theme="dark"] .btn-login:hover,
-    body[data-bs-theme="dark"] .btn-login:hover {
-        background: linear-gradient(135deg, #1f2937 0%, #111827 100%) !important;
-        border-color: #1f2937 !important;
-        color: #ffffff !important;
-        transform: translateY(-1px) !important;
-    }
-    
-    [data-bs-theme="dark"] .btn-register,
-    body[data-bs-theme="dark"] .btn-register {
-        background: linear-gradient(135deg, #374151 0%, #1f2937 100%) !important;
-        border-color: #374151 !important;
-        color: #e5e7eb !important;
-    }
-    
-    [data-bs-theme="dark"] .btn-register:hover,
-    body[data-bs-theme="dark"] .btn-register:hover {
-        background: linear-gradient(135deg, #1f2937 0%, #111827 100%) !important;
-        border-color: #1f2937 !important;
-        color: #ffffff !important;
-        transform: translateY(-1px) !important;
-    }
-    
-    /* === FORZAR DIMENSIONES EXACTAS PARA EVITAR CAMBIOS DE TAMAÑO === */
-    .btn-login, .btn-register {
-        width: auto !important;
-        min-width: 120px !important;
-        height: 38px !important;
-        padding: 0.5rem 1rem !important;
-        box-sizing: border-box !important;
-        display: inline-flex !important;
-        align-items: center !important;
-        justify-content: center !important;
-        font-size: 0.875rem !important;
-        line-height: 1.5 !important;
-        font-weight: 500 !important;
-        border-width: 1px !important;
-        border-style: solid !important;
-        text-align: center !important;
-        white-space: nowrap !important;
-    }
-    
-    [data-bs-theme="dark"] .btn-login,
-    [data-bs-theme="dark"] .btn-register,
-    body[data-bs-theme="dark"] .btn-login,
-    body[data-bs-theme="dark"] .btn-register {
-        width: auto !important;
-        min-width: 120px !important;
-        height: 38px !important;
-        padding: 0.5rem 1rem !important;
-        box-sizing: border-box !important;
-        display: inline-flex !important;
-        align-items: center !important;
-        justify-content: center !important;
-        font-size: 0.875rem !important;
-        line-height: 1.5 !important;
-        font-weight: 500 !important;
-        border-width: 1px !important;
-        border-style: solid !important;
-        text-align: center !important;
-        white-space: nowrap !important;
-    }
-    
-    /* === REGLA FINAL DE FORZADO DE DIMENSIONES === */
-    .d-flex .btn-login, .d-flex .btn-register,
-    .navbar .btn-login, .navbar .btn-register,
-    .mobile-buttons-container .btn-login, .mobile-buttons-container .btn-register {
-        width: auto !important;
-        min-width: 120px !important;
-        height: 38px !important;
-        padding: 0.5rem 1rem !important;
-        font-size: 0.875rem !important;
-        line-height: 1.5 !important;
-        box-sizing: border-box !important;
-        border-width: 1px !important;
-        border-style: solid !important;
-    }
-    
-    /* === LOGO VITALCARE EN MODO OSCURO === */
-    [data-bs-theme="dark"] .navbar-brand,
-    body[data-bs-theme="dark"] .navbar-brand {
-        color: #ffffff !important;
-    }
-    
-    [data-bs-theme="dark"] .navbar-brand .brand-text,
-    body[data-bs-theme="dark"] .navbar-brand .brand-text {
-        color: #ffffff !important;
-    }
-    
-    [data-bs-theme="dark"] .navbar-brand .text-info,
-    body[data-bs-theme="dark"] .navbar-brand .text-info {
-        color: #ffffff !important;
-    }
-    
-    [data-bs-theme="dark"] .navbar-brand .brand-icon,
-    body[data-bs-theme="dark"] .navbar-brand .brand-icon {
-        color: #ffffff !important;
-    }
-    
-    /* Responsive - Ocultar iconos en móvil */
-    @@media (max-width: 1199.98px) {
-        .btn-login i, .btn-register i {
-            display: none !important;
-        }
-        
-        .btn-login, .btn-register {
-            font-size: 0.8rem !important;
-            min-width: 100px !important;
-            height: 36px !important;
-            padding: 0.4rem 0.8rem !important;
-            box-sizing: border-box !important;
-            border-width: 1px !important;
-            border-style: solid !important;
-        }
-        
-        .btn-login span, .btn-register span {
-            font-size: inherit !important;
-        }
-    }
-    
-    /* Mostrar iconos en desktop */
-    @@media (min-width: 1200px) {
-        .btn-login i, .btn-register i {
-            display: inline-block !important;
-        }
-    }
+    background: #0f172a;
+    color: white !important;
+    border-color: #0f172a;
+}
 
-    /* Base para Toggler y Collapse */
-    .navbar-expand-xl .navbar-toggler { display: block; }
-    .navbar-expand-xl .navbar-collapse { display: none; }
-    .navbar-expand-xl .navbar-collapse.show { display: block !important; }
+.btn-login {
+    background: transparent;
+    color: #0f172a !important;
+    border-color: #0f172a;
+}
 
-    /* --- VISTA DE ESCRITORIO (min-width: 1200px) --- */
-    @@media (min-width: 1200px) {
-        .navbar-expand-xl .navbar-toggler { display: none !important; }
-        .navbar-expand-xl .navbar-collapse { display: flex !important; flex-basis: auto; align-items: center; }
-        .navbar-expand-xl .navbar-nav { flex-direction: row; align-items: center; }
+/* Elemento de barrido */
+.btn-sweep {
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.4), transparent);
+    transition: left 0.6s ease;
+    z-index: 2;
+    pointer-events: none;
+}
 
-        .navbar-expand-xl .navbar-nav .nav-item .nav-link {
-            padding: 0.4rem 0.6rem !important;
-            margin: 0 0.05rem !important;
-            font-size: 0.825rem !important;
-            background: transparent !important;
-            border-radius: var(--bs-border-radius-sm, 0.25rem);
-            transition: background-color 0.15s ease, color 0.15s ease;
-            line-height: 1.4;
-            white-space: nowrap;
-            display: flex; align-items: center;
-        }
-        .navbar-expand-xl .navbar-nav .nav-item .nav-link i {
-            font-size: 0.8rem !important;
-            margin-right: 0.3rem !important;
-            margin-bottom: 0 !important;
-            line-height: 1;
-        }
-        .navbar-expand-xl .navbar-nav .nav-item .nav-link:hover {
-            background-color: rgba(var(--bs-emphasis-color-rgb), 0.15);
-            color: var(--bs-emphasis-color);
-        }
-        body.doctor-body-bg .navbar-expand-xl .navbar-nav .nav-item.nav-item-important .nav-link,
-        body.patient-body-bg .navbar-expand-xl .navbar-nav .nav-item.nav-item-important .nav-link,
-        body.admin-body-bg .navbar-expand-xl .navbar-nav .nav-item.nav-item-important .nav-link {
-            background: rgba(255,255,255,0.12) !important;
-            color: rgba(255,255,255,0.9) !important;
-        }
-        body.doctor-body-bg .navbar-expand-xl .navbar-nav .nav-item.nav-item-important .nav-link:hover,
-        body.patient-body-bg .navbar-expand-xl .navbar-nav .nav-item.nav-item-important .nav-link:hover,
-        body.admin-body-bg .navbar-expand-xl .navbar-nav .nav-item.nav-item-important .nav-link:hover {
-            background: rgba(255,255,255,0.25) !important;
-            color: #fff !important;
-        }
+.btn-auth:hover .btn-sweep {
+    left: 100%;
+}
 
-        /* Espaciado aumentado para navbars de doctor y paciente específicamente */
-        body.doctor-body-bg .navbar-expand-xl .navbar-nav .nav-item .nav-link,
-        body.patient-body-bg .navbar-expand-xl .navbar-nav .nav-item .nav-link {
-            margin: 0 0.25rem !important; /* Aumentar margen horizontal */
-            padding: 0.5rem 0.8rem !important; /* Aumentar padding */
-        }
-    }
+/* Efectos hover para botones */
+.btn-register:hover {
+    background: #1e293b;
+    border-color: #1e293b;
+    transform: translateY(-2px);
+    box-shadow: 0 8px 25px rgba(15, 23, 42, 0.4);
+}
 
-    /* --- MENÚ HAMBURGUESA CON ANIMACIONES Y COLUMNAS (max-width: 1199.98px) --- */
-    @@media (max-width: 1199.98px) {
-        .navbar-collapse {
-            background: var(--bs-body-bg) !important;
-            border-radius: 0.5rem;
+.btn-login:hover {
+    background: #0f172a;
+    color: white !important;
+    transform: translateY(-2px);
+    box-shadow: 0 8px 25px rgba(15, 23, 42, 0.4);
+}
+
+/* === HAMBURGUESA ANIMADA === */
+.custom-hamburger {
+    width: 50px;
+    height: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: none !important;
+    background: transparent !important;
+    border-radius: 12px;
+    transition: all 0.3s ease;
+    position: relative;
+}
+
+.custom-hamburger:focus {
+    box-shadow: 0 0 0 0.2rem rgba(15, 23, 42, 0.25) !important;
+    outline: none !important;
+}
+
+.custom-hamburger:hover {
+    background: rgba(15, 23, 42, 0.1) !important;
+    transform: scale(1.05);
+    box-shadow: 0 4px 12px rgba(15, 23, 42, 0.15);
+}
+
+.custom-hamburger:active {
+    transform: scale(0.95);
+    transition: transform 0.1s ease;
+}
+
+.hamburger-lines {
+    width: 26px;
+    height: 20px;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.line {
+    width: 100%;
+    height: 3px;
+    background: #0f172a;
+    border-radius: 2px;
+    transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    transform-origin: center;
+    position: relative;
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+}
+
+
+
+/* Animación cuando se abre el menú */
+.custom-hamburger.collapsed .line1 {
+    transform: translateY(0) rotate(0deg);
+}
+
+.custom-hamburger.collapsed .line2 {
+    opacity: 1;
+    transform: scaleX(1);
+}
+
+.custom-hamburger.collapsed .line3 {
+    transform: translateY(0) rotate(0deg);
+}
+
+/* Estado activo (menú abierto) */
+.custom-hamburger:not(.collapsed) .line1 {
+    transform: translateY(8.5px) rotate(45deg);
+}
+
+.custom-hamburger:not(.collapsed) .line2 {
+    opacity: 0;
+    transform: scaleX(0);
+}
+
+.custom-hamburger:not(.collapsed) .line3 {
+    transform: translateY(-8.5px) rotate(-45deg);
+}
+
+/* Efectos hover */
+.custom-hamburger:hover .line {
+    background: #1e293b;
+}
+
+/* Modo oscuro */
+[data-bs-theme="dark"] .line {
+    background: #e2e8f0;
+}
+
+[data-bs-theme="dark"] .custom-hamburger:hover {
+    background: rgba(226, 232, 240, 0.1) !important;
+}
+
+[data-bs-theme="dark"] .custom-hamburger:hover .line {
+    background: #ffffff;
+}
+
+[data-bs-theme="dark"] .custom-hamburger:focus {
+    box-shadow: 0 0 0 0.2rem rgba(226, 232, 240, 0.25) !important;
+}
+
+[data-bs-theme="dark"] .custom-hamburger:hover {
+    box-shadow: 0 4px 12px rgba(226, 232, 240, 0.2);
+}
+
+/* === MENÚ MÓVIL EN COLUMNAS === */
+.mobile-menu-container {
+    background: rgba(255, 255, 255, 0.98);
+    backdrop-filter: blur(10px);
+    border-radius: 0 0 15px 15px;
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+    padding: 1.5rem 0;
+    margin-top: 0.5rem;
+}
+
+.mobile-menu-section {
+    background: rgba(255, 255, 255, 0.7);
+    border-radius: 12px;
             padding: 1rem;
-            margin-top: 0.75rem;
-            margin-left: 1rem;
-            margin-right: 1rem;
-            box-shadow: 0 0.5rem 1rem rgba(0,0,0,0.15);
-            border: 1px solid var(--bs-border-color);
-            position: relative !important;
-            z-index: 1050;
-            
-            /* ANIMACIONES MEJORADAS DE ENTRADA Y SALIDA */
-            opacity: 0;
-            transform: translateY(-15px) scale(0.98);
-            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-            pointer-events: none;
-            max-height: 0;
+    border: 1px solid rgba(15, 23, 42, 0.1);
+}
+
+.mobile-menu-title {
+    color: #0f172a;
+    font-weight: 600;
+    font-size: 0.875rem;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    margin-bottom: 0.75rem;
+    padding-bottom: 0.5rem;
+    border-bottom: 2px solid #0f172a;
+    text-align: center;
+}
+
+.mobile-menu-item {
+    display: flex;
+    align-items: center;
+    padding: 0.75rem;
+    background: rgba(255, 255, 255, 0.8);
+    border: 1px solid rgba(15, 23, 42, 0.1);
+    border-radius: 8px;
+    color: #0f172a !important;
+    text-decoration: none;
+    font-weight: 500;
+    font-size: 0.875rem;
+    transition: all 0.3s ease;
+    margin-bottom: 0.5rem;
+    position: relative;
             overflow: hidden;
         }
         
-        .navbar-collapse.show {
-            opacity: 1 !important;
-            transform: translateY(0) scale(1) !important;
-            pointer-events: auto !important;
-            max-height: 100vh !important;
-            overflow: visible !important;
-        }
-        
-        /* Animación de salida cuando se cierra - MÁS SUAVE */
-        .navbar-collapse.collapsing {
-            opacity: 0 !important;
-            transform: translateY(-8px) scale(0.99) !important;
-            transition: all 0.35s cubic-bezier(0.4, 0, 0.6, 1) !important;
-            max-height: 0 !important;
-            overflow: hidden !important;
-        }
-        
-        body.doctor-body-bg .navbar-collapse,
-        body.patient-body-bg .navbar-collapse,
-        body.admin-body-bg .navbar-collapse {
-            background: var(--bs-dark) !important; 
-            border-color: rgba(255,255,255,0.1);
-            box-shadow: 0 0.5rem 1rem rgba(0,0,0,0.3);
-        }
+.mobile-menu-item i {
+    font-size: 1.1rem;
+    color: #0f172a;
+    transition: color 0.3s ease;
+}
 
-        /* LAYOUT EN COLUMNAS RESPONSIVO */
-        .navbar-nav {
-            display: grid !important;
-            grid-template-columns: repeat(auto-fit, minmax(140px, 1fr)) !important; /* Columnas adaptables */
-            gap: 0.5rem !important;
-            width: 100%;
-            margin-bottom: 1rem !important;
-        }
+.mobile-menu-item:hover {
+    background: #0f172a;
+    color: white !important;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(15, 23, 42, 0.3);
+}
 
-        .nav-item {
-            width: 100% !important;
-        }
+.mobile-menu-item:hover i {
+    color: white;
+}
 
-        .nav-item .nav-link {
-            padding: 0.7rem 0.5rem !important;
-            border-radius: 0.375rem;
-            background: var(--bs-secondary-bg-subtle) !important;
-            text-align: center !important; /* Centrado para layout en columnas */
-            display: flex !important;
-            align-items: center !important;
-            justify-content: center !important;
-            font-weight: 500 !important;
-            font-size: 0.85rem !important;
-            color: var(--bs-emphasis-color) !important;
-            border: 1px solid var(--bs-border-color-translucent);
-            transition: all 0.2s ease;
-            text-decoration: none !important;
-            min-height: 50px; /* Altura mínima uniforme */
-        }
-        
-        /* MANTENER ICONOS VISIBLES EN ESCRITORIO, OCULTOS EN MÓVIL */
-        .nav-item .nav-link i {
-            display: inline-block !important; /* Mostrar iconos en móvil también */
-            margin-right: 0.5rem !important;
-            font-size: 0.9rem !important;
-        }
-        
-        /* Cambiar hover a color más oscuro como el botón login */
-        .nav-item .nav-link:hover, .nav-item .nav-link:focus {
-            background: linear-gradient(135deg, #1e293b 0%, #334155 100%) !important;
-            color: white !important;
-            border-color: #334155 !important;
-            transform: translateY(-2px) !important; /* Efecto de elevación */
-            box-shadow: 0 4px 8px rgba(30, 41, 59, 0.3);
-        }
+.mobile-menu-item span {
+    transition: color 0.3s ease;
+}
 
-        /* Estilos específicos para roles */
-        body.patient-body-bg .navbar-collapse .nav-link {
-            background: rgba(34, 197, 94, 0.1) !important;
-            border-color: rgba(34, 197, 94, 0.2);
-            color: var(--bs-light) !important;
-        }
-        body.patient-body-bg .navbar-collapse .nav-link:hover {
-            background: linear-gradient(135deg, #059669 0%, #10b981 100%) !important;
-            border-color: #10b981 !important;
-            color: white !important;
-        }
+.mobile-menu-item:hover span {
+    color: white;
+}
 
-        body.doctor-body-bg .navbar-collapse .nav-link,
-        body.admin-body-bg .navbar-collapse .nav-link {
-            background: rgba(255, 255, 255, 0.15) !important;
-            border-color: rgba(255,255,255,0.3);
-            color: var(--bs-light) !important;
-        }
-        body.doctor-body-bg .navbar-collapse .nav-link:hover,
-        body.admin-body-bg .navbar-collapse .nav-link:hover {
-            background: linear-gradient(135deg, #1e293b 0%, #334155 100%) !important;
-            border-color: #334155 !important;
-            color: white !important;
-        }
+/* Animación de barrido para items móviles */
+.mobile-menu-item::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+    transition: left 0.6s ease;
+}
 
-        /* Botones inferiores - MEJORADOS PARA UNA SOLA LÍNEA */
-        .navbar-collapse > .d-flex.align-items-center {
-            display: flex !important;
-            flex-direction: row !important; /* Forzar fila */
-            justify-content: space-between !important;
-            align-items: center !important;
-            gap: 0.5rem !important;
-            margin-top: 1rem !important;
-            padding-top: 1rem !important;
-            border-top: 1px solid var(--bs-border-color) !important;
-            flex-wrap: nowrap !important; /* Evitar wrapping */
-        }
-        
-        /* Contenedor de botones móviles - UNA SOLA LÍNEA */
-        .mobile-buttons-container {
-            display: flex !important;
-            flex-direction: row !important;
-            gap: 0.5rem !important;
-            align-items: center !important;
-            flex: 1 !important;
-            min-width: 0 !important; /* Permitir shrinking */
-        }
-        
-        body.doctor-body-bg .navbar-collapse > .d-flex.align-items-center,
-        body.patient-body-bg .navbar-collapse > .d-flex.align-items-center,
-        body.admin-body-bg .navbar-collapse > .d-flex.align-items-center {
-            border-top-color: rgba(255,255,255,0.3) !important;
-        }
-        
-        .navbar-collapse > .d-flex.align-items-center .btn,
-        .navbar-collapse > .d-flex.align-items-center .nav-link,
-        .mobile-buttons-container .btn {
-            font-size: 0.75rem !important; /* Tamaño más pequeño */
-            padding: 0.4rem 0.6rem !important; /* Padding reducido */
-            flex: 1 !important; /* Distribución equitativa */
-            text-align: center !important;
-            border-radius: 0.375rem !important;
-            white-space: nowrap !important; /* Evitar texto en múltiples líneas */
-            min-width: 0 !important; /* Permitir shrinking */
-            display: flex !important;
-            align-items: center !important;
-            justify-content: center !important;
-            gap: 0.3rem !important; /* Espacio entre icono y texto */
-        }
-        
-        /* Botón de tema - tamaño específico - SOLO PARA DESKTOP */
-        .navbar-collapse > .d-flex.align-items-center #themeToggleBtn {
-            flex: 0 0 auto !important;
-            width: 40px !important;
-            height: 40px !important;
-            padding: 0.5rem !important;
-            display: flex !important;
-            align-items: center !important;
-            justify-content: center !important;
-            gap: 0 !important; /* Sin gap para botón de tema */
-        }
-        
-        /* OCULTAR cualquier botón de tema en móvil dentro del collapse */
-        @@media (max-width: 1199.98px) {
-            .navbar-collapse #themeToggleBtn {
-                display: none !important;
-            }
-            
-            /* OCULTAR TODOS los botones de tema dentro del collapse móvil */
-            .navbar-collapse .btn-theme-toggle {
-                display: none !important;
-            }
-            
-            /* OCULTAR cualquier elemento con iconos de tema dentro del collapse */
-            .navbar-collapse .bi-sun-fill,
-            .navbar-collapse .bi-moon-stars-fill {
-                display: none !important;
-            }
-        }
-        
-        /* MOSTRAR iconos y texto en botones móviles */
-        .navbar-collapse > .d-flex.align-items-center .btn i,
-        .mobile-buttons-container .btn i {
-            display: inline-block !important;
-            font-size: 0.8rem !important;
-        }
-        
-        .navbar-collapse > .d-flex.align-items-center .btn span,
-        .mobile-buttons-container .btn span {
-            display: inline-block !important;
-            font-size: 0.7rem !important;
-        }
-        
-        /* Mostrar iconos en desktop */
-        @@media (min-width: 1200px) {
-            .navbar-collapse > .d-flex.align-items-center .btn i,
-            .navbar-collapse > .d-flex.align-items-center .nav-link i {
-                display: inline-block !important;
-            }
-        }
-    }
+.mobile-menu-item:hover::before {
+    left: 100%;
+}
 
-    /* TABLETS Y PANTALLAS MEDIANAS - 2-3 columnas */
-    @@media (max-width: 1199.98px) and (min-width: 600px) {
-        .navbar-nav {
-            grid-template-columns: repeat(auto-fit, minmax(160px, 1fr)) !important;
-        }
-    }
+/* Modo oscuro para menú móvil */
+[data-bs-theme="dark"] .mobile-menu-container {
+    background: rgba(26, 32, 44, 0.98);
+}
 
-    /* PANTALLAS PEQUEÑAS - 2 columnas */
-    @@media (max-width: 599.98px) and (min-width: 400px) {
-        .navbar-nav {
-            grid-template-columns: repeat(2, 1fr) !important;
-            gap: 0.4rem !important;
-        }
-        .nav-item .nav-link {
-            font-size: 0.8rem !important;
-            padding: 0.6rem 0.4rem !important;
-            min-height: 45px !important;
-        }
-        .navbar-collapse {
-            margin-left: 0.5rem !important;
-            margin-right: 0.5rem !important;
-            padding: 0.75rem !important;
-        }
-        
-        /* Botones aún más pequeños en pantallas pequeñas */
-        .mobile-buttons-container .btn {
-            font-size: 0.65rem !important;
-            padding: 0.3rem 0.4rem !important;
-        }
-        
-        .mobile-buttons-container .btn i {
-            font-size: 0.7rem !important;
-        }
-        
-        .mobile-buttons-container .btn span {
-            font-size: 0.6rem !important;
-        }
-    }
+[data-bs-theme="dark"] .mobile-menu-section {
+    background: rgba(45, 55, 72, 0.8);
+    border-color: rgba(255, 255, 255, 0.1);
+}
 
-    /* MÓVILES MUY ESTRECHOS - 1 columna */
-    @@media (max-width: 399.98px) {
-        .navbar-nav {
-            grid-template-columns: 1fr !important; /* UNA SOLA COLUMNA */
-            gap: 0.4rem !important;
-        }
-        .nav-item .nav-link {
-            font-size: 0.85rem !important;
-            padding: 0.6rem 1rem !important;
-            min-height: 45px !important;
-            text-align: left !important; /* Alineación izquierda en móvil */
-        }
-        .navbar-collapse {
-            margin-left: 0.25rem !important;
-            margin-right: 0.25rem !important;
-            padding: 0.75rem !important;
-        }
-        
-        /* MANTENER BOTONES EN LÍNEA INCLUSO EN MÓVILES MUY PEQUEÑOS */
-        .navbar-collapse > .d-flex.align-items-center {
-            flex-direction: row !important; /* Forzar fila siempre */
-        }
-        
-        .mobile-buttons-container .btn {
-            font-size: 0.6rem !important;
-            padding: 0.3rem 0.3rem !important;
-        }
-        
-        .mobile-buttons-container .btn i {
-            font-size: 0.65rem !important;
-        }
-        
-        .mobile-buttons-container .btn span {
-            font-size: 0.55rem !important;
-        }
+[data-bs-theme="dark"] .mobile-menu-title {
+    color: #e2e8f0;
+    border-color: #e2e8f0;
+}
+
+[data-bs-theme="dark"] .mobile-menu-item {
+    background: rgba(45, 55, 72, 0.9);
+    color: #e2e8f0 !important;
+    border-color: rgba(255, 255, 255, 0.1);
+}
+
+[data-bs-theme="dark"] .mobile-menu-item i {
+    color: #e2e8f0;
+}
+
+[data-bs-theme="dark"] .mobile-menu-item:hover {
+    background: #1a202c;
+    color: white !important;
+}
+
+[data-bs-theme="dark"] .mobile-menu-item:hover i {
+    color: white;
+}
+
+/* Ajustes responsivos */
+@@media (max-width: 575.98px) {
+    .custom-hamburger {
+        width: 45px;
+        height: 45px;
     }
     
-    /* === MEJORAS DE RESPONSIVIDAD === */
-    
-    /* Asegurar que el colapso funcione correctamente */
-    @@media (min-width: 1200px) {
-        .navbar-collapse {
-            opacity: 1 !important;
-            transform: none !important;
-            pointer-events: auto !important;
-            background: transparent !important;
-            border: none !important;
-            box-shadow: none !important;
-            margin: 0 !important;
-            padding: 0 !important;
-            position: static !important;
-        }
-        
-        .navbar-nav .nav-item .nav-link i {
-            display: inline-block !important;
-        }
-        
-        /* Ocultar hamburguesa animada en desktop */
-        .navbar-toggler {
-            display: none !important;
-        }
+    .hamburger-lines {
+        width: 22px;
+        height: 16px;
     }
     
-    /* Fix responsivity when resizing from mobile to desktop */
-    .navbar-collapse.collapsing {
-        height: auto !important;
+    .line {
+        height: 2.5px;
     }
     
-    /* === MEJORA ESPECÍFICA PARA FAQ === */
-    /* Asegurar que todos los elementos de navegación tengan el mismo tratamiento responsive */
-    @@media (max-width: 1199.98px) {
-        .navbar-nav .nav-item:last-child .nav-link {
-            /* FAQ y último elemento siempre visible en responsive */
-            display: flex !important;
-        }
-        
-        /* Asegurar que no se corte ningún elemento del menú */
-        .navbar-nav {
-            overflow: visible !important;
-        }
-        
-        /* Grid específico para asegurar que todos los items sean visibles */
-        .navbar-nav {
-            grid-auto-rows: auto !important;
-            min-height: auto !important;
-        }
+    .custom-hamburger:not(.collapsed) .line1 {
+        transform: translateY(6.5px) rotate(45deg);
     }
     
-    :root {
-        --patient-primary-rgb: 15, 74, 45;
-        --patient-accent-rgb: 34, 197, 94;
+    .custom-hamburger:not(.collapsed) .line3 {
+        transform: translateY(-6.5px) rotate(-45deg);
     }
+    
+    .mobile-menu-container {
+        padding: 1rem 0;
+    }
+    
+    .mobile-menu-item {
+        padding: 0.6rem;
+        font-size: 0.8rem;
+    }
+    
+    .mobile-menu-item i {
+        font-size: 1rem;
+    }
+}
 
-    /* === BOTÓN DE TEMA MÓVIL FUERA DEL COLLAPSE === */
-    #themeToggleBtnMobile {
-        width: 40px !important;
-        height: 40px !important;
-        padding: 0.5rem !important;
-        display: flex !important;
-        align-items: center !important;
-        justify-content: center !important;
-        border-radius: 0.375rem !important;
-    }
-    
-    /* === FORZAR OCULTACIÓN DE BOTONES DE TEMA EN COLLAPSE === */
-    @@media (max-width: 1199.98px) {
-        .navbar-collapse button[id*="theme"],
-        .navbar-collapse .btn[id*="theme"],
-        .navbar-collapse [class*="theme-toggle"] {
-            display: none !important;
-            visibility: hidden !important;
-            opacity: 0 !important;
-            position: absolute !important;
-            left: -9999px !important;
-        }
-    }
-    
-    /* === ESTILOS PARA MENÚ DESPLEGABLE "MÁS" === */
-    .navbar-nav .dropdown-menu {
-        border: 1px solid var(--bs-border-color);
-        box-shadow: 0 0.5rem 1rem rgba(0,0,0,0.15);
-        border-radius: 0.5rem;
-        padding: 0.5rem 0;
-        margin-top: 0.25rem;
-        min-width: 200px;
-    }
-    
-    .navbar-nav .dropdown-item {
-        padding: 0.5rem 1rem;
+@@media (min-width: 576px) and (max-width: 767.98px) {
+    .mobile-menu-item {
+        padding: 0.8rem;
         font-size: 0.9rem;
-        transition: background-color 0.15s ease;
+    }
+}
+
+/* === MODO OSCURO === */
+[data-bs-theme="dark"] .navbar {
+    background: rgba(26, 32, 44, 0.95) !important;
+    border-bottom-color: rgba(255, 255, 255, 0.1);
+}
+
+[data-bs-theme="dark"] .navbar-brand {
+    color: white !important;
+}
+
+[data-bs-theme="dark"] .brand-text .text-primary {
+    color: #60a5fa !important;
+}
+
+[data-bs-theme="dark"] .nav-link-custom {
+    color: #e2e8f0 !important;
+}
+
+[data-bs-theme="dark"] .nav-link-custom:hover {
+    color: #60a5fa !important;
+    background: rgba(96, 165, 250, 0.1);
+}
+
+[data-bs-theme="dark"] .dropdown-menu-custom {
+    background: rgba(26, 32, 44, 0.98) !important;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+[data-bs-theme="dark"] .dropdown-item-custom {
+    color: #e2e8f0 !important;
+}
+
+[data-bs-theme="dark"] .dropdown-item-custom:hover {
+    background: rgba(96, 165, 250, 0.2) !important;
+    color: #60a5fa !important;
+}
+
+[data-bs-theme="dark"] .user-dropdown {
+    color: #e2e8f0 !important;
+}
+
+[data-bs-theme="dark"] .user-dropdown:hover {
+    color: #60a5fa !important;
+}
+
+[data-bs-theme="dark"] .btn-register {
+    background: #0f172a;
+    border-color: #0f172a;
+}
+
+[data-bs-theme="dark"] .btn-login {
+    color: #cbd5e1 !important;
+    border-color: #cbd5e1;
+}
+
+[data-bs-theme="dark"] .btn-login:hover {
+    background: #0f172a;
+    border-color: #0f172a;
+    color: white !important;
+}
+
+/* === RESPONSIVE === */
+    @@media (max-width: 1199.98px) {
+    .btn-auth i {
+        font-size: 0.9rem;
     }
     
-    .navbar-nav .dropdown-item:hover {
-        background-color: var(--bs-secondary-bg);
-        color: var(--bs-emphasis-color);
+    .btn-auth {
+        padding: 0.4rem 0.8rem;
+        font-size: 0.875rem;
+    }
+}
+
+@@media (max-width: 767.98px) {
+    .navbar-brand {
+        font-size: 1.3rem;
     }
     
-    .navbar-nav .dropdown-item i {
-        width: 1.2rem;
-        text-align: center;
+    .nav-link-custom {
+        padding: 0.75rem 1rem !important;
+    }
+}
+</style>
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    // Funcionalidad del botón de tema
+    const themeToggle = document.getElementById('themeToggle');
+    const themeToggleMobile = document.getElementById('themeToggleMobile');
+    
+    function toggleTheme() {
+        const html = document.documentElement;
+        const currentTheme = html.getAttribute('data-bs-theme');
+        const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
+        
+        html.setAttribute('data-bs-theme', newTheme);
+        localStorage.setItem('theme', newTheme);
+        
+        // Actualizar iconos
+        updateThemeIcons(newTheme);
     }
     
-    /* Estilos específicos para temas de doctor */
-    body.doctor-body-bg .navbar-nav .dropdown-menu {
-        background-color: var(--bs-dark);
-        border-color: rgba(255,255,255,0.2);
+    function updateThemeIcons(theme) {
+        const sunIcons = document.querySelectorAll('.theme-icon-sun');
+        const moonIcons = document.querySelectorAll('.theme-icon-moon');
+        
+        if (theme === 'dark') {
+            sunIcons.forEach(icon => icon.classList.add('d-none'));
+            moonIcons.forEach(icon => icon.classList.remove('d-none'));
+        } else {
+            sunIcons.forEach(icon => icon.classList.remove('d-none'));
+            moonIcons.forEach(icon => icon.classList.add('d-none'));
+        }
     }
     
-    body.doctor-body-bg .navbar-nav .dropdown-item {
-        color: var(--bs-light);
+    // Event listeners
+    if (themeToggle) {
+        themeToggle.addEventListener('click', toggleTheme);
+    }
+    if (themeToggleMobile) {
+        themeToggleMobile.addEventListener('click', toggleTheme);
     }
     
-    body.doctor-body-bg .navbar-nav .dropdown-item:hover {
-        background-color: rgba(255,255,255,0.1);
-        color: #fff;
+    // Funcionalidad de la hamburguesa animada
+    const hamburger = document.querySelector('.custom-hamburger');
+    const navbarCollapse = document.querySelector('#navbarContent');
+    
+    if (hamburger && navbarCollapse) {
+        // Inicializar estado
+        hamburger.classList.add('collapsed');
+        
+        // Escuchar eventos de Bootstrap collapse
+        navbarCollapse.addEventListener('show.bs.collapse', function () {
+            hamburger.classList.remove('collapsed');
+        });
+        
+        navbarCollapse.addEventListener('hide.bs.collapse', function () {
+            hamburger.classList.add('collapsed');
+        });
+        
+        // También manejar click directo en la hamburguesa
+        hamburger.addEventListener('click', function() {
+            // Pequeño delay para sincronizar con Bootstrap
+            setTimeout(() => {
+                if (navbarCollapse.classList.contains('show')) {
+                    hamburger.classList.remove('collapsed');
+                } else {
+                    hamburger.classList.add('collapsed');
+                }
+            }, 10);
+        });
     }
-</style> 
+    
+    // Inicializar tema
+    const savedTheme = localStorage.getItem('theme') || 'light';
+    document.documentElement.setAttribute('data-bs-theme', savedTheme);
+    updateThemeIcons(savedTheme);
+});
+</script>
