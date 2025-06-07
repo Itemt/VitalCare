@@ -478,21 +478,28 @@
     background: rgba(255, 255, 255, 0.95) !important;
     backdrop-filter: blur(10px);
     border-bottom: 1px solid rgba(0, 0, 0, 0.1);
-        transition: all 0.3s ease;
     padding: 0.75rem 0;
+    min-height: 70px;
 }
 
 /* === BRAND === */
 .navbar-brand {
-    font-size: 1.5rem;
+    font-size: 1.5rem !important;
     font-weight: 700;
     color: #1a202c !important;
     text-decoration: none;
+    line-height: 1.2;
+    height: auto;
 }
 
 .brand-icon {
     color: #22c55e !important;
     font-size: 1.4rem;
+    line-height: 1;
+}
+
+.brand-text {
+    line-height: 1.2;
 }
 
 .brand-text .text-primary {
@@ -505,22 +512,24 @@
     font-weight: 500;
     padding: 0.5rem 1rem !important;
     border-radius: 8px;
-    transition: all 0.3s ease;
-        position: relative;
-        display: flex !important;
-        align-items: center;
+    transition: color 0.2s ease, background-color 0.2s ease;
+    position: relative;
+    display: flex !important;
+    align-items: center;
+    white-space: nowrap;
+    min-height: 40px;
 }
 
 .nav-link-custom:hover {
     color: #1e40af !important;
     background: rgba(30, 64, 175, 0.1);
-    transform: translateY(-1px);
 }
 
 .nav-link-custom i {
-    font-size: 1rem;
+    font-size: 1rem !important;
     width: 1.2rem;
     text-align: center;
+    flex-shrink: 0;
 }
 
 /* === DROPDOWNS === */
@@ -545,7 +554,6 @@
 .dropdown-item-custom:hover {
     background: rgba(30, 64, 175, 0.1) !important;
     color: #1e40af !important;
-    transform: translateX(5px);
 }
 
 .user-dropdown {
@@ -566,11 +574,13 @@
     border-radius: 8px;
     font-weight: 600;
     padding: 0.5rem 1.2rem;
-    transition: all 0.3s ease;
+    transition: background-color 0.2s ease, color 0.2s ease, box-shadow 0.2s ease;
     text-decoration: none;
     display: inline-flex;
     align-items: center;
     z-index: 1;
+    white-space: nowrap;
+    min-height: 40px;
     }
     
     .btn-register {
@@ -586,15 +596,15 @@
 }
 
 /* Elemento de barrido */
-.btn-sweep {
-    position: absolute;
-    top: 0;
-    left: -100%;
-    width: 100%;
-    height: 100%;
-    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.4), transparent);
-    transition: left 0.6s ease;
-    z-index: 2;
+    .btn-sweep {
+        position: absolute;
+        top: 0;
+        left: -100%;
+        width: 100%;
+        height: 100%;
+        background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+        transition: left 0.4s ease;
+        z-index: 2;
     pointer-events: none;
 }
 
@@ -606,29 +616,28 @@
 .btn-register:hover {
     background: #1e293b;
     border-color: #1e293b;
-    transform: translateY(-2px);
-    box-shadow: 0 8px 25px rgba(15, 23, 42, 0.4);
+    box-shadow: 0 4px 12px rgba(15, 23, 42, 0.3);
 }
 
 .btn-login:hover {
     background: #0f172a;
     color: white !important;
-    transform: translateY(-2px);
-    box-shadow: 0 8px 25px rgba(15, 23, 42, 0.4);
+    box-shadow: 0 4px 12px rgba(15, 23, 42, 0.3);
 }
 
 /* === HAMBURGUESA ANIMADA === */
 .custom-hamburger {
-    width: 50px;
-    height: 50px;
+    width: 50px !important;
+    height: 50px !important;
     display: flex;
     align-items: center;
     justify-content: center;
     border: none !important;
     background: transparent !important;
     border-radius: 12px;
-    transition: all 0.3s ease;
+    transition: background-color 0.2s ease;
     position: relative;
+    flex-shrink: 0;
 }
 
 .custom-hamburger:focus {
@@ -638,13 +647,10 @@
 
 .custom-hamburger:hover {
     background: rgba(15, 23, 42, 0.1) !important;
-    transform: scale(1.05);
-    box-shadow: 0 4px 12px rgba(15, 23, 42, 0.15);
 }
 
 .custom-hamburger:active {
-    transform: scale(0.95);
-    transition: transform 0.1s ease;
+    background: rgba(15, 23, 42, 0.15) !important;
 }
 
 .hamburger-lines {
@@ -795,15 +801,15 @@
 }
 
 /* Animación de barrido para items móviles */
-.mobile-menu-item::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: -100%;
-    width: 100%;
-    height: 100%;
-    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
-    transition: left 0.6s ease;
+    .mobile-menu-item::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: -100%;
+        width: 100%;
+        height: 100%;
+        background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.15), transparent);
+        transition: left 0.4s ease;
 }
 
 .mobile-menu-item:hover::before {
@@ -846,20 +852,6 @@
 
 /* Ajustes responsivos */
 @@media (max-width: 575.98px) {
-    .custom-hamburger {
-        width: 45px;
-        height: 45px;
-    }
-    
-    .hamburger-lines {
-        width: 22px;
-        height: 16px;
-    }
-    
-    .line {
-        height: 2.5px;
-    }
-    
     .custom-hamburger:not(.collapsed) .line1 {
         transform: translateY(6.5px) rotate(45deg);
     }
@@ -951,24 +943,72 @@
 }
 
 /* === RESPONSIVE === */
-    @@media (max-width: 1199.98px) {
+@@media (max-width: 1199.98px) {
     .btn-auth i {
-        font-size: 0.9rem;
+        font-size: 0.9rem !important;
     }
     
     .btn-auth {
-        padding: 0.4rem 0.8rem;
-        font-size: 0.875rem;
+        padding: 0.4rem 0.8rem !important;
+        font-size: 0.875rem !important;
+        min-height: 38px;
     }
 }
 
 @@media (max-width: 767.98px) {
+    .navbar {
+        min-height: 65px;
+    }
+    
     .navbar-brand {
-        font-size: 1.3rem;
+        font-size: 1.3rem !important;
+    }
+    
+    .brand-icon {
+        font-size: 1.2rem !important;
     }
     
     .nav-link-custom {
         padding: 0.75rem 1rem !important;
+        min-height: 42px;
+    }
+    
+    .custom-hamburger {
+        width: 45px !important;
+        height: 45px !important;
+    }
+}
+
+@@media (max-width: 576px) {
+    .navbar {
+        min-height: 60px;
+    }
+    
+    .navbar-brand {
+        font-size: 1.1rem !important;
+    }
+    
+    .brand-icon {
+        font-size: 1rem !important;
+    }
+    
+    .brand-text {
+        font-size: 1rem !important;
+    }
+    
+    .custom-hamburger {
+        width: 42px !important;
+        height: 42px !important;
+        margin-left: auto;
+    }
+    
+    .hamburger-lines {
+        width: 22px !important;
+        height: 16px !important;
+    }
+    
+    .line {
+        height: 2.5px !important;
     }
 }
 </style>
