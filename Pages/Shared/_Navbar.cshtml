@@ -13,7 +13,7 @@
 }
 
 <header class="sticky-top">
-    <nav class="navbar navbar-expand-xl navbar-preload">
+    <nav class="navbar navbar-expand-xl">
         <div class="container-fluid">
             @* LOGO *@
             <a class="navbar-brand d-flex align-items-center" asp-area="" asp-page="/Index" style="font-size: 1.3rem; font-weight: 700;">
@@ -362,7 +362,7 @@
         transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275) !important;
         position: relative !important;
         border-radius: 8px !important;
-        overflow: visible !important;
+        overflow: hidden !important;
     }
     
     /* Efecto shimmer idéntico al del hero */
@@ -1115,31 +1115,4 @@
     }
 </style> 
 
-<script>
-    // === SCRIPT ANTI-REBOTE SIMPLIFICADO - SIN INTERFERIR CON NAVEGACIÓN ===
-    (function() {
-        // Solo ejecutar en carga inicial, NO en navegación entre páginas
-        if (window.performance && window.performance.navigation.type === window.performance.navigation.TYPE_NAVIGATE) {
-            const html = document.documentElement;
-            const navbar = document.querySelector('.navbar');
-            
-            // Remover clases preload después de la carga inicial ÚNICAMENTE
-            function removePreloadOnce() {
-                html.classList.remove('preload');
-                document.body.classList.remove('preload');
-                if (navbar) {
-                    navbar.classList.remove('navbar-preload');
-                }
-            }
-            
-            // Ejecutar solo una vez después de la carga completa
-            if (document.readyState === 'complete') {
-                setTimeout(removePreloadOnce, 50);
-            } else {
-                window.addEventListener('load', function() {
-                    setTimeout(removePreloadOnce, 50);
-                }, { once: true });
-            }
-        }
-    })();
-</script> 
+ 

@@ -189,10 +189,6 @@
         }
         
         /* === PREVENIR FLASH DE FUENTES WEB (FOUT) === */
-        html.preload *, html.preload *::before, html.preload *::after {
-            transition: none !important;
-            animation: none !important;
-        }
         
         /* FIJAR FUENTE INMEDIATAMENTE PARA EVITAR LAYOUT SHIFT */
         html, body, .navbar, .navbar-brand, .navbar-nav, .nav-link, .btn {
@@ -247,8 +243,9 @@
             height: 38px !important;
             min-height: 38px !important;
             max-height: 38px !important;
-            min-width: 120px !important;
-            width: auto !important;
+            width: 140px !important;
+            min-width: 140px !important;
+            max-width: 140px !important;
             white-space: nowrap !important;
             font-size: 0.875rem !important;
             padding: 0.375rem 0.75rem !important;
@@ -260,7 +257,7 @@
             border: none !important;
             transition: all 0.15s ease !important;
             position: relative !important;
-            overflow: visible !important;
+            overflow: hidden !important;
         }
         
         .navbar .btn-login i, .navbar .btn-register i {
@@ -329,19 +326,11 @@
         }
     </style>
     
-    @* THEME SCRIPT + DETECTOR DE FUENTES CARGADAS *@
+    @* THEME SCRIPT SIMPLIFICADO *@
     <script>
         (function() {
             const theme = localStorage.getItem('theme') || 'light';
             document.documentElement.setAttribute('data-bs-theme', theme);
-            // Agregar clases preload inmediatamente
-            document.documentElement.classList.add('preload');
-            
-            // Remover clases preload rápidamente para navegación fluida
-            setTimeout(function() {
-                html.classList.remove('preload');
-                document.body.classList.remove('preload');
-            }, 50);
         })();
     </script>
     
