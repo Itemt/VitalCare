@@ -206,8 +206,16 @@
 .features-card-premium {
     position: relative;
     overflow: hidden;
+    background: rgba(255, 255, 255, 0.95);
+    color: #212529;
+    border: 1px solid rgba(0,0,0,0.1);
+}
+
+/* En modo oscuro mantener el estilo azul */
+[data-bs-theme="dark"] .features-card-premium {
     background: linear-gradient(135deg, #007bff 0%, #0056b3 100%);
     color: white;
+    border: none;
 }
 
 .premium-icon {

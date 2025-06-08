@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "uRtJjcknhBvk+MIdWFLes0N881C4vUTAqyGji0BAlSc=",
+  "Hash": "KWPyNY19GJ+jQAM9tHXEP2v8WbeAMDN8ha5XvXT3XNM=",
   "Source": "CitasEPS",
   "BasePath": "_content/CitasEPS",
   "Mode": "Default",
@@ -10,7 +10,7 @@
     {
       "Name": "CitasEPS\\wwwroot",
       "Source": "CitasEPS",
-      "ContentRoot": "C:\\users\\cristianPC\\desktop\\vitalcare\\wwwroot\\",
+      "ContentRoot": "C:\\Users\\CristianPC\\Desktop\\vitalcare\\wwwroot\\",
       "BasePath": "_content/CitasEPS",
       "Pattern": "**"
     }
@@ -1277,10 +1277,10 @@
       "OriginalItemSpec": "C:\\Users\\CristianPC\\.nuget\\packages\\microsoft.aspnetcore.identity.ui\\8.0.8\\staticwebassets\\V5\\lib\\jquery\\LICENSE.txt"
     },
     {
-      "Identity": "C:\\users\\cristianPC\\desktop\\vitalcare\\obj\\Debug\\net8.0\\scopedcss\\bundle\\CitasEPS.styles.css",
+      "Identity": "C:\\Users\\CristianPC\\Desktop\\vitalcare\\obj\\Debug\\net8.0\\scopedcss\\bundle\\CitasEPS.styles.css",
       "SourceId": "CitasEPS",
       "SourceType": "Computed",
-      "ContentRoot": "C:\\users\\cristianPC\\desktop\\vitalcare\\obj\\Debug\\net8.0\\scopedcss\\bundle\\",
+      "ContentRoot": "C:\\Users\\CristianPC\\Desktop\\vitalcare\\obj\\Debug\\net8.0\\scopedcss\\bundle\\",
       "BasePath": "_content/CitasEPS",
       "RelativePath": "CitasEPS#[.{fingerprint}]?.styles.css",
       "AssetKind": "All",
@@ -1295,13 +1295,13 @@
       "Integrity": "Eg9htU3qn0lk/E+OkT8v8nBVNk30yNNpnekMeIQvRnM=",
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
-      "OriginalItemSpec": "C:\\users\\cristianPC\\desktop\\vitalcare\\obj\\Debug\\net8.0\\scopedcss\\bundle\\CitasEPS.styles.css"
+      "OriginalItemSpec": "C:\\Users\\CristianPC\\Desktop\\vitalcare\\obj\\Debug\\net8.0\\scopedcss\\bundle\\CitasEPS.styles.css"
     },
     {
-      "Identity": "C:\\users\\cristianPC\\desktop\\vitalcare\\obj\\Debug\\net8.0\\scopedcss\\projectbundle\\CitasEPS.bundle.scp.css",
+      "Identity": "C:\\Users\\CristianPC\\Desktop\\vitalcare\\obj\\Debug\\net8.0\\scopedcss\\projectbundle\\CitasEPS.bundle.scp.css",
       "SourceId": "CitasEPS",
       "SourceType": "Computed",
-      "ContentRoot": "C:\\users\\cristianPC\\desktop\\vitalcare\\obj\\Debug\\net8.0\\scopedcss\\projectbundle\\",
+      "ContentRoot": "C:\\Users\\CristianPC\\Desktop\\vitalcare\\obj\\Debug\\net8.0\\scopedcss\\projectbundle\\",
       "BasePath": "_content/CitasEPS",
       "RelativePath": "CitasEPS#[.{fingerprint}]!.bundle.scp.css",
       "AssetKind": "All",
@@ -1316,13 +1316,13 @@
       "Integrity": "Eg9htU3qn0lk/E+OkT8v8nBVNk30yNNpnekMeIQvRnM=",
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
-      "OriginalItemSpec": "C:\\users\\cristianPC\\desktop\\vitalcare\\obj\\Debug\\net8.0\\scopedcss\\projectbundle\\CitasEPS.bundle.scp.css"
+      "OriginalItemSpec": "C:\\Users\\CristianPC\\Desktop\\vitalcare\\obj\\Debug\\net8.0\\scopedcss\\projectbundle\\CitasEPS.bundle.scp.css"
     },
     {
-      "Identity": "C:\\users\\cristianPC\\desktop\\vitalcare\\wwwroot\\css\\base.css",
+      "Identity": "C:\\Users\\CristianPC\\Desktop\\vitalcare\\wwwroot\\css\\base.css",
       "SourceId": "CitasEPS",
       "SourceType": "Discovered",
-      "ContentRoot": "C:\\users\\cristianPC\\desktop\\vitalcare\\wwwroot\\",
+      "ContentRoot": "C:\\Users\\CristianPC\\Desktop\\vitalcare\\wwwroot\\",
       "BasePath": "_content/CitasEPS",
       "RelativePath": "css/base#[.{fingerprint}]?.css",
       "AssetKind": "All",
@@ -1340,10 +1340,10 @@
       "OriginalItemSpec": "wwwroot\\css\\base.css"
     },
     {
-      "Identity": "C:\\users\\cristianPC\\desktop\\vitalcare\\wwwroot\\css\\components.css",
+      "Identity": "C:\\Users\\CristianPC\\Desktop\\vitalcare\\wwwroot\\css\\components.css",
       "SourceId": "CitasEPS",
       "SourceType": "Discovered",
-      "ContentRoot": "C:\\users\\cristianPC\\desktop\\vitalcare\\wwwroot\\",
+      "ContentRoot": "C:\\Users\\CristianPC\\Desktop\\vitalcare\\wwwroot\\",
       "BasePath": "_content/CitasEPS",
       "RelativePath": "css/components#[.{fingerprint}]?.css",
       "AssetKind": "All",
@@ -1354,17 +1354,17 @@
       "RelatedAsset": "",
       "AssetTraitName": "",
       "AssetTraitValue": "",
-      "Fingerprint": "j4trx51ifw",
-      "Integrity": "M1HVnOLQA4xgjQnfb7WnpREpIgyVJ7D5GKmwy36ZwBg=",
+      "Fingerprint": "vbfbmisdy9",
+      "Integrity": "W4DQElbRnAtgT8OT2BwkC8aE1DbcKd4cMbVfyMuzo0Q=",
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\css\\components.css"
     },
     {
-      "Identity": "C:\\users\\cristianPC\\desktop\\vitalcare\\wwwroot\\css\\effects-hover.css",
+      "Identity": "C:\\Users\\CristianPC\\Desktop\\vitalcare\\wwwroot\\css\\effects-hover.css",
       "SourceId": "CitasEPS",
       "SourceType": "Discovered",
-      "ContentRoot": "C:\\users\\cristianPC\\desktop\\vitalcare\\wwwroot\\",
+      "ContentRoot": "C:\\Users\\CristianPC\\Desktop\\vitalcare\\wwwroot\\",
       "BasePath": "_content/CitasEPS",
       "RelativePath": "css/effects-hover#[.{fingerprint}]?.css",
       "AssetKind": "All",
@@ -1382,10 +1382,10 @@
       "OriginalItemSpec": "wwwroot\\css\\effects-hover.css"
     },
     {
-      "Identity": "C:\\users\\cristianPC\\desktop\\vitalcare\\wwwroot\\css\\enhanced-features.css",
+      "Identity": "C:\\Users\\CristianPC\\Desktop\\vitalcare\\wwwroot\\css\\enhanced-features.css",
       "SourceId": "CitasEPS",
       "SourceType": "Discovered",
-      "ContentRoot": "C:\\users\\cristianPC\\desktop\\vitalcare\\wwwroot\\",
+      "ContentRoot": "C:\\Users\\CristianPC\\Desktop\\vitalcare\\wwwroot\\",
       "BasePath": "_content/CitasEPS",
       "RelativePath": "css/enhanced-features#[.{fingerprint}]?.css",
       "AssetKind": "All",
@@ -1396,17 +1396,17 @@
       "RelatedAsset": "",
       "AssetTraitName": "",
       "AssetTraitValue": "",
-      "Fingerprint": "at9wfrpdke",
-      "Integrity": "UnuLuYBizdv/vOy+r+/CONt6/k26wE5ae6XwMkDA1T4=",
+      "Fingerprint": "9dskgcfzbt",
+      "Integrity": "nTx8jwLqPPgTHWXy8+c8GebXpnazxcYEpiH81ne1Q/g=",
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\css\\enhanced-features.css"
     },
     {
-      "Identity": "C:\\users\\cristianPC\\desktop\\vitalcare\\wwwroot\\css\\layout.css",
+      "Identity": "C:\\Users\\CristianPC\\Desktop\\vitalcare\\wwwroot\\css\\layout.css",
       "SourceId": "CitasEPS",
       "SourceType": "Discovered",
-      "ContentRoot": "C:\\users\\cristianPC\\desktop\\vitalcare\\wwwroot\\",
+      "ContentRoot": "C:\\Users\\CristianPC\\Desktop\\vitalcare\\wwwroot\\",
       "BasePath": "_content/CitasEPS",
       "RelativePath": "css/layout#[.{fingerprint}]?.css",
       "AssetKind": "All",
@@ -1424,10 +1424,10 @@
       "OriginalItemSpec": "wwwroot\\css\\layout.css"
     },
     {
-      "Identity": "C:\\users\\cristianPC\\desktop\\vitalcare\\wwwroot\\css\\performance-optimizations.css",
+      "Identity": "C:\\Users\\CristianPC\\Desktop\\vitalcare\\wwwroot\\css\\performance-optimizations.css",
       "SourceId": "CitasEPS",
       "SourceType": "Discovered",
-      "ContentRoot": "C:\\users\\cristianPC\\desktop\\vitalcare\\wwwroot\\",
+      "ContentRoot": "C:\\Users\\CristianPC\\Desktop\\vitalcare\\wwwroot\\",
       "BasePath": "_content/CitasEPS",
       "RelativePath": "css/performance-optimizations#[.{fingerprint}]?.css",
       "AssetKind": "All",
@@ -1445,10 +1445,10 @@
       "OriginalItemSpec": "wwwroot\\css\\performance-optimizations.css"
     },
     {
-      "Identity": "C:\\users\\cristianPC\\desktop\\vitalcare\\wwwroot\\css\\site-optimized.css",
+      "Identity": "C:\\Users\\CristianPC\\Desktop\\vitalcare\\wwwroot\\css\\site-optimized.css",
       "SourceId": "CitasEPS",
       "SourceType": "Discovered",
-      "ContentRoot": "C:\\users\\cristianPC\\desktop\\vitalcare\\wwwroot\\",
+      "ContentRoot": "C:\\Users\\CristianPC\\Desktop\\vitalcare\\wwwroot\\",
       "BasePath": "_content/CitasEPS",
       "RelativePath": "css/site-optimized#[.{fingerprint}]?.css",
       "AssetKind": "All",
@@ -1466,10 +1466,10 @@
       "OriginalItemSpec": "wwwroot\\css\\site-optimized.css"
     },
     {
-      "Identity": "C:\\users\\cristianPC\\desktop\\vitalcare\\wwwroot\\css\\site.css",
+      "Identity": "C:\\Users\\CristianPC\\Desktop\\vitalcare\\wwwroot\\css\\site.css",
       "SourceId": "CitasEPS",
       "SourceType": "Discovered",
-      "ContentRoot": "C:\\users\\cristianPC\\desktop\\vitalcare\\wwwroot\\",
+      "ContentRoot": "C:\\Users\\CristianPC\\Desktop\\vitalcare\\wwwroot\\",
       "BasePath": "_content/CitasEPS",
       "RelativePath": "css/site#[.{fingerprint}]?.css",
       "AssetKind": "All",
@@ -1487,10 +1487,10 @@
       "OriginalItemSpec": "wwwroot\\css\\site.css"
     },
     {
-      "Identity": "C:\\users\\cristianPC\\desktop\\vitalcare\\wwwroot\\css\\utilities.css",
+      "Identity": "C:\\Users\\CristianPC\\Desktop\\vitalcare\\wwwroot\\css\\utilities.css",
       "SourceId": "CitasEPS",
       "SourceType": "Discovered",
-      "ContentRoot": "C:\\users\\cristianPC\\desktop\\vitalcare\\wwwroot\\",
+      "ContentRoot": "C:\\Users\\CristianPC\\Desktop\\vitalcare\\wwwroot\\",
       "BasePath": "_content/CitasEPS",
       "RelativePath": "css/utilities#[.{fingerprint}]?.css",
       "AssetKind": "All",
@@ -1508,10 +1508,10 @@
       "OriginalItemSpec": "wwwroot\\css\\utilities.css"
     },
     {
-      "Identity": "C:\\users\\cristianPC\\desktop\\vitalcare\\wwwroot\\favicon.ico",
+      "Identity": "C:\\Users\\CristianPC\\Desktop\\vitalcare\\wwwroot\\favicon.ico",
       "SourceId": "CitasEPS",
       "SourceType": "Discovered",
-      "ContentRoot": "C:\\users\\cristianPC\\desktop\\vitalcare\\wwwroot\\",
+      "ContentRoot": "C:\\Users\\CristianPC\\Desktop\\vitalcare\\wwwroot\\",
       "BasePath": "_content/CitasEPS",
       "RelativePath": "favicon#[.{fingerprint}]?.ico",
       "AssetKind": "All",
@@ -1529,10 +1529,10 @@
       "OriginalItemSpec": "wwwroot\\favicon.ico"
     },
     {
-      "Identity": "C:\\users\\cristianPC\\desktop\\vitalcare\\wwwroot\\favicon.svg",
+      "Identity": "C:\\Users\\CristianPC\\Desktop\\vitalcare\\wwwroot\\favicon.svg",
       "SourceId": "CitasEPS",
       "SourceType": "Discovered",
-      "ContentRoot": "C:\\users\\cristianPC\\desktop\\vitalcare\\wwwroot\\",
+      "ContentRoot": "C:\\Users\\CristianPC\\Desktop\\vitalcare\\wwwroot\\",
       "BasePath": "_content/CitasEPS",
       "RelativePath": "favicon#[.{fingerprint}]?.svg",
       "AssetKind": "All",
@@ -1550,10 +1550,10 @@
       "OriginalItemSpec": "wwwroot\\favicon.svg"
     },
     {
-      "Identity": "C:\\users\\cristianPC\\desktop\\vitalcare\\wwwroot\\images\\admin-dashboard-bg.svg",
+      "Identity": "C:\\Users\\CristianPC\\Desktop\\vitalcare\\wwwroot\\images\\admin-dashboard-bg.svg",
       "SourceId": "CitasEPS",
       "SourceType": "Discovered",
-      "ContentRoot": "C:\\users\\cristianPC\\desktop\\vitalcare\\wwwroot\\",
+      "ContentRoot": "C:\\Users\\CristianPC\\Desktop\\vitalcare\\wwwroot\\",
       "BasePath": "_content/CitasEPS",
       "RelativePath": "images/admin-dashboard-bg#[.{fingerprint}]?.svg",
       "AssetKind": "All",
@@ -1571,10 +1571,10 @@
       "OriginalItemSpec": "wwwroot\\images\\admin-dashboard-bg.svg"
     },
     {
-      "Identity": "C:\\users\\cristianPC\\desktop\\vitalcare\\wwwroot\\images\\admin.png",
+      "Identity": "C:\\Users\\CristianPC\\Desktop\\vitalcare\\wwwroot\\images\\admin.png",
       "SourceId": "CitasEPS",
       "SourceType": "Discovered",
-      "ContentRoot": "C:\\users\\cristianPC\\desktop\\vitalcare\\wwwroot\\",
+      "ContentRoot": "C:\\Users\\CristianPC\\Desktop\\vitalcare\\wwwroot\\",
       "BasePath": "_content/CitasEPS",
       "RelativePath": "images/admin#[.{fingerprint}]?.png",
       "AssetKind": "All",
@@ -1592,10 +1592,10 @@
       "OriginalItemSpec": "wwwroot\\images\\admin.png"
     },
     {
-      "Identity": "C:\\users\\cristianPC\\desktop\\vitalcare\\wwwroot\\images\\doctor-dashboard-bg-subtle.svg",
+      "Identity": "C:\\Users\\CristianPC\\Desktop\\vitalcare\\wwwroot\\images\\doctor-dashboard-bg-subtle.svg",
       "SourceId": "CitasEPS",
       "SourceType": "Discovered",
-      "ContentRoot": "C:\\users\\cristianPC\\desktop\\vitalcare\\wwwroot\\",
+      "ContentRoot": "C:\\Users\\CristianPC\\Desktop\\vitalcare\\wwwroot\\",
       "BasePath": "_content/CitasEPS",
       "RelativePath": "images/doctor-dashboard-bg-subtle#[.{fingerprint}]?.svg",
       "AssetKind": "All",
@@ -1613,10 +1613,10 @@
       "OriginalItemSpec": "wwwroot\\images\\doctor-dashboard-bg-subtle.svg"
     },
     {
-      "Identity": "C:\\users\\cristianPC\\desktop\\vitalcare\\wwwroot\\images\\doctor-dashboard-bg.svg",
+      "Identity": "C:\\Users\\CristianPC\\Desktop\\vitalcare\\wwwroot\\images\\doctor-dashboard-bg.svg",
       "SourceId": "CitasEPS",
       "SourceType": "Discovered",
-      "ContentRoot": "C:\\users\\cristianPC\\desktop\\vitalcare\\wwwroot\\",
+      "ContentRoot": "C:\\Users\\CristianPC\\Desktop\\vitalcare\\wwwroot\\",
       "BasePath": "_content/CitasEPS",
       "RelativePath": "images/doctor-dashboard-bg#[.{fingerprint}]?.svg",
       "AssetKind": "All",
@@ -1634,10 +1634,10 @@
       "OriginalItemSpec": "wwwroot\\images\\doctor-dashboard-bg.svg"
     },
     {
-      "Identity": "C:\\users\\cristianPC\\desktop\\vitalcare\\wwwroot\\images\\doctor.png",
+      "Identity": "C:\\Users\\CristianPC\\Desktop\\vitalcare\\wwwroot\\images\\doctor.png",
       "SourceId": "CitasEPS",
       "SourceType": "Discovered",
-      "ContentRoot": "C:\\users\\cristianPC\\desktop\\vitalcare\\wwwroot\\",
+      "ContentRoot": "C:\\Users\\CristianPC\\Desktop\\vitalcare\\wwwroot\\",
       "BasePath": "_content/CitasEPS",
       "RelativePath": "images/doctor#[.{fingerprint}]?.png",
       "AssetKind": "All",
@@ -1655,10 +1655,10 @@
       "OriginalItemSpec": "wwwroot\\images\\doctor.png"
     },
     {
-      "Identity": "C:\\users\\cristianPC\\desktop\\vitalcare\\wwwroot\\images\\hero-background.svg",
+      "Identity": "C:\\Users\\CristianPC\\Desktop\\vitalcare\\wwwroot\\images\\hero-background.svg",
       "SourceId": "CitasEPS",
       "SourceType": "Discovered",
-      "ContentRoot": "C:\\users\\cristianPC\\desktop\\vitalcare\\wwwroot\\",
+      "ContentRoot": "C:\\Users\\CristianPC\\Desktop\\vitalcare\\wwwroot\\",
       "BasePath": "_content/CitasEPS",
       "RelativePath": "images/hero-background#[.{fingerprint}]?.svg",
       "AssetKind": "All",
@@ -1676,10 +1676,10 @@
       "OriginalItemSpec": "wwwroot\\images\\hero-background.svg"
     },
     {
-      "Identity": "C:\\users\\cristianPC\\desktop\\vitalcare\\wwwroot\\images\\INDEX.png",
+      "Identity": "C:\\Users\\CristianPC\\Desktop\\vitalcare\\wwwroot\\images\\INDEX.png",
       "SourceId": "CitasEPS",
       "SourceType": "Discovered",
-      "ContentRoot": "C:\\users\\cristianPC\\desktop\\vitalcare\\wwwroot\\",
+      "ContentRoot": "C:\\Users\\CristianPC\\Desktop\\vitalcare\\wwwroot\\",
       "BasePath": "_content/CitasEPS",
       "RelativePath": "images/INDEX#[.{fingerprint}]?.png",
       "AssetKind": "All",
@@ -1697,10 +1697,10 @@
       "OriginalItemSpec": "wwwroot\\images\\INDEX.png"
     },
     {
-      "Identity": "C:\\users\\cristianPC\\desktop\\vitalcare\\wwwroot\\images\\Pacientes.png",
+      "Identity": "C:\\Users\\CristianPC\\Desktop\\vitalcare\\wwwroot\\images\\Pacientes.png",
       "SourceId": "CitasEPS",
       "SourceType": "Discovered",
-      "ContentRoot": "C:\\users\\cristianPC\\desktop\\vitalcare\\wwwroot\\",
+      "ContentRoot": "C:\\Users\\CristianPC\\Desktop\\vitalcare\\wwwroot\\",
       "BasePath": "_content/CitasEPS",
       "RelativePath": "images/Pacientes#[.{fingerprint}]?.png",
       "AssetKind": "All",
@@ -1718,10 +1718,10 @@
       "OriginalItemSpec": "wwwroot\\images\\Pacientes.png"
     },
     {
-      "Identity": "C:\\users\\cristianPC\\desktop\\vitalcare\\wwwroot\\images\\patient-dashboard-bg.svg",
+      "Identity": "C:\\Users\\CristianPC\\Desktop\\vitalcare\\wwwroot\\images\\patient-dashboard-bg.svg",
       "SourceId": "CitasEPS",
       "SourceType": "Discovered",
-      "ContentRoot": "C:\\users\\cristianPC\\desktop\\vitalcare\\wwwroot\\",
+      "ContentRoot": "C:\\Users\\CristianPC\\Desktop\\vitalcare\\wwwroot\\",
       "BasePath": "_content/CitasEPS",
       "RelativePath": "images/patient-dashboard-bg#[.{fingerprint}]?.svg",
       "AssetKind": "All",
@@ -1739,10 +1739,10 @@
       "OriginalItemSpec": "wwwroot\\images\\patient-dashboard-bg.svg"
     },
     {
-      "Identity": "C:\\users\\cristianPC\\desktop\\vitalcare\\wwwroot\\js\\navbarResponsive.js",
+      "Identity": "C:\\Users\\CristianPC\\Desktop\\vitalcare\\wwwroot\\js\\navbarResponsive.js",
       "SourceId": "CitasEPS",
       "SourceType": "Discovered",
-      "ContentRoot": "C:\\users\\cristianPC\\desktop\\vitalcare\\wwwroot\\",
+      "ContentRoot": "C:\\Users\\CristianPC\\Desktop\\vitalcare\\wwwroot\\",
       "BasePath": "_content/CitasEPS",
       "RelativePath": "js/navbarResponsive#[.{fingerprint}]?.js",
       "AssetKind": "All",
@@ -1760,10 +1760,10 @@
       "OriginalItemSpec": "wwwroot\\js\\navbarResponsive.js"
     },
     {
-      "Identity": "C:\\users\\cristianPC\\desktop\\vitalcare\\wwwroot\\js\\notifications.js",
+      "Identity": "C:\\Users\\CristianPC\\Desktop\\vitalcare\\wwwroot\\js\\notifications.js",
       "SourceId": "CitasEPS",
       "SourceType": "Discovered",
-      "ContentRoot": "C:\\users\\cristianPC\\desktop\\vitalcare\\wwwroot\\",
+      "ContentRoot": "C:\\Users\\CristianPC\\Desktop\\vitalcare\\wwwroot\\",
       "BasePath": "_content/CitasEPS",
       "RelativePath": "js/notifications#[.{fingerprint}]?.js",
       "AssetKind": "All",
@@ -1781,10 +1781,10 @@
       "OriginalItemSpec": "wwwroot\\js\\notifications.js"
     },
     {
-      "Identity": "C:\\users\\cristianPC\\desktop\\vitalcare\\wwwroot\\js\\passwordToggle.js",
+      "Identity": "C:\\Users\\CristianPC\\Desktop\\vitalcare\\wwwroot\\js\\passwordToggle.js",
       "SourceId": "CitasEPS",
       "SourceType": "Discovered",
-      "ContentRoot": "C:\\users\\cristianPC\\desktop\\vitalcare\\wwwroot\\",
+      "ContentRoot": "C:\\Users\\CristianPC\\Desktop\\vitalcare\\wwwroot\\",
       "BasePath": "_content/CitasEPS",
       "RelativePath": "js/passwordToggle#[.{fingerprint}]?.js",
       "AssetKind": "All",
@@ -1802,10 +1802,10 @@
       "OriginalItemSpec": "wwwroot\\js\\passwordToggle.js"
     },
     {
-      "Identity": "C:\\users\\cristianPC\\desktop\\vitalcare\\wwwroot\\js\\performance-optimizer.js",
+      "Identity": "C:\\Users\\CristianPC\\Desktop\\vitalcare\\wwwroot\\js\\performance-optimizer.js",
       "SourceId": "CitasEPS",
       "SourceType": "Discovered",
-      "ContentRoot": "C:\\users\\cristianPC\\desktop\\vitalcare\\wwwroot\\",
+      "ContentRoot": "C:\\Users\\CristianPC\\Desktop\\vitalcare\\wwwroot\\",
       "BasePath": "_content/CitasEPS",
       "RelativePath": "js/performance-optimizer#[.{fingerprint}]?.js",
       "AssetKind": "All",
@@ -1823,10 +1823,10 @@
       "OriginalItemSpec": "wwwroot\\js\\performance-optimizer.js"
     },
     {
-      "Identity": "C:\\users\\cristianPC\\desktop\\vitalcare\\wwwroot\\js\\scroll-performance-fix.js",
+      "Identity": "C:\\Users\\CristianPC\\Desktop\\vitalcare\\wwwroot\\js\\scroll-performance-fix.js",
       "SourceId": "CitasEPS",
       "SourceType": "Discovered",
-      "ContentRoot": "C:\\users\\cristianPC\\desktop\\vitalcare\\wwwroot\\",
+      "ContentRoot": "C:\\Users\\CristianPC\\Desktop\\vitalcare\\wwwroot\\",
       "BasePath": "_content/CitasEPS",
       "RelativePath": "js/scroll-performance-fix#[.{fingerprint}]?.js",
       "AssetKind": "All",
@@ -1844,10 +1844,10 @@
       "OriginalItemSpec": "wwwroot\\js\\scroll-performance-fix.js"
     },
     {
-      "Identity": "C:\\users\\cristianPC\\desktop\\vitalcare\\wwwroot\\js\\scroll-performance-test.js",
+      "Identity": "C:\\Users\\CristianPC\\Desktop\\vitalcare\\wwwroot\\js\\scroll-performance-test.js",
       "SourceId": "CitasEPS",
       "SourceType": "Discovered",
-      "ContentRoot": "C:\\users\\cristianPC\\desktop\\vitalcare\\wwwroot\\",
+      "ContentRoot": "C:\\Users\\CristianPC\\Desktop\\vitalcare\\wwwroot\\",
       "BasePath": "_content/CitasEPS",
       "RelativePath": "js/scroll-performance-test#[.{fingerprint}]?.js",
       "AssetKind": "All",
@@ -1865,10 +1865,10 @@
       "OriginalItemSpec": "wwwroot\\js\\scroll-performance-test.js"
     },
     {
-      "Identity": "C:\\users\\cristianPC\\desktop\\vitalcare\\wwwroot\\js\\site.flatpickr.js",
+      "Identity": "C:\\Users\\CristianPC\\Desktop\\vitalcare\\wwwroot\\js\\site.flatpickr.js",
       "SourceId": "CitasEPS",
       "SourceType": "Discovered",
-      "ContentRoot": "C:\\users\\cristianPC\\desktop\\vitalcare\\wwwroot\\",
+      "ContentRoot": "C:\\Users\\CristianPC\\Desktop\\vitalcare\\wwwroot\\",
       "BasePath": "_content/CitasEPS",
       "RelativePath": "js/site.flatpickr#[.{fingerprint}]?.js",
       "AssetKind": "All",
@@ -1886,10 +1886,10 @@
       "OriginalItemSpec": "wwwroot\\js\\site.flatpickr.js"
     },
     {
-      "Identity": "C:\\users\\cristianPC\\desktop\\vitalcare\\wwwroot\\js\\site.js",
+      "Identity": "C:\\Users\\CristianPC\\Desktop\\vitalcare\\wwwroot\\js\\site.js",
       "SourceId": "CitasEPS",
       "SourceType": "Discovered",
-      "ContentRoot": "C:\\users\\cristianPC\\desktop\\vitalcare\\wwwroot\\",
+      "ContentRoot": "C:\\Users\\CristianPC\\Desktop\\vitalcare\\wwwroot\\",
       "BasePath": "_content/CitasEPS",
       "RelativePath": "js/site#[.{fingerprint}]?.js",
       "AssetKind": "All",
@@ -1907,10 +1907,10 @@
       "OriginalItemSpec": "wwwroot\\js\\site.js"
     },
     {
-      "Identity": "C:\\users\\cristianPC\\desktop\\vitalcare\\wwwroot\\js\\themeSwitcher.js",
+      "Identity": "C:\\Users\\CristianPC\\Desktop\\vitalcare\\wwwroot\\js\\themeSwitcher.js",
       "SourceId": "CitasEPS",
       "SourceType": "Discovered",
-      "ContentRoot": "C:\\users\\cristianPC\\desktop\\vitalcare\\wwwroot\\",
+      "ContentRoot": "C:\\Users\\CristianPC\\Desktop\\vitalcare\\wwwroot\\",
       "BasePath": "_content/CitasEPS",
       "RelativePath": "js/themeSwitcher#[.{fingerprint}]?.js",
       "AssetKind": "All",
@@ -1928,10 +1928,10 @@
       "OriginalItemSpec": "wwwroot\\js\\themeSwitcher.js"
     },
     {
-      "Identity": "C:\\users\\cristianPC\\desktop\\vitalcare\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-grid.css",
+      "Identity": "C:\\Users\\CristianPC\\Desktop\\vitalcare\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-grid.css",
       "SourceId": "CitasEPS",
       "SourceType": "Discovered",
-      "ContentRoot": "C:\\users\\cristianPC\\desktop\\vitalcare\\wwwroot\\",
+      "ContentRoot": "C:\\Users\\CristianPC\\Desktop\\vitalcare\\wwwroot\\",
       "BasePath": "_content/CitasEPS",
       "RelativePath": "lib/bootstrap/dist/css/bootstrap-grid#[.{fingerprint}]?.css",
       "AssetKind": "All",
@@ -1949,10 +1949,10 @@
       "OriginalItemSpec": "wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-grid.css"
     },
     {
-      "Identity": "C:\\users\\cristianPC\\desktop\\vitalcare\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-grid.css.map",
+      "Identity": "C:\\Users\\CristianPC\\Desktop\\vitalcare\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-grid.css.map",
       "SourceId": "CitasEPS",
       "SourceType": "Discovered",
-      "ContentRoot": "C:\\users\\cristianPC\\desktop\\vitalcare\\wwwroot\\",
+      "ContentRoot": "C:\\Users\\CristianPC\\Desktop\\vitalcare\\wwwroot\\",
       "BasePath": "_content/CitasEPS",
       "RelativePath": "lib/bootstrap/dist/css/bootstrap-grid.css#[.{fingerprint}]?.map",
       "AssetKind": "All",
@@ -1970,10 +1970,10 @@
       "OriginalItemSpec": "wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-grid.css.map"
     },
     {
-      "Identity": "C:\\users\\cristianPC\\desktop\\vitalcare\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-grid.min.css",
+      "Identity": "C:\\Users\\CristianPC\\Desktop\\vitalcare\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-grid.min.css",
       "SourceId": "CitasEPS",
       "SourceType": "Discovered",
-      "ContentRoot": "C:\\users\\cristianPC\\desktop\\vitalcare\\wwwroot\\",
+      "ContentRoot": "C:\\Users\\CristianPC\\Desktop\\vitalcare\\wwwroot\\",
       "BasePath": "_content/CitasEPS",
       "RelativePath": "lib/bootstrap/dist/css/bootstrap-grid.min#[.{fingerprint}]?.css",
       "AssetKind": "All",
@@ -1991,10 +1991,10 @@
       "OriginalItemSpec": "wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-grid.min.css"
     },
     {
-      "Identity": "C:\\users\\cristianPC\\desktop\\vitalcare\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-grid.min.css.map",
+      "Identity": "C:\\Users\\CristianPC\\Desktop\\vitalcare\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-grid.min.css.map",
       "SourceId": "CitasEPS",
       "SourceType": "Discovered",
-      "ContentRoot": "C:\\users\\cristianPC\\desktop\\vitalcare\\wwwroot\\",
+      "ContentRoot": "C:\\Users\\CristianPC\\Desktop\\vitalcare\\wwwroot\\",
       "BasePath": "_content/CitasEPS",
       "RelativePath": "lib/bootstrap/dist/css/bootstrap-grid.min.css#[.{fingerprint}]?.map",
       "AssetKind": "All",
@@ -2012,10 +2012,10 @@
       "OriginalItemSpec": "wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-grid.min.css.map"
     },
     {
-      "Identity": "C:\\users\\cristianPC\\desktop\\vitalcare\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-grid.rtl.css",
+      "Identity": "C:\\Users\\CristianPC\\Desktop\\vitalcare\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-grid.rtl.css",
       "SourceId": "CitasEPS",
       "SourceType": "Discovered",
-      "ContentRoot": "C:\\users\\cristianPC\\desktop\\vitalcare\\wwwroot\\",
+      "ContentRoot": "C:\\Users\\CristianPC\\Desktop\\vitalcare\\wwwroot\\",
       "BasePath": "_content/CitasEPS",
       "RelativePath": "lib/bootstrap/dist/css/bootstrap-grid.rtl#[.{fingerprint}]?.css",
       "AssetKind": "All",
@@ -2033,10 +2033,10 @@
       "OriginalItemSpec": "wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-grid.rtl.css"
     },
     {
-      "Identity": "C:\\users\\cristianPC\\desktop\\vitalcare\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-grid.rtl.css.map",
+      "Identity": "C:\\Users\\CristianPC\\Desktop\\vitalcare\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-grid.rtl.css.map",
       "SourceId": "CitasEPS",
       "SourceType": "Discovered",
-      "ContentRoot": "C:\\users\\cristianPC\\desktop\\vitalcare\\wwwroot\\",
+      "ContentRoot": "C:\\Users\\CristianPC\\Desktop\\vitalcare\\wwwroot\\",
       "BasePath": "_content/CitasEPS",
       "RelativePath": "lib/bootstrap/dist/css/bootstrap-grid.rtl.css#[.{fingerprint}]?.map",
       "AssetKind": "All",
@@ -2054,10 +2054,10 @@
       "OriginalItemSpec": "wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-grid.rtl.css.map"
     },
     {
-      "Identity": "C:\\users\\cristianPC\\desktop\\vitalcare\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-grid.rtl.min.css",
+      "Identity": "C:\\Users\\CristianPC\\Desktop\\vitalcare\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-grid.rtl.min.css",
       "SourceId": "CitasEPS",
       "SourceType": "Discovered",
-      "ContentRoot": "C:\\users\\cristianPC\\desktop\\vitalcare\\wwwroot\\",
+      "ContentRoot": "C:\\Users\\CristianPC\\Desktop\\vitalcare\\wwwroot\\",
       "BasePath": "_content/CitasEPS",
       "RelativePath": "lib/bootstrap/dist/css/bootstrap-grid.rtl.min#[.{fingerprint}]?.css",
       "AssetKind": "All",
@@ -2075,10 +2075,10 @@
       "OriginalItemSpec": "wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-grid.rtl.min.css"
     },
     {
-      "Identity": "C:\\users\\cristianPC\\desktop\\vitalcare\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-grid.rtl.min.css.map",
+      "Identity": "C:\\Users\\CristianPC\\Desktop\\vitalcare\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-grid.rtl.min.css.map",
       "SourceId": "CitasEPS",
       "SourceType": "Discovered",
-      "ContentRoot": "C:\\users\\cristianPC\\desktop\\vitalcare\\wwwroot\\",
+      "ContentRoot": "C:\\Users\\CristianPC\\Desktop\\vitalcare\\wwwroot\\",
       "BasePath": "_content/CitasEPS",
       "RelativePath": "lib/bootstrap/dist/css/bootstrap-grid.rtl.min.css#[.{fingerprint}]?.map",
       "AssetKind": "All",
@@ -2096,10 +2096,10 @@
       "OriginalItemSpec": "wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-grid.rtl.min.css.map"
     },
     {
-      "Identity": "C:\\users\\cristianPC\\desktop\\vitalcare\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.css",
+      "Identity": "C:\\Users\\CristianPC\\Desktop\\vitalcare\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.css",
       "SourceId": "CitasEPS",
       "SourceType": "Discovered",
-      "ContentRoot": "C:\\users\\cristianPC\\desktop\\vitalcare\\wwwroot\\",
+      "ContentRoot": "C:\\Users\\CristianPC\\Desktop\\vitalcare\\wwwroot\\",
       "BasePath": "_content/CitasEPS",
       "RelativePath": "lib/bootstrap/dist/css/bootstrap-reboot#[.{fingerprint}]?.css",
       "AssetKind": "All",
@@ -2117,10 +2117,10 @@
       "OriginalItemSpec": "wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.css"
     },
     {
-      "Identity": "C:\\users\\cristianPC\\desktop\\vitalcare\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.css.map",
+      "Identity": "C:\\Users\\CristianPC\\Desktop\\vitalcare\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.css.map",
       "SourceId": "CitasEPS",
       "SourceType": "Discovered",
-      "ContentRoot": "C:\\users\\cristianPC\\desktop\\vitalcare\\wwwroot\\",
+      "ContentRoot": "C:\\Users\\CristianPC\\Desktop\\vitalcare\\wwwroot\\",
       "BasePath": "_content/CitasEPS",
       "RelativePath": "lib/bootstrap/dist/css/bootstrap-reboot.css#[.{fingerprint}]?.map",
       "AssetKind": "All",
@@ -2138,10 +2138,10 @@
       "OriginalItemSpec": "wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.css.map"
     },
     {
-      "Identity": "C:\\users\\cristianPC\\desktop\\vitalcare\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.min.css",
+      "Identity": "C:\\Users\\CristianPC\\Desktop\\vitalcare\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.min.css",
       "SourceId": "CitasEPS",
       "SourceType": "Discovered",
-      "ContentRoot": "C:\\users\\cristianPC\\desktop\\vitalcare\\wwwroot\\",
+      "ContentRoot": "C:\\Users\\CristianPC\\Desktop\\vitalcare\\wwwroot\\",
       "BasePath": "_content/CitasEPS",
       "RelativePath": "lib/bootstrap/dist/css/bootstrap-reboot.min#[.{fingerprint}]?.css",
       "AssetKind": "All",
@@ -2159,10 +2159,10 @@
       "OriginalItemSpec": "wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.min.css"
     },
     {
-      "Identity": "C:\\users\\cristianPC\\desktop\\vitalcare\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.min.css.map",
+      "Identity": "C:\\Users\\CristianPC\\Desktop\\vitalcare\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.min.css.map",
       "SourceId": "CitasEPS",
       "SourceType": "Discovered",
-      "ContentRoot": "C:\\users\\cristianPC\\desktop\\vitalcare\\wwwroot\\",
+      "ContentRoot": "C:\\Users\\CristianPC\\Desktop\\vitalcare\\wwwroot\\",
       "BasePath": "_content/CitasEPS",
       "RelativePath": "lib/bootstrap/dist/css/bootstrap-reboot.min.css#[.{fingerprint}]?.map",
       "AssetKind": "All",
@@ -2180,10 +2180,10 @@
       "OriginalItemSpec": "wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.min.css.map"
     },
     {
-      "Identity": "C:\\users\\cristianPC\\desktop\\vitalcare\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.rtl.css",
+      "Identity": "C:\\Users\\CristianPC\\Desktop\\vitalcare\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.rtl.css",
       "SourceId": "CitasEPS",
       "SourceType": "Discovered",
-      "ContentRoot": "C:\\users\\cristianPC\\desktop\\vitalcare\\wwwroot\\",
+      "ContentRoot": "C:\\Users\\CristianPC\\Desktop\\vitalcare\\wwwroot\\",
       "BasePath": "_content/CitasEPS",
       "RelativePath": "lib/bootstrap/dist/css/bootstrap-reboot.rtl#[.{fingerprint}]?.css",
       "AssetKind": "All",
@@ -2201,10 +2201,10 @@
       "OriginalItemSpec": "wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.rtl.css"
     },
     {
-      "Identity": "C:\\users\\cristianPC\\desktop\\vitalcare\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.rtl.css.map",
+      "Identity": "C:\\Users\\CristianPC\\Desktop\\vitalcare\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.rtl.css.map",
       "SourceId": "CitasEPS",
       "SourceType": "Discovered",
-      "ContentRoot": "C:\\users\\cristianPC\\desktop\\vitalcare\\wwwroot\\",
+      "ContentRoot": "C:\\Users\\CristianPC\\Desktop\\vitalcare\\wwwroot\\",
       "BasePath": "_content/CitasEPS",
       "RelativePath": "lib/bootstrap/dist/css/bootstrap-reboot.rtl.css#[.{fingerprint}]?.map",
       "AssetKind": "All",
@@ -2222,10 +2222,10 @@
       "OriginalItemSpec": "wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.rtl.css.map"
     },
     {
-      "Identity": "C:\\users\\cristianPC\\desktop\\vitalcare\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.rtl.min.css",
+      "Identity": "C:\\Users\\CristianPC\\Desktop\\vitalcare\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.rtl.min.css",
       "SourceId": "CitasEPS",
       "SourceType": "Discovered",
-      "ContentRoot": "C:\\users\\cristianPC\\desktop\\vitalcare\\wwwroot\\",
+      "ContentRoot": "C:\\Users\\CristianPC\\Desktop\\vitalcare\\wwwroot\\",
       "BasePath": "_content/CitasEPS",
       "RelativePath": "lib/bootstrap/dist/css/bootstrap-reboot.rtl.min#[.{fingerprint}]?.css",
       "AssetKind": "All",
@@ -2243,10 +2243,10 @@
       "OriginalItemSpec": "wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.rtl.min.css"
     },
     {
-      "Identity": "C:\\users\\cristianPC\\desktop\\vitalcare\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.rtl.min.css.map",
+      "Identity": "C:\\Users\\CristianPC\\Desktop\\vitalcare\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.rtl.min.css.map",
       "SourceId": "CitasEPS",
       "SourceType": "Discovered",
-      "ContentRoot": "C:\\users\\cristianPC\\desktop\\vitalcare\\wwwroot\\",
+      "ContentRoot": "C:\\Users\\CristianPC\\Desktop\\vitalcare\\wwwroot\\",
       "BasePath": "_content/CitasEPS",
       "RelativePath": "lib/bootstrap/dist/css/bootstrap-reboot.rtl.min.css#[.{fingerprint}]?.map",
       "AssetKind": "All",
@@ -2264,10 +2264,10 @@
       "OriginalItemSpec": "wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.rtl.min.css.map"
     },
     {
-      "Identity": "C:\\users\\cristianPC\\desktop\\vitalcare\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.css",
+      "Identity": "C:\\Users\\CristianPC\\Desktop\\vitalcare\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.css",
       "SourceId": "CitasEPS",
       "SourceType": "Discovered",
-      "ContentRoot": "C:\\users\\cristianPC\\desktop\\vitalcare\\wwwroot\\",
+      "ContentRoot": "C:\\Users\\CristianPC\\Desktop\\vitalcare\\wwwroot\\",
       "BasePath": "_content/CitasEPS",
       "RelativePath": "lib/bootstrap/dist/css/bootstrap-utilities#[.{fingerprint}]?.css",
       "AssetKind": "All",
@@ -2285,10 +2285,10 @@
       "OriginalItemSpec": "wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.css"
     },
     {
-      "Identity": "C:\\users\\cristianPC\\desktop\\vitalcare\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.css.map",
+      "Identity": "C:\\Users\\CristianPC\\Desktop\\vitalcare\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.css.map",
       "SourceId": "CitasEPS",
       "SourceType": "Discovered",
-      "ContentRoot": "C:\\users\\cristianPC\\desktop\\vitalcare\\wwwroot\\",
+      "ContentRoot": "C:\\Users\\CristianPC\\Desktop\\vitalcare\\wwwroot\\",
       "BasePath": "_content/CitasEPS",
       "RelativePath": "lib/bootstrap/dist/css/bootstrap-utilities.css#[.{fingerprint}]?.map",
       "AssetKind": "All",
@@ -2306,10 +2306,10 @@
       "OriginalItemSpec": "wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.css.map"
     },
     {
-      "Identity": "C:\\users\\cristianPC\\desktop\\vitalcare\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.min.css",
+      "Identity": "C:\\Users\\CristianPC\\Desktop\\vitalcare\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.min.css",
       "SourceId": "CitasEPS",
       "SourceType": "Discovered",
-      "ContentRoot": "C:\\users\\cristianPC\\desktop\\vitalcare\\wwwroot\\",
+      "ContentRoot": "C:\\Users\\CristianPC\\Desktop\\vitalcare\\wwwroot\\",
       "BasePath": "_content/CitasEPS",
       "RelativePath": "lib/bootstrap/dist/css/bootstrap-utilities.min#[.{fingerprint}]?.css",
       "AssetKind": "All",
@@ -2327,10 +2327,10 @@
       "OriginalItemSpec": "wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.min.css"
     },
     {
-      "Identity": "C:\\users\\cristianPC\\desktop\\vitalcare\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.min.css.map",
+      "Identity": "C:\\Users\\CristianPC\\Desktop\\vitalcare\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.min.css.map",
       "SourceId": "CitasEPS",
       "SourceType": "Discovered",
-      "ContentRoot": "C:\\users\\cristianPC\\desktop\\vitalcare\\wwwroot\\",
+      "ContentRoot": "C:\\Users\\CristianPC\\Desktop\\vitalcare\\wwwroot\\",
       "BasePath": "_content/CitasEPS",
       "RelativePath": "lib/bootstrap/dist/css/bootstrap-utilities.min.css#[.{fingerprint}]?.map",
       "AssetKind": "All",
@@ -2348,10 +2348,10 @@
       "OriginalItemSpec": "wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.min.css.map"
     },
     {
-      "Identity": "C:\\users\\cristianPC\\desktop\\vitalcare\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.rtl.css",
+      "Identity": "C:\\Users\\CristianPC\\Desktop\\vitalcare\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.rtl.css",
       "SourceId": "CitasEPS",
       "SourceType": "Discovered",
-      "ContentRoot": "C:\\users\\cristianPC\\desktop\\vitalcare\\wwwroot\\",
+      "ContentRoot": "C:\\Users\\CristianPC\\Desktop\\vitalcare\\wwwroot\\",
       "BasePath": "_content/CitasEPS",
       "RelativePath": "lib/bootstrap/dist/css/bootstrap-utilities.rtl#[.{fingerprint}]?.css",
       "AssetKind": "All",
@@ -2369,10 +2369,10 @@
       "OriginalItemSpec": "wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.rtl.css"
     },
     {
-      "Identity": "C:\\users\\cristianPC\\desktop\\vitalcare\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.rtl.css.map",
+      "Identity": "C:\\Users\\CristianPC\\Desktop\\vitalcare\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.rtl.css.map",
       "SourceId": "CitasEPS",
       "SourceType": "Discovered",
-      "ContentRoot": "C:\\users\\cristianPC\\desktop\\vitalcare\\wwwroot\\",
+      "ContentRoot": "C:\\Users\\CristianPC\\Desktop\\vitalcare\\wwwroot\\",
       "BasePath": "_content/CitasEPS",
       "RelativePath": "lib/bootstrap/dist/css/bootstrap-utilities.rtl.css#[.{fingerprint}]?.map",
       "AssetKind": "All",
@@ -2390,10 +2390,10 @@
       "OriginalItemSpec": "wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.rtl.css.map"
     },
     {
-      "Identity": "C:\\users\\cristianPC\\desktop\\vitalcare\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.rtl.min.css",
+      "Identity": "C:\\Users\\CristianPC\\Desktop\\vitalcare\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.rtl.min.css",
       "SourceId": "CitasEPS",
       "SourceType": "Discovered",
-      "ContentRoot": "C:\\users\\cristianPC\\desktop\\vitalcare\\wwwroot\\",
+      "ContentRoot": "C:\\Users\\CristianPC\\Desktop\\vitalcare\\wwwroot\\",
       "BasePath": "_content/CitasEPS",
       "RelativePath": "lib/bootstrap/dist/css/bootstrap-utilities.rtl.min#[.{fingerprint}]?.css",
       "AssetKind": "All",
@@ -2411,10 +2411,10 @@
       "OriginalItemSpec": "wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.rtl.min.css"
     },
     {
-      "Identity": "C:\\users\\cristianPC\\desktop\\vitalcare\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.rtl.min.css.map",
+      "Identity": "C:\\Users\\CristianPC\\Desktop\\vitalcare\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.rtl.min.css.map",
       "SourceId": "CitasEPS",
       "SourceType": "Discovered",
-      "ContentRoot": "C:\\users\\cristianPC\\desktop\\vitalcare\\wwwroot\\",
+      "ContentRoot": "C:\\Users\\CristianPC\\Desktop\\vitalcare\\wwwroot\\",
       "BasePath": "_content/CitasEPS",
       "RelativePath": "lib/bootstrap/dist/css/bootstrap-utilities.rtl.min.css#[.{fingerprint}]?.map",
       "AssetKind": "All",
@@ -2432,10 +2432,10 @@
       "OriginalItemSpec": "wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.rtl.min.css.map"
     },
     {
-      "Identity": "C:\\users\\cristianPC\\desktop\\vitalcare\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap.css",
+      "Identity": "C:\\Users\\CristianPC\\Desktop\\vitalcare\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap.css",
       "SourceId": "CitasEPS",
       "SourceType": "Discovered",
-      "ContentRoot": "C:\\users\\cristianPC\\desktop\\vitalcare\\wwwroot\\",
+      "ContentRoot": "C:\\Users\\CristianPC\\Desktop\\vitalcare\\wwwroot\\",
       "BasePath": "_content/CitasEPS",
       "RelativePath": "lib/bootstrap/dist/css/bootstrap#[.{fingerprint}]?.css",
       "AssetKind": "All",
@@ -2453,10 +2453,10 @@
       "OriginalItemSpec": "wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap.css"
     },
     {
-      "Identity": "C:\\users\\cristianPC\\desktop\\vitalcare\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap.css.map",
+      "Identity": "C:\\Users\\CristianPC\\Desktop\\vitalcare\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap.css.map",
       "SourceId": "CitasEPS",
       "SourceType": "Discovered",
-      "ContentRoot": "C:\\users\\cristianPC\\desktop\\vitalcare\\wwwroot\\",
+      "ContentRoot": "C:\\Users\\CristianPC\\Desktop\\vitalcare\\wwwroot\\",
       "BasePath": "_content/CitasEPS",
       "RelativePath": "lib/bootstrap/dist/css/bootstrap.css#[.{fingerprint}]?.map",
       "AssetKind": "All",
@@ -2474,10 +2474,10 @@
       "OriginalItemSpec": "wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap.css.map"
     },
     {
-      "Identity": "C:\\users\\cristianPC\\desktop\\vitalcare\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap.min.css",
+      "Identity": "C:\\Users\\CristianPC\\Desktop\\vitalcare\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap.min.css",
       "SourceId": "CitasEPS",
       "SourceType": "Discovered",
-      "ContentRoot": "C:\\users\\cristianPC\\desktop\\vitalcare\\wwwroot\\",
+      "ContentRoot": "C:\\Users\\CristianPC\\Desktop\\vitalcare\\wwwroot\\",
       "BasePath": "_content/CitasEPS",
       "RelativePath": "lib/bootstrap/dist/css/bootstrap.min#[.{fingerprint}]?.css",
       "AssetKind": "All",
@@ -2495,10 +2495,10 @@
       "OriginalItemSpec": "wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap.min.css"
     },
     {
-      "Identity": "C:\\users\\cristianPC\\desktop\\vitalcare\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap.min.css.map",
+      "Identity": "C:\\Users\\CristianPC\\Desktop\\vitalcare\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap.min.css.map",
       "SourceId": "CitasEPS",
       "SourceType": "Discovered",
-      "ContentRoot": "C:\\users\\cristianPC\\desktop\\vitalcare\\wwwroot\\",
+      "ContentRoot": "C:\\Users\\CristianPC\\Desktop\\vitalcare\\wwwroot\\",
       "BasePath": "_content/CitasEPS",
       "RelativePath": "lib/bootstrap/dist/css/bootstrap.min.css#[.{fingerprint}]?.map",
       "AssetKind": "All",
@@ -2516,10 +2516,10 @@
       "OriginalItemSpec": "wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap.min.css.map"
     },
     {
-      "Identity": "C:\\users\\cristianPC\\desktop\\vitalcare\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap.rtl.css",
+      "Identity": "C:\\Users\\CristianPC\\Desktop\\vitalcare\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap.rtl.css",
       "SourceId": "CitasEPS",
       "SourceType": "Discovered",
-      "ContentRoot": "C:\\users\\cristianPC\\desktop\\vitalcare\\wwwroot\\",
+      "ContentRoot": "C:\\Users\\CristianPC\\Desktop\\vitalcare\\wwwroot\\",
       "BasePath": "_content/CitasEPS",
       "RelativePath": "lib/bootstrap/dist/css/bootstrap.rtl#[.{fingerprint}]?.css",
       "AssetKind": "All",
@@ -2537,10 +2537,10 @@
       "OriginalItemSpec": "wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap.rtl.css"
     },
     {
-      "Identity": "C:\\users\\cristianPC\\desktop\\vitalcare\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap.rtl.css.map",
+      "Identity": "C:\\Users\\CristianPC\\Desktop\\vitalcare\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap.rtl.css.map",
       "SourceId": "CitasEPS",
       "SourceType": "Discovered",
-      "ContentRoot": "C:\\users\\cristianPC\\desktop\\vitalcare\\wwwroot\\",
+      "ContentRoot": "C:\\Users\\CristianPC\\Desktop\\vitalcare\\wwwroot\\",
       "BasePath": "_content/CitasEPS",
       "RelativePath": "lib/bootstrap/dist/css/bootstrap.rtl.css#[.{fingerprint}]?.map",
       "AssetKind": "All",
@@ -2558,10 +2558,10 @@
       "OriginalItemSpec": "wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap.rtl.css.map"
     },
     {
-      "Identity": "C:\\users\\cristianPC\\desktop\\vitalcare\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap.rtl.min.css",
+      "Identity": "C:\\Users\\CristianPC\\Desktop\\vitalcare\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap.rtl.min.css",
       "SourceId": "CitasEPS",
       "SourceType": "Discovered",
-      "ContentRoot": "C:\\users\\cristianPC\\desktop\\vitalcare\\wwwroot\\",
+      "ContentRoot": "C:\\Users\\CristianPC\\Desktop\\vitalcare\\wwwroot\\",
       "BasePath": "_content/CitasEPS",
       "RelativePath": "lib/bootstrap/dist/css/bootstrap.rtl.min#[.{fingerprint}]?.css",
       "AssetKind": "All",
@@ -2579,10 +2579,10 @@
       "OriginalItemSpec": "wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap.rtl.min.css"
     },
     {
-      "Identity": "C:\\users\\cristianPC\\desktop\\vitalcare\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap.rtl.min.css.map",
+      "Identity": "C:\\Users\\CristianPC\\Desktop\\vitalcare\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap.rtl.min.css.map",
       "SourceId": "CitasEPS",
       "SourceType": "Discovered",
-      "ContentRoot": "C:\\users\\cristianPC\\desktop\\vitalcare\\wwwroot\\",
+      "ContentRoot": "C:\\Users\\CristianPC\\Desktop\\vitalcare\\wwwroot\\",
       "BasePath": "_content/CitasEPS",
       "RelativePath": "lib/bootstrap/dist/css/bootstrap.rtl.min.css#[.{fingerprint}]?.map",
       "AssetKind": "All",
@@ -2600,10 +2600,10 @@
       "OriginalItemSpec": "wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap.rtl.min.css.map"
     },
     {
-      "Identity": "C:\\users\\cristianPC\\desktop\\vitalcare\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.bundle.js",
+      "Identity": "C:\\Users\\CristianPC\\Desktop\\vitalcare\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.bundle.js",
       "SourceId": "CitasEPS",
       "SourceType": "Discovered",
-      "ContentRoot": "C:\\users\\cristianPC\\desktop\\vitalcare\\wwwroot\\",
+      "ContentRoot": "C:\\Users\\CristianPC\\Desktop\\vitalcare\\wwwroot\\",
       "BasePath": "_content/CitasEPS",
       "RelativePath": "lib/bootstrap/dist/js/bootstrap.bundle#[.{fingerprint}]?.js",
       "AssetKind": "All",
@@ -2621,10 +2621,10 @@
       "OriginalItemSpec": "wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.bundle.js"
     },
     {
-      "Identity": "C:\\users\\cristianPC\\desktop\\vitalcare\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.bundle.js.map",
+      "Identity": "C:\\Users\\CristianPC\\Desktop\\vitalcare\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.bundle.js.map",
       "SourceId": "CitasEPS",
       "SourceType": "Discovered",
-      "ContentRoot": "C:\\users\\cristianPC\\desktop\\vitalcare\\wwwroot\\",
+      "ContentRoot": "C:\\Users\\CristianPC\\Desktop\\vitalcare\\wwwroot\\",
       "BasePath": "_content/CitasEPS",
       "RelativePath": "lib/bootstrap/dist/js/bootstrap.bundle.js#[.{fingerprint}]?.map",
       "AssetKind": "All",
@@ -2642,10 +2642,10 @@
       "OriginalItemSpec": "wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.bundle.js.map"
     },
     {
-      "Identity": "C:\\users\\cristianPC\\desktop\\vitalcare\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.bundle.min.js",
+      "Identity": "C:\\Users\\CristianPC\\Desktop\\vitalcare\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.bundle.min.js",
       "SourceId": "CitasEPS",
       "SourceType": "Discovered",
-      "ContentRoot": "C:\\users\\cristianPC\\desktop\\vitalcare\\wwwroot\\",
+      "ContentRoot": "C:\\Users\\CristianPC\\Desktop\\vitalcare\\wwwroot\\",
       "BasePath": "_content/CitasEPS",
       "RelativePath": "lib/bootstrap/dist/js/bootstrap.bundle.min#[.{fingerprint}]?.js",
       "AssetKind": "All",
@@ -2663,10 +2663,10 @@
       "OriginalItemSpec": "wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.bundle.min.js"
     },
     {
-      "Identity": "C:\\users\\cristianPC\\desktop\\vitalcare\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.bundle.min.js.map",
+      "Identity": "C:\\Users\\CristianPC\\Desktop\\vitalcare\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.bundle.min.js.map",
       "SourceId": "CitasEPS",
       "SourceType": "Discovered",
-      "ContentRoot": "C:\\users\\cristianPC\\desktop\\vitalcare\\wwwroot\\",
+      "ContentRoot": "C:\\Users\\CristianPC\\Desktop\\vitalcare\\wwwroot\\",
       "BasePath": "_content/CitasEPS",
       "RelativePath": "lib/bootstrap/dist/js/bootstrap.bundle.min.js#[.{fingerprint}]?.map",
       "AssetKind": "All",
@@ -2684,10 +2684,10 @@
       "OriginalItemSpec": "wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.bundle.min.js.map"
     },
     {
-      "Identity": "C:\\users\\cristianPC\\desktop\\vitalcare\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.esm.js",
+      "Identity": "C:\\Users\\CristianPC\\Desktop\\vitalcare\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.esm.js",
       "SourceId": "CitasEPS",
       "SourceType": "Discovered",
-      "ContentRoot": "C:\\users\\cristianPC\\desktop\\vitalcare\\wwwroot\\",
+      "ContentRoot": "C:\\Users\\CristianPC\\Desktop\\vitalcare\\wwwroot\\",
       "BasePath": "_content/CitasEPS",
       "RelativePath": "lib/bootstrap/dist/js/bootstrap.esm#[.{fingerprint}]?.js",
       "AssetKind": "All",
@@ -2705,10 +2705,10 @@
       "OriginalItemSpec": "wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.esm.js"
     },
     {
-      "Identity": "C:\\users\\cristianPC\\desktop\\vitalcare\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.esm.js.map",
+      "Identity": "C:\\Users\\CristianPC\\Desktop\\vitalcare\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.esm.js.map",
       "SourceId": "CitasEPS",
       "SourceType": "Discovered",
-      "ContentRoot": "C:\\users\\cristianPC\\desktop\\vitalcare\\wwwroot\\",
+      "ContentRoot": "C:\\Users\\CristianPC\\Desktop\\vitalcare\\wwwroot\\",
       "BasePath": "_content/CitasEPS",
       "RelativePath": "lib/bootstrap/dist/js/bootstrap.esm.js#[.{fingerprint}]?.map",
       "AssetKind": "All",
@@ -2726,10 +2726,10 @@
       "OriginalItemSpec": "wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.esm.js.map"
     },
     {
-      "Identity": "C:\\users\\cristianPC\\desktop\\vitalcare\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.esm.min.js",
+      "Identity": "C:\\Users\\CristianPC\\Desktop\\vitalcare\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.esm.min.js",
       "SourceId": "CitasEPS",
       "SourceType": "Discovered",
-      "ContentRoot": "C:\\users\\cristianPC\\desktop\\vitalcare\\wwwroot\\",
+      "ContentRoot": "C:\\Users\\CristianPC\\Desktop\\vitalcare\\wwwroot\\",
       "BasePath": "_content/CitasEPS",
       "RelativePath": "lib/bootstrap/dist/js/bootstrap.esm.min#[.{fingerprint}]?.js",
       "AssetKind": "All",
@@ -2747,10 +2747,10 @@
       "OriginalItemSpec": "wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.esm.min.js"
     },
     {
-      "Identity": "C:\\users\\cristianPC\\desktop\\vitalcare\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.esm.min.js.map",
+      "Identity": "C:\\Users\\CristianPC\\Desktop\\vitalcare\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.esm.min.js.map",
       "SourceId": "CitasEPS",
       "SourceType": "Discovered",
-      "ContentRoot": "C:\\users\\cristianPC\\desktop\\vitalcare\\wwwroot\\",
+      "ContentRoot": "C:\\Users\\CristianPC\\Desktop\\vitalcare\\wwwroot\\",
       "BasePath": "_content/CitasEPS",
       "RelativePath": "lib/bootstrap/dist/js/bootstrap.esm.min.js#[.{fingerprint}]?.map",
       "AssetKind": "All",
@@ -2768,10 +2768,10 @@
       "OriginalItemSpec": "wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.esm.min.js.map"
     },
     {
-      "Identity": "C:\\users\\cristianPC\\desktop\\vitalcare\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.js",
+      "Identity": "C:\\Users\\CristianPC\\Desktop\\vitalcare\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.js",
       "SourceId": "CitasEPS",
       "SourceType": "Discovered",
-      "ContentRoot": "C:\\users\\cristianPC\\desktop\\vitalcare\\wwwroot\\",
+      "ContentRoot": "C:\\Users\\CristianPC\\Desktop\\vitalcare\\wwwroot\\",
       "BasePath": "_content/CitasEPS",
       "RelativePath": "lib/bootstrap/dist/js/bootstrap#[.{fingerprint}]?.js",
       "AssetKind": "All",
@@ -2789,10 +2789,10 @@
       "OriginalItemSpec": "wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.js"
     },
     {
-      "Identity": "C:\\users\\cristianPC\\desktop\\vitalcare\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.js.map",
+      "Identity": "C:\\Users\\CristianPC\\Desktop\\vitalcare\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.js.map",
       "SourceId": "CitasEPS",
       "SourceType": "Discovered",
-      "ContentRoot": "C:\\users\\cristianPC\\desktop\\vitalcare\\wwwroot\\",
+      "ContentRoot": "C:\\Users\\CristianPC\\Desktop\\vitalcare\\wwwroot\\",
       "BasePath": "_content/CitasEPS",
       "RelativePath": "lib/bootstrap/dist/js/bootstrap.js#[.{fingerprint}]?.map",
       "AssetKind": "All",
@@ -2810,10 +2810,10 @@
       "OriginalItemSpec": "wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.js.map"
     },
     {
-      "Identity": "C:\\users\\cristianPC\\desktop\\vitalcare\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.min.js",
+      "Identity": "C:\\Users\\CristianPC\\Desktop\\vitalcare\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.min.js",
       "SourceId": "CitasEPS",
       "SourceType": "Discovered",
-      "ContentRoot": "C:\\users\\cristianPC\\desktop\\vitalcare\\wwwroot\\",
+      "ContentRoot": "C:\\Users\\CristianPC\\Desktop\\vitalcare\\wwwroot\\",
       "BasePath": "_content/CitasEPS",
       "RelativePath": "lib/bootstrap/dist/js/bootstrap.min#[.{fingerprint}]?.js",
       "AssetKind": "All",
@@ -2831,10 +2831,10 @@
       "OriginalItemSpec": "wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.min.js"
     },
     {
-      "Identity": "C:\\users\\cristianPC\\desktop\\vitalcare\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.min.js.map",
+      "Identity": "C:\\Users\\CristianPC\\Desktop\\vitalcare\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.min.js.map",
       "SourceId": "CitasEPS",
       "SourceType": "Discovered",
-      "ContentRoot": "C:\\users\\cristianPC\\desktop\\vitalcare\\wwwroot\\",
+      "ContentRoot": "C:\\Users\\CristianPC\\Desktop\\vitalcare\\wwwroot\\",
       "BasePath": "_content/CitasEPS",
       "RelativePath": "lib/bootstrap/dist/js/bootstrap.min.js#[.{fingerprint}]?.map",
       "AssetKind": "All",
@@ -2852,10 +2852,10 @@
       "OriginalItemSpec": "wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.min.js.map"
     },
     {
-      "Identity": "C:\\users\\cristianPC\\desktop\\vitalcare\\wwwroot\\lib\\bootstrap\\LICENSE",
+      "Identity": "C:\\Users\\CristianPC\\Desktop\\vitalcare\\wwwroot\\lib\\bootstrap\\LICENSE",
       "SourceId": "CitasEPS",
       "SourceType": "Discovered",
-      "ContentRoot": "C:\\users\\cristianPC\\desktop\\vitalcare\\wwwroot\\",
+      "ContentRoot": "C:\\Users\\CristianPC\\Desktop\\vitalcare\\wwwroot\\",
       "BasePath": "_content/CitasEPS",
       "RelativePath": "lib/bootstrap/LICENSE#[.{fingerprint}]?",
       "AssetKind": "All",
@@ -2873,10 +2873,10 @@
       "OriginalItemSpec": "wwwroot\\lib\\bootstrap\\LICENSE"
     },
     {
-      "Identity": "C:\\users\\cristianPC\\desktop\\vitalcare\\wwwroot\\lib\\jquery-validation-unobtrusive\\jquery.validate.unobtrusive.js",
+      "Identity": "C:\\Users\\CristianPC\\Desktop\\vitalcare\\wwwroot\\lib\\jquery-validation-unobtrusive\\jquery.validate.unobtrusive.js",
       "SourceId": "CitasEPS",
       "SourceType": "Discovered",
-      "ContentRoot": "C:\\users\\cristianPC\\desktop\\vitalcare\\wwwroot\\",
+      "ContentRoot": "C:\\Users\\CristianPC\\Desktop\\vitalcare\\wwwroot\\",
       "BasePath": "_content/CitasEPS",
       "RelativePath": "lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive#[.{fingerprint}]?.js",
       "AssetKind": "All",
@@ -2894,10 +2894,10 @@
       "OriginalItemSpec": "wwwroot\\lib\\jquery-validation-unobtrusive\\jquery.validate.unobtrusive.js"
     },
     {
-      "Identity": "C:\\users\\cristianPC\\desktop\\vitalcare\\wwwroot\\lib\\jquery-validation-unobtrusive\\jquery.validate.unobtrusive.min.js",
+      "Identity": "C:\\Users\\CristianPC\\Desktop\\vitalcare\\wwwroot\\lib\\jquery-validation-unobtrusive\\jquery.validate.unobtrusive.min.js",
       "SourceId": "CitasEPS",
       "SourceType": "Discovered",
-      "ContentRoot": "C:\\users\\cristianPC\\desktop\\vitalcare\\wwwroot\\",
+      "ContentRoot": "C:\\Users\\CristianPC\\Desktop\\vitalcare\\wwwroot\\",
       "BasePath": "_content/CitasEPS",
       "RelativePath": "lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.min#[.{fingerprint}]?.js",
       "AssetKind": "All",
@@ -2915,10 +2915,10 @@
       "OriginalItemSpec": "wwwroot\\lib\\jquery-validation-unobtrusive\\jquery.validate.unobtrusive.min.js"
     },
     {
-      "Identity": "C:\\users\\cristianPC\\desktop\\vitalcare\\wwwroot\\lib\\jquery-validation-unobtrusive\\LICENSE.txt",
+      "Identity": "C:\\Users\\CristianPC\\Desktop\\vitalcare\\wwwroot\\lib\\jquery-validation-unobtrusive\\LICENSE.txt",
       "SourceId": "CitasEPS",
       "SourceType": "Discovered",
-      "ContentRoot": "C:\\users\\cristianPC\\desktop\\vitalcare\\wwwroot\\",
+      "ContentRoot": "C:\\Users\\CristianPC\\Desktop\\vitalcare\\wwwroot\\",
       "BasePath": "_content/CitasEPS",
       "RelativePath": "lib/jquery-validation-unobtrusive/LICENSE#[.{fingerprint}]?.txt",
       "AssetKind": "All",
@@ -2936,10 +2936,10 @@
       "OriginalItemSpec": "wwwroot\\lib\\jquery-validation-unobtrusive\\LICENSE.txt"
     },
     {
-      "Identity": "C:\\users\\cristianPC\\desktop\\vitalcare\\wwwroot\\lib\\jquery-validation\\dist\\additional-methods.js",
+      "Identity": "C:\\Users\\CristianPC\\Desktop\\vitalcare\\wwwroot\\lib\\jquery-validation\\dist\\additional-methods.js",
       "SourceId": "CitasEPS",
       "SourceType": "Discovered",
-      "ContentRoot": "C:\\users\\cristianPC\\desktop\\vitalcare\\wwwroot\\",
+      "ContentRoot": "C:\\Users\\CristianPC\\Desktop\\vitalcare\\wwwroot\\",
       "BasePath": "_content/CitasEPS",
       "RelativePath": "lib/jquery-validation/dist/additional-methods#[.{fingerprint}]?.js",
       "AssetKind": "All",
@@ -2957,10 +2957,10 @@
       "OriginalItemSpec": "wwwroot\\lib\\jquery-validation\\dist\\additional-methods.js"
     },
     {
-      "Identity": "C:\\users\\cristianPC\\desktop\\vitalcare\\wwwroot\\lib\\jquery-validation\\dist\\additional-methods.min.js",
+      "Identity": "C:\\Users\\CristianPC\\Desktop\\vitalcare\\wwwroot\\lib\\jquery-validation\\dist\\additional-methods.min.js",
       "SourceId": "CitasEPS",
       "SourceType": "Discovered",
-      "ContentRoot": "C:\\users\\cristianPC\\desktop\\vitalcare\\wwwroot\\",
+      "ContentRoot": "C:\\Users\\CristianPC\\Desktop\\vitalcare\\wwwroot\\",
       "BasePath": "_content/CitasEPS",
       "RelativePath": "lib/jquery-validation/dist/additional-methods.min#[.{fingerprint}]?.js",
       "AssetKind": "All",
@@ -2978,10 +2978,10 @@
       "OriginalItemSpec": "wwwroot\\lib\\jquery-validation\\dist\\additional-methods.min.js"
     },
     {
-      "Identity": "C:\\users\\cristianPC\\desktop\\vitalcare\\wwwroot\\lib\\jquery-validation\\dist\\jquery.validate.js",
+      "Identity": "C:\\Users\\CristianPC\\Desktop\\vitalcare\\wwwroot\\lib\\jquery-validation\\dist\\jquery.validate.js",
       "SourceId": "CitasEPS",
       "SourceType": "Discovered",
-      "ContentRoot": "C:\\users\\cristianPC\\desktop\\vitalcare\\wwwroot\\",
+      "ContentRoot": "C:\\Users\\CristianPC\\Desktop\\vitalcare\\wwwroot\\",
       "BasePath": "_content/CitasEPS",
       "RelativePath": "lib/jquery-validation/dist/jquery.validate#[.{fingerprint}]?.js",
       "AssetKind": "All",
@@ -2999,10 +2999,10 @@
       "OriginalItemSpec": "wwwroot\\lib\\jquery-validation\\dist\\jquery.validate.js"
     },
     {
-      "Identity": "C:\\users\\cristianPC\\desktop\\vitalcare\\wwwroot\\lib\\jquery-validation\\dist\\jquery.validate.min.js",
+      "Identity": "C:\\Users\\CristianPC\\Desktop\\vitalcare\\wwwroot\\lib\\jquery-validation\\dist\\jquery.validate.min.js",
       "SourceId": "CitasEPS",
       "SourceType": "Discovered",
-      "ContentRoot": "C:\\users\\cristianPC\\desktop\\vitalcare\\wwwroot\\",
+      "ContentRoot": "C:\\Users\\CristianPC\\Desktop\\vitalcare\\wwwroot\\",
       "BasePath": "_content/CitasEPS",
       "RelativePath": "lib/jquery-validation/dist/jquery.validate.min#[.{fingerprint}]?.js",
       "AssetKind": "All",
@@ -3020,10 +3020,10 @@
       "OriginalItemSpec": "wwwroot\\lib\\jquery-validation\\dist\\jquery.validate.min.js"
     },
     {
-      "Identity": "C:\\users\\cristianPC\\desktop\\vitalcare\\wwwroot\\lib\\jquery-validation\\LICENSE.md",
+      "Identity": "C:\\Users\\CristianPC\\Desktop\\vitalcare\\wwwroot\\lib\\jquery-validation\\LICENSE.md",
       "SourceId": "CitasEPS",
       "SourceType": "Discovered",
-      "ContentRoot": "C:\\users\\cristianPC\\desktop\\vitalcare\\wwwroot\\",
+      "ContentRoot": "C:\\Users\\CristianPC\\Desktop\\vitalcare\\wwwroot\\",
       "BasePath": "_content/CitasEPS",
       "RelativePath": "lib/jquery-validation/LICENSE#[.{fingerprint}]?.md",
       "AssetKind": "All",
@@ -3041,10 +3041,10 @@
       "OriginalItemSpec": "wwwroot\\lib\\jquery-validation\\LICENSE.md"
     },
     {
-      "Identity": "C:\\users\\cristianPC\\desktop\\vitalcare\\wwwroot\\lib\\jquery\\dist\\jquery.js",
+      "Identity": "C:\\Users\\CristianPC\\Desktop\\vitalcare\\wwwroot\\lib\\jquery\\dist\\jquery.js",
       "SourceId": "CitasEPS",
       "SourceType": "Discovered",
-      "ContentRoot": "C:\\users\\cristianPC\\desktop\\vitalcare\\wwwroot\\",
+      "ContentRoot": "C:\\Users\\CristianPC\\Desktop\\vitalcare\\wwwroot\\",
       "BasePath": "_content/CitasEPS",
       "RelativePath": "lib/jquery/dist/jquery#[.{fingerprint}]?.js",
       "AssetKind": "All",
@@ -3062,10 +3062,10 @@
       "OriginalItemSpec": "wwwroot\\lib\\jquery\\dist\\jquery.js"
     },
     {
-      "Identity": "C:\\users\\cristianPC\\desktop\\vitalcare\\wwwroot\\lib\\jquery\\dist\\jquery.min.js",
+      "Identity": "C:\\Users\\CristianPC\\Desktop\\vitalcare\\wwwroot\\lib\\jquery\\dist\\jquery.min.js",
       "SourceId": "CitasEPS",
       "SourceType": "Discovered",
-      "ContentRoot": "C:\\users\\cristianPC\\desktop\\vitalcare\\wwwroot\\",
+      "ContentRoot": "C:\\Users\\CristianPC\\Desktop\\vitalcare\\wwwroot\\",
       "BasePath": "_content/CitasEPS",
       "RelativePath": "lib/jquery/dist/jquery.min#[.{fingerprint}]?.js",
       "AssetKind": "All",
@@ -3083,10 +3083,10 @@
       "OriginalItemSpec": "wwwroot\\lib\\jquery\\dist\\jquery.min.js"
     },
     {
-      "Identity": "C:\\users\\cristianPC\\desktop\\vitalcare\\wwwroot\\lib\\jquery\\dist\\jquery.min.map",
+      "Identity": "C:\\Users\\CristianPC\\Desktop\\vitalcare\\wwwroot\\lib\\jquery\\dist\\jquery.min.map",
       "SourceId": "CitasEPS",
       "SourceType": "Discovered",
-      "ContentRoot": "C:\\users\\cristianPC\\desktop\\vitalcare\\wwwroot\\",
+      "ContentRoot": "C:\\Users\\CristianPC\\Desktop\\vitalcare\\wwwroot\\",
       "BasePath": "_content/CitasEPS",
       "RelativePath": "lib/jquery/dist/jquery.min#[.{fingerprint}]?.map",
       "AssetKind": "All",
@@ -3104,10 +3104,10 @@
       "OriginalItemSpec": "wwwroot\\lib\\jquery\\dist\\jquery.min.map"
     },
     {
-      "Identity": "C:\\users\\cristianPC\\desktop\\vitalcare\\wwwroot\\lib\\jquery\\LICENSE.txt",
+      "Identity": "C:\\Users\\CristianPC\\Desktop\\vitalcare\\wwwroot\\lib\\jquery\\LICENSE.txt",
       "SourceId": "CitasEPS",
       "SourceType": "Discovered",
-      "ContentRoot": "C:\\users\\cristianPC\\desktop\\vitalcare\\wwwroot\\",
+      "ContentRoot": "C:\\Users\\CristianPC\\Desktop\\vitalcare\\wwwroot\\",
       "BasePath": "_content/CitasEPS",
       "RelativePath": "lib/jquery/LICENSE#[.{fingerprint}]?.txt",
       "AssetKind": "All",
@@ -3128,7 +3128,7 @@
   "Endpoints": [
     {
       "Route": "CitasEPS.bundle.scp.css",
-      "AssetFile": "C:\\users\\cristianPC\\desktop\\vitalcare\\obj\\Debug\\net8.0\\scopedcss\\projectbundle\\CitasEPS.bundle.scp.css",
+      "AssetFile": "C:\\Users\\CristianPC\\Desktop\\vitalcare\\obj\\Debug\\net8.0\\scopedcss\\projectbundle\\CitasEPS.bundle.scp.css",
       "Selectors": [],
       "ResponseHeaders": [
         {
@@ -3165,7 +3165,7 @@
     },
     {
       "Route": "CitasEPS.styles.css",
-      "AssetFile": "C:\\users\\cristianPC\\desktop\\vitalcare\\obj\\Debug\\net8.0\\scopedcss\\bundle\\CitasEPS.styles.css",
+      "AssetFile": "C:\\Users\\CristianPC\\Desktop\\vitalcare\\obj\\Debug\\net8.0\\scopedcss\\bundle\\CitasEPS.styles.css",
       "Selectors": [],
       "ResponseHeaders": [
         {
@@ -3202,7 +3202,7 @@
     },
     {
       "Route": "CitasEPS.ut2vjzp850.bundle.scp.css",
-      "AssetFile": "C:\\users\\cristianPC\\desktop\\vitalcare\\obj\\Debug\\net8.0\\scopedcss\\projectbundle\\CitasEPS.bundle.scp.css",
+      "AssetFile": "C:\\Users\\CristianPC\\Desktop\\vitalcare\\obj\\Debug\\net8.0\\scopedcss\\projectbundle\\CitasEPS.bundle.scp.css",
       "Selectors": [],
       "ResponseHeaders": [
         {
@@ -3247,7 +3247,7 @@
     },
     {
       "Route": "CitasEPS.ut2vjzp850.styles.css",
-      "AssetFile": "C:\\users\\cristianPC\\desktop\\vitalcare\\obj\\Debug\\net8.0\\scopedcss\\bundle\\CitasEPS.styles.css",
+      "AssetFile": "C:\\Users\\CristianPC\\Desktop\\vitalcare\\obj\\Debug\\net8.0\\scopedcss\\bundle\\CitasEPS.styles.css",
       "Selectors": [],
       "ResponseHeaders": [
         {
@@ -3292,7 +3292,7 @@
     },
     {
       "Route": "css/base.6vontl0tbi.css",
-      "AssetFile": "C:\\users\\cristianPC\\desktop\\vitalcare\\wwwroot\\css\\base.css",
+      "AssetFile": "C:\\Users\\CristianPC\\Desktop\\vitalcare\\wwwroot\\css\\base.css",
       "Selectors": [],
       "ResponseHeaders": [
         {
@@ -3337,7 +3337,7 @@
     },
     {
       "Route": "css/base.css",
-      "AssetFile": "C:\\users\\cristianPC\\desktop\\vitalcare\\wwwroot\\css\\base.css",
+      "AssetFile": "C:\\Users\\CristianPC\\Desktop\\vitalcare\\wwwroot\\css\\base.css",
       "Selectors": [],
       "ResponseHeaders": [
         {
@@ -3374,7 +3374,7 @@
     },
     {
       "Route": "css/components.css",
-      "AssetFile": "C:\\users\\cristianPC\\desktop\\vitalcare\\wwwroot\\css\\components.css",
+      "AssetFile": "C:\\Users\\CristianPC\\Desktop\\vitalcare\\wwwroot\\css\\components.css",
       "Selectors": [],
       "ResponseHeaders": [
         {
@@ -3383,7 +3383,7 @@
         },
         {
           "Name": "Content-Length",
-          "Value": "18906"
+          "Value": "18859"
         },
         {
           "Name": "Content-Type",
@@ -3391,11 +3391,11 @@
         },
         {
           "Name": "ETag",
-          "Value": "\"M1HVnOLQA4xgjQnfb7WnpREpIgyVJ7D5GKmwy36ZwBg=\""
+          "Value": "\"W4DQElbRnAtgT8OT2BwkC8aE1DbcKd4cMbVfyMuzo0Q=\""
         },
         {
           "Name": "Last-Modified",
-          "Value": "Sat, 07 Jun 2025 23:45:12 GMT"
+          "Value": "Sun, 08 Jun 2025 01:15:28 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -3405,13 +3405,13 @@
       "EndpointProperties": [
         {
           "Name": "integrity",
-          "Value": "sha256-M1HVnOLQA4xgjQnfb7WnpREpIgyVJ7D5GKmwy36ZwBg="
+          "Value": "sha256-W4DQElbRnAtgT8OT2BwkC8aE1DbcKd4cMbVfyMuzo0Q="
         }
       ]
     },
     {
-      "Route": "css/components.j4trx51ifw.css",
-      "AssetFile": "C:\\users\\cristianPC\\desktop\\vitalcare\\wwwroot\\css\\components.css",
+      "Route": "css/components.vbfbmisdy9.css",
+      "AssetFile": "C:\\Users\\CristianPC\\Desktop\\vitalcare\\wwwroot\\css\\components.css",
       "Selectors": [],
       "ResponseHeaders": [
         {
@@ -3420,7 +3420,7 @@
         },
         {
           "Name": "Content-Length",
-          "Value": "18906"
+          "Value": "18859"
         },
         {
           "Name": "Content-Type",
@@ -3428,11 +3428,11 @@
         },
         {
           "Name": "ETag",
-          "Value": "\"M1HVnOLQA4xgjQnfb7WnpREpIgyVJ7D5GKmwy36ZwBg=\""
+          "Value": "\"W4DQElbRnAtgT8OT2BwkC8aE1DbcKd4cMbVfyMuzo0Q=\""
         },
         {
           "Name": "Last-Modified",
-          "Value": "Sat, 07 Jun 2025 23:45:12 GMT"
+          "Value": "Sun, 08 Jun 2025 01:15:28 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -3442,7 +3442,7 @@
       "EndpointProperties": [
         {
           "Name": "fingerprint",
-          "Value": "j4trx51ifw"
+          "Value": "vbfbmisdy9"
         },
         {
           "Name": "label",
@@ -3450,13 +3450,13 @@
         },
         {
           "Name": "integrity",
-          "Value": "sha256-M1HVnOLQA4xgjQnfb7WnpREpIgyVJ7D5GKmwy36ZwBg="
+          "Value": "sha256-W4DQElbRnAtgT8OT2BwkC8aE1DbcKd4cMbVfyMuzo0Q="
         }
       ]
     },
     {
       "Route": "css/effects-hover.br4vbrcyrw.css",
-      "AssetFile": "C:\\users\\cristianPC\\desktop\\vitalcare\\wwwroot\\css\\effects-hover.css",
+      "AssetFile": "C:\\Users\\CristianPC\\Desktop\\vitalcare\\wwwroot\\css\\effects-hover.css",
       "Selectors": [],
       "ResponseHeaders": [
         {
@@ -3501,7 +3501,7 @@
     },
     {
       "Route": "css/effects-hover.css",
-      "AssetFile": "C:\\users\\cristianPC\\desktop\\vitalcare\\wwwroot\\css\\effects-hover.css",
+      "AssetFile": "C:\\Users\\CristianPC\\Desktop\\vitalcare\\wwwroot\\css\\effects-hover.css",
       "Selectors": [],
       "ResponseHeaders": [
         {
@@ -3537,8 +3537,8 @@
       ]
     },
     {
-      "Route": "css/enhanced-features.at9wfrpdke.css",
-      "AssetFile": "C:\\users\\cristianPC\\desktop\\vitalcare\\wwwroot\\css\\enhanced-features.css",
+      "Route": "css/enhanced-features.9dskgcfzbt.css",
+      "AssetFile": "C:\\Users\\CristianPC\\Desktop\\vitalcare\\wwwroot\\css\\enhanced-features.css",
       "Selectors": [],
       "ResponseHeaders": [
         {
@@ -3547,7 +3547,7 @@
         },
         {
           "Name": "Content-Length",
-          "Value": "63191"
+          "Value": "67902"
         },
         {
           "Name": "Content-Type",
@@ -3555,11 +3555,11 @@
         },
         {
           "Name": "ETag",
-          "Value": "\"UnuLuYBizdv/vOy+r+/CONt6/k26wE5ae6XwMkDA1T4=\""
+          "Value": "\"nTx8jwLqPPgTHWXy8+c8GebXpnazxcYEpiH81ne1Q/g=\""
         },
         {
           "Name": "Last-Modified",
-          "Value": "Sat, 07 Jun 2025 23:45:12 GMT"
+          "Value": "Sun, 08 Jun 2025 01:32:01 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -3569,7 +3569,7 @@
       "EndpointProperties": [
         {
           "Name": "fingerprint",
-          "Value": "at9wfrpdke"
+          "Value": "9dskgcfzbt"
         },
         {
           "Name": "label",
@@ -3577,13 +3577,13 @@
         },
         {
           "Name": "integrity",
-          "Value": "sha256-UnuLuYBizdv/vOy+r+/CONt6/k26wE5ae6XwMkDA1T4="
+          "Value": "sha256-nTx8jwLqPPgTHWXy8+c8GebXpnazxcYEpiH81ne1Q/g="
         }
       ]
     },
     {
       "Route": "css/enhanced-features.css",
-      "AssetFile": "C:\\users\\cristianPC\\desktop\\vitalcare\\wwwroot\\css\\enhanced-features.css",
+      "AssetFile": "C:\\Users\\CristianPC\\Desktop\\vitalcare\\wwwroot\\css\\enhanced-features.css",
       "Selectors": [],
       "ResponseHeaders": [
         {
@@ -3592,7 +3592,7 @@
         },
         {
           "Name": "Content-Length",
-          "Value": "63191"
+          "Value": "67902"
         },
         {
           "Name": "Content-Type",
@@ -3600,11 +3600,11 @@
         },
         {
           "Name": "ETag",
-          "Value": "\"UnuLuYBizdv/vOy+r+/CONt6/k26wE5ae6XwMkDA1T4=\""
+          "Value": "\"nTx8jwLqPPgTHWXy8+c8GebXpnazxcYEpiH81ne1Q/g=\""
         },
         {
           "Name": "Last-Modified",
-          "Value": "Sat, 07 Jun 2025 23:45:12 GMT"
+          "Value": "Sun, 08 Jun 2025 01:32:01 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -3614,13 +3614,13 @@
       "EndpointProperties": [
         {
           "Name": "integrity",
-          "Value": "sha256-UnuLuYBizdv/vOy+r+/CONt6/k26wE5ae6XwMkDA1T4="
+          "Value": "sha256-nTx8jwLqPPgTHWXy8+c8GebXpnazxcYEpiH81ne1Q/g="
         }
       ]
     },
     {
       "Route": "css/layout.aze9qfd60s.css",
-      "AssetFile": "C:\\users\\cristianPC\\desktop\\vitalcare\\wwwroot\\css\\layout.css",
+      "AssetFile": "C:\\Users\\CristianPC\\Desktop\\vitalcare\\wwwroot\\css\\layout.css",
       "Selectors": [],
       "ResponseHeaders": [
         {
@@ -3665,7 +3665,7 @@
     },
     {
       "Route": "css/layout.css",
-      "AssetFile": "C:\\users\\cristianPC\\desktop\\vitalcare\\wwwroot\\css\\layout.css",
+      "AssetFile": "C:\\Users\\CristianPC\\Desktop\\vitalcare\\wwwroot\\css\\layout.css",
       "Selectors": [],
       "ResponseHeaders": [
         {
@@ -3702,7 +3702,7 @@
     },
     {
       "Route": "css/performance-optimizations.css",
-      "AssetFile": "C:\\users\\cristianPC\\desktop\\vitalcare\\wwwroot\\css\\performance-optimizations.css",
+      "AssetFile": "C:\\Users\\CristianPC\\Desktop\\vitalcare\\wwwroot\\css\\performance-optimizations.css",
       "Selectors": [],
       "ResponseHeaders": [
         {
@@ -3739,7 +3739,7 @@
     },
     {
       "Route": "css/performance-optimizations.irq1vjcbie.css",
-      "AssetFile": "C:\\users\\cristianPC\\desktop\\vitalcare\\wwwroot\\css\\performance-optimizations.css",
+      "AssetFile": "C:\\Users\\CristianPC\\Desktop\\vitalcare\\wwwroot\\css\\performance-optimizations.css",
       "Selectors": [],
       "ResponseHeaders": [
         {
@@ -3784,7 +3784,7 @@
     },
     {
       "Route": "css/site-optimized.css",
-      "AssetFile": "C:\\users\\cristianPC\\desktop\\vitalcare\\wwwroot\\css\\site-optimized.css",
+      "AssetFile": "C:\\Users\\CristianPC\\Desktop\\vitalcare\\wwwroot\\css\\site-optimized.css",
       "Selectors": [],
       "ResponseHeaders": [
         {
@@ -3821,7 +3821,7 @@
     },
     {
       "Route": "css/site-optimized.yvbthq5q1y.css",
-      "AssetFile": "C:\\users\\cristianPC\\desktop\\vitalcare\\wwwroot\\css\\site-optimized.css",
+      "AssetFile": "C:\\Users\\CristianPC\\Desktop\\vitalcare\\wwwroot\\css\\site-optimized.css",
       "Selectors": [],
       "ResponseHeaders": [
         {
@@ -3866,7 +3866,7 @@
     },
     {
       "Route": "css/site.css",
-      "AssetFile": "C:\\users\\cristianPC\\desktop\\vitalcare\\wwwroot\\css\\site.css",
+      "AssetFile": "C:\\Users\\CristianPC\\Desktop\\vitalcare\\wwwroot\\css\\site.css",
       "Selectors": [],
       "ResponseHeaders": [
         {
@@ -3903,7 +3903,7 @@
     },
     {
       "Route": "css/site.rdh7rkxd94.css",
-      "AssetFile": "C:\\users\\cristianPC\\desktop\\vitalcare\\wwwroot\\css\\site.css",
+      "AssetFile": "C:\\Users\\CristianPC\\Desktop\\vitalcare\\wwwroot\\css\\site.css",
       "Selectors": [],
       "ResponseHeaders": [
         {
@@ -3948,7 +3948,7 @@
     },
     {
       "Route": "css/utilities.chmdtl5bcd.css",
-      "AssetFile": "C:\\users\\cristianPC\\desktop\\vitalcare\\wwwroot\\css\\utilities.css",
+      "AssetFile": "C:\\Users\\CristianPC\\Desktop\\vitalcare\\wwwroot\\css\\utilities.css",
       "Selectors": [],
       "ResponseHeaders": [
         {
@@ -3993,7 +3993,7 @@
     },
     {
       "Route": "css/utilities.css",
-      "AssetFile": "C:\\users\\cristianPC\\desktop\\vitalcare\\wwwroot\\css\\utilities.css",
+      "AssetFile": "C:\\Users\\CristianPC\\Desktop\\vitalcare\\wwwroot\\css\\utilities.css",
       "Selectors": [],
       "ResponseHeaders": [
         {
@@ -4030,7 +4030,7 @@
     },
     {
       "Route": "favicon.61n19gt1b8.ico",
-      "AssetFile": "C:\\users\\cristianPC\\desktop\\vitalcare\\wwwroot\\favicon.ico",
+      "AssetFile": "C:\\Users\\CristianPC\\Desktop\\vitalcare\\wwwroot\\favicon.ico",
       "Selectors": [],
       "ResponseHeaders": [
         {
@@ -4075,7 +4075,7 @@
     },
     {
       "Route": "favicon.ico",
-      "AssetFile": "C:\\users\\cristianPC\\desktop\\vitalcare\\wwwroot\\favicon.ico",
+      "AssetFile": "C:\\Users\\CristianPC\\Desktop\\vitalcare\\wwwroot\\favicon.ico",
       "Selectors": [],
       "ResponseHeaders": [
         {
@@ -4112,7 +4112,7 @@
     },
     {
       "Route": "favicon.quwf1qxj1d.svg",
-      "AssetFile": "C:\\users\\cristianPC\\desktop\\vitalcare\\wwwroot\\favicon.svg",
+      "AssetFile": "C:\\Users\\CristianPC\\Desktop\\vitalcare\\wwwroot\\favicon.svg",
       "Selectors": [],
       "ResponseHeaders": [
         {
@@ -4157,7 +4157,7 @@
     },
     {
       "Route": "favicon.svg",
-      "AssetFile": "C:\\users\\cristianPC\\desktop\\vitalcare\\wwwroot\\favicon.svg",
+      "AssetFile": "C:\\Users\\CristianPC\\Desktop\\vitalcare\\wwwroot\\favicon.svg",
       "Selectors": [],
       "ResponseHeaders": [
         {
@@ -6414,7 +6414,7 @@
     },
     {
       "Route": "images/admin-dashboard-bg.s25r1jt21e.svg",
-      "AssetFile": "C:\\users\\cristianPC\\desktop\\vitalcare\\wwwroot\\images\\admin-dashboard-bg.svg",
+      "AssetFile": "C:\\Users\\CristianPC\\Desktop\\vitalcare\\wwwroot\\images\\admin-dashboard-bg.svg",
       "Selectors": [],
       "ResponseHeaders": [
         {
@@ -6459,7 +6459,7 @@
     },
     {
       "Route": "images/admin-dashboard-bg.svg",
-      "AssetFile": "C:\\users\\cristianPC\\desktop\\vitalcare\\wwwroot\\images\\admin-dashboard-bg.svg",
+      "AssetFile": "C:\\Users\\CristianPC\\Desktop\\vitalcare\\wwwroot\\images\\admin-dashboard-bg.svg",
       "Selectors": [],
       "ResponseHeaders": [
         {
@@ -6496,7 +6496,7 @@
     },
     {
       "Route": "images/admin.eicshuxf2m.png",
-      "AssetFile": "C:\\users\\cristianPC\\desktop\\vitalcare\\wwwroot\\images\\admin.png",
+      "AssetFile": "C:\\Users\\CristianPC\\Desktop\\vitalcare\\wwwroot\\images\\admin.png",
       "Selectors": [],
       "ResponseHeaders": [
         {
@@ -6541,7 +6541,7 @@
     },
     {
       "Route": "images/admin.png",
-      "AssetFile": "C:\\users\\cristianPC\\desktop\\vitalcare\\wwwroot\\images\\admin.png",
+      "AssetFile": "C:\\Users\\CristianPC\\Desktop\\vitalcare\\wwwroot\\images\\admin.png",
       "Selectors": [],
       "ResponseHeaders": [
         {
@@ -6578,7 +6578,7 @@
     },
     {
       "Route": "images/doctor-dashboard-bg-subtle.9c147i6eph.svg",
-      "AssetFile": "C:\\users\\cristianPC\\desktop\\vitalcare\\wwwroot\\images\\doctor-dashboard-bg-subtle.svg",
+      "AssetFile": "C:\\Users\\CristianPC\\Desktop\\vitalcare\\wwwroot\\images\\doctor-dashboard-bg-subtle.svg",
       "Selectors": [],
       "ResponseHeaders": [
         {
@@ -6623,7 +6623,7 @@
     },
     {
       "Route": "images/doctor-dashboard-bg-subtle.svg",
-      "AssetFile": "C:\\users\\cristianPC\\desktop\\vitalcare\\wwwroot\\images\\doctor-dashboard-bg-subtle.svg",
+      "AssetFile": "C:\\Users\\CristianPC\\Desktop\\vitalcare\\wwwroot\\images\\doctor-dashboard-bg-subtle.svg",
       "Selectors": [],
       "ResponseHeaders": [
         {
@@ -6660,7 +6660,7 @@
     },
     {
       "Route": "images/doctor-dashboard-bg.0et2yl89r1.svg",
-      "AssetFile": "C:\\users\\cristianPC\\desktop\\vitalcare\\wwwroot\\images\\doctor-dashboard-bg.svg",
+      "AssetFile": "C:\\Users\\CristianPC\\Desktop\\vitalcare\\wwwroot\\images\\doctor-dashboard-bg.svg",
       "Selectors": [],
       "ResponseHeaders": [
         {
@@ -6705,7 +6705,7 @@
     },
     {
       "Route": "images/doctor-dashboard-bg.svg",
-      "AssetFile": "C:\\users\\cristianPC\\desktop\\vitalcare\\wwwroot\\images\\doctor-dashboard-bg.svg",
+      "AssetFile": "C:\\Users\\CristianPC\\Desktop\\vitalcare\\wwwroot\\images\\doctor-dashboard-bg.svg",
       "Selectors": [],
       "ResponseHeaders": [
         {
@@ -6742,7 +6742,7 @@
     },
     {
       "Route": "images/doctor.6q9r9lxrtx.png",
-      "AssetFile": "C:\\users\\cristianPC\\desktop\\vitalcare\\wwwroot\\images\\doctor.png",
+      "AssetFile": "C:\\Users\\CristianPC\\Desktop\\vitalcare\\wwwroot\\images\\doctor.png",
       "Selectors": [],
       "ResponseHeaders": [
         {
@@ -6787,7 +6787,7 @@
     },
     {
       "Route": "images/doctor.png",
-      "AssetFile": "C:\\users\\cristianPC\\desktop\\vitalcare\\wwwroot\\images\\doctor.png",
+      "AssetFile": "C:\\Users\\CristianPC\\Desktop\\vitalcare\\wwwroot\\images\\doctor.png",
       "Selectors": [],
       "ResponseHeaders": [
         {
@@ -6824,7 +6824,7 @@
     },
     {
       "Route": "images/hero-background.e8k1wgifc9.svg",
-      "AssetFile": "C:\\users\\cristianPC\\desktop\\vitalcare\\wwwroot\\images\\hero-background.svg",
+      "AssetFile": "C:\\Users\\CristianPC\\Desktop\\vitalcare\\wwwroot\\images\\hero-background.svg",
       "Selectors": [],
       "ResponseHeaders": [
         {
@@ -6869,7 +6869,7 @@
     },
     {
       "Route": "images/hero-background.svg",
-      "AssetFile": "C:\\users\\cristianPC\\desktop\\vitalcare\\wwwroot\\images\\hero-background.svg",
+      "AssetFile": "C:\\Users\\CristianPC\\Desktop\\vitalcare\\wwwroot\\images\\hero-background.svg",
       "Selectors": [],
       "ResponseHeaders": [
         {
@@ -6906,7 +6906,7 @@
     },
     {
       "Route": "images/INDEX.png",
-      "AssetFile": "C:\\users\\cristianPC\\desktop\\vitalcare\\wwwroot\\images\\INDEX.png",
+      "AssetFile": "C:\\Users\\CristianPC\\Desktop\\vitalcare\\wwwroot\\images\\INDEX.png",
       "Selectors": [],
       "ResponseHeaders": [
         {
@@ -6943,7 +6943,7 @@
     },
     {
       "Route": "images/INDEX.szu1lzsib7.png",
-      "AssetFile": "C:\\users\\cristianPC\\desktop\\vitalcare\\wwwroot\\images\\INDEX.png",
+      "AssetFile": "C:\\Users\\CristianPC\\Desktop\\vitalcare\\wwwroot\\images\\INDEX.png",
       "Selectors": [],
       "ResponseHeaders": [
         {
@@ -6988,7 +6988,7 @@
     },
     {
       "Route": "images/Pacientes.guxqmv49cf.png",
-      "AssetFile": "C:\\users\\cristianPC\\desktop\\vitalcare\\wwwroot\\images\\Pacientes.png",
+      "AssetFile": "C:\\Users\\CristianPC\\Desktop\\vitalcare\\wwwroot\\images\\Pacientes.png",
       "Selectors": [],
       "ResponseHeaders": [
         {
@@ -7033,7 +7033,7 @@
     },
     {
       "Route": "images/Pacientes.png",
-      "AssetFile": "C:\\users\\cristianPC\\desktop\\vitalcare\\wwwroot\\images\\Pacientes.png",
+      "AssetFile": "C:\\Users\\CristianPC\\Desktop\\vitalcare\\wwwroot\\images\\Pacientes.png",
       "Selectors": [],
       "ResponseHeaders": [
         {
@@ -7070,7 +7070,7 @@
     },
     {
       "Route": "images/patient-dashboard-bg.r3snclbwev.svg",
-      "AssetFile": "C:\\users\\cristianPC\\desktop\\vitalcare\\wwwroot\\images\\patient-dashboard-bg.svg",
+      "AssetFile": "C:\\Users\\CristianPC\\Desktop\\vitalcare\\wwwroot\\images\\patient-dashboard-bg.svg",
       "Selectors": [],
       "ResponseHeaders": [
         {
@@ -7115,7 +7115,7 @@
     },
     {
       "Route": "images/patient-dashboard-bg.svg",
-      "AssetFile": "C:\\users\\cristianPC\\desktop\\vitalcare\\wwwroot\\images\\patient-dashboard-bg.svg",
+      "AssetFile": "C:\\Users\\CristianPC\\Desktop\\vitalcare\\wwwroot\\images\\patient-dashboard-bg.svg",
       "Selectors": [],
       "ResponseHeaders": [
         {
@@ -7152,7 +7152,7 @@
     },
     {
       "Route": "js/navbarResponsive.js",
-      "AssetFile": "C:\\users\\cristianPC\\desktop\\vitalcare\\wwwroot\\js\\navbarResponsive.js",
+      "AssetFile": "C:\\Users\\CristianPC\\Desktop\\vitalcare\\wwwroot\\js\\navbarResponsive.js",
       "Selectors": [],
       "ResponseHeaders": [
         {
@@ -7189,7 +7189,7 @@
     },
     {
       "Route": "js/navbarResponsive.oy5hrrjl9r.js",
-      "AssetFile": "C:\\users\\cristianPC\\desktop\\vitalcare\\wwwroot\\js\\navbarResponsive.js",
+      "AssetFile": "C:\\Users\\CristianPC\\Desktop\\vitalcare\\wwwroot\\js\\navbarResponsive.js",
       "Selectors": [],
       "ResponseHeaders": [
         {
@@ -7234,7 +7234,7 @@
     },
     {
       "Route": "js/notifications.3bodqhr7kt.js",
-      "AssetFile": "C:\\users\\cristianPC\\desktop\\vitalcare\\wwwroot\\js\\notifications.js",
+      "AssetFile": "C:\\Users\\CristianPC\\Desktop\\vitalcare\\wwwroot\\js\\notifications.js",
       "Selectors": [],
       "ResponseHeaders": [
         {
@@ -7279,7 +7279,7 @@
     },
     {
       "Route": "js/notifications.js",
-      "AssetFile": "C:\\users\\cristianPC\\desktop\\vitalcare\\wwwroot\\js\\notifications.js",
+      "AssetFile": "C:\\Users\\CristianPC\\Desktop\\vitalcare\\wwwroot\\js\\notifications.js",
       "Selectors": [],
       "ResponseHeaders": [
         {
@@ -7316,7 +7316,7 @@
     },
     {
       "Route": "js/passwordToggle.js",
-      "AssetFile": "C:\\users\\cristianPC\\desktop\\vitalcare\\wwwroot\\js\\passwordToggle.js",
+      "AssetFile": "C:\\Users\\CristianPC\\Desktop\\vitalcare\\wwwroot\\js\\passwordToggle.js",
       "Selectors": [],
       "ResponseHeaders": [
         {
@@ -7353,7 +7353,7 @@
     },
     {
       "Route": "js/passwordToggle.m8jetttecg.js",
-      "AssetFile": "C:\\users\\cristianPC\\desktop\\vitalcare\\wwwroot\\js\\passwordToggle.js",
+      "AssetFile": "C:\\Users\\CristianPC\\Desktop\\vitalcare\\wwwroot\\js\\passwordToggle.js",
       "Selectors": [],
       "ResponseHeaders": [
         {
@@ -7398,7 +7398,7 @@
     },
     {
       "Route": "js/performance-optimizer.0dz813og1m.js",
-      "AssetFile": "C:\\users\\cristianPC\\desktop\\vitalcare\\wwwroot\\js\\performance-optimizer.js",
+      "AssetFile": "C:\\Users\\CristianPC\\Desktop\\vitalcare\\wwwroot\\js\\performance-optimizer.js",
       "Selectors": [],
       "ResponseHeaders": [
         {
@@ -7443,7 +7443,7 @@
     },
     {
       "Route": "js/performance-optimizer.js",
-      "AssetFile": "C:\\users\\cristianPC\\desktop\\vitalcare\\wwwroot\\js\\performance-optimizer.js",
+      "AssetFile": "C:\\Users\\CristianPC\\Desktop\\vitalcare\\wwwroot\\js\\performance-optimizer.js",
       "Selectors": [],
       "ResponseHeaders": [
         {
@@ -7480,7 +7480,7 @@
     },
     {
       "Route": "js/scroll-performance-fix.hy7tb1cbrh.js",
-      "AssetFile": "C:\\users\\cristianPC\\desktop\\vitalcare\\wwwroot\\js\\scroll-performance-fix.js",
+      "AssetFile": "C:\\Users\\CristianPC\\Desktop\\vitalcare\\wwwroot\\js\\scroll-performance-fix.js",
       "Selectors": [],
       "ResponseHeaders": [
         {
@@ -7525,7 +7525,7 @@
     },
     {
       "Route": "js/scroll-performance-fix.js",
-      "AssetFile": "C:\\users\\cristianPC\\desktop\\vitalcare\\wwwroot\\js\\scroll-performance-fix.js",
+      "AssetFile": "C:\\Users\\CristianPC\\Desktop\\vitalcare\\wwwroot\\js\\scroll-performance-fix.js",
       "Selectors": [],
       "ResponseHeaders": [
         {
@@ -7562,7 +7562,7 @@
     },
     {
       "Route": "js/scroll-performance-test.js",
-      "AssetFile": "C:\\users\\cristianPC\\desktop\\vitalcare\\wwwroot\\js\\scroll-performance-test.js",
+      "AssetFile": "C:\\Users\\CristianPC\\Desktop\\vitalcare\\wwwroot\\js\\scroll-performance-test.js",
       "Selectors": [],
       "ResponseHeaders": [
         {
@@ -7599,7 +7599,7 @@
     },
     {
       "Route": "js/scroll-performance-test.nacpqqw9jo.js",
-      "AssetFile": "C:\\users\\cristianPC\\desktop\\vitalcare\\wwwroot\\js\\scroll-performance-test.js",
+      "AssetFile": "C:\\Users\\CristianPC\\Desktop\\vitalcare\\wwwroot\\js\\scroll-performance-test.js",
       "Selectors": [],
       "ResponseHeaders": [
         {
@@ -7644,7 +7644,7 @@
     },
     {
       "Route": "js/site.flatpickr.js",
-      "AssetFile": "C:\\users\\cristianPC\\desktop\\vitalcare\\wwwroot\\js\\site.flatpickr.js",
+      "AssetFile": "C:\\Users\\CristianPC\\Desktop\\vitalcare\\wwwroot\\js\\site.flatpickr.js",
       "Selectors": [],
       "ResponseHeaders": [
         {
@@ -7681,7 +7681,7 @@
     },
     {
       "Route": "js/site.flatpickr.wzdvxddh3j.js",
-      "AssetFile": "C:\\users\\cristianPC\\desktop\\vitalcare\\wwwroot\\js\\site.flatpickr.js",
+      "AssetFile": "C:\\Users\\CristianPC\\Desktop\\vitalcare\\wwwroot\\js\\site.flatpickr.js",
       "Selectors": [],
       "ResponseHeaders": [
         {
@@ -7726,7 +7726,7 @@
     },
     {
       "Route": "js/site.js",
-      "AssetFile": "C:\\users\\cristianPC\\desktop\\vitalcare\\wwwroot\\js\\site.js",
+      "AssetFile": "C:\\Users\\CristianPC\\Desktop\\vitalcare\\wwwroot\\js\\site.js",
       "Selectors": [],
       "ResponseHeaders": [
         {
@@ -7763,7 +7763,7 @@
     },
     {
       "Route": "js/site.xtxxf3hu2r.js",
-      "AssetFile": "C:\\users\\cristianPC\\desktop\\vitalcare\\wwwroot\\js\\site.js",
+      "AssetFile": "C:\\Users\\CristianPC\\Desktop\\vitalcare\\wwwroot\\js\\site.js",
       "Selectors": [],
       "ResponseHeaders": [
         {
@@ -7808,7 +7808,7 @@
     },
     {
       "Route": "js/themeSwitcher.js",
-      "AssetFile": "C:\\users\\cristianPC\\desktop\\vitalcare\\wwwroot\\js\\themeSwitcher.js",
+      "AssetFile": "C:\\Users\\CristianPC\\Desktop\\vitalcare\\wwwroot\\js\\themeSwitcher.js",
       "Selectors": [],
       "ResponseHeaders": [
         {
@@ -7845,7 +7845,7 @@
     },
     {
       "Route": "js/themeSwitcher.kb7mhiwyx6.js",
-      "AssetFile": "C:\\users\\cristianPC\\desktop\\vitalcare\\wwwroot\\js\\themeSwitcher.js",
+      "AssetFile": "C:\\Users\\CristianPC\\Desktop\\vitalcare\\wwwroot\\js\\themeSwitcher.js",
       "Selectors": [],
       "ResponseHeaders": [
         {
@@ -7890,7 +7890,7 @@
     },
     {
       "Route": "lib/bootstrap/dist/css/bootstrap-grid.css",
-      "AssetFile": "C:\\users\\cristianPC\\desktop\\vitalcare\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-grid.css",
+      "AssetFile": "C:\\Users\\CristianPC\\Desktop\\vitalcare\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-grid.css",
       "Selectors": [],
       "ResponseHeaders": [
         {
@@ -7927,7 +7927,7 @@
     },
     {
       "Route": "lib/bootstrap/dist/css/bootstrap-grid.css.map",
-      "AssetFile": "C:\\users\\cristianPC\\desktop\\vitalcare\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-grid.css.map",
+      "AssetFile": "C:\\Users\\CristianPC\\Desktop\\vitalcare\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-grid.css.map",
       "Selectors": [],
       "ResponseHeaders": [
         {
@@ -7964,7 +7964,7 @@
     },
     {
       "Route": "lib/bootstrap/dist/css/bootstrap-grid.css.st1cbwfwo5.map",
-      "AssetFile": "C:\\users\\cristianPC\\desktop\\vitalcare\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-grid.css.map",
+      "AssetFile": "C:\\Users\\CristianPC\\Desktop\\vitalcare\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-grid.css.map",
       "Selectors": [],
       "ResponseHeaders": [
         {
@@ -8009,7 +8009,7 @@
     },
     {
       "Route": "lib/bootstrap/dist/css/bootstrap-grid.min.5p029spbuu.css",
-      "AssetFile": "C:\\users\\cristianPC\\desktop\\vitalcare\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-grid.min.css",
+      "AssetFile": "C:\\Users\\CristianPC\\Desktop\\vitalcare\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-grid.min.css",
       "Selectors": [],
       "ResponseHeaders": [
         {
@@ -8054,7 +8054,7 @@
     },
     {
       "Route": "lib/bootstrap/dist/css/bootstrap-grid.min.css",
-      "AssetFile": "C:\\users\\cristianPC\\desktop\\vitalcare\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-grid.min.css",
+      "AssetFile": "C:\\Users\\CristianPC\\Desktop\\vitalcare\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-grid.min.css",
       "Selectors": [],
       "ResponseHeaders": [
         {
@@ -8091,7 +8091,7 @@
     },
     {
       "Route": "lib/bootstrap/dist/css/bootstrap-grid.min.css.5vj65cig9w.map",
-      "AssetFile": "C:\\users\\cristianPC\\desktop\\vitalcare\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-grid.min.css.map",
+      "AssetFile": "C:\\Users\\CristianPC\\Desktop\\vitalcare\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-grid.min.css.map",
       "Selectors": [],
       "ResponseHeaders": [
         {
@@ -8136,7 +8136,7 @@
     },
     {
       "Route": "lib/bootstrap/dist/css/bootstrap-grid.min.css.map",
-      "AssetFile": "C:\\users\\cristianPC\\desktop\\vitalcare\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-grid.min.css.map",
+      "AssetFile": "C:\\Users\\CristianPC\\Desktop\\vitalcare\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-grid.min.css.map",
       "Selectors": [],
       "ResponseHeaders": [
         {
@@ -8173,7 +8173,7 @@
     },
     {
       "Route": "lib/bootstrap/dist/css/bootstrap-grid.nakmwdwsxp.css",
-      "AssetFile": "C:\\users\\cristianPC\\desktop\\vitalcare\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-grid.css",
+      "AssetFile": "C:\\Users\\CristianPC\\Desktop\\vitalcare\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-grid.css",
       "Selectors": [],
       "ResponseHeaders": [
         {
@@ -8218,7 +8218,7 @@
     },
     {
       "Route": "lib/bootstrap/dist/css/bootstrap-grid.rtl.css",
-      "AssetFile": "C:\\users\\cristianPC\\desktop\\vitalcare\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-grid.rtl.css",
+      "AssetFile": "C:\\Users\\CristianPC\\Desktop\\vitalcare\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-grid.rtl.css",
       "Selectors": [],
       "ResponseHeaders": [
         {
@@ -8255,7 +8255,7 @@
     },
     {
       "Route": "lib/bootstrap/dist/css/bootstrap-grid.rtl.css.2q4vfeazbq.map",
-      "AssetFile": "C:\\users\\cristianPC\\desktop\\vitalcare\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-grid.rtl.css.map",
+      "AssetFile": "C:\\Users\\CristianPC\\Desktop\\vitalcare\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-grid.rtl.css.map",
       "Selectors": [],
       "ResponseHeaders": [
         {
@@ -8300,7 +8300,7 @@
     },
     {
       "Route": "lib/bootstrap/dist/css/bootstrap-grid.rtl.css.map",
-      "AssetFile": "C:\\users\\cristianPC\\desktop\\vitalcare\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-grid.rtl.css.map",
+      "AssetFile": "C:\\Users\\CristianPC\\Desktop\\vitalcare\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-grid.rtl.css.map",
       "Selectors": [],
       "ResponseHeaders": [
         {
@@ -8337,7 +8337,7 @@
     },
     {
       "Route": "lib/bootstrap/dist/css/bootstrap-grid.rtl.e6q6xbwqzk.css",
-      "AssetFile": "C:\\users\\cristianPC\\desktop\\vitalcare\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-grid.rtl.css",
+      "AssetFile": "C:\\Users\\CristianPC\\Desktop\\vitalcare\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-grid.rtl.css",
       "Selectors": [],
       "ResponseHeaders": [
         {
@@ -8382,7 +8382,7 @@
     },
     {
       "Route": "lib/bootstrap/dist/css/bootstrap-grid.rtl.min.css",
-      "AssetFile": "C:\\users\\cristianPC\\desktop\\vitalcare\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-grid.rtl.min.css",
+      "AssetFile": "C:\\Users\\CristianPC\\Desktop\\vitalcare\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-grid.rtl.min.css",
       "Selectors": [],
       "ResponseHeaders": [
         {
@@ -8419,7 +8419,7 @@
     },
     {
       "Route": "lib/bootstrap/dist/css/bootstrap-grid.rtl.min.css.map",
-      "AssetFile": "C:\\users\\cristianPC\\desktop\\vitalcare\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-grid.rtl.min.css.map",
+      "AssetFile": "C:\\Users\\CristianPC\\Desktop\\vitalcare\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-grid.rtl.min.css.map",
       "Selectors": [],
       "ResponseHeaders": [
         {
@@ -8456,7 +8456,7 @@
     },
     {
       "Route": "lib/bootstrap/dist/css/bootstrap-grid.rtl.min.css.o371a8zbv2.map",
-      "AssetFile": "C:\\users\\cristianPC\\desktop\\vitalcare\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-grid.rtl.min.css.map",
+      "AssetFile": "C:\\Users\\CristianPC\\Desktop\\vitalcare\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-grid.rtl.min.css.map",
       "Selectors": [],
       "ResponseHeaders": [
         {
@@ -8501,7 +8501,7 @@
     },
     {
       "Route": "lib/bootstrap/dist/css/bootstrap-grid.rtl.min.dy6jgresuo.css",
-      "AssetFile": "C:\\users\\cristianPC\\desktop\\vitalcare\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-grid.rtl.min.css",
+      "AssetFile": "C:\\Users\\CristianPC\\Desktop\\vitalcare\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-grid.rtl.min.css",
       "Selectors": [],
       "ResponseHeaders": [
         {
@@ -8546,7 +8546,7 @@
     },
     {
       "Route": "lib/bootstrap/dist/css/bootstrap-reboot.css",
-      "AssetFile": "C:\\users\\cristianPC\\desktop\\vitalcare\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.css",
+      "AssetFile": "C:\\Users\\CristianPC\\Desktop\\vitalcare\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.css",
       "Selectors": [],
       "ResponseHeaders": [
         {
@@ -8583,7 +8583,7 @@
     },
     {
       "Route": "lib/bootstrap/dist/css/bootstrap-reboot.css.jeal3x0ldm.map",
-      "AssetFile": "C:\\users\\cristianPC\\desktop\\vitalcare\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.css.map",
+      "AssetFile": "C:\\Users\\CristianPC\\Desktop\\vitalcare\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.css.map",
       "Selectors": [],
       "ResponseHeaders": [
         {
@@ -8628,7 +8628,7 @@
     },
     {
       "Route": "lib/bootstrap/dist/css/bootstrap-reboot.css.map",
-      "AssetFile": "C:\\users\\cristianPC\\desktop\\vitalcare\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.css.map",
+      "AssetFile": "C:\\Users\\CristianPC\\Desktop\\vitalcare\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.css.map",
       "Selectors": [],
       "ResponseHeaders": [
         {
@@ -8665,7 +8665,7 @@
     },
     {
       "Route": "lib/bootstrap/dist/css/bootstrap-reboot.min.css",
-      "AssetFile": "C:\\users\\cristianPC\\desktop\\vitalcare\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.min.css",
+      "AssetFile": "C:\\Users\\CristianPC\\Desktop\\vitalcare\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.min.css",
       "Selectors": [],
       "ResponseHeaders": [
         {
@@ -8702,7 +8702,7 @@
     },
     {
       "Route": "lib/bootstrap/dist/css/bootstrap-reboot.min.css.map",
-      "AssetFile": "C:\\users\\cristianPC\\desktop\\vitalcare\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.min.css.map",
+      "AssetFile": "C:\\Users\\CristianPC\\Desktop\\vitalcare\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.min.css.map",
       "Selectors": [],
       "ResponseHeaders": [
         {
@@ -8739,7 +8739,7 @@
     },
     {
       "Route": "lib/bootstrap/dist/css/bootstrap-reboot.min.css.okkk44j0xs.map",
-      "AssetFile": "C:\\users\\cristianPC\\desktop\\vitalcare\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.min.css.map",
+      "AssetFile": "C:\\Users\\CristianPC\\Desktop\\vitalcare\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.min.css.map",
       "Selectors": [],
       "ResponseHeaders": [
         {
@@ -8784,7 +8784,7 @@
     },
     {
       "Route": "lib/bootstrap/dist/css/bootstrap-reboot.min.z7kmom2977.css",
-      "AssetFile": "C:\\users\\cristianPC\\desktop\\vitalcare\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.min.css",
+      "AssetFile": "C:\\Users\\CristianPC\\Desktop\\vitalcare\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.min.css",
       "Selectors": [],
       "ResponseHeaders": [
         {
@@ -8829,7 +8829,7 @@
     },
     {
       "Route": "lib/bootstrap/dist/css/bootstrap-reboot.mk8rdyw69w.css",
-      "AssetFile": "C:\\users\\cristianPC\\desktop\\vitalcare\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.css",
+      "AssetFile": "C:\\Users\\CristianPC\\Desktop\\vitalcare\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.css",
       "Selectors": [],
       "ResponseHeaders": [
         {
@@ -8874,7 +8874,7 @@
     },
     {
       "Route": "lib/bootstrap/dist/css/bootstrap-reboot.rtl.97yrjpyf9r.css",
-      "AssetFile": "C:\\users\\cristianPC\\desktop\\vitalcare\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.rtl.css",
+      "AssetFile": "C:\\Users\\CristianPC\\Desktop\\vitalcare\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.rtl.css",
       "Selectors": [],
       "ResponseHeaders": [
         {
@@ -8919,7 +8919,7 @@
     },
     {
       "Route": "lib/bootstrap/dist/css/bootstrap-reboot.rtl.css",
-      "AssetFile": "C:\\users\\cristianPC\\desktop\\vitalcare\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.rtl.css",
+      "AssetFile": "C:\\Users\\CristianPC\\Desktop\\vitalcare\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.rtl.css",
       "Selectors": [],
       "ResponseHeaders": [
         {
@@ -8956,7 +8956,7 @@
     },
     {
       "Route": "lib/bootstrap/dist/css/bootstrap-reboot.rtl.css.cwzlr5n8x4.map",
-      "AssetFile": "C:\\users\\cristianPC\\desktop\\vitalcare\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.rtl.css.map",
+      "AssetFile": "C:\\Users\\CristianPC\\Desktop\\vitalcare\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.rtl.css.map",
       "Selectors": [],
       "ResponseHeaders": [
         {
@@ -9001,7 +9001,7 @@
     },
     {
       "Route": "lib/bootstrap/dist/css/bootstrap-reboot.rtl.css.map",
-      "AssetFile": "C:\\users\\cristianPC\\desktop\\vitalcare\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.rtl.css.map",
+      "AssetFile": "C:\\Users\\CristianPC\\Desktop\\vitalcare\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.rtl.css.map",
       "Selectors": [],
       "ResponseHeaders": [
         {
@@ -9038,7 +9038,7 @@
     },
     {
       "Route": "lib/bootstrap/dist/css/bootstrap-reboot.rtl.min.css",
-      "AssetFile": "C:\\users\\cristianPC\\desktop\\vitalcare\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.rtl.min.css",
+      "AssetFile": "C:\\Users\\CristianPC\\Desktop\\vitalcare\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.rtl.min.css",
       "Selectors": [],
       "ResponseHeaders": [
         {
@@ -9075,7 +9075,7 @@
     },
     {
       "Route": "lib/bootstrap/dist/css/bootstrap-reboot.rtl.min.css.map",
-      "AssetFile": "C:\\users\\cristianPC\\desktop\\vitalcare\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.rtl.min.css.map",
+      "AssetFile": "C:\\Users\\CristianPC\\Desktop\\vitalcare\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.rtl.min.css.map",
       "Selectors": [],
       "ResponseHeaders": [
         {
@@ -9112,7 +9112,7 @@
     },
     {
       "Route": "lib/bootstrap/dist/css/bootstrap-reboot.rtl.min.css.wmug9u23qg.map",
-      "AssetFile": "C:\\users\\cristianPC\\desktop\\vitalcare\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.rtl.min.css.map",
+      "AssetFile": "C:\\Users\\CristianPC\\Desktop\\vitalcare\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.rtl.min.css.map",
       "Selectors": [],
       "ResponseHeaders": [
         {
@@ -9157,7 +9157,7 @@
     },
     {
       "Route": "lib/bootstrap/dist/css/bootstrap-reboot.rtl.min.y53cy5s2zj.css",
-      "AssetFile": "C:\\users\\cristianPC\\desktop\\vitalcare\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.rtl.min.css",
+      "AssetFile": "C:\\Users\\CristianPC\\Desktop\\vitalcare\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.rtl.min.css",
       "Selectors": [],
       "ResponseHeaders": [
         {
@@ -9202,7 +9202,7 @@
     },
     {
       "Route": "lib/bootstrap/dist/css/bootstrap-utilities.css",
-      "AssetFile": "C:\\users\\cristianPC\\desktop\\vitalcare\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.css",
+      "AssetFile": "C:\\Users\\CristianPC\\Desktop\\vitalcare\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.css",
       "Selectors": [],
       "ResponseHeaders": [
         {
@@ -9239,7 +9239,7 @@
     },
     {
       "Route": "lib/bootstrap/dist/css/bootstrap-utilities.css.j75batdsum.map",
-      "AssetFile": "C:\\users\\cristianPC\\desktop\\vitalcare\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.css.map",
+      "AssetFile": "C:\\Users\\CristianPC\\Desktop\\vitalcare\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.css.map",
       "Selectors": [],
       "ResponseHeaders": [
         {
@@ -9284,7 +9284,7 @@
     },
     {
       "Route": "lib/bootstrap/dist/css/bootstrap-utilities.css.map",
-      "AssetFile": "C:\\users\\cristianPC\\desktop\\vitalcare\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.css.map",
+      "AssetFile": "C:\\Users\\CristianPC\\Desktop\\vitalcare\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.css.map",
       "Selectors": [],
       "ResponseHeaders": [
         {
@@ -9321,7 +9321,7 @@
     },
     {
       "Route": "lib/bootstrap/dist/css/bootstrap-utilities.min.2yn17lgxub.css",
-      "AssetFile": "C:\\users\\cristianPC\\desktop\\vitalcare\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.min.css",
+      "AssetFile": "C:\\Users\\CristianPC\\Desktop\\vitalcare\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.min.css",
       "Selectors": [],
       "ResponseHeaders": [
         {
@@ -9366,7 +9366,7 @@
     },
     {
       "Route": "lib/bootstrap/dist/css/bootstrap-utilities.min.css",
-      "AssetFile": "C:\\users\\cristianPC\\desktop\\vitalcare\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.min.css",
+      "AssetFile": "C:\\Users\\CristianPC\\Desktop\\vitalcare\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.min.css",
       "Selectors": [],
       "ResponseHeaders": [
         {
@@ -9403,7 +9403,7 @@
     },
     {
       "Route": "lib/bootstrap/dist/css/bootstrap-utilities.min.css.map",
-      "AssetFile": "C:\\users\\cristianPC\\desktop\\vitalcare\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.min.css.map",
+      "AssetFile": "C:\\Users\\CristianPC\\Desktop\\vitalcare\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.min.css.map",
       "Selectors": [],
       "ResponseHeaders": [
         {
@@ -9440,7 +9440,7 @@
     },
     {
       "Route": "lib/bootstrap/dist/css/bootstrap-utilities.min.css.vy0bq9ydhf.map",
-      "AssetFile": "C:\\users\\cristianPC\\desktop\\vitalcare\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.min.css.map",
+      "AssetFile": "C:\\Users\\CristianPC\\Desktop\\vitalcare\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.min.css.map",
       "Selectors": [],
       "ResponseHeaders": [
         {
@@ -9485,7 +9485,7 @@
     },
     {
       "Route": "lib/bootstrap/dist/css/bootstrap-utilities.rtl.css",
-      "AssetFile": "C:\\users\\cristianPC\\desktop\\vitalcare\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.rtl.css",
+      "AssetFile": "C:\\Users\\CristianPC\\Desktop\\vitalcare\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.rtl.css",
       "Selectors": [],
       "ResponseHeaders": [
         {
@@ -9522,7 +9522,7 @@
     },
     {
       "Route": "lib/bootstrap/dist/css/bootstrap-utilities.rtl.css.ab1c3rmv7g.map",
-      "AssetFile": "C:\\users\\cristianPC\\desktop\\vitalcare\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.rtl.css.map",
+      "AssetFile": "C:\\Users\\CristianPC\\Desktop\\vitalcare\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.rtl.css.map",
       "Selectors": [],
       "ResponseHeaders": [
         {
@@ -9567,7 +9567,7 @@
     },
     {
       "Route": "lib/bootstrap/dist/css/bootstrap-utilities.rtl.css.map",
-      "AssetFile": "C:\\users\\cristianPC\\desktop\\vitalcare\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.rtl.css.map",
+      "AssetFile": "C:\\Users\\CristianPC\\Desktop\\vitalcare\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.rtl.css.map",
       "Selectors": [],
       "ResponseHeaders": [
         {
@@ -9604,7 +9604,7 @@
     },
     {
       "Route": "lib/bootstrap/dist/css/bootstrap-utilities.rtl.min.css",
-      "AssetFile": "C:\\users\\cristianPC\\desktop\\vitalcare\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.rtl.min.css",
+      "AssetFile": "C:\\Users\\CristianPC\\Desktop\\vitalcare\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.rtl.min.css",
       "Selectors": [],
       "ResponseHeaders": [
         {
@@ -9641,7 +9641,7 @@
     },
     {
       "Route": "lib/bootstrap/dist/css/bootstrap-utilities.rtl.min.css.56d2bn4wt9.map",
-      "AssetFile": "C:\\users\\cristianPC\\desktop\\vitalcare\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.rtl.min.css.map",
+      "AssetFile": "C:\\Users\\CristianPC\\Desktop\\vitalcare\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.rtl.min.css.map",
       "Selectors": [],
       "ResponseHeaders": [
         {
@@ -9686,7 +9686,7 @@
     },
     {
       "Route": "lib/bootstrap/dist/css/bootstrap-utilities.rtl.min.css.map",
-      "AssetFile": "C:\\users\\cristianPC\\desktop\\vitalcare\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.rtl.min.css.map",
+      "AssetFile": "C:\\Users\\CristianPC\\Desktop\\vitalcare\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.rtl.min.css.map",
       "Selectors": [],
       "ResponseHeaders": [
         {
@@ -9723,7 +9723,7 @@
     },
     {
       "Route": "lib/bootstrap/dist/css/bootstrap-utilities.rtl.min.ik6i2hrs65.css",
-      "AssetFile": "C:\\users\\cristianPC\\desktop\\vitalcare\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.rtl.min.css",
+      "AssetFile": "C:\\Users\\CristianPC\\Desktop\\vitalcare\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.rtl.min.css",
       "Selectors": [],
       "ResponseHeaders": [
         {
@@ -9768,7 +9768,7 @@
     },
     {
       "Route": "lib/bootstrap/dist/css/bootstrap-utilities.rtl.ophe14yye5.css",
-      "AssetFile": "C:\\users\\cristianPC\\desktop\\vitalcare\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.rtl.css",
+      "AssetFile": "C:\\Users\\CristianPC\\Desktop\\vitalcare\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.rtl.css",
       "Selectors": [],
       "ResponseHeaders": [
         {
@@ -9813,7 +9813,7 @@
     },
     {
       "Route": "lib/bootstrap/dist/css/bootstrap-utilities.z9shlbduue.css",
-      "AssetFile": "C:\\users\\cristianPC\\desktop\\vitalcare\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.css",
+      "AssetFile": "C:\\Users\\CristianPC\\Desktop\\vitalcare\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.css",
       "Selectors": [],
       "ResponseHeaders": [
         {
@@ -9858,7 +9858,7 @@
     },
     {
       "Route": "lib/bootstrap/dist/css/bootstrap.css",
-      "AssetFile": "C:\\users\\cristianPC\\desktop\\vitalcare\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap.css",
+      "AssetFile": "C:\\Users\\CristianPC\\Desktop\\vitalcare\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap.css",
       "Selectors": [],
       "ResponseHeaders": [
         {
@@ -9895,7 +9895,7 @@
     },
     {
       "Route": "lib/bootstrap/dist/css/bootstrap.css.73kdqttayv.map",
-      "AssetFile": "C:\\users\\cristianPC\\desktop\\vitalcare\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap.css.map",
+      "AssetFile": "C:\\Users\\CristianPC\\Desktop\\vitalcare\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap.css.map",
       "Selectors": [],
       "ResponseHeaders": [
         {
@@ -9940,7 +9940,7 @@
     },
     {
       "Route": "lib/bootstrap/dist/css/bootstrap.css.map",
-      "AssetFile": "C:\\users\\cristianPC\\desktop\\vitalcare\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap.css.map",
+      "AssetFile": "C:\\Users\\CristianPC\\Desktop\\vitalcare\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap.css.map",
       "Selectors": [],
       "ResponseHeaders": [
         {
@@ -9977,7 +9977,7 @@
     },
     {
       "Route": "lib/bootstrap/dist/css/bootstrap.min.6gzpyzhau4.css",
-      "AssetFile": "C:\\users\\cristianPC\\desktop\\vitalcare\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap.min.css",
+      "AssetFile": "C:\\Users\\CristianPC\\Desktop\\vitalcare\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap.min.css",
       "Selectors": [],
       "ResponseHeaders": [
         {
@@ -10022,7 +10022,7 @@
     },
     {
       "Route": "lib/bootstrap/dist/css/bootstrap.min.css",
-      "AssetFile": "C:\\users\\cristianPC\\desktop\\vitalcare\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap.min.css",
+      "AssetFile": "C:\\Users\\CristianPC\\Desktop\\vitalcare\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap.min.css",
       "Selectors": [],
       "ResponseHeaders": [
         {
@@ -10059,7 +10059,7 @@
     },
     {
       "Route": "lib/bootstrap/dist/css/bootstrap.min.css.8inm30yfxf.map",
-      "AssetFile": "C:\\users\\cristianPC\\desktop\\vitalcare\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap.min.css.map",
+      "AssetFile": "C:\\Users\\CristianPC\\Desktop\\vitalcare\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap.min.css.map",
       "Selectors": [],
       "ResponseHeaders": [
         {
@@ -10104,7 +10104,7 @@
     },
     {
       "Route": "lib/bootstrap/dist/css/bootstrap.min.css.map",
-      "AssetFile": "C:\\users\\cristianPC\\desktop\\vitalcare\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap.min.css.map",
+      "AssetFile": "C:\\Users\\CristianPC\\Desktop\\vitalcare\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap.min.css.map",
       "Selectors": [],
       "ResponseHeaders": [
         {
@@ -10141,7 +10141,7 @@
     },
     {
       "Route": "lib/bootstrap/dist/css/bootstrap.ozu22stjof.css",
-      "AssetFile": "C:\\users\\cristianPC\\desktop\\vitalcare\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap.css",
+      "AssetFile": "C:\\Users\\CristianPC\\Desktop\\vitalcare\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap.css",
       "Selectors": [],
       "ResponseHeaders": [
         {
@@ -10186,7 +10186,7 @@
     },
     {
       "Route": "lib/bootstrap/dist/css/bootstrap.rtl.css",
-      "AssetFile": "C:\\users\\cristianPC\\desktop\\vitalcare\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap.rtl.css",
+      "AssetFile": "C:\\Users\\CristianPC\\Desktop\\vitalcare\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap.rtl.css",
       "Selectors": [],
       "ResponseHeaders": [
         {
@@ -10223,7 +10223,7 @@
     },
     {
       "Route": "lib/bootstrap/dist/css/bootstrap.rtl.css.4gxs3k148c.map",
-      "AssetFile": "C:\\users\\cristianPC\\desktop\\vitalcare\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap.rtl.css.map",
+      "AssetFile": "C:\\Users\\CristianPC\\Desktop\\vitalcare\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap.rtl.css.map",
       "Selectors": [],
       "ResponseHeaders": [
         {
@@ -10268,7 +10268,7 @@
     },
     {
       "Route": "lib/bootstrap/dist/css/bootstrap.rtl.css.map",
-      "AssetFile": "C:\\users\\cristianPC\\desktop\\vitalcare\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap.rtl.css.map",
+      "AssetFile": "C:\\Users\\CristianPC\\Desktop\\vitalcare\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap.rtl.css.map",
       "Selectors": [],
       "ResponseHeaders": [
         {
@@ -10305,7 +10305,7 @@
     },
     {
       "Route": "lib/bootstrap/dist/css/bootstrap.rtl.gjcw7pocpk.css",
-      "AssetFile": "C:\\users\\cristianPC\\desktop\\vitalcare\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap.rtl.css",
+      "AssetFile": "C:\\Users\\CristianPC\\Desktop\\vitalcare\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap.rtl.css",
       "Selectors": [],
       "ResponseHeaders": [
         {
@@ -10350,7 +10350,7 @@
     },
     {
       "Route": "lib/bootstrap/dist/css/bootstrap.rtl.min.6l4ir0ityv.css",
-      "AssetFile": "C:\\users\\cristianPC\\desktop\\vitalcare\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap.rtl.min.css",
+      "AssetFile": "C:\\Users\\CristianPC\\Desktop\\vitalcare\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap.rtl.min.css",
       "Selectors": [],
       "ResponseHeaders": [
         {
@@ -10395,7 +10395,7 @@
     },
     {
       "Route": "lib/bootstrap/dist/css/bootstrap.rtl.min.css",
-      "AssetFile": "C:\\users\\cristianPC\\desktop\\vitalcare\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap.rtl.min.css",
+      "AssetFile": "C:\\Users\\CristianPC\\Desktop\\vitalcare\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap.rtl.min.css",
       "Selectors": [],
       "ResponseHeaders": [
         {
@@ -10432,7 +10432,7 @@
     },
     {
       "Route": "lib/bootstrap/dist/css/bootstrap.rtl.min.css.fctod5rc9n.map",
-      "AssetFile": "C:\\users\\cristianPC\\desktop\\vitalcare\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap.rtl.min.css.map",
+      "AssetFile": "C:\\Users\\CristianPC\\Desktop\\vitalcare\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap.rtl.min.css.map",
       "Selectors": [],
       "ResponseHeaders": [
         {
@@ -10477,7 +10477,7 @@
     },
     {
       "Route": "lib/bootstrap/dist/css/bootstrap.rtl.min.css.map",
-      "AssetFile": "C:\\users\\cristianPC\\desktop\\vitalcare\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap.rtl.min.css.map",
+      "AssetFile": "C:\\Users\\CristianPC\\Desktop\\vitalcare\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap.rtl.min.css.map",
       "Selectors": [],
       "ResponseHeaders": [
         {
@@ -10514,7 +10514,7 @@
     },
     {
       "Route": "lib/bootstrap/dist/js/bootstrap.1piudyfv7h.js",
-      "AssetFile": "C:\\users\\cristianPC\\desktop\\vitalcare\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.js",
+      "AssetFile": "C:\\Users\\CristianPC\\Desktop\\vitalcare\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.js",
       "Selectors": [],
       "ResponseHeaders": [
         {
@@ -10559,7 +10559,7 @@
     },
     {
       "Route": "lib/bootstrap/dist/js/bootstrap.bundle.f6zq8v6eb3.js",
-      "AssetFile": "C:\\users\\cristianPC\\desktop\\vitalcare\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.bundle.js",
+      "AssetFile": "C:\\Users\\CristianPC\\Desktop\\vitalcare\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.bundle.js",
       "Selectors": [],
       "ResponseHeaders": [
         {
@@ -10604,7 +10604,7 @@
     },
     {
       "Route": "lib/bootstrap/dist/js/bootstrap.bundle.js",
-      "AssetFile": "C:\\users\\cristianPC\\desktop\\vitalcare\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.bundle.js",
+      "AssetFile": "C:\\Users\\CristianPC\\Desktop\\vitalcare\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.bundle.js",
       "Selectors": [],
       "ResponseHeaders": [
         {
@@ -10641,7 +10641,7 @@
     },
     {
       "Route": "lib/bootstrap/dist/js/bootstrap.bundle.js.kbynt5jhd9.map",
-      "AssetFile": "C:\\users\\cristianPC\\desktop\\vitalcare\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.bundle.js.map",
+      "AssetFile": "C:\\Users\\CristianPC\\Desktop\\vitalcare\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.bundle.js.map",
       "Selectors": [],
       "ResponseHeaders": [
         {
@@ -10686,7 +10686,7 @@
     },
     {
       "Route": "lib/bootstrap/dist/js/bootstrap.bundle.js.map",
-      "AssetFile": "C:\\users\\cristianPC\\desktop\\vitalcare\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.bundle.js.map",
+      "AssetFile": "C:\\Users\\CristianPC\\Desktop\\vitalcare\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.bundle.js.map",
       "Selectors": [],
       "ResponseHeaders": [
         {
@@ -10723,7 +10723,7 @@
     },
     {
       "Route": "lib/bootstrap/dist/js/bootstrap.bundle.min.89qbw8ngem.js",
-      "AssetFile": "C:\\users\\cristianPC\\desktop\\vitalcare\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.bundle.min.js",
+      "AssetFile": "C:\\Users\\CristianPC\\Desktop\\vitalcare\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.bundle.min.js",
       "Selectors": [],
       "ResponseHeaders": [
         {
@@ -10768,7 +10768,7 @@
     },
     {
       "Route": "lib/bootstrap/dist/js/bootstrap.bundle.min.js",
-      "AssetFile": "C:\\users\\cristianPC\\desktop\\vitalcare\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.bundle.min.js",
+      "AssetFile": "C:\\Users\\CristianPC\\Desktop\\vitalcare\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.bundle.min.js",
       "Selectors": [],
       "ResponseHeaders": [
         {
@@ -10805,7 +10805,7 @@
     },
     {
       "Route": "lib/bootstrap/dist/js/bootstrap.bundle.min.js.c2nslu3uf3.map",
-      "AssetFile": "C:\\users\\cristianPC\\desktop\\vitalcare\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.bundle.min.js.map",
+      "AssetFile": "C:\\Users\\CristianPC\\Desktop\\vitalcare\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.bundle.min.js.map",
       "Selectors": [],
       "ResponseHeaders": [
         {
@@ -10850,7 +10850,7 @@
     },
     {
       "Route": "lib/bootstrap/dist/js/bootstrap.bundle.min.js.map",
-      "AssetFile": "C:\\users\\cristianPC\\desktop\\vitalcare\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.bundle.min.js.map",
+      "AssetFile": "C:\\Users\\CristianPC\\Desktop\\vitalcare\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.bundle.min.js.map",
       "Selectors": [],
       "ResponseHeaders": [
         {
@@ -10887,7 +10887,7 @@
     },
     {
       "Route": "lib/bootstrap/dist/js/bootstrap.esm.js",
-      "AssetFile": "C:\\users\\cristianPC\\desktop\\vitalcare\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.esm.js",
+      "AssetFile": "C:\\Users\\CristianPC\\Desktop\\vitalcare\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.esm.js",
       "Selectors": [],
       "ResponseHeaders": [
         {
@@ -10924,7 +10924,7 @@
     },
     {
       "Route": "lib/bootstrap/dist/js/bootstrap.esm.js.2lgwfvgpvi.map",
-      "AssetFile": "C:\\users\\cristianPC\\desktop\\vitalcare\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.esm.js.map",
+      "AssetFile": "C:\\Users\\CristianPC\\Desktop\\vitalcare\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.esm.js.map",
       "Selectors": [],
       "ResponseHeaders": [
         {
@@ -10969,7 +10969,7 @@
     },
     {
       "Route": "lib/bootstrap/dist/js/bootstrap.esm.js.map",
-      "AssetFile": "C:\\users\\cristianPC\\desktop\\vitalcare\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.esm.js.map",
+      "AssetFile": "C:\\Users\\CristianPC\\Desktop\\vitalcare\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.esm.js.map",
       "Selectors": [],
       "ResponseHeaders": [
         {
@@ -11006,7 +11006,7 @@
     },
     {
       "Route": "lib/bootstrap/dist/js/bootstrap.esm.min.jqwzsa9uv6.js",
-      "AssetFile": "C:\\users\\cristianPC\\desktop\\vitalcare\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.esm.min.js",
+      "AssetFile": "C:\\Users\\CristianPC\\Desktop\\vitalcare\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.esm.min.js",
       "Selectors": [],
       "ResponseHeaders": [
         {
@@ -11051,7 +11051,7 @@
     },
     {
       "Route": "lib/bootstrap/dist/js/bootstrap.esm.min.js",
-      "AssetFile": "C:\\users\\cristianPC\\desktop\\vitalcare\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.esm.min.js",
+      "AssetFile": "C:\\Users\\CristianPC\\Desktop\\vitalcare\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.esm.min.js",
       "Selectors": [],
       "ResponseHeaders": [
         {
@@ -11088,7 +11088,7 @@
     },
     {
       "Route": "lib/bootstrap/dist/js/bootstrap.esm.min.js.map",
-      "AssetFile": "C:\\users\\cristianPC\\desktop\\vitalcare\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.esm.min.js.map",
+      "AssetFile": "C:\\Users\\CristianPC\\Desktop\\vitalcare\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.esm.min.js.map",
       "Selectors": [],
       "ResponseHeaders": [
         {
@@ -11125,7 +11125,7 @@
     },
     {
       "Route": "lib/bootstrap/dist/js/bootstrap.esm.min.js.wsezl0heh6.map",
-      "AssetFile": "C:\\users\\cristianPC\\desktop\\vitalcare\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.esm.min.js.map",
+      "AssetFile": "C:\\Users\\CristianPC\\Desktop\\vitalcare\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.esm.min.js.map",
       "Selectors": [],
       "ResponseHeaders": [
         {
@@ -11170,7 +11170,7 @@
     },
     {
       "Route": "lib/bootstrap/dist/js/bootstrap.esm.n5w6o92d9r.js",
-      "AssetFile": "C:\\users\\cristianPC\\desktop\\vitalcare\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.esm.js",
+      "AssetFile": "C:\\Users\\CristianPC\\Desktop\\vitalcare\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.esm.js",
       "Selectors": [],
       "ResponseHeaders": [
         {
@@ -11215,7 +11215,7 @@
     },
     {
       "Route": "lib/bootstrap/dist/js/bootstrap.js",
-      "AssetFile": "C:\\users\\cristianPC\\desktop\\vitalcare\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.js",
+      "AssetFile": "C:\\Users\\CristianPC\\Desktop\\vitalcare\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.js",
       "Selectors": [],
       "ResponseHeaders": [
         {
@@ -11252,7 +11252,7 @@
     },
     {
       "Route": "lib/bootstrap/dist/js/bootstrap.js.6ukhryfubh.map",
-      "AssetFile": "C:\\users\\cristianPC\\desktop\\vitalcare\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.js.map",
+      "AssetFile": "C:\\Users\\CristianPC\\Desktop\\vitalcare\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.js.map",
       "Selectors": [],
       "ResponseHeaders": [
         {
@@ -11297,7 +11297,7 @@
     },
     {
       "Route": "lib/bootstrap/dist/js/bootstrap.js.map",
-      "AssetFile": "C:\\users\\cristianPC\\desktop\\vitalcare\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.js.map",
+      "AssetFile": "C:\\Users\\CristianPC\\Desktop\\vitalcare\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.js.map",
       "Selectors": [],
       "ResponseHeaders": [
         {
@@ -11334,7 +11334,7 @@
     },
     {
       "Route": "lib/bootstrap/dist/js/bootstrap.min.4908xmbfjr.js",
-      "AssetFile": "C:\\users\\cristianPC\\desktop\\vitalcare\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.min.js",
+      "AssetFile": "C:\\Users\\CristianPC\\Desktop\\vitalcare\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.min.js",
       "Selectors": [],
       "ResponseHeaders": [
         {
@@ -11379,7 +11379,7 @@
     },
     {
       "Route": "lib/bootstrap/dist/js/bootstrap.min.js",
-      "AssetFile": "C:\\users\\cristianPC\\desktop\\vitalcare\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.min.js",
+      "AssetFile": "C:\\Users\\CristianPC\\Desktop\\vitalcare\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.min.js",
       "Selectors": [],
       "ResponseHeaders": [
         {
@@ -11416,7 +11416,7 @@
     },
     {
       "Route": "lib/bootstrap/dist/js/bootstrap.min.js.map",
-      "AssetFile": "C:\\users\\cristianPC\\desktop\\vitalcare\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.min.js.map",
+      "AssetFile": "C:\\Users\\CristianPC\\Desktop\\vitalcare\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.min.js.map",
       "Selectors": [],
       "ResponseHeaders": [
         {
@@ -11453,7 +11453,7 @@
     },
     {
       "Route": "lib/bootstrap/dist/js/bootstrap.min.js.u33ctipx7g.map",
-      "AssetFile": "C:\\users\\cristianPC\\desktop\\vitalcare\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.min.js.map",
+      "AssetFile": "C:\\Users\\CristianPC\\Desktop\\vitalcare\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.min.js.map",
       "Selectors": [],
       "ResponseHeaders": [
         {
@@ -11498,7 +11498,7 @@
     },
     {
       "Route": "lib/bootstrap/LICENSE",
-      "AssetFile": "C:\\users\\cristianPC\\desktop\\vitalcare\\wwwroot\\lib\\bootstrap\\LICENSE",
+      "AssetFile": "C:\\Users\\CristianPC\\Desktop\\vitalcare\\wwwroot\\lib\\bootstrap\\LICENSE",
       "Selectors": [],
       "ResponseHeaders": [
         {
@@ -11535,7 +11535,7 @@
     },
     {
       "Route": "lib/bootstrap/LICENSE.81b7ukuj9c",
-      "AssetFile": "C:\\users\\cristianPC\\desktop\\vitalcare\\wwwroot\\lib\\bootstrap\\LICENSE",
+      "AssetFile": "C:\\Users\\CristianPC\\Desktop\\vitalcare\\wwwroot\\lib\\bootstrap\\LICENSE",
       "Selectors": [],
       "ResponseHeaders": [
         {
@@ -11580,7 +11580,7 @@
     },
     {
       "Route": "lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.03hjc8e09r.js",
-      "AssetFile": "C:\\users\\cristianPC\\desktop\\vitalcare\\wwwroot\\lib\\jquery-validation-unobtrusive\\jquery.validate.unobtrusive.js",
+      "AssetFile": "C:\\Users\\CristianPC\\Desktop\\vitalcare\\wwwroot\\lib\\jquery-validation-unobtrusive\\jquery.validate.unobtrusive.js",
       "Selectors": [],
       "ResponseHeaders": [
         {
@@ -11625,7 +11625,7 @@
     },
     {
       "Route": "lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.js",
-      "AssetFile": "C:\\users\\cristianPC\\desktop\\vitalcare\\wwwroot\\lib\\jquery-validation-unobtrusive\\jquery.validate.unobtrusive.js",
+      "AssetFile": "C:\\Users\\CristianPC\\Desktop\\vitalcare\\wwwroot\\lib\\jquery-validation-unobtrusive\\jquery.validate.unobtrusive.js",
       "Selectors": [],
       "ResponseHeaders": [
         {
@@ -11662,7 +11662,7 @@
     },
     {
       "Route": "lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.min.48y08845bh.js",
-      "AssetFile": "C:\\users\\cristianPC\\desktop\\vitalcare\\wwwroot\\lib\\jquery-validation-unobtrusive\\jquery.validate.unobtrusive.min.js",
+      "AssetFile": "C:\\Users\\CristianPC\\Desktop\\vitalcare\\wwwroot\\lib\\jquery-validation-unobtrusive\\jquery.validate.unobtrusive.min.js",
       "Selectors": [],
       "ResponseHeaders": [
         {
@@ -11707,7 +11707,7 @@
     },
     {
       "Route": "lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.min.js",
-      "AssetFile": "C:\\users\\cristianPC\\desktop\\vitalcare\\wwwroot\\lib\\jquery-validation-unobtrusive\\jquery.validate.unobtrusive.min.js",
+      "AssetFile": "C:\\Users\\CristianPC\\Desktop\\vitalcare\\wwwroot\\lib\\jquery-validation-unobtrusive\\jquery.validate.unobtrusive.min.js",
       "Selectors": [],
       "ResponseHeaders": [
         {
@@ -11744,7 +11744,7 @@
     },
     {
       "Route": "lib/jquery-validation-unobtrusive/LICENSE.356vix0kms.txt",
-      "AssetFile": "C:\\users\\cristianPC\\desktop\\vitalcare\\wwwroot\\lib\\jquery-validation-unobtrusive\\LICENSE.txt",
+      "AssetFile": "C:\\Users\\CristianPC\\Desktop\\vitalcare\\wwwroot\\lib\\jquery-validation-unobtrusive\\LICENSE.txt",
       "Selectors": [],
       "ResponseHeaders": [
         {
@@ -11789,7 +11789,7 @@
     },
     {
       "Route": "lib/jquery-validation-unobtrusive/LICENSE.txt",
-      "AssetFile": "C:\\users\\cristianPC\\desktop\\vitalcare\\wwwroot\\lib\\jquery-validation-unobtrusive\\LICENSE.txt",
+      "AssetFile": "C:\\Users\\CristianPC\\Desktop\\vitalcare\\wwwroot\\lib\\jquery-validation-unobtrusive\\LICENSE.txt",
       "Selectors": [],
       "ResponseHeaders": [
         {
@@ -11826,7 +11826,7 @@
     },
     {
       "Route": "lib/jquery-validation/dist/additional-methods.ay5nd8zt9x.js",
-      "AssetFile": "C:\\users\\cristianPC\\desktop\\vitalcare\\wwwroot\\lib\\jquery-validation\\dist\\additional-methods.js",
+      "AssetFile": "C:\\Users\\CristianPC\\Desktop\\vitalcare\\wwwroot\\lib\\jquery-validation\\dist\\additional-methods.js",
       "Selectors": [],
       "ResponseHeaders": [
         {
@@ -11871,7 +11871,7 @@
     },
     {
       "Route": "lib/jquery-validation/dist/additional-methods.js",
-      "AssetFile": "C:\\users\\cristianPC\\desktop\\vitalcare\\wwwroot\\lib\\jquery-validation\\dist\\additional-methods.js",
+      "AssetFile": "C:\\Users\\CristianPC\\Desktop\\vitalcare\\wwwroot\\lib\\jquery-validation\\dist\\additional-methods.js",
       "Selectors": [],
       "ResponseHeaders": [
         {
@@ -11908,7 +11908,7 @@
     },
     {
       "Route": "lib/jquery-validation/dist/additional-methods.min.9oaff4kq20.js",
-      "AssetFile": "C:\\users\\cristianPC\\desktop\\vitalcare\\wwwroot\\lib\\jquery-validation\\dist\\additional-methods.min.js",
+      "AssetFile": "C:\\Users\\CristianPC\\Desktop\\vitalcare\\wwwroot\\lib\\jquery-validation\\dist\\additional-methods.min.js",
       "Selectors": [],
       "ResponseHeaders": [
         {
@@ -11953,7 +11953,7 @@
     },
     {
       "Route": "lib/jquery-validation/dist/additional-methods.min.js",
-      "AssetFile": "C:\\users\\cristianPC\\desktop\\vitalcare\\wwwroot\\lib\\jquery-validation\\dist\\additional-methods.min.js",
+      "AssetFile": "C:\\Users\\CristianPC\\Desktop\\vitalcare\\wwwroot\\lib\\jquery-validation\\dist\\additional-methods.min.js",
       "Selectors": [],
       "ResponseHeaders": [
         {
@@ -11990,7 +11990,7 @@
     },
     {
       "Route": "lib/jquery-validation/dist/jquery.validate.6d0lkjaslc.js",
-      "AssetFile": "C:\\users\\cristianPC\\desktop\\vitalcare\\wwwroot\\lib\\jquery-validation\\dist\\jquery.validate.js",
+      "AssetFile": "C:\\Users\\CristianPC\\Desktop\\vitalcare\\wwwroot\\lib\\jquery-validation\\dist\\jquery.validate.js",
       "Selectors": [],
       "ResponseHeaders": [
         {
@@ -12035,7 +12035,7 @@
     },
     {
       "Route": "lib/jquery-validation/dist/jquery.validate.js",
-      "AssetFile": "C:\\users\\cristianPC\\desktop\\vitalcare\\wwwroot\\lib\\jquery-validation\\dist\\jquery.validate.js",
+      "AssetFile": "C:\\Users\\CristianPC\\Desktop\\vitalcare\\wwwroot\\lib\\jquery-validation\\dist\\jquery.validate.js",
       "Selectors": [],
       "ResponseHeaders": [
         {
@@ -12072,7 +12072,7 @@
     },
     {
       "Route": "lib/jquery-validation/dist/jquery.validate.min.js",
-      "AssetFile": "C:\\users\\cristianPC\\desktop\\vitalcare\\wwwroot\\lib\\jquery-validation\\dist\\jquery.validate.min.js",
+      "AssetFile": "C:\\Users\\CristianPC\\Desktop\\vitalcare\\wwwroot\\lib\\jquery-validation\\dist\\jquery.validate.min.js",
       "Selectors": [],
       "ResponseHeaders": [
         {
@@ -12109,7 +12109,7 @@
     },
     {
       "Route": "lib/jquery-validation/dist/jquery.validate.min.l1zq2mitth.js",
-      "AssetFile": "C:\\users\\cristianPC\\desktop\\vitalcare\\wwwroot\\lib\\jquery-validation\\dist\\jquery.validate.min.js",
+      "AssetFile": "C:\\Users\\CristianPC\\Desktop\\vitalcare\\wwwroot\\lib\\jquery-validation\\dist\\jquery.validate.min.js",
       "Selectors": [],
       "ResponseHeaders": [
         {
@@ -12154,7 +12154,7 @@
     },
     {
       "Route": "lib/jquery-validation/LICENSE.md",
-      "AssetFile": "C:\\users\\cristianPC\\desktop\\vitalcare\\wwwroot\\lib\\jquery-validation\\LICENSE.md",
+      "AssetFile": "C:\\Users\\CristianPC\\Desktop\\vitalcare\\wwwroot\\lib\\jquery-validation\\LICENSE.md",
       "Selectors": [],
       "ResponseHeaders": [
         {
@@ -12191,7 +12191,7 @@
     },
     {
       "Route": "lib/jquery-validation/LICENSE.x0q3zqp4vz.md",
-      "AssetFile": "C:\\users\\cristianPC\\desktop\\vitalcare\\wwwroot\\lib\\jquery-validation\\LICENSE.md",
+      "AssetFile": "C:\\Users\\CristianPC\\Desktop\\vitalcare\\wwwroot\\lib\\jquery-validation\\LICENSE.md",
       "Selectors": [],
       "ResponseHeaders": [
         {
@@ -12236,7 +12236,7 @@
     },
     {
       "Route": "lib/jquery/dist/jquery.7s2n0ol71w.js",
-      "AssetFile": "C:\\users\\cristianPC\\desktop\\vitalcare\\wwwroot\\lib\\jquery\\dist\\jquery.js",
+      "AssetFile": "C:\\Users\\CristianPC\\Desktop\\vitalcare\\wwwroot\\lib\\jquery\\dist\\jquery.js",
       "Selectors": [],
       "ResponseHeaders": [
         {
@@ -12281,7 +12281,7 @@
     },
     {
       "Route": "lib/jquery/dist/jquery.js",
-      "AssetFile": "C:\\users\\cristianPC\\desktop\\vitalcare\\wwwroot\\lib\\jquery\\dist\\jquery.js",
+      "AssetFile": "C:\\Users\\CristianPC\\Desktop\\vitalcare\\wwwroot\\lib\\jquery\\dist\\jquery.js",
       "Selectors": [],
       "ResponseHeaders": [
         {
@@ -12318,7 +12318,7 @@
     },
     {
       "Route": "lib/jquery/dist/jquery.min.5pze98is44.map",
-      "AssetFile": "C:\\users\\cristianPC\\desktop\\vitalcare\\wwwroot\\lib\\jquery\\dist\\jquery.min.map",
+      "AssetFile": "C:\\Users\\CristianPC\\Desktop\\vitalcare\\wwwroot\\lib\\jquery\\dist\\jquery.min.map",
       "Selectors": [],
       "ResponseHeaders": [
         {
@@ -12363,7 +12363,7 @@
     },
     {
       "Route": "lib/jquery/dist/jquery.min.ehgnz7f14e.js",
-      "AssetFile": "C:\\users\\cristianPC\\desktop\\vitalcare\\wwwroot\\lib\\jquery\\dist\\jquery.min.js",
+      "AssetFile": "C:\\Users\\CristianPC\\Desktop\\vitalcare\\wwwroot\\lib\\jquery\\dist\\jquery.min.js",
       "Selectors": [],
       "ResponseHeaders": [
         {
@@ -12408,7 +12408,7 @@
     },
     {
       "Route": "lib/jquery/dist/jquery.min.js",
-      "AssetFile": "C:\\users\\cristianPC\\desktop\\vitalcare\\wwwroot\\lib\\jquery\\dist\\jquery.min.js",
+      "AssetFile": "C:\\Users\\CristianPC\\Desktop\\vitalcare\\wwwroot\\lib\\jquery\\dist\\jquery.min.js",
       "Selectors": [],
       "ResponseHeaders": [
         {
@@ -12445,7 +12445,7 @@
     },
     {
       "Route": "lib/jquery/dist/jquery.min.map",
-      "AssetFile": "C:\\users\\cristianPC\\desktop\\vitalcare\\wwwroot\\lib\\jquery\\dist\\jquery.min.map",
+      "AssetFile": "C:\\Users\\CristianPC\\Desktop\\vitalcare\\wwwroot\\lib\\jquery\\dist\\jquery.min.map",
       "Selectors": [],
       "ResponseHeaders": [
         {
@@ -12482,7 +12482,7 @@
     },
     {
       "Route": "lib/jquery/LICENSE.mlv21k5csn.txt",
-      "AssetFile": "C:\\users\\cristianPC\\desktop\\vitalcare\\wwwroot\\lib\\jquery\\LICENSE.txt",
+      "AssetFile": "C:\\Users\\CristianPC\\Desktop\\vitalcare\\wwwroot\\lib\\jquery\\LICENSE.txt",
       "Selectors": [],
       "ResponseHeaders": [
         {
@@ -12527,7 +12527,7 @@
     },
     {
       "Route": "lib/jquery/LICENSE.txt",
-      "AssetFile": "C:\\users\\cristianPC\\desktop\\vitalcare\\wwwroot\\lib\\jquery\\LICENSE.txt",
+      "AssetFile": "C:\\Users\\CristianPC\\Desktop\\vitalcare\\wwwroot\\lib\\jquery\\LICENSE.txt",
       "Selectors": [],
       "ResponseHeaders": [
         {

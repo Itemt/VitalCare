@@ -2338,6 +2338,13 @@ body {
 /* === PÁGINAS ESPECÍFICAS - MODO OSCURO MEJORADO === */
 
 /* Servicios, About y Contact pages - Dark mode fixes */
+/* === HERO SECTIONS CON BORDES REDONDEADOS === */
+.hero-section {
+    border-radius: 2rem !important;
+    margin: 1rem 1rem 3rem 1rem !important;
+    overflow: hidden !important;
+}
+
 [data-bs-theme="dark"] .hero-section {
     background: linear-gradient(135deg, #001122 0%, #002244 50%, #003366 100%) !important;
 }
@@ -2536,3 +2543,128 @@ body {
 [data-bs-theme="dark"] .card-body h6 {
     color: #e2e8f0 !important;
 } 
+
+/* === TARJETAS EPS MEJORADAS === */
+.partner-logo-container {
+    background: rgba(255, 255, 255, 0.95) !important;
+    border: 1px solid rgba(0,0,0,0.1) !important;
+    border-radius: 1.5rem !important;
+    padding: 3rem 1.5rem !important;
+    transition: all 0.3s ease !important;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.1) !important;
+    height: 160px !important;
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: center !important;
+    justify-content: center !important;
+    text-align: center !important;
+    gap: 1rem !important;
+}
+
+.partner-logo-container:hover {
+    transform: translateY(-5px) !important;
+    box-shadow: 0 8px 25px rgba(0,0,0,0.15) !important;
+    border-color: rgba(0,123,255,0.3) !important;
+}
+
+.partner-logo-container .feature-icon-wrapper {
+    margin-bottom: 0 !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+}
+
+.partner-logo-container .feature-icon-main {
+    font-size: 3rem !important;
+}
+
+.partner-logo-container .partner-name {
+    font-size: 1rem !important;
+    font-weight: 600 !important;
+    color: #495057 !important;
+    margin: 0 !important;
+    line-height: 1.2 !important;
+}
+
+[data-bs-theme="dark"] .partner-logo-container {
+    background: rgba(45,55,72,0.9) !important;
+    border-color: rgba(255,255,255,0.1) !important;
+}
+
+[data-bs-theme="dark"] .partner-logo-container .partner-name {
+    color: #e2e8f0 !important;
+}
+
+/* === RESPONSIVE PARA TARJETAS EPS === */
+@media (max-width: 768px) {
+    .partner-logo-container {
+        height: 140px !important;
+        padding: 2rem 1rem !important;
+    }
+    
+    .partner-logo-container .feature-icon-main {
+        font-size: 2.5rem !important;
+    }
+    
+    .partner-logo-container .partner-name {
+        font-size: 0.9rem !important;
+    }
+}
+
+@media (max-width: 576px) {
+    .partner-logo-container {
+        height: 120px !important;
+        padding: 1.5rem 0.5rem !important;
+    }
+    
+    .partner-logo-container .feature-icon-main {
+        font-size: 2rem !important;
+    }
+    
+    .partner-logo-container .partner-name {
+        font-size: 0.8rem !important;
+    }
+}
+
+/* === SECCIÓN SERVICIOS ADICIONALES === */
+.additional-services-section {
+    background: linear-gradient(135deg, #f8f9fa 0%, #ffffff 100%) !important;
+    border-radius: 2rem !important;
+    margin: 1rem !important;
+    box-shadow: 0 8px 25px rgba(0,0,0,0.1) !important;
+}
+
+/* Modo oscuro para la sección */
+[data-bs-theme="dark"] .additional-services-section {
+    background: linear-gradient(135deg, #2d3748 0%, #1a202c 100%) !important;
+    box-shadow: 0 8px 25px rgba(0,0,0,0.3) !important;
+}
+
+/* === CENTRADO DE ICONOS EN TARJETAS INDIVIDUALES === */
+.advanced-service-card .d-flex.align-items-center {
+    align-items: center !important;
+}
+
+.advanced-service-card .feature-icon-wrapper {
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    width: 60px !important;
+    height: 60px !important;
+    min-width: 60px !important;
+    min-height: 60px !important;
+    flex-shrink: 0 !important;
+    margin: 0 !important;
+}
+
+.advanced-service-card .feature-icon-wrapper.me-3 {
+    margin-right: 1rem !important;
+}
+
+.advanced-service-card .feature-icon-main {
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    margin: 0 !important;
+    padding: 0 !important;
+}
