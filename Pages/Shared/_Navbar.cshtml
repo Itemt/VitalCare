@@ -333,6 +333,36 @@
     }
     
     /* === ESTILOS BASE CRÍTICOS PARA EVITAR FLASH === */
+    
+    /* LOGO/BRAND - DIMENSIONES FIJAS PARA EVITAR REBOTE */
+    .navbar-brand {
+        font-size: 1.3rem !important;
+        font-weight: 700 !important;
+        line-height: 1.2 !important;
+        height: auto !important;
+        min-height: 40px !important;
+        padding: 0.3125rem 0 !important; /* Padding vertical estándar */
+        color: var(--bs-navbar-brand-color) !important;
+        text-decoration: none !important;
+        white-space: nowrap !important;
+        display: flex !important;
+        align-items: center !important;
+        transition: color 0.15s ease !important;
+    }
+    
+    .navbar-brand:hover,
+    .navbar-brand:focus {
+        color: var(--bs-navbar-brand-hover-color) !important;
+        text-decoration: none !important;
+    }
+    
+    /* Asegurar que el logo mantiene tamaño en modo oscuro */
+    [data-bs-theme="dark"] .navbar-brand {
+        font-size: 1.3rem !important;
+        font-weight: 700 !important;
+        line-height: 1.2 !important;
+    }
+    
     /* Aplicar estilos base inmediatamente para evitar que Bootswatch cause reajustes */
     .navbar-expand-xl .navbar-nav .nav-item .nav-link {
         padding: 0.4rem 0.6rem !important;
@@ -416,31 +446,144 @@
         background-color: #007bff;
     }
     
-    /* === ESTILOS PARA BOTONES DE REGISTRO Y LOGIN === */
-    .btn-register {
+    /* === ESTILOS CONSOLIDADOS PARA BOTONES - EVITAR REBOTE === */
+    
+    /* BOTÓN DE LOGIN - ESTILOS FIJOS */
+    .navbar .btn-login {
+        background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%) !important;
+        border: none !important;
+        color: white !important;
+        border-radius: 8px !important;
+        transition: all 0.3s ease !important;
+        font-weight: 500 !important;
+        padding: 0.5rem 1rem !important;
+        font-size: 0.875rem !important;
+        line-height: 1.2 !important;
+        /* DIMENSIONES FIJAS PARA PREVENIR REBOTE */
+        min-height: 38px !important;
+        min-width: auto !important;
+        display: inline-flex !important;
+        align-items: center !important;
+        justify-content: center !important;
+        white-space: nowrap !important;
+        text-decoration: none !important;
+        box-sizing: border-box !important;
+    }
+
+    .navbar .btn-login:hover, 
+    .navbar .btn-login:focus, 
+    .navbar .btn-login:active {
+        background: linear-gradient(135deg, #1e293b 0%, #334155 100%) !important;
+        color: white !important;
+        transform: translateY(-1px) !important;
+        box-shadow: 0 4px 8px rgba(15, 23, 42, 0.3) !important;
+        text-decoration: none !important;
+    }
+    
+    /* BOTÓN DE REGISTRO - ESTILOS FIJOS */
+    .navbar .btn-register {
         background: linear-gradient(135deg, #1e40af 0%, #1d4ed8 100%) !important;
         border: none !important;
+        color: white !important;
+        border-radius: 8px !important;
+        transition: all 0.3s ease !important;
+        font-weight: 500 !important;
+        padding: 0.5rem 1rem !important;
+        font-size: 0.875rem !important;
+        line-height: 1.2 !important;
+        /* DIMENSIONES FIJAS PARA PREVENIR REBOTE */
+        min-height: 38px !important;
+        min-width: auto !important;
+        display: inline-flex !important;
+        align-items: center !important;
+        justify-content: center !important;
+        white-space: nowrap !important;
+        text-decoration: none !important;
+        box-sizing: border-box !important;
     }
     
-    .btn-register:hover {
+    .navbar .btn-register:hover, 
+    .navbar .btn-register:focus, 
+    .navbar .btn-register:active {
         background: linear-gradient(135deg, #1d4ed8 0%, #2563eb 100%) !important;
+        color: white !important;
         transform: translateY(-1px) !important;
+        box-shadow: 0 4px 8px rgba(30, 64, 175, 0.3) !important;
+        text-decoration: none !important;
     }
     
-    /* Responsive - Ocultar iconos en móvil */
+    /* ICONOS EN BOTONES - DIMENSIONES FIJAS PARA PREVENIR REBOTE */
+    .navbar .btn-login i, 
+    .navbar .btn-register i {
+        font-size: 0.875rem !important;
+        margin-right: 0.5rem !important;
+        width: 0.875rem !important;
+        height: 0.875rem !important;
+        display: inline-block !important;
+        vertical-align: middle !important;
+        text-align: center !important;
+        line-height: 0.875rem !important;
+        flex-shrink: 0 !important;
+    }
+    
+    .navbar .btn-login span, 
+    .navbar .btn-register span {
+        font-size: 0.875rem !important;
+        font-weight: 500 !important;
+        line-height: 1.2 !important;
+        flex-shrink: 0 !important;
+    }
+    
+    /* PREVENIR CAMBIOS EN MODO OSCURO - MANTENER CONSISTENCIA */
+    [data-bs-theme="dark"] .navbar .btn-login {
+        background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%) !important;
+        border: none !important;
+        color: white !important;
+    }
+    
+    [data-bs-theme="dark"] .navbar .btn-login:hover,
+    [data-bs-theme="dark"] .navbar .btn-login:focus,
+    [data-bs-theme="dark"] .navbar .btn-login:active {
+        background: linear-gradient(135deg, #1e293b 0%, #334155 100%) !important;
+        color: white !important;
+    }
+    
+    [data-bs-theme="dark"] .navbar .btn-register {
+        background: linear-gradient(135deg, #1e40af 0%, #1d4ed8 100%) !important;
+        border: none !important;
+        color: white !important;
+    }
+    
+    [data-bs-theme="dark"] .navbar .btn-register:hover,
+    [data-bs-theme="dark"] .navbar .btn-register:focus,
+    [data-bs-theme="dark"] .navbar .btn-register:active {
+        background: linear-gradient(135deg, #1d4ed8 0%, #2563eb 100%) !important;
+        color: white !important;
+    }
+    
+    /* Responsive - Ocultar iconos en móvil, mantener dimensiones */
     @@media (max-width: 1199.98px) {
-        .btn-login i, .btn-register i {
+        .navbar .btn-login i, 
+        .navbar .btn-register i {
             display: none !important;
         }
         
-        .btn-login span, .btn-register span {
+        .navbar .btn-login span, 
+        .navbar .btn-register span {
             font-size: 0.85rem !important;
+        }
+        
+        .navbar .btn-login,
+        .navbar .btn-register {
+            padding: 0.4rem 0.8rem !important;
+            min-height: 36px !important;
         }
     }
     
     /* Mostrar iconos en desktop */
     @@media (min-width: 1200px) {
-        .btn-login i, .btn-register i {
+        .navbar .btn-login i, 
+        .navbar .btn-register i {
             display: inline-block !important;
         }
     }
