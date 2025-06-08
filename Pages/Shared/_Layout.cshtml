@@ -63,6 +63,88 @@
     
     @* CSS CRÍTICO ANTI-FLASH - SOLUCIÓN DEFINITIVA PARA REBOTE *@
     <style>
+        /* === FORZAR ESTILOS NAVBAR INMEDIATAMENTE - ANULAR TODO === */
+        
+        /* ESTILOS ABSOLUTOS PARA BOTONES DE NAVBAR */
+        .navbar .btn-login, .navbar .btn-register,
+        nav.navbar .btn-login, nav.navbar .btn-register,
+        .navbar-expand-xl .btn-login, .navbar-expand-xl .btn-register,
+        body .navbar .btn-login, body .navbar .btn-register,
+        html body .navbar .btn-login, html body .navbar .btn-register {
+            /* DIMENSIONES INMUTABLES */
+            width: auto !important;
+            min-width: 120px !important;
+            max-width: none !important;
+            height: 38px !important;
+            min-height: 38px !important;
+            max-height: 38px !important;
+            
+            /* FUENTE ESPECÍFICA INMEDIATA */
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif !important;
+            font-size: 0.875rem !important;
+            font-weight: 500 !important;
+            line-height: 1.2 !important;
+            
+            /* LAYOUT FIJO */
+            display: inline-flex !important;
+            align-items: center !important;
+            justify-content: center !important;
+            box-sizing: border-box !important;
+            padding: 0.375rem 0.75rem !important;
+            margin: 0 !important;
+            border: none !important;
+            border-radius: 8px !important;
+            text-decoration: none !important;
+            white-space: nowrap !important;
+            overflow: hidden !important;
+            text-overflow: ellipsis !important;
+            
+            /* COLORES INMEDIATOS */
+            background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%) !important;
+            color: white !important;
+            
+            /* NO TRANSICIONES */
+            transition: none !important;
+            animation: none !important;
+            transform: none !important;
+        }
+        
+        /* BOTÓN REGISTRO - COLOR ESPECÍFICO */
+        .navbar .btn-register,
+        nav.navbar .btn-register,
+        .navbar-expand-xl .btn-register,
+        body .navbar .btn-register,
+        html body .navbar .btn-register {
+            background: linear-gradient(135deg, #1e40af 0%, #1d4ed8 100%) !important;
+            color: white !important;
+        }
+        
+        /* ICONOS DE BOTONES - TAMAÑO FIJO INMEDIATO */
+        .navbar .btn-login i, .navbar .btn-register i,
+        nav.navbar .btn-login i, nav.navbar .btn-register i,
+        .navbar-expand-xl .btn-login i, .navbar-expand-xl .btn-register i,
+        body .navbar .btn-login i, body .navbar .btn-register i,
+        html body .navbar .btn-login i, html body .navbar .btn-register i {
+            font-family: "bootstrap-icons" !important;
+            font-size: 0.875rem !important;
+            width: 0.875rem !important;
+            height: 0.875rem !important;
+            line-height: 1 !important;
+            margin-right: 0.5rem !important;
+            margin-left: 0 !important;
+            margin-top: 0 !important;
+            margin-bottom: 0 !important;
+            flex-shrink: 0 !important;
+            display: inline-block !important;
+            vertical-align: middle !important;
+            text-align: center !important;
+            font-style: normal !important;
+            font-weight: normal !important;
+            transition: none !important;
+            animation: none !important;
+            transform: none !important;
+        }
+        
         /* === PREVENIR FLASH DE FUENTES WEB (FOUT) === */
         html.preload *, html.preload *::before, html.preload *::after {
             transition: none !important;

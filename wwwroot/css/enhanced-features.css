@@ -188,11 +188,15 @@
     color: #20c997 !important;
 }
 
-/* User/People icons - Indigo */
+/* User/People icons - Indigo - EXCLUIR NAVBAR */
 .feature-card-hover .bi-people,
 .feature-card-hover .bi-people-fill,
-.feature-card-hover .bi-person-check,
-.feature-card-hover .bi-person-plus {
+.feature-card-hover .bi-person-check {
+    color: #6610f2 !important;
+}
+
+/* EXCLUIR iconos del navbar de reglas de feature cards */
+.feature-card-hover .bi-person-plus:not(.navbar .bi-person-plus) {
     color: #6610f2 !important;
 }
 
@@ -273,8 +277,12 @@
 
 [data-bs-theme="dark"] .feature-card-hover .bi-people,
 [data-bs-theme="dark"] .feature-card-hover .bi-people-fill,
-[data-bs-theme="dark"] .feature-card-hover .bi-person-check,
-[data-bs-theme="dark"] .feature-card-hover .bi-person-plus {
+[data-bs-theme="dark"] .feature-card-hover .bi-person-check {
+    color: #9c88ff !important;
+}
+
+/* MODO OSCURO - EXCLUIR iconos del navbar de reglas de feature cards */
+[data-bs-theme="dark"] .feature-card-hover .bi-person-plus:not(.navbar .bi-person-plus) {
     color: #9c88ff !important;
 }
 

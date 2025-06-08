@@ -1012,8 +1012,8 @@ body:not([data-bs-theme="dark"]) .app-footer .footer-contact-column .contact-ico
     box-shadow: 0 0.5rem 1rem rgba(255, 255, 255, 0.075) !important; /* Lighter shadow for dark mode */
 }
 
-/* Ensure icons in feature cards are vertically aligned if they are not by default */
-.feature-card-hover .card-body .bi {
+/* Ensure icons in feature cards are vertically aligned - EXCLUDE NAVBAR ICONS */
+.feature-card-hover .card-body .bi:not(.navbar .bi) {
     display: inline-block; /* Helps with alignment sometimes */
 }
 
