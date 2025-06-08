@@ -13,12 +13,12 @@
 }
 
 <header class="sticky-top">
-    <nav class="navbar navbar-expand-xl">
+    <nav class="navbar navbar-expand-xl navbar-preload">
         <div class="container-fluid">
             @* LOGO *@
-            <a class="navbar-brand d-flex align-items-center" asp-area="" asp-page="/Index">
-                <i class="bi bi-heart-pulse-fill me-2 brand-icon" style="font-size: 1.4rem;"></i> 
-                <span class="brand-text">Vital<span class="text-info">Care</span></span>
+            <a class="navbar-brand d-flex align-items-center" asp-area="" asp-page="/Index" style="font-size: 1.3rem; font-weight: 700;">
+                <i class="bi bi-heart-pulse-fill me-2 brand-icon" style="font-size: 1.4rem; color: #dc3545;"></i> 
+                <span class="brand-text">Vital<span class="text-info" style="color: #17a2b8;">Care</span></span>
             </a>
             
             @* CONTROLES MÓVILES (HAMBURGUESA + TEMA) *@
@@ -279,6 +279,33 @@
 
 @* MENÚ MÓVIL Y DE ESCRITORIO REFINADO *@
 <style>
+    /* === PREVENIR TRANSICIONES DURANTE LA CARGA === */
+    .preload *,
+    .navbar-preload *,
+    .navbar-preload .nav-link,
+    .navbar-preload .navbar-nav .nav-link,
+    .navbar-preload .btn,
+    .navbar-preload i,
+    .navbar-preload .navbar-brand {
+        transition: none !important;
+        animation: none !important;
+        transform: none !important;
+    }
+    
+    /* Evitar cambios de tamaño durante la carga */
+    .navbar-preload .navbar-brand,
+    .navbar-preload .nav-link,
+    .navbar-preload .btn {
+        font-size: inherit !important;
+        width: auto !important;
+        height: auto !important;
+    }
+    
+    /* Permitir transiciones después de remover la clase preload */
+    .navbar:not(.navbar-preload) .nav-link {
+        transition: background-color 0.15s ease, color 0.15s ease, transform 0.15s ease !important;
+    }
+    
     /* === ANIMACIONES DE HAMBURGUESA PERSONALIZADAS === */
     .navbar-toggler {
         border: none !important;
@@ -837,3 +864,39 @@
         color: #fff;
     }
 </style> 
+
+<script>
+    // === PREVENIR REBOTE VISUAL DURANTE LA CARGA ===
+    // Agregar clase preload al body para evitar transiciones durante la carga
+    document.body.classList.add('preload');
+    
+    function removePreloadClasses() {
+        document.body.classList.remove('preload');
+        const navbar = document.querySelector('.navbar-preload');
+        if (navbar) {
+            navbar.classList.remove('navbar-preload');
+        }
+    }
+    
+    // Remover las clases preload después de que la página esté completamente cargada
+    window.addEventListener('load', function() {
+        setTimeout(removePreloadClasses, 100); // Pequeño delay para asegurar que todo esté renderizado
+    });
+    
+    // También remover en caso de que DOMContentLoaded se ejecute primero
+    document.addEventListener('DOMContentLoaded', function() {
+        setTimeout(removePreloadClasses, 50);
+    });
+    
+    // Fallback adicional con timer
+    setTimeout(removePreloadClasses, 500);
+    
+    // Prevenir flash durante navegación
+    document.addEventListener('beforeunload', function() {
+        document.body.classList.add('preload');
+        const navbar = document.querySelector('.navbar');
+        if (navbar) {
+            navbar.classList.add('navbar-preload');
+        }
+    });
+</script> 
