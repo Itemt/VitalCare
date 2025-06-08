@@ -325,7 +325,6 @@
 
 .navbar-nav .nav-link:hover {
     background-color: rgba(255,255,255,0.1) !important;
-    transform: translateY(-1px) !important;
 }
 
 .navbar-nav .nav-link i {
