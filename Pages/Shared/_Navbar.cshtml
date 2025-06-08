@@ -248,28 +248,28 @@
                     else
                     {
                         @* NO LOGUEADOS - BOTONES DESKTOP *@
-                        <div class="d-none d-xl-flex gap-2">
-                            <a class="btn btn-login btn-register d-flex align-items-center" asp-area="Identity" asp-page="/Account/Register">
-                                <i class="bi bi-person-plus me-2"></i> 
-                                <span>Registrarse</span>
-                            </a>
-                            <a class="btn btn-login d-flex align-items-center" asp-area="Identity" asp-page="/Account/Login">
-                                <i class="bi bi-box-arrow-in-right me-2"></i> 
-                                <span>Iniciar Sesión</span>
-                            </a>
-                        </div>
-                        
-                        @* NO LOGUEADOS - BOTONES MOBILE (dentro del collapse) *@
-                        <div class="d-xl-none mobile-buttons-container">
-                            <a class="btn btn-login btn-register me-2" asp-area="Identity" asp-page="/Account/Register">
-                                <i class="bi bi-person-plus"></i>
-                                <span>Registrarse</span>
-                            </a>
-                            <a class="btn btn-login" asp-area="Identity" asp-page="/Account/Login">
-                                <i class="bi bi-box-arrow-in-right"></i>
-                                <span>Iniciar Sesión</span>
-                            </a>
-                        </div>
+        <div class="d-none d-xl-flex gap-2">
+            <a class="btn btn-login btn-register d-flex align-items-center" asp-area="Identity" asp-page="/Account/Register">
+                <i class="bi bi-person-plus me-2"></i> 
+                <span>Registrarse</span>
+            </a>
+            <a class="btn btn-login d-flex align-items-center" asp-area="Identity" asp-page="/Account/Login">
+                <i class="bi bi-box-arrow-in-right me-2"></i> 
+                <span>Iniciar Sesión</span>
+            </a>
+        </div>
+        
+        @* NO LOGUEADOS - BOTONES MOBILE (dentro del collapse) *@
+        <div class="d-xl-none mobile-buttons-container">
+            <a class="btn btn-login btn-register me-2" asp-area="Identity" asp-page="/Account/Register">
+                <i class="bi bi-person-plus"></i>
+                <span>Registrarse</span>
+            </a>
+            <a class="btn btn-login" asp-area="Identity" asp-page="/Account/Login">
+                <i class="bi bi-box-arrow-in-right"></i>
+                <span>Iniciar Sesión</span>
+            </a>
+        </div>
                     }
                 </div>
             </div>
@@ -279,31 +279,78 @@
 
 @* MENÚ MÓVIL Y DE ESCRITORIO REFINADO *@
 <style>
-    /* === PREVENIR TRANSICIONES DURANTE LA CARGA === */
-    .preload *,
+    /* === PREVENIR FLASH/REBOTE VISUAL - SISTEMA MEJORADO === */
+    .preload *, 
+    .preload ::before, 
+    .preload ::after,
     .navbar-preload *,
-    .navbar-preload .nav-link,
-    .navbar-preload .navbar-nav .nav-link,
-    .navbar-preload .btn,
-    .navbar-preload i,
-    .navbar-preload .navbar-brand {
+    .navbar-preload ::before,
+    .navbar-preload ::after {
         transition: none !important;
         animation: none !important;
         transform: none !important;
     }
     
-    /* Evitar cambios de tamaño durante la carga */
-    .navbar-preload .navbar-brand,
-    .navbar-preload .nav-link,
+    /* Fijar dimensiones críticas durante la carga para evitar reajustes */
+    .navbar-preload {
+        min-height: 70px !important; /* Altura fija para evitar saltos */
+    }
+    
+    .navbar-preload .navbar-brand {
+        font-size: 1.3rem !important;
+        font-weight: 700 !important;
+        line-height: 1.2 !important;
+        height: auto !important;
+        min-height: 40px !important;
+    }
+    
+    .navbar-preload .navbar-nav .nav-link {
+        font-size: 0.825rem !important;
+        padding: 0.4rem 0.6rem !important;
+        line-height: 1.4 !important;
+        min-height: 35px !important;
+        display: flex !important;
+        align-items: center !important;
+    }
+    
+    .navbar-preload .navbar-nav .nav-link i {
+        font-size: 0.8rem !important;
+        margin-right: 0.3rem !important;
+        width: 0.8rem !important;
+        text-align: center !important;
+    }
+    
     .navbar-preload .btn {
         font-size: inherit !important;
-        width: auto !important;
-        height: auto !important;
+        padding: 0.375rem 0.75rem !important;
+        line-height: 1.5 !important;
+        min-height: 38px !important;
     }
     
     /* Permitir transiciones después de remover la clase preload */
     .navbar:not(.navbar-preload) .nav-link {
         transition: background-color 0.15s ease, color 0.15s ease, transform 0.15s ease !important;
+    }
+    
+    /* === ESTILOS BASE CRÍTICOS PARA EVITAR FLASH === */
+    /* Aplicar estilos base inmediatamente para evitar que Bootswatch cause reajustes */
+    .navbar-expand-xl .navbar-nav .nav-item .nav-link {
+        padding: 0.4rem 0.6rem !important;
+        margin: 0 0.05rem !important;
+        font-size: 0.825rem !important;
+        background: transparent !important;
+        border-radius: 0.25rem !important;
+        line-height: 1.4 !important;
+        white-space: nowrap !important;
+        display: flex !important; 
+        align-items: center !important;
+    }
+    
+    .navbar-expand-xl .navbar-nav .nav-item .nav-link i {
+        font-size: 0.8rem !important;
+        margin-right: 0.3rem !important;
+        margin-bottom: 0 !important;
+        line-height: 1 !important;
     }
     
     /* === ANIMACIONES DE HAMBURGUESA PERSONALIZADAS === */
@@ -866,37 +913,102 @@
 </style> 
 
 <script>
-    // === PREVENIR REBOTE VISUAL DURANTE LA CARGA ===
-    // Agregar clase preload al body para evitar transiciones durante la carga
-    document.body.classList.add('preload');
-    
-    function removePreloadClasses() {
-        document.body.classList.remove('preload');
-        const navbar = document.querySelector('.navbar-preload');
-        if (navbar) {
-            navbar.classList.remove('navbar-preload');
+    // === SISTEMA ANTI-REBOTE MEJORADO ===
+    (function() {
+        // Aplicar clases anti-rebote inmediatamente al inicio
+        const html = document.documentElement;
+        const body = document.body;
+        
+        // Agregar clases preload inmediatamente
+        html.classList.add('preload');
+        body.classList.add('preload');
+        
+        // Función para remover clases preload
+        function removePreloadClasses() {
+            try {
+                html.classList.remove('preload');
+                body.classList.remove('preload');
+                
+                const navbar = document.querySelector('.navbar-preload');
+                if (navbar) {
+                    navbar.classList.remove('navbar-preload');
+                    navbar.style.minHeight = ''; // Remover altura fija una vez cargado
+                }
+                
+                // Forzar reflow para asegurar que los cambios se apliquen
+                navbar && navbar.offsetHeight;
+                
+            } catch (e) {
+                console.warn('Error removing preload classes:', e);
+            }
         }
-    }
-    
-    // Remover las clases preload después de que la página esté completamente cargada
-    window.addEventListener('load', function() {
-        setTimeout(removePreloadClasses, 100); // Pequeño delay para asegurar que todo esté renderizado
-    });
-    
-    // También remover en caso de que DOMContentLoaded se ejecute primero
-    document.addEventListener('DOMContentLoaded', function() {
-        setTimeout(removePreloadClasses, 50);
-    });
-    
-    // Fallback adicional con timer
-    setTimeout(removePreloadClasses, 500);
-    
-    // Prevenir flash durante navegación
-    document.addEventListener('beforeunload', function() {
-        document.body.classList.add('preload');
-        const navbar = document.querySelector('.navbar');
-        if (navbar) {
-            navbar.classList.add('navbar-preload');
+        
+        // Múltiples estrategias para remover las clases preload
+        let isRemoved = false;
+        
+        function safeRemovePreload() {
+            if (isRemoved) return;
+            isRemoved = true;
+            removePreloadClasses();
         }
-    });
+        
+        // 1. Después de que todos los recursos estén cargados
+        window.addEventListener('load', function() {
+            setTimeout(safeRemovePreload, 150); // Delay más largo para asegurar estabilidad
+        });
+        
+        // 2. Después de que el DOM esté listo
+        if (document.readyState === 'loading') {
+            document.addEventListener('DOMContentLoaded', function() {
+                setTimeout(safeRemovePreload, 100);
+            });
+        } else {
+            setTimeout(safeRemovePreload, 50);
+        }
+        
+        // 3. Fallback con timer más largo
+        setTimeout(safeRemovePreload, 800);
+        
+        // 4. Detectar cuando se cargan las fuentes web
+        if (document.fonts && document.fonts.ready) {
+            document.fonts.ready.then(function() {
+                setTimeout(safeRemovePreload, 50);
+            });
+        }
+        
+        // Prevenir flash durante navegación
+        window.addEventListener('beforeunload', function() {
+            html.classList.add('preload');
+            body.classList.add('preload');
+            const navbar = document.querySelector('.navbar');
+            if (navbar) {
+                navbar.classList.add('navbar-preload');
+            }
+        });
+        
+        // Prevenir flash en navegación via turbo/pjax si existe
+        document.addEventListener('turbo:before-render', function() {
+            html.classList.add('preload');
+            body.classList.add('preload');
+        });
+        
+        // Monitorear cambios de tema para prevenir flash
+        const observer = new MutationObserver(function(mutations) {
+            mutations.forEach(function(mutation) {
+                if (mutation.type === 'attributes' && mutation.attributeName === 'data-bs-theme') {
+                    // Pequeña pausa para estabilizar después de cambio de tema
+                    html.classList.add('preload');
+                    setTimeout(function() {
+                        html.classList.remove('preload');
+                    }, 100);
+                }
+            });
+        });
+        
+        observer.observe(html, {
+            attributes: true,
+            attributeFilter: ['data-bs-theme']
+        });
+        
+    })();
 </script> 

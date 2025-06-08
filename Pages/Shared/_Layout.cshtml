@@ -55,63 +55,147 @@
     <title>@ViewData["Title"] - VitalCare</title>
     <link rel="icon" href="~/favicon.svg" type="image/svg+xml"> @* Favicon Link *@
     
-    @* Preload critical fonts to prevent layout shift *@
-    <link rel="preload" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/fonts/bootstrap-icons.woff2" as="font" type="font/woff2" crossorigin="anonymous">
-    <link rel="preload" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/fonts/bootstrap-icons.woff" as="font" type="font/woff" crossorigin="anonymous">
+    @* PRECARGAR FUENTES DE GOOGLE PARA EVITAR FOUT *@
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="preload" href="https://fonts.googleapis.com/css2?family=Source+Sans+Pro:wght@300;400;700&display=swap" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Source+Sans+Pro:wght@300;400;700&display=swap"></noscript>
     
-    @* CRITICAL CSS - Prevent layout shift during load *@
+    @* CSS CRÍTICO ANTI-FLASH - SOLUCIÓN DEFINITIVA PARA REBOTE *@
     <style>
-        /* Prevent icon font flash */
-        [class^="bi-"]:before, [class*=" bi-"]:before {
-            font-family: "bootstrap-icons" !important;
-            display: inline-block;
-            width: 1em;
-            text-align: center;
-            line-height: 1;
-        }
-        
-        /* Navbar critical styles */
-        .navbar-brand {
-            font-size: 1.3rem !important;
-            font-weight: 700 !important;
-            white-space: nowrap;
-        }
-        
-        .navbar {
-            min-height: 60px !important;
-        }
-        
-        /* Prevent transition flashes during page load */
-        .preload *, .navbar-preload * {
+        /* === PREVENIR FLASH DE FUENTES WEB (FOUT) === */
+        html.preload *, html.preload *::before, html.preload *::after {
             transition: none !important;
             animation: none !important;
         }
+        
+        /* FIJAR FUENTE INMEDIATAMENTE PARA EVITAR LAYOUT SHIFT */
+        html, body, .navbar, .navbar-brand, .navbar-nav, .nav-link, .btn {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif !important;
+        }
+        
+        /* Fijar dimensiones exactas del navbar para prevenir cualquier reajuste */
+        .navbar {
+            min-height: 70px !important;
+            max-height: 70px !important;
+            height: 70px !important;
+            box-shadow: 0 0.125rem 0.25rem rgba(0,0,0,0.075) !important;
+            overflow: visible !important;
+        }
+        
+        .navbar-brand {
+            font-size: 1.3rem !important;
+            font-weight: 700 !important;
+            line-height: 1.2 !important;
+            height: 40px !important;
+            display: flex !important;
+            align-items: center !important;
+        }
+        
+        .navbar-nav .nav-link {
+            font-size: 0.825rem !important;
+            padding: 0.4rem 0.6rem !important;
+            line-height: 1.4 !important;
+            height: 35px !important;
+            min-height: 35px !important;
+            max-height: 35px !important;
+            white-space: nowrap !important;
+            display: flex !important;
+            align-items: center !important;
+            overflow: hidden !important;
+        }
+        
+        .navbar-nav .nav-link i {
+            font-size: 0.8rem !important;
+            margin-right: 0.3rem !important;
+            width: 0.8rem !important;
+            height: 0.8rem !important;
+            line-height: 0.8rem !important;
+            display: inline-block !important;
+            vertical-align: middle !important;
+            text-align: center !important;
+            flex-shrink: 0 !important;
+        }
+        
+        /* Fijar dimensiones exactas de botones */
+        .navbar .btn {
+            height: 38px !important;
+            min-height: 38px !important;
+            max-height: 38px !important;
+            min-width: auto !important;
+            white-space: nowrap !important;
+            overflow: hidden !important;
+            font-size: 0.875rem !important;
+        }
+        
+        .navbar .btn i {
+            font-size: 0.875rem !important;
+            width: 0.875rem !important;
+            height: 0.875rem !important;
+            line-height: 0.875rem !important;
+            flex-shrink: 0 !important;
+        }
+        
+        /* OCULTAR COMPLETAMENTE HASTA QUE LAS FUENTES ESTÉN LISTAS */
+        .navbar-preload {
+            visibility: hidden !important;
+        }
+        
+        /* Solo mostrar cuando las fuentes están cargadas */
+        .fonts-loaded .navbar-preload {
+            visibility: visible !important;
+        }
     </style>
     
-    @* THEME SCRIPT - Apply immediately to prevent flashing *@
+    @* THEME SCRIPT + DETECTOR DE FUENTES CARGADAS *@
     <script>
         (function() {
             const theme = localStorage.getItem('theme') || 'light';
             document.documentElement.setAttribute('data-bs-theme', theme);
-            
-            // Add preload class immediately
+            // Agregar clases preload inmediatamente
             document.documentElement.classList.add('preload');
+            
+            // DETECTOR DE FUENTES WEB - Evitar FOUT
+            function detectFontsLoaded() {
+                const html = document.documentElement;
+                
+                // Si las fuentes web están disponibles
+                if (document.fonts && document.fonts.ready) {
+                    document.fonts.ready.then(function() {
+                        html.classList.add('fonts-loaded');
+                    });
+                } else {
+                    // Fallback: esperar un poco y asumir que están cargadas
+                    setTimeout(function() {
+                        html.classList.add('fonts-loaded');
+                    }, 100);
+                }
+                
+                // Fallback adicional para asegurar que siempre se muestre
+                setTimeout(function() {
+                    html.classList.add('fonts-loaded');
+                }, 500);
+            }
+            
+            detectFontsLoaded();
         })();
     </script>
     
-    @* Bootswatch Cerulean Theme - Consider using local copy for reliability *@
-    <link rel="stylesheet" href="https://bootswatch.com/5/cerulean/bootstrap.min.css" /> @* Restored Bootswatch *@
-    @* Bootstrap Icons - Requires separate inclusion or project setup *@
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
-    @* Flatpickr CSS for date pickers *@
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
-    
-    @* === CSS OPTIMIZADO PARA RENDIMIENTO === *@
+    @* === CSS LOCAL PRIMERO PARA ESTABILIDAD === *@
     @* Archivo CSS principal optimizado que reemplaza site.css y enhanced-features.css *@
     <link rel="stylesheet" href="~/css/site-optimized.css" asp-append-version="true" />
     
     @* Archivo con efectos avanzados y estilos del footer *@
     <link rel="stylesheet" href="~/css/enhanced-features.css" asp-append-version="true" />
+    
+    @* BOOTSWATCH CARGA SÍNCRONA PARA EVITAR REBOTE *@
+    <link rel="stylesheet" href="https://bootswatch.com/5/cerulean/bootstrap.min.css" />
+    
+    @* Bootstrap Icons - CARGA SÍNCRONA PARA EVITAR REBOTE *@
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+    
+    @* Flatpickr CSS for date pickers *@
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css" media="print" onload="this.media='all'; this.onload=null;">
     
     @* Carga condicional de efectos avanzados solo para dispositivos más potentes *@
     <link rel="stylesheet" href="~/css/effects-hover.css" 
