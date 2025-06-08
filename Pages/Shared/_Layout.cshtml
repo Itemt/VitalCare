@@ -160,32 +160,50 @@
             overflow: hidden !important;
         }
         
-        /* NAVBAR PRINCIPAL - FIJAR ANCHO COMPLETO */
+        /* NAVBAR PRINCIPAL - LAYOUT CORRECTO */
         .navbar, nav.navbar {
             width: 100% !important;
-            min-width: 100% !important;
-            max-width: 100% !important;
+            position: relative !important;
+            display: flex !important;
+            flex-wrap: wrap !important;
+            align-items: center !important;
+            justify-content: space-between !important;
             box-sizing: border-box !important;
-            overflow: visible !important;
         }
         
-        /* CONTENEDOR PRINCIPAL DEL NAVBAR */
+        /* CONTENEDOR PRINCIPAL DEL NAVBAR - LAYOUT FLEXBOX CORRECTO */
         .navbar .container-fluid,
         nav.navbar .container-fluid {
             width: 100% !important;
-            min-width: 100% !important;
-            max-width: 100% !important;
             padding-left: 1rem !important;
             padding-right: 1rem !important;
+            margin-left: auto !important;
+            margin-right: auto !important;
             box-sizing: border-box !important;
-            overflow: visible !important;
+            display: flex !important;
+            flex-wrap: inherit !important;
+            align-items: center !important;
+            justify-content: space-between !important;
         }
         
-        /* CONTENEDORES DE BOTONES - SIN OVERFLOW HIDDEN */
+        /* NAVEGACIÓN PRINCIPAL */
+        .navbar-nav {
+            display: flex !important;
+            flex-direction: row !important;
+            padding-left: 0 !important;
+            margin-bottom: 0 !important;
+            list-style: none !important;
+        }
+        
+        /* CONTENEDORES DE BOTONES */
         .navbar .d-none.d-xl-flex.gap-2,
         nav.navbar .d-none.d-xl-flex.gap-2,
         .navbar-expand-xl .d-none.d-xl-flex.gap-2 {
-            overflow: visible !important;
+            display: flex !important;
+            align-items: center !important;
+            gap: 0.5rem !important;
+            margin-left: auto !important;
+            flex-shrink: 0 !important;
         }
         
         /* === PREVENIR FLASH DE FUENTES WEB (FOUT) === */
@@ -211,6 +229,12 @@
             height: 40px !important;
             display: flex !important;
             align-items: center !important;
+            flex-shrink: 0 !important;
+            margin-right: auto !important;
+            padding-top: 0.3125rem !important;
+            padding-bottom: 0.3125rem !important;
+            text-decoration: none !important;
+            white-space: nowrap !important;
         }
         
         .navbar-nav .nav-link {
