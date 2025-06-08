@@ -4,20 +4,291 @@
     ViewData["Title"] = "Contáctanos - VitalCare";
 }
 
-<!-- Hero Section -->
-<div class="container-fluid bg-gradient-primary text-white text-center py-5 mb-5 shadow-lg hero-section" style="background: linear-gradient(135deg, #003366 0%, #002244 50%, #001122 100%);">
-    <div class="hero-overlay" style="background-color: rgba(0, 34, 68, 0.9); padding: 4rem 1.5rem; display: inline-block; border-radius: 1rem; max-width: 90%; width: 800px; backdrop-filter: blur(10px); border: 1px solid rgba(255,255,255,0.1);">
-        <h1 class="display-2 fw-bolder text-shadow-custom mb-4">
-            <span class="hero-title-vital">Contáct</span><span class="hero-title-care">anos</span>
-        </h1>
-        <p class="lead fs-3 mb-4 text-shadow-custom">VitalCare IPS en Barrancabermeja, Santander. Contáctanos para agendar tu cita médica o resolver cualquier inquietud sobre nuestros servicios.</p>
-        <div class="service-badges mb-4">
-            <span class="badge bg-success fs-6 me-2 service-badge"><i class="bi bi-clock-fill me-1"></i>24/7 Disponible</span>
-            <span class="badge bg-warning fs-6 me-2 service-badge"><i class="bi bi-telephone-fill me-1"></i>Respuesta Inmediata</span>
-            <span class="badge bg-info fs-6 service-badge"><i class="bi bi-chat-dots-fill me-1"></i>Chat en Vivo</span>
+<!-- Enhanced Hero Section for Contact -->
+<div class="container-fluid text-white text-center py-5 mb-5 shadow-lg hero-section position-relative overflow-hidden" style="background: linear-gradient(135deg, #059669 0%, #047857 50%, #065f46 100%); min-height: 75vh; display: flex; align-items: center;">
+    
+    <!-- Communication Icons Background -->
+    <div class="position-absolute w-100 h-100" style="top: 0; left: 0; z-index: 1;">
+        <div class="communication-icons">
+            <div class="comm-icon comm-icon-1"><i class="bi bi-telephone-fill"></i></div>
+            <div class="comm-icon comm-icon-2"><i class="bi bi-envelope-fill"></i></div>
+            <div class="comm-icon comm-icon-3"><i class="bi bi-chat-dots-fill"></i></div>
+            <div class="comm-icon comm-icon-4"><i class="bi bi-geo-alt-fill"></i></div>
+            <div class="comm-icon comm-icon-5"><i class="bi bi-clock-fill"></i></div>
+        </div>
+    </div>
+    
+    <!-- Animated Grid Background -->
+    <div class="position-absolute w-100 h-100" style="top: 0; left: 0; z-index: 2; background-image: linear-gradient(rgba(255,255,255,0.1) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.1) 1px, transparent 1px); background-size: 50px 50px; animation: gridMove 10s linear infinite;"></div>
+    
+    <!-- Hero Content -->
+    <div class="container position-relative" style="z-index: 10;">
+        <div class="row justify-content-center">
+            <div class="col-lg-10 col-xl-8">
+                <div class="contact-hero-content">
+                    
+                    <!-- Main Contact Icon -->
+                    <div class="contact-main-icon mb-4">
+                        <div class="icon-container">
+                            <i class="bi bi-headset" style="font-size: 4.5rem; color: #ffffff;"></i>
+                            <div class="icon-rings">
+                                <div class="ring ring-1"></div>
+                                <div class="ring ring-2"></div>
+                                <div class="ring ring-3"></div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Hero Title -->
+                    <h1 class="display-1 fw-bolder text-shadow-custom mb-4 contact-title-animated">
+                        <span class="hero-title-vital contact-title-1" style="color: #ffffff;">Contáct</span><span class="hero-title-care contact-title-2" style="color: #fbbf24;">anos</span>
+                    </h1>
+                    
+                    <!-- Location Badge -->
+                    <div class="location-highlight mb-4">
+                        <div class="location-badge">
+                            <i class="bi bi-geo-alt-fill me-2"></i>
+                            <span>Barrancabermeja, Santander</span>
+                        </div>
+                    </div>
+                    
+                    <!-- Subtitle -->
+                    <p class="lead fs-3 mb-5 text-shadow-custom contact-subtitle" style="max-width: 850px; margin: 0 auto;">
+                        <strong>VitalCare IPS</strong> en Barrancabermeja, Santander. 
+                        Contáctanos para <span style="color: #fbbf24; font-weight: 600;">agendar tu cita médica</span> 
+                        o resolver cualquier inquietud sobre nuestros servicios.
+                    </p>
+                    
+                    <!-- Quick Contact Cards -->
+                    <div class="quick-contact-grid mb-5">
+                        <div class="row g-4 justify-content-center">
+                            <div class="col-md-4">
+                                <div class="quick-contact-card phone-card">
+                                    <div class="contact-icon">
+                                        <i class="bi bi-telephone-fill"></i>
+                                    </div>
+                                    <h5>Llámanos</h5>
+                                    <p class="contact-info">+57 (7) 621-8500</p>
+                                    <span class="availability">24/7 Disponible</span>
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="quick-contact-card email-card">
+                                    <div class="contact-icon">
+                                        <i class="bi bi-envelope-fill"></i>
+                                    </div>
+                                    <h5>Escríbenos</h5>
+                                    <p class="contact-info">info@vitalcareips.com</p>
+                                    <span class="availability">Respuesta en 2h</span>
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="quick-contact-card location-card">
+                                    <div class="contact-icon">
+                                        <i class="bi bi-geo-alt-fill"></i>
+                                    </div>
+                                    <h5>Visítanos</h5>
+                                    <p class="contact-info">Carrera 21 #52-45</p>
+                                    <span class="availability">Centro, B/bermeja</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- CTA Buttons -->
+                    <div class="contact-hero-actions">
+                        <a href="tel:+5776218500" class="btn btn-light btn-lg me-3 contact-btn-primary">
+                            <i class="bi bi-telephone-fill me-2"></i>
+                            Llamar Ahora
+                        </a>
+                        <a href="#contact-form" class="btn btn-outline-light btn-lg contact-btn-secondary">
+                            <i class="bi bi-envelope-fill me-2"></i>
+                            Enviar Mensaje
+                        </a>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
 </div>
+
+<!-- Contact Hero Styles -->
+<style>
+    @@keyframes gridMove {
+        0% { transform: translate(0, 0); }
+        100% { transform: translate(50px, 50px); }
+    }
+    
+    .communication-icons {
+        position: relative;
+        width: 100%;
+        height: 100%;
+    }
+    
+    .comm-icon {
+        position: absolute;
+        font-size: 2rem;
+        color: rgba(255, 255, 255, 0.1);
+        animation: floatIcon 3s ease-in-out infinite;
+    }
+    
+    .comm-icon-1 { top: 15%; left: 10%; animation-delay: 0s; }
+    .comm-icon-2 { top: 25%; right: 15%; animation-delay: 1.2s; }
+    .comm-icon-3 { bottom: 30%; left: 20%; animation-delay: 2.4s; }
+    .comm-icon-4 { bottom: 15%; right: 25%; animation-delay: 3.6s; }
+    .comm-icon-5 { top: 45%; left: 5%; animation-delay: 4.8s; }
+    
+    @@keyframes floatIcon {
+        0%, 100% { transform: translateY(0px) scale(1); opacity: 0.3; }
+        50% { transform: translateY(-15px) scale(1.1); opacity: 0.6; }
+    }
+    
+    .contact-main-icon {
+        position: relative;
+    }
+    
+    .icon-container {
+        position: relative;
+        display: inline-block;
+    }
+    
+    .icon-rings {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+    }
+    
+    .ring {
+        position: absolute;
+        border: 2px solid rgba(255, 255, 255, 0.3);
+        border-radius: 50%;
+        animation: ripple 1.5s infinite;
+    }
+    
+    .ring-1 { width: 80px; height: 80px; animation-delay: 0s; }
+    .ring-2 { width: 120px; height: 120px; animation-delay: 1s; }
+    .ring-3 { width: 160px; height: 160px; animation-delay: 2s; }
+    
+    @@keyframes ripple {
+        0% { opacity: 0.8; transform: translate(-50%, -50%) scale(0.5); }
+        100% { opacity: 0; transform: translate(-50%, -50%) scale(1.5); }
+    }
+    
+    .contact-title-1 {
+        animation: slideInFromLeft 0.6s ease-out;
+    }
+    
+    .contact-title-2 {
+        animation: slideInFromRight 0.6s ease-out 0.15s both;
+    }
+    
+    @@keyframes slideInFromLeft {
+        from { opacity: 0; transform: translateX(-100px); }
+        to { opacity: 1; transform: translateX(0); }
+    }
+    
+    @@keyframes slideInFromRight {
+        from { opacity: 0; transform: translateX(100px); }
+        to { opacity: 1; transform: translateX(0); }
+    }
+    
+    .location-badge {
+        display: inline-block;
+        background: rgba(251, 191, 36, 0.2);
+        border: 2px solid #fbbf24;
+        color: #fbbf24;
+        padding: 10px 20px;
+        border-radius: 50px;
+        font-weight: 600;
+        animation: fadeInScale 0.6s ease-out 0.4s both;
+    }
+    
+    @@keyframes fadeInScale {
+        from { opacity: 0; transform: scale(0.8); }
+        to { opacity: 1; transform: scale(1); }
+    }
+    
+    .contact-subtitle {
+        animation: fadeInUp 0.6s ease-out 0.5s both;
+    }
+    
+    .quick-contact-card {
+        background: rgba(255, 255, 255, 0.1);
+        backdrop-filter: blur(15px);
+        border: 1px solid rgba(255, 255, 255, 0.2);
+        border-radius: 20px;
+        padding: 30px 20px;
+        text-align: center;
+        transition: all 0.4s ease;
+        animation: slideInUp 0.6s ease-out 0.7s both;
+        height: 100%;
+    }
+    
+    .quick-contact-card:hover {
+        transform: translateY(-10px);
+        background: rgba(255, 255, 255, 0.15);
+        box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+    }
+    
+    .contact-icon {
+        font-size: 2.5rem;
+        margin-bottom: 15px;
+        color: #fbbf24;
+    }
+    
+    .quick-contact-card h5 {
+        color: white;
+        font-weight: 600;
+        margin-bottom: 10px;
+    }
+    
+    .contact-info {
+        color: white;
+        font-weight: 600;
+        font-size: 1.1rem;
+        margin-bottom: 10px;
+    }
+    
+    .availability {
+        background: rgba(34, 197, 94, 0.2);
+        color: #22c55e;
+        padding: 5px 15px;
+        border-radius: 20px;
+        font-size: 0.85rem;
+        font-weight: 500;
+    }
+    
+    .contact-btn-primary, .contact-btn-secondary {
+        padding: 15px 35px;
+        border-radius: 50px;
+        font-weight: 600;
+        transition: all 0.3s ease;
+        animation: slideInUp 0.6s ease-out 0.9s both;
+    }
+    
+    .contact-btn-primary {
+        background: #ffffff;
+        color: #059669;
+        box-shadow: 0 5px 20px rgba(255, 255, 255, 0.3);
+    }
+    
+    .contact-btn-primary:hover {
+        transform: translateY(-3px);
+        box-shadow: 0 8px 30px rgba(255, 255, 255, 0.4);
+        color: #059669;
+    }
+    
+    .contact-btn-secondary:hover {
+        background: rgba(255, 255, 255, 0.1);
+        transform: translateY(-3px);
+    }
+    
+    @@keyframes slideInUp {
+        from { opacity: 0; transform: translateY(30px); }
+        to { opacity: 1; transform: translateY(0); }
+    }
+</style>
 
 <!-- Contact Methods -->
 <div class="container mb-5">

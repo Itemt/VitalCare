@@ -4,18 +4,358 @@
     ViewData["Title"] = "Misión y Visión - VitalCare";
 }
 
-<!-- Hero Section -->
-<div class="container-fluid bg-gradient-primary text-white text-center py-5 mb-5 shadow-lg hero-section" style="background-image: linear-gradient(135deg, rgba(0,123,255,0.9), rgba(0,86,179,0.9)), url('/images/INDEX.png'); background-size: cover; background-position: center center;">
-    <div class="hero-overlay" style="background-color: rgba(0, 40, 80, 0.85); padding: 4rem 1.5rem; display: inline-block; border-radius: 1rem; max-width: 90%; width: 800px;">
-        <h1 class="display-2 fw-bolder text-shadow-custom mb-4">Misión y Visión</h1>
-        <p class="lead fs-3 mb-4 text-shadow-custom">Conoce el propósito que nos impulsa como IPS y la visión que guía nuestra atención médica integral en Barrancabermeja.</p>
-        <div class="service-badges mb-4">
-            <span class="badge bg-success fs-6 me-2 service-badge"><i class="bi bi-heart-pulse me-1"></i>Salud Integral</span>
-            <span class="badge bg-warning fs-6 me-2 service-badge"><i class="bi bi-hospital me-1"></i>IPS Certificada</span>
-            <span class="badge bg-info fs-6 service-badge"><i class="bi bi-people me-1"></i>Comunidad</span>
+<!-- Enhanced Hero Section for Mission -->
+<div class="container-fluid text-white text-center py-5 mb-5 shadow-lg hero-section position-relative overflow-hidden" style="background: linear-gradient(135deg, #dc2626 0%, #b91c1c 50%, #991b1b 100%); min-height: 85vh; display: flex; align-items: center;">
+    
+    <!-- Mission Vision Background Elements -->
+    <div class="position-absolute w-100 h-100" style="top: 0; left: 0; z-index: 1;">
+        <div class="mission-elements">
+            <div class="mission-shape mission-shape-1">🎯</div>
+            <div class="mission-shape mission-shape-2">👁️</div>
+            <div class="mission-shape mission-shape-3">💝</div>
+            <div class="mission-shape mission-shape-4">🏆</div>
+            <div class="mission-shape mission-shape-5">🌟</div>
+            <div class="mission-shape mission-shape-6">⭐</div>
+        </div>
+    </div>
+    
+    <!-- Geometric Pattern Overlay -->
+    <div class="position-absolute w-100 h-100" style="top: 0; left: 0; z-index: 2; background-image: linear-gradient(30deg, rgba(255,255,255,0.1) 12%, transparent 12.5%, transparent 87%, rgba(255,255,255,0.1) 87.5%, rgba(255,255,255,0.1)), linear-gradient(150deg, rgba(255,255,255,0.1) 12%, transparent 12.5%, transparent 87%, rgba(255,255,255,0.1) 87.5%, rgba(255,255,255,0.1)); background-size: 80px 80px; animation: geometricShift 15s linear infinite;"></div>
+    
+    <!-- Hero Content -->
+    <div class="container position-relative" style="z-index: 10;">
+        <div class="row justify-content-center">
+            <div class="col-lg-10 col-xl-9">
+                <div class="mission-hero-content">
+                    
+                    <!-- Mission Vision Icons -->
+                    <div class="mission-vision-icons mb-4">
+                        <div class="icons-container">
+                            <div class="mission-icon-wrapper">
+                                <div class="mission-icon">
+                                    <i class="bi bi-bullseye" style="font-size: 3rem; color: #fbbf24;"></i>
+                                </div>
+                                <div class="mission-label">Misión</div>
+                            </div>
+                            <div class="connection-line"></div>
+                            <div class="vision-icon-wrapper">
+                                <div class="vision-icon">
+                                    <i class="bi bi-eye-fill" style="font-size: 3rem; color: #22c55e;"></i>
+                                </div>
+                                <div class="vision-label">Visión</div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Hero Title -->
+                    <h1 class="display-1 fw-bolder text-shadow-custom mb-4 mission-title-animated">
+                        <span class="hero-title-vital mission-title-1" style="color: #fbbf24;">Misión y</span> 
+                        <span class="hero-title-care mission-title-2" style="color: #ffffff;">Visión</span>
+                    </h1>
+                    
+                    <!-- Purpose Statement -->
+                    <div class="purpose-statement mb-4">
+                        <div class="purpose-badge">
+                            <i class="bi bi-heart-pulse-fill me-2"></i>
+                            <span>Compromiso con la Salud</span>
+                        </div>
+                    </div>
+                    
+                    <!-- Subtitle -->
+                    <p class="lead fs-3 mb-5 text-shadow-custom mission-subtitle" style="max-width: 950px; margin: 0 auto; line-height: 1.4;">
+                        Conoce el <span style="color: #fbbf24; font-weight: 700;">propósito</span> que nos impulsa como IPS y la 
+                        <span style="color: #22c55e; font-weight: 700;">visión</span> que guía nuestra atención médica integral en 
+                        <strong style="color: #ffffff;">Barrancabermeja</strong>.
+                    </p>
+                    
+                    <!-- Core Values Preview -->
+                    <div class="values-preview mb-5">
+                        <div class="row g-4 justify-content-center">
+                            <div class="col-lg-4 col-md-6">
+                                <div class="value-card purpose-card">
+                                    <div class="value-icon">
+                                        <i class="bi bi-heart-pulse"></i>
+                                    </div>
+                                    <h5>Salud Integral</h5>
+                                    <p>Atención médica completa</p>
+                                </div>
+                            </div>
+                            <div class="col-lg-4 col-md-6">
+                                <div class="value-card certified-card">
+                                    <div class="value-icon">
+                                        <i class="bi bi-hospital"></i>
+                                    </div>
+                                    <h5>IPS Certificada</h5>
+                                    <p>Habilitada por Supersalud</p>
+                                </div>
+                            </div>
+                            <div class="col-lg-4 col-md-6">
+                                <div class="value-card community-card">
+                                    <div class="value-icon">
+                                        <i class="bi bi-people"></i>
+                                    </div>
+                                    <h5>Comunidad</h5>
+                                    <p>Compromiso regional</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- CTA Buttons -->
+                    <div class="mission-hero-actions">
+                        <a href="#mission-section" class="btn btn-light btn-lg me-3 mission-btn-primary">
+                            <i class="bi bi-bullseye me-2"></i>
+                            Nuestra Misión
+                        </a>
+                        <a href="#vision-section" class="btn btn-outline-light btn-lg mission-btn-secondary">
+                            <i class="bi bi-eye-fill me-2"></i>
+                            Nuestra Visión
+                        </a>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
 </div>
+
+<!-- Mission Hero Styles -->
+<style>
+    @@keyframes geometricShift {
+        0% { background-position: 0px 0px, 0px 0px; }
+        100% { background-position: 80px 80px, -80px -80px; }
+    }
+    
+    .mission-elements {
+        position: relative;
+        width: 100%;
+        height: 100%;
+    }
+    
+    .mission-shape {
+        position: absolute;
+        font-size: 3rem;
+        opacity: 0.2;
+        animation: floatMissionShape 5s ease-in-out infinite;
+    }
+    
+    .mission-shape-1 { top: 15%; left: 10%; animation-delay: 0s; }
+    .mission-shape-2 { top: 25%; right: 15%; animation-delay: 1.5s; }
+    .mission-shape-3 { bottom: 30%; left: 15%; animation-delay: 3s; }
+    .mission-shape-4 { bottom: 20%; right: 20%; animation-delay: 4.5s; }
+    .mission-shape-5 { top: 45%; left: 8%; animation-delay: 6s; }
+    .mission-shape-6 { top: 35%; right: 12%; animation-delay: 7.5s; }
+    
+    @@keyframes floatMissionShape {
+        0%, 100% { transform: translateY(0px) scale(1); opacity: 0.15; }
+        50% { transform: translateY(-30px) scale(1.1); opacity: 0.4; }
+    }
+    
+    .mission-vision-icons {
+        position: relative;
+    }
+    
+    .icons-container {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 40px;
+        position: relative;
+    }
+    
+    .mission-icon-wrapper, .vision-icon-wrapper {
+        text-align: center;
+        animation: iconEntrance 1.2s ease-out;
+    }
+    
+    .mission-icon, .vision-icon {
+        width: 80px;
+        height: 80px;
+        background: rgba(255, 255, 255, 0.1);
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin: 0 auto 10px;
+        backdrop-filter: blur(10px);
+        border: 2px solid rgba(255, 255, 255, 0.2);
+        transition: all 0.3s ease;
+    }
+    
+    .mission-icon:hover, .vision-icon:hover {
+        transform: scale(1.1);
+        background: rgba(255, 255, 255, 0.15);
+    }
+    
+    .mission-label, .vision-label {
+        font-size: 1rem;
+        font-weight: 600;
+        color: rgba(255, 255, 255, 0.9);
+    }
+    
+    .connection-line {
+        width: 60px;
+        height: 2px;
+        background: linear-gradient(to right, #fbbf24, #22c55e);
+        position: relative;
+        animation: pulse 1s ease-in-out infinite;
+    }
+    
+    .connection-line::before {
+        content: '';
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        width: 8px;
+        height: 8px;
+        background: white;
+        border-radius: 50%;
+        animation: pulse 1s ease-in-out infinite;
+    }
+    
+    @@keyframes iconEntrance {
+        from { opacity: 0; transform: scale(0.8) translateY(20px); }
+        to { opacity: 1; transform: scale(1) translateY(0); }
+    }
+    
+    .mission-title-1 {
+        animation: slideInLeft 0.6s ease-out 0.25s both;
+    }
+    
+    .mission-title-2 {
+        animation: slideInRight 0.6s ease-out 0.4s both;
+    }
+    
+    @@keyframes slideInLeft {
+        from { opacity: 0; transform: translateX(-80px); }
+        to { opacity: 1; transform: translateX(0); }
+    }
+    
+    @@keyframes slideInRight {
+        from { opacity: 0; transform: translateX(80px); }
+        to { opacity: 1; transform: translateX(0); }
+    }
+    
+    .purpose-badge {
+        display: inline-block;
+        background: rgba(34, 197, 94, 0.2);
+        border: 2px solid #22c55e;
+        color: #22c55e;
+        padding: 12px 25px;
+        border-radius: 50px;
+        font-weight: 600;
+        font-size: 1.1rem;
+        animation: fadeInScale 0.6s ease-out 0.6s both;
+    }
+    
+    @@keyframes fadeInScale {
+        from { opacity: 0; transform: scale(0.8); }
+        to { opacity: 1; transform: scale(1); }
+    }
+    
+    .mission-subtitle {
+        animation: fadeInUp 0.6s ease-out 0.8s both;
+    }
+    
+    .value-card {
+        background: rgba(255, 255, 255, 0.1);
+        backdrop-filter: blur(15px);
+        border: 1px solid rgba(255, 255, 255, 0.2);
+        border-radius: 20px;
+        padding: 25px 20px;
+        text-align: center;
+        transition: all 0.4s ease;
+        animation: slideInUp 0.6s ease-out 1s both;
+        height: 100%;
+    }
+    
+    .value-card:hover {
+        transform: translateY(-10px);
+        background: rgba(255, 255, 255, 0.15);
+        box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+    }
+    
+    .value-icon {
+        width: 60px;
+        height: 60px;
+        background: rgba(34, 197, 94, 0.2);
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin: 0 auto 15px;
+        font-size: 1.8rem;
+        color: #22c55e;
+        transition: all 0.3s ease;
+    }
+    
+    .certified-card .value-icon {
+        background: rgba(251, 191, 36, 0.2);
+        color: #fbbf24;
+    }
+    
+    .community-card .value-icon {
+        background: rgba(59, 130, 246, 0.2);
+        color: #3b82f6;
+    }
+    
+    .value-card:hover .value-icon {
+        transform: scale(1.1);
+    }
+    
+    .value-card h5 {
+        color: white;
+        font-weight: 600;
+        margin-bottom: 10px;
+        font-size: 1.1rem;
+    }
+    
+    .value-card p {
+        color: rgba(255, 255, 255, 0.8);
+        margin: 0;
+        font-size: 0.95rem;
+    }
+    
+    .mission-btn-primary, .mission-btn-secondary {
+        padding: 15px 35px;
+        border-radius: 50px;
+        font-weight: 600;
+        transition: all 0.3s ease;
+        animation: slideInUp 0.6s ease-out 1.2s both;
+    }
+    
+    .mission-btn-primary {
+        background: #ffffff;
+        color: #dc2626;
+        box-shadow: 0 5px 20px rgba(255, 255, 255, 0.3);
+    }
+    
+    .mission-btn-primary:hover {
+        transform: translateY(-3px);
+        box-shadow: 0 8px 30px rgba(255, 255, 255, 0.4);
+        color: #dc2626;
+    }
+    
+    .mission-btn-secondary:hover {
+        background: rgba(255, 255, 255, 0.1);
+        transform: translateY(-3px);
+    }
+    
+    @@keyframes slideInUp {
+        from { opacity: 0; transform: translateY(30px); }
+        to { opacity: 1; transform: translateY(0); }
+    }
+    
+    @@keyframes fadeInUp {
+        from { opacity: 0; transform: translateY(30px); }
+        to { opacity: 1; transform: translateY(0); }
+    }
+    
+    @@keyframes pulse {
+        0%, 100% { opacity: 0.7; transform: scale(1); }
+        50% { opacity: 1; transform: scale(1.1); }
+    }
+</style>
 
 <!-- Mission Section -->
 <div class="container mb-5">
