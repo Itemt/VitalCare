@@ -120,7 +120,7 @@ namespace CitasEPS.Pages.Appointments
             {
                 // Doctors should primarily use their Agenda page. Redirect them there.
                 _logger.LogInformation($"User {user.UserName} is a Doctor. Redirecting to Doctor/Agenda.");
-                return RedirectToPage("/Doctor/Agenda");
+                return RedirectToPage("/UserDashboards/Doctor/Agenda");
             }
             else if (await _userManager.IsInRoleAsync(user, "Admin"))
             {
