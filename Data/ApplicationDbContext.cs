@@ -33,6 +33,22 @@ namespace CitasEPS.Data
                 .HasIndex(p => p.DocumentId)
                 .IsUnique();
 
+            // Configurar restricciones de unicidad para los usuarios
+            modelBuilder.Entity<User>()
+                .HasIndex(u => u.DocumentId)
+                .IsUnique()
+                .HasFilter("[DocumentId] IS NOT NULL"); // Solo aplicar si no es null
+
+            modelBuilder.Entity<User>()
+                .HasIndex(u => u.PhoneNumber)
+                .IsUnique()
+                .HasFilter("[PhoneNumber] IS NOT NULL"); // Solo aplicar si no es null
+
+            // El email ya tiene unicidad por defecto en Identity, pero lo confirmamos
+            modelBuilder.Entity<User>()
+                .HasIndex(u => u.Email)
+                .IsUnique();
+
             // Configurar la relación entre Notification y Appointment para eliminación en cascada
             modelBuilder.Entity<Notification>()
                 .HasOne(n => n.Appointment) // Una notificación tiene una cita opcional

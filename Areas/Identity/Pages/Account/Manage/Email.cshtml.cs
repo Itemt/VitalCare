@@ -13,6 +13,8 @@ using Microsoft.AspNetCore.Identity.UI.Services;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.AspNetCore.WebUtilities;
+using Microsoft.EntityFrameworkCore;
+using CitasEPS.Data;
 
 namespace CitasEPS.Areas.Identity.Pages.Account.Manage
 {
@@ -21,15 +23,18 @@ namespace CitasEPS.Areas.Identity.Pages.Account.Manage
         private readonly UserManager<User> _userManager;
         private readonly SignInManager<User> _signInManager;
         private readonly IEmailSender _emailSender;
+        private readonly ApplicationDbContext _context;
 
         public EmailModel(
             UserManager<User> userManager,
             SignInManager<User> signInManager,
-            IEmailSender emailSender)
+            IEmailSender emailSender,
+            ApplicationDbContext context)
         {
             _userManager = userManager;
             _signInManager = signInManager;
             _emailSender = emailSender;
+            _context = context;
         }
 
         /// <summary>
@@ -116,6 +121,14 @@ namespace CitasEPS.Areas.Identity.Pages.Account.Manage
             var currentEmail = await _userManager.GetEmailAsync(user);
             if (Input.NewEmail != currentEmail)
             {
+                // Verificar si el nuevo email ya existe
+                var existingUserByEmail = await _userManager.FindByEmailAsync(Input.NewEmail);
+                if (existingUserByEmail != null)
+                {
+                    ModelState.AddModelError(string.Empty, "Ya existe una cuenta con este correo electrónico.");
+                    await LoadAsync(user);
+                    return Page();
+                }
                 var userId = await _userManager.GetUserIdAsync(user);
                 var code = await _userManager.GenerateChangeEmailTokenAsync(user, Input.NewEmail);
                 code = WebEncoders.Base64UrlEncode(Encoding.UTF8.GetBytes(code));

@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "nmzXvKrc26UJsipMrwJ//tiR3dTbP4TZrqw2QykmmFY=",
+  "Hash": "0q6TE0i3Q+2SOimHSW2e6CQ0DMZZJP+hpGGsSaIYCVU=",
   "Source": "CitasEPS",
   "BasePath": "_content/CitasEPS",
   "Mode": "Default",
@@ -1396,8 +1396,8 @@
       "RelatedAsset": "",
       "AssetTraitName": "",
       "AssetTraitValue": "",
-      "Fingerprint": "2clyq99nr5",
-      "Integrity": "fvG+OTTZMCWZGw3GG5i1qu2DW6AsZd92JMTGpGcGusQ=",
+      "Fingerprint": "4nu0ekmwzr",
+      "Integrity": "4GYx1xaDykTBF3AIAH81YHrjZAp7SRm8SSm1BaPVmmY=",
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\css\\enhanced-features.css"
@@ -3537,7 +3537,7 @@
       ]
     },
     {
-      "Route": "css/enhanced-features.2clyq99nr5.css",
+      "Route": "css/enhanced-features.4nu0ekmwzr.css",
       "AssetFile": "C:\\Users\\CristianPC\\Desktop\\vitalcare\\wwwroot\\css\\enhanced-features.css",
       "Selectors": [],
       "ResponseHeaders": [
@@ -3547,7 +3547,7 @@
         },
         {
           "Name": "Content-Length",
-          "Value": "84745"
+          "Value": "84604"
         },
         {
           "Name": "Content-Type",
@@ -3555,11 +3555,11 @@
         },
         {
           "Name": "ETag",
-          "Value": "\"fvG+OTTZMCWZGw3GG5i1qu2DW6AsZd92JMTGpGcGusQ=\""
+          "Value": "\"4GYx1xaDykTBF3AIAH81YHrjZAp7SRm8SSm1BaPVmmY=\""
         },
         {
           "Name": "Last-Modified",
-          "Value": "Mon, 09 Jun 2025 05:24:55 GMT"
+          "Value": "Mon, 09 Jun 2025 05:26:30 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -3569,7 +3569,7 @@
       "EndpointProperties": [
         {
           "Name": "fingerprint",
-          "Value": "2clyq99nr5"
+          "Value": "4nu0ekmwzr"
         },
         {
           "Name": "label",
@@ -3577,7 +3577,7 @@
         },
         {
           "Name": "integrity",
-          "Value": "sha256-fvG+OTTZMCWZGw3GG5i1qu2DW6AsZd92JMTGpGcGusQ="
+          "Value": "sha256-4GYx1xaDykTBF3AIAH81YHrjZAp7SRm8SSm1BaPVmmY="
         }
       ]
     },
@@ -3592,7 +3592,7 @@
         },
         {
           "Name": "Content-Length",
-          "Value": "84745"
+          "Value": "84604"
         },
         {
           "Name": "Content-Type",
@@ -3600,11 +3600,11 @@
         },
         {
           "Name": "ETag",
-          "Value": "\"fvG+OTTZMCWZGw3GG5i1qu2DW6AsZd92JMTGpGcGusQ=\""
+          "Value": "\"4GYx1xaDykTBF3AIAH81YHrjZAp7SRm8SSm1BaPVmmY=\""
         },
         {
           "Name": "Last-Modified",
-          "Value": "Mon, 09 Jun 2025 05:24:55 GMT"
+          "Value": "Mon, 09 Jun 2025 05:26:30 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -3614,7 +3614,7 @@
       "EndpointProperties": [
         {
           "Name": "integrity",
-          "Value": "sha256-fvG+OTTZMCWZGw3GG5i1qu2DW6AsZd92JMTGpGcGusQ="
+          "Value": "sha256-4GYx1xaDykTBF3AIAH81YHrjZAp7SRm8SSm1BaPVmmY="
         }
       ]
     },

@@ -60,6 +60,7 @@ namespace CitasEPS.Pages.Appointments
                         .Where(a => a.PatientId == patient.Id) // Filter by the Patient's own ID
                         .Include(a => a.Doctor)
                             .ThenInclude(d => d.Specialty) // Include Specialty for display
+                        .Include(a => a.Rating) // Incluir los ratings
                         .OrderBy(a => a.AppointmentDateTime)
                         .ToListAsync();
                     _logger.LogInformation($"Found {Appointment.Count} appointments for Patient {user.UserName} (Patient ID: {patient.Id}).");
@@ -97,6 +98,7 @@ namespace CitasEPS.Pages.Appointments
                             .Where(a => a.PatientId == newPatient.Id)
                             .Include(a => a.Doctor)
                                 .ThenInclude(d => d.Specialty)
+                            .Include(a => a.Rating) // Incluir los ratings
                             .OrderBy(a => a.AppointmentDateTime)
                             .ToListAsync();
                         
@@ -126,6 +128,7 @@ namespace CitasEPS.Pages.Appointments
                     .Include(a => a.Patient) // Include Patient info for Admin view
                     .Include(a => a.Doctor)
                         .ThenInclude(d => d.Specialty) // Include Doctor and Specialty info
+                    .Include(a => a.Rating) // Incluir los ratings
                     .OrderBy(a => a.AppointmentDateTime)
                     .ToListAsync();
                 _logger.LogInformation($"Found {Appointment.Count} total appointments for Admin.");

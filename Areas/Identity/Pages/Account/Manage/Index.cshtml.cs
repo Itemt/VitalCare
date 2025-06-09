@@ -11,6 +11,8 @@ using CitasEPS.Models.Enums;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
+using Microsoft.EntityFrameworkCore;
+using CitasEPS.Data;
 
 namespace CitasEPS.Areas.Identity.Pages.Account.Manage
 {
@@ -18,13 +20,16 @@ namespace CitasEPS.Areas.Identity.Pages.Account.Manage
     {
         private readonly UserManager<User> _userManager;
         private readonly SignInManager<User> _signInManager;
+        private readonly ApplicationDbContext _context;
 
         public IndexModel(
             UserManager<User> userManager,
-            SignInManager<User> signInManager)
+            SignInManager<User> signInManager,
+            ApplicationDbContext context)
         {
             _userManager = userManager;
             _signInManager = signInManager;
+            _context = context;
         }
 
         /// <summary>
@@ -130,6 +135,34 @@ namespace CitasEPS.Areas.Identity.Pages.Account.Manage
             {
                 await LoadAsync(user);
                 return Page();
+            }
+
+            // Validaciones de unicidad antes de actualizar
+            
+            // Verificar si el número de teléfono ya existe (excluyendo el usuario actual)
+            if (Input.PhoneNumber != user.PhoneNumber)
+            {
+                var existingUserByPhone = await _context.Users
+                    .FirstOrDefaultAsync(u => u.PhoneNumber == Input.PhoneNumber && u.Id != user.Id);
+                if (existingUserByPhone != null)
+                {
+                    ModelState.AddModelError(string.Empty, "Ya existe una cuenta con este número de teléfono.");
+                    await LoadAsync(user);
+                    return Page();
+                }
+            }
+
+            // Verificar si el documento de identidad ya existe (excluyendo el usuario actual)
+            if (Input.DocumentId != user.DocumentId)
+            {
+                var existingUserByDocument = await _context.Users
+                    .FirstOrDefaultAsync(u => u.DocumentId == Input.DocumentId && u.Id != user.Id);
+                if (existingUserByDocument != null)
+                {
+                    ModelState.AddModelError(string.Empty, "Ya existe una cuenta con este documento de identidad.");
+                    await LoadAsync(user);
+                    return Page();
+                }
             }
 
             // Update FirstName, LastName, and DateOfBirth directly on the user object

@@ -607,6 +607,20 @@ else // Patient View
                                                 <i class="bi bi-eye me-1"></i>Ver
                                             </a>
                                             
+                                            @* Enlace para calificar citas completadas *@
+                                            @if (item.IsCompleted && !item.IsCancelled && (item.Rating == null || item.Rating.PatientRating == 0))
+                                            {
+                                                <a asp-page="/Patient/RateAppointment" asp-route-appointmentId="@item.Id" class="btn-action" style="background: linear-gradient(135deg, #fbbf24 0%, #f59e0b 100%) !important;" title="Calificar atención">
+                                                    <i class="bi bi-star me-1"></i>Calificar
+                                                </a>
+                                            }
+                                            else if (item.IsCompleted && !item.IsCancelled && item.Rating != null && item.Rating.PatientRating > 0)
+                                            {
+                                                <span class="btn-action" style="background: linear-gradient(135deg, #10b981 0%, #059669 100%) !important; cursor: default;" title="Ya calificada">
+                                                    <i class="bi bi-star-fill me-1"></i>Calificada
+                                                </span>
+                                            }
+                                            
                                             @if (item.DoctorProposedReschedule && item.ProposedNewDateTime.HasValue && !item.IsCompleted && !item.IsCancelled && item.AppointmentDateTime >= DateTime.Now)
                                             {
                                                 <a asp-page="./ReviewDoctorProposal" asp-route-id="@item.Id" class="btn-action" title="Revisar propuesta del doctor">

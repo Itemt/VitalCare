@@ -22,6 +22,7 @@ using Microsoft.Extensions.Logging;
 using CitasEPS.Data;
 using Microsoft.Extensions.Configuration;
 using CitasEPS.Models.Enums;
+using Microsoft.EntityFrameworkCore;
 
 namespace CitasEPS.Areas.Identity.Pages.Account
 {
@@ -159,6 +160,34 @@ namespace CitasEPS.Areas.Identity.Pages.Account
             ExternalLogins = (await _signInManager.GetExternalAuthenticationSchemesAsync()).ToList();
             if (ModelState.IsValid)
             {
+                // Validaciones de unicidad antes de crear el usuario
+                
+                // Verificar si el email ya existe
+                var existingUserByEmail = await _userManager.FindByEmailAsync(Input.Email);
+                if (existingUserByEmail != null)
+                {
+                    ModelState.AddModelError(string.Empty, "Ya existe una cuenta con este correo electrónico.");
+                    return Page();
+                }
+
+                // Verificar si el número de teléfono ya existe
+                var existingUserByPhone = await _context.Users
+                    .FirstOrDefaultAsync(u => u.PhoneNumber == Input.PhoneNumber);
+                if (existingUserByPhone != null)
+                {
+                    ModelState.AddModelError(string.Empty, "Ya existe una cuenta con este número de teléfono.");
+                    return Page();
+                }
+
+                // Verificar si el documento de identidad ya existe
+                var existingUserByDocument = await _context.Users
+                    .FirstOrDefaultAsync(u => u.DocumentId == Input.DocumentId);
+                if (existingUserByDocument != null)
+                {
+                    ModelState.AddModelError(string.Empty, "Ya existe una cuenta con este documento de identidad.");
+                    return Page();
+                }
+
                 var user = CreateUser();
 
                 user.FirstName = Input.FirstName;
