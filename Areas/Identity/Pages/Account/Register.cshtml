@@ -245,6 +245,47 @@
                 });
             });
 
+            // Password visibility toggles
+            const toggleRegisterPassword = document.getElementById('toggleRegisterPassword');
+            const registerPasswordInput = document.getElementById('registerPasswordInput');
+            
+            if (toggleRegisterPassword && registerPasswordInput) {
+                toggleRegisterPassword.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    e.stopPropagation();
+                    
+                    const icon = this.querySelector('i');
+                    
+                    if (registerPasswordInput.type === 'password') {
+                        registerPasswordInput.type = 'text';
+                        if (icon) icon.className = 'bi bi-eye';
+                    } else {
+                        registerPasswordInput.type = 'password';
+                        if (icon) icon.className = 'bi bi-eye-slash';
+                    }
+                });
+            }
+
+            const toggleConfirmPassword = document.getElementById('toggleConfirmPassword');
+            const confirmPasswordInput = document.getElementById('confirmPasswordInput');
+            
+            if (toggleConfirmPassword && confirmPasswordInput) {
+                toggleConfirmPassword.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    e.stopPropagation();
+                    
+                    const icon = this.querySelector('i');
+                    
+                    if (confirmPasswordInput.type === 'password') {
+                        confirmPasswordInput.type = 'text';
+                        if (icon) icon.className = 'bi bi-eye';
+                    } else {
+                        confirmPasswordInput.type = 'password';
+                        if (icon) icon.className = 'bi bi-eye-slash';
+                    }
+                });
+            }
+
             // Initialize datepicker if available
             if (typeof jQuery !== 'undefined' && jQuery.fn.datepicker) {
                 $('.datepicker-register').datepicker({
@@ -266,7 +307,14 @@
                     locale: "es",         // Spanish locale
                     maxDate: "today",     // Don't allow future dates
                     allowInput: true,     // Allow manual input
-                    placeholder: "dd/mm/aaaa"
+                    placeholder: "dd/mm/aaaa",
+                    // Hacer que el input alternativo use las mismas clases
+                    onReady: function(selectedDates, dateStr, instance) {
+                        // Agregar las clases del sistema de auth al input alternativo
+                        if (instance.altInput) {
+                            instance.altInput.classList.add('auth-form-control');
+                        }
+                    }
                 });
             }
 
@@ -275,15 +323,18 @@
             const registerPasswordInput = document.getElementById('registerPasswordInput');
             
             if (toggleRegisterPassword && registerPasswordInput) {
-                toggleRegisterPassword.addEventListener('click', function() {
+                toggleRegisterPassword.addEventListener('click', function(e) {
+                    e.preventDefault(); // Prevenir cualquier comportamiento por defecto
+                    e.stopPropagation(); // Detener propagación del evento
+                    
                     const icon = this.querySelector('i');
                     
                     if (registerPasswordInput.type === 'password') {
                         registerPasswordInput.type = 'text';
-                        icon.className = 'bi bi-eye';
+                        if (icon) icon.className = 'bi bi-eye';
                     } else {
                         registerPasswordInput.type = 'password';
-                        icon.className = 'bi bi-eye-slash';
+                        if (icon) icon.className = 'bi bi-eye-slash';
                     }
                 });
             }
@@ -292,15 +343,18 @@
             const confirmPasswordInput = document.getElementById('confirmPasswordInput');
             
             if (toggleConfirmPassword && confirmPasswordInput) {
-                toggleConfirmPassword.addEventListener('click', function() {
+                toggleConfirmPassword.addEventListener('click', function(e) {
+                    e.preventDefault(); // Prevenir cualquier comportamiento por defecto
+                    e.stopPropagation(); // Detener propagación del evento
+                    
                     const icon = this.querySelector('i');
                     
                     if (confirmPasswordInput.type === 'password') {
                         confirmPasswordInput.type = 'text';
-                        icon.className = 'bi bi-eye';
+                        if (icon) icon.className = 'bi bi-eye';
                     } else {
                         confirmPasswordInput.type = 'password';
-                        icon.className = 'bi bi-eye-slash';
+                        if (icon) icon.className = 'bi bi-eye-slash';
                     }
                 });
             }

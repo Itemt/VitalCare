@@ -1851,9 +1851,22 @@ body {
     position: relative;
 }
 
+/* Asegurar que el contenedor auth-form-floating mantenga su estructura */
 .auth-form-floating {
     position: relative;
-    margin-bottom: 1.5rem;
+    margin-bottom: 1.5rem; /* Volver al margen original */
+}
+
+/* ESPACIADO ESPECÍFICO PARA AUTH-ROW */
+.auth-row {
+    display: flex !important;
+    gap: 0.25rem !important;
+    margin-bottom: 1.5rem !important; /* IGUAL que otros campos */
+}
+
+/* ELIMINAR espacio extra después de auth-row */
+.auth-row + .auth-form-floating {
+    margin-top: 0 !important; /* CERO espacio extra */
 }
 
 .auth-form-control {
@@ -1876,6 +1889,16 @@ body {
     box-shadow: 0 0 0 0.2rem rgba(0, 51, 102, 0.25);
     transform: translateY(-2px);
     color: #1a202c;
+}
+
+/* Solo forzar tamaño y padding para inputs de Flatpickr, no colores */
+.auth-form-floating input[readonly] {
+    width: 100% !important;
+    padding: 1rem 1rem 1rem 3.5rem !important;
+    font-size: 1rem !important;
+    border-radius: 12px !important;
+    box-sizing: border-box !important;
+    cursor: pointer !important;
 }
 
 .auth-form-icon {
@@ -1921,28 +1944,38 @@ body {
 }
 
 .password-toggle {
-    position: absolute;
-    right: 1rem;
-    top: 1rem;
-    background: none;
-    border: none;
-    color: #003366;
-    font-size: 1.1rem;
-    cursor: pointer;
-    z-index: 4;
-    padding: 0.5rem;
-    border-radius: 50%;
-    transition: all 0.3s ease;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    width: 40px;
-    height: 40px;
+    position: absolute !important;
+    right: 1rem !important;
+    top: 1rem !important; /* FIJO desde arriba, no se mueve NUNCA */
+    background: none !important;
+    border: none !important;
+    color: #003366 !important;
+    font-size: 1.1rem !important;
+    cursor: pointer !important;
+    z-index: 100 !important; /* Z-index SÚPER alto para estar siempre arriba */
+    padding: 0.5rem !important;
+    border-radius: 50% !important;
+    transition: all 0.3s ease !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    width: 40px !important;
+    height: 40px !important;
+    min-width: 40px !important;
+    min-height: 40px !important;
+    margin: 0 !important; /* CERO márgenes */
+    transform: none !important; /* NUNCA transformar */
 }
 
 .password-toggle:hover {
-    background: rgba(0, 51, 102, 0.1);
-    color: #002244;
+    background: rgba(0, 51, 102, 0.1) !important;
+    color: #002244 !important;
+    transform: none !important; /* NO mover NUNCA */
+}
+
+.password-toggle i {
+    font-size: 1.1rem;
+    line-height: 1;
 }
 
 .auth-checkbox {
@@ -2082,12 +2115,7 @@ body {
     box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
 }
 
-/* Two-column layout for register */
-.auth-row {
-    display: flex;
-    gap: 0.75rem; /* Reducido de 1rem a 0.75rem para que estén más pegados */
-    margin-bottom: 1.5rem;
-}
+/* ELIMINAR esta regla duplicada - ya está definida arriba */
 
 .auth-col {
     flex: 1;
@@ -2097,6 +2125,15 @@ body {
 .auth-col .auth-form-floating {
     margin-bottom: 0;
     width: 100%; /* Asegurar que tome todo el ancho disponible */
+}
+
+/* FORZAR espaciado super reducido */
+.auth-row .auth-col {
+    margin-right: 0.1rem;
+}
+
+.auth-row .auth-col:last-child {
+    margin-right: 0;
 }
 
 /* Asegurar que todos los inputs tengan el mismo tamaño */
@@ -2535,7 +2572,7 @@ body {
 [data-bs-theme="dark"] .auth-select + .auth-form-label {
     color: #7dd3fc !important;
     background: rgba(45, 55, 72, 0.9) !important;
-}
+} 
 
 /* Estilos específicos para datepicker */
 .datepicker-register {
@@ -2740,65 +2777,203 @@ input.datepicker-register:not(:placeholder-shown) + .auth-form-label {
     }
 }
 
-/* Asegurar que el input de Flatpickr se vea idéntico a los otros campos */
-.auth-form-floating .flatpickr-input[readonly],
-.auth-form-floating .flatpickr-input.form-control,
-.auth-row .flatpickr-input,
-input.flatpickr-input {
-    width: 100% !important;
-    padding: 1rem 1rem 1rem 3.5rem !important;
-    font-size: 1rem !important;
-    background: rgba(255, 255, 255, 0.9) !important;
-    border: 2px solid rgba(0, 51, 102, 0.15) !important;
-    border-radius: 12px !important;
-    transition: all 0.3s ease !important;
-    position: relative !important;
-    z-index: 2 !important;
-    color: #2d3748 !important;
-    box-sizing: border-box !important;
-    outline: none !important;
-    appearance: none !important;
-    -webkit-appearance: none !important;
-    -moz-appearance: none !important;
+/* El input de Flatpickr ahora usa la clase auth-form-control, no necesita estilos especiales */
+
+/* Estilos para modo oscuro de password-toggle */
+[data-theme="dark"] .password-toggle {
+    color: #ffffff;
 }
 
-.auth-form-floating .flatpickr-input[readonly]:focus,
-.auth-form-floating .flatpickr-input.form-control:focus,
-.auth-row .flatpickr-input:focus,
-input.flatpickr-input:focus {
-    outline: none !important;
-    border-color: #003366 !important;
-    background: rgba(255, 255, 255, 1) !important;
-    box-shadow: 0 0 0 0.2rem rgba(0, 51, 102, 0.25) !important;
-    transform: translateY(-2px) !important;
-    color: #1a202c !important;
+[data-theme="dark"] .password-toggle:hover {
+    background: rgba(255, 255, 255, 0.1);
+    color: #e0e0e0;
 }
 
-/* Ocultar el input original de datepicker si existe */
-.auth-form-floating input.datepicker-register:not(.flatpickr-input) {
-    display: none !important;
+/* Asegurar que los botones funcionen correctamente en cualquier tema */
+.password-toggle {
+    user-select: none;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
 }
 
-/* Asegurar que el input de Flatpickr tenga el cursor correcto */
-.auth-form-floating .flatpickr-input[readonly] {
+.password-toggle:focus {
+    outline: 2px solid rgba(59, 130, 246, 0.5);
+    outline-offset: 2px;
+}
+
+/* Para campos en fila (como teléfono y fecha de nacimiento) */
+.auth-row .auth-form-floating {
+    margin-bottom: 1.5rem; /* Volver al margen original */
+}
+
+/* Asegurar que todos los inputs de password tengan espacio para el botón */
+input[type="password"].auth-form-control {
+    padding-right: 4rem !important;
+}
+
+/* Específico para inputs con botón de password */
+.auth-form-floating:has(.password-toggle) .auth-form-control {
+    padding-right: 4rem !important;
+}
+
+/* Fallback adicional para navegadores que no soportan :has() */
+#loginPasswordInput,
+#registerPasswordInput,
+#confirmPasswordInput {
+    padding-right: 4rem !important;
+}
+
+/* ========== SOBREESCRIBIR TODO LO ANTERIOR PARA BOTONES DE PASSWORD ========== */
+
+/* NUEVO estilo para botón de password que sobrescribe todo */
+button.password-toggle {
+    position: absolute !important;
+    right: 1rem !important;
+    top: 50% !important;
+    transform: translateY(-50%) !important;
+    background: none !important;
+    border: none !important;
+    color: #003366 !important;
+    font-size: 1.2rem !important;
     cursor: pointer !important;
+    z-index: 999 !important;
+    padding: 0.5rem !important;
+    border-radius: 50% !important;
+    transition: all 0.3s ease !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    width: 40px !important;
+    height: 40px !important;
+    pointer-events: auto !important;
+    outline: none !important;
 }
 
-/* Modo oscuro para Flatpickr */
-[data-bs-theme="dark"] .auth-form-floating .flatpickr-input[readonly],
-[data-bs-theme="dark"] .auth-form-floating .flatpickr-input.form-control,
-[data-bs-theme="dark"] .auth-row .flatpickr-input,
-[data-bs-theme="dark"] input.flatpickr-input {
-    background: rgba(26, 32, 44, 0.8) !important;
-    border-color: rgba(0, 51, 102, 0.3) !important;
-    color: #e2e8f0 !important;
+button.password-toggle:hover {
+    background: rgba(0, 51, 102, 0.1) !important;
+    color: #002244 !important;
+    transform: translateY(-50%) scale(1.05) !important;
 }
 
-[data-bs-theme="dark"] .auth-form-floating .flatpickr-input[readonly]:focus,
-[data-bs-theme="dark"] .auth-form-floating .flatpickr-input.form-control:focus,
-[data-bs-theme="dark"] .auth-row .flatpickr-input:focus,
-[data-bs-theme="dark"] input.flatpickr-input:focus {
-    background: rgba(26, 32, 44, 1) !important;
-    color: #ffffff !important;
-    border-color: #003366 !important;
+button.password-toggle:active {
+    transform: translateY(-50%) scale(0.95) !important;
 }
+
+/* FORZAR padding en inputs de password */
+input#loginPasswordInput,
+input#registerPasswordInput, 
+input#confirmPasswordInput {
+    padding-right: 4.5rem !important;
+}
+
+/* =============== RESET FINAL PARA ARREGLAR TODO =============== */
+
+/* Espaciado CORRECTO para auth-row */
+.auth-row {
+    display: flex !important;
+    gap: 0.25rem !important;
+    margin-bottom: 1.5rem !important; /* IGUAL que otros campos */
+}
+
+.auth-col {
+    flex: 1 !important;
+    margin: 0 !important;
+    padding: 0 !important;
+}
+
+/* ELIMINAR espacio extra después de auth-row */
+.auth-row + .auth-form-floating {
+    margin-top: 0 !important;
+    margin-bottom: 1.5rem !important;
+}
+
+/* SOLUCIÓN SIMPLE: BOTÓN CENTRADO + VALIDATION COMO OVERLAY */
+.password-toggle,
+#toggleLoginPassword,
+#toggleRegisterPassword,
+#toggleConfirmPassword {
+    position: absolute !important;
+    right: 1rem !important;
+    top: 50% !important; /* CENTRADO en el input */
+    transform: translateY(-50%) !important; /* Centrado perfecto */
+    background: none !important;
+    border: none !important;
+    color: #003366 !important;
+    font-size: 1.1rem !important;
+    cursor: pointer !important;
+    z-index: 999 !important;
+    padding: 0.5rem !important;
+    border-radius: 50% !important;
+    transition: color 0.3s ease !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    width: 40px !important;
+    height: 40px !important;
+    margin: 0 !important;
+    pointer-events: auto !important;
+    outline: none !important;
+    user-select: none !important;
+}
+
+/* VALIDATION MESSAGES SIN EMPUJAR CONTENIDO */
+.auth-form-floating {
+    position: relative !important;
+    margin-bottom: 1.5rem !important; /* Espaciado normal */
+    padding-bottom: 0.5rem !important; /* Pequeño padding para messages */
+}
+
+/* Validation messages como overlay absoluto */
+.auth-form-floating .auth-validation-error {
+    position: absolute !important;
+    top: calc(100% + 0.25rem) !important; /* Justo debajo con pequeño gap */
+    left: 0 !important;
+    right: 0 !important;
+    z-index: 999 !important; /* Por encima de todo */
+    margin: 0 !important;
+    /* NO empuja contenido - es overlay puro */
+}
+
+.password-toggle:hover,
+#toggleLoginPassword:hover,
+#toggleRegisterPassword:hover,
+#toggleConfirmPassword:hover {
+    background: rgba(0, 51, 102, 0.1) !important;
+    color: #002244 !important;
+    transform: translateY(-50%) scale(1.05) !important; /* Mantener centrado + hover */
+}
+
+.password-toggle:active,
+#toggleLoginPassword:active,
+#toggleRegisterPassword:active,
+#toggleConfirmPassword:active {
+    transform: translateY(-50%) scale(0.95) !important; /* Mantener centrado + click */
+}
+
+/* Inputs de password SIEMPRE con espacio para botón */
+#loginPasswordInput,
+#registerPasswordInput,
+#confirmPasswordInput,
+input[asp-for="Input.Password"],
+input[asp-for="Input.ConfirmPassword"] {
+    padding-right: 4.5rem !important;
+}
+
+/* FORZAR que se vea el texto cuando cambie de tipo */
+#loginPasswordInput[type="text"],
+#registerPasswordInput[type="text"],
+#confirmPasswordInput[type="text"] {
+    font-family: inherit !important;
+    -webkit-text-security: none !important;
+    text-security: none !important;
+}
+
+#loginPasswordInput[type="password"],
+#registerPasswordInput[type="password"],
+#confirmPasswordInput[type="password"] {
+    font-family: inherit !important;
+    -webkit-text-security: disc !important;
+    text-security: disc !important;
+}
+

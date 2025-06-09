@@ -126,6 +126,8 @@
     <script>
         // Hide all validation errors on page load
         document.addEventListener('DOMContentLoaded', function() {
+            console.log('Login page loaded');
+            
             // Hide validation summaries and errors initially
             document.querySelectorAll('.auth-validation-error, .auth-validation-summary').forEach(function(element) {
                 if (!element.textContent.trim()) {
@@ -137,6 +139,63 @@
             const firstInput = document.querySelector('.auth-form-control');
             if (firstInput) {
                 firstInput.focus();
+            }
+
+            // Password visibility toggle - SOLUCIÓN EXTREMA: REEMPLAZAR INPUT COMPLETO
+            const toggleLoginPassword = document.getElementById('toggleLoginPassword');
+            let loginPasswordInput = document.getElementById('loginPasswordInput');
+            
+            if (toggleLoginPassword && loginPasswordInput) {
+                let isPasswordVisible = false;
+                
+                toggleLoginPassword.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    e.stopPropagation();
+                    
+                    const icon = this.querySelector('i');
+                    const currentValue = loginPasswordInput.value;
+                    const parent = loginPasswordInput.parentNode;
+                    
+                    console.log('REEMPLAZANDO INPUT COMPLETO!');
+                    
+                    // Crear nuevo input
+                    const newInput = document.createElement('input');
+                    
+                    // Copiar todos los atributos del input original
+                    newInput.className = loginPasswordInput.className;
+                    newInput.id = loginPasswordInput.id;
+                    newInput.name = loginPasswordInput.name;
+                    newInput.placeholder = loginPasswordInput.placeholder;
+                    newInput.setAttribute('asp-for', 'Input.Password');
+                    newInput.setAttribute('aria-required', 'true');
+                    newInput.value = currentValue;
+                    
+                    if (!isPasswordVisible) {
+                        // Cambiar a texto visible
+                        newInput.type = 'text';
+                        newInput.setAttribute('autocomplete', 'off');
+                        if (icon) icon.className = 'bi bi-eye';
+                        isPasswordVisible = true;
+                        console.log('Mostrado como TEXTO');
+                    } else {
+                        // Cambiar a password oculto
+                        newInput.type = 'password';
+                        newInput.setAttribute('autocomplete', 'current-password');
+                        if (icon) icon.className = 'bi bi-eye-slash';
+                        isPasswordVisible = false;
+                        console.log('Mostrado como PASSWORD');
+                    }
+                    
+                    // Reemplazar el input en el DOM
+                    parent.replaceChild(newInput, loginPasswordInput);
+                    loginPasswordInput = newInput;
+                    
+                    // Enfocar el nuevo input
+                    newInput.focus();
+                    newInput.setSelectionRange(currentValue.length, currentValue.length);
+                });
+            } else {
+                console.error('NO SE ENCONTRARON LOS ELEMENTOS PARA PASSWORD TOGGLE');
             }
 
             // Add event listeners to show validation only after user interaction
@@ -176,20 +235,6 @@
                     }
                 });
             });
-        });
-
-        // Password visibility toggle
-        document.getElementById('toggleLoginPassword').addEventListener('click', function() {
-            const passwordInput = document.getElementById('loginPasswordInput');
-            const icon = this.querySelector('i');
-            
-            if (passwordInput.type === 'password') {
-                passwordInput.type = 'text';
-                icon.className = 'bi bi-eye';
-            } else {
-                passwordInput.type = 'password';
-                icon.className = 'bi bi-eye-slash';
-            }
         });
 
         // Loading state for submit button
