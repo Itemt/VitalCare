@@ -2,7 +2,7 @@
 @model LoginModel
 
 @{
-    ViewData["Title"] = "Iniciar Sesión";
+    ViewData["Title"] = "Iniciar SesiÃ³n";
 }
 
 <div class="auth-page-wrapper">
@@ -32,7 +32,7 @@
                                        autocomplete="username" 
                                        aria-required="true" 
                                        placeholder=" " />
-                                <label asp-for="Input.Email" class="auth-form-label">Correo Electrónico</label>
+                                <label asp-for="Input.Email" class="auth-form-label">Correo ElectrÃ³nico</label>
                                 <span asp-validation-for="Input.Email" class="auth-validation-error"></span>
                             </div>
 
@@ -46,7 +46,7 @@
                                        placeholder=" " 
                                        type="password"
                                        id="loginPasswordInput" />
-                                <label asp-for="Input.Password" class="auth-form-label">Contraseña</label>
+                                <label asp-for="Input.Password" class="auth-form-label">ContraseÃ±a</label>
                                 <button type="button" class="password-toggle" id="toggleLoginPassword">
                                     <i class="bi bi-eye-slash"></i>
                                 </button>
@@ -64,7 +64,7 @@
                             <!-- Submit Button -->
                             <button id="login-submit" type="submit" class="auth-btn-primary">
                                 <i class="bi bi-box-arrow-in-right me-2"></i>
-                                Iniciar Sesión
+                                Iniciar SesiÃ³n
                             </button>
 
                             <!-- Auth Links -->
@@ -72,7 +72,7 @@
                                 <div class="mb-2">
                                     <a id="forgot-password" asp-page="./ForgotPassword" class="auth-link">
                                         <i class="bi bi-key me-1"></i>
-                                        ¿Olvidó su contraseña?
+                                        Â¿OlvidÃ³ su contraseÃ±a?
                                     </a>
                                 </div>
                                 <div class="mb-2">
@@ -84,7 +84,7 @@
                                 <div>
                                     <a id="resend-confirmation" asp-page="./ResendEmailConfirmation" class="auth-link">
                                         <i class="bi bi-envelope-check me-1"></i>
-                                        Reenviar confirmación de correo
+                                        Reenviar confirmaciÃ³n de correo
                                     </a>
                                 </div>
                             </div>
@@ -95,7 +95,7 @@
                             if ((Model.ExternalLogins?.Count ?? 0) > 0)
                             {
                                 <div class="auth-divider">
-                                    <span>O continúa con</span>
+                                    <span>O continÃºa con</span>
                                 </div>
                                 <section>
                                     <form id="external-account" asp-page="./ExternalLogin" asp-route-returnUrl="@Model.ReturnUrl" method="post">
@@ -105,7 +105,7 @@
                                                     class="auth-external-btn" 
                                                     name="provider" 
                                                     value="@provider.Name" 
-                                                    title="Iniciar sesión con su cuenta @provider.DisplayName">
+                                                    title="Iniciar sesiÃ³n con su cuenta @provider.DisplayName">
                                                 <i class="bi bi-@provider.Name.ToLower() me-2"></i>
                                                 Continuar con @provider.DisplayName
                                             </button>
@@ -141,7 +141,7 @@
                 firstInput.focus();
             }
 
-            // Password visibility toggle - SOLUCIÓN EXTREMA: REEMPLAZAR INPUT COMPLETO
+            // Password visibility toggle - SOLUCIÃ“N EXTREMA: REEMPLAZAR INPUT COMPLETO
             const toggleLoginPassword = document.getElementById('toggleLoginPassword');
             let loginPasswordInput = document.getElementById('loginPasswordInput');
             
