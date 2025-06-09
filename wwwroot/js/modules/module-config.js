@@ -91,7 +91,8 @@ class ModuleConfig {
     autoLoadModule() {
         const path = window.location.pathname.toLowerCase();
         
-        if (path.includes('/userdashboards/doctor') || path.includes('/doctor/')) {
+        // SOLO carga el módulo doctor en la página específica del dashboard
+        if (path === '/userdashboards/doctor' || path === '/userdashboards/doctor/') {
             this.loadModule('doctor');
         } else if (path.includes('/userdashboards/patient') || path.includes('/patient/')) {
             this.loadModule('patient');

@@ -354,8 +354,8 @@
       <RelatedAsset></RelatedAsset>
       <AssetTraitName></AssetTraitName>
       <AssetTraitValue></AssetTraitValue>
-      <Fingerprint>0et2yl89r1</Fingerprint>
-      <Integrity>SJeQHqbT8QISJWstdyn116+0hy0UlGomtvTexeaCGlA=</Integrity>
+      <Fingerprint>02jzv10jba</Fingerprint>
+      <Integrity>yNEP9/wn8gmWBBUyNvl49PXO3jyecUeqSucpIKQuKFc=</Integrity>
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
       <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
       <OriginalItemSpec>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\images\doctor-dashboard-bg.svg'))</OriginalItemSpec>
@@ -372,8 +372,8 @@
       <RelatedAsset></RelatedAsset>
       <AssetTraitName></AssetTraitName>
       <AssetTraitValue></AssetTraitValue>
-      <Fingerprint>9c147i6eph</Fingerprint>
-      <Integrity>ya6UgzcCM/0djuYfEiwuEmmeZDQ4/t82WdBwzgnqG3k=</Integrity>
+      <Fingerprint>02jzv10jba</Fingerprint>
+      <Integrity>yNEP9/wn8gmWBBUyNvl49PXO3jyecUeqSucpIKQuKFc=</Integrity>
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
       <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
       <OriginalItemSpec>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\images\doctor-dashboard-bg-subtle.svg'))</OriginalItemSpec>
@@ -390,8 +390,8 @@
       <RelatedAsset></RelatedAsset>
       <AssetTraitName></AssetTraitName>
       <AssetTraitValue></AssetTraitValue>
-      <Fingerprint>n2g8pie0zz</Fingerprint>
-      <Integrity>odsn4ILlydGi5XastLANCjcFiIT9uD7K6f0GnhAiSo4=</Integrity>
+      <Fingerprint>02jzv10jba</Fingerprint>
+      <Integrity>yNEP9/wn8gmWBBUyNvl49PXO3jyecUeqSucpIKQuKFc=</Integrity>
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
       <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
       <OriginalItemSpec>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\images\doctor-dashboard-bg-transparent.svg'))</OriginalItemSpec>
@@ -480,8 +480,8 @@
       <RelatedAsset></RelatedAsset>
       <AssetTraitName></AssetTraitName>
       <AssetTraitValue></AssetTraitValue>
-      <Fingerprint>1t5f02plw1</Fingerprint>
-      <Integrity>JeP35tGPU7QfIQVlNwIz7Wani+Tojf/IXW5S1ZJxO38=</Integrity>
+      <Fingerprint>btnw9utl2u</Fingerprint>
+      <Integrity>cc7IRkIajzr7j4nQIdbhq4pmnGARtFGPA9Nq9EO9HbQ=</Integrity>
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
       <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
       <OriginalItemSpec>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\js\modules\doctor\doctor-dashboard.js'))</OriginalItemSpec>
@@ -498,8 +498,8 @@
       <RelatedAsset></RelatedAsset>
       <AssetTraitName></AssetTraitName>
       <AssetTraitValue></AssetTraitValue>
-      <Fingerprint>5hszsnl72i</Fingerprint>
-      <Integrity>Fx0aAghBXKL/RZZXz/pJ+SfctozLLZjcaWcdgrB4e7g=</Integrity>
+      <Fingerprint>7ccmlovbyt</Fingerprint>
+      <Integrity>9yzPHVXzwa18m+WE5AiSIHaDup2xjZHZgWhrdJ3ONro=</Integrity>
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
       <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
       <OriginalItemSpec>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\js\modules\module-config.js'))</OriginalItemSpec>

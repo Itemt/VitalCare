@@ -72,11 +72,11 @@ namespace CitasEPS.Pages.UserDashboards.Doctor
 
             PatientName = AppointmentToConfirm.Patient?.FullName ?? "Paciente Desconocido";
             
-            // Mostrar fechas en hora de Colombia (UTC-5)
+            // Mostrar fechas en hora de Colombia (UTC-5) con formato AM/PM
             var currentColombia = ColombiaTimeZoneService.ConvertUtcToColombia(AppointmentToConfirm.AppointmentDateTime);
             var proposedColombia = ColombiaTimeZoneService.ConvertUtcToColombia(AppointmentToConfirm.ProposedNewDateTime.Value);
-            CurrentDateTime = currentColombia.ToString("g");
-            ProposedDateTime = proposedColombia.ToString("g");
+            CurrentDateTime = currentColombia.ToString("dd/MM/yyyy hh:mm tt");
+            ProposedDateTime = proposedColombia.ToString("dd/MM/yyyy hh:mm tt");
 
             return Page();
         }

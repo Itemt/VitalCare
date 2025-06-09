@@ -1,41 +1,108 @@
 <svg xmlns="http://www.w3.org/2000/svg" width="1200" height="800" viewBox="0 0 1200 800">
-  <defs>
-    <linearGradient id="bg-grad" x1="0%" y1="0%" x2="100%" y2="100%">
-      <stop offset="0%" stop-color="#f0f8ff" /> <!-- Lighter blue: AliceBlue -->
-      <stop offset="100%" stop-color="#e6f2ff" /> <!-- Slightly darker light blue -->
-    </linearGradient>
-    <pattern id="plus-pattern" width="60" height="60" patternUnits="userSpaceOnUse">
-      <path d="M25,15 L25,25 L15,25 L15,35 L25,35 L25,45 L35,45 L35,35 L45,35 L45,25 L35,25 L35,15 Z" fill="#0dcaf0" opacity="0.03"/> <!-- Reduced opacity -->
-    </pattern>
-    <radialGradient id="circle-grad" cx="50%" cy="50%" r="50%" fx="50%" fy="50%">
-      <stop offset="0%" stop-color="#0dcaf0" stop-opacity="0.02" /> <!-- Reduced opacity -->
-      <stop offset="100%" stop-color="#0dcaf0" stop-opacity="0" />
-    </radialGradient>
-  </defs>
-  
-  <!-- Background -->
-  <rect width="100%" height="100%" fill="url(#bg-grad)" />
-  
-  <!-- Medical Plus Pattern -->
-  <rect width="100%" height="100%" fill="url(#plus-pattern)" />
-  
-  <!-- Decorative Elements -->
-  <circle cx="200" cy="200" r="300" fill="url(#circle-grad)" />
-  <circle cx="1000" cy="600" r="280" fill="url(#circle-grad)" />
-  
-  <!-- Abstract Medical Symbols -->
-  <path d="M-50,300 C150,200 300,400 450,300 S750,200 900,300 S1150,400 1300,300" 
-        stroke="#0dcaf0" stroke-width="2" fill="none" opacity="0.04" /> <!-- Reduced opacity -->
-  
-  <path d="M-50,350 C150,250 300,450 450,350 S750,250 900,350 S1150,450 1300,350" 
-        stroke="#0dcaf0" stroke-width="1.5" fill="none" opacity="0.03" /> <!-- Reduced opacity -->
-  
-  <!-- Hexagonal Pattern (resembling molecular structure) -->
-  <g opacity="0.03"> <!-- Reduced opacity -->
-    <path d="M100,650 L150,622 L200,650 L200,706 L150,734 L100,706 Z" fill="#0dcaf0"/>
-    <path d="M200,650 L250,622 L300,650 L300,706 L250,734 L200,706 Z" fill="#0dcaf0"/>
-    <path d="M300,650 L350,622 L400,650 L400,706 L350,734 L300,706 Z" fill="#0dcaf0"/>
-    <path d="M150,566 L200,538 L250,566 L250,622 L200,650 L150,622 Z" fill="#0dcaf0"/>
-    <path d="M250,566 L300,538 L350,566 L350,622 L300,650 L250,622 Z" fill="#0dcaf0"/>
+  <!-- Solo puntos individuales distribuidos uniformemente -->
+  <g fill="#0dcaf0" opacity="0.015">
+    <!-- Fila 1 -->
+    <circle cx="60" cy="60" r="1"/>
+    <circle cx="180" cy="60" r="1"/>
+    <circle cx="300" cy="60" r="1"/>
+    <circle cx="420" cy="60" r="1"/>
+    <circle cx="540" cy="60" r="1"/>
+    <circle cx="660" cy="60" r="1"/>
+    <circle cx="780" cy="60" r="1"/>
+    <circle cx="900" cy="60" r="1"/>
+    <circle cx="1020" cy="60" r="1"/>
+    <circle cx="1140" cy="60" r="1"/>
+    
+    <!-- Fila 2 -->
+    <circle cx="120" cy="140" r="1"/>
+    <circle cx="240" cy="140" r="1"/>
+    <circle cx="360" cy="140" r="1"/>
+    <circle cx="480" cy="140" r="1"/>
+    <circle cx="600" cy="140" r="1"/>
+    <circle cx="720" cy="140" r="1"/>
+    <circle cx="840" cy="140" r="1"/>
+    <circle cx="960" cy="140" r="1"/>
+    <circle cx="1080" cy="140" r="1"/>
+    
+    <!-- Fila 3 -->
+    <circle cx="60" cy="220" r="1"/>
+    <circle cx="180" cy="220" r="1"/>
+    <circle cx="300" cy="220" r="1"/>
+    <circle cx="420" cy="220" r="1"/>
+    <circle cx="540" cy="220" r="1"/>
+    <circle cx="660" cy="220" r="1"/>
+    <circle cx="780" cy="220" r="1"/>
+    <circle cx="900" cy="220" r="1"/>
+    <circle cx="1020" cy="220" r="1"/>
+    <circle cx="1140" cy="220" r="1"/>
+    
+    <!-- Fila 4 -->
+    <circle cx="120" cy="300" r="1"/>
+    <circle cx="240" cy="300" r="1"/>
+    <circle cx="360" cy="300" r="1"/>
+    <circle cx="480" cy="300" r="1"/>
+    <circle cx="600" cy="300" r="1"/>
+    <circle cx="720" cy="300" r="1"/>
+    <circle cx="840" cy="300" r="1"/>
+    <circle cx="960" cy="300" r="1"/>
+    <circle cx="1080" cy="300" r="1"/>
+    
+    <!-- Fila 5 -->
+    <circle cx="60" cy="380" r="1"/>
+    <circle cx="180" cy="380" r="1"/>
+    <circle cx="300" cy="380" r="1"/>
+    <circle cx="420" cy="380" r="1"/>
+    <circle cx="540" cy="380" r="1"/>
+    <circle cx="660" cy="380" r="1"/>
+    <circle cx="780" cy="380" r="1"/>
+    <circle cx="900" cy="380" r="1"/>
+    <circle cx="1020" cy="380" r="1"/>
+    <circle cx="1140" cy="380" r="1"/>
+    
+    <!-- Fila 6 -->
+    <circle cx="120" cy="460" r="1"/>
+    <circle cx="240" cy="460" r="1"/>
+    <circle cx="360" cy="460" r="1"/>
+    <circle cx="480" cy="460" r="1"/>
+    <circle cx="600" cy="460" r="1"/>
+    <circle cx="720" cy="460" r="1"/>
+    <circle cx="840" cy="460" r="1"/>
+    <circle cx="960" cy="460" r="1"/>
+    <circle cx="1080" cy="460" r="1"/>
+    
+    <!-- Fila 7 -->
+    <circle cx="60" cy="540" r="1"/>
+    <circle cx="180" cy="540" r="1"/>
+    <circle cx="300" cy="540" r="1"/>
+    <circle cx="420" cy="540" r="1"/>
+    <circle cx="540" cy="540" r="1"/>
+    <circle cx="660" cy="540" r="1"/>
+    <circle cx="780" cy="540" r="1"/>
+    <circle cx="900" cy="540" r="1"/>
+    <circle cx="1020" cy="540" r="1"/>
+    <circle cx="1140" cy="540" r="1"/>
+    
+    <!-- Fila 8 -->
+    <circle cx="120" cy="620" r="1"/>
+    <circle cx="240" cy="620" r="1"/>
+    <circle cx="360" cy="620" r="1"/>
+    <circle cx="480" cy="620" r="1"/>
+    <circle cx="600" cy="620" r="1"/>
+    <circle cx="720" cy="620" r="1"/>
+    <circle cx="840" cy="620" r="1"/>
+    <circle cx="960" cy="620" r="1"/>
+    <circle cx="1080" cy="620" r="1"/>
+    
+    <!-- Fila 9 -->
+    <circle cx="60" cy="700" r="1"/>
+    <circle cx="180" cy="700" r="1"/>
+    <circle cx="300" cy="700" r="1"/>
+    <circle cx="420" cy="700" r="1"/>
+    <circle cx="540" cy="700" r="1"/>
+    <circle cx="660" cy="700" r="1"/>
+    <circle cx="780" cy="700" r="1"/>
+    <circle cx="900" cy="700" r="1"/>
+    <circle cx="1020" cy="700" r="1"/>
+    <circle cx="1140" cy="700" r="1"/>
   </g>
 </svg> 

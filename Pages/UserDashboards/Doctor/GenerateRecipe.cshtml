@@ -43,7 +43,7 @@
                             @foreach (var appointment in Model.CompletedAppointments)
                             {
                                 <tr>
-                                    <td>@appointment.AppointmentDateTime.ToString("g")</td>
+                                    <td>@appointment.AppointmentDateTime.ToString("dd/MM/yyyy hh:mm tt")</td>
                                     <td>@(appointment.Patient?.FullName ?? "N/A")</td>
                                     <td>@(appointment.Notes ?? "Sin diagnóstico")</td>
                                     <td>
@@ -59,13 +59,13 @@
                                     <td>
                                         @if (appointment.Prescriptions != null && appointment.Prescriptions.Any())
                                         {
-                                            <a asp-page="/Doctor/EditPrescription" asp-route-id="@appointment.Prescriptions.First().Id" class="btn btn-sm btn-warning me-1" title="Editar Receta">
+                                            <a asp-page="/UserDashboards/Doctor/EditPrescription" asp-route-id="@appointment.Prescriptions.First().Id" class="btn btn-sm btn-warning me-1" title="Editar Receta">
                                                 <i class="bi bi-pencil-fill"></i> Editar
                                             </a>
                                         }
                                         else
                                         {
-                                            <a asp-page="/Doctor/Prescribe" asp-route-appointmentId="@appointment.Id" class="btn btn-sm btn-primary me-1" title="Generar Receta">
+                                            <a asp-page="/UserDashboards/Doctor/Prescribe" asp-route-appointmentId="@appointment.Id" class="btn btn-sm btn-primary me-1" title="Generar Receta">
                                                 <i class="bi bi-plus-circle-fill"></i> Generar
                                             </a>
                                         }

@@ -73,7 +73,7 @@
                                             <td>@appointment.Id</td>
                                             <td>@(appointment.Patient?.FullName ?? "N/A")</td>
                                             <td>@(appointment.Doctor?.FullName ?? "N/A")</td>
-                                            <td>@appointment.AppointmentDateTime.ToString("dd/MM/yyyy HH:mm")</td>
+                                            <td>@appointment.AppointmentDateTime.ToString("dd/MM/yyyy hh:mm tt")</td>
                                             <td>
                                                 @if (appointment.IsCancelled) { <span class="badge bg-danger">Cancelada</span> }
                                                 else if (appointment.IsCompleted) { <span class="badge bg-success">Completada</span> }

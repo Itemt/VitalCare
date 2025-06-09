@@ -5,10 +5,19 @@ class DoctorDashboard {
     }
 
     init() {
-        this.setupEventListeners();
-        this.loadDashboardData();
-        this.initializeCalendar();
-        this.setupNotifications();
+        // Only initialize if we're on the dashboard page with the required elements
+        if (this.isDashboardPage()) {
+            this.setupEventListeners();
+            // Commented out API call since statistics are now loaded server-side
+            // this.loadDashboardData();
+            this.initializeCalendar();
+            this.setupNotifications();
+        }
+    }
+
+    isDashboardPage() {
+        // Check if the dashboard-specific elements exist
+        return document.getElementById('doctorPanelDashboard') !== null;
     }
 
     setupEventListeners() {

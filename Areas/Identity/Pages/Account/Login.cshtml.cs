@@ -21,11 +21,13 @@ namespace CitasEPS.Areas.Identity.Pages.Account
     public class LoginModel : PageModel
     {
         private readonly SignInManager<User> _signInManager;
+        private readonly UserManager<User> _userManager;
         private readonly ILogger<LoginModel> _logger;
 
-        public LoginModel(SignInManager<User> signInManager, ILogger<LoginModel> logger)
+        public LoginModel(SignInManager<User> signInManager, UserManager<User> userManager, ILogger<LoginModel> logger)
         {
             _signInManager = signInManager;
+            _userManager = userManager;
             _logger = logger;
         }
 
@@ -118,6 +120,29 @@ namespace CitasEPS.Areas.Identity.Pages.Account
                 if (result.Succeeded)
                 {
                     _logger.LogInformation("Usuario inició sesión.");
+                    
+                    // Get the user and redirect based on role
+                    var user = await _userManager.FindByEmailAsync(Input.Email);
+                    if (user != null)
+                    {
+                        if (await _userManager.IsInRoleAsync(user, "Admin"))
+                        {
+                            _logger.LogInformation($"Admin {user.UserName} logged in, redirecting to admin dashboard.");
+                            return RedirectToPage("/UserDashboards/Admin/Index");
+                        }
+                        else if (await _userManager.IsInRoleAsync(user, "Doctor"))
+                        {
+                            _logger.LogInformation($"Doctor {user.UserName} logged in, redirecting to doctor dashboard.");
+                            return RedirectToPage("/UserDashboards/Doctor/Index");
+                        }
+                        else if (await _userManager.IsInRoleAsync(user, "Paciente"))
+                        {
+                            _logger.LogInformation($"Patient {user.UserName} logged in, redirecting to patient dashboard.");
+                            return RedirectToPage("/UserDashboards/Patient/Index");
+                        }
+                    }
+                    
+                    // Fallback to the original returnUrl if no specific role is found
                     return LocalRedirect(returnUrl);
                 }
                 if (result.RequiresTwoFactor)

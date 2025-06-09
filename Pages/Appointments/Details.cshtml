@@ -87,8 +87,15 @@
                                         @if (User.IsInRole("Doctor"))
                                         {
                                             <td>
-                                                <a asp-page="/Doctor/EditPrescription" asp-route-id="@prescription.Id" class="btn btn-warning btn-sm" title="Editar Prescripción"><i class="bi bi-pencil-square"></i></a>
-                                                <a asp-page="/Doctor/DeletePrescription" asp-route-id="@prescription.Id" class="btn btn-danger btn-sm" title="Eliminar Prescripción"><i class="bi bi-trash3"></i></a>
+                                                @if (!Model.Appointment.IsCompleted && Model.Appointment.AppointmentDateTime >= DateTime.UtcNow)
+                                                {
+                                                    <a asp-page="/UserDashboards/Doctor/EditPrescription" asp-route-id="@prescription.Id" class="btn btn-warning btn-sm" title="Editar Prescripción"><i class="bi bi-pencil-square"></i></a>
+                                                    <a asp-page="/UserDashboards/Doctor/DeletePrescription" asp-route-id="@prescription.Id" class="btn btn-danger btn-sm" title="Eliminar Prescripción"><i class="bi bi-trash3"></i></a>
+                                                }
+                                                else
+                                                {
+                                                    <span class="text-muted small">No editable</span>
+                                                }
                                             </td>
                                         }
                                     </tr>
@@ -126,12 +133,12 @@
                             else if (Model.Appointment.DoctorProposedReschedule && Model.Appointment.ProposedNewDateTime.HasValue)
                             {
                                  <span class="badge bg-primary text-white">Propuesto por Doctor</span>
-                                 <p><small>Nueva fecha propuesta: @ColombiaTimeZoneService.FormatInColombia(Model.Appointment.ProposedNewDateTime.Value)</small></p>
+                                 <p><small>Nueva fecha propuesta: @ColombiaTimeZoneService.FormatInColombia(Model.Appointment.ProposedNewDateTime.Value, "dddd, dd MMMM yyyy - hh:mm tt")</small></p>
                             }
                             else if (Model.Appointment.RescheduleRequested && Model.Appointment.ProposedNewDateTime.HasValue)
                             {
                                  <span class="badge bg-warning text-dark">Propuesto por Paciente</span>
-                                 <p><small>Nueva fecha propuesta: @ColombiaTimeZoneService.FormatInColombia(Model.Appointment.ProposedNewDateTime.Value)</small></p>
+                                 <p><small>Nueva fecha propuesta: @ColombiaTimeZoneService.FormatInColombia(Model.Appointment.ProposedNewDateTime.Value, "dddd, dd MMMM yyyy - hh:mm tt")</small></p>
                             }
                             else if (Model.Appointment.IsConfirmed)
                             {
@@ -180,7 +187,14 @@
                             </form>
 
                             <div class="mt-3">
-                                <a asp-page="/Doctor/Prescribe" asp-route-appointmentId="@Model.Appointment.Id" class="@createPrescriptionButtonClass"><i class="bi bi-file-earmark-medical"></i> Crear Prescripción para esta Cita</a>
+                                @if (!Model.Appointment.IsCompleted && Model.Appointment.AppointmentDateTime >= DateTime.UtcNow)
+                                {
+                                    <a asp-page="/UserDashboards/Doctor/Prescribe" asp-route-appointmentId="@Model.Appointment.Id" class="@createPrescriptionButtonClass"><i class="bi bi-file-earmark-medical"></i> Crear Prescripción para esta Cita</a>
+                                }
+                                else
+                                {
+                                    <p class="text-muted small mb-0"><i class="bi bi-info-circle"></i> No se pueden crear prescripciones para citas completadas o expiradas.</p>
+                                }
                             </div>
 
                             <!-- Sección SOLO para Botones Confirmar/Completar Doctor -->
@@ -256,7 +270,7 @@
                             @* --- START: Doctor Propose Reschedule Button (Details View) --- *@
                             @if (User.IsInRole("Doctor") && !Model.Appointment.IsCompleted && !Model.Appointment.IsCancelled && Model.Appointment.AppointmentDateTime >= DateTime.UtcNow && !Model.Appointment.RescheduleRequested && !Model.Appointment.DoctorProposedReschedule)
                             {
-                                 <a asp-page="/Doctor/ProposeDoctorReschedule" asp-route-id="@Model.Appointment.Id" class="btn btn-outline-primary me-2" title="Proponer nuevo horario al paciente">
+                                 <a asp-page="/UserDashboards/Doctor/ProposeDoctorReschedule" asp-route-id="@Model.Appointment.Id" class="btn btn-outline-primary me-2" title="Proponer nuevo horario al paciente">
                                      <i class="bi bi-arrow-repeat"></i> Proponer Reag.
                                  </a>
                             }

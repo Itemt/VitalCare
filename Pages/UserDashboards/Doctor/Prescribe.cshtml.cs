@@ -33,7 +33,7 @@ namespace CitasEPS.Pages.UserDashboards.Doctor
         // Add Patients SelectList for when no appointment is provided
         public SelectList? Patients { get; set; }
 
-        public async Task<IActionResult> OnGetAsync(int? appointmentId)
+        public async Task<IActionResult> OnGetAsync(int appointmentId)
         {
             var user = await _userManager.GetUserAsync(User);
             if (user == null) return Challenge(); // Not logged in
@@ -41,41 +41,50 @@ namespace CitasEPS.Pages.UserDashboards.Doctor
             var currentDoctor = await _context.Doctors.FirstOrDefaultAsync(d => d.UserId == user.Id);
             if (currentDoctor == null) return Forbid("El usuario actual no es un Doctor registrado.");
 
+            // Load the appointment
+            Appointment = await _context.Appointments
+                .Include(a => a.Patient)
+                .Include(a => a.Doctor)
+                .FirstOrDefaultAsync(a => a.Id == appointmentId);
+
+            if (Appointment == null)
+            {
+                return NotFound("Cita no encontrada.");
+            }
+
+            if (Appointment.DoctorId != currentDoctor.Id)
+            {
+                return Forbid("No tiene permiso para prescribir en esta cita.");
+            }
+
+            // Validar que la cita no esté completada
+            if (Appointment.IsCompleted)
+            {
+                TempData["ErrorMessage"] = "No se pueden crear prescripciones para citas completadas.";
+                return RedirectToPage("/Appointments/Details", new { id = appointmentId });
+            }
+
+            // Validar que la cita no esté expirada (pasó la fecha/hora)
+            if (Appointment.AppointmentDateTime < DateTime.UtcNow)
+            {
+                TempData["ErrorMessage"] = "No se pueden crear prescripciones para citas expiradas.";
+                return RedirectToPage("/Appointments/Details", new { id = appointmentId });
+            }
+
+            // Validar que la cita no esté cancelada
+            if (Appointment.IsCancelled)
+            {
+                TempData["ErrorMessage"] = "No se pueden crear prescripciones para citas canceladas.";
+                return RedirectToPage("/Appointments/Details", new { id = appointmentId });
+            }
+
             // Prepare default prescription details
             Prescription.DoctorId = currentDoctor.Id;
-            Prescription.PrescriptionDate = DateTime.UtcNow; // Use UtcNow for consistency
+            Prescription.PrescriptionDate = DateTime.UtcNow;
+            Prescription.AppointmentId = Appointment.Id;
+            Prescription.PatientId = Appointment.PatientId;
 
-            if (appointmentId.HasValue)
-            {
-                // --- Scenario: Prescribing for a specific appointment --- 
-                Appointment = await _context.Appointments
-                    .Include(a => a.Patient)
-                    .Include(a => a.Doctor) // Redundant but good practice
-                    .FirstOrDefaultAsync(a => a.Id == appointmentId.Value);
-
-                if (Appointment == null)
-                {
-                    return NotFound("Cita no encontrada.");
-                }
-
-                if (Appointment.DoctorId != currentDoctor.Id)
-                {
-                    return Forbid("No tiene permiso para prescribir en esta cita.");
-                }
-
-                Prescription.AppointmentId = Appointment.Id;
-                Prescription.PatientId = Appointment.PatientId;
-            }
-            else
-            {
-                // --- Scenario: Prescribing without a specific appointment --- 
-                // Load all patients for selection
-                 var patientsList = await _context.Patients.OrderBy(p => p.LastName).ThenBy(p => p.FirstName).ToListAsync();
-                 Patients = new SelectList(patientsList, "Id", "FullName");
-                 // PatientId will be bound from the form on POST
-            }
-
-            // Load medications dropdown (needed in both scenarios)
+            // Load medications dropdown
             var medicationsList = await _context.Medications.OrderBy(m => m.Name).ToListAsync();
             Medications = new SelectList(medicationsList, "Id", "Name");
 
@@ -90,87 +99,70 @@ namespace CitasEPS.Pages.UserDashboards.Doctor
             var currentDoctor = await _context.Doctors.FirstOrDefaultAsync(d => d.UserId == user.Id);
             if (currentDoctor == null) return Forbid();
 
-            // Always assign DoctorId and Date from server-side
+            // Validar que la cita sigue siendo válida
+            Appointment = await _context.Appointments
+                .AsNoTracking()
+                .FirstOrDefaultAsync(a => a.Id == Prescription.AppointmentId);
+
+            if (Appointment == null)
+            {
+                ModelState.AddModelError("", "La cita asociada ya no existe.");
+            }
+            else if (Appointment.DoctorId != currentDoctor.Id)
+            {
+                ModelState.AddModelError("", "No tiene permiso para añadir una prescripción a esta cita.");
+            }
+            else if (Appointment.IsCompleted)
+            {
+                ModelState.AddModelError("", "No se pueden crear prescripciones para citas completadas.");
+            }
+            else if (Appointment.AppointmentDateTime < DateTime.UtcNow)
+            {
+                ModelState.AddModelError("", "No se pueden crear prescripciones para citas expiradas.");
+            }
+            else if (Appointment.IsCancelled)
+            {
+                ModelState.AddModelError("", "No se pueden crear prescripciones para citas canceladas.");
+            }
+
+            // Always assign DoctorId, Date and PatientId from server-side
             Prescription.DoctorId = currentDoctor.Id;
             Prescription.PrescriptionDate = DateTime.UtcNow;
+            if (Appointment != null)
+            {
+                Prescription.PatientId = Appointment.PatientId;
+            }
             
             // Remove navigation properties from model state validation
             ModelState.Remove("Prescription.Appointment");
             ModelState.Remove("Prescription.Medication");
             ModelState.Remove("Prescription.Doctor");
             ModelState.Remove("Prescription.Patient");
-            ModelState.Remove("Appointment"); // Remove Appointment model used only for display
-
-            // Validate based on whether it's tied to an appointment or not
-            if (Prescription.AppointmentId.HasValue)
-            {
-                 // --- Scenario: Posting for a specific appointment ---
-                Appointment = await _context.Appointments // Reload appointment for validation
-                    .AsNoTracking() // No need to track for validation check
-                    .FirstOrDefaultAsync(a => a.Id == Prescription.AppointmentId.Value);
-
-                if (Appointment == null)
-                {   // Should not happen if OnGet worked, but check anyway
-                    ModelState.AddModelError("Prescription.AppointmentId", "La cita asociada ya no existe.");
-                }
-                else if (Appointment.DoctorId != currentDoctor.Id)
-                {   // Security check
-                    ModelState.AddModelError("", "No tiene permiso para añadir una prescripción a esta cita.");
-                }
-                 else
-                {   // Ensure PatientId matches the appointment's Patient if ID was provided
-                    Prescription.PatientId = Appointment.PatientId;
-                    // No need to validate PatientId separately here as it comes from the Appointment
-                }
-            }
-            else 
-            {   
-                // --- Scenario: Posting without a specific appointment ---
-                // PatientId is already marked as [Required] in the model, 
-                // so ModelState.IsValid will check if it was selected from the dropdown.
-                 ModelState.Remove("Prescription.AppointmentId"); // No AppointmentId to validate
-            }
+            ModelState.Remove("Appointment");
 
             if (!ModelState.IsValid)
             {
-                // Reload dropdowns needed for the form
+                // Reload dropdown and appointment info for the form
                 var medicationsList = await _context.Medications.OrderBy(m => m.Name).ToListAsync();
                 Medications = new SelectList(medicationsList, "Id", "Name", Prescription.MedicationId);
 
-                if (!Prescription.AppointmentId.HasValue)
-                { // Reload patients only if it wasn't tied to an appointment
-                     var patientsList = await _context.Patients.OrderBy(p => p.LastName).ThenBy(p => p.FirstName).ToListAsync();
-                     Patients = new SelectList(patientsList, "Id", "FullName", Prescription.PatientId);
+                if (Appointment == null && Prescription.AppointmentId.HasValue)
+                {
+                    Appointment = await _context.Appointments
+                        .Include(a => a.Patient)
+                        .Include(a => a.Doctor)
+                        .AsNoTracking()
+                        .FirstOrDefaultAsync(a => a.Id == Prescription.AppointmentId.Value);
                 }
-                 else if (Appointment == null && Prescription.AppointmentId.HasValue) {
-                     // If the original appointment is now gone, we might need to handle this state
-                     // maybe clear the AppointmentId? For now, just let validation error show.
-                 }
 
-                // If originally linked to an appointment, reload it for display
-                if (Appointment != null) { /* Appointment already loaded or reloaded above */ }
-                 else if(Prescription.AppointmentId.HasValue) {
-                      // Attempt to reload if needed for display (e.g., show Patient name from appt)
-                      Appointment = await _context.Appointments.Include(a=>a.Patient).AsNoTracking().FirstOrDefaultAsync(a=> a.Id == Prescription.AppointmentId.Value);
-                 }
-
-                return Page(); // Return page with validation errors
+                return Page();
             }
 
             _context.Prescriptions.Add(Prescription);
             await _context.SaveChangesAsync();
 
             TempData["SuccessMessage"] = "Prescripción creada exitosamente.";
-
-            // Redirect intelligently: back to appointment details if came from there, otherwise to agenda
-            if (Prescription.AppointmentId.HasValue)
-            {
-                return RedirectToPage("/Appointments/Details", new { id = Prescription.AppointmentId.Value });
-            }
-            else
-            {
-                return RedirectToPage("./Agenda");
-            }
+            return RedirectToPage("/Appointments/Details", new { id = Prescription.AppointmentId.Value });
         }
     }
 }

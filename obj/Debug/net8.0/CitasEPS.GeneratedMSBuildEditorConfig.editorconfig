@@ -460,6 +460,10 @@ build_metadata.AdditionalFiles.CssScope =
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcVXNlckRhc2hib2FyZHNcRG9jdG9yXFByZXNjcmliZS5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
+[C:/Users/CristianPC/Desktop/vitalcare/Pages/UserDashboards/Doctor/Prescriptions.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcVXNlckRhc2hib2FyZHNcRG9jdG9yXFByZXNjcmlwdGlvbnMuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
 [C:/Users/CristianPC/Desktop/vitalcare/Pages/UserDashboards/Doctor/ProposeDoctorReschedule.cshtml]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcVXNlckRhc2hib2FyZHNcRG9jdG9yXFByb3Bvc2VEb2N0b3JSZXNjaGVkdWxlLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 

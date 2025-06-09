@@ -76,9 +76,9 @@ namespace CitasEPS.Pages.UserDashboards.Doctor
 
             PatientName = CurrentAppointment.Patient?.FullName ?? "Paciente Desconocido";
             
-            // Mostrar la fecha en hora de Colombia (UTC-5)
+            // Mostrar la fecha en hora de Colombia (UTC-5) con formato AM/PM
             var appointmentColombia = ColombiaTimeZoneService.ConvertUtcToColombia(CurrentAppointment.AppointmentDateTime);
-            CurrentDateTime = appointmentColombia.ToString("g");
+            CurrentDateTime = appointmentColombia.ToString("dd/MM/yyyy hh:mm tt");
             
             // Sugerir el día siguiente en hora de Colombia
             var suggestedColombia = appointmentColombia.AddDays(1);
@@ -192,7 +192,7 @@ namespace CitasEPS.Pages.UserDashboards.Doctor
                     PatientName = appointmentToUpdate.Patient.FullName ?? "Paciente Desconocido";
                 }
                 var currentAppointmentColombia = ColombiaTimeZoneService.ConvertUtcToColombia(appointmentToUpdate.AppointmentDateTime);
-                CurrentDateTime = currentAppointmentColombia.ToString("g");
+                CurrentDateTime = currentAppointmentColombia.ToString("dd/MM/yyyy hh:mm tt");
                 return Page();
             }
 

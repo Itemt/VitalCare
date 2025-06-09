@@ -29,7 +29,7 @@
                 @Html.DisplayNameFor(model => model.Appointment!.AppointmentDateTime)
             </dt>
             <dd class="col-sm-9">
-                @Html.DisplayFor(model => model.Appointment!.AppointmentDateTime)
+                @CitasEPS.Services.ColombiaTimeZoneService.FormatInColombia(Model.Appointment!.AppointmentDateTime, "dddd, dd MMMM yyyy - hh:mm tt")
             </dd>
             <dt class="col-sm-3">
                 @Html.DisplayNameFor(model => model.Appointment!.Patient)

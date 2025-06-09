@@ -62,18 +62,19 @@ namespace CitasEPS.Controllers
 
                 // Promedio de satisfacción basado en ratings
                 var completedAppointmentsWithRatings = await _context.Appointments
-                    .Where(a => a.DoctorId == doctor.Id && 
-                               a.IsCompleted && 
-                               a.Rating != null && 
-                               a.Rating.PatientRating > 0)
-                    .Include(a => a.Rating)
+                    .Where(a => a.DoctorId == doctor.Id &&
+                               a.IsCompleted &&
+                               a.Rating != null) // Ensure Rating object exists
+                    .Select(a => a.Rating) // Select the Rating object
                     .ToListAsync();
 
                 double satisfactionPercentage = 0;
-                if (completedAppointmentsWithRatings.Any())
+                if (completedAppointmentsWithRatings.Any(r => r.PatientRating > 0))
                 {
+                    // Filter again for valid ratings before averaging
                     var averageRating = completedAppointmentsWithRatings
-                        .Average(a => a.Rating!.PatientRating);
+                        .Where(r => r.PatientRating > 0)
+                        .Average(r => r.PatientRating);
                     satisfactionPercentage = Math.Round((averageRating / 5.0) * 100, 0);
                 }
                 else

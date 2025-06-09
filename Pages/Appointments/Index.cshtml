@@ -447,7 +447,7 @@
                                     <td><strong class="text-primary">#@item.Id</strong></td>
                                     <td>
                                         <strong>@item.AppointmentDateTime.ToString("dddd, dd MMM yyyy")</strong><br/>
-                                        <small class="text-muted">@item.AppointmentDateTime.ToString("HH:mm")</small>
+                                        <small class="text-muted">@item.AppointmentDateTime.ToString("hh:mm tt")</small>
                                     </td>
                                     <td>
                                         <div class="d-flex align-items-center">
@@ -653,7 +653,7 @@ else // Patient View
                                 <tr>
                                     <td>
                                         <strong>@ColombiaTimeZoneService.FormatInColombia(item.AppointmentDateTime, "dddd, dd MMM yyyy")</strong><br/>
-                                        <small class="text-muted">@ColombiaTimeZoneService.FormatInColombia(item.AppointmentDateTime, "HH:mm")</small>
+                                        <small class="text-muted">@ColombiaTimeZoneService.FormatInColombia(item.AppointmentDateTime, "hh:mm tt")</small>
                                     </td>
                                     <td>
                                         <div class="d-flex align-items-center">
@@ -739,7 +739,7 @@ else // Patient View
                                             @* Enlace para calificar citas completadas *@
                                             @if (item.IsCompleted && !item.IsCancelled && (item.Rating == null || item.Rating.PatientRating == 0))
                                             {
-                                                <a asp-page="/Patient/RateAppointment" asp-route-appointmentId="@item.Id" class="btn-action" style="background: linear-gradient(135deg, #fbbf24 0%, #f59e0b 100%) !important;" title="Calificar atención">
+                                                <a asp-page="/UserDashboards/Patient/RateAppointment" asp-route-appointmentId="@item.Id" class="btn-action" style="background: linear-gradient(135deg, #fbbf24 0%, #f59e0b 100%) !important;" title="Calificar atención">
                                                     <i class="bi bi-star me-1"></i>Calificar
                                                 </a>
                                             }

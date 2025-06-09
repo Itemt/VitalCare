@@ -1,0 +1,86 @@
+@page
+@model CitasEPS.Pages.UserDashboards.Doctor.PrescriptionsModel
+@using CitasEPS.Services
+
+@{
+    ViewData["Title"] = "Mis Prescripciones";
+}
+
+@section Styles {
+    <link rel="stylesheet" href="~/css/modules/doctor/doctor-dashboard.css" />
+}
+
+<div class="container mt-4">
+    <div class="row">
+        <div class="col-12">
+            <div class="card shadow-sm">
+                <div class="card-header bg-info text-white">
+                    <h3 class="mb-0"><i class="bi bi-file-earmark-medical me-2"></i>Mis Prescripciones</h3>
+                </div>
+                <div class="card-body">
+                    @if (Model.Prescriptions != null && Model.Prescriptions.Any())
+                    {
+                        <p class="text-muted mb-4">Total de prescripciones generadas: <strong>@Model.Prescriptions.Count()</strong></p>
+                        
+                        <div class="table-responsive">
+                            <table class="table table-hover table-striped">
+                                <thead class="table-info">
+                                    <tr>
+                                        <th>Medicamento</th>
+                                        <th>Dosis</th>
+                                        <th>Paciente</th>
+                                        <th>Cita</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @foreach (var prescription in Model.Prescriptions.OrderByDescending(p => p.PrescriptionDate))
+                                    {
+                                        <tr>
+                                            <td>
+                                                <span class="badge bg-primary">@prescription.Medication?.Name</span>
+                                            </td>
+                                            <td>
+                                                <strong>@prescription.Dosage</strong>
+                                            </td>
+                                            <td>
+                                                <strong>@prescription.Patient?.FullName</strong>
+                                                @if (!string.IsNullOrEmpty(prescription.Patient?.DocumentId))
+                                                {
+                                                    <br><small class="text-muted">ID: @prescription.Patient.DocumentId</small>
+                                                }
+                                            </td>
+                                            <td>
+                                                <a asp-page="/Appointments/Details" asp-route-id="@prescription.AppointmentId" 
+                                                   class="btn btn-sm btn-outline-info" title="Ver detalles de la cita">
+                                                    <i class="bi bi-calendar-event"></i> Cita #@prescription.AppointmentId
+                                                </a>
+                                            </td>
+                                        </tr>
+                                    }
+                                </tbody>
+                            </table>
+                        </div>
+                    }
+                    else
+                    {
+                        <div class="text-center py-5">
+                            <i class="bi bi-file-earmark-medical display-1 text-muted"></i>
+                            <h4 class="text-muted mt-3">No hay prescripciones</h4>
+                            <p class="text-muted">Las prescripciones se generan desde las citas médicas.</p>
+                            <a asp-page="/UserDashboards/Doctor/Agenda" class="btn btn-info">
+                                <i class="bi bi-calendar-week me-2"></i>Ver mi agenda
+                            </a>
+                        </div>
+                    }
+                </div>
+                <div class="card-footer bg-light">
+                    <div class="text-center">
+                        <a asp-page="/UserDashboards/Doctor/Agenda" class="btn btn-secondary">
+                            <i class="bi bi-arrow-left-circle me-2"></i>Volver a mi agenda
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div> 

@@ -57,6 +57,20 @@ namespace CitasEPS.Pages.UserDashboards.Doctor
 
             RelatedAppointment = Prescription.Appointment; // Guardar para la vista
 
+            // Validar que la cita no esté completada
+            if (RelatedAppointment != null && RelatedAppointment.IsCompleted)
+            {
+                TempData["ErrorMessage"] = "No se pueden editar prescripciones de citas completadas.";
+                return RedirectToPage("/Appointments/Details", new { id = RelatedAppointment.Id });
+            }
+
+            // Validar que la cita no esté expirada
+            if (RelatedAppointment != null && RelatedAppointment.AppointmentDateTime < DateTime.UtcNow)
+            {
+                TempData["ErrorMessage"] = "No se pueden editar prescripciones de citas expiradas.";
+                return RedirectToPage("/Appointments/Details", new { id = RelatedAppointment.Id });
+            }
+
             // Cargar lista de medicamentos
             var medicationsList = await _context.Medications.OrderBy(m => m.Name).ToListAsync();
             Medications = new SelectList(medicationsList, "Id", "Name", Prescription.MedicationId);
@@ -82,6 +96,22 @@ namespace CitasEPS.Pages.UserDashboards.Doctor
              if (user == null || currentDoctor == null || prescriptionToUpdate.DoctorId != currentDoctor.Id)
             {
                 return Forbid("No tiene permiso para guardar cambios en esta prescripción.");
+            }
+
+            // Validar que la cita no esté completada o expirada
+            if (prescriptionToUpdate.Appointment != null)
+            {
+                if (prescriptionToUpdate.Appointment.IsCompleted)
+                {
+                    TempData["ErrorMessage"] = "No se pueden editar prescripciones de citas completadas.";
+                    return RedirectToPage("/Appointments/Details", new { id = prescriptionToUpdate.AppointmentId });
+                }
+
+                if (prescriptionToUpdate.Appointment.AppointmentDateTime < DateTime.UtcNow)
+                {
+                    TempData["ErrorMessage"] = "No se pueden editar prescripciones de citas expiradas.";
+                    return RedirectToPage("/Appointments/Details", new { id = prescriptionToUpdate.AppointmentId });
+                }
             }
 
             // Intentar actualizar solo las propiedades permitidas (MedicationId, Dosage, Instructions)

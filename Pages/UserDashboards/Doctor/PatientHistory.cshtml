@@ -18,7 +18,7 @@
                 <div class="alert alert-danger" role="alert">
                     <i class="bi bi-exclamation-triangle-fill"></i> No se encontró el paciente especificado.
                 </div>
-                <a asp-page="/Doctor/Agenda" class="btn btn-secondary"><i class="bi bi-arrow-left-circle"></i> Volver a la Agenda</a>
+                <a asp-page="/UserDashboards/Doctor/Agenda" class="btn btn-secondary"><i class="bi bi-arrow-left-circle"></i> Volver a la Agenda</a>
             }
             else
             {
@@ -45,7 +45,7 @@
                                 {
                                     <tr>
                                         <td>@appt.AppointmentDateTime.ToString("yyyy-MM-dd")</td>
-                                        <td>@appt.AppointmentDateTime.ToString("HH:mm")</td>
+                                        <td>@appt.AppointmentDateTime.ToString("hh:mm tt")</td>
                                         <td>@Html.DisplayFor(modelItem => appt.Notes)</td>
                                         <td>
                                             @if (appt.IsCancelled) { <span class="badge bg-danger">Cancelada</span> }
@@ -99,7 +99,7 @@
                     </div>
                 }
                 <div class="card-footer bg-light text-center mt-4">
-                    <a asp-page="/Doctor/Agenda" class="btn btn-secondary"><i class="bi bi-arrow-left-circle"></i> Volver a la Agenda</a>
+                    <a asp-page="/UserDashboards/Doctor/Agenda" class="btn btn-secondary"><i class="bi bi-arrow-left-circle"></i> Volver a la Agenda</a>
                 </div>
             }
         </div> @* End card-body *@
