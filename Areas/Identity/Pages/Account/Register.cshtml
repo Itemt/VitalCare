@@ -193,9 +193,8 @@
 @section Scripts {
     <partial name="_ValidationScriptsPartial" />
     <script>
-        // Hide all validation errors on page load
         document.addEventListener('DOMContentLoaded', function() {
-            // Hide validation summaries and errors initially
+            // Hide all validation errors on page load
             document.querySelectorAll('.auth-validation-error, .auth-validation-summary').forEach(function(element) {
                 if (!element.textContent.trim()) {
                     element.style.display = 'none';
@@ -256,47 +255,74 @@
                     language: 'es'
                 });
             }
-        });
 
-        // Password visibility toggles
-        document.getElementById('toggleRegisterPassword').addEventListener('click', function() {
-            const passwordInput = document.getElementById('registerPasswordInput');
-            const icon = this.querySelector('i');
-            
-            if (passwordInput.type === 'password') {
-                passwordInput.type = 'text';
-                icon.className = 'bi bi-eye';
-            } else {
-                passwordInput.type = 'password';
-                icon.className = 'bi bi-eye-slash';
+            // Initialize Flatpickr as alternative/primary option
+            if (typeof flatpickr !== 'undefined') {
+                flatpickr(".datepicker-register", {
+                    enableTime: false,
+                    dateFormat: "Y-m-d", // Format for backend
+                    altInput: true,       // Show user-friendly format
+                    altFormat: "d/m/Y",   // User-friendly display format
+                    locale: "es",         // Spanish locale
+                    maxDate: "today",     // Don't allow future dates
+                    allowInput: true,     // Allow manual input
+                    placeholder: "dd/mm/aaaa"
+                });
             }
-        });
 
-        document.getElementById('toggleConfirmPassword').addEventListener('click', function() {
-            const passwordInput = document.getElementById('confirmPasswordInput');
-            const icon = this.querySelector('i');
+            // Password visibility toggles - mejorado con verificación de existencia
+            const toggleRegisterPassword = document.getElementById('toggleRegisterPassword');
+            const registerPasswordInput = document.getElementById('registerPasswordInput');
             
-            if (passwordInput.type === 'password') {
-                passwordInput.type = 'text';
-                icon.className = 'bi bi-eye';
-            } else {
-                passwordInput.type = 'password';
-                icon.className = 'bi bi-eye-slash';
+            if (toggleRegisterPassword && registerPasswordInput) {
+                toggleRegisterPassword.addEventListener('click', function() {
+                    const icon = this.querySelector('i');
+                    
+                    if (registerPasswordInput.type === 'password') {
+                        registerPasswordInput.type = 'text';
+                        icon.className = 'bi bi-eye';
+                    } else {
+                        registerPasswordInput.type = 'password';
+                        icon.className = 'bi bi-eye-slash';
+                    }
+                });
             }
-        });
 
-        // Loading state for submit button
-        document.getElementById('registerForm').addEventListener('submit', function() {
-            const submitBtn = document.getElementById('registerSubmit');
-            submitBtn.classList.add('auth-btn-loading');
-            submitBtn.disabled = true;
+            const toggleConfirmPassword = document.getElementById('toggleConfirmPassword');
+            const confirmPasswordInput = document.getElementById('confirmPasswordInput');
             
-            // Show all validation errors on submit
-            document.querySelectorAll('.auth-validation-error, .auth-validation-summary').forEach(function(element) {
-                if (element.textContent.trim()) {
-                    element.style.display = 'flex';
-                }
-            });
+            if (toggleConfirmPassword && confirmPasswordInput) {
+                toggleConfirmPassword.addEventListener('click', function() {
+                    const icon = this.querySelector('i');
+                    
+                    if (confirmPasswordInput.type === 'password') {
+                        confirmPasswordInput.type = 'text';
+                        icon.className = 'bi bi-eye';
+                    } else {
+                        confirmPasswordInput.type = 'password';
+                        icon.className = 'bi bi-eye-slash';
+                    }
+                });
+            }
+
+            // Loading state for submit button
+            const registerForm = document.getElementById('registerForm');
+            if (registerForm) {
+                registerForm.addEventListener('submit', function() {
+                    const submitBtn = document.getElementById('registerSubmit');
+                    if (submitBtn) {
+                        submitBtn.classList.add('auth-btn-loading');
+                        submitBtn.disabled = true;
+                    }
+                    
+                    // Show all validation errors on submit
+                    document.querySelectorAll('.auth-validation-error, .auth-validation-summary').forEach(function(element) {
+                        if (element.textContent.trim()) {
+                            element.style.display = 'flex';
+                        }
+                    });
+                });
+            }
         });
     </script>
 }

@@ -84,8 +84,8 @@
       <RelatedAsset></RelatedAsset>
       <AssetTraitName></AssetTraitName>
       <AssetTraitValue></AssetTraitValue>
-      <Fingerprint>zpanufhas9</Fingerprint>
-      <Integrity>+V/Q9FMeAxaC738GMsuajuuxNAbGotFo85vZv5ldbJg=</Integrity>
+      <Fingerprint>xi11tg66k1</Fingerprint>
+      <Integrity>B+VFblOMQ3DG3ABPDv321afYFKhMfKp+eTui08tkVEs=</Integrity>
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
       <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
       <OriginalItemSpec>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\css\enhanced-features.css'))</OriginalItemSpec>
@@ -408,8 +408,8 @@
       <RelatedAsset></RelatedAsset>
       <AssetTraitName></AssetTraitName>
       <AssetTraitValue></AssetTraitValue>
-      <Fingerprint>3bodqhr7kt</Fingerprint>
-      <Integrity>T2rbQ4wE6D4kWlgP1dxeRKvRswoRO6CT1XZNFkccacs=</Integrity>
+      <Fingerprint>eakwgv7qr9</Fingerprint>
+      <Integrity>SvWZ775X4Pv/UnMgkc+S3EYYVFdM1slfpRrnNP67Uow=</Integrity>
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
       <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
       <OriginalItemSpec>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\js\notifications.js'))</OriginalItemSpec>
@@ -534,8 +534,8 @@
       <RelatedAsset></RelatedAsset>
       <AssetTraitName></AssetTraitName>
       <AssetTraitValue></AssetTraitValue>
-      <Fingerprint>kb7mhiwyx6</Fingerprint>
-      <Integrity>kIdSp6E9nOlaxFkP+aVXPl5+VYrRdUrf9BYwMf7k6nw=</Integrity>
+      <Fingerprint>ertw2y1ivz</Fingerprint>
+      <Integrity>VgfxD8b/XxHJBFiMdVG7eIxtr4DtArRQSA0u4DDqZjA=</Integrity>
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
       <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
       <OriginalItemSpec>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\js\themeSwitcher.js'))</OriginalItemSpec>

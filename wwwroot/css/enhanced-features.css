@@ -1960,6 +1960,7 @@ body {
     cursor: pointer;
 }
 
+/* Reducir espaciado entre botón y links globalmente */
 .auth-btn-primary {
     width: 100%;
     padding: 1rem;
@@ -1973,7 +1974,7 @@ body {
     transition: all 0.3s ease;
     position: relative;
     overflow: hidden;
-    margin-bottom: 1.5rem;
+    margin-bottom: 1rem; /* Reducido de 1.5rem */
 }
 
 .auth-btn-primary::before {
@@ -2002,7 +2003,7 @@ body {
 
 .auth-links {
     text-align: center;
-    margin-top: 1.5rem;
+    margin-top: 0.5rem; /* Reducido de 1.5rem */
 }
 
 .auth-link {
@@ -2084,16 +2085,37 @@ body {
 /* Two-column layout for register */
 .auth-row {
     display: flex;
-    gap: 1rem;
+    gap: 0.75rem; /* Reducido de 1rem a 0.75rem para que estén más pegados */
     margin-bottom: 1.5rem;
 }
 
 .auth-col {
     flex: 1;
+    min-width: 0; /* Importante para evitar overflow */
 }
 
 .auth-col .auth-form-floating {
     margin-bottom: 0;
+    width: 100%; /* Asegurar que tome todo el ancho disponible */
+}
+
+/* Asegurar que todos los inputs tengan el mismo tamaño */
+.auth-row .auth-form-control,
+.auth-row .auth-select {
+    width: 100% !important;
+    min-width: 0 !important;
+    box-sizing: border-box !important;
+    flex: 1 !important;
+}
+
+/* Específico para el datepicker para que tenga el mismo tamaño */
+.auth-row .auth-col .auth-form-floating input.datepicker-register {
+    width: 100% !important;
+    min-width: 0 !important;
+    box-sizing: border-box !important;
+    padding: 1rem 1rem 1rem 3.5rem !important; /* Mismo padding que otros campos */
+    font-size: 1rem !important;
+    height: auto !important;
 }
 
 .auth-select {
@@ -2280,16 +2302,31 @@ body {
     
     .auth-row {
         flex-direction: column;
-        gap: 0;
+        gap: 0.5rem; /* Reducir gap en móviles para que estén más pegados */
+        margin-bottom: 0; /* Resetear margin para evitar espacios extra */
+    }
+    
+    .auth-col {
+        width: 100%; /* Asegurar que tome todo el ancho disponible */
+        flex: none; /* Resetear flex para móviles */
     }
     
     .auth-col .auth-form-floating {
-        margin-bottom: 1.5rem;
+        margin-bottom: 1.25rem; /* Reducir espacio entre campos */
+        width: 100%; /* Asegurar que el campo tome todo el ancho */
     }
     
     .auth-form-control,
-    .auth-select {
-        padding: 0.875rem 0.875rem 0.875rem 3rem;
+    .auth-select,
+    .auth-row .auth-form-control,
+    .auth-row .auth-select,
+    .datepicker-register {
+        padding: 0.875rem 0.875rem 0.875rem 3rem !important;
+        width: 100% !important; /* Asegurar que tome todo el ancho disponible */
+        box-sizing: border-box !important; /* Incluir padding y border en el ancho */
+        font-size: 1rem !important;
+        min-width: 0 !important;
+        height: auto !important;
     }
     
     .auth-form-icon {
@@ -2301,11 +2338,16 @@ body {
     .auth-form-label {
         left: 3rem;
         top: 0.875rem;
+        max-width: calc(100% - 4rem); /* Limitar ancho para evitar solapamiento */
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
     }
     
     .auth-form-control:focus + .auth-form-label,
     .auth-form-control:not(:placeholder-shown) + .auth-form-label {
         left: 0.875rem;
+        max-width: calc(100% - 2rem); /* Ajustar cuando esté flotando */
     }
 
     .password-toggle {
@@ -2313,6 +2355,69 @@ body {
         height: 35px;
         right: 0.875rem;
         top: 0.875rem;
+    }
+}
+
+/* Mejoras adicionales para móviles muy pequeños */
+@media (max-width: 480px) {
+    .auth-page-wrapper {
+        padding: 0.5rem 0;
+    }
+    
+    .auth-card {
+        margin: 0 0.5rem;
+        border-radius: 12px;
+    }
+    
+    .auth-card .card-body {
+        padding: 1.5rem !important; /* Reducir padding interno */
+    }
+    
+    .auth-row {
+        gap: 0;
+        margin-bottom: 0;
+    }
+    
+    .auth-col .auth-form-floating {
+        margin-bottom: 1.25rem; /* Reducir espacio entre campos */
+    }
+    
+    .auth-form-control,
+    .auth-select {
+        padding: 0.75rem 0.75rem 0.75rem 2.75rem; /* Reducir padding */
+        font-size: 0.9rem; /* Reducir tamaño de fuente ligeramente */
+    }
+    
+    .auth-form-icon {
+        left: 0.75rem;
+        top: 0.75rem;
+        font-size: 0.9rem;
+    }
+    
+    .auth-form-label {
+        left: 2.75rem;
+        top: 0.75rem;
+        font-size: 0.9rem;
+        max-width: calc(100% - 3.5rem);
+    }
+    
+    .auth-form-control:focus + .auth-form-label,
+    .auth-form-control:not(:placeholder-shown) + .auth-form-label {
+        left: 0.75rem;
+        font-size: 0.75rem;
+        max-width: calc(100% - 1.5rem);
+    }
+
+    .password-toggle {
+        width: 32px;
+        height: 32px;
+        right: 0.75rem;
+        top: 0.75rem;
+        padding: 0.25rem;
+    }
+    
+    .password-toggle i {
+        font-size: 0.9rem;
     }
 }
 
@@ -2430,338 +2535,270 @@ body {
 [data-bs-theme="dark"] .auth-select + .auth-form-label {
     color: #7dd3fc !important;
     background: rgba(45, 55, 72, 0.9) !important;
-} 
-
-/* === PÁGINAS ESPECÍFICAS - MODO OSCURO MEJORADO === */
-
-/* Servicios, About y Contact pages - Dark mode fixes */
-/* === HERO SECTIONS CON BORDES REDONDEADOS === */
-.hero-section {
-    border-radius: 2rem !important;
-    margin: 1rem 1rem 3rem 1rem !important;
-    overflow: hidden !important;
 }
 
-[data-bs-theme="dark"] .hero-section {
-    background: linear-gradient(135deg, #001122 0%, #002244 50%, #003366 100%) !important;
+/* Estilos específicos para datepicker */
+.datepicker-register {
+    cursor: pointer;
 }
 
-[data-bs-theme="dark"] .hero-overlay {
-    background-color: rgba(0, 17, 34, 0.95) !important;
-    border-color: rgba(255,255,255,0.15) !important;
+/* Asegurar que el datepicker se vea correctamente */
+.datepicker {
+    z-index: 9999 !important;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
 }
 
-[data-bs-theme="dark"] .service-badge,
-[data-bs-theme="dark"] .trust-badge-modern {
-    background: rgba(255,255,255,0.15) !important;
-    border-color: rgba(255,255,255,0.25) !important;
-    color: #ffffff !important;
+.datepicker-dropdown {
+    border-radius: 12px !important;
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.15) !important;
+    border: 2px solid rgba(0, 51, 102, 0.15) !important;
 }
 
-/* Cards in dark mode */
-[data-bs-theme="dark"] .stat-card-premium,
-[data-bs-theme="dark"] .features-card-premium,
-[data-bs-theme="dark"] .contact-method-card {
-    background: rgba(45,55,72,0.9) !important;
-    border-color: rgba(255,255,255,0.1) !important;
-    color: #e2e8f0 !important;
+.datepicker table {
+    margin: 0;
 }
 
-[data-bs-theme="dark"] .card-title {
-    color: #e2e8f0 !important;
+.datepicker .datepicker-days .table-condensed {
+    width: 100%;
 }
 
-[data-bs-theme="dark"] .card-text {
-    color: #a0aec0 !important;
+.datepicker .datepicker-days td,
+.datepicker .datepicker-days th {
+    text-align: center;
+    border-radius: 8px;
+    transition: all 0.3s ease;
 }
 
-/* Timeline dark mode */
-[data-bs-theme="dark"] .timeline-item .card {
-    background: rgba(45,55,72,0.9) !important;
-    border-color: rgba(255,255,255,0.1) !important;
+.datepicker .datepicker-days td:hover {
+    background: rgba(0, 51, 102, 0.1) !important;
+    color: #003366 !important;
 }
 
-[data-bs-theme="dark"] .timeline-item .card-title {
-    color: inherit !important;
+.datepicker .datepicker-days td.active {
+    background: #003366 !important;
+    color: white !important;
+    border-radius: 8px !important;
 }
 
-[data-bs-theme="dark"] .timeline-item .card-text {
-    color: #a0aec0 !important;
+.datepicker .datepicker-days td.today {
+    background: rgba(0, 51, 102, 0.2) !important;
+    color: #003366 !important;
 }
 
-/* Form dark mode */
-[data-bs-theme="dark"] .form-control,
-[data-bs-theme="dark"] .form-select {
-    background: rgba(26,32,44,0.8) !important;
-    border-color: rgba(255,255,255,0.2) !important;
-    color: #e2e8f0 !important;
+/* Asegurar que los campos de fecha tengan el mismo ancho */
+.auth-row .auth-col .auth-form-floating input.datepicker-register {
+    width: 100% !important;
+    box-sizing: border-box !important;
 }
 
-[data-bs-theme="dark"] .form-control:focus,
-[data-bs-theme="dark"] .form-select:focus {
-    background: rgba(26,32,44,1) !important;
-    border-color: #60a5fa !important;
-    color: #ffffff !important;
-    box-shadow: 0 0 0 0.2rem rgba(96,165,250,0.25) !important;
+/* Forzar igualdad de tamaños en la fila de teléfono y fecha */
+.auth-row .auth-col:nth-child(1) .auth-form-floating,
+.auth-row .auth-col:nth-child(2) .auth-form-floating {
+    width: 100% !important;
+    flex: 1 !important;
 }
 
-[data-bs-theme="dark"] .form-label {
-    color: #e2e8f0 !important;
-}
-
-[data-bs-theme="dark"] .form-check-label {
-    color: #a0aec0 !important;
-}
-
-/* Office info dark mode */
-[data-bs-theme="dark"] .office-info h6 {
-    color: #e2e8f0 !important;
-}
-
-[data-bs-theme="dark"] .office-info p {
-    color: #a0aec0 !important;
-}
-
-/* Modal dark mode */
-[data-bs-theme="dark"] .modal-content {
-    background: rgba(45,55,72,0.95) !important;
-    border-color: rgba(255,255,255,0.1) !important;
-}
-
-[data-bs-theme="dark"] .modal-body {
-    color: #e2e8f0 !important;
-}
-
-[data-bs-theme="dark"] .chat-container {
-    background: rgba(26,32,44,0.8) !important;
-    border-color: rgba(255,255,255,0.1) !important;
-}
-
-/* Section backgrounds in dark mode */
-[data-bs-theme="dark"] section.bg-light {
-    background: rgba(26,32,44,0.5) !important;
-}
-
-/* Button hover effects in dark mode */
-[data-bs-theme="dark"] .btn-outline-primary {
-    border-color: #60a5fa !important;
-    color: #60a5fa !important;
-}
-
-[data-bs-theme="dark"] .btn-outline-primary:hover {
-    background: #60a5fa !important;
-    border-color: #60a5fa !important;
-    color: #000000 !important;
-}
-
-/* Map container dark mode */
-[data-bs-theme="dark"] .map-container iframe {
-    filter: invert(90%) hue-rotate(180deg) brightness(95%) contrast(85%);
-    border-radius: 1rem;
-}
-
-/* Tech specs text in dark mode */
-[data-bs-theme="dark"] .tech-specs strong {
-    color: #e2e8f0 !important;
-}
-
-[data-bs-theme="dark"] .tech-specs small {
-    color: #a0aec0 !important;
-}
-
-/* Feature benefits in dark mode */
-[data-bs-theme="dark"] .feature-benefits small {
-    color: #68d391 !important;
-}
-
-/* Contact details in dark mode */
-[data-bs-theme="dark"] .contact-details small {
-    color: #a0aec0 !important;
-}
-
-/* Hero title specific colors for dark mode */
-[data-bs-theme="dark"] .hero-title-vital {
-    color: #66e6ff !important;
-    text-shadow: 0 0 25px rgba(102, 230, 255, 0.4) !important;
-}
-
-[data-bs-theme="dark"] .hero-title-care {
-    color: #40e065 !important;
-    text-shadow: 0 0 25px rgba(64, 224, 101, 0.4) !important;
-}
-
-/* Gradient text fixes for dark mode */
-[data-bs-theme="dark"] h2[style*="#003366"],
-[data-bs-theme="dark"] h3[style*="#003366"],
-[data-bs-theme="dark"] h4[style*="#003366"],
-[data-bs-theme="dark"] h5[style*="#003366"] {
-    color: #7dd3fc !important;
-}
-
-/* Links in dark mode */
-[data-bs-theme="dark"] a[style*="#003366"] {
-    color: #60a5fa !important;
-}
-
-[data-bs-theme="dark"] a[style*="#003366"]:hover {
-    color: #93c5fd !important;
-}
-
-/* Icon colors in dark mode - override specific colors */
-[data-bs-theme="dark"] i[style*="#003366"] {
-    color: #7dd3fc !important;
-}
-
-[data-bs-theme="dark"] i[style*="#22816b"] {
-    color: #68d391 !important;
-}
-
-[data-bs-theme="dark"] i[style*="#17a2b8"] {
-    color: #63e6be !important;
-}
-
-[data-bs-theme="dark"] i[style*="#dc3545"] {
-    color: #ff8a95 !important;
-}
-
-/* Strong text color fixes in dark mode */
-[data-bs-theme="dark"] strong[style*="#003366"] {
-    color: #7dd3fc !important;
-}
-
-/* Ensure proper contrast for all text elements */
-[data-bs-theme="dark"] .card-body p,
-[data-bs-theme="dark"] .card-body small,
-[data-bs-theme="dark"] .office-details p {
-    color: #a0aec0 !important;
-}
-
-[data-bs-theme="dark"] .card-body h5,
-[data-bs-theme="dark"] .card-body h6 {
-    color: #e2e8f0 !important;
-} 
-
-/* === TARJETAS EPS MEJORADAS === */
-.partner-logo-container {
-    background: rgba(255, 255, 255, 0.95) !important;
-    border: 1px solid rgba(0,0,0,0.1) !important;
-    border-radius: 1.5rem !important;
-    padding: 3rem 1.5rem !important;
-    transition: all 0.3s ease !important;
-    box-shadow: 0 4px 15px rgba(0,0,0,0.1) !important;
-    height: 160px !important;
-    display: flex !important;
-    flex-direction: column !important;
-    align-items: center !important;
-    justify-content: center !important;
-    text-align: center !important;
-    gap: 1rem !important;
-}
-
-.partner-logo-container:hover {
-    transform: translateY(-5px) !important;
-    box-shadow: 0 8px 25px rgba(0,0,0,0.15) !important;
-    border-color: rgba(0,123,255,0.3) !important;
-}
-
-.partner-logo-container .feature-icon-wrapper {
-    margin-bottom: 0 !important;
-    display: flex !important;
-    align-items: center !important;
-    justify-content: center !important;
-}
-
-.partner-logo-container .feature-icon-main {
-    font-size: 3rem !important;
-}
-
-.partner-logo-container .partner-name {
+.auth-row .auth-col:nth-child(1) .auth-form-control,
+.auth-row .auth-col:nth-child(2) .auth-form-control,
+.auth-row .auth-col:nth-child(1) input,
+.auth-row .auth-col:nth-child(2) input {
+    width: 100% !important;
+    min-width: 0 !important;
+    max-width: 100% !important;
+    padding: 1rem 1rem 1rem 3.5rem !important;
     font-size: 1rem !important;
-    font-weight: 600 !important;
-    color: #495057 !important;
-    margin: 0 !important;
-    line-height: 1.2 !important;
+    line-height: 1.5 !important;
+    border-radius: 12px !important;
+    box-sizing: border-box !important;
 }
 
-[data-bs-theme="dark"] .partner-logo-container {
-    background: rgba(45,55,72,0.9) !important;
-    border-color: rgba(255,255,255,0.1) !important;
+/* Específico para Flatpickr input alternativo */
+.auth-row .flatpickr-input.flatpickr-input {
+    width: 100% !important;
+    padding: 1rem 1rem 1rem 3.5rem !important;
+    font-size: 1rem !important;
+    box-sizing: border-box !important;
 }
 
-[data-bs-theme="dark"] .partner-logo-container .partner-name {
+/* Tablet responsive - entre móvil y desktop */
+@media (min-width: 769px) and (max-width: 1024px) {
+    .auth-page-wrapper {
+        padding: 1.5rem 0;
+    }
+    
+    .auth-card {
+        margin: 0 1.5rem;
+        max-width: 600px; /* Limitar ancho máximo en tablets */
+    }
+    
+    .auth-row {
+        gap: 0.6rem; /* Gap intermedio para tablets */
+        margin-bottom: 1.5rem;
+    }
+    
+    .auth-col {
+        flex: 1;
+        min-width: 0;
+    }
+    
+    .auth-col .auth-form-floating {
+        margin-bottom: 0;
+        width: 100%;
+    }
+    
+    /* Arreglar overflow del label en tablets */
+    .auth-form-label {
+        max-width: calc(100% - 4rem); /* Limitar ancho del label */
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+        font-size: 0.95rem; /* Reducir ligeramente el tamaño en tablets */
+    }
+    
+    .auth-form-control:focus + .auth-form-label,
+    .auth-form-control:not(:placeholder-shown) + .auth-form-label {
+        max-width: calc(100% - 2.5rem); /* Ajustar cuando esté flotando */
+        font-size: 0.8rem;
+    }
+    
+    /* Asegurar que los inputs mantengan el mismo tamaño */
+    .auth-row .auth-form-control,
+    .auth-row .auth-select,
+    .auth-row input,
+    .datepicker-register,
+    .flatpickr-input {
+        width: 100% !important;
+        padding: 0.95rem 0.95rem 0.95rem 3.2rem !important;
+        font-size: 0.95rem !important;
+        box-sizing: border-box !important;
+    }
+    
+    .auth-form-icon {
+        left: 0.95rem;
+        top: 0.95rem;
+        font-size: 0.95rem;
+    }
+    
+    /* Reducir espaciado entre botón de registrarse y links */
+    .auth-btn-primary {
+        margin-bottom: 1rem; /* Reducido de 1.5rem */
+    }
+    
+    .auth-links {
+        margin-top: 1rem; /* Reducido de 1.5rem */
+    }
+    
+    /* Ajustar padding interno de la tarjeta */
+    .auth-card .card-body {
+        padding: 2rem 1.5rem !important;
+    }
+}
+
+/* Específico para el label de fecha de nacimiento que es más largo */
+.auth-form-floating:has(input.datepicker-register) .auth-form-label,
+input.datepicker-register + .auth-form-label {
+    font-size: 0.9rem !important; /* Reducir tamaño para que quepa mejor */
+    max-width: calc(100% - 4.5rem) !important; /* Más espacio para texto largo */
+}
+
+.auth-form-floating:has(input.datepicker-register) .auth-form-control:focus + .auth-form-label,
+.auth-form-floating:has(input.datepicker-register) .auth-form-control:not(:placeholder-shown) + .auth-form-label,
+input.datepicker-register:focus + .auth-form-label,
+input.datepicker-register:not(:placeholder-shown) + .auth-form-label {
+    font-size: 0.75rem !important; /* Aún más pequeño cuando está flotando */
+    max-width: calc(100% - 2rem) !important;
+}
+
+/* En tablets, hacer el label aún más pequeño para fecha */
+@media (min-width: 769px) and (max-width: 1024px) {
+    .auth-form-floating:has(input.datepicker-register) .auth-form-label,
+    input.datepicker-register + .auth-form-label {
+        font-size: 0.85rem !important;
+        max-width: calc(100% - 5rem) !important;
+    }
+    
+    .auth-form-floating:has(input.datepicker-register) .auth-form-control:focus + .auth-form-label,
+    .auth-form-floating:has(input.datepicker-register) .auth-form-control:not(:placeholder-shown) + .auth-form-label,
+    input.datepicker-register:focus + .auth-form-label,
+    input.datepicker-register:not(:placeholder-shown) + .auth-form-label {
+        font-size: 0.7rem !important;
+        max-width: calc(100% - 1.5rem) !important;
+    }
+}
+
+/* Fallback para navegadores que no soportan :has() */
+@media (min-width: 769px) and (max-width: 1024px) {
+    .auth-row .auth-col:nth-child(2) .auth-form-label {
+        font-size: 0.85rem !important;
+        max-width: calc(100% - 5rem) !important;
+    }
+    
+    .auth-row .auth-col:nth-child(2) .auth-form-control:focus + .auth-form-label,
+    .auth-row .auth-col:nth-child(2) .auth-form-control:not(:placeholder-shown) + .auth-form-label {
+        font-size: 0.7rem !important;
+        max-width: calc(100% - 1.5rem) !important;
+    }
+}
+
+/* Asegurar que el input de Flatpickr se vea idéntico a los otros campos */
+.auth-form-floating .flatpickr-input[readonly],
+.auth-form-floating .flatpickr-input.form-control,
+.auth-row .flatpickr-input,
+input.flatpickr-input {
+    width: 100% !important;
+    padding: 1rem 1rem 1rem 3.5rem !important;
+    font-size: 1rem !important;
+    background: rgba(255, 255, 255, 0.9) !important;
+    border: 2px solid rgba(0, 51, 102, 0.15) !important;
+    border-radius: 12px !important;
+    transition: all 0.3s ease !important;
+    position: relative !important;
+    z-index: 2 !important;
+    color: #2d3748 !important;
+    box-sizing: border-box !important;
+    outline: none !important;
+    appearance: none !important;
+    -webkit-appearance: none !important;
+    -moz-appearance: none !important;
+}
+
+.auth-form-floating .flatpickr-input[readonly]:focus,
+.auth-form-floating .flatpickr-input.form-control:focus,
+.auth-row .flatpickr-input:focus,
+input.flatpickr-input:focus {
+    outline: none !important;
+    border-color: #003366 !important;
+    background: rgba(255, 255, 255, 1) !important;
+    box-shadow: 0 0 0 0.2rem rgba(0, 51, 102, 0.25) !important;
+    transform: translateY(-2px) !important;
+    color: #1a202c !important;
+}
+
+/* Ocultar el input original de datepicker si existe */
+.auth-form-floating input.datepicker-register:not(.flatpickr-input) {
+    display: none !important;
+}
+
+/* Asegurar que el input de Flatpickr tenga el cursor correcto */
+.auth-form-floating .flatpickr-input[readonly] {
+    cursor: pointer !important;
+}
+
+/* Modo oscuro para Flatpickr */
+[data-bs-theme="dark"] .auth-form-floating .flatpickr-input[readonly],
+[data-bs-theme="dark"] .auth-form-floating .flatpickr-input.form-control,
+[data-bs-theme="dark"] .auth-row .flatpickr-input,
+[data-bs-theme="dark"] input.flatpickr-input {
+    background: rgba(26, 32, 44, 0.8) !important;
+    border-color: rgba(0, 51, 102, 0.3) !important;
     color: #e2e8f0 !important;
 }
 
-/* === RESPONSIVE PARA TARJETAS EPS === */
-@media (max-width: 768px) {
-    .partner-logo-container {
-        height: 140px !important;
-        padding: 2rem 1rem !important;
-    }
-    
-    .partner-logo-container .feature-icon-main {
-        font-size: 2.5rem !important;
-    }
-    
-    .partner-logo-container .partner-name {
-        font-size: 0.9rem !important;
-    }
-}
-
-@media (max-width: 576px) {
-    .partner-logo-container {
-        height: 120px !important;
-        padding: 1.5rem 0.5rem !important;
-    }
-    
-    .partner-logo-container .feature-icon-main {
-        font-size: 2rem !important;
-    }
-    
-    .partner-logo-container .partner-name {
-        font-size: 0.8rem !important;
-    }
-}
-
-/* === SECCIÓN SERVICIOS ADICIONALES === */
-.additional-services-section {
-    background: linear-gradient(135deg, #f8f9fa 0%, #ffffff 100%) !important;
-    border-radius: 2rem !important;
-    margin: 1rem !important;
-    box-shadow: 0 8px 25px rgba(0,0,0,0.1) !important;
-}
-
-/* Modo oscuro para la sección */
-[data-bs-theme="dark"] .additional-services-section {
-    background: linear-gradient(135deg, #2d3748 0%, #1a202c 100%) !important;
-    box-shadow: 0 8px 25px rgba(0,0,0,0.3) !important;
-}
-
-/* === CENTRADO DE ICONOS EN TARJETAS INDIVIDUALES === */
-.advanced-service-card .d-flex.align-items-center {
-    align-items: center !important;
-}
-
-.advanced-service-card .feature-icon-wrapper {
-    display: flex !important;
-    align-items: center !important;
-    justify-content: center !important;
-    width: 60px !important;
-    height: 60px !important;
-    min-width: 60px !important;
-    min-height: 60px !important;
-    flex-shrink: 0 !important;
-    margin: 0 !important;
-}
-
-.advanced-service-card .feature-icon-wrapper.me-3 {
-    margin-right: 1rem !important;
-}
-
-.advanced-service-card .feature-icon-main {
-    display: flex !important;
-    align-items: center !important;
-    justify-content: center !important;
-    margin: 0 !important;
-    padding: 0 !important;
+[data-bs-theme="dark"] .auth-form-floating .flatpickr-input[readonly]:focus,
+[data-bs-theme="dark"] .auth-form-floating .flatpickr-input.form-control:focus,
+[data-bs-theme="dark"] .auth-row .flatpickr-input:focus,
+[data-bs-theme="dark"] input.flatpickr-input:focus {
+    background: rgba(26, 32, 44, 1) !important;
+    color: #ffffff !important;
+    border-color: #003366 !important;
 }

@@ -131,7 +131,7 @@ namespace CitasEPS.Areas.Identity.Pages.Account
             ///     directamente desde tu código. Esta API puede cambiar o ser eliminada en futuras versiones.
             /// </summary>
             [Required(ErrorMessage = "El campo Contraseña es obligatorio.")]
-            [StringLength(100, ErrorMessage = "La {0} debe tener al menos {2} y como máximo {1} caracteres.", MinimumLength = 6)]
+            [StringLength(100, ErrorMessage = "La {0} debe tener al menos {2} y como máximo {1} caracteres.", MinimumLength = 4)]
             [DataType(DataType.Password)]
             [Display(Name = "Contraseña")]
             public string Password { get; set; }
@@ -341,13 +341,13 @@ namespace CitasEPS.Areas.Identity.Pages.Account
         private string TranslateIdentityError(string englishError)
         {
             if (englishError.Contains("Passwords must have at least one digit"))
-                return "Las contraseñas deben tener al menos un dígito ('0'-'9').";
+                return "Las contraseñas ya no requieren dígitos.";
             if (englishError.Contains("Passwords must have at least one lowercase"))
-                 return "Las contraseñas deben tener al menos una minúscula ('a'-'z').";
+                 return "Las contraseñas ya no requieren minúsculas.";
              if (englishError.Contains("Passwords must have at least one uppercase"))
-                 return "Las contraseñas deben tener al menos una mayúscula ('A'-'Z').";
+                 return "Las contraseñas ya no requieren mayúsculas.";
             if (englishError.Contains("Passwords must have at least one non alphanumeric character"))
-                 return "Las contraseñas deben tener al menos un caracter no alfanumérico.";
+                 return "Las contraseñas ya no requieren caracteres especiales.";
             if (englishError.Contains("is already taken"))
                  return "El nombre de usuario o correo ya está en uso.";
             return englishError;

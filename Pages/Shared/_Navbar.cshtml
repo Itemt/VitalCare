@@ -18,7 +18,7 @@
             @* LOGO *@
             <a class="navbar-brand d-flex align-items-center" asp-area="" asp-page="/Index" style="font-size: 1.3rem; font-weight: 700;">
                 <i class="bi bi-heart-pulse-fill me-2 brand-icon" style="font-size: 1.4rem; color: #dc3545;"></i> 
-                <span class="brand-text" style="color: white;">Vital<span class="text-info brand-care-text" style="color: rgba(255, 255, 255, 0.8);">Care</span></span>
+                <span class="brand-text-vital">Vital</span><span class="brand-text-care">Care</span>
             </a>
             
             @* CONTROLES MÓVILES (HAMBURGUESA + TEMA) *@
@@ -250,31 +250,21 @@
                     }
                     else
                     {
-                        @* NO LOGUEADOS - BOTONES DESKTOP *@
-        <div class="d-none d-xl-flex gap-2">
-            <a class="btn btn-login btn-register d-flex align-items-center" asp-area="Identity" asp-page="/Account/Register">
-                <i class="bi bi-person-plus me-2"></i> 
-                <span>Registrarse</span>
-            </a>
-            <a class="btn btn-login d-flex align-items-center" asp-area="Identity" asp-page="/Account/Login">
-                <i class="bi bi-box-arrow-in-right me-2"></i> 
-                <span>Iniciar Sesión</span>
-            </a>
-        </div>
-        
-        @* NO LOGUEADOS - BOTONES MOBILE (dentro del collapse) *@
-        <div class="d-xl-none mobile-buttons-container">
-            <a class="btn btn-login btn-register me-2" asp-area="Identity" asp-page="/Account/Register">
-                <i class="bi bi-person-plus"></i>
-                <span>Registrarse</span>
-            </a>
-            <a class="btn btn-login" asp-area="Identity" asp-page="/Account/Login">
-                <i class="bi bi-box-arrow-in-right"></i>
-                <span>Iniciar Sesión</span>
-            </a>
-        </div>
+                        @* NO LOGUEADOS - BOTONES *@
+                        <div class="d-flex gap-2 justify-content-center align-items-center">
+                            <a class="btn btn-register d-flex align-items-center justify-content-center" asp-area="Identity" asp-page="/Account/Register">
+                                <i class="bi bi-person-plus me-2"></i> 
+                                <span class="d-none d-sm-inline">Registrarse</span>
+                            </a>
+                            <a class="btn btn-login d-flex align-items-center justify-content-center" asp-area="Identity" asp-page="/Account/Login">
+                                <i class="bi bi-box-arrow-in-right me-2"></i> 
+                                <span class="d-none d-sm-inline">Iniciar Sesión</span>
+                            </a>
+                        </div>
                     }
                 </div>
+                
+
             </div>
         </div>
     </nav>
@@ -953,6 +943,13 @@
             min-height: 50px; /* Altura mínima uniforme */
         }
         
+        /* MODO CLARO - Bordes visibles en nav-links */
+        :root .nav-item .nav-link,
+        [data-bs-theme="light"] .nav-item .nav-link {
+            border: 2px solid #dee2e6 !important;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.1) !important;
+        }
+        
         /* MANTENER ICONOS VISIBLES EN ESCRITORIO, OCULTOS EN MÓVIL */
         .nav-item .nav-link i {
             display: inline-block !important; /* Mostrar iconos en móvil también */
@@ -960,13 +957,25 @@
             font-size: 0.9rem !important;
         }
         
-        /* Cambiar hover a color más oscuro como el botón login */
+        /* Hover para nav-links */
         .nav-item .nav-link:hover, .nav-item .nav-link:focus {
             background: linear-gradient(135deg, #1e293b 0%, #334155 100%) !important;
             color: white !important;
             border-color: #334155 !important;
             transform: translateY(-2px) !important; /* Efecto de elevación */
             box-shadow: 0 4px 8px rgba(30, 41, 59, 0.3);
+        }
+        
+        /* MODO CLARO - Hover con texto oscuro visible */
+        :root .nav-item .nav-link:hover,
+        :root .nav-item .nav-link:focus,
+        [data-bs-theme="light"] .nav-item .nav-link:hover,
+        [data-bs-theme="light"] .nav-item .nav-link:focus {
+            background: #e9ecef !important;
+            color: #0f172a !important;
+            border-color: #adb5bd !important;
+            transform: translateY(-2px) !important;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15) !important;
         }
 
         /* Estilos específicos para roles */
@@ -1286,6 +1295,228 @@
     body.doctor-body-bg .navbar-nav .dropdown-item:hover {
         background-color: rgba(255,255,255,0.1);
         color: #fff;
+    }
+
+    /* === ESTILOS DEL LOGO SEGÚN TEMA === */
+    
+    /* Logo en modo claro - "Vital" gris claro */
+    :root,
+    [data-bs-theme="light"] {
+        --logo-vital-color: #9ca3af; /* Gris claro */
+        --logo-care-color: #6b7280; /* Gris medio */
+    }
+    
+    /* Logo en modo oscuro - completamente blanco */
+    [data-bs-theme="dark"] {
+        --logo-vital-color: #ffffff; /* Blanco completo */
+        --logo-care-color: #ffffff; /* Blanco completo */
+    }
+    
+    /* Aplicar colores a las clases del logo */
+    .brand-text-vital {
+        color: var(--logo-vital-color) !important;
+        transition: color 0.3s ease;
+    }
+    
+    .brand-text-care {
+        color: var(--logo-care-color) !important;
+        transition: color 0.3s ease;
+    }
+
+    /* === CORRECCIÓN DE COLUMNAS RESPONSIVE === */
+    
+    /* Asegurar que el grid funcione correctamente en tablets */
+    @@media (max-width: 1199.98px) {
+        .navbar-collapse {
+            width: 100% !important;
+            max-width: 100% !important;
+        }
+        
+        .navbar-nav {
+            width: 100% !important;
+            display: grid !important;
+            grid-template-columns: repeat(3, 1fr) !important;
+            gap: 0.5rem !important;
+            margin: 0 !important;
+            padding: 1rem 0 !important;
+        }
+        
+        .nav-item {
+            width: 100% !important;
+            margin: 0 !important;
+        }
+        
+        .nav-item .nav-link {
+            width: 100% !important;
+            text-align: center !important;
+            justify-content: center !important;
+            padding: 0.75rem 0.5rem !important;
+            border-radius: 0.375rem !important;
+            background: rgba(255,255,255,0.05) !important;
+            border: 1px solid rgba(255,255,255,0.1) !important;
+        }
+    }
+    
+    /* Tablets medianos - 2 columnas */
+    @@media (max-width: 991.98px) and (min-width: 600px) {
+        .navbar-nav {
+            grid-template-columns: repeat(2, 1fr) !important;
+            gap: 0.4rem !important;
+        }
+    }
+    
+    /* Móviles - 1 columna */
+    @@media (max-width: 599.98px) {
+        .navbar-nav {
+            grid-template-columns: 1fr !important;
+            gap: 0.3rem !important;
+        }
+        
+        .nav-item .nav-link {
+            padding: 0.6rem 1rem !important;
+            text-align: left !important;
+            justify-content: flex-start !important;
+        }
+    }
+
+    /* === BOTONES DE AUTENTICACIÓN MEJORADOS === */
+    
+    /* Estilos base para botones */
+    .navbar .btn-login,
+    .navbar .btn-register {
+        height: 38px !important;
+        min-width: 120px !important;
+        padding: 0.375rem 0.75rem !important;
+        border-radius: 8px !important;
+        font-size: 0.875rem !important;
+        font-weight: 500 !important;
+        display: inline-flex !important;
+        align-items: center !important;
+        justify-content: center !important;
+        text-decoration: none !important;
+        transition: all 0.3s ease !important;
+        white-space: nowrap !important;
+        overflow: hidden !important;
+        border: 1px solid transparent !important; /* Borde transparente por defecto */
+    }
+    
+    /* Botones de login y registro - estilos originales */
+    .navbar .btn-login {
+        background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%) !important;
+        color: white !important;
+        border: 1px solid #334155 !important;
+        box-shadow: 0 2px 4px rgba(0,0,0,0.1) !important;
+    }
+    
+    .navbar .btn-login:hover {
+        background: linear-gradient(135deg, #1e293b 0%, #334155 100%) !important;
+        color: white !important;
+        transform: translateY(-1px) !important;
+        box-shadow: 0 4px 12px rgba(0,0,0,0.15) !important;
+        border: 1px solid #475569 !important;
+    }
+    
+    .navbar .btn-register {
+        background: linear-gradient(135deg, #1e40af 0%, #1d4ed8 100%) !important;
+        color: white !important;
+        border: 1px solid #1e40af !important;
+        box-shadow: 0 2px 4px rgba(30, 64, 175, 0.2) !important;
+    }
+    
+    .navbar .btn-register:hover {
+        background: linear-gradient(135deg, #1d4ed8 0%, #2563eb 100%) !important;
+        color: white !important;
+        transform: translateY(-1px) !important;
+        box-shadow: 0 4px 12px rgba(30, 64, 175, 0.3) !important;
+        border: 1px solid #1e40af !important;
+    }
+    
+    /* MODO OSCURO - Botones con estilos adaptados */
+    [data-bs-theme="dark"] .navbar .btn-login {
+        background: linear-gradient(135deg, #374151 0%, #4b5563 100%) !important;
+        color: white !important;
+        border: 1px solid #6b7280 !important;
+    }
+    
+    [data-bs-theme="dark"] .navbar .btn-login:hover {
+        background: linear-gradient(135deg, #4b5563 0%, #6b7280 100%) !important;
+        color: white !important;
+        transform: translateY(-1px) !important;
+        box-shadow: 0 4px 12px rgba(0,0,0,0.3) !important;
+        border: 1px solid #9ca3af !important;
+    }
+    
+    [data-bs-theme="dark"] .navbar .btn-register {
+        background: linear-gradient(135deg, #1e40af 0%, #1d4ed8 100%) !important;
+        color: white !important;
+        border: 1px solid #3b82f6 !important;
+    }
+    
+    [data-bs-theme="dark"] .navbar .btn-register:hover {
+        background: linear-gradient(135deg, #1d4ed8 0%, #2563eb 100%) !important;
+        color: white !important;
+        transform: translateY(-1px) !important;
+        box-shadow: 0 4px 12px rgba(30, 64, 175, 0.4) !important;
+        border: 1px solid #60a5fa !important;
+    }
+    
+    /* Iconos de botones */
+    .navbar .btn-login i,
+    .navbar .btn-register i {
+        font-size: 0.875rem !important;
+        margin-right: 0.5rem !important;
+        flex-shrink: 0 !important;
+    }
+    
+    /* Asegurar color blanco del texto en todos los estados */
+    .navbar .btn-login,
+    .navbar .btn-login:hover,
+    .navbar .btn-login:focus,
+    .navbar .btn-login:active,
+    .navbar .btn-register,
+    .navbar .btn-register:hover,
+    .navbar .btn-register:focus,
+    .navbar .btn-register:active {
+        color: white !important;
+        text-decoration: none !important;
+    }
+    
+    /* Centrado adicional para contenedor de botones */
+    .navbar .d-flex.justify-content-center {
+        width: 100% !important;
+    }
+    
+    /* Responsive para botones */
+    @@media (max-width: 767.98px) {
+        .navbar .btn-login,
+        .navbar .btn-register {
+            min-width: 80px !important;
+            padding: 0.25rem 0.5rem !important;
+            font-size: 0.8rem !important;
+            height: 32px !important;
+        }
+        
+        .navbar .btn-login i,
+        .navbar .btn-register i {
+            font-size: 0.8rem !important;
+            margin-right: 0.25rem !important;
+        }
+    }
+    
+    @@media (max-width: 479.98px) {
+        .navbar .btn-login,
+        .navbar .btn-register {
+            min-width: 60px !important;
+            padding: 0.2rem 0.4rem !important;
+            font-size: 0.75rem !important;
+            height: 30px !important;
+        }
+        
+        .navbar .btn-login i,
+        .navbar .btn-register i {
+            font-size: 0.75rem !important;
+            margin-right: 0.2rem !important;
+        }
     }
 </style> 
 
