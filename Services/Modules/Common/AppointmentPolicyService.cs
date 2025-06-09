@@ -26,17 +26,34 @@ namespace CitasEPS.Services
             reason = string.Empty;
             var (startOfWeek, endOfWeek) = _dateTimeService.GetWeekRange(newAppointmentDate);
 
-            var scheduledCount = _context.Appointments
-                .Count(a => a.PatientId == patientId && 
-                             !a.IsCancelled && 
-                             a.AppointmentDateTime >= startOfWeek && 
-                             a.AppointmentDateTime <= endOfWeek);
+            // Convertir a UTC para consulta a la BD
+            var utcStartOfWeek = startOfWeek.ToUniversalTime();
+            var utcEndOfWeek = endOfWeek.ToUniversalTime();
+
+            var appointmentsInWeek = _context.Appointments
+                .Where(a => a.PatientId == patientId && 
+                            a.AppointmentDateTime >= utcStartOfWeek && 
+                            a.AppointmentDateTime <= utcEndOfWeek)
+                .ToList();
+
+            // Verificar límite de citas programadas (máximo 2 por semana)
+            var scheduledCount = appointmentsInWeek.Count(a => !a.IsCancelled);
 
             if (scheduledCount >= MaxWeeklyAppointments)
             {
                 reason = $"Ya tiene {MaxWeeklyAppointments} citas programadas (o que ya ocurrieron sin ser canceladas) para la semana del {startOfWeek:dd/MM/yyyy} al {endOfWeek:dd/MM/yyyy}.";
                 return false;
             }
+
+            // Verificar límite de cancelaciones (máximo 3 por semana)
+            var cancelledByPatientCount = appointmentsInWeek.Count(a => a.IsCancelled && a.CancelledByPatient);
+
+            if (cancelledByPatientCount >= MaxWeeklyCancellations)
+            {
+                reason = $"Ha cancelado {MaxWeeklyCancellations} citas esta semana ({startOfWeek:dd/MM/yyyy} - {endOfWeek:dd/MM/yyyy}). No puede agendar más citas hasta la próxima semana.";
+                return false;
+            }
+
             return true;
         }
 
@@ -50,9 +67,11 @@ namespace CitasEPS.Services
             var utcStartOfWeek = localStartOfWeek.ToUniversalTime();
             var utcEndOfWeek = localEndOfWeek.ToUniversalTime();
 
+            // Solo contar cancelaciones hechas por el PACIENTE, no por el doctor
             var cancelledCount = _context.Appointments
                 .Count(a => a.PatientId == patientId && 
                              a.IsCancelled && 
+                             a.CancelledByPatient && // Solo cancelaciones hechas por el paciente
                              a.AppointmentDateTime >= utcStartOfWeek && // Usar versiones UTC
                              a.AppointmentDateTime <= utcEndOfWeek);   // Usar versiones UTC
             
@@ -165,7 +184,7 @@ namespace CitasEPS.Services
             {
                 ScheduledForLimitInWeek = appointmentsInWeek.Count(a => !a.IsCancelled),
                 PendingOrConfirmedForDisplayInWeek = appointmentsInWeek.Count(a => !a.IsCancelled && !a.IsCompleted && !a.WasNoShow),
-                CancelledInWeek = appointmentsInWeek.Count(a => a.IsCancelled),
+                CancelledInWeek = appointmentsInWeek.Count(a => a.IsCancelled && a.CancelledByPatient), // Solo cancelaciones por el paciente
                 RescheduledInWeek = appointmentsInWeek.Count(a => a.RescheduleRequested || a.DoctorProposedReschedule),
                 WeekStartDate = localStartOfWeek, // For display, use the local start/end date of week
                 WeekEndDate = localEndOfWeek

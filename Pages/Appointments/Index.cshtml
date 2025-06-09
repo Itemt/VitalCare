@@ -566,7 +566,7 @@ else // Patient View
                             </span>
                         </div>
                         <div class="col-md-4">
-                            <strong style="color: white;">Citas Canceladas:</strong>
+                            <strong style="color: white;">Citas Canceladas (por mí):</strong>
                             <span class='@(Model.PatientWeeklyStats.CancelledInWeek >= Model.PatientWeeklyStats.MaxWeeklyCancellations ? "text-warning fw-bold" : "text-success fw-bold")'>
                                 @Model.PatientWeeklyStats.CancelledInWeek de @Model.PatientWeeklyStats.MaxWeeklyCancellations
                             </span>

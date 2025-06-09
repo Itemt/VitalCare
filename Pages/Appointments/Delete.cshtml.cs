@@ -99,7 +99,7 @@ namespace CitasEPS.Pages.Appointments
                 {
                     string patientName = appointmentToNotify.Patient?.FullName ?? "Paciente Desconocido";
                     string doctorName = appointmentToNotify.Doctor?.FullName ?? "Doctor Desconocido";
-                    string appointmentDateTime = appointmentToNotify.AppointmentDateTime.ToString("dd/MM/yyyy hh:mm tt");
+                    string appointmentDateTime = ColombiaTimeZoneService.FormatInColombia(appointmentToNotify.AppointmentDateTime, "dd/MM/yyyy hh:mm tt");
 
                     // Notification for the Patient
                     if (appointmentToNotify.Patient?.User != null)

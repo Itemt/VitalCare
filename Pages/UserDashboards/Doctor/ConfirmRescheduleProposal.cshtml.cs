@@ -106,6 +106,7 @@ namespace CitasEPS.Pages.UserDashboards.Doctor
             appointmentToUpdate.AppointmentDateTime = appointmentToUpdate.ProposedNewDateTime.Value;
             appointmentToUpdate.IsConfirmed = true;
             appointmentToUpdate.RescheduleRequested = false;
+            appointmentToUpdate.DoctorProposedReschedule = false;
             appointmentToUpdate.ProposedNewDateTime = null;
 
              _context.Attach(appointmentToUpdate).State = EntityState.Modified;
@@ -172,6 +173,7 @@ namespace CitasEPS.Pages.UserDashboards.Doctor
             // Clear flags, keep original time
             appointmentToUpdate.IsConfirmed = false; // Remains unconfirmed
             appointmentToUpdate.RescheduleRequested = false;
+            appointmentToUpdate.DoctorProposedReschedule = false;
             appointmentToUpdate.ProposedNewDateTime = null;
 
             _context.Attach(appointmentToUpdate).State = EntityState.Modified;

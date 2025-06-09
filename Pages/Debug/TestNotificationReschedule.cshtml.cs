@@ -60,7 +60,7 @@ namespace CitasEPS.Pages.Debug
                 results.AppendLine($"✅ Cita encontrada: ID {appointment.Id}");
                 results.AppendLine($"   • Paciente: {appointment.Patient?.FullName ?? "N/A"}");
                 results.AppendLine($"   • Doctor: {appointment.Doctor?.FullName ?? "N/A"}");
-                results.AppendLine($"   • Fecha: {appointment.AppointmentDateTime:dd/MM/yyyy HH:mm}");
+                results.AppendLine($"   • Fecha: {ColombiaTimeZoneService.FormatInColombia(appointment.AppointmentDateTime, "dd/MM/yyyy HH:mm")}");
 
                 // Paso 2: Verificar Doctor
                 results.AppendLine();

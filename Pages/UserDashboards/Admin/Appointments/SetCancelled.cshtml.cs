@@ -105,6 +105,7 @@ namespace CitasEPS.Pages.UserDashboards.Admin.Appointments
             appointmentToMarkAsCancelled.DoctorProposedReschedule = false;
             appointmentToMarkAsCancelled.ProposedNewDateTime = null;
             appointmentToMarkAsCancelled.DoctorRescheduleReason = null;
+            appointmentToMarkAsCancelled.CancelledByPatient = false; // Las cancelaciones del admin NO afectan el conteo del paciente
 
 
             try
@@ -120,7 +121,7 @@ namespace CitasEPS.Pages.UserDashboards.Admin.Appointments
 
                 string patientName = appointmentToMarkAsCancelled.Patient?.FullName ?? "Paciente Desconocido";
                 string doctorName = appointmentToMarkAsCancelled.Doctor?.FullName ?? "Doctor Desconocido";
-                string appointmentDateTime = appointmentToMarkAsCancelled.AppointmentDateTime.ToString("dd/MM/yyyy hh:mm tt");
+                string appointmentDateTime = ColombiaTimeZoneService.FormatInColombia(appointmentToMarkAsCancelled.AppointmentDateTime, "dd/MM/yyyy hh:mm tt");
 
                 if (patientUser != null)
                 {

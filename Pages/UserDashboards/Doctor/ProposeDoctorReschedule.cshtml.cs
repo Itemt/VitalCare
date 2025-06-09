@@ -111,15 +111,30 @@ namespace CitasEPS.Pages.UserDashboards.Doctor
 
         public async Task<IActionResult> OnPostAsync()
         {
+            _logger.LogInformation($"[DEBUG] ProposeDoctorReschedule OnPostAsync started - Appointment ID: {Id}, ProposedNewDateTime: {Input.ProposedNewDateTime}, Reason: {Input.Reason}");
+            
             // TODO: Load Appointment, verify doctor ownership, check eligibility
             // TODO: Validate Input.ProposedNewDateTime (past, working hours, patient availability, etc.) - use UTC
             // TODO: Set Appointment.ProposedNewDateTime, DoctorProposedReschedule=true, IsConfirmed=false
             // TODO: Save changes
 
             var user = await _userManager.GetUserAsync(User);
-            if (user == null) return Challenge();
+            if (user == null) 
+            {
+                _logger.LogError($"[DEBUG] User not found in OnPostAsync");
+                return Challenge();
+            }
+            
+            _logger.LogInformation($"[DEBUG] User found: {user.Email}");
+            
             var doctor = await _context.Doctors.FirstOrDefaultAsync(d => d.UserId == user.Id);
-             if (doctor == null) return NotFound("Doctor profile not found.");
+            if (doctor == null) 
+            {
+                _logger.LogError($"[DEBUG] Doctor profile not found for user {user.Email}");
+                return NotFound("Doctor profile not found.");
+            }
+            
+            _logger.LogInformation($"[DEBUG] Doctor found: {doctor.FullName} (ID: {doctor.Id})");
 
             var appointmentToUpdate = await _context.Appointments
                                             .Include(a => a.Patient) // Needed for validation checks potentially

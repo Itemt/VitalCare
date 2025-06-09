@@ -287,7 +287,8 @@ namespace CitasEPS.Pages.Appointments
             {
                 var doctorHasSlot = await _context.Appointments
                     .AnyAsync(a => a.DoctorId == Appointment.DoctorId &&
-                                   a.AppointmentDateTime == Appointment.AppointmentDateTime);
+                                   a.AppointmentDateTime == Appointment.AppointmentDateTime &&
+                                   !a.IsCancelled); // Excluir citas canceladas
 
                 if (doctorHasSlot) // If true, means there IS an existing appointment
                 {

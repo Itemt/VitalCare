@@ -47,15 +47,16 @@ public class CreateModel : PageModel
             return Page();
         }
 
-                    // Optional: Add checks for scheduling conflicts (e.g., Doctor availability)
-        // bool conflictExists = await _context.Appointments.AnyAsync(a => 
-        //     a.DoctorId == Appointment.DoctorId && 
-        //     a.AppointmentDateTime == Appointment.AppointmentDateTime);
-        // if (conflictExists) {
-        //     ModelState.AddModelError(string.Empty, "El médico ya tiene una cita programada en esta fecha y hora.");
-        //     await PopulateDropdownsAsync(Appointment.PatientId, Appointment.DoctorId);
-        //     return Page();
-        // }
+        // Doctor Availability Validation
+        bool conflictExists = await _context.Appointments.AnyAsync(a => 
+            a.DoctorId == Appointment.DoctorId && 
+            a.AppointmentDateTime == Appointment.AppointmentDateTime &&
+            !a.IsCancelled); // Excluir citas canceladas
+        if (conflictExists) {
+            ModelState.AddModelError("Appointment.AppointmentDateTime", "El médico ya tiene una cita programada en esta fecha y hora.");
+            await PopulateDropdownsAsync(Appointment.PatientId, Appointment.DoctorId);
+            return Page();
+        }
 
         _context.Appointments.Add(Appointment);
         try

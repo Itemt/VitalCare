@@ -24,6 +24,12 @@
                 <span asp-validation-for="Input.ProposedNewDateTime" class="text-danger"></span>
             </div>
 
+            <div class="form-group mb-3">
+                <label asp-for="Input.Reason" class="control-label"></label>
+                <textarea asp-for="Input.Reason" class="form-control" rows="3" placeholder="Explique brevemente el motivo del reagendamiento..."></textarea>
+                <span asp-validation-for="Input.Reason" class="text-danger"></span>
+            </div>
+
             <div class="form-group mt-4">
                 <button type="submit" class="btn btn-primary">
                     <i class="bi bi-send"></i> Enviar Propuesta al Paciente

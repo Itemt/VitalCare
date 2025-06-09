@@ -133,7 +133,7 @@ namespace CitasEPS.Pages.UserDashboards.Doctor
             appointmentToCancel.IsCancelled = true;
             appointmentToCancel.IsConfirmed = false; 
             appointmentToCancel.RescheduleRequested = false; 
-            appointmentToCancel.ProposedNewDateTime = null; 
+            appointmentToCancel.ProposedNewDateTime = null;
 
             try
             {
@@ -150,7 +150,18 @@ namespace CitasEPS.Pages.UserDashboards.Doctor
                     var appointmentFormatted = ColombiaTimeZoneService.FormatInColombia(appointmentToCancel.AppointmentDateTime, "dd/MM/yyyy 'a las' hh:mm tt");
                     
                     var patientMessage = $"Su cita con el Dr. {doctorName} programada para el {appointmentFormatted} ha sido cancelada.";
-                    await _notificationService.CreateNotificationAsync(appointmentToCancel.Patient.User.Id, patientMessage, NotificationType.AppointmentCancelled, appointmentToCancel.Id);
+                    
+                    _logger.LogInformation($"[DEBUG] Attempting to create notification for patient {appointmentToCancel.Patient.User.Email} - Message: {patientMessage}");
+                    
+                    try
+                    {
+                        await _notificationService.CreateNotificationAsync(appointmentToCancel.Patient.User.Id, patientMessage, NotificationType.AppointmentCancelled, appointmentToCancel.Id);
+                        _logger.LogInformation($"[DEBUG] Notification created successfully for patient {appointmentToCancel.Patient.User.Email}");
+                    }
+                    catch (Exception notifEx)
+                    {
+                        _logger.LogError(notifEx, "[DEBUG] Failed to create notification for patient {PatientEmail}", appointmentToCancel.Patient.User.Email);
+                    }
                     
                     // Enviar correos de confirmación de cancelación
                     try

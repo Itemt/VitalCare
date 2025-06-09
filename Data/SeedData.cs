@@ -46,8 +46,8 @@ namespace CitasEPS.Data
             // Inicializar Citas
             await SeedAppointmentsAsync(context, logger);
 
-            // Inicializar Ratings de ejemplo
-            await SeedRatingsAsync(context, logger);
+            // Inicializar Ratings de ejemplo - DESHABILITADO para evitar completar citas automáticamente
+            // await SeedRatingsAsync(context, logger);
 
             logger.LogInformation("Inicialización de datos (seed) completada.");
         }
@@ -401,53 +401,6 @@ namespace CitasEPS.Data
             await context.Appointments.AddRangeAsync(appointments);
             await context.SaveChangesAsync();
             logger.LogInformation($"{appointments.Count} citas de ejemplo inicializadas (seed).");
-        }
-
-        private static async Task SeedRatingsAsync(ApplicationDbContext context, ILogger logger)
-        {
-            if (await context.Ratings.AnyAsync())
-            {
-                logger.LogInformation("Ratings ya inicializados (seed).");
-                return;
-            }
-
-            // Obtener algunas citas completadas para crear ratings
-            var completedAppointments = await context.Appointments
-                .Where(a => a.IsConfirmed) // Usar citas confirmadas como si fueran completadas para el ejemplo
-                .Take(5) // Solo las primeras 5
-                .ToListAsync();
-
-            if (!completedAppointments.Any())
-            {
-                logger.LogWarning("No hay citas confirmadas para crear ratings de ejemplo.");
-                return;
-            }
-
-            var random = new Random();
-            var ratings = new List<Rating>();
-
-            foreach (var appointment in completedAppointments)
-            {
-                // Marcar la cita como completada para que tenga sentido el rating
-                appointment.IsCompleted = true;
-
-                var rating = new Rating
-                {
-                    AppointmentId = appointment.Id,
-                    PatientRating = random.Next(4, 6), // Ratings entre 4 y 5 estrellas
-                    PatientComment = $"Excelente atención del doctor. Muy profesional y amable.",
-                    PatientRatingDate = DateTime.UtcNow.AddDays(-random.Next(1, 30)),
-                    DoctorRating = random.Next(4, 6), // Doctor también califica al paciente
-                    DoctorComment = "Paciente muy colaborativo y puntual.",
-                    DoctorRatingDate = DateTime.UtcNow.AddDays(-random.Next(1, 30))
-                };
-
-                ratings.Add(rating);
-            }
-
-            await context.Ratings.AddRangeAsync(ratings);
-            await context.SaveChangesAsync();
-            logger.LogInformation($"{ratings.Count} ratings de ejemplo inicializados (seed).");
         }
     }
 } 

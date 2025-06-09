@@ -214,6 +214,36 @@
                                 </div>
                             }
                             
+                            @if (Model.Appointment.DoctorProposedReschedule && Model.Appointment.ProposedNewDateTime.HasValue && !Model.Appointment.IsCompleted && !Model.Appointment.IsCancelled)
+                            {
+                                <div class="mb-3">
+                                    <div class="alert alert-info">
+                                        <h6 class="alert-heading">
+                                            <i class="bi bi-clock-history"></i> Propuesta de Reagendamiento Enviada
+                                        </h6>
+                                        <p class="mb-1">Ha propuesto reagendar esta cita al siguiente horario:</p>
+                                        <strong class="text-primary">
+                                            <i class="bi bi-calendar-event me-1"></i>
+                                            @ColombiaTimeZoneService.FormatInColombia(Model.Appointment.ProposedNewDateTime.Value, "dddd, dd MMMM yyyy - hh:mm tt")
+                                        </strong>
+                                        <hr class="my-2">
+                                        <small class="text-muted">
+                                            <i class="bi bi-info-circle me-1"></i>
+                                            Esperando respuesta del paciente. El paciente recibirá una notificación para revisar y confirmar el nuevo horario.
+                                        </small>
+                                        @if (!string.IsNullOrEmpty(Model.Appointment.DoctorRescheduleReason))
+                                        {
+                                            <div class="mt-2">
+                                                <small class="text-muted"><strong>Motivo:</strong> @Model.Appointment.DoctorRescheduleReason</small>
+                                            </div>
+                                        }
+                                        <div class="mt-2">
+                                            <small class="text-muted">Reagendamientos realizados: @Model.Appointment.DoctorRescheduleCount de 2</small>
+                                        </div>
+                                    </div>
+                                </div>
+                            }
+                            
                             @if (!Model.Appointment.RescheduleRequested && !Model.Appointment.IsCompleted && !Model.Appointment.IsCancelled && Model.Appointment.AppointmentDateTime >= DateTime.UtcNow && !Model.Appointment.DoctorProposedReschedule && Model.Appointment.DoctorRescheduleCount < 2)
                             {
                                 <div class="mb-3">
@@ -305,9 +335,30 @@
                         else if (Model.Appointment.DoctorProposedReschedule)
                         {
                             <div class="mb-3">
-                                <span class="text-primary">
-                                    <i class="bi bi-calendar-event"></i> El doctor ha propuesto reagendamiento
-                                </span>
+                                <div class="alert alert-warning">
+                                    <h6 class="alert-heading">
+                                        <i class="bi bi-calendar-event"></i> El doctor ha propuesto reagendamiento
+                                    </h6>
+                                    @if (Model.Appointment.ProposedNewDateTime.HasValue)
+                                    {
+                                        <p class="mb-1">Nuevo horario propuesto:</p>
+                                        <strong class="text-primary">
+                                            @ColombiaTimeZoneService.FormatInColombia(Model.Appointment.ProposedNewDateTime.Value, "dddd, dd MMMM yyyy - hh:mm tt")
+                                        </strong>
+                                        @if (!string.IsNullOrEmpty(Model.Appointment.DoctorRescheduleReason))
+                                        {
+                                            <div class="mt-2">
+                                                <small class="text-muted"><strong>Motivo:</strong> @Model.Appointment.DoctorRescheduleReason</small>
+                                            </div>
+                                        }
+                                    }
+                                    <hr class="my-2">
+                                    <div class="d-flex gap-2">
+                                        <a asp-page="/Appointments/ReviewDoctorProposal" asp-route-id="@Model.Appointment.Id" class="btn btn-success btn-sm">
+                                            <i class="bi bi-check-circle"></i> Revisar y Responder
+                                        </a>
+                                    </div>
+                                </div>
                             </div>
                         }
                         else if (Model.Appointment.IsCompleted || Model.Appointment.IsCancelled || Model.Appointment.AppointmentDateTime < DateTime.UtcNow)
@@ -345,6 +396,14 @@
                                     <a asp-page="/UserDashboards/Doctor/ConfirmRescheduleProposal" asp-route-id="@Model.Appointment.Id" class="btn btn-success me-2" title="Revisar propuesta de reagendamiento del paciente">
                                         <i class="bi bi-check-circle"></i> Revisar Propuesta
                                     </a>
+                                }
+                                @* Show doctor's proposal status *@
+                                else if (Model.Appointment.DoctorProposedReschedule && Model.Appointment.ProposedNewDateTime.HasValue && !Model.Appointment.IsCompleted && !Model.Appointment.IsCancelled)
+                                {
+                                    <span class="badge bg-info me-2" title="Ha propuesto reagendamiento - Esperando respuesta del paciente">
+                                        <i class="bi bi-clock-history me-1"></i>
+                                        Propuesta Enviada: @ColombiaTimeZoneService.FormatInColombia(Model.Appointment.ProposedNewDateTime.Value, "dd/MM 'a las' HH:mm")
+                                    </span>
                                 }
                                 @* Button to propose reschedule *@
                                 else if (!Model.Appointment.IsCompleted && !Model.Appointment.IsCancelled && Model.Appointment.AppointmentDateTime >= DateTime.UtcNow && !Model.Appointment.RescheduleRequested && !Model.Appointment.DoctorProposedReschedule)

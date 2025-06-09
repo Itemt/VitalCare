@@ -59,6 +59,9 @@ namespace CitasEPS.Models.Modules.Appointments
         [Display(Name = "Cancelada")]
         public bool IsCancelled { get; set; } = false; // Nueva propiedad para cancelación
 
+        [Display(Name = "Cancelada por Paciente")]
+        public bool CancelledByPatient { get; set; } = false; // Para distinguir si la cancelación fue hecha por el paciente
+
         [Display(Name = "Reagendamiento Propuesto por Doctor")]
         public bool DoctorProposedReschedule { get; set; } = false; // New flag for doctor-initiated reschedule
         
