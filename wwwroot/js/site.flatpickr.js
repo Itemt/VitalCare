@@ -12,23 +12,6 @@ document.addEventListener('DOMContentLoaded', function () {
         minDate: "today"      // Prevent selection of past dates
     });
 
-    // Initialize Flatpickr for Date of Birth on Manage Profile page
-    flatpickr(".datepicker-manage", {
-        enableTime: false,
-        dateFormat: "Y-m-d", // Format for display and parsing
-        altInput: true,       // Show a user-friendly format, but submit the standard one
-        altFormat: "d/m/Y",   // User-friendly display format
-        locale: "es",         // Spanish locale
-        maxDate: "today"      // Don't allow future dates
-    });
-
-    // Initialize Flatpickr for Date of Birth on Registration page
-    flatpickr(".datepicker-register", {
-        enableTime: false,
-        dateFormat: "Y-m-d", // Format for display and parsing
-        altInput: true,       // Show a user-friendly format, but submit the standard one
-        altFormat: "d/m/Y",   // User-friendly display format
-        locale: "es",         // Spanish locale
-        maxDate: "today"      // Don't allow future dates
-    });
+    // Note: Date of birth fields now use native HTML5 date inputs for better consistency
+    // No need for custom Flatpickr initialization on .datepicker-manage or .datepicker-register
 }); 

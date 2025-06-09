@@ -68,9 +68,9 @@ namespace CitasEPS.Services
         /// Formatea una fecha UTC para mostrar en hora de Colombia
         /// </summary>
         /// <param name="utcDateTime">Fecha en UTC</param>
-        /// <param name="format">Formato de fecha (por defecto dd/MM/yyyy HH:mm)</param>
+        /// <param name="format">Formato de fecha (por defecto dd/MM/yyyy hh:mm tt)</param>
         /// <returns>Cadena formateada en hora de Colombia</returns>
-        public static string FormatInColombia(DateTime utcDateTime, string format = "dd/MM/yyyy HH:mm")
+        public static string FormatInColombia(DateTime utcDateTime, string format = "dd/MM/yyyy hh:mm tt")
         {
             var colombiaTime = ConvertUtcToColombia(utcDateTime);
             return colombiaTime.ToString(format);

@@ -135,7 +135,7 @@ namespace CitasEPS.Pages.Appointments
                     {
                         await _notificationService.CreateNotificationAsync(
                             appointmentToUpdate.Patient.User.Id,
-                            $"Su cita para el {appointmentToUpdate.AppointmentDateTime:dd/MM/yyyy 'a las' HH:mm} ha sido confirmada por el médico.",
+                            $"Su cita para el {appointmentToUpdate.AppointmentDateTime:dd/MM/yyyy 'a las' hh:mm tt} ha sido confirmada por el médico.",
                             NotificationType.AppointmentConfirmed,
                             appointmentToUpdate.Id
                         );
@@ -198,32 +198,7 @@ namespace CitasEPS.Pages.Appointments
             return RedirectToPage(new { id = id }); // Recargar la misma página
         }
 
-        // NUEVO: Método para solicitar reagendamiento por el paciente
-        public async Task<IActionResult> OnPostRequestRescheduleAsync(int id)
-        {
-            var appointment = await _context.Appointments.FindAsync(id);
-            if (appointment == null)
-            {
-                return NotFound();
-            }
 
-            // Solo un paciente puede solicitar reagendamiento y si la cita no está completada
-            var currentUser = await _userManager.GetUserAsync(User);
-            if (currentUser == null)
-            {
-                // Si el usuario no se encuentra (aunque [Authorize] debería prevenir esto)
-                return Challenge(); // O manejar como error apropiado
-            }
-            if (currentUser.Id == appointment.PatientId && !appointment.IsCompleted)
-            {
-                appointment.RescheduleRequested = true;
-                appointment.IsConfirmed = false; // Requiere nueva confirmación del doctor
-                await _context.SaveChangesAsync();
-            }
-            // Si no es paciente o la cita está completada, no hace nada, solo redirige
-
-            return RedirectToPage(new { id = id });
-        }
 
         // NUEVO: Handler para marcar como que el paciente no se presentó
         public async Task<IActionResult> OnPostMarkNoShowAsync(int id)
@@ -360,9 +335,63 @@ namespace CitasEPS.Pages.Appointments
                 _context.Appointments.Update(appointmentToCancel);
                 await _context.SaveChangesAsync();
                 TempData["SuccessMessage"] = $"La cita ID {appointmentToCancel.Id} ha sido cancelada exitosamente.";
-                 _logger.LogInformation($"Appointment ID {appointmentToCancel.Id} cancelled successfully by user {user.Email}.");
+                _logger.LogInformation($"Appointment ID {appointmentToCancel.Id} cancelled successfully by user {user.Email}.");
+
+                // --- START: Send notifications and emails for cancellation ---
+                if (User.IsInRole("Paciente"))
+                {
+                    // Patient cancelled - notify doctor and send emails
+                    if (appointmentToCancel.Doctor?.User != null)
+                    {
+                        var patient = await _context.Patients.FirstOrDefaultAsync(p => p.UserId == user.Id);
+                        var patientName = patient?.FullName ?? user.Email;
+                        var appointmentFormatted = ColombiaTimeZoneService.FormatInColombia(appointmentToCancel.AppointmentDateTime, "dd/MM/yyyy 'a las' hh:mm tt");
+                        
+                        // Notify doctor
+                        var doctorMessage = $"La cita con el paciente {patientName} programada para el {appointmentFormatted} ha sido cancelada por el paciente.";
+                        await _notificationService.CreateNotificationAsync(appointmentToCancel.Doctor.User.Id, doctorMessage, NotificationType.AppointmentCancelled, appointmentToCancel.Id);
+                        
+                        // Send cancellation emails
+                        try
+                        {
+                            await _appointmentEmailService.SendAppointmentCancelledEmailAsync(appointmentToCancel, user, appointmentToCancel.Doctor.User);
+                            _logger.LogInformation($"Cancellation email sent for appointment {appointmentToCancel.Id}");
+                        }
+                        catch (Exception emailEx)
+                        {
+                            _logger.LogError(emailEx, "Error sending cancellation email for appointment {AppointmentId}", appointmentToCancel.Id);
+                        }
+                    }
+                }
+                else if (User.IsInRole("Doctor"))
+                {
+                    // Doctor cancelled - notify patient and send emails
+                    if (appointmentToCancel.Patient?.User != null)
+                    {
+                        var doctor = await _context.Doctors.FirstOrDefaultAsync(d => d.UserId == user.Id);
+                        var doctorName = doctor?.FullName ?? user.Email;
+                        var appointmentFormatted = ColombiaTimeZoneService.FormatInColombia(appointmentToCancel.AppointmentDateTime, "dd/MM/yyyy 'a las' hh:mm tt");
+                        
+                        // Notify patient
+                        var patientMessage = $"Su cita con el Dr. {doctorName} programada para el {appointmentFormatted} ha sido cancelada.";
+                        await _notificationService.CreateNotificationAsync(appointmentToCancel.Patient.User.Id, patientMessage, NotificationType.AppointmentCancelled, appointmentToCancel.Id);
+                        
+                        // Send cancellation emails
+                        try
+                        {
+                            await _appointmentEmailService.SendAppointmentCancelledEmailAsync(appointmentToCancel, appointmentToCancel.Patient.User, user);
+                            _logger.LogInformation($"Cancellation email sent for appointment {appointmentToCancel.Id}");
+                        }
+                        catch (Exception emailEx)
+                        {
+                            _logger.LogError(emailEx, "Error sending cancellation email for appointment {AppointmentId}", appointmentToCancel.Id);
+                        }
+                    }
+                }
+                // --- END: Send notifications and emails for cancellation ---
+
                 // After cancelling from details, redirect to the appropriate index/agenda
-                if (User.IsInRole("Doctor")) return RedirectToPage("/Doctor/Agenda");
+                if (User.IsInRole("Doctor")) return RedirectToPage("/UserDashboards/Doctor/Agenda");
                 else return RedirectToPage("./Index");
 
             }

@@ -408,17 +408,17 @@
       <EndpointProperties><![CDATA[[{"Name":"fingerprint","Value":"nacpqqw9jo"},{"Name":"integrity","Value":"sha256-f0z2jOZ2rLMWlIRQ7//jc131TFy0gmB2pssnu3dROqk="},{"Name":"label","Value":"_content/CitasEPS/js/scroll-performance-test.js"}]]]></EndpointProperties>
       <ResponseHeaders><![CDATA[[{"Name":"Accept-Ranges","Value":"bytes"},{"Name":"Cache-Control","Value":"max-age=31536000, immutable"},{"Name":"Content-Length","Value":"11765"},{"Name":"Content-Type","Value":"text/javascript"},{"Name":"ETag","Value":"\u0022f0z2jOZ2rLMWlIRQ7//jc131TFy0gmB2pssnu3dROqk=\u0022"},{"Name":"Last-Modified","Value":"Mon, 02 Jun 2025 18:21:40 GMT"}]]]></ResponseHeaders>
     </StaticWebAssetEndpoint>
+    <StaticWebAssetEndpoint Include="_content/CitasEPS/js/site.flatpickr.g1ijgteuok.js">
+      <AssetFile>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\js\site.flatpickr.js'))</AssetFile>
+      <Selectors><![CDATA[[]]]></Selectors>
+      <EndpointProperties><![CDATA[[{"Name":"fingerprint","Value":"g1ijgteuok"},{"Name":"integrity","Value":"sha256-7BkdgOpzWBj/zSAJnfUVEt0Be7MV7ekWa/C6pQ3Q/Jc="},{"Name":"label","Value":"_content/CitasEPS/js/site.flatpickr.js"}]]]></EndpointProperties>
+      <ResponseHeaders><![CDATA[[{"Name":"Accept-Ranges","Value":"bytes"},{"Name":"Cache-Control","Value":"max-age=31536000, immutable"},{"Name":"Content-Length","Value":"1019"},{"Name":"Content-Type","Value":"text/javascript"},{"Name":"ETag","Value":"\u00227BkdgOpzWBj/zSAJnfUVEt0Be7MV7ekWa/C6pQ3Q/Jc=\u0022"},{"Name":"Last-Modified","Value":"Mon, 09 Jun 2025 21:41:09 GMT"}]]]></ResponseHeaders>
+    </StaticWebAssetEndpoint>
     <StaticWebAssetEndpoint Include="_content/CitasEPS/js/site.flatpickr.js">
       <AssetFile>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\js\site.flatpickr.js'))</AssetFile>
       <Selectors><![CDATA[[]]]></Selectors>
-      <EndpointProperties><![CDATA[[{"Name":"integrity","Value":"sha256-ZILs9enY97XfJ8dkLfxQK2y2HJr8VXu0B9Qt47MdYiI="}]]]></EndpointProperties>
-      <ResponseHeaders><![CDATA[[{"Name":"Accept-Ranges","Value":"bytes"},{"Name":"Cache-Control","Value":"no-cache"},{"Name":"Content-Length","Value":"1776"},{"Name":"Content-Type","Value":"text/javascript"},{"Name":"ETag","Value":"\u0022ZILs9enY97XfJ8dkLfxQK2y2HJr8VXu0B9Qt47MdYiI=\u0022"},{"Name":"Last-Modified","Value":"Mon, 02 Jun 2025 07:28:49 GMT"}]]]></ResponseHeaders>
-    </StaticWebAssetEndpoint>
-    <StaticWebAssetEndpoint Include="_content/CitasEPS/js/site.flatpickr.wzdvxddh3j.js">
-      <AssetFile>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\js\site.flatpickr.js'))</AssetFile>
-      <Selectors><![CDATA[[]]]></Selectors>
-      <EndpointProperties><![CDATA[[{"Name":"fingerprint","Value":"wzdvxddh3j"},{"Name":"integrity","Value":"sha256-ZILs9enY97XfJ8dkLfxQK2y2HJr8VXu0B9Qt47MdYiI="},{"Name":"label","Value":"_content/CitasEPS/js/site.flatpickr.js"}]]]></EndpointProperties>
-      <ResponseHeaders><![CDATA[[{"Name":"Accept-Ranges","Value":"bytes"},{"Name":"Cache-Control","Value":"max-age=31536000, immutable"},{"Name":"Content-Length","Value":"1776"},{"Name":"Content-Type","Value":"text/javascript"},{"Name":"ETag","Value":"\u0022ZILs9enY97XfJ8dkLfxQK2y2HJr8VXu0B9Qt47MdYiI=\u0022"},{"Name":"Last-Modified","Value":"Mon, 02 Jun 2025 07:28:49 GMT"}]]]></ResponseHeaders>
+      <EndpointProperties><![CDATA[[{"Name":"integrity","Value":"sha256-7BkdgOpzWBj/zSAJnfUVEt0Be7MV7ekWa/C6pQ3Q/Jc="}]]]></EndpointProperties>
+      <ResponseHeaders><![CDATA[[{"Name":"Accept-Ranges","Value":"bytes"},{"Name":"Cache-Control","Value":"no-cache"},{"Name":"Content-Length","Value":"1019"},{"Name":"Content-Type","Value":"text/javascript"},{"Name":"ETag","Value":"\u00227BkdgOpzWBj/zSAJnfUVEt0Be7MV7ekWa/C6pQ3Q/Jc=\u0022"},{"Name":"Last-Modified","Value":"Mon, 09 Jun 2025 21:41:09 GMT"}]]]></ResponseHeaders>
     </StaticWebAssetEndpoint>
     <StaticWebAssetEndpoint Include="_content/CitasEPS/js/site.js">
       <AssetFile>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\js\site.js'))</AssetFile>

@@ -36,6 +36,7 @@ namespace CitasEPS.Models.Modules.Users
         [Required(ErrorMessage = "La fecha de nacimiento es requerida.")]
         [DataType(DataType.Date)]
         [Display(Name = "Fecha de Nacimiento")]
+        [MinimumAge(18, ErrorMessage = "El paciente debe ser mayor de edad (18 años).")]
         public DateTime DateOfBirth { get; set; }
 
         [Phone(ErrorMessage = "El formato del teléfono no es válido.")]

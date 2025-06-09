@@ -20,6 +20,17 @@ public class EmailSender : IEmailSender
 
     public async Task SendEmailAsync(string email, string subject, string htmlMessage)
     {
+        // Verificar si Resend está deshabilitado
+        var resendEnabled = _configuration.GetValue<bool>("Resend:Enabled", true);
+        if (!resendEnabled)
+        {
+            Console.WriteLine("Resend API is temporarily disabled. Falling back to console output.");
+            Console.WriteLine($"Email to: {email}");
+            Console.WriteLine($"Subject: {subject}");
+            Console.WriteLine($"Message: {htmlMessage}");
+            return;
+        }
+
         var fromEmail = _configuration["Resend:FromEmail"];
 
         if (string.IsNullOrEmpty(fromEmail))

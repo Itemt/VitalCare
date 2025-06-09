@@ -14,12 +14,15 @@ namespace CitasEPS.Models.Modules.Core
         AppointmentCancelled,
         AppointmentRescheduled, // Doctor proposes, patient needs to accept/reject
         RescheduleRequestedByPatient, // Patient requests, doctor needs to review
-        RescheduleAcceptedByPatient,
-        RescheduleRejectedByPatient,
+        RescheduleRequestSent, // Confirmation to patient that their request was sent
+        RescheduleAcceptedByPatient, // Patient accepts doctor's proposal
+        RescheduleRejectedByPatient, // Patient rejects doctor's proposal
         RescheduleAcceptedByDoctor, // If a doctor accepts a patient's proposal (if that flow exists)
         RescheduleRejectedByDoctor, // Doctor rejects patient's proposal
         RescheduleProposedByDoctor, // Doctor proposes a new time
-        Generic
+        RescheduleProposalSent, // Confirmation to doctor that their proposal was sent
+        AppointmentReminder,
+        PaymentProcessed
     }
 
     public class Notification
@@ -44,7 +47,7 @@ namespace CitasEPS.Models.Modules.Core
         public DateTime CreatedAt { get; set; } = DateTime.UtcNow;
 
         // Optional: Type of notification (e.g., "NewAppointment", "Cancellation", "Reminder")
-        public NotificationType NotificationType { get; set; } = NotificationType.Generic;
+        public NotificationType NotificationType { get; set; } = NotificationType.NewAppointment;
     }
 } 
 

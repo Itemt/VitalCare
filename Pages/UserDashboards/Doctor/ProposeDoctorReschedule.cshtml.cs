@@ -1,6 +1,12 @@
 using CitasEPS.Data;
-using CitasEPS.Models; using CitasEPS.Models.Modules.Users; using CitasEPS.Models.Modules.Medical; using CitasEPS.Models.Modules.Appointments; using CitasEPS.Models.Modules.Core;
+using CitasEPS.Models;
+using CitasEPS.Models.Modules.Users;
+using CitasEPS.Models.Modules.Medical;
+using CitasEPS.Models.Modules.Appointments;
+using CitasEPS.Models.Modules.Core;
+using CitasEPS.Models.Modules.Common;
 using CitasEPS.Services;
+using CitasEPS.Services.Modules.Common;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
@@ -10,6 +16,7 @@ using Microsoft.Extensions.Logging;
 using System;
 using System.ComponentModel.DataAnnotations;
 using System.Threading.Tasks;
+using System.Linq;
 
 namespace CitasEPS.Pages.UserDashboards.Doctor
 {
@@ -20,13 +27,17 @@ namespace CitasEPS.Pages.UserDashboards.Doctor
         private readonly UserManager<User> _userManager;
         private readonly ILogger<ProposeDoctorRescheduleModel> _logger;
         private readonly INotificationService _notificationService;
+        private readonly IAppointmentPolicyService _appointmentPolicyService;
+        private readonly IAppointmentEmailService _appointmentEmailService;
 
-        public ProposeDoctorRescheduleModel(ApplicationDbContext context, UserManager<User> userManager, ILogger<ProposeDoctorRescheduleModel> logger, INotificationService notificationService)
+        public ProposeDoctorRescheduleModel(ApplicationDbContext context, UserManager<User> userManager, ILogger<ProposeDoctorRescheduleModel> logger, INotificationService notificationService, IAppointmentPolicyService appointmentPolicyService, IAppointmentEmailService appointmentEmailService)
         {
             _context = context;
             _userManager = userManager;
             _logger = logger;
             _notificationService = notificationService;
+            _appointmentPolicyService = appointmentPolicyService;
+            _appointmentEmailService = appointmentEmailService;
         }
 
         [BindProperty(SupportsGet = true)]
@@ -44,6 +55,10 @@ namespace CitasEPS.Pages.UserDashboards.Doctor
             [Required(ErrorMessage = "La nueva fecha y hora propuesta es requerida.")]
             [Display(Name = "Nueva Fecha y Hora Propuesta")]
             public DateTime ProposedNewDateTime { get; set; }
+
+            [Required(ErrorMessage = "La razón del reagendamiento es requerida.")]
+            [Display(Name = "Razón del Reagendamiento")]
+            public string? Reason { get; set; }
         }
 
         public async Task<IActionResult> OnGetAsync()
@@ -70,6 +85,13 @@ namespace CitasEPS.Pages.UserDashboards.Doctor
              }
              if (CurrentAppointment.RescheduleRequested) { // Patient already requested
                   TempData["ErrorMessage"] = "El paciente ya ha propuesto un reagendamiento para esta cita. Por favor, revise esa propuesta primero.";
+                 return RedirectToPage("./Agenda");
+             }
+
+             // Verificar límites de reagendamiento
+             if (!_appointmentPolicyService.CanRescheduleAppointment(CurrentAppointment.Id, out string appointmentReason))
+             {
+                 TempData["ErrorMessage"] = appointmentReason;
                  return RedirectToPage("./Agenda");
              }
 
@@ -116,6 +138,35 @@ namespace CitasEPS.Pages.UserDashboards.Doctor
                  return RedirectToPage("./Agenda");
              }
 
+            // --- START: Validations ---
+            if (appointmentToUpdate.IsCompleted || appointmentToUpdate.IsCancelled)
+            {
+                TempData["ErrorMessage"] = "No se puede reagendar una cita completada o cancelada.";
+                return RedirectToPage("./Agenda");
+            }
+
+            // Verificar que aún no se ha propuesto reagendamiento
+            if (appointmentToUpdate.RescheduleRequested || appointmentToUpdate.DoctorProposedReschedule)
+            {
+                TempData["ErrorMessage"] = "Ya existe una propuesta de reagendamiento pendiente para esta cita.";
+                return RedirectToPage("./Agenda");
+            }
+
+            // Verificar límite de reagendamientos del doctor (máximo 2)
+            if (appointmentToUpdate.DoctorRescheduleCount >= 2)
+            {
+                TempData["ErrorMessage"] = "Ha alcanzado el límite máximo de reagendamientos como doctor para esta cita (2).";
+                return RedirectToPage("./Agenda");
+            }
+
+            // Verificar que la cita es futura
+            if (appointmentToUpdate.AppointmentDateTime <= DateTime.UtcNow.AddHours(1))
+            {
+                TempData["ErrorMessage"] = "Solo se pueden reagendar citas futuras con al menos 1 hora de anticipación.";
+                return RedirectToPage("./Agenda");
+            }
+            // --- END VALIDATIONS --- 
+
             // --- START: Convert Input.ProposedNewDateTime from Colombia time to UTC ---
             var originalProposedDateTime = Input.ProposedNewDateTime; // Keep original for validation
             
@@ -135,9 +186,9 @@ namespace CitasEPS.Pages.UserDashboards.Doctor
             }
             
             _logger.LogInformation($"Input Colombia Time: {originalProposedDateTime:dd/MM/yyyy HH:mm}, Converted UTC: {utcProposedDateTime:dd/MM/yyyy HH:mm}");
-             // --- END: Convert Input.ProposedNewDateTime from Colombia time to UTC ---
+            // --- END: Convert Input.ProposedNewDateTime from Colombia time to UTC ---
 
-            // --- START VALIDATIONS --- 
+            // --- START: Additional Validations ---
             if (utcProposedDateTime < DateTime.UtcNow) 
             {
                  ModelState.AddModelError("Input.ProposedNewDateTime", "No puede proponer una fecha u hora en el pasado.");
@@ -182,17 +233,13 @@ namespace CitasEPS.Pages.UserDashboards.Doctor
             {
                 ModelState.AddModelError("Input.ProposedNewDateTime", "Usted ya tiene otra cita programada para esta fecha y hora exactas.");
             }
-            // --- END VALIDATIONS --- 
+            // --- END: Additional Validations ---
 
             if (!ModelState.IsValid)
             {
-                // Repopulate needed view data
-                if (appointmentToUpdate.Patient != null)
-                {
-                    PatientName = appointmentToUpdate.Patient.FullName ?? "Paciente Desconocido";
-                }
-                var currentAppointmentColombia = ColombiaTimeZoneService.ConvertUtcToColombia(appointmentToUpdate.AppointmentDateTime);
-                CurrentDateTime = currentAppointmentColombia.ToString("dd/MM/yyyy hh:mm tt");
+                // Load appointment for return view
+                CurrentAppointment = appointmentToUpdate;
+                PatientName = appointmentToUpdate.Patient?.FullName ?? "Paciente Desconocido";
                 return Page();
             }
 
@@ -200,14 +247,15 @@ namespace CitasEPS.Pages.UserDashboards.Doctor
             appointmentToUpdate.ProposedNewDateTime = utcProposedDateTime; // Save UTC version
             appointmentToUpdate.DoctorProposedReschedule = true;
             appointmentToUpdate.RescheduleRequested = false; // Clear any previous patient request
-            appointmentToUpdate.IsConfirmed = false; // Requires patient confirmation now
+            appointmentToUpdate.DoctorRescheduleReason = Input.Reason;
+            appointmentToUpdate.DoctorRescheduleCount += 1; // Incrementar contador de reagendamientos del doctor
 
             _context.Attach(appointmentToUpdate).State = EntityState.Modified;
 
             try
             {
                 await _context.SaveChangesAsync();
-                _logger.LogInformation($"Doctor {user.Email} proposed reschedule for Appointment {Id} to {utcProposedDateTime}");
+                _logger.LogInformation($"Doctor {user.Email} proposed reschedule for Appointment {Id} to {Input.ProposedNewDateTime}");
                 TempData["SuccessMessage"] = "Propuesta de reagendamiento enviada al paciente exitosamente.";
 
                 // --- Notificar al paciente sobre la propuesta del doctor ---
@@ -217,12 +265,28 @@ namespace CitasEPS.Pages.UserDashboards.Doctor
                     
                     // Usar el servicio de zona horaria para formatear las fechas en hora de Colombia
                     var currentAppointmentFormatted = ColombiaTimeZoneService.FormatInColombia(appointmentToUpdate.AppointmentDateTime);
-                    var proposedAppointmentFormatted = ColombiaTimeZoneService.FormatInColombia(utcProposedDateTime);
+                    var proposedAppointmentFormatted = ColombiaTimeZoneService.FormatInColombia(Input.ProposedNewDateTime);
                     
                     var patientMessage = $"El Dr. {doctorName} ha propuesto reagendar su cita del {currentAppointmentFormatted} para el {proposedAppointmentFormatted}. Por favor revise y confirme.";
                     await _notificationService.CreateNotificationAsync(appointmentToUpdate.Patient.User.Id, patientMessage, NotificationType.RescheduleProposedByDoctor, appointmentToUpdate.Id);
                     
+                    // Create confirmation notification for the doctor
+                    var doctorConfirmationMessage = $"Su propuesta de reagendamiento ha sido enviada al paciente {appointmentToUpdate.Patient.FullName}. Propuso cambiar la cita del {currentAppointmentFormatted} para el {proposedAppointmentFormatted}. Esperando respuesta del paciente.";
+                    await _notificationService.CreateNotificationAsync(user.Id, doctorConfirmationMessage, NotificationType.RescheduleProposalSent, appointmentToUpdate.Id);
+                    
                     _logger.LogInformation($"Notification sent to patient {appointmentToUpdate.Patient.User.Email}: Current time Colombia: {currentAppointmentFormatted}, Proposed time Colombia: {proposedAppointmentFormatted}");
+                    
+                    // Enviar correo electrónico al paciente
+                    try
+                    {
+                        await _appointmentEmailService.SendDoctorRescheduleProposedEmailAsync(appointmentToUpdate, appointmentToUpdate.Patient.User, user);
+                        _logger.LogInformation($"Reschedule proposal email sent to patient {appointmentToUpdate.Patient.User.Email}");
+                    }
+                    catch (Exception emailEx)
+                    {
+                        _logger.LogError(emailEx, $"Failed to send reschedule proposal email to patient {appointmentToUpdate.Patient.User.Email}");
+                        // No fallar el proceso completo si el correo no se envía
+                    }
                 }
                 // --- Fin notificación al paciente ---
 

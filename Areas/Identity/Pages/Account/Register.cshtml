@@ -137,8 +137,10 @@
                                     <div class="auth-form-floating">
                                         <i class="auth-form-icon bi bi-calendar-date-fill"></i>
                                         <input asp-for="Input.DateOfBirth" 
-                                               class="auth-form-control datepicker-register" 
-                                               type="text" 
+                                               class="auth-form-control" 
+                                               type="date" 
+                                               asp-format="{0:yyyy-MM-dd}"
+                                               max="@DateTime.Today.AddYears(-18).ToString("yyyy-MM-dd")"
                                                placeholder=" " />
                                         <label asp-for="Input.DateOfBirth" class="auth-form-label">Fecha de Nacimiento</label>
                                         <span asp-validation-for="Input.DateOfBirth" class="auth-validation-error"></span>
@@ -277,79 +279,6 @@
                 toggleConfirmPassword.addEventListener('click', function(e) {
                     e.preventDefault();
                     e.stopPropagation();
-                    
-                    const icon = this.querySelector('i');
-                    
-                    if (confirmPasswordInput.type === 'password') {
-                        confirmPasswordInput.type = 'text';
-                        if (icon) icon.className = 'bi bi-eye';
-                    } else {
-                        confirmPasswordInput.type = 'password';
-                        if (icon) icon.className = 'bi bi-eye-slash';
-                    }
-                });
-            }
-
-            // Initialize datepicker if available
-            if (typeof jQuery !== 'undefined' && jQuery.fn.datepicker) {
-                $('.datepicker-register').datepicker({
-                    format: 'dd/mm/yyyy',
-                    autoclose: true,
-                    todayHighlight: true,
-                    endDate: new Date(),
-                    language: 'es'
-                });
-            }
-
-            // Initialize Flatpickr as alternative/primary option
-            if (typeof flatpickr !== 'undefined') {
-                flatpickr(".datepicker-register", {
-                    enableTime: false,
-                    dateFormat: "Y-m-d", // Format for backend
-                    altInput: true,       // Show user-friendly format
-                    altFormat: "d/m/Y",   // User-friendly display format
-                    locale: "es",         // Spanish locale
-                    maxDate: "today",     // Don't allow future dates
-                    allowInput: true,     // Allow manual input
-                    placeholder: "dd/mm/aaaa",
-                    // Hacer que el input alternativo use las mismas clases
-                    onReady: function(selectedDates, dateStr, instance) {
-                        // Agregar las clases del sistema de auth al input alternativo
-                        if (instance.altInput) {
-                            instance.altInput.classList.add('auth-form-control');
-                        }
-                    }
-                });
-            }
-
-            // Password visibility toggles - mejorado con verificación de existencia
-            const toggleRegisterPassword = document.getElementById('toggleRegisterPassword');
-            const registerPasswordInput = document.getElementById('registerPasswordInput');
-            
-            if (toggleRegisterPassword && registerPasswordInput) {
-                toggleRegisterPassword.addEventListener('click', function(e) {
-                    e.preventDefault(); // Prevenir cualquier comportamiento por defecto
-                    e.stopPropagation(); // Detener propagación del evento
-                    
-                    const icon = this.querySelector('i');
-                    
-                    if (registerPasswordInput.type === 'password') {
-                        registerPasswordInput.type = 'text';
-                        if (icon) icon.className = 'bi bi-eye';
-                    } else {
-                        registerPasswordInput.type = 'password';
-                        if (icon) icon.className = 'bi bi-eye-slash';
-                    }
-                });
-            }
-
-            const toggleConfirmPassword = document.getElementById('toggleConfirmPassword');
-            const confirmPasswordInput = document.getElementById('confirmPasswordInput');
-            
-            if (toggleConfirmPassword && confirmPasswordInput) {
-                toggleConfirmPassword.addEventListener('click', function(e) {
-                    e.preventDefault(); // Prevenir cualquier comportamiento por defecto
-                    e.stopPropagation(); // Detener propagación del evento
                     
                     const icon = this.querySelector('i');
                     

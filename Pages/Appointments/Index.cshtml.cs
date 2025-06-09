@@ -366,8 +366,24 @@ namespace CitasEPS.Pages.Appointments
                 if (appointmentToCancel.Doctor?.User != null)
                 {
                     var patientName = patient?.FullName ?? user.Email; // Use patient from current context
-                    var doctorMessage = $"La cita con el paciente {patientName} programada para el {appointmentToCancel.AppointmentDateTime:dd/MM/yyyy HH:mm} ha sido cancelada por el paciente.";
+                    
+                    // Usar el servicio de zona horaria para formatear la fecha en hora de Colombia
+                    var appointmentFormatted = ColombiaTimeZoneService.FormatInColombia(appointmentToCancel.AppointmentDateTime, "dd/MM/yyyy 'a las' hh:mm tt");
+                    
+                    var doctorMessage = $"La cita con el paciente {patientName} programada para el {appointmentFormatted} ha sido cancelada por el paciente.";
                     await _notificationService.CreateNotificationAsync(appointmentToCancel.Doctor.User.Id, doctorMessage, NotificationType.AppointmentCancelled, appointmentToCancel.Id);
+                    
+                    // Enviar correos de confirmación de cancelación
+                    try
+                    {
+                        _logger.LogInformation($"Sending cancellation email to patient {user.Email} and doctor {appointmentToCancel.Doctor.User.Email}");
+                        await _appointmentEmailService.SendAppointmentCancelledEmailAsync(appointmentToCancel, user, appointmentToCancel.Doctor.User);
+                        _logger.LogInformation($"Cancellation email sent successfully to both patient and doctor");
+                    }
+                    catch (Exception emailEx)
+                    {
+                        _logger.LogError(emailEx, "Error sending cancellation email for appointment {AppointmentId}", appointmentToCancel.Id);
+                    }
                 }
                 else
                 {

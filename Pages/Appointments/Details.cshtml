@@ -29,7 +29,7 @@
                     <hr />
                     <dl class="row">
                         <dt class="col-sm-4">Fecha y Hora</dt>
-                        <dd class="col-sm-8">@CitasEPS.Services.ColombiaTimeZoneService.FormatInColombia(Model.Appointment.AppointmentDateTime, "dddd, dd 'de' MMMM 'de' yyyy, HH:mm")</dd>
+                        <dd class="col-sm-8">@CitasEPS.Services.ColombiaTimeZoneService.FormatInColombia(Model.Appointment.AppointmentDateTime, "dddd, dd 'de' MMMM 'de' yyyy, hh:mm tt")</dd>
 
                         <dt class="col-sm-4">Paciente</dt>
                         <dd class="col-sm-8">
@@ -197,6 +197,39 @@
                                 }
                             </div>
 
+                            <!-- Botones de Reagendamiento (Doctor) -->
+                            @if (Model.Appointment.RescheduleRequested && Model.Appointment.ProposedNewDateTime.HasValue && !Model.Appointment.IsCompleted && !Model.Appointment.IsCancelled)
+                            {
+                                <div class="mb-3">
+                                    <a asp-page="/UserDashboards/Doctor/ConfirmRescheduleProposal" asp-route-id="@Model.Appointment.Id" class="btn btn-success">
+                                        <i class="bi bi-check-circle"></i> Revisar Propuesta del Paciente
+                                    </a>
+                                    <div class="mt-2">
+                                        <small class="text-muted">
+                                            <i class="bi bi-calendar-event me-1"></i>
+                                            Nueva fecha propuesta: @ColombiaTimeZoneService.FormatInColombia(Model.Appointment.ProposedNewDateTime.Value, "dddd, dd MMMM yyyy - hh:mm tt")
+                                        </small>
+                                    </div>
+                                    <small class="text-muted d-block">Reagendamientos: @Model.Appointment.DoctorRescheduleCount de 2</small>
+                                </div>
+                            }
+                            
+                            @if (!Model.Appointment.RescheduleRequested && !Model.Appointment.IsCompleted && !Model.Appointment.IsCancelled && Model.Appointment.AppointmentDateTime >= DateTime.UtcNow && !Model.Appointment.DoctorProposedReschedule && Model.Appointment.DoctorRescheduleCount < 2)
+                            {
+                                <div class="mb-3">
+                                    <a asp-page="/UserDashboards/Doctor/ProposeDoctorReschedule" asp-route-id="@Model.Appointment.Id" class="btn btn-outline-primary">
+                                        <i class="bi bi-arrow-repeat"></i> Proponer Reagendamiento
+                                    </a>
+                                </div>
+                            }
+                            
+                            @if (!Model.Appointment.RescheduleRequested && !Model.Appointment.DoctorProposedReschedule && Model.Appointment.DoctorRescheduleCount >= 2)
+                            {
+                                <div class="alert alert-warning">
+                                    <i class="bi bi-exclamation-triangle"></i> Ha alcanzado el límite máximo de reagendamientos como doctor para esta cita.
+                                </div>
+                            }
+
                             <!-- Sección SOLO para Botones Confirmar/Completar Doctor -->
                             <hr /> @* Add separator *@
                             <div class="mb-3">
@@ -236,18 +269,54 @@
                     @* --- Sección de Acciones del Paciente --- *@
                     @if (User.IsInRole("Paciente"))
                     {
-                        @if (!Model.Appointment.IsCompleted && 
+                        <hr />
+                        <h5><i class="bi bi-person-circle"></i> Acciones del Paciente</h5>
+                        
+                        @if (User.IsInRole("Paciente") && 
+                             !Model.Appointment.IsCompleted && 
                              !Model.Appointment.IsCancelled && 
-                             Model.Appointment.AppointmentDateTime >= DateTime.UtcNow && 
+                             Model.Appointment.AppointmentDateTime >= DateTime.UtcNow &&
                              !Model.Appointment.RescheduleRequested && 
-                             !Model.Appointment.DoctorProposedReschedule)
+                             !Model.Appointment.DoctorProposedReschedule &&
+                             Model.Appointment.PatientRescheduleCount < 2)
                         {
-                             <hr />
                              <div class="mb-3">
-                                 <form method="post" asp-page-handler="RequestReschedule" asp-route-id="@Model.Appointment.Id" class="d-inline">
-                                    <button type="submit" class="btn btn-outline-warning">Solicitar Reagendamiento</button>
-                                 </form>
+                                 <a asp-page="/Appointments/ProposeReschedule" asp-route-id="@Model.Appointment.Id" class="btn btn-outline-warning">
+                                     <i class="bi bi-calendar-event"></i> Proponer Nuevo Horario
+                                 </a>
                              </div>
+                        }
+                        else if (User.IsInRole("Paciente") && Model.Appointment.PatientRescheduleCount >= 2)
+                        {
+                            <div class="mb-3">
+                                <span class="text-muted">
+                                    <i class="bi bi-info-circle"></i> Ha alcanzado el límite máximo de reagendamientos como paciente para esta cita.
+                                </span>
+                            </div>
+                        }
+                        else if (Model.Appointment.RescheduleRequested)
+                        {
+                            <div class="mb-3">
+                                <span class="text-info">
+                                    <i class="bi bi-clock-history"></i> Ya ha solicitado reagendamiento para esta cita
+                                </span>
+                            </div>
+                        }
+                        else if (Model.Appointment.DoctorProposedReschedule)
+                        {
+                            <div class="mb-3">
+                                <span class="text-primary">
+                                    <i class="bi bi-calendar-event"></i> El doctor ha propuesto reagendamiento
+                                </span>
+                            </div>
+                        }
+                        else if (Model.Appointment.IsCompleted || Model.Appointment.IsCancelled || Model.Appointment.AppointmentDateTime < DateTime.UtcNow)
+                        {
+                            <div class="mb-3">
+                                <span class="text-muted">
+                                    <i class="bi bi-info-circle"></i> No se pueden realizar más acciones en esta cita
+                                </span>
+                            </div>
                         }
                     }
                     @* --- Fin Sección Paciente --- *@
@@ -267,14 +336,25 @@
                             }
                             @* --- END: Cancel Button (Details View) --- *@
 
-                            @* --- START: Doctor Propose Reschedule Button (Details View) --- *@
-                            @if (User.IsInRole("Doctor") && !Model.Appointment.IsCompleted && !Model.Appointment.IsCancelled && Model.Appointment.AppointmentDateTime >= DateTime.UtcNow && !Model.Appointment.RescheduleRequested && !Model.Appointment.DoctorProposedReschedule)
+                            @* --- START: Doctor Reschedule Buttons (Details View) --- *@
+                            @if (User.IsInRole("Doctor"))
                             {
-                                 <a asp-page="/UserDashboards/Doctor/ProposeDoctorReschedule" asp-route-id="@Model.Appointment.Id" class="btn btn-outline-primary me-2" title="Proponer nuevo horario al paciente">
-                                     <i class="bi bi-arrow-repeat"></i> Proponer Reag.
-                                 </a>
+                                @* Button to review patient's reschedule proposal *@
+                                @if (Model.Appointment.RescheduleRequested && Model.Appointment.ProposedNewDateTime.HasValue && !Model.Appointment.IsCompleted && !Model.Appointment.IsCancelled)
+                                {
+                                    <a asp-page="/UserDashboards/Doctor/ConfirmRescheduleProposal" asp-route-id="@Model.Appointment.Id" class="btn btn-success me-2" title="Revisar propuesta de reagendamiento del paciente">
+                                        <i class="bi bi-check-circle"></i> Revisar Propuesta
+                                    </a>
+                                }
+                                @* Button to propose reschedule *@
+                                else if (!Model.Appointment.IsCompleted && !Model.Appointment.IsCancelled && Model.Appointment.AppointmentDateTime >= DateTime.UtcNow && !Model.Appointment.RescheduleRequested && !Model.Appointment.DoctorProposedReschedule)
+                                {
+                                     <a asp-page="/UserDashboards/Doctor/ProposeDoctorReschedule" asp-route-id="@Model.Appointment.Id" class="btn btn-outline-primary me-2" title="Proponer nuevo horario al paciente">
+                                         <i class="bi bi-arrow-repeat"></i> Proponer Reag.
+                                     </a>
+                                }
                             }
-                            @* --- END: Doctor Propose Reschedule Button (Details View) --- *@
+                            @* --- END: Doctor Reschedule Buttons (Details View) --- *@
 
                             @if(User.IsInRole("Admin"))
                             {

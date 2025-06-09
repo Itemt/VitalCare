@@ -121,7 +121,7 @@ namespace CitasEPS.Pages.UserDashboards.Doctor
                     var doctorName = doctorRecord?.FullName ?? user.Email;
                     
                     // Usar el servicio de zona horaria para formatear la fecha en hora de Colombia
-                    var appointmentFormatted = ColombiaTimeZoneService.FormatInColombia(appointmentToUpdate.AppointmentDateTime, "dd/MM/yyyy 'a las' HH:mm");
+                    var appointmentFormatted = ColombiaTimeZoneService.FormatInColombia(appointmentToUpdate.AppointmentDateTime, "dd/MM/yyyy 'a las' hh:mm tt");
                     
                     var patientMessage = $"El Dr. {doctorName} ha aceptado su propuesta de reagendamiento. Su nueva cita es el {appointmentFormatted}.";
                     await _notificationService.CreateNotificationAsync(appointmentToUpdate.Patient.User.Id, patientMessage, NotificationType.RescheduleAcceptedByDoctor, appointmentToUpdate.Id);
@@ -187,7 +187,7 @@ namespace CitasEPS.Pages.UserDashboards.Doctor
                     var doctorName = doctorRecord?.FullName ?? user.Email;
                     
                     // Usar el servicio de zona horaria para formatear la fecha en hora de Colombia
-                    var appointmentFormatted = ColombiaTimeZoneService.FormatInColombia(appointmentToUpdate.AppointmentDateTime, "dd/MM/yyyy 'a las' HH:mm");
+                    var appointmentFormatted = ColombiaTimeZoneService.FormatInColombia(appointmentToUpdate.AppointmentDateTime, "dd/MM/yyyy 'a las' hh:mm tt");
                     
                     var patientMessage = $"El Dr. {doctorName} ha rechazado su propuesta de reagendamiento. Su cita mantiene el horario original: {appointmentFormatted}.";
                     await _notificationService.CreateNotificationAsync(appointmentToUpdate.Patient.User.Id, patientMessage, NotificationType.RescheduleRejectedByDoctor, appointmentToUpdate.Id);

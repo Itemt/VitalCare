@@ -387,7 +387,7 @@ namespace CitasEPS.Pages.Appointments
                     
                     await _notificationService.CreateNotificationAsync(
                         patientUser.Id,
-                        $"Su cita para el {appointmentColombia:dd/MM/yyyy 'a las' HH:mm} ha sido agendada y está pendiente de confirmación por el consultorio.",
+                        $"Su cita para el {appointmentColombia:dd/MM/yyyy 'a las' hh:mm tt} ha sido agendada y está pendiente de confirmación por el consultorio.",
                         NotificationType.NewAppointment,
                         Appointment.Id
                     );
@@ -414,7 +414,7 @@ namespace CitasEPS.Pages.Appointments
                     
                     await _notificationService.CreateNotificationAsync(
                         doctorForNotification.User.Id,
-                        $"Tiene una nueva cita agendada con {LoggedInPatientName} para el {appointmentColombia:dd/MM/yyyy 'a las' HH:mm}.",
+                        $"Tiene una nueva cita agendada con {LoggedInPatientName} para el {appointmentColombia:dd/MM/yyyy 'a las' hh:mm tt}.",
                         NotificationType.NewAppointment,
                         Appointment.Id
                     );

@@ -559,14 +559,14 @@ else // Patient View
                         Resumen Semanal (Lunes @Model.PatientWeeklyStats.WeekStartDate.ToString("dd/MM") - Domingo @Model.PatientWeeklyStats.WeekEndDate.ToString("dd/MM"))
                     </div>
                     <div class="row">
-                        <div class="col-md-6 mb-2 mb-md-0">
+                        <div class="col-md-4 mb-2 mb-md-0">
                             <strong style="color: white;">Citas programadas:</strong>
                             <span class='@(Model.PatientWeeklyStats.PendingOrConfirmedForDisplayInWeek >= Model.PatientWeeklyStats.MaxWeeklyAppointments ? "text-warning fw-bold" : "text-success fw-bold")'>
                                 @Model.PatientWeeklyStats.PendingOrConfirmedForDisplayInWeek de @Model.PatientWeeklyStats.MaxWeeklyAppointments
                             </span>
                         </div>
-                        <div class="col-md-6">
-                            <strong style="color: white;">Citas canceladas:</strong>
+                        <div class="col-md-4">
+                            <strong style="color: white;">Citas Canceladas:</strong>
                             <span class='@(Model.PatientWeeklyStats.CancelledInWeek >= Model.PatientWeeklyStats.MaxWeeklyCancellations ? "text-warning fw-bold" : "text-success fw-bold")'>
                                 @Model.PatientWeeklyStats.CancelledInWeek de @Model.PatientWeeklyStats.MaxWeeklyCancellations
                             </span>
@@ -696,7 +696,7 @@ else // Patient View
                                                 @{
                                                     var proposedColombia = CitasEPS.Services.ColombiaTimeZoneService.ConvertUtcToColombia(item.ProposedNewDateTime.Value);
                                                 }
-                                                <i class="bi bi-arrow-right me-1"></i>Nueva fecha: @proposedColombia.ToString("dd/MM/yyyy HH:mm")
+                                                <i class="bi bi-arrow-right me-1"></i>Nueva fecha: @proposedColombia.ToString("dd/MM/yyyy hh:mm tt")
                                             </small>
                                             <small class="text-warning d-block">
                                                 <i class="bi bi-exclamation-circle me-1"></i>Requiere su confirmación
@@ -711,7 +711,7 @@ else // Patient View
                                                 @{
                                                     var proposedReschedule = CitasEPS.Services.ColombiaTimeZoneService.ConvertUtcToColombia(item.ProposedNewDateTime.Value);
                                                 }
-                                                <i class="bi bi-arrow-right me-1"></i>Nueva fecha propuesta: @proposedReschedule.ToString("dd/MM/yyyy HH:mm")
+                                                <i class="bi bi-arrow-right me-1"></i>Nueva fecha propuesta: @proposedReschedule.ToString("dd/MM/yyyy hh:mm tt")
                                             </small>
                                             <small class="text-info d-block">
                                                 <i class="bi bi-hourglass-split me-1"></i>Esperando confirmación del doctor

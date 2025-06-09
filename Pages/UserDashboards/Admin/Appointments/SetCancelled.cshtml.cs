@@ -120,7 +120,7 @@ namespace CitasEPS.Pages.UserDashboards.Admin.Appointments
 
                 string patientName = appointmentToMarkAsCancelled.Patient?.FullName ?? "Paciente Desconocido";
                 string doctorName = appointmentToMarkAsCancelled.Doctor?.FullName ?? "Doctor Desconocido";
-                string appointmentDateTime = appointmentToMarkAsCancelled.AppointmentDateTime.ToString("dd/MM/yyyy HH:mm");
+                string appointmentDateTime = appointmentToMarkAsCancelled.AppointmentDateTime.ToString("dd/MM/yyyy hh:mm tt");
 
                 if (patientUser != null)
                 {

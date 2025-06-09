@@ -172,7 +172,27 @@ using (var scope = app.Services.CreateScope())
                 END $$;
             ");
 
-
+            // Agregar columna RescheduleCount a Appointments si no existe
+            await context.Database.ExecuteSqlRawAsync(@"
+                DO $$
+                BEGIN
+                    IF NOT EXISTS (SELECT 1 FROM information_schema.columns 
+                                   WHERE table_name = 'Appointments' AND column_name = 'RescheduleCount') THEN
+                        ALTER TABLE ""Appointments"" ADD COLUMN ""RescheduleCount"" integer NOT NULL DEFAULT 0;
+                    END IF;
+                    
+                    -- Agregar nuevas columnas para reagendamientos por separado
+                    IF NOT EXISTS (SELECT 1 FROM information_schema.columns 
+                                   WHERE table_name = 'Appointments' AND column_name = 'PatientRescheduleCount') THEN
+                        ALTER TABLE ""Appointments"" ADD COLUMN ""PatientRescheduleCount"" integer NOT NULL DEFAULT 0;
+                    END IF;
+                    
+                    IF NOT EXISTS (SELECT 1 FROM information_schema.columns 
+                                   WHERE table_name = 'Appointments' AND column_name = 'DoctorRescheduleCount') THEN
+                        ALTER TABLE ""Appointments"" ADD COLUMN ""DoctorRescheduleCount"" integer NOT NULL DEFAULT 0;
+                    END IF;
+                END
+                $$;");
 
             // Actualizar todos los doctores existentes para que estén disponibles por defecto
             await context.Database.ExecuteSqlRawAsync(@"

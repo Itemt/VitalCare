@@ -1,5 +1,7 @@
 using CitasEPS.Data;
 using CitasEPS.Models; using CitasEPS.Models.Modules.Users; using CitasEPS.Models.Modules.Medical; using CitasEPS.Models.Modules.Appointments; using CitasEPS.Models.Modules.Core;
+using CitasEPS.Services;
+using CitasEPS.Services.Modules.Common;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
@@ -17,12 +19,16 @@ namespace CitasEPS.Pages.Appointments
         private readonly ApplicationDbContext _context;
         private readonly UserManager<User> _userManager;
         private readonly ILogger<ReviewDoctorProposalModel> _logger;
+        private readonly INotificationService _notificationService;
+        private readonly IAppointmentEmailService _appointmentEmailService;
 
-        public ReviewDoctorProposalModel(ApplicationDbContext context, UserManager<User> userManager, ILogger<ReviewDoctorProposalModel> logger)
+        public ReviewDoctorProposalModel(ApplicationDbContext context, UserManager<User> userManager, ILogger<ReviewDoctorProposalModel> logger, INotificationService notificationService, IAppointmentEmailService appointmentEmailService)
         {
             _context = context;
             _userManager = userManager;
             _logger = logger;
+            _notificationService = notificationService;
+            _appointmentEmailService = appointmentEmailService;
         }
 
         [BindProperty(SupportsGet = true)]
@@ -77,6 +83,9 @@ namespace CitasEPS.Pages.Appointments
 
             var appointment = await _context.Appointments
                                     .Include(a => a.Patient)
+                                    .ThenInclude(p => p.User)
+                                    .Include(a => a.Doctor)
+                                    .ThenInclude(d => d.User)
                                     .FirstOrDefaultAsync(a => a.Id == Id);
 
             if (appointment == null || appointment.Patient?.Email != user.Email || !appointment.DoctorProposedReschedule || !appointment.ProposedNewDateTime.HasValue || appointment.IsCompleted || appointment.IsCancelled)
@@ -85,9 +94,9 @@ namespace CitasEPS.Pages.Appointments
                 return RedirectToPage("./Index");
             }
 
-            // Update Appointment
+            // Update Appointment - La cita queda automáticamente confirmada cuando el paciente acepta la propuesta del doctor
             appointment.AppointmentDateTime = appointment.ProposedNewDateTime.Value; // Already UTC
-            appointment.IsConfirmed = true;
+            appointment.IsConfirmed = true; // Automáticamente confirmada según el requerimiento
             appointment.DoctorProposedReschedule = false;
             appointment.ProposedNewDateTime = null;
 
@@ -97,7 +106,33 @@ namespace CitasEPS.Pages.Appointments
             {
                 await _context.SaveChangesAsync();
                 _logger.LogInformation($"Patient {user.Email} confirmed doctor's reschedule proposal for Appointment {Id} to {appointment.AppointmentDateTime}.");
-                TempData["SuccessMessage"] = "Nuevo horario confirmado exitosamente.";
+                TempData["SuccessMessage"] = "Nuevo horario confirmado exitosamente. Su cita está confirmada.";
+
+                // --- Enviar notificaciones y correos ---
+                if (appointment.Doctor?.User != null && appointment.Patient?.User != null)
+                {
+                    var appointmentFormatted = ColombiaTimeZoneService.FormatInColombia(appointment.AppointmentDateTime, "dd/MM/yyyy 'a las' hh:mm tt");
+                    
+                    // Notificación al doctor de que su propuesta fue aceptada
+                    var doctorMessage = $"El paciente {appointment.Patient.FullName} ha aceptado su propuesta de reagendamiento. La cita está confirmada para el {appointmentFormatted}.";
+                    await _notificationService.CreateNotificationAsync(appointment.Doctor.User.Id, doctorMessage, NotificationType.RescheduleAcceptedByPatient, appointment.Id);
+                    
+                    // Notificación al paciente de confirmación
+                    var patientMessage = $"Ha confirmado el reagendamiento propuesto por el Dr. {appointment.Doctor.FullName}. Su cita está confirmada para el {appointmentFormatted}.";
+                    await _notificationService.CreateNotificationAsync(appointment.Patient.User.Id, patientMessage, NotificationType.AppointmentConfirmed, appointment.Id);
+                    
+                    // Enviar correo de confirmación al paciente con el nuevo horario
+                    try
+                    {
+                        await _appointmentEmailService.SendAppointmentConfirmedEmailAsync(appointment, appointment.Patient.User, appointment.Doctor.User);
+                        _logger.LogInformation($"Confirmation email sent to patient {appointment.Patient.User.Email} for confirmed rescheduled appointment");
+                    }
+                    catch (Exception emailEx)
+                    {
+                        _logger.LogError(emailEx, "Error sending confirmation email to patient {PatientEmail}", appointment.Patient.User.Email);
+                    }
+                }
+                // --- Fin notificaciones y correos ---
             }
             catch (DbUpdateConcurrencyException ex)
             {
@@ -120,6 +155,9 @@ namespace CitasEPS.Pages.Appointments
 
             var appointment = await _context.Appointments
                                     .Include(a => a.Patient)
+                                    .ThenInclude(p => p.User)
+                                    .Include(a => a.Doctor)
+                                    .ThenInclude(d => d.User)
                                     .FirstOrDefaultAsync(a => a.Id == Id);
 
              if (appointment == null || appointment.Patient?.Email != user.Email || !appointment.DoctorProposedReschedule || !appointment.ProposedNewDateTime.HasValue || appointment.IsCompleted || appointment.IsCancelled)
@@ -140,6 +178,21 @@ namespace CitasEPS.Pages.Appointments
                 await _context.SaveChangesAsync();
                 _logger.LogInformation($"Patient {user.Email} rejected doctor's reschedule proposal for Appointment {Id}.");
                 TempData["InfoMessage"] = "Propuesta de reagendamiento del doctor rechazada. La cita permanece sin confirmar con su horario original.";
+
+                // --- Enviar notificaciones ---
+                if (appointment.Doctor?.User != null && appointment.Patient?.User != null)
+                {
+                    var appointmentFormatted = ColombiaTimeZoneService.FormatInColombia(appointment.AppointmentDateTime, "dd/MM/yyyy 'a las' hh:mm tt");
+                    
+                    // Notificación al doctor de que su propuesta fue rechazada
+                    var doctorMessage = $"El paciente {appointment.Patient.FullName} ha rechazado su propuesta de reagendamiento. La cita mantiene el horario original: {appointmentFormatted}.";
+                    await _notificationService.CreateNotificationAsync(appointment.Doctor.User.Id, doctorMessage, NotificationType.RescheduleRejectedByPatient, appointment.Id);
+                    
+                    // Notificación al paciente de confirmación del rechazo
+                    var patientMessage = $"Ha rechazado la propuesta de reagendamiento del Dr. {appointment.Doctor.FullName}. Su cita mantiene el horario original: {appointmentFormatted}.";
+                    await _notificationService.CreateNotificationAsync(appointment.Patient.User.Id, patientMessage, NotificationType.RescheduleRejectedByPatient, appointment.Id);
+                }
+                // --- Fin notificaciones ---
             }
             catch (DbUpdateConcurrencyException ex)
             {

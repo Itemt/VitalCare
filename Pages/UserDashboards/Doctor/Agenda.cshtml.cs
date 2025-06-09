@@ -10,6 +10,7 @@ using System.Threading.Tasks;
 using CitasEPS.Models; using CitasEPS.Models.Modules.Users; using CitasEPS.Models.Modules.Medical; using CitasEPS.Models.Modules.Appointments; using CitasEPS.Models.Modules.Core;
 using Microsoft.Extensions.Logging;
 using CitasEPS.Services;
+using CitasEPS.Services.Modules.Common;
 using DoctorModel = CitasEPS.Models.Modules.Users.Doctor;
 
 namespace CitasEPS.Pages.UserDashboards.Doctor
@@ -21,13 +22,15 @@ namespace CitasEPS.Pages.UserDashboards.Doctor
         private readonly UserManager<User> _userManager;
         private readonly ILogger<AgendaModel> _logger;
         private readonly INotificationService _notificationService;
+        private readonly IAppointmentEmailService _appointmentEmailService;
 
-        public AgendaModel(ApplicationDbContext context, UserManager<User> userManager, ILogger<AgendaModel> logger, INotificationService notificationService)
+        public AgendaModel(ApplicationDbContext context, UserManager<User> userManager, ILogger<AgendaModel> logger, INotificationService notificationService, IAppointmentEmailService appointmentEmailService)
         {
             _context = context;
             _userManager = userManager;
             _logger = logger;
             _notificationService = notificationService;
+            _appointmentEmailService = appointmentEmailService;
         }
 
         public IList<Appointment> Appointments { get; set; } = default!;
@@ -141,14 +144,25 @@ namespace CitasEPS.Pages.UserDashboards.Doctor
 
                 if (appointmentToCancel.Patient?.User != null)
                 {
-                    var doctorName = currentDoctor?.User?.FirstName + " " + currentDoctor?.User?.LastName ?? user.Email;
+                    var doctorName = currentDoctor?.FullName ?? user.Email;
                     
-                    // Convertir fecha UTC a hora local de Colombia (UTC-5) para mostrar al paciente
-                    var colombiaTimeZone = TimeZoneInfo.CreateCustomTimeZone("Colombia", TimeSpan.FromHours(-5), "Colombia Standard Time", "Colombia Standard Time");
-                    var appointmentColombia = TimeZoneInfo.ConvertTimeFromUtc(appointmentToCancel.AppointmentDateTime, colombiaTimeZone);
+                    // Usar el servicio de zona horaria para formatear la fecha en hora de Colombia
+                    var appointmentFormatted = ColombiaTimeZoneService.FormatInColombia(appointmentToCancel.AppointmentDateTime, "dd/MM/yyyy 'a las' hh:mm tt");
                     
-                    var patientMessage = $"Su cita con el Dr. {doctorName} programada para el {appointmentColombia:dd/MM/yyyy HH:mm} ha sido cancelada.";
+                    var patientMessage = $"Su cita con el Dr. {doctorName} programada para el {appointmentFormatted} ha sido cancelada.";
                     await _notificationService.CreateNotificationAsync(appointmentToCancel.Patient.User.Id, patientMessage, NotificationType.AppointmentCancelled, appointmentToCancel.Id);
+                    
+                    // Enviar correos de confirmación de cancelación
+                    try
+                    {
+                        _logger.LogInformation($"Sending cancellation email to patient {appointmentToCancel.Patient.User.Email} and doctor {user.Email}");
+                        await _appointmentEmailService.SendAppointmentCancelledEmailAsync(appointmentToCancel, appointmentToCancel.Patient.User, user);
+                        _logger.LogInformation($"Cancellation email sent successfully to both patient and doctor");
+                    }
+                    catch (Exception emailEx)
+                    {
+                        _logger.LogError(emailEx, "Error sending cancellation email for appointment {AppointmentId}", appointmentToCancel.Id);
+                    }
                 }
                 else
                 {

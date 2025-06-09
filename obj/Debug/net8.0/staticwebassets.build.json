@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "hSIY6TU3g6lJr2pH7s4JVfkchzPD425RplOFgpkvro0=",
+  "Hash": "kjef6a73+TCmJgaHZl8kNqslltWecrVbZ5QiuWHe5gc=",
   "Source": "CitasEPS",
   "BasePath": "_content/CitasEPS",
   "Mode": "Default",
@@ -2026,8 +2026,8 @@
       "RelatedAsset": "",
       "AssetTraitName": "",
       "AssetTraitValue": "",
-      "Fingerprint": "wzdvxddh3j",
-      "Integrity": "ZILs9enY97XfJ8dkLfxQK2y2HJr8VXu0B9Qt47MdYiI=",
+      "Fingerprint": "g1ijgteuok",
+      "Integrity": "7BkdgOpzWBj/zSAJnfUVEt0Be7MV7ekWa/C6pQ3Q/Jc=",
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\js\\site.flatpickr.js"
@@ -8364,6 +8364,51 @@
       ]
     },
     {
+      "Route": "js/site.flatpickr.g1ijgteuok.js",
+      "AssetFile": "C:\\Users\\CristianPC\\Desktop\\vitalcare\\wwwroot\\js\\site.flatpickr.js",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "1019"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "text/javascript"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"7BkdgOpzWBj/zSAJnfUVEt0Be7MV7ekWa/C6pQ3Q/Jc=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Mon, 09 Jun 2025 21:41:09 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=31536000, immutable"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "fingerprint",
+          "Value": "g1ijgteuok"
+        },
+        {
+          "Name": "label",
+          "Value": "js/site.flatpickr.js"
+        },
+        {
+          "Name": "integrity",
+          "Value": "sha256-7BkdgOpzWBj/zSAJnfUVEt0Be7MV7ekWa/C6pQ3Q/Jc="
+        }
+      ]
+    },
+    {
       "Route": "js/site.flatpickr.js",
       "AssetFile": "C:\\Users\\CristianPC\\Desktop\\vitalcare\\wwwroot\\js\\site.flatpickr.js",
       "Selectors": [],
@@ -8374,7 +8419,7 @@
         },
         {
           "Name": "Content-Length",
-          "Value": "1776"
+          "Value": "1019"
         },
         {
           "Name": "Content-Type",
@@ -8382,11 +8427,11 @@
         },
         {
           "Name": "ETag",
-          "Value": "\"ZILs9enY97XfJ8dkLfxQK2y2HJr8VXu0B9Qt47MdYiI=\""
+          "Value": "\"7BkdgOpzWBj/zSAJnfUVEt0Be7MV7ekWa/C6pQ3Q/Jc=\""
         },
         {
           "Name": "Last-Modified",
-          "Value": "Mon, 02 Jun 2025 07:28:49 GMT"
+          "Value": "Mon, 09 Jun 2025 21:41:09 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -8396,52 +8441,7 @@
       "EndpointProperties": [
         {
           "Name": "integrity",
-          "Value": "sha256-ZILs9enY97XfJ8dkLfxQK2y2HJr8VXu0B9Qt47MdYiI="
-        }
-      ]
-    },
-    {
-      "Route": "js/site.flatpickr.wzdvxddh3j.js",
-      "AssetFile": "C:\\Users\\CristianPC\\Desktop\\vitalcare\\wwwroot\\js\\site.flatpickr.js",
-      "Selectors": [],
-      "ResponseHeaders": [
-        {
-          "Name": "Accept-Ranges",
-          "Value": "bytes"
-        },
-        {
-          "Name": "Content-Length",
-          "Value": "1776"
-        },
-        {
-          "Name": "Content-Type",
-          "Value": "text/javascript"
-        },
-        {
-          "Name": "ETag",
-          "Value": "\"ZILs9enY97XfJ8dkLfxQK2y2HJr8VXu0B9Qt47MdYiI=\""
-        },
-        {
-          "Name": "Last-Modified",
-          "Value": "Mon, 02 Jun 2025 07:28:49 GMT"
-        },
-        {
-          "Name": "Cache-Control",
-          "Value": "max-age=31536000, immutable"
-        }
-      ],
-      "EndpointProperties": [
-        {
-          "Name": "fingerprint",
-          "Value": "wzdvxddh3j"
-        },
-        {
-          "Name": "label",
-          "Value": "js/site.flatpickr.js"
-        },
-        {
-          "Name": "integrity",
-          "Value": "sha256-ZILs9enY97XfJ8dkLfxQK2y2HJr8VXu0B9Qt47MdYiI="
+          "Value": "sha256-7BkdgOpzWBj/zSAJnfUVEt0Be7MV7ekWa/C6pQ3Q/Jc="
         }
       ]
     },

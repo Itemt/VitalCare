@@ -22,7 +22,7 @@
                         <h5><i class="bi bi-calendar-event me-2"></i>Información de la Cita</h5>
                         <dl class="row">
                             <dt class="col-sm-4">Fecha:</dt>
-                            <dd class="col-sm-8">@Model.Appointment.AppointmentDateTime.ToString("dddd, dd MMMM yyyy 'a las' HH:mm")</dd>
+                            <dd class="col-sm-8">@Model.Appointment.AppointmentDateTime.ToString("dddd, dd MMMM yyyy 'a las' hh:mm tt")</dd>
                             <dt class="col-sm-4">Doctor:</dt>
                             <dd class="col-sm-8">Dr(a). @Model.Appointment.Doctor?.FullName</dd>
                             <dt class="col-sm-4">Especialidad:</dt>

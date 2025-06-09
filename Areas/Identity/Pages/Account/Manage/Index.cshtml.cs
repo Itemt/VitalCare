@@ -79,6 +79,7 @@ namespace CitasEPS.Areas.Identity.Pages.Account.Manage
             [Required(ErrorMessage = "El campo Fecha de Nacimiento es obligatorio.")]
             [Display(Name = "Fecha de Nacimiento")]
             [DataType(DataType.Date)]
+            [MinimumAge(18, ErrorMessage = "Debes tener al menos 18 años.")]
             public DateTime DateOfBirth { get; set; }
 
             [Display(Name = "Documento de Identidad")]

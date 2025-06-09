@@ -22,14 +22,16 @@ namespace CitasEPS.Pages.Appointments
         private readonly ILogger<ProposeRescheduleModel> _logger;
         private readonly INotificationService _notificationService;
         private readonly IAppointmentEmailService _appointmentEmailService;
+        private readonly IAppointmentPolicyService _appointmentPolicyService;
 
-        public ProposeRescheduleModel(ApplicationDbContext context, UserManager<User> userManager, ILogger<ProposeRescheduleModel> logger, INotificationService notificationService, IAppointmentEmailService appointmentEmailService)
+        public ProposeRescheduleModel(ApplicationDbContext context, UserManager<User> userManager, ILogger<ProposeRescheduleModel> logger, INotificationService notificationService, IAppointmentEmailService appointmentEmailService, IAppointmentPolicyService appointmentPolicyService)
         {
             _context = context;
             _userManager = userManager;
             _logger = logger;
             _notificationService = notificationService;
             _appointmentEmailService = appointmentEmailService;
+            _appointmentPolicyService = appointmentPolicyService;
         }
 
         [BindProperty(SupportsGet = true)]
@@ -79,6 +81,24 @@ namespace CitasEPS.Pages.Appointments
                 return RedirectToPage("./Index");
             }
 
+            // Verificar límites semanales del paciente
+            var patientRecord = await _context.Patients.FirstOrDefaultAsync(p => p.UserId == user.Id);
+            if (patientRecord != null)
+            {
+                if (!_appointmentPolicyService.CanPatientRequestReschedule(patientRecord.Id, out string weeklyReason))
+                {
+                    TempData["ErrorMessage"] = weeklyReason;
+                    return RedirectToPage("./Index");
+                }
+
+                // Verificar límites por cita específica
+                if (!_appointmentPolicyService.CanRescheduleAppointment(CurrentAppointment.Id, out string appointmentReason))
+                {
+                    TempData["ErrorMessage"] = appointmentReason;
+                    return RedirectToPage("./Index");
+                }
+            }
+
             DoctorName = CurrentAppointment.Doctor?.FullName ?? "Doctor Desconocido";
             CurrentDateTime = CurrentAppointment.AppointmentDateTime.ToString("g");
 
@@ -122,6 +142,34 @@ namespace CitasEPS.Pages.Appointments
             if (appointmentToUpdate.IsCompleted || appointmentToUpdate.AppointmentDateTime < DateTime.Now || appointmentToUpdate.RescheduleRequested)
             {
                 TempData["ErrorMessage"] = "Esta cita ya no es elegible para proponer reagendamiento.";
+                return RedirectToPage("./Index");
+            }
+
+            // Validar que el usuario puede proponer reagendamiento
+            if (appointmentToUpdate.IsCompleted || appointmentToUpdate.IsCancelled)
+            {
+                TempData["ErrorMessage"] = "No se puede reagendar una cita completada o cancelada.";
+                return RedirectToPage("./Index");
+            }
+
+            // Verificar que aún no se ha propuesto reagendamiento
+            if (appointmentToUpdate.RescheduleRequested || appointmentToUpdate.DoctorProposedReschedule)
+            {
+                TempData["ErrorMessage"] = "Ya existe una propuesta de reagendamiento pendiente para esta cita.";
+                return RedirectToPage("./Index");
+            }
+
+            // Verificar límite de reagendamientos del paciente (máximo 2)
+            if (appointmentToUpdate.PatientRescheduleCount >= 2)
+            {
+                TempData["ErrorMessage"] = "Ha alcanzado el límite máximo de reagendamientos como paciente para esta cita (2).";
+                return RedirectToPage("./Index");
+            }
+
+            // Verificar que la cita es futura
+            if (appointmentToUpdate.AppointmentDateTime <= DateTime.UtcNow.AddHours(1)) // Al menos 1 hora de anticipación
+            {
+                TempData["ErrorMessage"] = "Solo se pueden reagendar citas futuras con al menos 1 hora de anticipación.";
                 return RedirectToPage("./Index");
             }
 
@@ -189,9 +237,9 @@ namespace CitasEPS.Pages.Appointments
             }
 
             // Update Appointment
-            appointmentToUpdate.ProposedNewDateTime = utcProposedDateTime;
             appointmentToUpdate.RescheduleRequested = true;
-            appointmentToUpdate.IsConfirmed = false; // Requires doctor confirmation now
+            appointmentToUpdate.ProposedNewDateTime = utcProposedDateTime;
+            appointmentToUpdate.PatientRescheduleCount += 1; // Incrementar contador de reagendamientos del paciente
 
             _context.Attach(appointmentToUpdate).State = EntityState.Modified;
 
@@ -207,8 +255,12 @@ namespace CitasEPS.Pages.Appointments
                 if (doctor?.User != null && patient != null)
                 {
                     // Create notification for the doctor
-                    var notificationMessage = $"El paciente {patient.FullName} ha solicitado reagendar la cita del {ColombiaTimeZoneService.FormatInColombia(appointmentToUpdate.AppointmentDateTime, "dd/MM/yyyy 'a las' HH:mm")}. Nueva fecha propuesta: {ColombiaTimeZoneService.FormatInColombia(appointmentToUpdate.ProposedNewDateTime.Value, "dd/MM/yyyy 'a las' HH:mm")}.";
+                    var notificationMessage = $"El paciente {patient.FullName} ha solicitado reagendar la cita del {ColombiaTimeZoneService.FormatInColombia(appointmentToUpdate.AppointmentDateTime, "dd/MM/yyyy 'a las' hh:mm tt")}. Nueva fecha propuesta: {ColombiaTimeZoneService.FormatInColombia(appointmentToUpdate.ProposedNewDateTime.Value, "dd/MM/yyyy 'a las' hh:mm tt")}.";
                     await _notificationService.CreateNotificationAsync(doctor.User.Id, notificationMessage, NotificationType.RescheduleRequestedByPatient, appointmentToUpdate.Id);
+
+                    // Create confirmation notification for the patient
+                    var patientConfirmationMessage = $"Su solicitud de reagendamiento ha sido enviada al Dr. {doctor.User.FirstName} {doctor.User.LastName}. Propuso cambiar la cita del {ColombiaTimeZoneService.FormatInColombia(appointmentToUpdate.AppointmentDateTime, "dd/MM/yyyy 'a las' hh:mm tt")} para el {ColombiaTimeZoneService.FormatInColombia(appointmentToUpdate.ProposedNewDateTime.Value, "dd/MM/yyyy 'a las' hh:mm tt")}. Esperando respuesta del médico.";
+                    await _notificationService.CreateNotificationAsync(user.Id, patientConfirmationMessage, NotificationType.RescheduleRequestSent, appointmentToUpdate.Id);
 
                     // Send email to patient confirming the request
                     await _appointmentEmailService.SendRescheduleRequestedEmailAsync(appointmentToUpdate, user, doctor.User);

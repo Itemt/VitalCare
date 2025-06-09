@@ -65,6 +65,16 @@ namespace CitasEPS.Models.Modules.Appointments
         [Display(Name = "Motivo del Reagendamiento (Doctor)")]
         [StringLength(500, ErrorMessage = "El motivo no puede exceder los 500 caracteres.")]
         public string? DoctorRescheduleReason { get; set; } // Reason from doctor for their proposal
+
+        [Display(Name = "Contador de Reagendamientos del Paciente")]
+        public int PatientRescheduleCount { get; set; } = 0; // Contador de reagendamientos solicitados por el paciente
+
+        [Display(Name = "Contador de Reagendamientos del Doctor")]
+        public int DoctorRescheduleCount { get; set; } = 0; // Contador de reagendamientos propuestos por el doctor
+
+        [Obsolete("Use PatientRescheduleCount and DoctorRescheduleCount instead")]
+        [Display(Name = "Contador de Reagendamientos")]
+        public int RescheduleCount { get; set; } = 0; // Mantener para compatibilidad temporal
     }
 } 
 

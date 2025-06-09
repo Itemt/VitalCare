@@ -16,6 +16,7 @@ namespace CitasEPS.Services.Modules.Common
         Task SendRescheduleRequestedEmailAsync(Appointment appointment, User patient, User doctor);
         Task SendRescheduleApprovedEmailAsync(Appointment appointment, User patient, User doctor);
         Task SendRescheduleRejectedEmailAsync(Appointment appointment, User patient, User doctor, DateTime originalDateTime);
+        Task SendDoctorRescheduleProposedEmailAsync(Appointment appointment, User patient, User doctor);
     }
 } 
 

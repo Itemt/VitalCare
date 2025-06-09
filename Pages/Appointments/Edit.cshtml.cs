@@ -231,7 +231,7 @@ namespace CitasEPS.Pages.Appointments
                             
                             await _notificationService.CreateNotificationAsync(
                                 updatedAppointment.Patient.User.Id,
-                                $"Su cita ha sido modificada. Nueva fecha y hora: {appointmentColombia:dd/MM/yyyy 'a las' HH:mm}",
+                                $"Su cita ha sido modificada. Nueva fecha y hora: {appointmentColombia:dd/MM/yyyy 'a las' hh:mm tt}",
                                 NotificationType.AppointmentModified,
                                 updatedAppointment.Id
                             );
