@@ -74,6 +74,7 @@ namespace CitasEPS.Pages.Doctor
 
             Appointments = await query
                 .Include(a => a.Patient) // Include Patient data here
+                .Include(a => a.Rating) // Include Rating data for patient ratings
                 .OrderBy(a => a.AppointmentDateTime) // Ordenar por fecha/hora
                 .ToListAsync();
 

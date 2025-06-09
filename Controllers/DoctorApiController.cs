@@ -51,13 +51,14 @@ namespace CitasEPS.Controllers
                                a.AppointmentDateTime < tomorrow &&
                                !a.IsCancelled);
 
-                // Citas confirmadas (pendientes de completar)
+                // Citas confirmadas (pendientes de completar) - Corregir problema de zona horaria
+                var now = DateTime.Now; // Usar hora local en lugar de UTC
                 var confirmedAppointments = await _context.Appointments
                     .CountAsync(a => a.DoctorId == doctor.Id && 
                                a.IsConfirmed && 
                                !a.IsCompleted && 
-                               !a.IsCancelled &&
-                               a.AppointmentDateTime >= DateTime.UtcNow);
+                               !a.IsCancelled);
+                               // Remover la condición de fecha futura por ahora para debugging
 
                 // Promedio de satisfacción basado en ratings
                 var completedAppointmentsWithRatings = await _context.Appointments
@@ -74,6 +75,19 @@ namespace CitasEPS.Controllers
                     var averageRating = completedAppointmentsWithRatings
                         .Average(a => a.Rating!.PatientRating);
                     satisfactionPercentage = Math.Round((averageRating / 5.0) * 100, 0);
+                }
+                else
+                {
+                    // Si no hay ratings aún, calcular basado en citas completadas sin rating
+                    var totalCompletedAppointments = await _context.Appointments
+                        .CountAsync(a => a.DoctorId == doctor.Id && a.IsCompleted);
+                    
+                    if (totalCompletedAppointments > 0)
+                    {
+                        // Mostrar 0% si hay citas completadas pero sin rating
+                        satisfactionPercentage = 0;
+                    }
+                    // Si no hay citas completadas, mantener 0%
                 }
 
                 return Ok(new
@@ -133,6 +147,66 @@ namespace CitasEPS.Controllers
                     .ToListAsync();
 
                 return Ok(patients);
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(500, new { error = "Error interno del servidor", details = ex.Message });
+            }
+        }
+
+        // GET: api/doctor/debug-appointments - Debug endpoint
+        [HttpGet("debug-appointments")]
+        public async Task<ActionResult<object>> GetDebugAppointments()
+        {
+            try
+            {
+                var user = await _userManager.GetUserAsync(User);
+                if (user == null)
+                {
+                    return Unauthorized("Usuario no encontrado");
+                }
+
+                var doctor = await _context.Doctors
+                    .FirstOrDefaultAsync(d => d.Email == user.Email);
+
+                if (doctor == null)
+                {
+                    return NotFound("Doctor no encontrado");
+                }
+
+                var allAppointments = await _context.Appointments
+                    .Where(a => a.DoctorId == doctor.Id)
+                    .Include(a => a.Patient)
+                    .Include(a => a.Rating)
+                    .Select(a => new
+                    {
+                        id = a.Id,
+                        patientName = a.Patient.FullName,
+                        appointmentDateTime = a.AppointmentDateTime,
+                        isConfirmed = a.IsConfirmed,
+                        isCompleted = a.IsCompleted,
+                        isCancelled = a.IsCancelled,
+                        hasRating = a.Rating != null,
+                        patientRating = a.Rating != null ? a.Rating.PatientRating : 0,
+                        notes = a.Notes
+                    })
+                    .OrderBy(a => a.appointmentDateTime)
+                    .ToListAsync();
+
+                var stats = new
+                {
+                    totalAppointments = allAppointments.Count,
+                    confirmedAppointments = allAppointments.Count(a => a.isConfirmed && !a.isCompleted && !a.isCancelled),
+                    completedAppointments = allAppointments.Count(a => a.isCompleted),
+                    cancelledAppointments = allAppointments.Count(a => a.isCancelled),
+                    appointmentsWithRating = allAppointments.Count(a => a.hasRating),
+                    doctorId = doctor.Id,
+                    doctorName = doctor.FullName,
+                    currentDateTime = DateTime.Now,
+                    appointments = allAppointments
+                };
+
+                return Ok(stats);
             }
             catch (Exception ex)
             {

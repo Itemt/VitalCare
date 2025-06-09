@@ -1245,12 +1245,47 @@ else if (isPatient)
                     document.getElementById('doctorCitasHoyStat').textContent = stats.todayAppointments || 0;
                     document.getElementById('doctorCitasConfirmadasStat').textContent = stats.confirmedAppointments || 0;
                     document.getElementById('doctorSatisfaccionStat').textContent = (stats.satisfactionPercentage || 0) + '%';
+                    
+                    // Debug: También cargar información detallada para diagnóstico
+                    await loadDebugInfo();
                 }
             } catch (error) {
                 console.error('Error cargando datos del doctor:', error);
                 document.getElementById('doctorCitasHoyStat').textContent = '0';
                 document.getElementById('doctorCitasConfirmadasStat').textContent = '0';
                 document.getElementById('doctorSatisfaccionStat').textContent = '0%';
+            }
+        }
+
+        // Función de debug temporal para diagnosticar problemas con las citas
+        async function loadDebugInfo() {
+            try {
+                const debugResponse = await fetch('/api/doctor/debug-appointments');
+                if (debugResponse.ok) {
+                    const debugData = await debugResponse.json();
+                    console.log('=== DEBUG INFO: Datos de citas del doctor ===');
+                    console.log('Doctor:', debugData.doctorName, '(ID:', debugData.doctorId + ')');
+                    console.log('Fecha/Hora actual:', debugData.currentDateTime);
+                    console.log('Total de citas:', debugData.totalAppointments);
+                    console.log('Citas confirmadas:', debugData.confirmedAppointments);
+                    console.log('Citas completadas:', debugData.completedAppointments);
+                    console.log('Citas canceladas:', debugData.cancelledAppointments);
+                    console.log('Citas con rating:', debugData.appointmentsWithRating);
+                    console.log('Lista de citas:', debugData.appointments);
+                    console.log('==========================================');
+                    
+                    // Si hay citas confirmadas pero no se muestran, mostrar alerta
+                    if (debugData.confirmedAppointments > 0) {
+                        console.log('✅ Se encontraron', debugData.confirmedAppointments, 'citas confirmadas');
+                    } else {
+                        console.log('⚠️  No se encontraron citas confirmadas');
+                        if (debugData.totalAppointments > 0) {
+                            console.log('Pero hay', debugData.totalAppointments, 'citas en total. Verifique el estado de confirmación.');
+                        }
+                    }
+                }
+            } catch (error) {
+                console.error('Error cargando información de debug:', error);
             }
         }
 

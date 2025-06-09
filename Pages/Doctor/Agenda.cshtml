@@ -130,6 +130,17 @@
     .status-confirmed { background: #10b981 !important; color: white !important; padding: 0.5rem 1rem; border-radius: 10px; }
     .status-pending { background: #f59e0b !important; color: white !important; padding: 0.5rem 1rem; border-radius: 10px; }
     .status-cancelled { background: #ef4444 !important; color: white !important; padding: 0.5rem 1rem; border-radius: 10px; }
+    .status-completed { background: #059669 !important; color: white !important; padding: 0.5rem 1rem; border-radius: 10px; }
+    
+    /* Estilos para calificaciones */
+    .rating-stars .bi-star-fill { color: #fbbf24 !important; }
+    .rating-stars .bi-star { color: #9ca3af !important; }
+    .rating-comment { 
+        max-width: 200px; 
+        overflow: hidden; 
+        text-overflow: ellipsis; 
+        white-space: nowrap; 
+    }
     
     .date-indicator {
         background: rgba(59, 130, 246, 0.2) !important;
@@ -238,6 +249,7 @@
                             <th><i class="bi bi-person me-2"></i>Paciente</th>
                             <th><i class="bi bi-info-circle me-2"></i>Notas</th>
                             <th><i class="bi bi-check2-circle me-2"></i>Estado</th>
+                            <th><i class="bi bi-star-fill me-2"></i>Calificación</th>
                             <th><i class="bi bi-gear me-2"></i>Acciones</th>
                         </tr>
                     </thead>
@@ -267,17 +279,68 @@
                                             <i class="bi bi-x-circle-fill me-1"></i>Cancelada
                                         </span>
                                     }
+                                    else if (appointment.IsCompleted)
+                                    {
+                                        <span class="status-badge status-completed">
+                                            <i class="bi bi-check2-all me-1"></i>Completada
+                                        </span>
+                                    }
                                     else if (appointment.IsConfirmed)
                                     {
-                                        <span class="status-badge status-confirmed">
-                                            <i class="bi bi-check-circle-fill me-1"></i>Confirmada
-                                        </span>
+                                        @if (appointment.AppointmentDateTime < DateTime.Now)
+                                        {
+                                            <span class="status-badge" style="background: #dc2626 !important; color: white !important; padding: 0.5rem 1rem; border-radius: 10px;">
+                                                <i class="bi bi-exclamation-triangle-fill me-1"></i>No Asistió
+                                            </span>
+                                        }
+                                        else
+                                        {
+                                            <span class="status-badge status-confirmed">
+                                                <i class="bi bi-check-circle-fill me-1"></i>Confirmada
+                                            </span>
+                                        }
                                     }
                                     else
                                     {
                                         <span class="status-badge status-pending">
                                             <i class="bi bi-hourglass-split me-1"></i>Pendiente
                                         </span>
+                                    }
+                                </td>
+                                <td>
+                                    @if (appointment.Rating != null && appointment.Rating.PatientRating > 0)
+                                    {
+                                        <div class="d-flex align-items-center rating-stars">
+                                            @for (int i = 1; i <= 5; i++)
+                                            {
+                                                @if (i <= appointment.Rating.PatientRating)
+                                                {
+                                                    <i class="bi bi-star-fill me-1"></i>
+                                                }
+                                                else
+                                                {
+                                                    <i class="bi bi-star me-1"></i>
+                                                }
+                                            }
+                                            <small class="ms-2 text-muted fw-semibold">(@appointment.Rating.PatientRating/5)</small>
+                                        </div>
+                                        @if (!string.IsNullOrEmpty(appointment.Rating.PatientComment))
+                                        {
+                                            <small class="text-muted d-block mt-1 rating-comment" style="font-style: italic;" 
+                                                   title="@appointment.Rating.PatientComment">
+                                                "@appointment.Rating.PatientComment"
+                                            </small>
+                                        }
+                                    }
+                                    else if (appointment.IsCompleted)
+                                    {
+                                        <small class="text-muted">
+                                            <i class="bi bi-clock-history me-1"></i>Pendiente calificación
+                                        </small>
+                                    }
+                                    else
+                                    {
+                                        <small class="text-muted">-</small>
                                     }
                                 </td>
                                 <td>

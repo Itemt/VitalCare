@@ -41,6 +41,9 @@ namespace CitasEPS.Data
             // Inicializar Citas
             await SeedAppointmentsAsync(context, logger);
 
+            // Inicializar Ratings de ejemplo
+            await SeedRatingsAsync(context, logger);
+
             logger.LogInformation("Inicialización de datos (seed) completada.");
         }
 
@@ -362,7 +365,9 @@ namespace CitasEPS.Data
                 var appointmentDay = startDate.AddDays(random.Next(1, 15)); // Dentro de los próximos 14 días
                 var appointmentHour = random.Next(8, 17); // Entre 8 AM y 4 PM (16:xx)
                 var appointmentTime = appointmentDay.AddHours(appointmentHour).AddMinutes(random.Next(0, 4) * 15); // En intervalos de 15 min
-                bool isConfirmed = random.Next(0, 2) == 1; // 50% de probabilidad de confirmada
+                
+                // Asegurar que al menos las primeras 5 citas estén confirmadas para testing
+                bool isConfirmed = i < 5 ? true : random.Next(0, 2) == 1; // Primeras 5 confirmadas, resto 50% probabilidad
 
                 appointments.Add(new Appointment
                 {
@@ -377,6 +382,53 @@ namespace CitasEPS.Data
             await context.Appointments.AddRangeAsync(appointments);
             await context.SaveChangesAsync();
             logger.LogInformation($"{appointments.Count} citas de ejemplo inicializadas (seed).");
+        }
+
+        private static async Task SeedRatingsAsync(ApplicationDbContext context, ILogger logger)
+        {
+            if (await context.Ratings.AnyAsync())
+            {
+                logger.LogInformation("Ratings ya inicializados (seed).");
+                return;
+            }
+
+            // Obtener algunas citas completadas para crear ratings
+            var completedAppointments = await context.Appointments
+                .Where(a => a.IsConfirmed) // Usar citas confirmadas como si fueran completadas para el ejemplo
+                .Take(5) // Solo las primeras 5
+                .ToListAsync();
+
+            if (!completedAppointments.Any())
+            {
+                logger.LogWarning("No hay citas confirmadas para crear ratings de ejemplo.");
+                return;
+            }
+
+            var random = new Random();
+            var ratings = new List<Rating>();
+
+            foreach (var appointment in completedAppointments)
+            {
+                // Marcar la cita como completada para que tenga sentido el rating
+                appointment.IsCompleted = true;
+
+                var rating = new Rating
+                {
+                    AppointmentId = appointment.Id,
+                    PatientRating = random.Next(4, 6), // Ratings entre 4 y 5 estrellas
+                    PatientComment = $"Excelente atención del doctor. Muy profesional y amable.",
+                    PatientRatingDate = DateTime.UtcNow.AddDays(-random.Next(1, 30)),
+                    DoctorRating = random.Next(4, 6), // Doctor también califica al paciente
+                    DoctorComment = "Paciente muy colaborativo y puntual.",
+                    DoctorRatingDate = DateTime.UtcNow.AddDays(-random.Next(1, 30))
+                };
+
+                ratings.Add(rating);
+            }
+
+            await context.Ratings.AddRangeAsync(ratings);
+            await context.SaveChangesAsync();
+            logger.LogInformation($"{ratings.Count} ratings de ejemplo inicializados (seed).");
         }
     }
 } 
