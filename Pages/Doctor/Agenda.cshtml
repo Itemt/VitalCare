@@ -285,6 +285,24 @@
                                             <i class="bi bi-check2-all me-1"></i>Completada
                                         </span>
                                     }
+                                    else if (appointment.RescheduleRequested && appointment.ProposedNewDateTime.HasValue)
+                                    {
+                                        <span class="status-badge" style="background: #f59e0b !important; color: white !important; padding: 0.5rem 1rem; border-radius: 10px;">
+                                            <i class="bi bi-clock-history me-1"></i>Reagendamiento Solicitado
+                                        </span>
+                                        <small class="d-block mt-1 text-muted">
+                                            Nueva fecha propuesta: @appointment.ProposedNewDateTime.Value.ToString("dd/MM/yyyy HH:mm")
+                                        </small>
+                                    }
+                                    else if (appointment.DoctorProposedReschedule && appointment.ProposedNewDateTime.HasValue)
+                                    {
+                                        <span class="status-badge" style="background: #3b82f6 !important; color: white !important; padding: 0.5rem 1rem; border-radius: 10px;">
+                                            <i class="bi bi-clock-history me-1"></i>Esperando Respuesta del Paciente
+                                        </span>
+                                        <small class="d-block mt-1 text-muted">
+                                            Fecha propuesta: @appointment.ProposedNewDateTime.Value.ToString("dd/MM/yyyy HH:mm")
+                                        </small>
+                                    }
                                     else if (appointment.IsConfirmed)
                                     {
                                         @if (appointment.AppointmentDateTime < DateTime.Now)
@@ -344,10 +362,30 @@
                                     }
                                 </td>
                                 <td>
-                                    <a asp-page="/Appointments/Details" asp-route-id="@appointment.Id" 
-                                       class="btn-action" title="Ver Detalles">
-                                        <i class="bi bi-eye-fill me-2"></i>Ver Detalles
-                                    </a>
+                                    <div class="d-flex flex-column gap-2">
+                                        <a asp-page="/Appointments/Details" asp-route-id="@appointment.Id" 
+                                           class="btn-action" title="Ver Detalles">
+                                            <i class="bi bi-eye-fill me-2"></i>Ver Detalles
+                                        </a>
+                                        
+                                        @* Mostrar botón de confirmar reagendamiento si el paciente ha solicitado uno *@
+                                        @if (appointment.RescheduleRequested && appointment.ProposedNewDateTime.HasValue && !appointment.IsCompleted && !appointment.IsCancelled)
+                                        {
+                                            <a asp-page="/Doctor/ConfirmRescheduleProposal" asp-route-id="@appointment.Id" 
+                                               class="btn-action" style="background: #10b981 !important; font-size: 0.875rem;" title="Revisar propuesta de reagendamiento">
+                                                <i class="bi bi-check-circle me-1"></i>Revisar Propuesta
+                                            </a>
+                                        }
+                                        
+                                        @* Mostrar botón de proponer reagendamiento si es elegible *@
+                                        @if (!appointment.IsCompleted && !appointment.IsCancelled && appointment.AppointmentDateTime >= DateTime.Now && !appointment.RescheduleRequested && !appointment.DoctorProposedReschedule)
+                                        {
+                                            <a asp-page="/Doctor/ProposeDoctorReschedule" asp-route-id="@appointment.Id" 
+                                               class="btn-action" style="background: #3b82f6 !important; font-size: 0.875rem;" title="Proponer nuevo horario al paciente">
+                                                <i class="bi bi-arrow-repeat me-1"></i>Proponer Reag.
+                                            </a>
+                                        }
+                                    </div>
                                 </td>
                             </tr>
                         }

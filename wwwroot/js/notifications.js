@@ -6,6 +6,7 @@ document.addEventListener('DOMContentLoaded', function () {
     const notificationDropdown = document.getElementById('notificationDropdown');
     const notificationDivider = document.getElementById('notificationItemsDivider');
     const notificationItemsList = document.getElementById('notificationItemsList');
+    const notificationFooter = document.getElementById('notificationFooter');
 
     console.log('notifications.js loaded'); // Log inicial
 
@@ -53,8 +54,8 @@ document.addEventListener('DOMContentLoaded', function () {
 
     function renderNotifications(notifications) {
         console.log('renderNotifications called with:', notifications);
-        if (!notificationItemsList || !noNotificationsMessageDisplay || !markAllAsReadLink || !notificationDivider) {
-            console.error('renderNotifications: One or more critical panel elements not found. ItemsList:', notificationItemsList, 'NoMsg:', noNotificationsMessageDisplay, 'MarkAllLink:', markAllAsReadLink, 'Divider:', notificationDivider);
+        if (!notificationItemsList || !noNotificationsMessageDisplay || !markAllAsReadLink || !notificationDivider || !notificationFooter) {
+            console.error('renderNotifications: One or more critical panel elements not found. ItemsList:', notificationItemsList, 'NoMsg:', noNotificationsMessageDisplay, 'MarkAllLink:', markAllAsReadLink, 'Divider:', notificationDivider, 'Footer:', notificationFooter);
             return;
         }
 
@@ -110,14 +111,14 @@ document.addEventListener('DOMContentLoaded', function () {
             noNotificationsMessageDisplay.style.display = 'none';
             notificationItemsList.style.display = 'block'; 
             notificationDivider.style.display = 'block';
-            markAllAsReadLink.style.display = unreadNotificationsExist ? 'block' : 'none';
+            notificationFooter.style.display = unreadNotificationsExist ? 'block' : 'none';
             console.log('Finished rendering notifications. All are displayed as active.');
         } else {
             console.log('No notifications to render, or notifications array is empty.');
             noNotificationsMessageDisplay.style.display = 'block';
             notificationItemsList.style.display = 'none';
             notificationDivider.style.display = 'none';
-            markAllAsReadLink.style.display = 'none';
+            notificationFooter.style.display = 'none';
         }
         areNotificationsFetched = true;
     }
@@ -131,9 +132,9 @@ document.addEventListener('DOMContentLoaded', function () {
         });
     }
     
-    // Ensure markAllAsReadLink is hidden from the start if it exists
-    if (markAllAsReadLink) {
-        markAllAsReadLink.style.display = 'none';
+    // Ensure notification footer is hidden from the start if it exists
+    if (notificationFooter) {
+        notificationFooter.style.display = 'none';
     }
 
     if (notificationItemsList) {
@@ -175,8 +176,8 @@ document.addEventListener('DOMContentLoaded', function () {
                         await fetchUnreadCount(); 
 
                         const unreadInPanel = notificationItemsList.querySelectorAll('.notification-unread').length;
-                        if (markAllAsReadLink) {
-                            markAllAsReadLink.style.display = unreadInPanel > 0 ? 'block' : 'none';
+                        if (notificationFooter) {
+                            notificationFooter.style.display = unreadInPanel > 0 ? 'block' : 'none';
                         }
                         performNavigation(); // Navigate after successful mark as read
                     } else {

@@ -217,14 +217,26 @@
                                 <i class="bi bi-bell-fill" style="font-size: 1rem; line-height: 1;"></i>
                                 <span class="position-absolute badge rounded-pill bg-danger" id="notificationBadge" style="display: none; min-width: 22px; height: 22px; line-height: 22px; font-size: 0.75rem; padding: 0; top: -5px; right: -8px; font-weight: 700; border: 2px solid white; box-shadow: 0 2px 8px rgba(0,0,0,0.3);">1</span>
                             </button>
-                            <ul class="dropdown-menu dropdown-menu-end" style="width: 350px; max-width: 90vw; max-height: 400px; overflow-y: auto;">
-                                <li><h6 class="dropdown-header">Notificaciones</h6></li>
-                                <li><hr class="dropdown-divider" id="notificationItemsDivider"></li>
-                                <li id="notificationItemsList" style="display: none;"></li>
-                                <li><div class="text-center p-3 text-muted" id="noNotificationsMessageDisplay">Sin notificaciones</div></li>
-                                <li><hr class="dropdown-divider" style="display: none;" id="markAllReadDivider"></li>
-                                <li><a class="dropdown-item text-center text-primary" href="#" id="markAllAsReadLink" style="display: none; font-size: 0.875rem;">Marcar todas como leídas</a></li>
-                            </ul>
+                            <div class="dropdown-menu dropdown-menu-end notification-panel" style="width: 350px; max-width: 90vw; padding: 0;">
+                                <!-- Header siempre visible -->
+                                <div class="notification-header">
+                                    <h6 class="dropdown-header">Notificaciones</h6>
+                                </div>
+                                
+                                <!-- Contenedor con scroll para las notificaciones -->
+                                <div class="notification-content" style="max-height: 300px; overflow-y: auto;">
+                                    <hr class="dropdown-divider" id="notificationItemsDivider" style="margin: 0;">
+                                    <div id="notificationItemsList" style="display: none;"></div>
+                                    <div class="text-center p-3 text-muted" id="noNotificationsMessageDisplay">Sin notificaciones</div>
+                                </div>
+                                
+                                <!-- Footer siempre visible -->
+                                <div class="notification-footer" style="border-top: 1px solid rgba(0,0,0,0.1); background: rgba(248,249,250,0.95); display: none;" id="notificationFooter">
+                                    <a class="dropdown-item text-center text-primary" href="#" id="markAllAsReadLink" style="font-size: 0.875rem; font-weight: 600; padding: 0.75rem;">
+                                        <i class="bi bi-check2-all me-2"></i>Marcar todas como leídas
+                                    </a>
+                                </div>
+                            </div>
                         </div>
 
                         @* USUARIO *@
@@ -623,9 +635,69 @@
     }
 
     /* === ESTILOS PARA NOTIFICACIONES === */
+    .notification-panel {
+        border: none !important;
+        box-shadow: 0 .5rem 1rem rgba(0,0,0,.15) !important;
+        border-radius: 0.5rem !important;
+        overflow: hidden !important;
+    }
+
+    .notification-header {
+        background: rgba(0, 123, 255, 0.05) !important;
+        border-bottom: 1px solid rgba(0,0,0,0.1) !important;
+        margin: 0 !important;
+    }
+
+    .notification-header .dropdown-header {
+        font-weight: 600 !important;
+        color: #007bff !important;
+        margin: 0 !important;
+        padding: 1rem !important;
+    }
+
+    .notification-content {
+        max-height: 300px !important;
+        overflow-y: auto !important;
+        overflow-x: hidden !important;
+    }
+
+    .notification-content::-webkit-scrollbar {
+        width: 4px;
+    }
+
+    .notification-content::-webkit-scrollbar-track {
+        background: rgba(0,0,0,0.05);
+    }
+
+    .notification-content::-webkit-scrollbar-thumb {
+        background: rgba(0,0,0,0.3);
+        border-radius: 2px;
+    }
+
+    .notification-content::-webkit-scrollbar-thumb:hover {
+        background: rgba(0,0,0,0.5);
+    }
+
+    .notification-footer {
+        position: sticky !important;
+        bottom: 0 !important;
+        background: rgba(248,249,250,0.95) !important;
+        backdrop-filter: blur(10px) !important;
+        border-top: 1px solid rgba(0,0,0,0.1) !important;
+        margin: 0 !important;
+        z-index: 10 !important;
+    }
+
+    .notification-footer:hover {
+        background: rgba(248,249,250,1) !important;
+    }
+
     .notification-item {
         border-bottom: 1px solid rgba(0,0,0,0.1);
         transition: background-color 0.2s ease;
+        list-style: none !important;
+        margin: 0 !important;
+        padding: 0 !important;
     }
 
     .notification-item:last-child {
@@ -652,6 +724,8 @@
         word-wrap: break-word !important;
         overflow-wrap: break-word !important;
         min-height: auto !important;
+        border: none !important;
+        border-radius: 0 !important;
     }
 
     .notification-item .dropdown-item p {
@@ -692,6 +766,46 @@
     .dropdown .btn-medical {
         overflow: visible !important;
         position: relative !important;
+    }
+
+    /* === ESTILOS PARA MODO OSCURO === */
+    [data-bs-theme="dark"] .notification-header {
+        background: rgba(55, 65, 81, 0.8) !important;
+        border-bottom: 1px solid rgba(255,255,255,0.1) !important;
+    }
+
+    [data-bs-theme="dark"] .notification-header .dropdown-header {
+        color: #60a5fa !important;
+    }
+
+    [data-bs-theme="dark"] .notification-footer {
+        background: rgba(31, 41, 55, 0.95) !important;
+        border-top: 1px solid rgba(255,255,255,0.1) !important;
+    }
+
+    [data-bs-theme="dark"] .notification-footer:hover {
+        background: rgba(31, 41, 55, 1) !important;
+    }
+
+    [data-bs-theme="dark"] .notification-item.notification-unread {
+        background-color: rgba(59, 130, 246, 0.1);
+        border-left: 3px solid #60a5fa;
+    }
+
+    [data-bs-theme="dark"] .notification-item:hover {
+        background-color: rgba(59, 130, 246, 0.2) !important;
+    }
+
+    [data-bs-theme="dark"] .notification-content::-webkit-scrollbar-track {
+        background: rgba(255,255,255,0.05);
+    }
+
+    [data-bs-theme="dark"] .notification-content::-webkit-scrollbar-thumb {
+        background: rgba(255,255,255,0.3);
+    }
+
+    [data-bs-theme="dark"] .notification-content::-webkit-scrollbar-thumb:hover {
+        background: rgba(255,255,255,0.5);
     }
     
     /* === ANIMACIONES DE HAMBURGUESA PERSONALIZADAS === */

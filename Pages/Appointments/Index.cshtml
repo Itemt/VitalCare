@@ -80,6 +80,16 @@
         border-color: rgba(239, 68, 68, 0.5) !important;
     }
     
+    .alert-success {
+        background: rgba(16, 185, 129, 0.2) !important;
+        border-color: rgba(16, 185, 129, 0.5) !important;
+    }
+    
+    .alert-info {
+        background: rgba(59, 130, 246, 0.2) !important;
+        border-color: rgba(59, 130, 246, 0.5) !important;
+    }
+    
     .dashboard-image {
         border-radius: 15px;
         box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
@@ -122,14 +132,20 @@
     .appointments-table {
         background: rgba(255, 255, 255, 0.98) !important;
         border-radius: 15px;
-        overflow: hidden;
+        overflow-x: auto;
+        overflow-y: hidden;
         box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
         margin-bottom: 2rem;
+        width: 100%;
+        max-width: 100%;
     }
     
     .table {
         margin: 0;
         color: #1e293b !important;
+        width: 100%;
+        min-width: 800px;
+        table-layout: fixed;
     }
     
     .table thead {
@@ -139,19 +155,25 @@
     
     .table thead th {
         border: none;
-        padding: 1.2rem 1rem;
+        padding: 1.2rem 0.8rem;
         font-weight: 600;
         text-transform: uppercase;
-        font-size: 0.85rem;
+        font-size: 0.75rem;
         letter-spacing: 1px;
         color: white !important;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
     }
     
     .table tbody td {
-        padding: 1.2rem 1rem;
+        padding: 1rem 0.8rem;
         border-bottom: 1px solid rgba(30, 41, 59, 0.1);
-        vertical-align: middle;
+        vertical-align: top;
         color: #1e293b !important;
+        word-wrap: break-word;
+        overflow-wrap: break-word;
+        max-width: 0;
     }
     
     .table tbody tr:hover {
@@ -180,14 +202,17 @@
         background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%) !important;
         border: none !important;
         color: white !important;
-        padding: 0.5rem 1rem;
-        border-radius: 8px;
+        padding: 0.4rem 0.8rem;
+        border-radius: 6px;
         font-weight: 600;
+        font-size: 0.8rem;
         transition: all 0.3s ease;
         text-decoration: none;
-        margin: 0.2rem;
+        margin: 0.1rem;
         display: inline-flex;
         align-items: center;
+        white-space: nowrap;
+        max-width: 100%;
     }
     
     .btn-action:hover {
@@ -206,12 +231,17 @@
     }
     
     .status-badge {
-        padding: 0.5rem 1rem;
-        border-radius: 10px;
+        padding: 0.4rem 0.8rem;
+        border-radius: 8px;
         font-weight: 600;
-        font-size: 0.85rem;
+        font-size: 0.75rem;
         text-transform: uppercase;
         letter-spacing: 0.5px;
+        display: inline-block;
+        white-space: nowrap;
+        max-width: 100%;
+        overflow: hidden;
+        text-overflow: ellipsis;
     }
     
     .status-confirmed {
@@ -306,6 +336,70 @@
     
     [data-bs-theme="dark"] .table tbody tr:hover {
         background: rgba(59, 130, 246, 0.1) !important;
+    }
+
+    /* Responsive columns */
+    .table th:nth-child(1), .table td:nth-child(1) { width: 18%; } /* Fecha y Hora */
+    .table th:nth-child(2), .table td:nth-child(2) { width: 20%; } /* Médico/Paciente */
+    .table th:nth-child(3), .table td:nth-child(3) { width: 15%; } /* Especialidad/Notas */
+    .table th:nth-child(4), .table td:nth-child(4) { width: 27%; } /* Estado */
+    .table th:nth-child(5), .table td:nth-child(5) { width: 15%; } /* Calificación */
+    .table th:nth-child(6), .table td:nth-child(6) { width: 25%; } /* Acciones */
+
+    /* Para tablas con 5 columnas (paciente) */
+    .patient-table th:nth-child(3), .patient-table td:nth-child(3) { width: 18%; }
+    .patient-table th:nth-child(4), .patient-table td:nth-child(4) { width: 32%; }
+    .patient-table th:nth-child(5), .patient-table td:nth-child(5) { width: 30%; }
+
+    /* Contenedores de flex para acciones */
+    .d-flex.flex-wrap {
+        gap: 0.2rem;
+        align-items: flex-start;
+    }
+
+    /* Status column específicos */
+    .status-column {
+        min-width: 150px;
+        max-width: 250px;
+    }
+
+    .status-column small {
+        font-size: 0.7rem;
+        line-height: 1.2;
+        margin: 0.2rem 0;
+        display: block;
+    }
+
+    /* Responsive breakpoints */
+    @media (max-width: 1200px) {
+        .table {
+            min-width: 900px;
+        }
+        
+        .btn-action {
+            padding: 0.3rem 0.6rem;
+            font-size: 0.75rem;
+        }
+        
+        .status-badge {
+            font-size: 0.7rem;
+            padding: 0.3rem 0.6rem;
+        }
+    }
+
+    @media (max-width: 992px) {
+        .table {
+            min-width: 800px;
+        }
+        
+        .table th, .table td {
+            padding: 0.8rem 0.6rem;
+        }
+        
+        .btn-action {
+            padding: 0.25rem 0.5rem;
+            font-size: 0.7rem;
+        }
     }
 </style>
 
@@ -502,6 +596,22 @@ else // Patient View
                 </div>
             }
             
+            @if (TempData["SuccessMessage"] != null)
+            {
+                <div class="alert-section alert-success">
+                    <i class="bi bi-check-circle-fill me-2"></i>
+                    @TempData["SuccessMessage"]
+                </div>
+            }
+            
+            @if (TempData["InfoMessage"] != null)
+            {
+                <div class="alert-section alert-info">
+                    <i class="bi bi-info-circle-fill me-2"></i>
+                    @TempData["InfoMessage"]
+                </div>
+            }
+            
             <div class="text-center my-4">
                 <img src="~/images/patient_dashboard_image.png" alt="Mis Citas" class="dashboard-image img-fluid" />
             </div>
@@ -526,7 +636,7 @@ else // Patient View
             else
             {
                 <div class="appointments-table">
-                    <table class="table">
+                    <table class="table patient-table">
                         <thead>
                             <tr>
                                 <th><i class="bi bi-calendar-event me-2"></i>Fecha y Hora</th>
@@ -551,7 +661,7 @@ else // Patient View
                                         </div>
                                     </td>
                                     <td>@(item.Doctor?.Specialty?.Name ?? "N/A")</td>
-                                    <td>
+                                    <td class="status-column">
                                         @if (item.IsCancelled) 
                                         { 
                                             <span class="status-badge status-cancelled">
@@ -579,14 +689,26 @@ else // Patient View
                                         else if (item.DoctorProposedReschedule && item.ProposedNewDateTime.HasValue) 
                                         { 
                                             <span class="status-badge status-info">
-                                                <i class="bi bi-calendar-event me-1"></i>Prop. Doctor
+                                                <i class="bi bi-calendar-event me-1"></i>Propuesta del Doctor
                                             </span> 
+                                            <small class="text-info d-block mt-1">
+                                                <i class="bi bi-arrow-right me-1"></i>Nueva fecha: @item.ProposedNewDateTime.Value.ToString("dd/MM/yyyy HH:mm")
+                                            </small>
+                                            <small class="text-warning d-block">
+                                                <i class="bi bi-exclamation-circle me-1"></i>Requiere su confirmación
+                                            </small>
                                         }
                                         else if (item.RescheduleRequested && item.ProposedNewDateTime.HasValue) 
                                         { 
                                             <span class="status-badge status-pending">
-                                                <i class="bi bi-calendar-week me-1"></i>Prop. Paciente
+                                                <i class="bi bi-clock-history me-1"></i>Reagendamiento Solicitado
                                             </span> 
+                                            <small class="text-muted d-block mt-1">
+                                                <i class="bi bi-arrow-right me-1"></i>Nueva fecha propuesta: @item.ProposedNewDateTime.Value.ToString("dd/MM/yyyy HH:mm")
+                                            </small>
+                                            <small class="text-info d-block">
+                                                <i class="bi bi-hourglass-split me-1"></i>Esperando confirmación del doctor
+                                            </small>
                                         }
                                         else if (item.IsConfirmed) 
                                         { 

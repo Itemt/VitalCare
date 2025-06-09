@@ -1,5 +1,6 @@
 using CitasEPS.Data;
 using CitasEPS.Models;
+using CitasEPS.Services;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
@@ -18,12 +19,14 @@ namespace CitasEPS.Pages.Doctor
         private readonly ApplicationDbContext _context;
         private readonly UserManager<User> _userManager;
         private readonly ILogger<ProposeDoctorRescheduleModel> _logger;
+        private readonly INotificationService _notificationService;
 
-        public ProposeDoctorRescheduleModel(ApplicationDbContext context, UserManager<User> userManager, ILogger<ProposeDoctorRescheduleModel> logger)
+        public ProposeDoctorRescheduleModel(ApplicationDbContext context, UserManager<User> userManager, ILogger<ProposeDoctorRescheduleModel> logger, INotificationService notificationService)
         {
             _context = context;
             _userManager = userManager;
             _logger = logger;
+            _notificationService = notificationService;
         }
 
         [BindProperty(SupportsGet = true)]
@@ -92,6 +95,7 @@ namespace CitasEPS.Pages.Doctor
 
             var appointmentToUpdate = await _context.Appointments
                                             .Include(a => a.Patient) // Needed for validation checks potentially
+                                            .ThenInclude(p => p.User) // Para notificaciones
                                             .FirstOrDefaultAsync(a => a.Id == Id && a.DoctorId == doctor.Id);
 
             if (appointmentToUpdate == null) return NotFound("Appointment not found or not assigned to you.");
@@ -188,6 +192,16 @@ namespace CitasEPS.Pages.Doctor
                 await _context.SaveChangesAsync();
                 _logger.LogInformation($"Doctor {user.Email} proposed reschedule for Appointment {Id} to {utcProposedDateTime}");
                 TempData["SuccessMessage"] = "Propuesta de reagendamiento enviada al paciente exitosamente.";
+
+                // --- Notificar al paciente sobre la propuesta del doctor ---
+                if (appointmentToUpdate.Patient?.User != null)
+                {
+                    var doctorName = doctor?.FullName ?? user.Email;
+                    var patientMessage = $"El Dr. {doctorName} ha propuesto reagendar su cita del {appointmentToUpdate.AppointmentDateTime:dd/MM/yyyy HH:mm} para el {utcProposedDateTime:dd/MM/yyyy HH:mm}. Por favor revise y confirme.";
+                    await _notificationService.CreateNotificationAsync(appointmentToUpdate.Patient.User.Id, patientMessage, NotificationType.RescheduleProposedByDoctor, appointmentToUpdate.Id);
+                }
+                // --- Fin notificación al paciente ---
+
                 return RedirectToPage("./Agenda");
             }
             catch (DbUpdateConcurrencyException ex)

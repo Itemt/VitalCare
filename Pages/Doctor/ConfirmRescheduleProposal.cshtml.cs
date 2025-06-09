@@ -1,10 +1,12 @@
 using CitasEPS.Data;
 using CitasEPS.Models;
+using CitasEPS.Services;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Logging;
 using System;
 using System.Linq;
 using System.Threading.Tasks;
@@ -17,12 +19,14 @@ namespace CitasEPS.Pages.Doctor
         private readonly ApplicationDbContext _context;
         private readonly UserManager<User> _userManager;
         private readonly ILogger<ConfirmRescheduleProposalModel> _logger;
+        private readonly INotificationService _notificationService;
 
-        public ConfirmRescheduleProposalModel(ApplicationDbContext context, UserManager<User> userManager, ILogger<ConfirmRescheduleProposalModel> logger)
+        public ConfirmRescheduleProposalModel(ApplicationDbContext context, UserManager<User> userManager, ILogger<ConfirmRescheduleProposalModel> logger, INotificationService notificationService)
         {
             _context = context;
             _userManager = userManager;
             _logger = logger;
+            _notificationService = notificationService;
         }
 
         [BindProperty(SupportsGet = true)]
@@ -73,7 +77,10 @@ namespace CitasEPS.Pages.Doctor
         // Handler for Confirming the proposal
         public async Task<IActionResult> OnPostConfirmAsync()
         {
-            var appointmentToUpdate = await _context.Appointments.FindAsync(Id);
+            var appointmentToUpdate = await _context.Appointments
+                .Include(a => a.Patient)
+                .ThenInclude(p => p.User)
+                .FirstOrDefaultAsync(a => a.Id == Id);
             if (appointmentToUpdate == null) return NotFound();
 
             // Re-verify eligibility and ownership before confirming
@@ -100,6 +107,15 @@ namespace CitasEPS.Pages.Doctor
                 await _context.SaveChangesAsync();
                 _logger.LogInformation($"Doctor {user.Email} confirmed reschedule for Appointment {Id} to {appointmentToUpdate.AppointmentDateTime}");
                 TempData["SuccessMessage"] = "Reagendamiento confirmado exitosamente.";
+
+                // --- Notificar al paciente que su propuesta fue aceptada ---
+                if (appointmentToUpdate.Patient?.User != null)
+                {
+                    var doctorName = doctorRecord?.FullName ?? user.Email;
+                    var patientMessage = $"El Dr. {doctorName} ha aceptado su propuesta de reagendamiento. Su nueva cita es el {appointmentToUpdate.AppointmentDateTime:dd/MM/yyyy 'a las' HH:mm}.";
+                    await _notificationService.CreateNotificationAsync(appointmentToUpdate.Patient.User.Id, patientMessage, NotificationType.RescheduleAcceptedByDoctor, appointmentToUpdate.Id);
+                }
+                // --- Fin notificación al paciente ---
             }
             catch (Exception ex)
             {
@@ -112,7 +128,10 @@ namespace CitasEPS.Pages.Doctor
         // Handler for Rejecting the proposal
         public async Task<IActionResult> OnPostRejectAsync()
         {
-            var appointmentToUpdate = await _context.Appointments.FindAsync(Id);
+            var appointmentToUpdate = await _context.Appointments
+                .Include(a => a.Patient)
+                .ThenInclude(p => p.User)
+                .FirstOrDefaultAsync(a => a.Id == Id);
             if (appointmentToUpdate == null) return NotFound();
             
             // Re-verify eligibility and ownership before rejecting
@@ -138,6 +157,15 @@ namespace CitasEPS.Pages.Doctor
                 await _context.SaveChangesAsync();
                  _logger.LogInformation($"Doctor {user.Email} rejected reschedule proposal for Appointment {Id}");
                 TempData["SuccessMessage"] = "Propuesta de reagendamiento rechazada. La cita permanece con su horario original y estado pendiente.";
+
+                // --- Notificar al paciente que su propuesta fue rechazada ---
+                if (appointmentToUpdate.Patient?.User != null)
+                {
+                    var doctorName = doctorRecord?.FullName ?? user.Email;
+                    var patientMessage = $"El Dr. {doctorName} ha rechazado su propuesta de reagendamiento. Su cita mantiene el horario original: {appointmentToUpdate.AppointmentDateTime:dd/MM/yyyy 'a las' HH:mm}.";
+                    await _notificationService.CreateNotificationAsync(appointmentToUpdate.Patient.User.Id, patientMessage, NotificationType.RescheduleRejectedByPatient, appointmentToUpdate.Id);
+                }
+                // --- Fin notificación al paciente ---
             }
             catch (Exception ex)
             {
