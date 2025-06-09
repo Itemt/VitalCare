@@ -15,11 +15,35 @@
 <header class="sticky-top">
     <nav class="navbar navbar-expand-xl">
         <div class="container-fluid">
-            @* LOGO *@
-            <a class="navbar-brand d-flex align-items-center" asp-area="" asp-page="/Index" style="font-size: 1.3rem; font-weight: 700;">
-                <i class="bi bi-heart-pulse-fill me-2 brand-icon" style="font-size: 1.4rem; color: #dc3545;"></i> 
-                <span class="brand-text-vital">Vital</span><span class="brand-text-care">Care</span>
-            </a>
+            @* LOGO - REDIRECCIÓN BASADA EN ROL *@
+            @if (isAdminLoggedIn)
+            {
+                <a class="navbar-brand d-flex align-items-center" asp-area="" asp-page="/UserDashboards/Admin/Index" style="font-size: 1.3rem; font-weight: 700;">
+                    <i class="bi bi-heart-pulse-fill me-2 brand-icon" style="font-size: 1.4rem; color: #dc3545;"></i> 
+                    <span class="brand-text-vital">Vital</span><span class="brand-text-care">Care</span>
+                </a>
+            }
+            else if (isDoctorLoggedIn)
+            {
+                <a class="navbar-brand d-flex align-items-center" asp-area="" asp-page="/UserDashboards/Doctor/Index" style="font-size: 1.3rem; font-weight: 700;">
+                    <i class="bi bi-heart-pulse-fill me-2 brand-icon" style="font-size: 1.4rem; color: #dc3545;"></i> 
+                    <span class="brand-text-vital">Vital</span><span class="brand-text-care">Care</span>
+                </a>
+            }
+            else if (isPatientLoggedIn)
+            {
+                <a class="navbar-brand d-flex align-items-center" asp-area="" asp-page="/UserDashboards/Patient/Index" style="font-size: 1.3rem; font-weight: 700;">
+                    <i class="bi bi-heart-pulse-fill me-2 brand-icon" style="font-size: 1.4rem; color: #dc3545;"></i> 
+                    <span class="brand-text-vital">Vital</span><span class="brand-text-care">Care</span>
+                </a>
+            }
+            else
+            {
+                <a class="navbar-brand d-flex align-items-center" asp-area="" asp-page="/Public/Index" style="font-size: 1.3rem; font-weight: 700;">
+                    <i class="bi bi-heart-pulse-fill me-2 brand-icon" style="font-size: 1.4rem; color: #dc3545;"></i> 
+                    <span class="brand-text-vital">Vital</span><span class="brand-text-care">Care</span>
+                </a>
+            }
             
             @* CONTROLES MÓVILES (HAMBURGUESA + TEMA) *@
             <div class="d-xl-none d-flex align-items-center gap-2">
@@ -39,11 +63,32 @@
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 @* NAVEGACIÓN PRINCIPAL *@
                 <ul class="navbar-nav me-auto mb-2 mb-xl-0 ms-4">
-                    @* INICIO SIEMPRE VISIBLE *@
+                    @* INICIO - REDIRECCIÓN BASADA EN ROL *@
                     <li class="nav-item nav-item-important">
-                        <a class="nav-link d-flex align-items-center" asp-area="" asp-page="/Index">
-                            <i class="bi bi-house-door-fill me-2"></i> Inicio
-                        </a>
+                        @if (isAdminLoggedIn)
+                        {
+                            <a class="nav-link d-flex align-items-center" asp-area="" asp-page="/UserDashboards/Admin/Index">
+                                <i class="bi bi-house-door-fill me-2"></i> Inicio
+                            </a>
+                        }
+                        else if (isDoctorLoggedIn)
+                        {
+                            <a class="nav-link d-flex align-items-center" asp-area="" asp-page="/UserDashboards/Doctor/Index">
+                                <i class="bi bi-house-door-fill me-2"></i> Inicio
+                            </a>
+                        }
+                        else if (isPatientLoggedIn)
+                        {
+                            <a class="nav-link d-flex align-items-center" asp-area="" asp-page="/UserDashboards/Patient/Index">
+                                <i class="bi bi-house-door-fill me-2"></i> Inicio
+                            </a>
+                        }
+                        else
+                        {
+                            <a class="nav-link d-flex align-items-center" asp-area="" asp-page="/Public/Index">
+                                <i class="bi bi-house-door-fill me-2"></i> Inicio
+                            </a>
+                        }
                     </li>
 
                     @if (SignInManager.IsSignedIn(User))
@@ -76,6 +121,20 @@
                                     <i class="bi bi-capsule-pill me-2"></i> Medicamentos
                                 </a>
                             </li>
+                            @* ENLACE TEMPORAL PARA CONFIRMACIÓN DE EMAILS *@
+                            <li class="nav-item nav-item-important">
+                                <a class="nav-link d-flex align-items-center text-warning" asp-page="/Admin/ConfirmEmails">
+                                    <i class="bi bi-envelope-exclamation me-2"></i> 
+                                    <span class="small">⚙️ Confirmar Emails</span>
+                                </a>
+                            </li>
+                            @* ENLACE TEMPORAL PARA DIAGNÓSTICO *@
+                            <li class="nav-item nav-item-important">
+                                <a class="nav-link d-flex align-items-center text-info" asp-page="/Admin/DiagnosticData">
+                                    <i class="bi bi-tools me-2"></i> 
+                                    <span class="small">🔧 Diagnóstico BD</span>
+                                </a>
+                            </li>
                         } 
                         else if (isDoctorLoggedIn)
                         {
@@ -101,22 +160,22 @@
                                     <i class="bi bi-three-dots me-2"></i> Más
                                 </a>
                                 <ul class="dropdown-menu">
-                                    <li><a class="dropdown-item d-flex align-items-center" asp-area="" asp-page="/Servicios">
+                                    <li><a class="dropdown-item d-flex align-items-center" asp-area="" asp-page="/Public/Servicios">
                                         <i class="bi bi-gear-fill me-2"></i> Servicios
                                     </a></li>
-                                    <li><a class="dropdown-item d-flex align-items-center" asp-area="" asp-page="/About">
+                                    <li><a class="dropdown-item d-flex align-items-center" asp-area="" asp-page="/Public/About">
                                         <i class="bi bi-building me-2"></i> Sobre Nosotros
                                     </a></li>
-                                    <li><a class="dropdown-item d-flex align-items-center" asp-area="" asp-page="/Team">
+                                    <li><a class="dropdown-item d-flex align-items-center" asp-area="" asp-page="/Public/Team">
                                         <i class="bi bi-people-fill me-2"></i> Equipo
                                     </a></li>
-                                    <li><a class="dropdown-item d-flex align-items-center" asp-area="" asp-page="/Contact">
+                                    <li><a class="dropdown-item d-flex align-items-center" asp-area="" asp-page="/Public/Contact">
                                         <i class="bi bi-envelope-fill me-2"></i> Contacto
                                     </a></li>
-                                    <li><a class="dropdown-item d-flex align-items-center" asp-area="" asp-page="/Support">
+                                    <li><a class="dropdown-item d-flex align-items-center" asp-area="" asp-page="/Public/Support">
                                         <i class="bi bi-headset me-2"></i> Soporte Técnico
                                     </a></li>
-                                    <li><a class="dropdown-item d-flex align-items-center" asp-area="" asp-page="/FAQ">
+                                    <li><a class="dropdown-item d-flex align-items-center" asp-area="" asp-page="/Public/FAQ">
                                         <i class="bi bi-question-circle-fill me-2"></i> FAQ
                                     </a></li>
                                 </ul>
@@ -151,32 +210,32 @@
                     {
                         @* USUARIOS NO LOGUEADOS - OPCIONES PRINCIPALES *@
                         <li class="nav-item nav-item-important">
-                            <a class="nav-link d-flex align-items-center" asp-area="" asp-page="/Servicios">
+                            <a class="nav-link d-flex align-items-center" asp-area="" asp-page="/Public/Servicios">
                                 <i class="bi bi-gear-fill me-2"></i> Servicios
                             </a>
                         </li>
                         <li class="nav-item nav-item-important">
-                            <a class="nav-link d-flex align-items-center" asp-area="" asp-page="/About">
+                            <a class="nav-link d-flex align-items-center" asp-area="" asp-page="/Public/About">
                                 <i class="bi bi-building me-2"></i> Sobre Nosotros
                             </a>
                         </li>
                         <li class="nav-item nav-item-important">
-                            <a class="nav-link d-flex align-items-center" asp-area="" asp-page="/Team">
+                            <a class="nav-link d-flex align-items-center" asp-area="" asp-page="/Public/Team">
                                 <i class="bi bi-people-fill me-2"></i> Equipo
                             </a>
                         </li>
                         <li class="nav-item nav-item-important">
-                            <a class="nav-link d-flex align-items-center" asp-area="" asp-page="/Contact">
+                            <a class="nav-link d-flex align-items-center" asp-area="" asp-page="/Public/Contact">
                                 <i class="bi bi-envelope-fill me-2"></i> Contacto
                             </a>
                         </li>
                         <li class="nav-item nav-item-important">
-                            <a class="nav-link d-flex align-items-center" asp-area="" asp-page="/Support">
+                            <a class="nav-link d-flex align-items-center" asp-area="" asp-page="/Public/Support">
                                 <i class="bi bi-headset me-2"></i> Soporte Técnico
                             </a>
                         </li>
                         <li class="nav-item nav-item-important">
-                            <a class="nav-link d-flex align-items-center" asp-area="" asp-page="/FAQ">
+                            <a class="nav-link d-flex align-items-center" asp-area="" asp-page="/Public/FAQ">
                                 <i class="bi bi-question-circle-fill me-2"></i> FAQ
                             </a>
                         </li>

@@ -1,5 +1,7 @@
 using CitasEPS.Data;
-using CitasEPS.Models;
+using CitasEPS.Models; using CitasEPS.Models.Modules.Users; using CitasEPS.Models.Modules.Medical; using CitasEPS.Models.Modules.Appointments; using CitasEPS.Models.Modules.Core;
+using CitasEPS.Services.Modules.Common;
+using CitasEPS.Services;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
@@ -18,12 +20,16 @@ namespace CitasEPS.Pages.Appointments
         private readonly ApplicationDbContext _context;
         private readonly UserManager<User> _userManager;
         private readonly ILogger<ProposeRescheduleModel> _logger;
+        private readonly INotificationService _notificationService;
+        private readonly IAppointmentEmailService _appointmentEmailService;
 
-        public ProposeRescheduleModel(ApplicationDbContext context, UserManager<User> userManager, ILogger<ProposeRescheduleModel> logger)
+        public ProposeRescheduleModel(ApplicationDbContext context, UserManager<User> userManager, ILogger<ProposeRescheduleModel> logger, INotificationService notificationService, IAppointmentEmailService appointmentEmailService)
         {
             _context = context;
             _userManager = userManager;
             _logger = logger;
+            _notificationService = notificationService;
+            _appointmentEmailService = appointmentEmailService;
         }
 
         [BindProperty(SupportsGet = true)]
@@ -119,28 +125,14 @@ namespace CitasEPS.Pages.Appointments
                 return RedirectToPage("./Index");
             }
 
-            // --- START: Convert Input.ProposedNewDateTime to UTC EARLY ---
+            // --- START: Convert Input.ProposedNewDateTime to UTC using ColombiaTimeZoneService ---
             var originalProposedDateTime = Input.ProposedNewDateTime;
-            if (originalProposedDateTime.Kind == DateTimeKind.Unspecified)
-            {
-                _logger.LogInformation($"Original Input.ProposedNewDateTime '{originalProposedDateTime}' had Kind Unspecified. Assuming Local, then converting to UTC.");
-                Input.ProposedNewDateTime = DateTime.SpecifyKind(originalProposedDateTime, DateTimeKind.Local).ToUniversalTime();
-            }
-            else if (originalProposedDateTime.Kind == DateTimeKind.Local)
-            {
-                _logger.LogInformation($"Original Input.ProposedNewDateTime '{originalProposedDateTime}' had Kind Local. Converting to UTC.");
-                Input.ProposedNewDateTime = originalProposedDateTime.ToUniversalTime();
-            }
-            else // Already UTC
-            {
-                 _logger.LogInformation($"Original Input.ProposedNewDateTime '{originalProposedDateTime}' was already Kind Utc. No conversion needed.");
-                Input.ProposedNewDateTime = originalProposedDateTime; // Ensure assignment
-            }
-            _logger.LogInformation($"Early converted Input.ProposedNewDateTime: '{Input.ProposedNewDateTime}', Kind: '{Input.ProposedNewDateTime.Kind}'. This will be used for validations.");
-            // --- END: Convert Input.ProposedNewDateTime to UTC EARLY ---
+            var utcProposedDateTime = ColombiaTimeZoneService.ConvertColombiaToUtc(originalProposedDateTime);
+            _logger.LogInformation($"Input Time (assumed Colombia): '{originalProposedDateTime}', Converted to UTC: '{utcProposedDateTime}'. This will be used for validations.");
+            // --- END: Convert Input.ProposedNewDateTime to UTC ---
             
             // --- START VALIDATIONS --- 
-            if (Input.ProposedNewDateTime < DateTime.UtcNow) // Compare against UtcNow as Input.ProposedNewDateTime is now UTC
+            if (utcProposedDateTime < DateTime.UtcNow) // Compare against UtcNow as Input.ProposedNewDateTime is now UTC
             {
                  ModelState.AddModelError("Input.ProposedNewDateTime", "No puede proponer una fecha u hora en el pasado.");
             }
@@ -162,7 +154,7 @@ namespace CitasEPS.Pages.Appointments
 
             // Patient Weekly Limit Validation
             DayOfWeek firstDayOfWeek = DayOfWeek.Monday;
-            DateTime startDate = Input.ProposedNewDateTime.Date; // This is UTC date
+            DateTime startDate = utcProposedDateTime.Date; // This is UTC date
             while (startDate.DayOfWeek != firstDayOfWeek) { startDate = startDate.AddDays(-1); }
             DateTime endDate = startDate.AddDays(7);
             var appointmentsInWeek = await _context.Appointments
@@ -183,7 +175,7 @@ namespace CitasEPS.Pages.Appointments
                 .AnyAsync(a => a.DoctorId == appointmentToUpdate.DoctorId && 
                                a.Id != Id && 
                                !a.IsCancelled && // Doctor's slot is free if an appointment in it was cancelled
-                               a.AppointmentDateTime == Input.ProposedNewDateTime);
+                               a.AppointmentDateTime == utcProposedDateTime);
             if (doctorHasSlot)
             {
                 ModelState.AddModelError("Input.ProposedNewDateTime", "El doctor ya tiene una cita programada para la fecha y hora exactas propuestas.");
@@ -197,7 +189,7 @@ namespace CitasEPS.Pages.Appointments
             }
 
             // Update Appointment
-            appointmentToUpdate.ProposedNewDateTime = Input.ProposedNewDateTime;
+            appointmentToUpdate.ProposedNewDateTime = utcProposedDateTime;
             appointmentToUpdate.RescheduleRequested = true;
             appointmentToUpdate.IsConfirmed = false; // Requires doctor confirmation now
 
@@ -206,7 +198,27 @@ namespace CitasEPS.Pages.Appointments
             try
             {
                 await _context.SaveChangesAsync();
-                _logger.LogInformation($"Patient {user.Email} proposed reschedule for Appointment {Id} to {Input.ProposedNewDateTime}");
+                _logger.LogInformation($"Patient {user.Email} proposed reschedule for Appointment {Id} to {utcProposedDateTime}");
+
+                // --- START: Notification and Email Logic ---
+                var patient = appointmentToUpdate.Patient;
+                var doctor = await _context.Doctors.Include(d => d.User).FirstOrDefaultAsync(d => d.Id == appointmentToUpdate.DoctorId);
+                
+                if (doctor?.User != null && patient != null)
+                {
+                    // Create notification for the doctor
+                    var notificationMessage = $"El paciente {patient.FullName} ha solicitado reagendar la cita del {ColombiaTimeZoneService.FormatInColombia(appointmentToUpdate.AppointmentDateTime, "dd/MM/yyyy 'a las' HH:mm")}. Nueva fecha propuesta: {ColombiaTimeZoneService.FormatInColombia(appointmentToUpdate.ProposedNewDateTime.Value, "dd/MM/yyyy 'a las' HH:mm")}.";
+                    await _notificationService.CreateNotificationAsync(doctor.User.Id, notificationMessage, NotificationType.RescheduleRequestedByPatient, appointmentToUpdate.Id);
+
+                    // Send email to patient confirming the request
+                    await _appointmentEmailService.SendRescheduleRequestedEmailAsync(appointmentToUpdate, user, doctor.User);
+                }
+                else
+                {
+                     _logger.LogWarning($"Could not send notification/email for reschedule proposal for Appointment {Id}. Doctor or Patient not found.");
+                }
+                // --- END: Notification and Email Logic ---
+
                 TempData["SuccessMessage"] = "Propuesta de reagendamiento enviada exitosamente. El consultorio revisará su solicitud.";
             }
             catch (DbUpdateConcurrencyException ex)
@@ -224,3 +236,7 @@ namespace CitasEPS.Pages.Appointments
         }
     }
 } 
+
+
+
+

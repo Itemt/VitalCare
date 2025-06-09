@@ -1,7 +1,7 @@
-锘緻page
+@page
 @model RegisterConfirmationModel
 @{
-    ViewData["Title"] = "Confirmaci贸n de registro";
+    ViewData["Title"] = "Confirmaci髇 de registro";
 }
 
 <div class="container text-center mt-5">
@@ -10,16 +10,16 @@
             <i class="bi bi-envelope-check-fill text-primary mb-3" style="font-size: 5rem; display: block;"></i>
             <h1>@ViewData["Title"]</h1>
             <p class="lead">
-                Por favor, revisa tu correo electr贸nico para confirmar tu cuenta.
+                Por favor, revisa tu correo electr髇ico para confirmar tu cuenta.
             </p>
             <p>
-                Hemos enviado un enlace de confirmaci贸n a la direcci贸n de correo que nos proporcionaste. Si no lo encuentras, revisa tu carpeta de spam.
+                Hemos enviado un enlace de confirmaci髇 a la direcci髇 de correo que nos proporcionaste. Si no lo encuentras, revisa tu carpeta de spam.
             </p>
             <hr class="my-4">
             <p>
-                驴No recibiste el correo? 
+                縉o recibiste el correo? 
                 @if (!string.IsNullOrEmpty(Model.Email)){
-                    <a asp-page="./ResendEmailConfirmation" asp-route-email="@Model.Email">Reenviar el correo de confirmaci贸n</a>
+                    <a asp-page="./ResendEmailConfirmation" asp-route-email="@Model.Email">Reenviar el correo de confirmaci髇</a>
                 }
                 else
                 {

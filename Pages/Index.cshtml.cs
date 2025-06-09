@@ -14,6 +14,9 @@ public class IndexModel : PageModel
 
     public void OnGet()
     {
-
+        // Página principal sin requerimientos de autenticación
     }
 }
+
+
+

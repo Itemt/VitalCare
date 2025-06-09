@@ -2,11 +2,16 @@ using Microsoft.EntityFrameworkCore;
 using CitasEPS.Data;
 using Microsoft.AspNetCore.Identity;
 using CitasEPS.Models;
+using CitasEPS.Models.Modules.Users;
+using CitasEPS.Models.Modules.Medical;
+using CitasEPS.Models.Modules.Appointments;
+using CitasEPS.Models.Modules.Core;
 using CitasEPS.Services;
-using System.Security.Claims;
+using CitasEPS.Services.Modules.Common;
 using Microsoft.AspNetCore.Identity.UI.Services;
 using Resend;
 using Microsoft.AspNetCore.DataProtection;
+using Microsoft.AspNetCore.Identity;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -20,7 +25,8 @@ builder.Services.AddDbContext<ApplicationDbContext>(options =>
 // Añadir servicios de Identity
 builder.Services.AddIdentity<User, IdentityRole<int>>(options => 
 {
-    options.SignIn.RequireConfirmedAccount = true;
+    // En desarrollo, desactivamos la confirmación requerida para facilitar las pruebas
+    options.SignIn.RequireConfirmedAccount = !builder.Environment.IsDevelopment();
     
     // Configuración más simple para contraseñas
     options.Password.RequireDigit = false;           // No requerir dígitos
@@ -29,11 +35,22 @@ builder.Services.AddIdentity<User, IdentityRole<int>>(options =>
     options.Password.RequireNonAlphanumeric = false; // No requerir caracteres especiales
     options.Password.RequiredLength = 4;             // Solo requerir mínimo 4 caracteres
     options.Password.RequiredUniqueChars = 1;        // Solo requerir 1 carácter único
+    
+    // Configuración de tokens
+    options.Tokens.EmailConfirmationTokenProvider = TokenOptions.DefaultEmailProvider;
+    options.Tokens.PasswordResetTokenProvider = TokenOptions.DefaultEmailProvider;
+    options.Tokens.ChangeEmailTokenProvider = TokenOptions.DefaultEmailProvider;
 }) // Usando nuestra clase User y especificando el tipo de Rol
     .AddEntityFrameworkStores<ApplicationDbContext>()
     .AddDefaultTokenProviders()
     .AddRoles<IdentityRole<int>>()
     .AddClaimsPrincipalFactory<CustomUserClaimsPrincipalFactory>();
+
+// Configurar token providers con tiempo de vida extendido
+builder.Services.Configure<DataProtectionTokenProviderOptions>(options =>
+{
+    options.TokenLifespan = TimeSpan.FromDays(1); // Los tokens de confirmación de email duran 1 día
+});
 
 // Registrar IEmailSender
 builder.Services.AddTransient<IEmailSender, EmailSender>();
@@ -71,7 +88,8 @@ System.IO.Directory.CreateDirectory(keysFolder);
 
 builder.Services.AddDataProtection()
     .PersistKeysToFileSystem(new DirectoryInfo(keysFolder))
-    .SetApplicationName("VitalCare"); // Sets a unique name for the app to isolate its keys
+    .SetApplicationName("VitalCare") // Sets a unique name for the app to isolate its keys
+    .SetDefaultKeyLifetime(TimeSpan.FromDays(90)); // Keys are valid for 90 days
 
 // Register custom application services
 builder.Services.AddScoped<IDateTimeService, DateTimeService>();
@@ -117,6 +135,59 @@ using (var scope = app.Services.CreateScope())
             }
         }
 
+        // Ejecutar script de corrección de columnas faltantes
+        logger.LogInformation("Ejecutando script de corrección de columnas faltantes...");
+        try
+        {
+            // Agregar columna Description a Specialties si no existe
+            await context.Database.ExecuteSqlRawAsync(@"
+                DO $$
+                BEGIN
+                    IF NOT EXISTS (SELECT 1 FROM information_schema.columns 
+                                   WHERE table_name = 'Specialties' AND column_name = 'Description') THEN
+                        ALTER TABLE ""Specialties"" ADD COLUMN ""Description"" character varying(500);
+                    END IF;
+                END $$;
+            ");
+
+            // Agregar columna IsAvailable a Doctors si no existe
+            await context.Database.ExecuteSqlRawAsync(@"
+                DO $$
+                BEGIN
+                    IF NOT EXISTS (SELECT 1 FROM information_schema.columns 
+                                   WHERE table_name = 'Doctors' AND column_name = 'IsAvailable') THEN
+                        ALTER TABLE ""Doctors"" ADD COLUMN ""IsAvailable"" boolean NOT NULL DEFAULT TRUE;
+                    END IF;
+                END $$;
+            ");
+
+            // Agregar columna LicenseNumber a Doctors si no existe
+            await context.Database.ExecuteSqlRawAsync(@"
+                DO $$
+                BEGIN
+                    IF NOT EXISTS (SELECT 1 FROM information_schema.columns 
+                                   WHERE table_name = 'Doctors' AND column_name = 'LicenseNumber') THEN
+                        ALTER TABLE ""Doctors"" ADD COLUMN ""LicenseNumber"" character varying(50);
+                    END IF;
+                END $$;
+            ");
+
+
+
+            // Actualizar todos los doctores existentes para que estén disponibles por defecto
+            await context.Database.ExecuteSqlRawAsync(@"
+                UPDATE ""Doctors"" SET ""IsAvailable"" = TRUE 
+                WHERE ""IsAvailable"" IS NULL OR ""IsAvailable"" = FALSE;
+            ");
+            
+            logger.LogInformation("Script de corrección ejecutado exitosamente.");
+        }
+        catch (Exception ex)
+        {
+            logger.LogError(ex, "Error ejecutando script de corrección de columnas.");
+            // Continuar sin lanzar excepción para que la app funcione
+        }
+
         // Inicializar datos (seed) después de migración exitosa
         var roleManager = services.GetRequiredService<RoleManager<IdentityRole<int>>>();
         var userManager = services.GetRequiredService<UserManager<User>>();
@@ -160,3 +231,6 @@ app.MapRazorPages();
 app.MapControllers(); // <<< Add this to map API controller routes
 
 app.Run();
+
+
+

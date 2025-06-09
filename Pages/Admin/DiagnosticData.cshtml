@@ -1,0 +1,91 @@
+@page "/admin/diagnostic"
+@model CitasEPS.Pages.Admin.DiagnosticDataModel
+@{
+    ViewData["Title"] = "Diagnóstico de Datos";
+    Layout = "_Layout";
+}
+
+<div class="container mt-4">
+    <div class="row">
+        <div class="col-12">
+            <div class="card">
+                <div class="card-header bg-info text-white">
+                    <h4><i class="bi bi-tools"></i> Diagnóstico de Datos de la BD</h4>
+                </div>
+                <div class="card-body">
+                    
+                    <h5>📊 Especialidades</h5>
+                    <div class="table-responsive">
+                        <table class="table table-sm">
+                            <thead>
+                                <tr>
+                                    <th>ID</th>
+                                    <th>Nombre</th>
+                                    <th>Descripción</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach (var specialty in Model.Specialties)
+                                {
+                                    <tr>
+                                        <td>@specialty.Id</td>
+                                        <td>@specialty.Name</td>
+                                        <td>@specialty.Description</td>
+                                    </tr>
+                                }
+                            </tbody>
+                        </table>
+                    </div>
+
+                    <hr>
+
+                    <h5>👨‍⚕️ Doctores</h5>
+                    <div class="table-responsive">
+                        <table class="table table-sm">
+                            <thead>
+                                <tr>
+                                    <th>ID</th>
+                                    <th>Nombre Completo</th>
+                                    <th>Especialidad ID</th>
+                                    <th>Especialidad</th>
+                                    <th>Disponible</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach (var doctor in Model.Doctors)
+                                {
+                                    <tr>
+                                        <td>@doctor.Id</td>
+                                        <td>@doctor.FullName</td>
+                                        <td>@doctor.SpecialtyId</td>
+                                        <td>@(doctor.Specialty?.Name ?? "Sin especialidad")</td>
+                                        <td>
+                                            @if (doctor.IsAvailable)
+                                            {
+                                                <span class="badge bg-success">Disponible</span>
+                                            }
+                                            else
+                                            {
+                                                <span class="badge bg-danger">No disponible</span>
+                                            }
+                                        </td>
+                                    </tr>
+                                }
+                            </tbody>
+                        </table>
+                    </div>
+
+                    <hr>
+
+                    <h5>🔧 Acciones</h5>
+                    <form method="post">
+                        <button type="submit" asp-page-handler="MarkAllDoctorsAvailable" class="btn btn-warning">
+                            <i class="bi bi-check-all"></i> Marcar Todos los Doctores como Disponibles
+                        </button>
+                    </form>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div> 

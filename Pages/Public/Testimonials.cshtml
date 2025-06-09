@@ -1,0 +1,279 @@
+@page
+@model CitasEPS.Pages.TestimonialsModel
+@{
+    ViewData["Title"] = "Testimonios - VitalCare";
+}
+
+<!-- Hero Section -->
+<div class="container-fluid bg-gradient-primary text-white text-center py-5 mb-5 shadow-lg hero-section" style="background-image: linear-gradient(135deg, rgba(0,123,255,0.9), rgba(0,86,179,0.9)), url('/images/INDEX.png'); background-size: cover; background-position: center center;">
+    <div class="hero-overlay" style="background-color: rgba(0, 40, 80, 0.85); padding: 4rem 1.5rem; display: inline-block; border-radius: 1rem; max-width: 90%; width: 800px;">
+        <h1 class="display-2 fw-bolder text-shadow-custom mb-4">Testimonios</h1>
+        <p class="lead fs-3 mb-4 text-shadow-custom">Historias reales de personas que han transformado su experiencia de salud con VitalCare.</p>
+        <div class="service-badges mb-4">
+            <span class="badge bg-success fs-6 me-2 service-badge"><i class="bi bi-star-fill me-1"></i>4.9/5 Calificación</span>
+            <span class="badge bg-warning fs-6 me-2 service-badge"><i class="bi bi-people-fill me-1"></i>25K+ Testimonios</span>
+            <span class="badge bg-info fs-6 service-badge"><i class="bi bi-heart-fill me-1"></i>98% Recomiendan</span>
+        </div>
+    </div>
+</div>
+
+<!-- Featured Testimonials -->
+<div class="container mb-5">
+    <div class="row text-center mb-5">
+        <div class="col-lg-8 mx-auto">
+            <h2 class="display-5 fw-bold text-primary mb-3">Testimonios Destacados</h2>
+            <p class="lead text-muted">Experiencias que nos motivan a seguir innovando en salud digital</p>
+        </div>
+    </div>
+    
+    <div class="row g-4">
+        <div class="col-lg-4 col-md-6">
+            <div class="card h-100 shadow-lg border-0 testimonial-card">
+                <div class="card-body p-4">
+                    <div class="d-flex align-items-center mb-3">
+                        <div class="testimonial-avatar bg-primary text-white rounded-circle d-flex align-items-center justify-content-center me-3" style="width: 60px; height: 60px;">
+                            <i class="bi bi-person-fill fs-3"></i>
+                        </div>
+                        <div>
+                            <h6 class="fw-bold mb-0">María González</h6>
+                            <small class="text-muted">Paciente - Bogotá</small>
+                            <div class="stars text-warning">
+                                <i class="bi bi-star-fill"></i>
+                                <i class="bi bi-star-fill"></i>
+                                <i class="bi bi-star-fill"></i>
+                                <i class="bi bi-star-fill"></i>
+                                <i class="bi bi-star-fill"></i>
+                            </div>
+                        </div>
+                    </div>
+                    <blockquote class="testimonial-quote">
+                        <p class="fst-italic text-muted mb-3">"VitalCare cambió mi vida. La telemedicina me permitió recibir atención especializada sin salir de casa. La calidad es excepcional y los médicos son muy profesionales."</p>
+                    </blockquote>
+                    <div class="testimonial-details">
+                        <small class="text-success"><i class="bi bi-check-circle-fill me-1"></i>Consulta de Cardiología</small>
+                        <small class="d-block text-info"><i class="bi bi-calendar-check me-1"></i>Diciembre 2023</small>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="col-lg-4 col-md-6">
+            <div class="card h-100 shadow-lg border-0 testimonial-card">
+                <div class="card-body p-4">
+                    <div class="d-flex align-items-center mb-3">
+                        <div class="testimonial-avatar bg-success text-white rounded-circle d-flex align-items-center justify-content-center me-3" style="width: 60px; height: 60px;">
+                            <i class="bi bi-person-fill fs-3"></i>
+                        </div>
+                        <div>
+                            <h6 class="fw-bold mb-0">Dr. Carlos Mendoza</h6>
+                            <small class="text-muted">Médico - Medellín</small>
+                            <div class="stars text-warning">
+                                <i class="bi bi-star-fill"></i>
+                                <i class="bi bi-star-fill"></i>
+                                <i class="bi bi-star-fill"></i>
+                                <i class="bi bi-star-fill"></i>
+                                <i class="bi bi-star-fill"></i>
+                            </div>
+                        </div>
+                    </div>
+                    <blockquote class="testimonial-quote">
+                        <p class="fst-italic text-muted mb-3">"Como médico, VitalCare me ha dado herramientas increíbles. La IA de diagnóstico es impresionante y me ayuda a brindar mejor atención a mis pacientes."</p>
+                    </blockquote>
+                    <div class="testimonial-details">
+                        <small class="text-success"><i class="bi bi-check-circle-fill me-1"></i>Especialista en Medicina Interna</small>
+                        <small class="d-block text-info"><i class="bi bi-calendar-check me-1"></i>Enero 2024</small>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="col-lg-4 col-md-6">
+            <div class="card h-100 shadow-lg border-0 testimonial-card">
+                <div class="card-body p-4">
+                    <div class="d-flex align-items-center mb-3">
+                        <div class="testimonial-avatar bg-info text-white rounded-circle d-flex align-items-center justify-content-center me-3" style="width: 60px; height: 60px;">
+                            <i class="bi bi-person-fill fs-3"></i>
+                        </div>
+                        <div>
+                            <h6 class="fw-bold mb-0">Ana Rodríguez</h6>
+                            <small class="text-muted">Paciente - Cali</small>
+                            <div class="stars text-warning">
+                                <i class="bi bi-star-fill"></i>
+                                <i class="bi bi-star-fill"></i>
+                                <i class="bi bi-star-fill"></i>
+                                <i class="bi bi-star-fill"></i>
+                                <i class="bi bi-star-fill"></i>
+                            </div>
+                        </div>
+                    </div>
+                    <blockquote class="testimonial-quote">
+                        <p class="fst-italic text-muted mb-3">"El monitoreo biométrico IoT me salvó la vida. Los sensores detectaron una arritmia antes de que sintiera síntomas. Increíble tecnología."</p>
+                    </blockquote>
+                    <div class="testimonial-details">
+                        <small class="text-success"><i class="bi bi-check-circle-fill me-1"></i>Monitoreo Cardíaco</small>
+                        <small class="d-block text-info"><i class="bi bi-calendar-check me-1"></i>Noviembre 2023</small>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Video Testimonials -->
+<section class="py-5 bg-light">
+    <div class="container">
+        <div class="row text-center mb-5">
+            <div class="col-lg-8 mx-auto">
+                <h2 class="display-6 fw-bold text-primary mb-3">Video Testimonios</h2>
+                <p class="lead text-muted">Historias en primera persona sobre el impacto de VitalCare</p>
+            </div>
+        </div>
+        
+        <div class="row g-4">
+            <div class="col-lg-6">
+                <div class="card shadow-sm border-0 video-testimonial-card">
+                    <div class="card-body p-4">
+                        <div class="video-placeholder bg-gradient-primary text-white rounded-3 d-flex align-items-center justify-content-center mb-3" style="height: 200px;">
+                            <div class="text-center">
+                                <i class="bi bi-play-circle fs-1 mb-2"></i>
+                                <h5>Historia de Esperanza</h5>
+                                <p class="mb-0">Paciente con cáncer - 3 min</p>
+                            </div>
+                        </div>
+                        <h6 class="fw-bold">Superando el Cáncer con VitalCare</h6>
+                        <p class="text-muted small">La historia de Juan Pérez y cómo la telemedicina le permitió recibir tratamiento oncológico desde su hogar durante la pandemia.</p>
+                        <div class="d-flex justify-content-between align-items-center">
+                            <small class="text-success"><i class="bi bi-heart-fill me-1"></i>2.5M vistas</small>
+                            <button class="btn btn-outline-primary btn-sm">Ver Video</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="col-lg-6">
+                <div class="card shadow-sm border-0 video-testimonial-card">
+                    <div class="card-body p-4">
+                        <div class="video-placeholder bg-gradient-success text-white rounded-3 d-flex align-items-center justify-content-center mb-3" style="height: 200px;">
+                            <div class="text-center">
+                                <i class="bi bi-play-circle fs-1 mb-2"></i>
+                                <h5>Innovación Médica</h5>
+                                <p class="mb-0">Equipo médico - 5 min</p>
+                            </div>
+                        </div>
+                        <h6 class="fw-bold">Transformando la Medicina Rural</h6>
+                        <p class="text-muted small">Médicos rurales explican cómo VitalCare les permite brindar atención especializada en comunidades remotas.</p>
+                        <div class="d-flex justify-content-between align-items-center">
+                            <small class="text-success"><i class="bi bi-heart-fill me-1"></i>1.8M vistas</small>
+                            <button class="btn btn-outline-success btn-sm">Ver Video</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Statistics -->
+<div class="container py-5">
+    <div class="row text-center mb-5">
+        <div class="col-lg-8 mx-auto">
+            <h2 class="display-6 fw-bold text-primary mb-3">Lo Que Dicen Nuestros Usuarios</h2>
+            <p class="lead text-muted">Métricas reales de satisfacción y experiencia</p>
+        </div>
+    </div>
+    
+    <div class="row g-4">
+        <div class="col-md-3">
+            <div class="stat-card-premium p-4 rounded-3 shadow-lg h-100 text-center">
+                <div class="stat-icon mb-3">
+                    <i class="bi bi-star-fill fs-1 text-warning"></i>
+                </div>
+                <h3 class="fw-bold text-warning mb-1">4.9/5</h3>
+                <p class="text-muted mb-0">Calificación Promedio</p>
+                <small class="text-success"><i class="bi bi-graph-up-arrow me-1"></i>Basado en 25K+ reseñas</small>
+            </div>
+        </div>
+        <div class="col-md-3">
+            <div class="stat-card-premium p-4 rounded-3 shadow-lg h-100 text-center">
+                <div class="stat-icon mb-3">
+                    <i class="bi bi-heart-fill fs-1 text-danger"></i>
+                </div>
+                <h3 class="fw-bold text-danger mb-1">98%</h3>
+                <p class="text-muted mb-0">Recomendarían VitalCare</p>
+                <small class="text-info"><i class="bi bi-people-fill me-1"></i>A familiares y amigos</small>
+            </div>
+        </div>
+        <div class="col-md-3">
+            <div class="stat-card-premium p-4 rounded-3 shadow-lg h-100 text-center">
+                <div class="stat-icon mb-3">
+                    <i class="bi bi-clock-history fs-1 text-primary"></i>
+                </div>
+                <h3 class="fw-bold text-primary mb-1">2 min</h3>
+                <p class="text-muted mb-0">Tiempo Promedio de Respuesta</p>
+                <small class="text-success"><i class="bi bi-lightning-charge-fill me-1"></i>Atención inmediata</small>
+            </div>
+        </div>
+        <div class="col-md-3">
+            <div class="stat-card-premium p-4 rounded-3 shadow-lg h-100 text-center">
+                <div class="stat-icon mb-3">
+                    <i class="bi bi-check-circle-fill fs-1 text-success"></i>
+                </div>
+                <h3 class="fw-bold text-success mb-1">95%</h3>
+                <p class="text-muted mb-0">Problemas Resueltos</p>
+                <small class="text-info"><i class="bi bi-trophy-fill me-1"></i>En primera consulta</small>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- More Testimonials -->
+<section class="py-5 bg-gradient-primary text-white">
+    <div class="container">
+        <div class="row text-center mb-5">
+            <div class="col-lg-8 mx-auto">
+                <h2 class="display-6 fw-bold mb-3">Más Testimonios</h2>
+                <p class="lead text-white-50">Experiencias que nos inspiran cada día</p>
+            </div>
+        </div>
+        
+        <div class="row g-4">
+            <div class="col-lg-6">
+                <div class="card bg-transparent border-light text-white h-100">
+                    <div class="card-body p-4">
+                        <div class="d-flex align-items-center mb-3">
+                            <div class="testimonial-avatar bg-light text-primary rounded-circle d-flex align-items-center justify-content-center me-3" style="width: 50px; height: 50px;">
+                                <i class="bi bi-person-fill fs-5"></i>
+                            </div>
+                            <div>
+                                <h6 class="fw-bold mb-0">Dr. Patricia Silva</h6>
+                                <small class="text-white-50">Pediatra - Barranquilla</small>
+                            </div>
+                        </div>
+                        <blockquote class="fst-italic">
+                            "La plataforma de VitalCare me permite atender a más niños, especialmente en zonas rurales donde no hay especialistas. Es una revolución en pediatría."
+                        </blockquote>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="col-lg-6">
+                <div class="card bg-transparent border-light text-white h-100">
+                    <div class="card-body p-4">
+                        <div class="d-flex align-items-center mb-3">
+                            <div class="testimonial-avatar bg-light text-primary rounded-circle d-flex align-items-center justify-content-center me-3" style="width: 50px; height: 50px;">
+                                <i class="bi bi-person-fill fs-5"></i>
+                            </div>
+                            <div>
+                                <h6 class="fw-bold mb-0">Roberto García</h6>
+                                <small class="text-white-50">Paciente - Cartagena</small>
+                            </div>
+                        </div>
+                        <blockquote class="fst-italic">
+                            "Vivo en una isla y antes tenía que viajar 4 horas para ver un médico. Ahora con VitalCare tengo acceso a especialistas desde mi casa. Increíble."
+                        </blockquote>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section> 

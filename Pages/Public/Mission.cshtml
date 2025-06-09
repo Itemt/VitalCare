@@ -1,0 +1,577 @@
+@page
+@model CitasEPS.Pages.MissionModel
+@{
+    ViewData["Title"] = "Misión y Visión - VitalCare";
+}
+
+<!-- Enhanced Hero Section for Mission -->
+<div class="container-fluid text-white text-center py-5 mb-5 shadow-lg hero-section position-relative overflow-hidden" style="background: linear-gradient(135deg, #dc2626 0%, #b91c1c 50%, #991b1b 100%); min-height: 85vh; display: flex; align-items: center;">
+    
+    <!-- Mission Vision Background Elements -->
+    <div class="position-absolute w-100 h-100" style="top: 0; left: 0; z-index: 1;">
+        <div class="mission-elements">
+            <div class="mission-shape mission-shape-1">🎯</div>
+            <div class="mission-shape mission-shape-2">👁️</div>
+            <div class="mission-shape mission-shape-3">💝</div>
+            <div class="mission-shape mission-shape-4">🏆</div>
+            <div class="mission-shape mission-shape-5">🌟</div>
+            <div class="mission-shape mission-shape-6">⭐</div>
+        </div>
+    </div>
+    
+    <!-- Geometric Pattern Overlay -->
+    <div class="position-absolute w-100 h-100" style="top: 0; left: 0; z-index: 2; background-image: linear-gradient(30deg, rgba(255,255,255,0.1) 12%, transparent 12.5%, transparent 87%, rgba(255,255,255,0.1) 87.5%, rgba(255,255,255,0.1)), linear-gradient(150deg, rgba(255,255,255,0.1) 12%, transparent 12.5%, transparent 87%, rgba(255,255,255,0.1) 87.5%, rgba(255,255,255,0.1)); background-size: 80px 80px; animation: geometricShift 15s linear infinite;"></div>
+    
+    <!-- Hero Content -->
+    <div class="container position-relative" style="z-index: 10;">
+        <div class="row justify-content-center">
+            <div class="col-lg-10 col-xl-9">
+                <div class="mission-hero-content">
+                    
+                    <!-- Mission Vision Icons -->
+                    <div class="mission-vision-icons mb-4">
+                        <div class="icons-container">
+                            <div class="mission-icon-wrapper">
+                                <div class="mission-icon">
+                                    <i class="bi bi-bullseye" style="font-size: 3rem; color: #fbbf24;"></i>
+                                </div>
+                                <div class="mission-label">Misión</div>
+                            </div>
+                            <div class="connection-line"></div>
+                            <div class="vision-icon-wrapper">
+                                <div class="vision-icon">
+                                    <i class="bi bi-eye-fill" style="font-size: 3rem; color: #22c55e;"></i>
+                                </div>
+                                <div class="vision-label">Visión</div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Hero Title -->
+                    <h1 class="display-1 fw-bolder text-shadow-custom mb-4 mission-title-animated">
+                        <span class="hero-title-vital mission-title-1" style="color: #fbbf24;">Misión y</span> 
+                        <span class="hero-title-care mission-title-2" style="color: #ffffff;">Visión</span>
+                    </h1>
+                    
+                    <!-- Purpose Statement -->
+                    <div class="purpose-statement mb-4">
+                        <div class="purpose-badge">
+                            <i class="bi bi-heart-pulse-fill me-2"></i>
+                            <span>Compromiso con la Salud</span>
+                        </div>
+                    </div>
+                    
+                    <!-- Subtitle -->
+                    <p class="lead fs-3 mb-5 text-shadow-custom mission-subtitle" style="max-width: 950px; margin: 0 auto; line-height: 1.4;">
+                        Conoce el <span style="color: #fbbf24; font-weight: 700;">propósito</span> que nos impulsa como IPS y la 
+                        <span style="color: #22c55e; font-weight: 700;">visión</span> que guía nuestra atención médica integral en 
+                        <strong style="color: #ffffff;">Barrancabermeja</strong>.
+                    </p>
+                    
+                    <!-- Core Values Preview -->
+                    <div class="values-preview mb-5">
+                        <div class="row g-4 justify-content-center">
+                            <div class="col-lg-4 col-md-6">
+                                <div class="value-card purpose-card">
+                                    <div class="value-icon">
+                                        <i class="bi bi-heart-pulse"></i>
+                                    </div>
+                                    <h5>Salud Integral</h5>
+                                    <p>Atención médica completa</p>
+                                </div>
+                            </div>
+                            <div class="col-lg-4 col-md-6">
+                                <div class="value-card certified-card">
+                                    <div class="value-icon">
+                                        <i class="bi bi-hospital"></i>
+                                    </div>
+                                    <h5>IPS Certificada</h5>
+                                    <p>Habilitada por Supersalud</p>
+                                </div>
+                            </div>
+                            <div class="col-lg-4 col-md-6">
+                                <div class="value-card community-card">
+                                    <div class="value-icon">
+                                        <i class="bi bi-people"></i>
+                                    </div>
+                                    <h5>Comunidad</h5>
+                                    <p>Compromiso regional</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- CTA Buttons -->
+                    <div class="mission-hero-actions">
+                        <a href="#mission-section" class="btn btn-light btn-lg me-3 mission-btn-primary">
+                            <i class="bi bi-bullseye me-2"></i>
+                            Nuestra Misión
+                        </a>
+                        <a href="#vision-section" class="btn btn-outline-light btn-lg mission-btn-secondary">
+                            <i class="bi bi-eye-fill me-2"></i>
+                            Nuestra Visión
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Mission Hero Styles -->
+<style>
+    @@keyframes geometricShift {
+        0% { background-position: 0px 0px, 0px 0px; }
+        100% { background-position: 80px 80px, -80px -80px; }
+    }
+    
+    .mission-elements {
+        position: relative;
+        width: 100%;
+        height: 100%;
+    }
+    
+    .mission-shape {
+        position: absolute;
+        font-size: 3rem;
+        opacity: 0.2;
+        animation: floatMissionShape 5s ease-in-out infinite;
+    }
+    
+    .mission-shape-1 { top: 15%; left: 10%; animation-delay: 0s; }
+    .mission-shape-2 { top: 25%; right: 15%; animation-delay: 1.5s; }
+    .mission-shape-3 { bottom: 30%; left: 15%; animation-delay: 3s; }
+    .mission-shape-4 { bottom: 20%; right: 20%; animation-delay: 4.5s; }
+    .mission-shape-5 { top: 45%; left: 8%; animation-delay: 6s; }
+    .mission-shape-6 { top: 35%; right: 12%; animation-delay: 7.5s; }
+    
+    @@keyframes floatMissionShape {
+        0%, 100% { transform: translateY(0px) scale(1); opacity: 0.15; }
+        50% { transform: translateY(-30px) scale(1.1); opacity: 0.4; }
+    }
+    
+    .mission-vision-icons {
+        position: relative;
+    }
+    
+    .icons-container {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 40px;
+        position: relative;
+    }
+    
+    .mission-icon-wrapper, .vision-icon-wrapper {
+        text-align: center;
+        animation: iconEntrance 1.2s ease-out;
+    }
+    
+    .mission-icon, .vision-icon {
+        width: 80px;
+        height: 80px;
+        background: rgba(255, 255, 255, 0.1);
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin: 0 auto 10px;
+        backdrop-filter: blur(10px);
+        border: 2px solid rgba(255, 255, 255, 0.2);
+        transition: all 0.3s ease;
+    }
+    
+    .mission-icon:hover, .vision-icon:hover {
+        transform: scale(1.1);
+        background: rgba(255, 255, 255, 0.15);
+    }
+    
+    .mission-label, .vision-label {
+        font-size: 1rem;
+        font-weight: 600;
+        color: rgba(255, 255, 255, 0.9);
+    }
+    
+    .connection-line {
+        width: 60px;
+        height: 2px;
+        background: linear-gradient(to right, #fbbf24, #22c55e);
+        position: relative;
+        animation: pulse 1s ease-in-out infinite;
+    }
+    
+    .connection-line::before {
+        content: '';
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        width: 8px;
+        height: 8px;
+        background: white;
+        border-radius: 50%;
+        animation: pulse 1s ease-in-out infinite;
+    }
+    
+    @@keyframes iconEntrance {
+        from { opacity: 0; transform: scale(0.8) translateY(20px); }
+        to { opacity: 1; transform: scale(1) translateY(0); }
+    }
+    
+    .mission-title-1 {
+        animation: slideInLeft 0.6s ease-out 0.25s both;
+    }
+    
+    .mission-title-2 {
+        animation: slideInRight 0.6s ease-out 0.4s both;
+    }
+    
+    @@keyframes slideInLeft {
+        from { opacity: 0; transform: translateX(-80px); }
+        to { opacity: 1; transform: translateX(0); }
+    }
+    
+    @@keyframes slideInRight {
+        from { opacity: 0; transform: translateX(80px); }
+        to { opacity: 1; transform: translateX(0); }
+    }
+    
+    .purpose-badge {
+        display: inline-block;
+        background: rgba(34, 197, 94, 0.2);
+        border: 2px solid #22c55e;
+        color: #22c55e;
+        padding: 12px 25px;
+        border-radius: 50px;
+        font-weight: 600;
+        font-size: 1.1rem;
+        animation: fadeInScale 0.6s ease-out 0.6s both;
+    }
+    
+    @@keyframes fadeInScale {
+        from { opacity: 0; transform: scale(0.8); }
+        to { opacity: 1; transform: scale(1); }
+    }
+    
+    .mission-subtitle {
+        animation: fadeInUp 0.6s ease-out 0.8s both;
+    }
+    
+    .value-card {
+        background: rgba(255, 255, 255, 0.1);
+        backdrop-filter: blur(15px);
+        border: 1px solid rgba(255, 255, 255, 0.2);
+        border-radius: 20px;
+        padding: 25px 20px;
+        text-align: center;
+        transition: all 0.4s ease;
+        animation: slideInUp 0.6s ease-out 1s both;
+        height: 100%;
+    }
+    
+    .value-card:hover {
+        transform: translateY(-10px);
+        background: rgba(255, 255, 255, 0.15);
+        box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+    }
+    
+    .value-icon {
+        width: 60px;
+        height: 60px;
+        background: rgba(34, 197, 94, 0.2);
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin: 0 auto 15px;
+        font-size: 1.8rem;
+        color: #22c55e;
+        transition: all 0.3s ease;
+    }
+    
+    .certified-card .value-icon {
+        background: rgba(251, 191, 36, 0.2);
+        color: #fbbf24;
+    }
+    
+    .community-card .value-icon {
+        background: rgba(59, 130, 246, 0.2);
+        color: #3b82f6;
+    }
+    
+    .value-card:hover .value-icon {
+        transform: scale(1.1);
+    }
+    
+    .value-card h5 {
+        color: white;
+        font-weight: 600;
+        margin-bottom: 10px;
+        font-size: 1.1rem;
+    }
+    
+    .value-card p {
+        color: rgba(255, 255, 255, 0.8);
+        margin: 0;
+        font-size: 0.95rem;
+    }
+    
+    .mission-btn-primary, .mission-btn-secondary {
+        padding: 15px 35px;
+        border-radius: 50px;
+        font-weight: 600;
+        transition: all 0.3s ease;
+        animation: slideInUp 0.6s ease-out 1.2s both;
+    }
+    
+    .mission-btn-primary {
+        background: #ffffff;
+        color: #dc2626;
+        box-shadow: 0 5px 20px rgba(255, 255, 255, 0.3);
+    }
+    
+    .mission-btn-primary:hover {
+        transform: translateY(-3px);
+        box-shadow: 0 8px 30px rgba(255, 255, 255, 0.4);
+        color: #dc2626;
+    }
+    
+    .mission-btn-secondary:hover {
+        background: rgba(255, 255, 255, 0.1);
+        transform: translateY(-3px);
+    }
+    
+    @@keyframes slideInUp {
+        from { opacity: 0; transform: translateY(30px); }
+        to { opacity: 1; transform: translateY(0); }
+    }
+    
+    @@keyframes fadeInUp {
+        from { opacity: 0; transform: translateY(30px); }
+        to { opacity: 1; transform: translateY(0); }
+    }
+    
+    @@keyframes pulse {
+        0%, 100% { opacity: 0.7; transform: scale(1); }
+        50% { opacity: 1; transform: scale(1.1); }
+    }
+</style>
+
+<!-- Mission Section -->
+<div class="container mb-5">
+    <div class="row align-items-center">
+        <div class="col-lg-6">
+            <div class="text-center">
+                <div class="bg-gradient-primary text-white rounded-3 p-5 shadow-lg position-relative">
+                    <div class="position-absolute top-0 start-0 mt-3 ms-3">
+                        <span class="badge bg-light text-primary">MISIÓN</span>
+                    </div>
+                    <i class="bi bi-bullseye text-white mb-4" style="font-size: 5rem;"></i>
+                    <h3 class="fw-bold mb-3">Nuestro Propósito</h3>
+                    <div class="mission-stars mb-3">
+                        <i class="bi bi-star-fill text-warning me-1"></i>
+                        <i class="bi bi-star-fill text-warning me-1"></i>
+                        <i class="bi bi-star-fill text-warning me-1"></i>
+                        <i class="bi bi-star-fill text-warning me-1"></i>
+                        <i class="bi bi-star-fill text-warning"></i>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-6">
+            <h2 class="display-5 fw-bold text-primary mb-4">Nuestra Misión</h2>
+            <div class="mission-statement p-4 bg-light rounded-3 border-start border-primary border-5" data-bs-theme-value="light">
+                <p class="lead fw-semibold text-primary mb-3">"Brindar atención médica integral de calidad a la comunidad de Barrancabermeja y el Magdalena Medio, con un enfoque humanizado, tecnología moderna y acceso oportuno a servicios de salud especializados."</p>
+                <p class="mb-3 text-body">En VitalCare IPS creemos que cada persona merece atención médica de excelencia. Trabajamos día a día para ofrecer servicios de salud accesibles, seguros y de alta calidad, combinando experiencia médica con tecnología moderna.</p>
+                <div class="mission-pillars mt-4">
+                    <h5 class="fw-bold text-primary mb-3">Nuestros Pilares Fundamentales:</h5>
+                    <div class="row">
+                        <div class="col-md-6 mb-2">
+                            <div class="d-flex align-items-center">
+                                <i class="bi bi-check-circle-fill text-success me-2"></i>
+                                <span class="text-body">Excelencia Médica</span>
+                            </div>
+                        </div>
+                        <div class="col-md-6 mb-2">
+                            <div class="d-flex align-items-center">
+                                <i class="bi bi-check-circle-fill text-success me-2"></i>
+                                <span class="text-body">Atención Humanizada</span>
+                            </div>
+                        </div>
+                        <div class="col-md-6 mb-2">
+                            <div class="d-flex align-items-center">
+                                <i class="bi bi-check-circle-fill text-success me-2"></i>
+                                <span class="text-body">Tecnología Médica</span>
+                            </div>
+                        </div>
+                        <div class="col-md-6 mb-2">
+                            <div class="d-flex align-items-center">
+                                <i class="bi bi-check-circle-fill text-success me-2"></i>
+                                <span class="text-body">Acceso Oportuno</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Vision Section -->
+<section class="py-5 bg-light" data-bs-theme-value="light">
+    <div class="container">
+        <div class="row align-items-center">
+            <div class="col-lg-6 order-lg-2">
+                <div class="text-center">
+                    <div class="bg-gradient-success text-white rounded-3 p-5 shadow-lg position-relative">
+                        <div class="position-absolute top-0 start-0 mt-3 ms-3">
+                            <span class="badge bg-light text-success">VISIÓN 2025</span>
+                        </div>
+                        <i class="bi bi-eye-fill text-white mb-4" style="font-size: 5rem;"></i>
+                        <h3 class="fw-bold mb-3">Hacia el Futuro</h3>
+                        <div class="vision-timeline">
+                            <div class="d-flex justify-content-center">
+                                <span class="badge bg-light text-success me-2">2024</span>
+                                <span class="text-white-50">→</span>
+                                <span class="badge bg-warning text-dark ms-2">2025</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-6 order-lg-1">
+                <h2 class="display-5 fw-bold text-success mb-4">Nuestra Visión</h2>
+                <div class="vision-statement p-4 bg-white rounded-3 border-start border-success border-5 shadow-sm">
+                    <p class="lead fw-semibold text-success mb-3">"Ser reconocidos como la IPS líder en el Magdalena Medio por nuestra excelencia médica, innovación tecnológica y compromiso con la salud integral de nuestros pacientes y sus familias."</p>
+                    <p class="mb-3 text-body">Imaginamos un futuro donde cada habitante de Barrancabermeja y la región tenga acceso fácil y oportuno a servicios de salud de calidad. Una IPS que combine la calidez humana con la tecnología más avanzada para el cuidado de la salud.</p>
+                    <div class="vision-goals mt-4">
+                        <h5 class="fw-bold text-success mb-3">Objetivos Estratégicos 2025:</h5>
+                        <div class="row">
+                            <div class="col-md-6 mb-3">
+                                <div class="card border-success h-100 bg-white">
+                                    <div class="card-body text-center">
+                                        <i class="bi bi-people-fill text-success fs-1 mb-2"></i>
+                                        <h6 class="fw-bold text-dark">25K+ Pacientes</h6>
+                                        <small class="text-muted">Atendidos anualmente</small>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-6 mb-3">
+                                <div class="card border-success h-100 bg-white">
+                                    <div class="card-body text-center">
+                                        <i class="bi bi-hospital-fill text-success fs-1 mb-2"></i>
+                                        <h6 class="fw-bold text-dark">20+ Especialidades</h6>
+                                        <small class="text-muted">Médicas disponibles</small>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Values in Action -->
+<div class="container py-5">
+    <div class="row text-center mb-5">
+        <div class="col-lg-8 mx-auto">
+            <h2 class="display-5 fw-bold text-primary mb-3">Valores en Acción</h2>
+            <p class="lead text-muted">Cómo traducimos nuestra misión y visión en atención médica de excelencia</p>
+        </div>
+    </div>
+    
+    <div class="row g-4">
+        <div class="col-lg-4 col-md-6">
+            <div class="card h-100 shadow-lg border-0 text-center value-card bg-white">
+                <div class="card-body p-4">
+                    <div class="value-icon bg-primary text-white rounded-circle mx-auto mb-3 d-flex align-items-center justify-content-center" style="width: 80px; height: 80px;">
+                        <i class="bi bi-heart-pulse fs-1"></i>
+                    </div>
+                    <h5 class="card-title fw-bold text-primary">Excelencia Médica</h5>
+                    <p class="card-text text-muted mb-3">Atención médica con los más altos estándares de calidad, protocolos actualizados y mejores prácticas clínicas.</p>
+                    <div class="value-metrics">
+                        <small class="d-block text-success mb-1"><i class="bi bi-check-circle me-1"></i>Protocolos de Calidad</small>
+                        <small class="d-block text-info"><i class="bi bi-award me-1"></i>Certificaciones Médicas</small>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="col-lg-4 col-md-6">
+            <div class="card h-100 shadow-lg border-0 text-center value-card bg-white">
+                <div class="card-body p-4">
+                    <div class="value-icon bg-success text-white rounded-circle mx-auto mb-3 d-flex align-items-center justify-content-center" style="width: 80px; height: 80px;">
+                        <i class="bi bi-people-fill fs-1"></i>
+                    </div>
+                    <h5 class="card-title fw-bold text-success">Atención Humanizada</h5>
+                    <p class="card-text text-muted mb-3">Trato cálido y personalizado centrado en el paciente, con empatía, respeto y comprensión de sus necesidades.</p>
+                    <div class="value-metrics">
+                        <small class="d-block text-success mb-1"><i class="bi bi-heart me-1"></i>Trato Personalizado</small>
+                        <small class="d-block text-info"><i class="bi bi-people me-1"></i>Enfoque Familiar</small>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="col-lg-4 col-md-6">
+            <div class="card h-100 shadow-lg border-0 text-center value-card bg-white">
+                <div class="card-body p-4">
+                    <div class="value-icon bg-info text-white rounded-circle mx-auto mb-3 d-flex align-items-center justify-content-center" style="width: 80px; height: 80px;">
+                        <i class="bi bi-shield-check fs-1"></i>
+                    </div>
+                    <h5 class="card-title fw-bold text-info">Innovación Tecnológica</h5>
+                    <p class="card-text text-muted mb-3">Incorporación de tecnología médica moderna y sistemas digitales para mejorar la precisión diagnóstica y la experiencia del paciente.</p>
+                    <div class="value-metrics">
+                        <small class="d-block text-success mb-1"><i class="bi bi-laptop me-1"></i>Historia Clínica Digital</small>
+                        <small class="d-block text-info"><i class="bi bi-shield me-1"></i>Datos Protegidos</small>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Impact Metrics -->
+<section class="py-5 bg-gradient-primary text-white">
+    <div class="container">
+        <div class="row text-center mb-5">
+            <div class="col-lg-8 mx-auto">
+                <h2 class="display-6 fw-bold mb-3">Nuestro Impacto</h2>
+                <p class="lead text-white-50">Midiendo el progreso hacia nuestra misión</p>
+            </div>
+        </div>
+        
+        <div class="row g-4">
+            <div class="col-md-3">
+                <div class="text-center">
+                    <div class="impact-number display-4 fw-bold mb-2">10K+</div>
+                    <p class="lead mb-1">Citas Agendadas</p>
+                    <small class="text-white-50">A través de la plataforma</small>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="text-center">
+                    <div class="impact-number display-4 fw-bold mb-2">60%</div>
+                    <p class="lead mb-1">Reducción Tiempo</p>
+                    <small class="text-white-50">En proceso de agendamiento</small>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="text-center">
+                    <div class="impact-number display-4 fw-bold mb-2">24/7</div>
+                    <p class="lead mb-1">Disponibilidad</p>
+                    <small class="text-white-50">Acceso desde cualquier lugar</small>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="text-center">
+                    <div class="impact-number display-4 fw-bold mb-2">98%</div>
+                    <p class="lead mb-1">Satisfacción</p>
+                    <small class="text-white-50">De usuarios de la plataforma</small>
+                </div>
+            </div>
+        </div>
+    </div>
+</section> 

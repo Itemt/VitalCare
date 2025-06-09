@@ -1,0 +1,122 @@
+@page
+@model CitasEPS.Pages.Debug.FixNotificationsModel
+@{
+    ViewData["Title"] = "🔧 Arreglar Notificaciones";
+}
+
+<div class="container">
+    <h2>🔧 Diagnóstico y Reparación de Notificaciones</h2>
+    
+    <div class="alert alert-warning">
+        <strong>⚠️ Solo para Administradores</strong><br>
+        Esta página diagnostica y repara problemas con las notificaciones de reagendamiento.
+    </div>
+
+    @if (!string.IsNullOrEmpty(Model.Results))
+    {
+        <div class="alert alert-info">
+            <h5>📋 Resultados:</h5>
+            <pre>@Model.Results</pre>
+        </div>
+    }
+
+    <div class="row">
+        <div class="col-md-4">
+            <div class="card">
+                <div class="card-header">
+                    <h5>🧪 Test Básico</h5>
+                </div>
+                <div class="card-body">
+                    <form method="post" asp-page-handler="TestBasic">
+                        <button type="submit" class="btn btn-primary">Probar Notificaciones Básicas</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+        
+        <div class="col-md-4">
+            <div class="card">
+                <div class="card-header">
+                    <h5>🩺 Test Reagendamiento</h5>
+                </div>
+                <div class="card-body">
+                    <form method="post" asp-page-handler="TestReschedule">
+                        <div class="form-group mb-2">
+                            <input type="number" name="appointmentId" placeholder="ID Cita" class="form-control" required />
+                        </div>
+                        <button type="submit" class="btn btn-warning">Simular Reagendamiento</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+        
+        <div class="col-md-4">
+            <div class="card">
+                <div class="card-header">
+                    <h5>📧 Test Email</h5>
+                </div>
+                <div class="card-body">
+                    <form method="post" asp-page-handler="TestEmail">
+                        <div class="form-group mb-2">
+                            <input type="email" name="email" placeholder="Email destino" class="form-control" required />
+                        </div>
+                        <button type="submit" class="btn btn-success">Probar Email</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row mt-4">
+        <div class="col-12">
+            <div class="card">
+                <div class="card-header">
+                    <h5>📊 Estado del Sistema</h5>
+                </div>
+                <div class="card-body">
+                    @if (Model.SystemStatus != null)
+                    {
+                        <div class="row">
+                            <div class="col-md-3">
+                                <strong>Notificaciones Totales:</strong><br>
+                                <span class="badge bg-info">@Model.SystemStatus.TotalNotifications</span>
+                            </div>
+                            <div class="col-md-3">
+                                <strong>Notificaciones No Leídas:</strong><br>
+                                <span class="badge bg-warning">@Model.SystemStatus.UnreadNotifications</span>
+                            </div>
+                            <div class="col-md-3">
+                                <strong>Citas Activas:</strong><br>
+                                <span class="badge bg-primary">@Model.SystemStatus.ActiveAppointments</span>
+                            </div>
+                            <div class="col-md-3">
+                                <strong>Doctores con User:</strong><br>
+                                <span class="badge bg-success">@Model.SystemStatus.DoctorsWithUser</span>
+                            </div>
+                        </div>
+                        
+                        <hr>
+                        
+                        <h6>🔗 Doctores sin Usuario Vinculado:</h6>
+                        @if (Model.SystemStatus.DoctorsWithoutUser?.Any() == true)
+                        {
+                            <div class="alert alert-danger">
+                                <strong>⚠️ PROBLEMA DETECTADO:</strong> Hay doctores sin usuario vinculado:
+                                <ul>
+                                    @foreach (var doctor in Model.SystemStatus.DoctorsWithoutUser)
+                                    {
+                                        <li>Doctor ID @doctor.Id: @doctor.FullName (UserId: @doctor.UserId)</li>
+                                    }
+                                </ul>
+                            </div>
+                        }
+                        else
+                        {
+                            <div class="alert alert-success">✅ Todos los doctores tienen usuarios vinculados correctamente.</div>
+                        }
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
+</div> 

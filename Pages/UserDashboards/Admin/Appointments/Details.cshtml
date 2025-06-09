@@ -1,0 +1,125 @@
+@page "{id:int}"
+@model CitasEPS.Pages.UserDashboards.Admin.Appointments.DetailsModel
+
+@{ 
+    ViewData["Title"] = "Detalles de la Cita";
+    Layout = "~/Pages/Shared/_Layout.cshtml"; 
+}
+
+<h1><i class="bi bi-calendar2-event-fill"></i> @ViewData["Title"]</h1>
+
+@if (Model.Appointment != null)
+{
+    <div>
+        <h4>Cita ID: @Model.Appointment.Id</h4>
+        <hr />
+        <dl class="row">
+            <dt class="col-sm-3">
+                @Html.DisplayNameFor(model => model.Appointment!.AppointmentDateTime)
+            </dt>
+            <dd class="col-sm-9">
+                @Html.DisplayFor(model => model.Appointment!.AppointmentDateTime)
+            </dd>
+            <dt class="col-sm-3">
+                @Html.DisplayNameFor(model => model.Appointment!.Patient)
+            </dt>
+            <dd class="col-sm-9">
+                @if (Model.Appointment.Patient != null)
+                {
+                    @Html.DisplayFor(model => model.Appointment.Patient.FullName)
+                    <span>(@(Model.Appointment.Patient.DocumentId ?? "No ID"))</span>
+                }
+                else
+                {
+                    <span>No patient information</span>
+                }
+            </dd>
+             <dt class="col-sm-3">
+                @Html.DisplayNameFor(model => model.Appointment!.Doctor)
+            </dt>
+            <dd class="col-sm-9">
+                @if (Model.Appointment.Doctor != null)
+                {
+                    @Html.DisplayFor(model => model.Appointment.Doctor.FullName)
+                }
+                else
+                {
+                    <span>No doctor information</span>
+                }
+            </dd>
+            <dt class="col-sm-3">
+                @Html.DisplayNameFor(model => model.Appointment!.Doctor.Specialty)
+            </dt>
+            <dd class="col-sm-9">
+                @if (Model.Appointment.Doctor?.Specialty != null)
+                {
+                    @Html.DisplayFor(model => model.Appointment.Doctor.Specialty.Name)
+                }
+                else
+                {
+                    <span>No specialty information</span>
+                }
+            </dd>
+            <dt class="col-sm-3">
+                @Html.DisplayNameFor(model => model.Appointment!.IsConfirmed)
+            </dt>
+            <dd class="col-sm-9">
+                 @if (Model.Appointment.IsConfirmed)
+                 {
+                     <span class="badge bg-success">Confirmada</span>
+                 }
+                 else
+                 {
+                     <span class="badge bg-warning text-dark">No Confirmada</span>
+                 }
+            </dd>
+            <dt class="col-sm-3">
+                @Html.DisplayNameFor(model => model.Appointment!.Notes)
+            </dt>
+            <dd class="col-sm-9">
+                @(string.IsNullOrWhiteSpace(Model.Appointment.Notes) ? "-" : Model.Appointment.Notes)
+            </dd>
+
+            <dt class="col-sm-3">Estado General</dt>
+            <dd class="col-sm-9">
+                @if (Model.Appointment.IsCancelled)
+                {
+                    <span class="badge bg-danger">Cancelada</span>
+                }
+                else if (Model.Appointment.IsCompleted) // Asumiendo que tienes IsCompleted
+                {
+                    <span class="badge bg-success">Completada</span>
+                }
+                else if (Model.Appointment.AppointmentDateTime < DateTime.Now) // Pasada, no cancelada, no completada
+                {
+                    // Aquí podrías diferenciar "No Asistió" si tienes esa lógica/propiedad en el modelo Appointment.
+                    // Por ahora, genérico "Pasada" o "No Asistió" si no hay 'IsCompleted'.
+                    <span class="badge bg-secondary">No Asistió / Pasada</span> 
+                }
+                else if (Model.Appointment.IsConfirmed) // Futura y confirmada
+                {
+                    <span class="badge bg-info">Confirmada y Programada</span>
+                }
+                else // Futura y no confirmada
+                {
+                    <span class="badge bg-warning text-dark">Pendiente de Confirmación</span>
+                }
+            </dd>
+        </dl>
+    </div>
+    <div class="mt-4">
+        @* Optional: Add Edit button if editing appointments is desired from details view *
+        @* <a asp-page="./Edit" asp-route-id="@Model.Appointment.Id" class="btn btn-warning">Editar</a> | *@
+        
+        @if (Model.Appointment.AppointmentDateTime >= DateTime.Now)
+        {
+             <a asp-page="./Cancel" asp-route-id="@Model.Appointment.Id" class="btn btn-sm btn-danger" title="Cancelar Cita"><i class="bi bi-calendar-x"></i> Cancelar Cita</a> 
+        }
+        <a asp-page="../ManageAppointments" class="btn btn-secondary">Volver a la Lista</a>
+    </div>
+}
+else
+{
+    <div class="alert alert-warning">No se encontró la cita especificada.</div>
+    <a asp-page="../ManageAppointments" class="btn btn-secondary">Volver a la Lista</a>
+}

@@ -1,0 +1,117 @@
+@page "{id:int}"
+@model CitasEPS.Pages.UserDashboards.Admin.Doctors.EditModel
+
+@{ 
+    ViewData["Title"] = "Editar Médico";
+    Layout = "~/Pages/Shared/_Layout.cshtml"; 
+}
+
+<h1><i class="bi bi-pencil-square"></i> @ViewData["Title"]</h1>
+
+<h4>Médico: @Model.Doctor.FullName</h4>
+<hr />
+
+<div class="container mt-5">
+    <div class="row justify-content-center">
+        <div class="col-md-8 col-lg-6">
+            <div class="card shadow-sm">
+                <div class="card-header bg-primary text-white">
+                    <h4 class="mb-0">Editar Doctor</h4>
+                </div>
+                <div class="card-body">
+                    @if (!string.IsNullOrEmpty(Model.UnlinkedUserMessage))
+                    {
+                        <div class="alert alert-warning" role="alert">
+                            <h5 class="alert-heading">¡Atención!</h5>
+                            <p>@Model.UnlinkedUserMessage</p>
+                            <hr>
+                            <p class="mb-0">Puede vincular este perfil de doctor a una cuenta de usuario del sistema seleccionándola de la lista de abajo. Si no se selecciona ningún usuario, el perfil permanecerá sin vincular o con su vinculación actual si es inválida.</p>
+                        </div>
+                    }
+                    else if (Model.Doctor.User != null)
+                    {
+                        <div class="alert alert-info" role="alert">
+                            Este perfil de doctor está actualmente vinculado al usuario: <strong>@Model.Doctor.User.Email</strong> 
+                            (@(Model.Doctor.User.FirstName) @(Model.Doctor.User.LastName)).
+                            Si necesita cambiar la vinculación, deberá hacerlo manualmente en la base de datos o a través de una herramienta administrativa más avanzada.
+                        </div>
+                    }
+
+                    <form method="post">
+                        <div asp-validation-summary="ModelOnly" class="text-danger mb-3"></div>
+                        <input type="hidden" asp-for="Doctor.Id" />
+                        @* Optionally include RowVersion for concurrency check if using one in the model/db *
+                        @* <input type="hidden" asp-for="Doctor.RowVersion" /> *@
+
+                        @* Link to User Account - Display only or more complex logic if needed *
+                        @* <div class="form-group mb-3">
+                            <label asp-for="Doctor.UserId" class="control-label">Cuenta de Usuario Asociada</label>
+                            <select asp-for="Doctor.UserId" class="form-control" asp-items="Model.UserSL" disabled>
+                                <option value="">-- Sin Usuario Asociado --</option>
+                            </select>
+                            <span asp-validation-for="Doctor.UserId" class="text-danger"></span>
+                        </div> *@
+
+                        <div class="form-floating mb-3">
+                            <input asp-for="Doctor.FirstName" class="form-control" placeholder="Nombres" />
+                            <label asp-for="Doctor.FirstName" class="form-label"></label>
+                            <span asp-validation-for="Doctor.FirstName" class="text-danger"></span>
+                        </div>
+
+                        <div class="form-floating mb-3">
+                            <input asp-for="Doctor.LastName" class="form-control" placeholder="Apellidos" />
+                            <label asp-for="Doctor.LastName" class="form-label"></label>
+                            <span asp-validation-for="Doctor.LastName" class="text-danger"></span>
+                        </div>
+
+                        @if (Model.Doctor.User != null)
+                        {
+                            <div class="alert alert-info mb-3">
+                                <strong>Email:</strong> @Model.Doctor.User.Email<br />
+                                <strong>Teléfono:</strong> @(Model.Doctor.User.PhoneNumber ?? "No disponible")<br />
+                                <small>Para cambiar el email o teléfono, debe editar la cuenta de usuario asociada.</small>
+                            </div>
+                        }
+
+                        <div class="form-floating mb-3">
+                            <input asp-for="Doctor.LicenseNumber" class="form-control" placeholder="Nº de Registro Médico" />
+                            <label asp-for="Doctor.LicenseNumber" class="form-label"></label>
+                            <span asp-validation-for="Doctor.LicenseNumber" class="text-danger"></span>
+                        </div>
+
+                        <div class="form-group mb-3">
+                            <label asp-for="Doctor.SpecialtyId" class="control-label"></label>
+                            <select asp-for="Doctor.SpecialtyId" class="form-control" asp-items="Model.SpecialtySL">
+                                <option value="">-- Seleccione Especialidad --</option>
+                            </select>
+                            <span asp-validation-for="Doctor.SpecialtyId" class="text-danger"></span>
+                        </div>
+
+                        <div class="form-group mb-3">
+                            <label asp-for="Doctor.UserId" class="control-label">Usuario del Sistema Vinculado</label>
+                            <select asp-for="Doctor.UserId" class="form-control" asp-items="Model.UserSL">
+                                <option value="">-- No asignar / Desvincular --</option>
+                            </select>
+                            <span asp-validation-for="Doctor.UserId" class="text-danger"></span>
+                            @if (!string.IsNullOrEmpty(Model.UnlinkedUserMessage))
+                            {
+                                <div class="alert alert-warning mt-2" role="alert">
+                                    @Model.UnlinkedUserMessage
+                                </div>
+                            }
+                        </div>
+
+                        <div class="d-grid gap-2 d-md-flex justify-content-md-end mt-4">
+                            <button type="submit" class="btn btn-primary me-md-2"><i class="bi bi-save me-2"></i>Guardar Cambios</button>
+                            <a asp-page="./Index" class="btn btn-outline-secondary"><i class="bi bi-x-circle me-2"></i>Cancelar</a>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

@@ -1,1588 +1,917 @@
-﻿@page
-@model IndexModel
-@using Microsoft.AspNetCore.Identity
-@using CitasEPS.Models
-@inject SignInManager<User> UserManagerAccessor
-@inject UserManager<User> AspNetUserManager
-
+@page
+@model CitasEPS.Pages.IndexModel
 @{
-    ViewData["Title"] = "Inicio - VitalCare";
-    var currentUser = await AspNetUserManager.GetUserAsync(User);
-    var userFirstName = currentUser?.FirstName;
-    var isDoctor = User.IsInRole("Doctor");
-    var isPatient = User.IsInRole("Paciente");
-    var isLoggedIn = UserManagerAccessor.IsSignedIn(User);
+    ViewData["Title"] = "Inicio - VitalCare IPS";
 }
 
-@if (!isLoggedIn)
-{
-    <!-- Enhanced Hero Section - Solo para usuarios no logueados -->
-    <div class="container-fluid bg-dark text-white text-center py-5 mb-4 shadow-lg hero-section-enhanced" style="background-image: linear-gradient(135deg, rgba(0,20,40,0.95), rgba(0,40,80,0.9)), url('/images/INDEX.png'); background-size: cover; background-position: center center; background-attachment: fixed; position: relative; overflow: hidden; border-radius: 2rem; margin: 1rem;">
+<!-- Hero Section Mejorado para IPS de Barrancabermeja -->
+<div class="container-fluid bg-dark text-white text-center py-5 mb-4 shadow-lg hero-section-enhanced" style="background-image: linear-gradient(135deg, rgba(0,20,40,0.95), rgba(0,40,80,0.9)), url('/images/INDEX.png'); background-size: cover; background-position: center center; background-attachment: fixed; position: relative; overflow: hidden; border-radius: 2rem; margin: 1rem;">
+    
+    <!-- Floating Medical Icons -->
+    <div class="floating-medical-icons">
+        <i class="bi bi-heart-pulse floating-icon icon-1"></i>
+        <i class="bi bi-shield-check floating-icon icon-2"></i>
+        <i class="bi bi-calendar-plus floating-icon icon-3"></i>
+        <i class="bi bi-graph-up floating-icon icon-4"></i>
+        <i class="bi bi-people floating-icon icon-5"></i>
+        <i class="bi bi-clock floating-icon icon-6"></i>
+    </div>
+    
+    <!-- Hero Content Container -->
+    <div class="hero-content-container mx-auto d-flex flex-column justify-content-center align-items-center" style="background: linear-gradient(135deg, rgba(0, 40, 80, 0.9), rgba(0, 60, 120, 0.85)); padding: 3rem 1.5rem; border-radius: 1.5rem; max-width: 1000px; width: 90%; position: relative; z-index: 10; backdrop-filter: blur(20px); border: 1px solid rgba(255,255,255,0.1);">
+        <!-- Glowing Border Effect -->
+        <div class="hero-glow-border"></div>
         
-        <!-- Floating Icons - Optimized Performance -->
-        <div class="floating-medical-icons">
-            <i class="bi bi-heart-pulse floating-icon icon-1"></i>
-            <i class="bi bi-shield-check floating-icon icon-2"></i>
-            <i class="bi bi-calendar-plus floating-icon icon-3"></i>
-            <i class="bi bi-graph-up floating-icon icon-4"></i>
-            <i class="bi bi-people floating-icon icon-5"></i>
-            <i class="bi bi-clock floating-icon icon-6"></i>
-        </div>
+        <h1 class="display-2 fw-bolder text-shadow-custom mb-3 hero-title text-center">
+            <span class="hero-title-vital" style="color: #22c55e;">Vital</span><span class="hero-title-care" style="color: white;">Care</span>
+        </h1>
         
-        <!-- Hero Content Container -->
-        <div class="hero-content-container mx-auto d-flex flex-column justify-content-center align-items-center" style="background: linear-gradient(135deg, rgba(0, 40, 80, 0.9), rgba(0, 60, 120, 0.85)); padding: 3rem 1.5rem; border-radius: 1.5rem; max-width: 1000px; width: 90%; position: relative; z-index: 10; backdrop-filter: blur(20px); border: 1px solid rgba(255,255,255,0.1);">
-            <!-- Glowing Border Effect - Only on Hover -->
-            <div class="hero-glow-border"></div>
-            
-            <h1 class="display-2 fw-bolder text-shadow-custom mb-3 hero-title text-center">
-                <span class="hero-title-vital" style="color: #22c55e;">Vital</span><span class="hero-title-care" style="color: #0f172a;">Care</span>
-            </h1>
-            
-            <p class="lead fs-4 mb-4 text-shadow-custom hero-subtitle text-center">IPS autorizada en <span class="hero-highlight-text">Barrancabermeja, Santander</span>. Agendamiento de citas médicas las 24 horas.</p>
-            
-            <!-- Enhanced Stats Row - Individual Cards -->
-            <div class="row g-3 mb-4 hero-stats w-100 justify-content-center">
-                <div class="col-md-4 col-lg-3">
-                    <div class="hero-stat-card text-center">
-                        <div class="hero-stat-icon">
-                            <i class="bi bi-people-fill"></i>
-                        </div>
-                        <div class="hero-stat-number fs-3 fw-bold" data-target="15000">0</div>
-                        <div class="hero-stat-label small">Pacientes Atendidos</div>
+        <p class="lead fs-4 mb-4 text-shadow-custom hero-subtitle text-center">IPS autorizada en <span class="hero-highlight-text" style="color: #fbbf24;">Barrancabermeja, Santander</span><br/>Sistema de Gestión de Citas Médicas</p>
+        
+        <!-- Enhanced Stats Row -->
+        <div class="row g-3 mb-4 hero-stats w-100 justify-content-center">
+            <div class="col-md-4 col-lg-3">
+                <div class="hero-stat-card text-center">
+                    <div class="hero-stat-icon">
+                        <i class="bi bi-people-fill"></i>
                     </div>
-                </div>
-                <div class="col-md-4 col-lg-3">
-                    <div class="hero-stat-card text-center">
-                        <div class="hero-stat-icon">
-                            <i class="bi bi-hospital"></i>
-                        </div>
-                        <div class="hero-stat-number fs-3 fw-bold" data-target="45">0</div>
-                        <div class="hero-stat-label small">Médicos Especialistas</div>
-                    </div>
-                </div>
-                <div class="col-md-4 col-lg-3">
-                    <div class="hero-stat-card text-center">
-                        <div class="hero-stat-icon">
-                            <i class="bi bi-star-fill"></i>
-                        </div>
-                        <div class="hero-stat-number fs-3 fw-bold" data-target="96">0</div>
-                        <div class="hero-stat-label small">% Satisfacción Pacientes</div>
-                    </div>
+                    <div class="hero-stat-number fs-3 fw-bold" data-target="15000">15,000+</div>
+                    <div class="hero-stat-label small">Pacientes Atendidos</div>
                 </div>
             </div>
-            
-            <!-- Enhanced Action Buttons -->
-            <div class="d-grid gap-3 d-sm-flex justify-content-sm-center">
-                <a class="btn btn-light btn-lg px-4 py-2 me-sm-3 hero-btn hero-btn-light" asp-area="Identity" asp-page="/Account/Login" role="button">
-                    <i class="bi bi-box-arrow-in-right me-2"></i> 
-                    <span>Iniciar Sesión</span>
-                    <div class="btn-ripple"></div>
-                </a>
-                <a class="btn btn-dark-blue btn-lg px-4 py-2 hero-btn hero-btn-dark" asp-area="Identity" asp-page="/Account/Register" role="button">
-                    <i class="bi bi-person-plus me-2"></i> 
-                    <span>Registrarse Gratis</span>
-                    <div class="btn-ripple"></div>
-                </a>
+            <div class="col-md-4 col-lg-3">
+                <div class="hero-stat-card text-center">
+                    <div class="hero-stat-icon">
+                        <i class="bi bi-hospital"></i>
+                    </div>
+                    <div class="hero-stat-number fs-3 fw-bold" data-target="45">45+</div>
+                    <div class="hero-stat-label small">Médicos Especialistas</div>
+                </div>
             </div>
-            
-            <!-- Divider Line after buttons -->
-            <hr style="border: 0.5px solid white; width: 60%; margin: 30px auto;">
-            
-            <!-- Trust Badges - Individual Cards with Icons -->
-            <div class="row g-3 mt-3 justify-content-center">
-                <div class="col-md-4 col-lg-3">
-                    <div class="trust-badge-item">
-                        <i class="bi bi-award-fill me-2"></i>
-                        <span>Habilitación Supersalud</span>
+            <div class="col-md-4 col-lg-3">
+                <div class="hero-stat-card text-center">
+                    <div class="hero-stat-icon">
+                        <i class="bi bi-star-fill"></i>
                     </div>
-                </div>
-                <div class="col-md-4 col-lg-3">
-                    <div class="trust-badge-item">
-                        <i class="bi bi-shield-fill-check me-2"></i>
-                        <span>ISO 9001:2015</span>
-                    </div>
-                </div>
-                <div class="col-md-4 col-lg-3">
-                    <div class="trust-badge-item">
-                        <i class="bi bi-patch-check-fill me-2"></i>
-                        <span>Datos Protegidos</span>
-                    </div>
+                    <div class="hero-stat-number fs-3 fw-bold" data-target="96">96%</div>
+                    <div class="hero-stat-label small">Satisfacción Pacientes</div>
                 </div>
             </div>
         </div>
         
-        <!-- Scroll Indicator - Positioned Lower -->
-        <div class="scroll-indicator" style="bottom: 15px;">
-            <i class="bi bi-chevron-down"></i>
+        <!-- Action Buttons -->
+        <div class="d-grid gap-3 d-sm-flex justify-content-sm-center">
+            <a class="btn btn-success btn-lg px-4 py-2 me-sm-3 hero-btn" asp-page="/Appointments/Create" role="button">
+                <i class="bi bi-calendar-plus me-2"></i> 
+                <span>Agendar Cita</span>
+                <div class="btn-ripple"></div>
+            </a>
+            <a class="btn btn-info btn-lg px-4 py-2 hero-btn" asp-page="/Appointments/Search" role="button">
+                <i class="bi bi-search me-2"></i> 
+                <span>Consultar Cita</span>
+                <div class="btn-ripple"></div>
+            </a>
         </div>
-    </div>
-}
-else if (isDoctor)
-{
-    <!-- Hero para Doctor con Imagen -->
-    <div class="container-fluid text-center py-4 mb-4">
-        <div class="row justify-content-center align-items-center">
-            <div class="col-lg-6">
-                <div class="doctor-welcome-content">
-                    <h2 class="welcome-title mb-3 text-dark">
-                        <i class="bi bi-clipboard-pulse me-2 text-primary"></i>
-                        @if (!string.IsNullOrEmpty(userFirstName))
-                        {
-                            <span>Bienvenido Dr(a). <strong>@userFirstName</strong></span>
-                        }
-                        else
-                        {
-                            <span>Portal Médico</span>
-                        }
-                    </h2>
-                    <p class="welcome-subtitle text-muted">Gestione sus citas médicas, historias clínicas y consulte la agenda del día en VitalCare IPS</p>
+        
+        <!-- Divider Line -->
+        <hr style="border: 0.5px solid white; width: 60%; margin: 30px auto;">
+        
+        <!-- Trust Badges -->
+        <div class="row g-3 mt-3 justify-content-center">
+            <div class="col-md-4 col-lg-3">
+                <div class="trust-badge-item">
+                    <i class="bi bi-award-fill me-2"></i>
+                    <span>Habilitación Supersalud</span>
                 </div>
             </div>
-            <div class="col-lg-6">
-                <div class="doctor-image-container">
-                    <img src="~/images/doctor.png" alt="Portal Médico" class="img-fluid rounded-3 shadow-lg" style="max-height: 300px; width: auto;">
+            <div class="col-md-4 col-lg-3">
+                <div class="trust-badge-item">
+                    <i class="bi bi-shield-fill-check me-2"></i>
+                    <span>ISO 9001:2015</span>
                 </div>
             </div>
-        </div>
-    </div>
-}
-else if (isPatient)
-{
-    <!-- Hero para Paciente con Imagen -->
-    <div class="container-fluid text-center py-4 mb-4">
-        <div class="row justify-content-center align-items-center">
-            <div class="col-lg-6">
-                <div class="patient-welcome-content">
-                    <h2 class="welcome-title mb-3 text-dark">
-                        <i class="bi bi-person-heart me-2 text-success"></i>
-                        @if (!string.IsNullOrEmpty(userFirstName))
-                        {
-                            <span>Bienvenido <strong>@userFirstName</strong></span>
-                        }
-                        else
-                        {
-                            <span>Portal del Paciente</span>
-                        }
-                    </h2>
-                    <p class="welcome-subtitle text-muted">Agende sus citas médicas, consulte resultados de laboratorio y acceda a su historia clínica en VitalCare IPS</p>
-                </div>
-            </div>
-            <div class="col-lg-6">
-                <div class="patient-image-container">
-                    <img src="~/images/Pacientes.png" alt="Portal del Paciente" class="img-fluid rounded-3 shadow-lg" style="max-height: 300px; width: auto;">
+            <div class="col-md-4 col-lg-3">
+                <div class="trust-badge-item">
+                    <i class="bi bi-patch-check-fill me-2"></i>
+                    <span>Datos Protegidos</span>
                 </div>
             </div>
         </div>
     </div>
-}
-
-<!-- Main Content Section - Dynamic based on Role -->
-<div class="container mt-5 py-2">
-    @if (UserManagerAccessor.IsSignedIn(User))
-    {
-        @if (User.IsInRole("Admin"))
-        {
-            <div id="adminPanelDashboard" class="row justify-content-center">
-                <div class="col-lg-10 col-xl-9">
-                    <div class="card shadow-lg modern-card-hover">
-                        <div class="card-header bg-primary text-white text-center">
-                            <h2 class="my-2"><i class="bi bi-person-gear"></i> Panel de Administración</h2>
-                        </div>
-                        <div class="card-body p-4">
-                            <p class="lead text-center mb-4">Gestione las entidades clave y configuraciones del sistema.</p>
-                            <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4">
-                                <div class="col">
-                                    <div class="card h-100 shadow-lg border-primary action-card-hover feature-card-hover">
-                                        <div class="card-body d-flex flex-column align-items-center">
-                                            <div class="feature-icon-wrapper mb-3">
-                                                <i class="bi bi-people-fill fs-1 text-primary feature-icon-main rotating-icon"></i>
-                                                <div class="feature-sparkles">
-                                                    <span class="sparkle sparkle-1"></span>
-                                                    <span class="sparkle sparkle-2"></span>
-                                                    <span class="sparkle sparkle-3"></span>
-                                                    <span class="sparkle sparkle-4"></span>
-                                                </div>
-                                            </div>
-                                            <h5 class="card-title">Usuarios</h5>
-                                            <p class="card-text flex-grow-1">Administrar cuentas de todos los usuarios.</p>
-                                            <a asp-page="/Admin/ManageUsers" class="btn btn-primary mt-auto w-100"><i class="bi bi-arrow-right-circle"></i> Ir</a>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col">
-                                    <div class="card h-100 shadow-lg border-primary action-card-hover feature-card-hover">
-                                        <div class="card-body d-flex flex-column align-items-center">
-                                            <div class="feature-icon-wrapper mb-3">
-                                                <i class="bi bi-calendar-check-fill fs-1 text-primary feature-icon-main"></i>
-                                                <div class="feature-sparkles">
-                                                    <span class="sparkle sparkle-1"></span>
-                                                    <span class="sparkle sparkle-2"></span>
-                                                    <span class="sparkle sparkle-3"></span>
-                                                </div>
-                                            </div>
-                                            <h5 class="card-title">Citas</h5>
-                                            <p class="card-text flex-grow-1">Ver y administrar todas las citas.</p>
-                                            <a asp-page="/Admin/ManageAppointments" class="btn btn-primary mt-auto w-100"><i class="bi bi-arrow-right-circle"></i> Ir</a>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col">
-                                    <div class="card h-100 shadow-lg border-primary action-card-hover feature-card-hover">
-                                        <div class="card-body d-flex flex-column align-items-center">
-                                            <div class="feature-icon-wrapper mb-3">
-                                                <i class="bi bi-file-medical-fill fs-1 text-primary feature-icon-main"></i>
-                                                <div class="feature-sparkles">
-                                                    <span class="sparkle sparkle-1"></span>
-                                                    <span class="sparkle sparkle-2"></span>
-                                                    <span class="sparkle sparkle-3"></span>
-                                                </div>
-                                            </div>
-                                            <h5 class="card-title">Médicos</h5>
-                                            <p class="card-text flex-grow-1">Gestionar perfiles de médicos.</p>
-                                            <a asp-page="/Admin/ManageDoctors" class="btn btn-primary mt-auto w-100"><i class="bi bi-arrow-right-circle"></i> Ir</a>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col">
-                                    <div class="card h-100 shadow-lg border-primary action-card-hover feature-card-hover">
-                                        <div class="card-body d-flex flex-column align-items-center">
-                                            <div class="feature-icon-wrapper mb-3">
-                                                <i class="bi bi-bookmark-star-fill fs-1 text-primary feature-icon-main"></i>
-                                                <div class="feature-sparkles">
-                                                    <span class="sparkle sparkle-1"></span>
-                                                    <span class="sparkle sparkle-2"></span>
-                                                    <span class="sparkle sparkle-3"></span>
-                                                </div>
-                                            </div>
-                                            <h5 class="card-title">Especialidades</h5>
-                                            <p class="card-text flex-grow-1">Añadir o editar especialidades.</p>
-                                            <a asp-page="/Admin/ManageSpecialties" class="btn btn-primary mt-auto w-100"><i class="bi bi-arrow-right-circle"></i> Ir</a>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col">
-                                    <div class="card h-100 shadow-lg border-primary action-card-hover feature-card-hover">
-                                        <div class="card-body d-flex flex-column align-items-center">
-                                            <div class="feature-icon-wrapper mb-3 mx-auto">
-                                                <i class="bi bi-capsule fs-1 feature-icon-main" style="color: #0f172a;"></i>
-                                                <div class="feature-sparkles">
-                                                    <span class="sparkle sparkle-1"></span>
-                                                    <span class="sparkle sparkle-2"></span>
-                                                    <span class="sparkle sparkle-3"></span>
-                                                </div>
-                                            </div>
-                                            <h5 class="card-title">Medicamentos</h5>
-                                            <p class="card-text flex-grow-1">Gestionar listado de medicamentos.</p>
-                                            <a asp-page="/Admin/Medications/Index" class="btn btn-primary mt-auto w-100"><i class="bi bi-arrow-right-circle"></i> Ir</a>
-                                        </div>
-                                    </div>
-                                </div>
-                                 <div class="col">
-                                    <div class="card h-100 shadow-lg border-secondary action-card-hover feature-card-hover">
-                                        <div class="card-body d-flex flex-column align-items-center">
-                                            <div class="feature-icon-wrapper mb-3">
-                                                <i class="bi bi-person-lines-fill fs-1 text-secondary feature-icon-main"></i>
-                                                <div class="feature-sparkles">
-                                                    <span class="sparkle sparkle-1"></span>
-                                                    <span class="sparkle sparkle-2"></span>
-                                                    <span class="sparkle sparkle-3"></span>
-                                                </div>
-                                            </div>
-                                            <h5 class="card-title">Pacientes</h5>
-                                            <p class="card-text flex-grow-1">Administrar información de pacientes.</p>
-                                            <a asp-page="/Admin/ManagePatients" class="btn btn-outline-secondary mt-auto w-100"><i class="bi bi-arrow-right-circle"></i> Ir</a>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        
-                        <!-- Trust Indicators for Admin -->
-                        <div class="card-footer bg-light text-center">
-                            <div class="row align-items-center text-muted">
-                                <div class="col-md-3 mb-2 mb-md-0">
-                                    <i class="bi bi-award-fill fs-5 text-warning"></i>
-                                    <div class="small">Certificado ISO 9001</div>
-                                </div>
-                                <div class="col-md-3 mb-2 mb-md-0">
-                                    <i class="bi bi-shield-check fs-5 text-success"></i>
-                                    <div class="small">Ministerio de Salud</div>
-                                </div>
-                                <div class="col-md-3 mb-2 mb-md-0">
-                                    <i class="bi bi-star-fill fs-5 text-info"></i>
-                                    <div class="small">Premio Innovación 2024</div>
-                                </div>
-                                <div class="col-md-3">
-                                    <i class="bi bi-globe fs-5 text-primary"></i>
-                                    <div class="small">Red Internacional</div>
-                                </div>
-                            </div>
-                            <p class="mb-0 text-muted small mt-2">Panel de Control Administrativo - Reconocido por Instituciones Líderes</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        }
-        else if (User.IsInRole("Doctor"))
-        {
-            <div id="doctorPanelDashboard" class="row justify-content-center">
-                <div class="col-lg-10 col-xl-9">
-                    <div class="card shadow-lg modern-card-hover">
-                        <div class="card-header bg-info text-white text-center text-shadow-custom">
-                            <h2 class="my-2"><i class="bi bi-clipboard-pulse"></i> Portal Médico</h2>
-                        </div>
-                        <div class="card-body p-4">
-                            @if (!string.IsNullOrEmpty(userFirstName))
-                            {
-                                <p class="lead text-center mb-4">Bienvenido Dr(a). <span class="fw-semibold">@userFirstName</span>. Acceda a su agenda y gestione pacientes.</p>
-                            } else {
-                                <p class="lead text-center mb-4">Acceda a su agenda y gestione pacientes.</p>
-                            }
-
-                            <!-- Quick Stats Row -->
-                            <div class="row g-3 mb-4 text-center">
-                                <div class="col-md-4">
-                                    <div class="stat-card p-3 border border-info-subtle rounded bg-info-subtle modern-card-hover">
-                                        <h5 class="stat-value mb-1 fs-2 fw-bold text-info text-shadow-custom" id="doctorCitasHoyStat">0</h5>
-                                        <p class="stat-label mb-0 text-muted small text-uppercase">Citas Hoy</p>
-                                    </div>
-                                </div>
-                                <div class="col-md-4">
-                                    <div class="stat-card p-3 border border-info-subtle rounded bg-info-subtle modern-card-hover">
-                                        <h5 class="stat-value mb-1 fs-2 fw-bold text-info text-shadow-custom" id="doctorCitasConfirmadasStat">0</h5>
-                                        <p class="stat-label mb-0 text-muted small text-uppercase">Citas Confirmadas</p>
-                                    </div>
-                                </div>
-                                <div class="col-md-4">
-                                    <div class="stat-card p-3 border border-info-subtle rounded bg-info-subtle modern-card-hover">
-                                        <h5 class="stat-value mb-1 fs-2 fw-bold text-info text-shadow-custom" id="doctorSatisfaccionStat">0%</h5>
-                                        <p class="stat-label mb-0 text-muted small text-uppercase">Satisfacción</p>
-                                    </div>
-                                </div>
-                            </div>
-                            <!-- End Quick Stats Row -->
-
-                            <hr class="my-4">
-
-                            <h4 class="mb-3 text-center fw-normal text-info-emphasis">Acciones Principales</h4>
-                            <div class="row justify-content-center text-center g-4 mb-4">
-                                <div class="col-md-6 col-lg-4">
-                                    <div class="card h-100 shadow-lg border-info action-card-hover feature-card-hover">
-                                        <div class="card-body d-flex flex-column align-items-center p-4">
-                                            <div class="feature-icon-wrapper mb-3">
-                                                <i class="bi bi-calendar-week-fill fs-1 text-info feature-icon-main rotating-icon"></i>
-                                                <div class="feature-sparkles">
-                                                    <span class="sparkle sparkle-1"></span>
-                                                    <span class="sparkle sparkle-2"></span>
-                                                    <span class="sparkle sparkle-3"></span>
-                                                    <span class="sparkle sparkle-4"></span>
-                                                </div>
-                                            </div>
-                                            <h5 class="card-title">Mi Agenda</h5>
-                                            <p class="card-text flex-grow-1 small text-muted">Vea sus citas, detalles y añada prescripciones.</p>
-                                            <a asp-page="/Doctor/Agenda" class="btn btn-info mt-auto w-100 fw-semibold"><i class="bi bi-arrow-right-circle me-1"></i> Ver Agenda</a>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-md-6 col-lg-4">
-                                    <div class="card h-100 shadow-lg border-info action-card-hover feature-card-hover">
-                                        <div class="card-body d-flex flex-column align-items-center p-4">
-                                            <div class="feature-icon-wrapper mb-3">
-                                                <i class="bi bi-people-fill fs-1 text-info feature-icon-main rotating-icon"></i>
-                                                <div class="feature-sparkles">
-                                                    <span class="sparkle sparkle-1"></span>
-                                                    <span class="sparkle sparkle-2"></span>
-                                                    <span class="sparkle sparkle-3"></span>
-                                                    <span class="sparkle sparkle-4"></span>
-                                                </div>
-                                            </div>
-                                            <h5 class="card-title">Mis Pacientes</h5>
-                                            <p class="card-text flex-grow-1 small text-muted">Consulte pacientes atendidos y vea su historial.</p>
-                                            <a asp-page="/Doctor/Patients" class="btn btn-info mt-auto w-100 fw-semibold"><i class="bi bi-list-check me-1"></i> Ver Pacientes</a>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-md-6 col-lg-4">
-                                    <div class="card h-100 shadow-lg border-info action-card-hover feature-card-hover">
-                                        <div class="card-body d-flex flex-column align-items-center p-4">
-                                            <div class="feature-icon-wrapper mb-3">
-                                                <i class="bi bi-star-fill fs-1 text-info feature-icon-main rotating-icon"></i>
-                                                <div class="feature-sparkles">
-                                                    <span class="sparkle sparkle-1"></span>
-                                                    <span class="sparkle sparkle-2"></span>
-                                                    <span class="sparkle sparkle-3"></span>
-                                                    <span class="sparkle sparkle-4"></span>
-                                                </div>
-                                            </div>
-                                            <h5 class="card-title">Mis Calificaciones</h5>
-                                            <p class="card-text flex-grow-1 small text-muted">Vea las opiniones y calificaciones de sus pacientes.</p>
-                                            <a asp-page="/Doctor/MyRatings" class="btn btn-info mt-auto w-100 fw-semibold"><i class="bi bi-star-half me-1"></i> Ver Calificaciones</a>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-md-6 col-lg-4">
-                                    <div class="card h-100 shadow-lg border-info action-card-hover feature-card-hover">
-                                        <div class="card-body d-flex flex-column align-items-center p-4">
-                                            <div class="feature-icon-wrapper mb-3">
-                                                <i class="bi bi-person-fill-gear fs-1 text-info feature-icon-main rotating-icon"></i>
-                                                <div class="feature-sparkles">
-                                                    <span class="sparkle sparkle-1"></span>
-                                                    <span class="sparkle sparkle-2"></span>
-                                                    <span class="sparkle sparkle-3"></span>
-                                                    <span class="sparkle sparkle-4"></span>
-                                                </div>
-                                            </div>
-                                            <h5 class="card-title">Mi Perfil</h5>
-                                            <p class="card-text flex-grow-1 small text-muted">Actualice su información profesional.</p>
-                                            <a asp-area="Identity" asp-page="/Account/Manage/Index" class="btn btn-info mt-auto w-100 fw-semibold"><i class="bi bi-pencil-square me-1"></i> Actualizar Perfil</a>
-                                        </div>
-                                    </div>
-                                </div>
-                                @* Add more Doctor specific cards here if needed *@
-                            </div>
-
-                            <hr class="my-4">
-
-                            <div class="row g-4">
-                                <div class="col-lg-6">
-                                    <h5 class="mb-3 text-info-emphasis"><i class="bi bi-tools me-2"></i>Herramientas Rápidas</h5>
-                                    <div class="list-group shadow-sm quick-links-widget">
-                                        <div class="list-group-item p-0">
-                                            <form id="doctorPatientSearchForm" class="d-flex p-2">
-                                                <input type="text" id="doctorPatientSearchInput" class="form-control form-control-sm me-2" placeholder="Buscar Paciente...">
-                                                <button type="submit" class="btn btn-sm btn-outline-info"><i class="bi bi-search"></i></button>
-                                            </form>
-                                        </div>
-                                        <a href="#" class="list-group-item list-group-item-action d-flex justify-content-between align-items-center">
-                                            Configurar Notificaciones
-                                            <i class="bi bi-bell-slash text-muted"></i>
-                                        </a>
-                                        <a href="#" class="list-group-item list-group-item-action d-flex justify-content-between align-items-center">
-                                            Base de Conocimiento Médico
-                                            <i class="bi bi-book text-muted"></i>
-                                        </a>
-                                        <a href="#" class="list-group-item list-group-item-action d-flex justify-content-between align-items-center">
-                                            Ver Estadísticas Completas
-                                            <i class="bi bi-graph-up text-muted"></i>
-                                        </a>
-                                    </div>
-                                </div>
-                                <div class="col-lg-6">
-                                    <h5 class="mb-3 text-info-emphasis"><i class="bi bi-newspaper me-2"></i>Novedades y Anuncios</h5>
-                                    <div class="card shadow-sm announcements-widget">
-                                        <div class="card-body">
-                                            <p class="card-text text-muted small">
-                                                <strong>15 Julio, 2024:</strong> Nueva actualización del sistema de agendamiento. Revise el manual actualizado.
-                                            </p>
-                                            <hr class="my-2">
-                                            <p class="card-text text-muted small">
-                                                <strong>10 Julio, 2024:</strong> Próxima jornada de capacitación sobre CIE-11 el 1 de Agosto. ¡Inscríbase!
-                                            </p>
-                                            <a href="#" class="btn btn-sm btn-outline-info mt-2 float-end">Ver todos</a>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-
-                        </div>
-                        
-                        <!-- Trust Indicators for Doctor -->
-                        <div class="card-footer bg-light text-center py-4">
-                            <div class="row align-items-center text-muted">
-                                <div class="col-md-3 mb-3 mb-md-0">
-                                    <i class="bi bi-award-fill fs-4 text-info mb-2 d-block"></i>
-                                    <div class="small">Certificado ISO 9001</div>
-                                </div>
-                                <div class="col-md-3 mb-3 mb-md-0">
-                                    <i class="bi bi-shield-check fs-4 text-info mb-2 d-block"></i>
-                                    <div class="small">Ministerio de Salud</div>
-                                </div>
-                                <div class="col-md-3 mb-3 mb-md-0">
-                                    <i class="bi bi-star-fill fs-4 text-info mb-2 d-block"></i>
-                                    <div class="small">Premio Innovación 2024</div>
-                                </div>
-                                <div class="col-md-3 mb-3 mb-md-0">
-                                    <i class="bi bi-globe fs-4 text-info mb-2 d-block"></i>
-                                    <div class="small">Red Internacional</div>
-                                </div>
-                            </div>
-                            <p class="mb-0 text-muted small mt-3">Herramientas para Profesionales de la Salud - Reconocido por Instituciones Líderes</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        }
-        else if (User.IsInRole("Paciente"))
-        {
-            <div id="patientPanelDashboard" class="row justify-content-center">
-                <div class="col-lg-11 col-xl-10">
-                    <!-- Header simplificado -->
-                    <div class="row mb-4">
-                        <div class="col-12">
-                            <div class="card border-0 shadow-sm" style="background: linear-gradient(135deg, #1a5e3a 0%, #2d7a4a 100%); color: white;">
-                                <div class="card-body text-center py-4">
-                                    <h2 class="mb-2" style="color: white;">
-                                        <i class="bi bi-person-heart me-2" style="color: white;"></i>
-                                        @if (!string.IsNullOrEmpty(userFirstName))
-                                        {
-                                            <span style="color: white;">Bienvenido, <strong>@userFirstName</strong></span>
-                                        }
-                                        else
-                                        {
-                                            <span style="color: white;">Portal del Paciente</span>
-                                        }
-                                    </h2>
-                                    <p class="mb-0" style="color: rgba(255,255,255,0.85);">Gestiona tu salud de manera simple y segura</p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Dashboard rápido -->
-                    <div class="row g-3 mb-4">
-                        <div class="col-md-4">
-                            <div class="card border-0 shadow-sm h-100" style="background: linear-gradient(135deg, #1a5e3a, #2d7a4a);">
-                                <div class="card-body text-center py-4">
-                                    <i class="bi bi-calendar-week fs-2 mb-2" style="color: white;"></i>
-                                    <h6 class="card-title" style="color: white;">Próxima Cita</h6>
-                                    <p class="card-text small mb-0" id="patientNextAppointmentDisplay" style="color: rgba(255,255,255,0.85);">Cargando...</p>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-md-4">
-                            <div class="card border-0 shadow-sm h-100" style="background: linear-gradient(135deg, #1a5e3a, #2d7a4a);">
-                                <div class="card-body text-center py-4">
-                                    <i class="bi bi-prescription2 fs-2 mb-2" style="color: white;"></i>
-                                    <h6 class="card-title" style="color: white;">Recetas Activas</h6>
-                                    <p class="card-text small mb-0" style="color: rgba(255,255,255,0.85);">
-                                        <span id="patientPrescriptionsCount">0</span> recetas vigentes
-                                    </p>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-md-4">
-                            <div class="card border-0 shadow-sm h-100" style="background: linear-gradient(135deg, #1a5e3a, #2d7a4a);">
-                                <div class="card-body text-center py-4">
-                                    <i class="bi bi-bell fs-2 mb-2" style="color: white;"></i>
-                                    <h6 class="card-title" style="color: white;">Recordatorios</h6>
-                                    <p class="card-text small mb-0" style="color: rgba(255,255,255,0.85);">
-                                        <span id="activeRemindersCount">0</span> pendientes
-                                    </p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Acciones principales -->
-                    <div class="row g-4 mb-4">
-                        <div class="col-md-4">
-                            <div class="card border-0 shadow-lg h-100 feature-card-hover">
-                                <div class="card-body text-center p-4">
-                                    <div class="feature-icon-wrapper mb-3">
-                                        <i class="bi bi-calendar-plus-fill fs-1 feature-icon-main" style="color: #1a5e3a;"></i>
-                                    </div>
-                                    <h5 class="card-title fw-bold mb-3">Agendar Cita</h5>
-                                    <p class="card-text text-muted mb-4">Programa una nueva consulta médica según tu disponibilidad</p>
-                                    <a asp-page="/Appointments/Create" class="btn btn-lg w-100 fw-bold text-white" style="background: linear-gradient(135deg, #1a5e3a, #2d7a4a); border: none;">
-                                        <i class="bi bi-arrow-right-circle me-2"></i>Agendar Ahora
-                                    </a>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-md-4">
-                            <div class="card border-0 shadow-lg h-100 feature-card-hover">
-                                <div class="card-body text-center p-4">
-                                    <div class="feature-icon-wrapper mb-3">
-                                        <i class="bi bi-calendar-check-fill fs-1 feature-icon-main" style="color: #1a5e3a;"></i>
-                                    </div>
-                                    <h5 class="card-title fw-bold mb-3">Mis Citas</h5>
-                                    <p class="card-text text-muted mb-4">Revisa y gestiona todas tus citas médicas programadas</p>
-                                    <a asp-page="/Appointments/Index" class="btn btn-lg w-100 fw-bold text-white" style="background: linear-gradient(135deg, #0f4a2d, #166534); border: none;">
-                                        <i class="bi bi-list-check me-2"></i>Ver Mis Citas
-                                    </a>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-md-4">
-                            <div class="card border-0 shadow-lg h-100 feature-card-hover">
-                                <div class="card-body text-center p-4">
-                                    <div class="feature-icon-wrapper mb-3">
-                                        <i class="bi bi-journal-medical fs-1 feature-icon-main" style="color: #0f172a;"></i>
-                                    </div>
-                                    <h5 class="card-title fw-bold mb-3">Mis Recetas</h5>
-                                    <p class="card-text text-muted mb-4">Consulta las recetas médicas emitidas por tus doctores</p>
-                                    <a asp-page="/Appointments/MyPrescriptions" class="btn btn-lg w-100 fw-bold text-white" style="background: linear-gradient(135deg, #0f4a2d, #166534); border: none;">
-                                        <i class="bi bi-eye me-2"></i>Ver Recetas
-                                    </a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Información adicional en acordeón -->
-                    <div class="row">
-                        <div class="col-12">
-                            <div class="accordion shadow-sm" id="patientInfoAccordion">
-                                <div class="accordion-item border-0">
-                                    <h2 class="accordion-header">
-                                        <button class="accordion-button collapsed fw-bold" type="button" data-bs-toggle="collapse" data-bs-target="#healthInfo">
-                                            <i class="bi bi-heart-pulse me-2 text-success"></i>
-                                            Estado de Salud y Historial
-                                        </button>
-                                    </h2>
-                                    <div id="healthInfo" class="accordion-collapse collapse" data-bs-parent="#patientInfoAccordion">
-                                        <div class="accordion-body">
-                                            <div class="row g-3">
-                                                <div class="col-md-6">
-                                                    <div class="list-group">
-                                                        <div class="list-group-item d-flex justify-content-between align-items-center">
-                                                            <span><i class="bi bi-activity text-primary me-2"></i>Última Consulta</span>
-                                                            <small class="text-muted" id="lastConsultationDate">Cargando...</small>
-                                                        </div>
-                                                        <div class="list-group-item d-flex justify-content-between align-items-center">
-                                                            <span><i class="bi bi-calendar-plus text-warning me-2"></i>Próximo Chequeo</span>
-                                                            <small class="text-muted" id="nextCheckupDate">Cargando...</small>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <div class="col-md-6">
-                                                    <div class="d-grid gap-2">
-                                                        <a href="/Patient/HealthStatus" class="btn btn-lg fw-bold text-white" style="background: linear-gradient(135deg, #1a5e3a, #2d7a4a); border: none;">
-                                                            <i class="bi bi-clipboard-data me-2"></i>Ver Estado Completo
-                                                        </a>
-                                                        <a href="/Patient/MedicalHistory" class="btn btn-lg fw-bold text-white" style="background: linear-gradient(135deg, #1a5e3a, #2d7a4a); border: none;">
-                                                            <i class="bi bi-file-medical me-2"></i>Historial Médico
-                                                        </a>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                
-                                <div class="accordion-item border-0">
-                                    <h2 class="accordion-header">
-                                        <button class="accordion-button collapsed fw-bold" type="button" data-bs-toggle="collapse" data-bs-target="#messagesInfo">
-                                            <i class="bi bi-chat-dots me-2 text-info"></i>
-                                            Mensajes y Comunicación
-                                        </button>
-                                    </h2>
-                                    <div id="messagesInfo" class="accordion-collapse collapse" data-bs-parent="#patientInfoAccordion">
-                                        <div class="accordion-body">
-                                            <div class="row g-3">
-                                                <div class="col-md-8">
-                                                    <div id="messagesContainer">
-                                                        <p class="text-muted small">
-                                                            <i class="bi bi-info-circle text-info me-1"></i>
-                                                            Aquí aparecerán los mensajes de tus médicos y notificaciones del sistema.
-                                                        </p>
-                                                    </div>
-                                                </div>
-                                                <div class="col-md-4">
-                                                    <div class="d-grid">
-                                                        <a href="/Patient/Messages" class="btn btn-lg fw-bold text-white" style="background: linear-gradient(135deg, #1a5e3a, #2d7a4a); border: none;">
-                                                            <i class="bi bi-envelope me-2"></i>
-                                                            Ver Mensajes 
-                                                            <span class="badge bg-light text-dark ms-2" id="unreadMessagesCount">0</span>
-                                                        </a>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <div class="accordion-item border-0">
-                                    <h2 class="accordion-header">
-                                        <button class="accordion-button collapsed fw-bold" type="button" data-bs-toggle="collapse" data-bs-target="#profileInfo">
-                                            <i class="bi bi-person-gear me-2 text-secondary"></i>
-                                            Configuración de Perfil
-                                        </button>
-                                    </h2>
-                                    <div id="profileInfo" class="accordion-collapse collapse" data-bs-parent="#patientInfoAccordion">
-                                        <div class="accordion-body text-center">
-                                            <p class="text-muted mb-3">Mantén actualizada tu información personal y de contacto</p>
-                                            <a asp-area="Identity" asp-page="/Account/Manage/Index" class="btn btn-lg fw-bold text-white" style="background: linear-gradient(135deg, #1a5e3a, #2d7a4a); border: none;">
-                                                <i class="bi bi-pencil-square me-2"></i>Actualizar Mi Perfil
-                                            </a>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        }
-        else
-        {
-             // Fallback for logged-in users with undefined roles - GENERAL INFO CARDS
-             <div class="row justify-content-center text-center g-4">
-                <div class="col-lg-4 col-md-6">
-                    <div class="card h-100 shadow-sm features-card">
-                        <div class="card-body">
-                            <div class="feature-icon-round bg-primary text-white mb-3 mx-auto">
-                                <i class="bi bi-journal-medical fs-2"></i>
-                            </div>
-                            <h5 class="card-title">Especialistas Calificados</h5>
-                            <p class="card-text">Acceda a una amplia red de médicos especialistas en diversas áreas de la salud.</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-4 col-md-6">
-                    <div class="card h-100 shadow-sm features-card">
-                        <div class="card-body">
-                            <div class="feature-icon-round bg-success text-white mb-3 mx-auto">
-                                <i class="bi bi-calendar2-check fs-2"></i>
-                            </div>
-                            <h5 class="card-title">Gestión Fácil de Citas</h5>
-                            <p class="card-text">Agende, reprograme o cancele sus citas médicas de manera intuitiva y rápida.</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-4 col-md-6">
-                    <div class="card h-100 shadow-sm features-card">
-                        <div class="card-body">
-                            <div class="feature-icon-round bg-info text-white mb-3 mx-auto">
-                                <i class="bi bi-shield-lock fs-2"></i>
-                            </div>
-                            <h5 class="card-title">Seguridad y Confidencialidad</h5>
-                            <p class="card-text">Sus datos de salud son tratados con la máxima seguridad y confidencialidad.</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        }
-    }
-    else // This 'else' is for non-logged-in users
-    {
-        <!-- Enhanced Welcome Section for Non-Logged Users -->
-        <div class="row justify-content-center mb-5">
-            <div class="col-lg-8 text-center">
-                <h2 class="display-6 fw-bold mb-3" style="color: #0f172a;">Tu Salud, Nuestra Tecnología</h2>
-                <p class="lead text-muted fs-5 mb-4">Únete a miles de pacientes que ya confían en VitalCare para gestionar su salud de manera inteligente y segura</p>
-                <div class="d-flex justify-content-center align-items-center gap-4 mb-4">
-                    <div class="text-center">
-                        <h4 class="fw-bold mb-0" style="color: #22c55e;">15,000+</h4>
-                        <small class="text-muted">Pacientes Activos</small>
-                    </div>
-                    <div class="vr" style="height: 2rem;"></div>
-                    <div class="text-center">
-                        <h4 class="fw-bold mb-0" style="color: #0f172a;">250+</h4>
-                        <small class="text-muted">Médicos Especialistas</small>
-                    </div>
-                    <div class="vr" style="height: 2rem;"></div>
-                    <div class="text-center">
-                        <h4 class="fw-bold mb-0" style="color: #f59e0b;">98%</h4>
-                        <small class="text-muted">Satisfacción</small>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <!-- Enhanced Feature Cards -->
-        <div class="row justify-content-center text-center g-4 mb-5">
-            <div class="col-lg-4 col-md-6">
-                <div class="card h-100 shadow-lg feature-card-hover border-0">
-                    <div class="card-body d-flex flex-column p-4">
-                        <div class="feature-icon-wrapper mb-3 mx-auto">
-                            <i class="bi bi-heart-pulse fs-1 feature-icon-main" style="color: #0f172a;"></i>
-                            <div class="feature-sparkles">
-                                <span class="sparkle sparkle-1"></span>
-                                <span class="sparkle sparkle-2"></span>
-                                <span class="sparkle sparkle-3"></span>
-                            </div>
-                        </div>
-                        <h5 class="card-title fw-bold mb-3">Cuidado Integral 360°</h5>
-                        <p class="card-text text-muted mb-3 flex-grow-1">Atención médica completa que abarca prevención, diagnóstico, tratamiento y seguimiento personalizado para toda la familia.</p>
-                        <div class="feature-benefits mb-3">
-                            <small class="d-block text-success mb-1"><i class="bi bi-check-circle-fill me-2"></i>Planes familiares personalizados</small>
-                            <small class="d-block text-success mb-1"><i class="bi bi-check-circle-fill me-2"></i>Seguimiento continuo de salud</small>
-                            <small class="d-block text-success"><i class="bi bi-check-circle-fill me-2"></i>Programas de bienestar</small>
-                        </div>
-                        <div class="card-rating mt-3">
-                            <div class="stars">
-                                <i class="bi bi-star-fill text-warning"></i>
-                                <i class="bi bi-star-fill text-warning"></i>
-                                <i class="bi bi-star-fill text-warning"></i>
-                                <i class="bi bi-star-fill text-warning"></i>
-                                <i class="bi bi-star-fill text-warning"></i>
-                            </div>
-                            <small class="text-muted">4.9/5 (8,450 familias)</small>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="col-lg-4 col-md-6">
-                <div class="card h-100 shadow-lg feature-card-hover border-0">
-                    <div class="card-body d-flex flex-column p-4">
-                        <div class="feature-icon-wrapper mb-3 mx-auto">
-                            <i class="bi bi-clock fs-1 feature-icon-main" style="color: #0f172a;"></i>
-                            <div class="feature-sparkles">
-                                <span class="sparkle sparkle-1"></span>
-                                <span class="sparkle sparkle-2"></span>
-                                <span class="sparkle sparkle-3"></span>
-                            </div>
-                        </div>
-                        <h5 class="card-title fw-bold mb-3">Atención de Emergencia 24/7</h5>
-                        <p class="card-text text-muted mb-3 flex-grow-1">Servicio de urgencias médicas disponible las 24 horas con ambulancias equipadas y personal especializado en emergencias.</p>
-                        <div class="feature-benefits mb-3">
-                            <small class="d-block text-success mb-1"><i class="bi bi-check-circle-fill me-2"></i>Ambulancias con UCI móvil</small>
-                            <small class="d-block text-success mb-1"><i class="bi bi-check-circle-fill me-2"></i>Tiempo de respuesta &lt; 8 minutos</small>
-                            <small class="d-block text-success"><i class="bi bi-check-circle-fill me-2"></i>Paramédicos certificados</small>
-                        </div>
-                        <div class="security-badges mt-3">
-                            <span class="badge bg-danger me-1">URGENCIAS</span>
-                            <span class="badge bg-warning me-1">TRAUMA</span>
-                            <span class="badge bg-info">CARDIOLOGÍA</span>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="col-lg-4 col-md-6">
-                <div class="card h-100 shadow-lg feature-card-hover border-0">
-                    <div class="card-body d-flex flex-column p-4">
-                        <div class="feature-icon-wrapper mb-3 mx-auto">
-                            <i class="bi bi-capsule fs-1 feature-icon-main" style="color: #0f172a;"></i>
-                            <div class="feature-sparkles">
-                                <span class="sparkle sparkle-1"></span>
-                                <span class="sparkle sparkle-2"></span>
-                                <span class="sparkle sparkle-3"></span>
-                            </div>
-                        </div>
-                        <h5 class="card-title fw-bold mb-3">Farmacia Digital Inteligente</h5>
-                        <p class="card-text text-muted mb-3 flex-grow-1">Sistema automatizado de medicamentos con entrega a domicilio, recordatorios inteligentes y verificación de interacciones.</p>
-                        <div class="feature-benefits mb-3">
-                            <small class="d-block text-success mb-1"><i class="bi bi-check-circle-fill me-2"></i>Entrega en menos de 2 horas</small>
-                            <small class="d-block text-success mb-1"><i class="bi bi-check-circle-fill me-2"></i>Recordatorios automáticos</small>
-                            <small class="d-block text-success"><i class="bi bi-check-circle-fill me-2"></i>Verificación de seguridad IA</small>
-                        </div>
-                        <div class="time-savings mt-3">
-                            <small class="text-warning fw-bold"><i class="bi bi-truck me-1"></i>Disponible en 50+ ciudades</small>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <!-- Trust Indicators -->
-        <div class="row justify-content-center mb-5">
-            <div class="col-lg-8">
-                <div class="card trust-card shadow-lg border-0 feature-card-hover trust-card-premium">
-                    <div class="card-body text-center p-4">
-                        <h5 class="fw-bold mb-3">Reconocido por Instituciones Líderes</h5>
-                        <div class="row align-items-center text-muted">
-                            <div class="col-md-3 mb-3 mb-md-0">
-                                <div class="feature-icon-wrapper">
-                                    <i class="bi bi-award-fill fs-3 text-warning feature-icon-main"></i>
-                                    <div class="feature-sparkles">
-                                        <span class="sparkle sparkle-1"></span>
-                                        <span class="sparkle sparkle-2"></span>
-                                        <span class="sparkle sparkle-3"></span>
-                                    </div>
-                                </div>
-                                <div class="small">Certificado ISO 9001</div>
-                            </div>
-                            <div class="col-md-3 mb-3 mb-md-0">
-                                <div class="feature-icon-wrapper">
-                                    <i class="bi bi-shield-check fs-3 text-success feature-icon-main"></i>
-                                    <div class="feature-sparkles">
-                                        <span class="sparkle sparkle-1"></span>
-                                        <span class="sparkle sparkle-2"></span>
-                                        <span class="sparkle sparkle-3"></span>
-                                    </div>
-                                </div>
-                                <div class="small">Ministerio de Salud</div>
-                            </div>
-                            <div class="col-md-3 mb-3 mb-md-0">
-                                <div class="feature-icon-wrapper">
-                                    <i class="bi bi-star-fill fs-3 text-info feature-icon-main"></i>
-                                    <div class="feature-sparkles">
-                                        <span class="sparkle sparkle-1"></span>
-                                        <span class="sparkle sparkle-2"></span>
-                                        <span class="sparkle sparkle-3"></span>
-                                    </div>
-                                </div>
-                                <div class="small">Premio Innovación 2024</div>
-                            </div>
-                            <div class="col-md-3">
-                                <div class="feature-icon-wrapper">
-                                    <i class="bi bi-globe fs-3 text-primary feature-icon-main"></i>
-                                    <div class="feature-sparkles">
-                                        <span class="sparkle sparkle-1"></span>
-                                        <span class="sparkle sparkle-2"></span>
-                                        <span class="sparkle sparkle-3"></span>
-                                    </div>
-                                </div>
-                                <div class="small">Red Internacional</div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <!-- Enhanced Features Section -->
-        <section id="features" class="py-5 mt-5 features-section-bg">
-            <div class="container px-4 px-lg-5">
-                <div class="row gx-4 gx-lg-5 justify-content-center">
-                    <div class="col-lg-8 text-center">
-                        <h2 class="mt-0 display-5 fw-bold" style="color: #0f172a;">¿Cómo VitalCare puede ayudarte?</h2>
-                        <hr class="divider divider-primary my-4 mx-auto" />
-                        <p class="text-muted mb-5 fs-5">Gestiona tu salud de manera eficiente y cómoda desde un solo lugar. Descubre nuestras funcionalidades clave:</p>
-                    </div>
-                </div>
-                <div class="row gx-4 gx-lg-5">
-                    <div class="col-lg-3 col-md-6 text-center mb-5 mb-lg-0">
-                        <div class="mt-0 card shadow-lg feature-card-hover h-100 border-0">
-                            <div class="card-body d-flex flex-column p-4">
-                                <div class="feature-icon-wrapper mb-3 mx-auto">
-                                    <i class="bi bi-calendar2-plus fs-1 feature-icon-main" style="color: #0f172a;"></i>
-                                    <div class="feature-sparkles">
-                                        <span class="sparkle sparkle-1"></span>
-                                        <span class="sparkle sparkle-2"></span>
-                                        <span class="sparkle sparkle-3"></span>
-                                    </div>
-                                </div>
-                                <h3 class="h4 mb-2 fw-bold">Agenda Inteligente</h3>
-                                <p class="text-muted mb-3 flex-grow-1">Sistema de IA que encuentra automáticamente los mejores horarios según tu disponibilidad y preferencias médicas.</p>
-                                <div class="feature-stats">
-                                    <small class="text-success fw-bold"><i class="bi bi-lightning-charge-fill me-1"></i>3x más rápido</small>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-lg-3 col-md-6 text-center mb-5 mb-lg-0">
-                        <div class="mt-0 card shadow-lg feature-card-hover h-100 border-0">
-                            <div class="card-body d-flex flex-column p-4">
-                                <div class="feature-icon-wrapper mb-3 mx-auto">
-                                    <i class="bi bi-shield-check fs-1 feature-icon-main" style="color: #0f172a;"></i>
-                                    <div class="feature-sparkles">
-                                        <span class="sparkle sparkle-1"></span>
-                                        <span class="sparkle sparkle-2"></span>
-                                        <span class="sparkle sparkle-3"></span>
-                                    </div>
-                                </div>
-                                <h3 class="h4 mb-2 fw-bold">Seguridad Máxima</h3>
-                                <p class="text-muted mb-3 flex-grow-1">Protección de datos de nivel bancario con encriptación end-to-end y respaldo en múltiples servidores certificados.</p>
-                                <div class="feature-stats">
-                                    <small class="text-success fw-bold"><i class="bi bi-shield-fill-check me-1"></i>99.9% uptime</small>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-lg-3 col-md-6 text-center mb-5 mb-md-0">
-                        <div class="mt-0 card shadow-lg feature-card-hover h-100 border-0">
-                            <div class="card-body d-flex flex-column p-4">
-                                <div class="feature-icon-wrapper mb-3 mx-auto">
-                                    <i class="bi bi-journal-medical fs-1 feature-icon-main" style="color: #0f172a;"></i>
-                                    <div class="feature-sparkles">
-                                        <span class="sparkle sparkle-1"></span>
-                                        <span class="sparkle sparkle-2"></span>
-                                        <span class="sparkle sparkle-3"></span>
-                                    </div>
-                                </div>
-                                <h3 class="h4 mb-2 fw-bold">Historial Completo</h3>
-                                <p class="text-muted mb-3 flex-grow-1">Acceso instantáneo a tu historial médico completo, recetas, exámenes y recomendaciones en un solo lugar.</p>
-                                <div class="feature-stats">
-                                    <small class="text-success fw-bold"><i class="bi bi-cloud-check-fill me-1"></i>Siempre accesible</small>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-lg-3 col-md-6 text-center">
-                        <div class="mt-0 card shadow-lg feature-card-hover h-100 border-0">
-                            <div class="card-body d-flex flex-column p-4">
-                                <div class="feature-icon-wrapper mb-3 mx-auto">
-                                    <i class="bi bi-headset fs-1 feature-icon-main" style="color: #0f172a;"></i>
-                                    <div class="feature-sparkles">
-                                        <span class="sparkle sparkle-1"></span>
-                                        <span class="sparkle sparkle-2"></span>
-                                        <span class="sparkle sparkle-3"></span>
-                                    </div>
-                                </div>
-                                <h3 class="h4 mb-2 fw-bold">Soporte 24/7</h3>
-                                <p class="text-muted mb-3 flex-grow-1">Equipo especializado disponible las 24 horas para resolver cualquier consulta o emergencia médica.</p>
-                                <div class="feature-stats">
-                                    <small class="text-success fw-bold"><i class="bi bi-telephone-fill me-1"></i>Respuesta &lt;2min</small>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-        <!-- End Enhanced Features Section -->
-    }
+    
+    <!-- Scroll Indicator -->
+    <div class="scroll-indicator" style="bottom: 15px;">
+        <i class="bi bi-chevron-down"></i>
+    </div>
 </div>
 
-@section Scripts {
-    <script>
-        document.addEventListener('DOMContentLoaded', function () {
-            // Hero Counter Animation
-            const heroCounters = document.querySelectorAll('.hero-stat-number');
-            const heroObserverOptions = {
-                threshold: 0.7
-            };
-            
-            const heroObserver = new IntersectionObserver((entries) => {
-                entries.forEach(entry => {
-                    if (entry.isIntersecting) {
-                        const counter = entry.target;
-                        const target = parseInt(counter.getAttribute('data-target'));
-                        const duration = 1500;
-                        const step = target / (duration / 16);
-                        let current = 0;
-                        
-                        counter.classList.add('counting');
-                        
-                        const timer = setInterval(() => {
-                            current += step;
-                            if (current >= target) {
-                                counter.textContent = target.toLocaleString();
-                                counter.classList.remove('counting');
-                                clearInterval(timer);
-                            } else {
-                                counter.textContent = Math.floor(current).toLocaleString();
-                            }
-                        }, 16);
-                        
-                        heroObserver.unobserve(counter);
-                    }
-                });
-            }, heroObserverOptions);
-            
-            heroCounters.forEach(counter => {
-                heroObserver.observe(counter);
-            });
-            
-            // Scroll Indicator Click Handler
-            const scrollIndicator = document.querySelector('.scroll-indicator');
-            if (scrollIndicator) {
-                scrollIndicator.addEventListener('click', function() {
-                    const nextSection = document.querySelector('.container.mt-5');
-                    if (nextSection) {
-                        nextSection.scrollIntoView({ 
-                            behavior: 'smooth',
-                            block: 'start'
-                        });
-                    }
-                });
-            }
-            
-            // Enhanced Button Ripple Effect
-            const heroButtons = document.querySelectorAll('.hero-btn');
-            heroButtons.forEach(button => {
-                button.addEventListener('click', function(e) {
-                    const ripple = this.querySelector('.btn-ripple');
-                    if (ripple) {
-                        ripple.style.width = '300px';
-                        ripple.style.height = '300px';
-                        
-                        setTimeout(() => {
-                            ripple.style.width = '0';
-                            ripple.style.height = '0';
-                        }, 600);
-                    }
-                });
-            });
-
-            // Patient Dashboard: Load Real Data instead of Mock Data
-            if (document.getElementById('patientNextAppointmentDisplay')) {
-                loadPatientRealData();
-            }
-
-            // Doctor Dashboard: Dynamic Citas Hoy Stat
-            const citasHoyStatElement = document.getElementById('doctorCitasHoyStat');
-            if (citasHoyStatElement) {
-                loadDoctorDashboardData();
-            }
-
-            // Doctor Dashboard: Patient Search Form
-            const doctorPatientSearchForm = document.getElementById('doctorPatientSearchForm');
-            if (doctorPatientSearchForm) {
-                doctorPatientSearchForm.addEventListener('submit', function (event) {
-                    event.preventDefault();
-                    const searchInput = document.getElementById('doctorPatientSearchInput');
-                    if (searchInput && searchInput.value.trim() !== '') {
-                        // Implementar búsqueda real de pacientes
-                        searchPatients(searchInput.value.trim());
-                        searchInput.value = '';
-                    } else {
-                        showNotification('Por favor ingrese un término de búsqueda.', 'warning');
-                    }
-                });
-            }
-            
-            // Scroll to Top Button Functionality
-            const scrollToTopBtn = document.getElementById('scrollToTopBtn');
-            if (scrollToTopBtn) {
-                // Show/hide button based on scroll position
-                window.addEventListener('scroll', function() {
-                    if (window.pageYOffset > 300) {
-                        scrollToTopBtn.classList.add('show');
-                    } else {
-                        scrollToTopBtn.classList.remove('show');
-                    }
-                });
-                
-                // Scroll to top when clicked
-                scrollToTopBtn.addEventListener('click', function() {
-                    window.scrollTo({
-                        top: 0,
-                        behavior: 'smooth'
-                    });
-                });
-            }
-        });
-
-        // Función para cargar datos reales del paciente
-        async function loadPatientRealData() {
-            try {
-                // Cargar próxima cita
-                const nextAppointmentResponse = await fetch('/api/patient/next-appointment');
-                if (nextAppointmentResponse.ok) {
-                    const nextAppointment = await nextAppointmentResponse.json();
-                    const nextAppointmentElement = document.getElementById('patientNextAppointmentDisplay');
-                    if (nextAppointment && nextAppointment.appointmentDate) {
-                        const date = new Date(nextAppointment.appointmentDate);
-                        nextAppointmentElement.innerHTML = `
-                            <i class="bi bi-calendar-week text-primary me-2"></i>
-                            <span>${date.toLocaleDateString('es-CO', { 
-                                month: 'short', 
-                                day: 'numeric',
-                                hour: '2-digit',
-                                minute: '2-digit'
-                            })} - ${nextAppointment.doctorName}</span>
-                        `;
-                    } else {
-                        nextAppointmentElement.innerHTML = `
-                            <i class="bi bi-calendar-x text-muted me-2"></i>
-                            <span>No hay citas programadas</span>
-                        `;
-                    }
-                }
-
-                // Cargar recetas activas
-                const prescriptionsResponse = await fetch('/api/patient/active-prescriptions-count');
-                if (prescriptionsResponse.ok) {
-                    const prescriptions = await prescriptionsResponse.json();
-                    document.getElementById('patientPrescriptionsCount').innerHTML = `
-                        <i class="bi bi-prescription2 text-success me-2"></i>
-                        <span>${prescriptions.count || 0}</span>
-                    `;
-                }
-
-                // Cargar estado de salud
-                const healthResponse = await fetch('/api/patient/health-status');
-                if (healthResponse.ok) {
-                    const healthData = await healthResponse.json();
-                    
-                    // Actualizar última consulta
-                    const lastConsultationElement = document.getElementById('lastConsultationDate');
-                    if (healthData.lastConsultation) {
-                        const date = new Date(healthData.lastConsultation);
-                        lastConsultationElement.textContent = date.toLocaleDateString('es-CO');
-                    } else {
-                        lastConsultationElement.textContent = 'Sin consultas previas';
-                    }
-
-                    // Actualizar próximo chequeo
-                    const nextCheckupElement = document.getElementById('nextCheckupDate');
-                    if (healthData.nextCheckup) {
-                        const date = new Date(healthData.nextCheckup);
-                        nextCheckupElement.textContent = date.toLocaleDateString('es-CO');
-                        nextCheckupElement.classList.add('text-warning', 'fw-bold');
-                    } else {
-                        nextCheckupElement.textContent = 'No programado';
-                    }
-
-                    // Actualizar recordatorios
-                    document.getElementById('activeRemindersCount').textContent = healthData.reminders || 0;
-                }
-
-                // Cargar mensajes
-                const messagesResponse = await fetch('/api/patient/recent-messages');
-                if (messagesResponse.ok) {
-                    const messages = await messagesResponse.json();
-                    const messagesContainer = document.getElementById('messagesContainer');
-                    
-                    if (messages.length > 0) {
-                        messagesContainer.innerHTML = messages.map(msg => `
-                            <p class="card-text text-muted small">
-                                <strong><i class="bi bi-${msg.type === 'medical' ? 'stethoscope' : 'info-circle'} text-info me-1"></i>${msg.sender}:</strong> 
-                                ${msg.content}
-                            </p>
-                        `).join('<hr class="my-1">');
-                    }
-                    
-                    document.getElementById('unreadMessagesCount').textContent = messages.filter(m => !m.read).length;
-                }
-
-            } catch (error) {
-                console.error('Error cargando datos del paciente:', error);
-                // Fallback a datos por defecto si hay error
-                loadPatientFallbackData();
-            }
-        }
-
-        // Función fallback con datos por defecto
-        function loadPatientFallbackData() {
-            document.getElementById('patientNextAppointmentDisplay').innerHTML = `
-                <i class="bi bi-calendar-plus text-primary me-2"></i>
-                <span>Agende su próxima cita</span>
-            `;
-            document.getElementById('lastConsultationDate').textContent = 'No disponible';
-            document.getElementById('nextCheckupDate').textContent = 'No programado';
-        }
-
-        // Función para cargar datos reales del doctor
-        async function loadDoctorDashboardData() {
-            try {
-                const response = await fetch('/api/doctor/dashboard-stats');
-                if (response.ok) {
-                    const stats = await response.json();
-                    document.getElementById('doctorCitasHoyStat').textContent = stats.todayAppointments || 0;
-                    document.getElementById('doctorCitasConfirmadasStat').textContent = stats.confirmedAppointments || 0;
-                    document.getElementById('doctorSatisfaccionStat').textContent = (stats.satisfactionPercentage || 0) + '%';
-                    
-                    // Debug: También cargar información detallada para diagnóstico
-                    await loadDebugInfo();
-                }
-            } catch (error) {
-                console.error('Error cargando datos del doctor:', error);
-                document.getElementById('doctorCitasHoyStat').textContent = '0';
-                document.getElementById('doctorCitasConfirmadasStat').textContent = '0';
-                document.getElementById('doctorSatisfaccionStat').textContent = '0%';
-            }
-        }
-
-        // Función de debug temporal para diagnosticar problemas con las citas
-        async function loadDebugInfo() {
-            try {
-                const debugResponse = await fetch('/api/doctor/debug-appointments');
-                if (debugResponse.ok) {
-                    const debugData = await debugResponse.json();
-                    console.log('=== DEBUG INFO: Datos de citas del doctor ===');
-                    console.log('Doctor:', debugData.doctorName, '(ID:', debugData.doctorId + ')');
-                    console.log('Fecha/Hora actual:', debugData.currentDateTime);
-                    console.log('Total de citas:', debugData.totalAppointments);
-                    console.log('Citas confirmadas:', debugData.confirmedAppointments);
-                    console.log('Citas completadas:', debugData.completedAppointments);
-                    console.log('Citas canceladas:', debugData.cancelledAppointments);
-                    console.log('Citas con rating:', debugData.appointmentsWithRating);
-                    console.log('Lista de citas:', debugData.appointments);
-                    console.log('==========================================');
-                    
-                    // Si hay citas confirmadas pero no se muestran, mostrar alerta
-                    if (debugData.confirmedAppointments > 0) {
-                        console.log('✅ Se encontraron', debugData.confirmedAppointments, 'citas confirmadas');
-                    } else {
-                        console.log('⚠️  No se encontraron citas confirmadas');
-                        if (debugData.totalAppointments > 0) {
-                            console.log('Pero hay', debugData.totalAppointments, 'citas en total. Verifique el estado de confirmación.');
-                        }
-                    }
-                }
-            } catch (error) {
-                console.error('Error cargando información de debug:', error);
-            }
-        }
-
-        // Función para buscar pacientes
-        async function searchPatients(searchTerm) {
-            try {
-                const response = await fetch(`/api/doctor/search-patients?term=${encodeURIComponent(searchTerm)}`);
-                if (response.ok) {
-                    const patients = await response.json();
-                    displaySearchResults(patients);
-                } else {
-                    showNotification('Error al buscar pacientes', 'error');
-                }
-            } catch (error) {
-                console.error('Error en búsqueda de pacientes:', error);
-                showNotification('Error de conexión al buscar pacientes', 'error');
-            }
-        }
-
-        // Función para mostrar resultados de búsqueda
-        function displaySearchResults(patients) {
-            if (patients.length === 0) {
-                showNotification('No se encontraron pacientes con ese término', 'info');
-                return;
-            }
-
-            // Crear modal o dropdown con resultados
-            let resultsHtml = '<div class="search-results-dropdown">';
-            patients.forEach(patient => {
-                resultsHtml += `
-                    <div class="search-result-item" onclick="selectPatient('${patient.id}')">
-                        <strong>${patient.name}</strong><br>
-                        <small>${patient.email} - ${patient.phone}</small>
+<!-- Main Content Sections -->
+<div class="container mt-5 py-4">
+    
+    <!-- Servicios Principales Section -->
+    <div class="row justify-content-center mb-5">
+        <div class="col-lg-10">
+            <div class="text-center mb-5">
+                <h2 class="display-5 fw-bold text-primary">
+                    <i class="bi bi-clipboard-pulse me-2"></i>
+                    Servicios de Gestión de Citas
+                </h2>
+                <p class="lead text-muted">Acceso rápido y fácil a nuestros servicios médicos</p>
+                <hr class="w-25 mx-auto">
+            </div>
+        </div>
+    </div>
+    
+    <!-- Cards de Servicios Principales -->
+    <div class="row g-4 mb-5">
+        <div class="col-md-6 col-lg-4">
+            <div class="card h-100 shadow-sm border-0 text-center hover-card service-card">
+                <div class="card-body">
+                    <div class="feature-icon-round bg-success text-white mb-3 mx-auto">
+                        <i class="bi bi-calendar-plus fs-2"></i>
                     </div>
-                `;
-            });
-            resultsHtml += '</div>';
-            
-            showNotification(`Encontrados ${patients.length} paciente(s)`, 'success');
-        }
+                    <h5 class="card-title">Agendar Cita Médica</h5>
+                    <p class="card-text">Reserve su cita con nuestros especialistas de forma rápida y sencilla.</p>
+                    <a asp-page="/Appointments/Create" class="btn btn-success">Agendar Ahora</a>
+                </div>
+            </div>
+        </div>
+        
+        <div class="col-md-6 col-lg-4">
+            <div class="card h-100 shadow-sm border-0 text-center hover-card service-card">
+                <div class="card-body">
+                    <div class="feature-icon-round bg-info text-white mb-3 mx-auto">
+                        <i class="bi bi-search fs-2"></i>
+                    </div>
+                    <h5 class="card-title">Consultar Citas</h5>
+                    <p class="card-text">Revise el estado de sus citas médicas programadas.</p>
+                    <a asp-page="/Appointments/Search" class="btn btn-info">Consultar</a>
+                </div>
+            </div>
+        </div>
+        
+        <div class="col-md-6 col-lg-4">
+            <div class="card h-100 shadow-sm border-0 text-center hover-card service-card">
+                <div class="card-body">
+                    <div class="feature-icon-round bg-warning text-white mb-3 mx-auto">
+                        <i class="bi bi-calendar-x fs-2"></i>
+                    </div>
+                    <h5 class="card-title">Reprogramar/Cancelar</h5>
+                    <p class="card-text">Modifique o cancele sus citas médicas cuando lo necesite.</p>
+                    <a asp-page="/Appointments/Manage" class="btn btn-warning">Gestionar</a>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Especialidades Médicas Section -->
+    <div class="row justify-content-center mb-5">
+        <div class="col-lg-10">
+            <div class="text-center mb-5">
+                <h2 class="display-5 fw-bold text-primary">
+                    <i class="bi bi-hospital me-2"></i>
+                    Especialidades Médicas Disponibles
+                </h2>
+                <p class="lead text-muted">Contamos con los mejores especialistas en diversas áreas</p>
+                <hr class="w-25 mx-auto">
+            </div>
+        </div>
+    </div>
+    
+    <!-- Grid de Especialidades -->
+    <div class="row g-4 mb-5">
+        <div class="col-md-6 col-lg-3">
+            <div class="card h-100 shadow-sm border-0 text-center specialty-card">
+                <div class="card-body">
+                    <i class="bi bi-heart-pulse fs-1 text-danger mb-3"></i>
+                    <h6 class="card-title">Cardiología</h6>
+                    <p class="card-text small">Especialistas en salud cardiovascular</p>
+                </div>
+            </div>
+        </div>
+        
+        <div class="col-md-6 col-lg-3">
+            <div class="card h-100 shadow-sm border-0 text-center specialty-card">
+                <div class="card-body">
+                    <i class="bi bi-bandaid fs-1 text-primary mb-3"></i>
+                    <h6 class="card-title">Medicina General</h6>
+                    <p class="card-text small">Atención médica integral</p>
+                </div>
+            </div>
+        </div>
+        
+        <div class="col-md-6 col-lg-3">
+            <div class="card h-100 shadow-sm border-0 text-center specialty-card">
+                <div class="card-body">
+                    <i class="bi bi-person-wheelchair fs-1 text-success mb-3"></i>
+                    <h6 class="card-title">Ortopedia</h6>
+                    <p class="card-text small">Especialistas en sistema músculo-esquelético</p>
+                </div>
+            </div>
+        </div>
+        
+        <div class="col-md-6 col-lg-3">
+            <div class="card h-100 shadow-sm border-0 text-center specialty-card">
+                <div class="card-body">
+                    <i class="bi bi-gender-ambiguous fs-1 text-info mb-3"></i>
+                    <h6 class="card-title">Ginecología</h6>
+                    <p class="card-text small">Salud femenina integral</p>
+                </div>
+            </div>
+        </div>
+        
+        <div class="col-md-6 col-lg-3">
+            <div class="card h-100 shadow-sm border-0 text-center specialty-card">
+                <div class="card-body">
+                    <i class="bi bi-brain fs-1 text-warning mb-3"></i>
+                    <h6 class="card-title">Neurología</h6>
+                    <p class="card-text small">Especialistas en sistema nervioso</p>
+                </div>
+            </div>
+        </div>
+        
+        <div class="col-md-6 col-lg-3">
+            <div class="card h-100 shadow-sm border-0 text-center specialty-card">
+                <div class="card-body">
+                    <i class="bi bi-eye fs-1 text-secondary mb-3"></i>
+                    <h6 class="card-title">Oftalmología</h6>
+                    <p class="card-text small">Cuidado de la salud visual</p>
+                </div>
+            </div>
+        </div>
+        
+        <div class="col-md-6 col-lg-3">
+            <div class="card h-100 shadow-sm border-0 text-center specialty-card">
+                <div class="card-body">
+                    <i class="bi bi-lungs fs-1 text-dark mb-3"></i>
+                    <h6 class="card-title">Neumología</h6>
+                    <p class="card-text small">Especialistas en sistema respiratorio</p>
+                </div>
+            </div>
+        </div>
+        
+        <div class="col-md-6 col-lg-3">
+            <div class="card h-100 shadow-sm border-0 text-center specialty-card">
+                <div class="card-body">
+                    <i class="bi bi-plus-circle fs-1 text-success mb-3"></i>
+                    <h6 class="card-title">Más Especialidades</h6>
+                    <p class="card-text small">Ver todas nuestras especialidades</p>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Información de Contacto y Horarios -->
+    <div class="row g-4 mb-5">
+        <div class="col-lg-6">
+            <div class="card h-100 shadow border-0">
+                <div class="card-body">
+                    <h5 class="card-title text-primary">
+                        <i class="bi bi-clock me-2"></i>
+                        Horarios de Atención
+                    </h5>
+                    <hr>
+                    <div class="row">
+                        <div class="col-12">
+                            <p class="mb-2"><strong>Lunes a Viernes:</strong> 6:00 AM - 8:00 PM</p>
+                            <p class="mb-2"><strong>Sábados:</strong> 7:00 AM - 4:00 PM</p>
+                            <p class="mb-2"><strong>Domingos y Festivos:</strong> 8:00 AM - 2:00 PM</p>
+                            <p class="mb-0 text-success"><strong>Urgencias:</strong> 24 horas</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="col-lg-6">
+            <div class="card h-100 shadow border-0">
+                <div class="card-body">
+                    <h5 class="card-title text-primary">
+                        <i class="bi bi-geo-alt me-2"></i>
+                        Información de Contacto
+                    </h5>
+                    <hr>
+                    <div class="row">
+                <div class="col-12">
+                            <p class="mb-2"><i class="bi bi-telephone me-2"></i><strong>Teléfono:</strong> (607) 622-1234</p>
+                            <p class="mb-2"><i class="bi bi-whatsapp me-2"></i><strong>WhatsApp:</strong> +57 300 123 4567</p>
+                            <p class="mb-2"><i class="bi bi-envelope me-2"></i><strong>Email:</strong> info@vitalcare.com.co</p>
+                            <p class="mb-0"><i class="bi bi-geo-alt me-2"></i><strong>Dirección:</strong> Calle 52 #30-45, Barrancabermeja</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Servicios Adicionales y Tecnología -->
+    <div class="row justify-content-center mb-5">
+        <div class="col-lg-10">
+            <div class="text-center mb-5">
+                <h2 class="display-5 fw-bold text-primary">
+                    <i class="bi bi-gear-wide-connected me-2"></i>
+                    Servicios Adicionales
+                </h2>
+                <p class="lead text-muted">Innovación y tecnología al servicio de su salud</p>
+                <hr class="w-25 mx-auto">
+            </div>
+        </div>
+    </div>
+    
+    <!-- Servicios Tecnológicos -->
+    <div class="row g-4 mb-5">
+        <div class="col-md-6 col-lg-4">
+            <div class="card h-100 shadow-sm border-0 text-center tech-card">
+                <div class="card-body">
+                    <div class="tech-icon mb-3">
+                        <i class="bi bi-webcam fs-1 text-primary"></i>
+                    </div>
+                    <h6 class="card-title">Telemedicina</h6>
+                    <p class="card-text small">Consultas médicas virtuales desde su hogar</p>
+                    <span class="badge bg-primary">Disponible 24/7</span>
+                </div>
+            </div>
+        </div>
+        
+        <div class="col-md-6 col-lg-4">
+            <div class="card h-100 shadow-sm border-0 text-center tech-card">
+                <div class="card-body">
+                    <div class="tech-icon mb-3">
+                        <i class="bi bi-file-medical fs-1 text-info"></i>
+                    </div>
+                    <h6 class="card-title">Historia Clínica Digital</h6>
+                    <p class="card-text small">Acceso seguro a su historial médico</p>
+                    <span class="badge bg-info">Seguro y Privado</span>
+                </div>
+            </div>
+        </div>
+        
+        <div class="col-md-6 col-lg-4">
+            <div class="card h-100 shadow-sm border-0 text-center tech-card">
+                <div class="card-body">
+                    <div class="tech-icon mb-3">
+                        <i class="bi bi-bell fs-1 text-warning"></i>
+                    </div>
+                    <h6 class="card-title">Recordatorios</h6>
+                    <p class="card-text small">Notificaciones de citas y medicamentos</p>
+                    <span class="badge bg-warning">Personalizado</span>
+                </div>
+            </div>
+        </div>
+        
+        <div class="col-md-6 col-lg-4">
+            <div class="card h-100 shadow-sm border-0 text-center tech-card">
+                <div class="card-body">
+                    <div class="tech-icon mb-3">
+                        <i class="bi bi-shield-lock fs-1 text-success"></i>
+                    </div>
+                    <h6 class="card-title">Datos Seguros</h6>
+                    <p class="card-text small">Encriptación y protección de datos</p>
+                    <span class="badge bg-success">ISO 27001</span>
+                </div>
+            </div>
+        </div>
+        
+        <div class="col-md-6 col-lg-4">
+            <div class="card h-100 shadow-sm border-0 text-center tech-card">
+                <div class="card-body">
+                    <div class="tech-icon mb-3">
+                        <i class="bi bi-phone fs-1 text-dark"></i>
+                    </div>
+                    <h6 class="card-title">App Móvil</h6>
+                    <p class="card-text small">Gestión desde su smartphone</p>
+                    <span class="badge bg-dark">iOS & Android</span>
+                </div>
+            </div>
+        </div>
+        
+        <div class="col-md-6 col-lg-4">
+            <div class="card h-100 shadow-sm border-0 text-center tech-card">
+                        <div class="card-body">
+                    <div class="tech-icon mb-3">
+                        <i class="bi bi-credit-card fs-1 text-secondary"></i>
+                    </div>
+                    <h6 class="card-title">Pagos Digitales</h6>
+                    <p class="card-text small">Múltiples métodos de pago</p>
+                    <span class="badge bg-secondary">Fácil y Rápido</span>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Testimonios Section -->
+    <div class="row justify-content-center mb-5">
+        <div class="col-lg-10">
+            <div class="text-center mb-5">
+                <h2 class="display-5 fw-bold text-primary">
+                    <i class="bi bi-chat-quote me-2"></i>
+                    Testimonios de Pacientes
+                </h2>
+                <p class="lead text-muted">Experiencias reales de nuestra comunidad</p>
+                <hr class="w-25 mx-auto">
+            </div>
+        </div>
+    </div>
+    
+    <!-- Tarjetas de Testimonios -->
+    <div class="row g-4 mb-5">
+        <div class="col-lg-4">
+            <div class="card h-100 shadow border-0 testimonial-card">
+                <div class="card-body p-4">
+                    <div class="d-flex align-items-center mb-3">
+                        <div class="testimonial-avatar bg-primary text-white rounded-circle d-flex align-items-center justify-content-center me-3" style="width: 50px; height: 50px;">
+                            <i class="bi bi-person-fill"></i>
+                        </div>
+                        <div>
+                            <h6 class="fw-bold mb-0">María González</h6>
+                            <small class="text-muted">Paciente desde 2020</small>
+                            <div class="stars text-warning small">
+                                <i class="bi bi-star-fill"></i>
+                                <i class="bi bi-star-fill"></i>
+                                <i class="bi bi-star-fill"></i>
+                                <i class="bi bi-star-fill"></i>
+                                <i class="bi bi-star-fill"></i>
+                            </div>
+                        </div>
+                    </div>
+                    <blockquote class="testimonial-quote">
+                        <p class="fst-italic text-muted small">"Excelente atención en VitalCare. Los médicos son muy profesionales y el sistema de citas es muy fácil de usar. Totalmente recomendado."</p>
+                    </blockquote>
+                    <small class="text-success"><i class="bi bi-check-circle-fill me-1"></i>Consulta de Cardiología</small>
+                </div>
+            </div>
+        </div>
+        
+        <div class="col-lg-4">
+            <div class="card h-100 shadow border-0 testimonial-card">
+                <div class="card-body p-4">
+                    <div class="d-flex align-items-center mb-3">
+                        <div class="testimonial-avatar bg-success text-white rounded-circle d-flex align-items-center justify-content-center me-3" style="width: 50px; height: 50px;">
+                            <i class="bi bi-person-fill"></i>
+                        </div>
+                        <div>
+                            <h6 class="fw-bold mb-0">Carlos Mendoza</h6>
+                            <small class="text-muted">Paciente desde 2019</small>
+                            <div class="stars text-warning small">
+                                <i class="bi bi-star-fill"></i>
+                                <i class="bi bi-star-fill"></i>
+                                <i class="bi bi-star-fill"></i>
+                                <i class="bi bi-star-fill"></i>
+                                <i class="bi bi-star-fill"></i>
+                            </div>
+                        </div>
+                    </div>
+                    <blockquote class="testimonial-quote">
+                        <p class="fst-italic text-muted small">"El servicio de urgencias 24 horas me salvó la vida. Rápida atención y personal altamente capacitado. Gracias VitalCare."</p>
+                    </blockquote>
+                    <small class="text-success"><i class="bi bi-check-circle-fill me-1"></i>Servicio de Urgencias</small>
+                </div>
+            </div>
+        </div>
+        
+        <div class="col-lg-4">
+            <div class="card h-100 shadow border-0 testimonial-card">
+                <div class="card-body p-4">
+                    <div class="d-flex align-items-center mb-3">
+                        <div class="testimonial-avatar bg-info text-white rounded-circle d-flex align-items-center justify-content-center me-3" style="width: 50px; height: 50px;">
+                            <i class="bi bi-person-fill"></i>
+                        </div>
+                        <div>
+                            <h6 class="fw-bold mb-0">Ana Rodríguez</h6>
+                            <small class="text-muted">Paciente desde 2021</small>
+                            <div class="stars text-warning small">
+                                <i class="bi bi-star-fill"></i>
+                                <i class="bi bi-star-fill"></i>
+                                <i class="bi bi-star-fill"></i>
+                                <i class="bi bi-star-fill"></i>
+                                <i class="bi bi-star-fill"></i>
+                            </div>
+                        </div>
+                    </div>
+                    <blockquote class="testimonial-quote">
+                        <p class="fst-italic text-muted small">"Las instalaciones son modernas y el personal muy amable. El seguimiento post-consulta es excepcional. Muy satisfecha."</p>
+                    </blockquote>
+                    <small class="text-success"><i class="bi bi-check-circle-fill me-1"></i>Medicina General</small>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Nuestros Números Section -->
+    <div class="row justify-content-center mb-5">
+        <div class="col-lg-10">
+            <div class="text-center mb-5">
+                <h2 class="display-5 fw-bold text-primary">
+                    <i class="bi bi-graph-up me-2"></i>
+                    Nuestros Números
+                </h2>
+                <p class="lead text-muted">Resultados que hablan por nosotros</p>
+                <hr class="w-25 mx-auto">
+            </div>
+        </div>
+    </div>
+    
+    <!-- Estadísticas Avanzadas -->
+    <div class="row g-4 mb-5">
+        <div class="col-md-6 col-lg-3">
+            <div class="stat-card-advanced text-center p-4">
+                <div class="stat-icon-large mb-3">
+                    <i class="bi bi-people-fill fs-1 text-primary"></i>
+                </div>
+                <h3 class="fw-bold text-primary mb-1" data-target="15000">15,000+</h3>
+                <p class="text-muted mb-2">Pacientes Atendidos</p>
+                <small class="text-success">
+                    <i class="bi bi-arrow-up me-1"></i>+15% este año
+                </small>
+            </div>
+        </div>
+        
+        <div class="col-md-6 col-lg-3">
+            <div class="stat-card-advanced text-center p-4">
+                <div class="stat-icon-large mb-3">
+                    <i class="bi bi-calendar-check fs-1 text-success"></i>
+                </div>
+                <h3 class="fw-bold text-success mb-1" data-target="45000">45,000+</h3>
+                <p class="text-muted mb-2">Citas Programadas</p>
+                <small class="text-success">
+                    <i class="bi bi-arrow-up me-1"></i>+22% este año
+                </small>
+            </div>
+        </div>
+        
+        <div class="col-md-6 col-lg-3">
+            <div class="stat-card-advanced text-center p-4">
+                <div class="stat-icon-large mb-3">
+                    <i class="bi bi-star-fill fs-1 text-warning"></i>
+                </div>
+                <h3 class="fw-bold text-warning mb-1" data-target="96">96%</h3>
+                <p class="text-muted mb-2">Satisfacción</p>
+                <small class="text-success">
+                    <i class="bi bi-arrow-up me-1"></i>+3% este año
+                </small>
+            </div>
+        </div>
+        
+        <div class="col-md-6 col-lg-3">
+            <div class="stat-card-advanced text-center p-4">
+                <div class="stat-icon-large mb-3">
+                    <i class="bi bi-clock fs-1 text-info"></i>
+                </div>
+                <h3 class="fw-bold text-info mb-1" data-target="24">24/7</h3>
+                <p class="text-muted mb-2">Atención Continua</p>
+                <small class="text-success">
+                    <i class="bi bi-check-circle me-1"></i>Siempre disponible
+                </small>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Acreditaciones y Certificaciones -->
+    <div class="row justify-content-center mb-5">
+        <div class="col-lg-10">
+            <div class="text-center mb-5">
+                <h2 class="display-5 fw-bold text-primary">
+                    <i class="bi bi-award me-2"></i>
+                    Acreditaciones y Certificaciones
+                </h2>
+                <p class="lead text-muted">Reconocimientos que avalan nuestra calidad</p>
+                <hr class="w-25 mx-auto">
+            </div>
+        </div>
+    </div>
+    
+    <!-- Certificaciones Grid -->
+    <div class="row g-4 mb-5">
+        <div class="col-md-6 col-lg-3">
+            <div class="certification-card text-center p-3">
+                <i class="bi bi-patch-check-fill fs-1 text-success mb-2"></i>
+                <h6 class="fw-bold">Supersalud</h6>
+                <p class="small text-muted">Habilitación Nacional</p>
+            </div>
+        </div>
+        
+        <div class="col-md-6 col-lg-3">
+            <div class="certification-card text-center p-3">
+                <i class="bi bi-shield-check fs-1 text-primary mb-2"></i>
+                <h6 class="fw-bold">ISO 9001:2015</h6>
+                <p class="small text-muted">Gestión de Calidad</p>
+            </div>
+        </div>
+        
+        <div class="col-md-6 col-lg-3">
+            <div class="certification-card text-center p-3">
+                <i class="bi bi-lock-fill fs-1 text-warning mb-2"></i>
+                <h6 class="fw-bold">ISO 27001</h6>
+                <p class="small text-muted">Seguridad Información</p>
+            </div>
+        </div>
+        
+        <div class="col-md-6 col-lg-3">
+            <div class="certification-card text-center p-3">
+                <i class="bi bi-heart-pulse fs-1 text-danger mb-2"></i>
+                <h6 class="fw-bold">ICONTEC</h6>
+                <p class="small text-muted">Normas Técnicas</p>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Call to Action Final -->
+    <div class="row justify-content-center">
+        <div class="col-lg-8">
+            <div class="card shadow border-0 bg-primary text-white text-center">
+                <div class="card-body p-4">
+                    <h3 class="card-title">¿Necesita Atención Médica?</h3>
+                    <p class="card-text">No espere más, agenda su cita médica de forma rápida y segura</p>
+                    <div class="d-grid gap-2 d-md-flex justify-content-md-center">
+                        <a asp-page="/Appointments/Create" class="btn btn-light btn-lg me-md-2">
+                            <i class="bi bi-calendar-plus me-2"></i>Agendar Cita
+                        </a>
+                        <a asp-page="/Public/Contact" class="btn btn-outline-light btn-lg">
+                            <i class="bi bi-telephone me-2"></i>Contactar
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
 
-        // Función para seleccionar un paciente
-        function selectPatient(patientId) {
-            window.location.href = `/Doctor/PatientDetail/${patientId}`;
+<style>
+    .hero-section-enhanced {
+        min-height: 70vh;
+    }
+    
+    .hero-stat-card {
+        background: rgba(255, 255, 255, 0.1);
+        border-radius: 15px;
+        padding: 1rem;
+        backdrop-filter: blur(10px);
+        border: 1px solid rgba(255, 255, 255, 0.2);
+    }
+    
+    .hero-stat-icon i {
+        font-size: 1.5rem;
+        color: #22c55e;
+    }
+    
+    .trust-badge-item {
+        background: rgba(255, 255, 255, 0.1);
+        border-radius: 10px;
+        padding: 0.5rem 1rem;
+        font-size: 0.9rem;
+        backdrop-filter: blur(10px);
+        border: 1px solid rgba(255, 255, 255, 0.2);
+    }
+    
+    .hero-btn {
+        transition: all 0.3s ease;
+        position: relative;
+        overflow: hidden;
+    }
+    
+    .hero-btn:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
+    }
+    
+    .feature-icon-round {
+        width: 60px;
+        height: 60px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        border-radius: 50%;
+    }
+    
+    .hover-card {
+        transition: all 0.3s ease;
+    }
+    
+    .hover-card:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+    }
+    
+    .service-card {
+        border-left: 4px solid transparent;
+        transition: all 0.3s ease;
+    }
+    
+    .service-card:hover {
+        border-left-color: var(--bs-primary);
+    }
+    
+    .specialty-card {
+        transition: all 0.3s ease;
+        cursor: pointer;
+    }
+    
+    .specialty-card:hover {
+        transform: translateY(-3px);
+        box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+        background: linear-gradient(135deg, #f8f9ff 0%, #e3f2fd 100%);
+    }
+    
+    .floating-medical-icons {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        pointer-events: none;
+        z-index: 1;
+    }
+    
+    .floating-icon {
+        position: absolute;
+        color: rgba(255, 255, 255, 0.1);
+        font-size: 2rem;
+        animation: float 6s ease-in-out infinite;
+    }
+    
+    .icon-1 { top: 10%; left: 10%; animation-delay: 0s; }
+    .icon-2 { top: 20%; right: 15%; animation-delay: 1s; }
+    .icon-3 { top: 60%; left: 5%; animation-delay: 2s; }
+    .icon-4 { top: 70%; right: 10%; animation-delay: 3s; }
+    .icon-5 { top: 40%; left: 80%; animation-delay: 4s; }
+    .icon-6 { top: 80%; left: 70%; animation-delay: 5s; }
+    
+    @@keyframes float {
+        0%, 100% { transform: translateY(0px); }
+        50% { transform: translateY(-20px); }
+    }
+    
+    .scroll-indicator {
+        position: absolute;
+        bottom: 20px;
+        left: 50%;
+        transform: translateX(-50%);
+        animation: bounce 2s infinite;
+        font-size: 1.5rem;
+        color: rgba(255, 255, 255, 0.7);
+    }
+    
+    @@keyframes bounce {
+        0%, 20%, 50%, 80%, 100% { transform: translateX(-50%) translateY(0); }
+        40% { transform: translateX(-50%) translateY(-10px); }
+        60% { transform: translateX(-50%) translateY(-5px); }
+    }
+    
+    /* Estilos para Servicios Tecnológicos */
+    .tech-card {
+        transition: all 0.3s ease;
+        border: 1px solid rgba(0, 0, 0, 0.05);
+    }
+    
+    .tech-card:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+        border-color: var(--bs-primary);
+    }
+    
+    .tech-icon {
+        transition: all 0.3s ease;
+    }
+    
+    .tech-card:hover .tech-icon i {
+        transform: scale(1.1);
+    }
+    
+    /* Estilos para Testimonios */
+    .testimonial-card {
+        transition: all 0.3s ease;
+        border-left: 4px solid transparent;
+    }
+    
+    .testimonial-card:hover {
+        transform: translateY(-3px);
+        box-shadow: 0 8px 20px rgba(0, 0, 0, 0.12);
+        border-left-color: var(--bs-primary);
+    }
+    
+    .testimonial-avatar {
+        transition: all 0.3s ease;
+    }
+    
+    .testimonial-card:hover .testimonial-avatar {
+        transform: scale(1.05);
+    }
+    
+    /* Estilos para Estadísticas Avanzadas */
+    .stat-card-advanced {
+        background: linear-gradient(135deg, #ffffff 0%, #f8fafc 100%);
+        border-radius: 15px;
+        border: 1px solid rgba(0, 0, 0, 0.05);
+        transition: all 0.3s ease;
+        position: relative;
+        overflow: hidden;
+    }
+    
+    .stat-card-advanced::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        height: 3px;
+        background: linear-gradient(90deg, var(--bs-primary), var(--bs-success), var(--bs-warning), var(--bs-info));
+        transform: scaleX(0);
+        transition: transform 0.3s ease;
+    }
+    
+    .stat-card-advanced:hover::before {
+        transform: scaleX(1);
+    }
+    
+    .stat-card-advanced:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1);
+    }
+    
+    .stat-icon-large {
+        transition: all 0.3s ease;
+    }
+    
+    .stat-card-advanced:hover .stat-icon-large i {
+        transform: scale(1.1) rotate(5deg);
+    }
+    
+    /* Estilos para Certificaciones */
+    .certification-card {
+        background: linear-gradient(135deg, #ffffff 0%, #f1f5f9 100%);
+        border-radius: 12px;
+        border: 1px solid rgba(0, 0, 0, 0.05);
+        transition: all 0.3s ease;
+        cursor: pointer;
+    }
+    
+    .certification-card:hover {
+        transform: translateY(-3px) scale(1.02);
+        box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+        background: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%);
+    }
+    
+    .certification-card i {
+        transition: all 0.3s ease;
+    }
+    
+    .certification-card:hover i {
+        transform: scale(1.15) rotate(10deg);
+    }
+    
+    /* Animaciones para contadores */
+    .stat-card-advanced h3 {
+        animation: countUp 2s ease-out;
+    }
+    
+    @@keyframes countUp {
+        from {
+            opacity: 0;
+            transform: translateY(20px);
         }
-
-        // Función para mostrar notificaciones
-        function showNotification(message, type = 'info') {
-            // Implementar sistema de notificaciones toast
-            const notification = document.createElement('div');
-            notification.className = `alert alert-${type === 'error' ? 'danger' : type} alert-dismissible fade show position-fixed`;
-            notification.style.cssText = 'top: 20px; right: 20px; z-index: 9999; min-width: 300px;';
-            notification.innerHTML = `
-                ${message}
-                <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
-            `;
-            
-            document.body.appendChild(notification);
-            
-            // Auto-remove after 5 seconds
-            setTimeout(() => {
-                if (notification.parentNode) {
-                    notification.remove();
-                }
-            }, 5000);
+        to {
+            opacity: 1;
+            transform: translateY(0);
         }
-    </script>
-    <style>
-        /* FLOATING ICONS ENHANCED - OVERRIDE CACHE */
-        .floating-icon {
-            display: none !important; /* Ocultar temporalmente para eliminar círculos */
-            position: absolute !important;
-            font-size: 1rem !important;
-            /* Default colors for light mode */
-            color: rgba(0,123,255,0.8) !important;
-            animation: iconFloat 12s ease-in-out infinite !important;
-            cursor: pointer !important;
-            pointer-events: auto !important;
-            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275) !important;
-            /* Eliminar círculos en todos los iconos */
-            border-radius: 0 !important;
-            width: auto !important;
-            height: auto !important;
-            /* display: flex !important; */
-            align-items: center !important;
-            justify-content: center !important;
-            background: transparent !important;
-            backdrop-filter: none !important;
-            border: none !important;
-            /* position: relative !important; */
-            overflow: hidden !important;
-            z-index: 5 !important;
+    }
+    
+    /* Efectos de entrada para secciones */
+    .container.mt-5.py-4 > .row {
+        animation: fadeInUp 0.6s ease-out;
+    }
+    
+    @@keyframes fadeInUp {
+        from {
+            opacity: 0;
+            transform: translateY(30px);
         }
-
-        /* Blue hover animation like cards */
-        .floating-icon::before {
-            content: '' !important;
-            position: absolute !important;
-            top: -50% !important;
-            left: -50% !important;
-            width: 200% !important;
-            height: 200% !important;
-            background: linear-gradient(45deg, transparent, rgba(0,123,255,0.4), transparent) !important;
-            transform: rotate(-45deg) translateX(-100%) !important;
-            transition: transform 0.8s ease !important;
-            z-index: 1 !important;
+        to {
+            opacity: 1;
+            transform: translateY(0);
         }
-
-        .floating-icon:hover::before {
-            transform: rotate(-45deg) translateX(100%) !important;
-        }
-
-        .floating-icon:hover {
-            transform: translateY(-8px) scale(1.15) rotateY(360deg) !important;
-            background: rgba(0,123,255,0.25) !important;
-            border-color: rgba(0,123,255,0.5) !important;
-            box-shadow: 0 10px 25px rgba(0,123,255,0.3) !important;
-        }
-
-        /* Small particles for rotation animation */
-        .floating-icon::after {
-            content: '' !important;
-            position: absolute !important;
-            top: 50% !important;
-            left: 50% !important;
-            width: 4px !important;
-            height: 4px !important;
-            background: linear-gradient(45deg, rgba(0,123,255,0.9), rgba(0,123,255,0.5)) !important;
-            border-radius: 50% !important;
-            transform: translate(-50%, -50%) !important;
-            opacity: 0 !important;
-            animation: smallParticleOrbit 2s ease-in-out infinite !important;
-            z-index: 3 !important;
-        }
-
-        .floating-icon:hover::after {
-            opacity: 1 !important;
-            animation-duration: 1s !important;
-        }
-
-        @@keyframes smallParticleOrbit {
-            0% {
-                transform: translate(-50%, -50%) rotate(0deg) translateX(20px) rotate(0deg);
-                opacity: 0;
-            }
-            25% {
-                opacity: 1;
-            }
-            75% {
-                opacity: 1;
-            }
-            100% {
-                transform: translate(-50%, -50%) rotate(360deg) translateX(20px) rotate(-360deg);
-                opacity: 0;
-            }
-        }
-
-        /* Individual icon colors for light mode */
-        .icon-1 {
-            color: rgba(220,53,69,0.9) !important; /* Heart - red */
-        }
-
-        .icon-2 {
-            color: rgba(40,167,69,0.9) !important; /* Shield - green */
-        }
-
-        .icon-3 {
-            color: rgba(0,123,255,0.9) !important; /* Calendar - blue */
-        }
-
-        .icon-4 {
-            color: rgba(255,193,7,0.9) !important; /* Graph - yellow */
-        }
-
-        .icon-5 {
-            color: rgba(108,117,125,0.9) !important; /* People - gray */
-        }
-
-        .icon-6 {
-            color: rgba(23,162,184,0.9) !important; /* Clock - info */
-        }
-
-        /* Dark mode - keep icons white */
-        [data-bs-theme="dark"] .floating-icon {
-            color: rgba(255,255,255,0.8) !important;
-            background: transparent !important;
-            border: none !important;
-        }
-
-        [data-bs-theme="dark"] .floating-icon::before {
-            background: linear-gradient(45deg, transparent, rgba(255,255,255,0.3), transparent) !important;
-        }
-
-        [data-bs-theme="dark"] .floating-icon:hover {
-            background: transparent !important;
-            border: none !important;
-            box-shadow: none !important;
-        }
-
-        [data-bs-theme="dark"] .floating-icon::after {
-            background: linear-gradient(45deg, rgba(255,255,255,0.9), rgba(255,255,255,0.5)) !important;
-        }
-
-        /* All icons in dark mode use same white color */
-        [data-bs-theme="dark"] .icon-1,
-        [data-bs-theme="dark"] .icon-2,
-        [data-bs-theme="dark"] .icon-3,
-        [data-bs-theme="dark"] .icon-4,
-        [data-bs-theme="dark"] .icon-5,
-        [data-bs-theme="dark"] .icon-6 {
-            color: rgba(255,255,255,0.8) !important;
-        }
-
-        @@keyframes iconFloat {
-            0%, 100% {
-                transform: translateY(0px) scale(1) rotateZ(0deg);
-                opacity: 0.9;
-            }
-            25% {
-                transform: translateY(-20px) scale(1.05) rotateZ(5deg);
-                opacity: 1;
-            }
-            50% {
-                transform: translateY(-10px) scale(0.95) rotateZ(-3deg);
-                opacity: 0.95;
-            }
-            75% {
-                transform: translateY(-30px) scale(1.1) rotateZ(3deg);
-                opacity: 1;
-            }
-        }
-
-        /* CORRECCIÓN PARA MODO OSCURO - COLORES BLANCOS */
-        [data-bs-theme="dark"] h1,
-        [data-bs-theme="dark"] h2,
-        [data-bs-theme="dark"] h3,
-        [data-bs-theme="dark"] h4,
-        [data-bs-theme="dark"] h5,
-        [data-bs-theme="dark"] h6 {
-            color: white !important;
-        }
-
-        [data-bs-theme="dark"] .feature-icon-main {
-            color: rgba(255,255,255,0.9) !important;
-        }
-
-        /* Iconos específicos en modo oscuro que deben ser blancos */
-        [data-bs-theme="dark"] i[style*="#0f172a"] {
-            color: rgba(255,255,255,0.9) !important;
-        }
-
-        /* You can also add page-specific CSS here if needed */
-        .divider-primary {
-            border-top: 3px solid var(--bs-primary);
-            width: 50px;
+    }
+    
+    /* Responsive improvements */
+    @@media (max-width: 768px) {
+        .hero-section-enhanced {
+            min-height: 60vh;
+            margin: 0.5rem;
         }
         
-        /* Hero Counter Counting Animation */
-        .hero-stat-number.counting {
-            color: #ffc107 !important;
-            transform: scale(1.1);
-            text-shadow: 0 0 15px rgba(255,193,7,0.5);
-            transition: all 0.3s ease;
-        }
-
-        @@media (max-width: 768px) {
-            .feature-card-hover:hover {
-                transform: translateY(-6px) scale(1.02) !important;
-            }
-            
-            .feature-card-hover:not(:hover) {
-                animation: none !important;
-            }
+        .hero-content-container {
+            padding: 2rem 1rem !important;
         }
         
-        /* Premium Trust Card Special Effects */
-        .trust-card-premium::before {
-            display: none !important;
+        .display-2 {
+            font-size: 2.5rem;
         }
         
-        .trust-card-premium:hover {
-            box-shadow: 
-                0 25px 50px rgba(0,0,0,0.15), 
-                0 0 0 1px rgba(255,215,0,0.2),
-                0 0 30px rgba(255,193,7,0.1) !important;
-            border: 1px solid rgba(255,215,0,0.3) !important;
+        .stat-card-advanced,
+        .certification-card,
+        .tech-card,
+        .testimonial-card {
+            margin-bottom: 1rem;
         }
-
-        /* Premium sparkles for trust card */
-        .trust-card-premium .sparkle {
-            background: linear-gradient(45deg, #ffd700, #ffb347, #ffd700) !important;
-            box-shadow: 0 0 6px rgba(255,215,0,0.8) !important;
-        }
-
-        .trust-card-premium:hover .sparkle {
-            animation-duration: 1s !important;
-        }
-    </style>
-}
+    }
+</style>
 

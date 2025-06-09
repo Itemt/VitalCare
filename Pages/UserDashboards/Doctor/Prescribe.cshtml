@@ -1,0 +1,89 @@
+@page "{appointmentId:int?}"
+@model CitasEPS.Pages.UserDashboards.Doctor.PrescribeModel
+
+@{
+    ViewData["Title"] = Model.Appointment != null ? "Crear Prescripción para Cita" : "Crear Prescripción General";
+}
+
+<h1><i class="bi bi-file-medical-fill"></i> @ViewData["Title"]</h1>
+
+@* Display Appointment Info if available *@
+@if (Model.Appointment != null)
+{
+    <h4>Para Cita ID: @Model.Appointment.Id</h4>
+    <dl class="row bg-light p-2 rounded mb-3">
+        <dt class="col-sm-2">Paciente</dt>
+        <dd class="col-sm-10">@Model.Appointment.Patient.FullName</dd>
+        <dt class="col-sm-2">Fecha Cita</dt>
+        <dd class="col-sm-10">@Html.DisplayFor(model => model.Appointment.AppointmentDateTime)</dd>
+         <dt class="col-sm-2">Médico</dt>
+        <dd class="col-sm-10">Dr(a). @Model.Appointment.Doctor.FullName</dd>
+    </dl>
+}
+
+@* --- Prescription Form (Common part) --- *@
+<div class="row">
+    <div class="col-md-8">
+        <form method="post">
+            <div asp-validation-summary="ModelOnly" class="text-danger mb-3"></div>
+
+            @* Hidden input for AppointmentId if it exists *@
+            @if (Model.Appointment != null)
+            {
+                <input type="hidden" asp-for="Prescription.AppointmentId" value="@Model.Appointment.Id" />
+                @* PatientId is set in backend when AppointmentId is present *@
+            }
+            else
+            {
+                 @* --- Patient Selection Dropdown (Only when no appointment) --- *@
+                <div class="form-group mb-3">
+                    <label asp-for="Prescription.PatientId" class="control-label">Paciente</label>
+                     <select asp-for="Prescription.PatientId" class="form-control form-select" asp-items="Model.Patients">
+                        <option value="">-- Seleccione Paciente --</option>
+                    </select>
+                    <span asp-validation-for="Prescription.PatientId" class="text-danger"></span>
+                </div>
+                 <input type="hidden" asp-for="Prescription.AppointmentId" value="" /> @* Ensure it posts as null/empty *@
+            }
+
+            @* --- Common Prescription Fields --- *@
+            <div class="form-group mb-3">
+                <label asp-for="Prescription.MedicationId" class="control-label">Medicamento</label>
+                <select asp-for="Prescription.MedicationId" class="form-control form-select" asp-items="Model.Medications">
+                    <option value="">-- Seleccione Medicamento --</option>
+                </select>
+                <span asp-validation-for="Prescription.MedicationId" class="text-danger"></span>
+            </div>
+            <div class="form-group mb-3">
+                <label asp-for="Prescription.Dosage" class="control-label"></label>
+                <input asp-for="Prescription.Dosage" class="form-control" placeholder="Ej: 1 tableta cada 8 horas" />
+                <span asp-validation-for="Prescription.Dosage" class="text-danger"></span>
+            </div>
+            <div class="form-group mb-3">
+                <label asp-for="Prescription.Instructions" class="control-label"></label>
+                <textarea asp-for="Prescription.Instructions" class="form-control" rows="3" placeholder="Ej: Tomar con abundante agua, después de las comidas..."></textarea>
+                <span asp-validation-for="Prescription.Instructions" class="text-danger"></span>
+            </div>
+            
+            @* PrescriptionDate, DoctorId are established in the backend *@
+
+            <div class="form-group mt-4">
+                <button type="submit" class="btn btn-primary me-2"><i class="bi bi-check-circle"></i> Guardar Prescripción</button>
+                
+                @* --- Conditional Back Button --- *@
+                @if (Model.Appointment != null)
+                {
+                    <a asp-page="/Appointments/Details" asp-route-id="@Model.Appointment.Id" class="btn btn-secondary"><i class="bi bi-arrow-left-circle"></i> Volver a Detalles Cita</a>
+                }
+                else
+                {
+                    <a asp-page="./Agenda" class="btn btn-secondary"><i class="bi bi-arrow-left-circle"></i> Volver a la Agenda</a>
+                }
+            </div>
+        </form>
+    </div>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

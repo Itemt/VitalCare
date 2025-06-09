@@ -39,7 +39,12 @@
                         </div>
 
                         <div class="form-group mb-3">
-                            <label asp-for="Appointment.DoctorId" class="form-label fw-semibold">Médico</label>
+                            <label asp-for="Appointment.DoctorId" class="form-label fw-semibold">
+                                Médico
+                                <small class="text-muted fw-normal">
+                                    (puede cambiar la selección las veces que desee)
+                                </small>
+                            </label>
                              <select id="doctorDropdown" asp-for="Appointment.DoctorId" class ="form-select" asp-items='ViewData["DoctorNameSL"] as SelectList' disabled>
                                 <option value="">-- Seleccione Médico --</option>
                              </select>
@@ -86,35 +91,352 @@
     @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
 
     <script>
-        $(document).ready(function () {
-            $('#specialtyDropdown').change(function () {
-                var specialtyId = $(this).val();
+                 $(document).ready(function () {
+             // Variables para manejar el estado
+             var currentSpecialtyId = null;
+             var currentDoctorOptions = [];
+             
+             // Debug: Mostrar información de zona horaria
+             console.log('Información de zona horaria del cliente:');
+             console.log('Zona horaria:', Intl.DateTimeFormat().resolvedOptions().timeZone);
+             console.log('Offset UTC:', new Date().getTimezoneOffset());
+             console.log('Fecha/hora local:', new Date().toLocaleString());
+            
+            function loadDoctorsBySpecialty(specialtyId, keepSelection = false) {
                 var doctorDropdown = $('#doctorDropdown');
+                var selectedDoctorId = keepSelection ? doctorDropdown.val() : null;
+                
                 doctorDropdown.empty().append('<option value="">Cargando médicos...</option>').prop('disabled', true);
 
                 if (specialtyId) {
+                    console.log('Cargando doctores para especialidad:', specialtyId);
+                    
                     $.ajax({
-                        url: '?handler=DoctorsBySpecialty&specialtyId=' + specialtyId,
+                        url: '/Appointments/Create?handler=DoctorsBySpecialty&specialtyId=' + specialtyId,
                         type: 'GET',
+                        dataType: 'json',
                         success: function (data) {
+                            console.log('Respuesta AJAX recibida:', data);
+                            
+                            // Verificar si hay error en la respuesta
+                            if (data && data.error) {
+                                console.error('Error del servidor:', data.error, data.message);
+                                doctorDropdown.empty().append('<option value="">Error: ' + data.error + '</option>');
+                                return;
+                            }
+                            
+                            currentDoctorOptions = data;
                             doctorDropdown.empty().append('<option value="">-- Seleccione Médico --</option>');
-                            $.each(data, function (i, doctor) {
-                                doctorDropdown.append($('<option>', {
-                                    value: doctor.id,
-                                    text: doctor.fullName
-                                }));
-                            });
+                            
+                            if (data && data.length > 0) {
+                                $.each(data, function (i, doctor) {
+                                    doctorDropdown.append($('<option>', {
+                                        value: doctor.id,
+                                        text: doctor.fullName
+                                    }));
+                                });
+                                console.log('Cargados ' + data.length + ' doctores');
+                            } else {
+                                doctorDropdown.append('<option value="">No hay doctores disponibles</option>');
+                                console.warn('No se encontraron doctores para especialidad:', specialtyId);
+                            }
+                            
                             doctorDropdown.prop('disabled', false);
+                            
+                            // Restaurar selección si existe y es válida
+                            if (keepSelection && selectedDoctorId && 
+                                data.some(doctor => doctor.id == selectedDoctorId)) {
+                                doctorDropdown.val(selectedDoctorId);
+                                console.log('Selección de doctor mantenida:', selectedDoctorId);
+                            }
+                            
+                            // NUEVO: También verificar si hay un doctor preseleccionado desde el servidor
+                            var preselectedDoctorFromServer = '@(ViewData["PreselectedDoctorId"] ?? "")';
+                            if (!keepSelection && preselectedDoctorFromServer && 
+                                data.some(doctor => doctor.id == preselectedDoctorFromServer)) {
+                                doctorDropdown.val(preselectedDoctorFromServer);
+                                console.log('Doctor preseleccionado desde servidor restaurado:', preselectedDoctorFromServer);
+                            }
                         },
-                        error: function () {
-                            doctorDropdown.empty().append('<option value="">Error al cargar médicos</option>');
-                            // Consider adding more robust error handling or user feedback
+                        error: function (xhr, status, error) {
+                            console.error('Error AJAX completo:', {
+                                status: status,
+                                error: error,
+                                response: xhr.responseText,
+                                specialtyId: specialtyId
+                            });
+                            
+                            var errorMsg = 'Error al cargar médicos';
+                            if (xhr.status === 404) {
+                                errorMsg = 'Página no encontrada';
+                            } else if (xhr.status === 500) {
+                                errorMsg = 'Error del servidor';
+                            } else if (xhr.status === 0) {
+                                errorMsg = 'Sin conexión';
+                            }
+                            
+                            doctorDropdown.empty().append('<option value="">' + errorMsg + '</option>');
                         }
                     });
                 } else {
+                    currentDoctorOptions = [];
                     doctorDropdown.empty().append('<option value="">-- Seleccione Médico --</option>').prop('disabled', true);
                 }
+            }
+            
+            // Evento cuando cambia la especialidad
+            $('#specialtyDropdown').change(function () {
+                var specialtyId = $(this).val();
+                currentSpecialtyId = specialtyId;
+                loadDoctorsBySpecialty(specialtyId, false); // No mantener selección al cambiar especialidad
             });
+            
+            // Mejorar la experiencia del usuario en el dropdown de doctores
+            $('#doctorDropdown').on('focus', function() {
+                // Si hay una especialidad seleccionada pero no hay opciones de doctores, recargar
+                if (currentSpecialtyId && currentDoctorOptions.length === 0) {
+                    loadDoctorsBySpecialty(currentSpecialtyId, true);
+                }
+            });
+            
+                         // Evento cuando cambia el doctor - mostrar confirmación y información
+             $('#doctorDropdown').change(function () {
+                 var selectedDoctorId = $(this).val();
+                 var selectedDoctorText = $(this).find('option:selected').text();
+                 
+                 // Remover mensajes anteriores si existen
+                 $('#doctorSelectionFeedback, #selectionsPreserved').remove();
+                 
+                 if (selectedDoctorId) {
+                     console.log('Doctor seleccionado:', selectedDoctorId);
+                     
+                     // Mostrar confirmación visual
+                     $(this).parent().append(
+                         '<div id="doctorSelectionFeedback" class="alert alert-success alert-sm mt-2 py-2">' +
+                         '<i class="bi bi-check-circle-fill me-2"></i>' +
+                         'Doctor seleccionado: <strong>' + selectedDoctorText + '</strong>' +
+                         '<br><small class="text-muted">✅ Puede cambiar su selección cuando guste sin perder otros datos.</small>' +
+                         '</div>'
+                     );
+                     
+                     // Auto-ocultar después de 4 segundos
+                     setTimeout(function() {
+                         $('#doctorSelectionFeedback').fadeOut();
+                     }, 4000);
+                 }
+             });
+            
+            // Agregar botón para refrescar la lista de doctores
+            $('#specialtyDropdown').parent().append(
+                '<small class="form-text text-muted mt-1">' +
+                '<i class="bi bi-info-circle"></i> ' +
+                'Tip: Si no aparecen médicos, haga clic en "Actualizar lista" más abajo.' +
+                '</small>'
+            );
+            
+            $('#doctorDropdown').parent().append(
+                '<div class="mt-2">' +
+                '<button type="button" id="refreshDoctorsBtn" class="btn btn-outline-secondary btn-sm" disabled>' +
+                '<i class="bi bi-arrow-clockwise"></i> Actualizar lista de médicos' +
+                '</button>' +
+                '</div>'
+            );
+            
+            // Funcionalidad del botón de refrescar
+            $('#refreshDoctorsBtn').click(function() {
+                if (currentSpecialtyId) {
+                    $(this).prop('disabled', true).html('<i class="bi bi-arrow-clockwise spin"></i> Actualizando...');
+                    loadDoctorsBySpecialty(currentSpecialtyId, true);
+                    
+                    setTimeout(() => {
+                        $(this).prop('disabled', false).html('<i class="bi bi-arrow-clockwise"></i> Actualizar lista de médicos');
+                    }, 1000);
+                }
+            });
+            
+                         // Habilitar el botón de refrescar cuando hay una especialidad seleccionada
+             $('#specialtyDropdown').change(function () {
+                 var specialtyId = $(this).val();
+                 $('#refreshDoctorsBtn').prop('disabled', !specialtyId);
+             });
+             
+             // Función para manejar cambios accidentales - mantener datos del formulario
+             function preserveFormData() {
+                 var formData = {
+                     specialty: $('#specialtyDropdown').val(),
+                     doctor: $('#doctorDropdown').val(),
+                     appointmentDateTime: $('input[name="Appointment.AppointmentDateTime"]').val(),
+                     notes: $('textarea[name="Appointment.Notes"]').val()
+                 };
+                 return formData;
+             }
+             
+             function restoreFormData(formData) {
+                 if (formData.specialty) {
+                     $('#specialtyDropdown').val(formData.specialty).trigger('change');
+                 }
+                 if (formData.appointmentDateTime) {
+                     $('input[name="Appointment.AppointmentDateTime"]').val(formData.appointmentDateTime);
+                 }
+                 if (formData.notes) {
+                     $('textarea[name="Appointment.Notes"]').val(formData.notes);
+                 }
+                 // El doctor se restaurará automáticamente cuando se carguen las opciones
+                 setTimeout(() => {
+                     if (formData.doctor) {
+                         $('#doctorDropdown').val(formData.doctor);
+                     }
+                 }, 500);
+             }
+             
+             // Guardar datos automáticamente al cambiar cualquier campo
+             $('form input, form select, form textarea').on('change', function() {
+                 var formData = preserveFormData();
+                 sessionStorage.setItem('appointmentFormData', JSON.stringify(formData));
+             });
+             
+             // Restaurar datos al cargar la página si existen
+             var savedData = sessionStorage.getItem('appointmentFormData');
+             
+             // NUEVO: Verificar si hay datos preseleccionados desde el servidor (cuando hay errores de validación)
+             var preselectedSpecialtyId = '@(ViewData["PreselectedSpecialtyId"] ?? "")';
+             var preselectedDoctorId = '@(ViewData["PreselectedDoctorId"] ?? "")';
+             
+             if (preselectedSpecialtyId && preselectedDoctorId) {
+                 console.log('Datos preseleccionados del servidor:', { specialty: preselectedSpecialtyId, doctor: preselectedDoctorId });
+                 
+                 // Restaurar la especialidad
+                 if (preselectedSpecialtyId) {
+                     $('#specialtyDropdown').val(preselectedSpecialtyId);
+                     currentSpecialtyId = preselectedSpecialtyId;
+                     $('#refreshDoctorsBtn').prop('disabled', false);
+                 }
+                 
+                                   // El doctor debería estar ya preseleccionado por el SelectList, pero lo verificamos
+                  setTimeout(() => {
+                      if (preselectedDoctorId && $('#doctorDropdown').find(`option[value="${preselectedDoctorId}"]`).length > 0) {
+                          $('#doctorDropdown').val(preselectedDoctorId);
+                          console.log('Doctor restaurado:', preselectedDoctorId);
+                          
+                          // Mostrar mensaje de confirmación que las selecciones se mantuvieron
+                          $('#doctorDropdown').parent().append(
+                              '<div class="alert alert-info alert-sm mt-2 py-2" id="selectionsPreserved">' +
+                              '<i class="bi bi-info-circle-fill me-2"></i>' +
+                              '<strong>Sus selecciones se mantuvieron:</strong> ' +
+                              $('#specialtyDropdown option:selected').text() + ' - ' + 
+                              $('#doctorDropdown option:selected').text() +
+                              '</div>'
+                          );
+                          
+                          // Auto-ocultar después de 5 segundos
+                          setTimeout(() => {
+                              $('#selectionsPreserved').fadeOut();
+                          }, 5000);
+                      }
+                  }, 100);
+             }
+             else if (savedData) {
+                 try {
+                     var formData = JSON.parse(savedData);
+                     setTimeout(() => {
+                         restoreFormData(formData);
+                     }, 100);
+                 } catch (e) {
+                     console.log('No se pudieron restaurar los datos del formulario');
+                 }
+             }
+             
+             // Limpiar datos guardados al enviar el formulario exitosamente
+             $('form').on('submit', function() {
+                 sessionStorage.removeItem('appointmentFormData');
+             });
+             
+             // Event listener para el campo de fecha - mostrar información útil
+             $('input[name="Appointment.AppointmentDateTime"]').on('change', function() {
+                 var selectedDateTime = $(this).val();
+                 if (selectedDateTime) {
+                     var dateObj = new Date(selectedDateTime);
+                     var now = new Date();
+                     
+                     console.log('Fecha seleccionada:', selectedDateTime);
+                     console.log('Fecha como objeto:', dateObj);
+                     console.log('Fecha actual:', now);
+                     console.log('¿Es fecha futura?', dateObj > now);
+                     
+                     // Remover mensajes anteriores de fecha
+                     $('#dateTimeInfo').remove();
+                     
+                     // Mostrar información de la fecha seleccionada
+                     $(this).parent().append(
+                         '<div id="dateTimeInfo" class="text-muted small mt-1">' +
+                         '<i class="bi bi-clock"></i> ' +
+                         'Fecha seleccionada: ' + dateObj.toLocaleString('es-CO', {
+                             weekday: 'long',
+                             year: 'numeric',
+                             month: 'long',
+                             day: 'numeric',
+                             hour: '2-digit',
+                             minute: '2-digit',
+                             timeZone: 'America/Bogota'
+                         }) +
+                         '</div>'
+                     );
+                 }
+             });
         });
     </script>
+    
+         <style>
+         .spin {
+             animation: spin 1s linear infinite;
+         }
+         
+         @@keyframes spin {
+             from { transform: rotate(0deg); }
+             to { transform: rotate(360deg); }
+         }
+         
+         /* Estilos para mejorar UX de selección de doctor */
+         #doctorDropdown:not([disabled]) {
+             border-color: #28a745;
+             box-shadow: 0 0 0 0.1rem rgba(40, 167, 69, 0.25);
+         }
+         
+         #doctorDropdown:focus {
+             border-color: #20c997;
+             box-shadow: 0 0 0 0.2rem rgba(32, 201, 151, 0.25);
+         }
+         
+         .alert-sm {
+             font-size: 0.875rem;
+         }
+         
+         /* Animación para el feedback de selección */
+         #doctorSelectionFeedback {
+             animation: slideIn 0.3s ease-out;
+         }
+         
+         @@keyframes slideIn {
+             from {
+                 opacity: 0;
+                 transform: translateY(-10px);
+             }
+             to {
+                 opacity: 1;
+                 transform: translateY(0);
+             }
+         }
+         
+         /* Mejorar apariencia del botón de refrescar */
+         #refreshDoctorsBtn:hover {
+             background-color: #e2e6ea;
+             border-color: #dae0e5;
+         }
+         
+         /* Indicador visual cuando el dropdown está cargando */
+         #doctorDropdown[disabled] {
+             background-color: #f8f9fa;
+             opacity: 0.8;
+         }
+     </style>
 } 

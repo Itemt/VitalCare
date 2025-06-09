@@ -1,0 +1,68 @@
+@page
+@model CitasEPS.Pages.UserDashboards.Admin.ManageDoctorsModel
+@{
+    ViewData["Title"] = "Gestionar Médicos";
+}
+
+<h1 class="display-4"><i class="bi bi-file-medical-fill"></i> @ViewData["Title"]</h1>
+
+<p>
+    <a asp-page="./Doctors/Create" class="btn btn-success mb-3"><i class="bi bi-plus-circle"></i> Crear Nuevo Médico</a>
+</p>
+
+@if (!Model.Doctors.Any())
+{
+    <div class="alert alert-info" role="alert">
+        No hay médicos registrados en el sistema.
+    </div>
+}
+else
+{
+    <table class="table table-striped table-hover">
+        <thead class="table-primary">
+            <tr>
+                <th>
+                    @Html.DisplayNameFor(model => model.Doctors[0].FullName)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Doctors[0].Specialty)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Doctors[0].LicenseNumber)
+                </th>
+                <th>
+                    Email
+                </th>
+                <th>
+                    Teléfono
+                </th>
+                <th>Acciones</th>
+            </tr>
+        </thead>
+        <tbody>
+    @foreach (var item in Model.Doctors) {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.FullName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Specialty!.Name)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.LicenseNumber)
+                </td>
+                <td>
+                    @(item.User?.Email ?? "No disponible")
+                </td>
+                <td>
+                    @(item.User?.PhoneNumber ?? "No disponible")
+                </td>
+                <td>
+                    <a asp-page="./Doctors/Edit" asp-route-id="@item.Id" class="btn btn-sm btn-warning" title="Editar Médico"><i class="bi bi-pencil-square"></i></a> 
+                    <a asp-page="./Doctors/Delete" asp-route-id="@item.Id" class="btn btn-sm btn-danger" title="Eliminar Médico"><i class="bi bi-trash"></i></a>
+                </td>
+            </tr>
+    }
+        </tbody>
+    </table>
+}

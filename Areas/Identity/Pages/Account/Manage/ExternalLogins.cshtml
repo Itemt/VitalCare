@@ -1,14 +1,14 @@
-锘緻page
+@page
 @model ExternalLoginsModel
 @{
-    ViewData["Title"] = "Gestiona tus inicios de sesi贸n externos";
+    ViewData["Title"] = "Gestiona tus inicios de sesi髇 externos";
     ViewData["ActivePage"] = ManageNavPages.ExternalLogins;
 }
 
 <partial name="_StatusMessage" for="StatusMessage" />
 @if (Model.CurrentLogins?.Count > 0)
 {
-    <h3>Inicios de sesi贸n registrados</h3>
+    <h3>Inicios de sesi髇 registrados</h3>
     <table class="table">
         <tbody>
             @foreach (var login in Model.CurrentLogins)
@@ -22,7 +22,7 @@
                                 <div>
                                     <input asp-for="@login.LoginProvider" name="LoginProvider" type="hidden" />
                                     <input asp-for="@login.ProviderKey" name="ProviderKey" type="hidden" />
-                                    <button type="submit" class="btn btn-primary" title="Eliminar este inicio de sesi贸n de @login.ProviderDisplayName de tu cuenta">Eliminar</button>
+                                    <button type="submit" class="btn btn-primary" title="Eliminar este inicio de sesi髇 de @login.ProviderDisplayName de tu cuenta">Eliminar</button>
                                 </div>
                             </form>
                         }
@@ -38,14 +38,14 @@
 }
 @if (Model.OtherLogins?.Count > 0)
 {
-    <h4>A帽adir otro servicio para iniciar sesi贸n.</h4>
+    <h4>A馻dir otro servicio para iniciar sesi髇.</h4>
     <hr />
     <form id="link-login-form" asp-page-handler="LinkLogin" method="post" class="form-horizontal">
         <div id="socialLoginList">
             <p>
                 @foreach (var provider in Model.OtherLogins)
                 {
-                    <button id="@($"link-login-button-{provider.Name}")" type="submit" class="btn btn-primary" name="provider" value="@provider.Name" title="Iniciar sesi贸n con tu cuenta de @provider.DisplayName">@provider.DisplayName</button>
+                    <button id="@($"link-login-button-{provider.Name}")" type="submit" class="btn btn-primary" name="provider" value="@provider.Name" title="Iniciar sesi髇 con tu cuenta de @provider.DisplayName">@provider.DisplayName</button>
                 }
             </p>
         </div>

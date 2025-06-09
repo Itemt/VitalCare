@@ -12,7 +12,7 @@ using System.Threading;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authorization;
-using CitasEPS.Models;
+using CitasEPS.Models; using CitasEPS.Models.Modules.Users; using CitasEPS.Models.Modules.Medical; using CitasEPS.Models.Modules.Appointments; using CitasEPS.Models.Modules.Core;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.UI.Services;
 using Microsoft.AspNetCore.Mvc;
@@ -21,7 +21,7 @@ using Microsoft.AspNetCore.WebUtilities;
 using Microsoft.Extensions.Logging;
 using CitasEPS.Data;
 using Microsoft.Extensions.Configuration;
-using CitasEPS.Models.Enums;
+using CitasEPS.Models.Modules.Common;
 using Microsoft.EntityFrameworkCore;
 
 namespace CitasEPS.Areas.Identity.Pages.Account
@@ -383,3 +383,8 @@ namespace CitasEPS.Areas.Identity.Pages.Account
         }
     }
 }
+
+
+
+
+

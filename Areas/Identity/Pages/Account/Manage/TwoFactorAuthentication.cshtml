@@ -1,8 +1,8 @@
-锘緻page
+@page
 @using Microsoft.AspNetCore.Http.Features
 @model TwoFactorAuthenticationModel
 @{
-    ViewData["Title"] = "Autenticaci贸n de dos factores (2FA)";
+    ViewData["Title"] = "Autenticaci髇 de dos factores (2FA)";
     ViewData["ActivePage"] = ManageNavPages.TwoFactorAuthentication;
 }
 
@@ -17,22 +17,22 @@
             if (Model.RecoveryCodesLeft == 0)
             {
                 <div class="alert alert-danger">
-                    <strong>No te quedan c贸digos de recuperaci贸n.</strong>
-                    <p>Debes <a asp-page="./GenerateRecoveryCodes">generar un nuevo conjunto de c贸digos de recuperaci贸n</a> antes de poder iniciar sesi贸n con un c贸digo de recuperaci贸n.</p>
+                    <strong>No te quedan c骴igos de recuperaci髇.</strong>
+                    <p>Debes <a asp-page="./GenerateRecoveryCodes">generar un nuevo conjunto de c骴igos de recuperaci髇</a> antes de poder iniciar sesi髇 con un c骴igo de recuperaci髇.</p>
                 </div>
             }
             else if (Model.RecoveryCodesLeft == 1)
             {
                 <div class="alert alert-danger">
-                    <strong>Te queda 1 c贸digo de recuperaci贸n.</strong>
-                    <p>Puedes <a asp-page="./GenerateRecoveryCodes">generar un nuevo conjunto de c贸digos de recuperaci贸n</a>.</p>
+                    <strong>Te queda 1 c骴igo de recuperaci髇.</strong>
+                    <p>Puedes <a asp-page="./GenerateRecoveryCodes">generar un nuevo conjunto de c骴igos de recuperaci髇</a>.</p>
                 </div>
             }
             else if (Model.RecoveryCodesLeft <= 3)
             {
                 <div class="alert alert-warning">
-                    <strong>Te quedan @Model.RecoveryCodesLeft c贸digos de recuperaci贸n.</strong>
-                    <p>Deber铆as <a asp-page="./GenerateRecoveryCodes">generar un nuevo conjunto de c贸digos de recuperaci贸n</a>.</p>
+                    <strong>Te quedan @Model.RecoveryCodesLeft c骴igos de recuperaci髇.</strong>
+                    <p>Deber韆s <a asp-page="./GenerateRecoveryCodes">generar un nuevo conjunto de c骴igos de recuperaci髇</a>.</p>
                 </div>
             }
 
@@ -43,25 +43,25 @@
                 </form>
             }
             <a asp-page="./Disable2fa" class="btn btn-primary">Deshabilitar 2FA</a>
-            <a asp-page="./GenerateRecoveryCodes" class="btn btn-primary">Restablecer c贸digos de recuperaci贸n</a>
+            <a asp-page="./GenerateRecoveryCodes" class="btn btn-primary">Restablecer c骴igos de recuperaci髇</a>
         }
 
-        <h4>Aplicaci贸n de autenticaci贸n</h4>
+        <h4>Aplicaci髇 de autenticaci髇</h4>
         @if (!Model.HasAuthenticator)
         {
-            <a id="enable-authenticator" asp-page="./EnableAuthenticator" class="btn btn-primary">A帽adir aplicaci贸n de autenticaci贸n</a>
+            <a id="enable-authenticator" asp-page="./EnableAuthenticator" class="btn btn-primary">A馻dir aplicaci髇 de autenticaci髇</a>
         }
         else
         {
-            <a id="enable-authenticator" asp-page="./EnableAuthenticator" class="btn btn-primary">Configurar aplicaci贸n de autenticaci贸n</a>
-            <a id="reset-authenticator" asp-page="./ResetAuthenticator" class="btn btn-primary">Restablecer aplicaci贸n de autenticaci贸n</a>
+            <a id="enable-authenticator" asp-page="./EnableAuthenticator" class="btn btn-primary">Configurar aplicaci髇 de autenticaci髇</a>
+            <a id="reset-authenticator" asp-page="./ResetAuthenticator" class="btn btn-primary">Restablecer aplicaci髇 de autenticaci髇</a>
         }
     }
     else
     {
         <div class="alert alert-danger">
-            <strong>La pol铆tica de privacidad y cookies no ha sido aceptada.</strong>
-            <p>Debes aceptar la pol铆tica antes de poder habilitar la autenticaci贸n de dos factores.</p>
+            <strong>La pol韙ica de privacidad y cookies no ha sido aceptada.</strong>
+            <p>Debes aceptar la pol韙ica antes de poder habilitar la autenticaci髇 de dos factores.</p>
         </div>
     }
 }

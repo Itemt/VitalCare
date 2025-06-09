@@ -1,5 +1,4 @@
 using System;
-using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
@@ -8,9 +7,14 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using CitasEPS.Data;
 using CitasEPS.Models;
+using CitasEPS.Models.Modules.Users;
+using CitasEPS.Models.Modules.Medical;
+using CitasEPS.Models.Modules.Appointments;
+using CitasEPS.Models.Modules.Core;
+using CitasEPS.Services.Modules.Common;
 using Microsoft.AspNetCore.Authorization;
-using Microsoft.Extensions.Logging;
 using Microsoft.AspNetCore.Identity;
+using Microsoft.Extensions.Logging;
 using CitasEPS.Services;
 
 namespace CitasEPS.Pages.Appointments
@@ -221,9 +225,13 @@ namespace CitasEPS.Pages.Appointments
                         if (updatedAppointment?.Patient?.User != null && updatedAppointment?.Doctor?.User != null)
                         {
                             // Enviar notificación al paciente
+                            // Convertir fecha UTC a hora local de Colombia (UTC-5) para mostrar al paciente
+                            var colombiaTimeZone = TimeZoneInfo.CreateCustomTimeZone("Colombia", TimeSpan.FromHours(-5), "Colombia Standard Time", "Colombia Standard Time");
+                            var appointmentColombia = TimeZoneInfo.ConvertTimeFromUtc(updatedAppointment.AppointmentDateTime, colombiaTimeZone);
+                            
                             await _notificationService.CreateNotificationAsync(
                                 updatedAppointment.Patient.User.Id,
-                                $"Su cita ha sido modificada. Nueva fecha y hora: {updatedAppointment.AppointmentDateTime:dd/MM/yyyy 'a las' HH:mm}",
+                                $"Su cita ha sido modificada. Nueva fecha y hora: {appointmentColombia:dd/MM/yyyy 'a las' HH:mm}",
                                 NotificationType.AppointmentModified,
                                 updatedAppointment.Id
                             );
@@ -295,7 +303,7 @@ namespace CitasEPS.Pages.Appointments
                                         .OrderBy(p => p.LastName)
                                         .ThenBy(p => p.FirstName)
                                         .ToListAsync();
-            PatientNameSL = new SelectList(patients, nameof(CitasEPS.Models.Patient.Id), nameof(CitasEPS.Models.Patient.FullName), selectedPatient);
+            PatientNameSL = new SelectList(patients, nameof(Patient.Id), nameof(Patient.FullName), selectedPatient);
 
             var doctors = await _context.Doctors
                                       .Include(d => d.Specialty) // Include specialty for better display name if needed
@@ -303,7 +311,12 @@ namespace CitasEPS.Pages.Appointments
                                       .ThenBy(d => d.FirstName)
                                       .ToListAsync();
             // Consider creating a FullNameWithSpecialty property on Doctor model for cleaner display
-            DoctorNameSL = new SelectList(doctors, nameof(Models.Doctor.Id), nameof(Models.Doctor.FullName), selectedDoctor);
+            DoctorNameSL = new SelectList(doctors, nameof(Doctor.Id), nameof(Doctor.FullName), selectedDoctor);
         }
     }
 } 
+
+
+
+
+

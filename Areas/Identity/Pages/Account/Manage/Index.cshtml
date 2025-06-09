@@ -1,6 +1,6 @@
-ï»¿@page
+@page
 @model IndexModel
-@using CitasEPS.Models.Enums
+@using CitasEPS.Models.Modules.Common
 @{
     ViewData["Title"] = "Perfil de Usuario";
     ViewData["ActivePage"] = ManageNavPages.Index;
@@ -36,7 +36,7 @@
                         </div>
                         <div class="col-md-6">
                             <div class="form-floating mb-3">
-                                <input asp-for="Input.PhoneNumber" class="form-control" placeholder="NÃºmero de telÃ©fono"/>
+                                <input asp-for="Input.PhoneNumber" class="form-control" placeholder="Número de teléfono"/>
                                 <label asp-for="Input.PhoneNumber" class="form-label"></label>
                                 <span asp-validation-for="Input.PhoneNumber" class="text-danger"></span>
                             </div>
@@ -80,7 +80,7 @@
                     <div class="form-group mb-3">
                         <label asp-for="Input.Gender" class="form-label fw-semibold"></label>
                         <select asp-for="Input.Gender" asp-items="Html.GetEnumSelectList<Gender>()" class="form-select">
-                            <option value="">Seleccione gÃ©nero...</option>
+                            <option value="">Seleccione género...</option>
                         </select>
                         <span asp-validation-for="Input.Gender" class="text-danger"></span>
                     </div>

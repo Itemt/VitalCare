@@ -1,0 +1,119 @@
+/* Doctor Dashboard Specific Styles */
+
+.doctor-dashboard {
+    background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+    min-height: 100vh;
+    padding: 20px 0;
+}
+
+.doctor-dashboard .dashboard-card {
+    background: white;
+    border-radius: 15px;
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+    border: none;
+    margin-bottom: 20px;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.doctor-dashboard .dashboard-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.15);
+}
+
+.doctor-dashboard .card-header {
+    background: linear-gradient(135deg, #007bff 0%, #0056b3 100%);
+    color: white;
+    border-radius: 15px 15px 0 0 !important;
+    border: none;
+    padding: 15px 20px;
+}
+
+.doctor-dashboard .stats-card {
+    background: linear-gradient(135deg, #17a2b8 0%, #138496 100%);
+    color: white;
+    border-radius: 15px;
+    padding: 20px;
+    text-align: center;
+    margin-bottom: 20px;
+    box-shadow: 0 8px 25px rgba(23, 162, 184, 0.3);
+}
+
+.doctor-dashboard .stats-number {
+    font-size: 2.5rem;
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+
+.doctor-dashboard .stats-label {
+    font-size: 1rem;
+    opacity: 0.9;
+}
+
+.doctor-dashboard .appointment-card {
+    border-left: 4px solid #007bff;
+    margin-bottom: 15px;
+    padding: 15px;
+    background: #f8f9fa;
+    border-radius: 8px;
+}
+
+.doctor-dashboard .appointment-time {
+    color: #007bff;
+    font-weight: bold;
+    font-size: 1.1rem;
+}
+
+.doctor-dashboard .patient-name {
+    color: #333;
+    font-weight: 500;
+    margin-top: 5px;
+}
+
+.doctor-dashboard .quick-action-btn {
+    background: linear-gradient(135deg, #28a745 0%, #20c997 100%);
+    border: none;
+    color: white;
+    padding: 12px 25px;
+    border-radius: 25px;
+    margin: 5px;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 15px rgba(40, 167, 69, 0.3);
+}
+
+.doctor-dashboard .quick-action-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 25px rgba(40, 167, 69, 0.4);
+    color: white;
+}
+
+.doctor-dashboard .rating-stars {
+    color: #ffc107;
+    font-size: 1.2rem;
+    margin: 10px 0;
+}
+
+.doctor-dashboard .notification-badge {
+    background: #dc3545;
+    color: white;
+    border-radius: 50%;
+    padding: 2px 6px;
+    font-size: 0.7rem;
+    position: absolute;
+    top: -5px;
+    right: -5px;
+}
+
+@media (max-width: 768px) {
+    .doctor-dashboard .stats-card {
+        margin-bottom: 15px;
+    }
+    
+    .doctor-dashboard .dashboard-card {
+        margin-bottom: 15px;
+    }
+    
+    .doctor-dashboard .quick-action-btn {
+        width: 100%;
+        margin: 5px 0;
+    }
+} 

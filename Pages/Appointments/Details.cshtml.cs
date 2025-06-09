@@ -7,9 +7,14 @@ using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.EntityFrameworkCore;
 using CitasEPS.Data;
 using CitasEPS.Models;
+using CitasEPS.Models.Modules.Users;
+using CitasEPS.Models.Modules.Medical;
+using CitasEPS.Models.Modules.Appointments;
+using CitasEPS.Models.Modules.Core;
+using CitasEPS.Services.Modules.Common;
 using Microsoft.AspNetCore.Authorization;
-using Microsoft.Extensions.Logging;
 using Microsoft.AspNetCore.Identity;
+using Microsoft.Extensions.Logging;
 using CitasEPS.Services;
 
 namespace CitasEPS.Pages.Appointments
@@ -231,7 +236,7 @@ namespace CitasEPS.Pages.Appointments
 
             // Verificar autorización (si es necesario verificar que es el doctor de la cita)
             var user = await _userManager.GetUserAsync(User);
-            var doctorRecord = await _context.Doctors.FirstOrDefaultAsync(d => d.Email == user.Email);
+            var doctorRecord = await _context.Doctors.FirstOrDefaultAsync(d => d.UserId == user.Id);
             if (doctorRecord == null || appointmentToUpdate.DoctorId != doctorRecord.Id)
             {
                 TempData["ErrorMessage"] = "Acción no autorizada.";
@@ -312,7 +317,7 @@ namespace CitasEPS.Pages.Appointments
             }
             else if (User.IsInRole("Doctor"))
             {
-                var doctor = await _context.Doctors.FirstOrDefaultAsync(d => d.Email == user.Email);
+                var doctor = await _context.Doctors.FirstOrDefaultAsync(d => d.UserId == user.Id);
                 if (doctor != null && appointmentToCancel.DoctorId == doctor.Id)
                 {
                     isAuthorized = true;
@@ -377,3 +382,7 @@ namespace CitasEPS.Pages.Appointments
         }
     }
 }
+
+
+
+

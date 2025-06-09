@@ -1,0 +1,70 @@
+@page "{id:int}"
+@model CitasEPS.Pages.UserDashboards.Admin.Patients.EditModel
+
+@{ 
+    ViewData["Title"] = "Editar Paciente";
+    Layout = "~/Pages/Shared/_Layout.cshtml"; 
+}
+
+<h1><i class="bi bi-pencil-square"></i> @ViewData["Title"]</h1>
+
+<h4>Paciente: @Model.Patient.FullName</h4>
+<hr />
+
+<div class="row">
+    <div class="col-md-8">
+        <form method="post">
+            <div asp-validation-summary="ModelOnly" class="text-danger mb-3"></div>
+            <input type="hidden" asp-for="Patient.Id" />
+            @* Optional: Add RowVersion for concurrency <input type="hidden" asp-for="Patient.RowVersion" /> *@
+            
+            <div class="row g-3">
+                 <div class="col-md-6 form-group">
+                    <label asp-for="Patient.FirstName" class="control-label"></label>
+                    <input asp-for="Patient.FirstName" class="form-control" />
+                    <span asp-validation-for="Patient.FirstName" class="text-danger"></span>
+                </div>
+
+                <div class="col-md-6 form-group">
+                    <label asp-for="Patient.LastName" class="control-label"></label>
+                    <input asp-for="Patient.LastName" class="form-control" />
+                    <span asp-validation-for="Patient.LastName" class="text-danger"></span>
+                </div>
+
+                 <div class="col-md-6 form-group">
+                    <label asp-for="Patient.DocumentId" class="control-label"></label>
+                    <input asp-for="Patient.DocumentId" class="form-control" />
+                    <span asp-validation-for="Patient.DocumentId" class="text-danger"></span>
+                </div>
+
+                 <div class="col-md-6 form-group">
+                    <label asp-for="Patient.Email" class="control-label"></label>
+                    <input asp-for="Patient.Email" type="email" class="form-control" />
+                    <span asp-validation-for="Patient.Email" class="text-danger"></span>
+                </div>
+
+                <div class="col-md-6 form-group">
+                    <label asp-for="Patient.PhoneNumber" class="control-label"></label>
+                    <input asp-for="Patient.PhoneNumber" type="tel" class="form-control" />
+                    <span asp-validation-for="Patient.PhoneNumber" class="text-danger"></span>
+                </div>
+
+                 <div class="col-md-6 form-group">
+                    <label asp-for="Patient.DateOfBirth" class="control-label"></label>
+                    <input asp-for="Patient.DateOfBirth" type="date" class="form-control" asp-format="{0:yyyy-MM-dd}" />
+                    <span asp-validation-for="Patient.DateOfBirth" class="text-danger"></span>
+                </div>
+
+            </div>
+
+            <div class="form-group mt-4">
+                <button type="submit" class="btn btn-primary"><i class="bi bi-save"></i> Guardar Cambios</button>
+                <a asp-page="../ManagePatients" class="btn btn-secondary">Cancelar</a>
+            </div>
+        </form>
+    </div>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

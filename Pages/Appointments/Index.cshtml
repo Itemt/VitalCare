@@ -692,7 +692,10 @@ else // Patient View
                                                 <i class="bi bi-calendar-event me-1"></i>Propuesta del Doctor
                                             </span> 
                                             <small class="text-info d-block mt-1">
-                                                <i class="bi bi-arrow-right me-1"></i>Nueva fecha: @item.ProposedNewDateTime.Value.ToString("dd/MM/yyyy HH:mm")
+                                                @{
+                                                    var proposedColombia = CitasEPS.Services.ColombiaTimeZoneService.ConvertUtcToColombia(item.ProposedNewDateTime.Value);
+                                                }
+                                                <i class="bi bi-arrow-right me-1"></i>Nueva fecha: @proposedColombia.ToString("dd/MM/yyyy HH:mm")
                                             </small>
                                             <small class="text-warning d-block">
                                                 <i class="bi bi-exclamation-circle me-1"></i>Requiere su confirmación
@@ -704,7 +707,10 @@ else // Patient View
                                                 <i class="bi bi-clock-history me-1"></i>Reagendamiento Solicitado
                                             </span> 
                                             <small class="text-muted d-block mt-1">
-                                                <i class="bi bi-arrow-right me-1"></i>Nueva fecha propuesta: @item.ProposedNewDateTime.Value.ToString("dd/MM/yyyy HH:mm")
+                                                @{
+                                                    var proposedReschedule = CitasEPS.Services.ColombiaTimeZoneService.ConvertUtcToColombia(item.ProposedNewDateTime.Value);
+                                                }
+                                                <i class="bi bi-arrow-right me-1"></i>Nueva fecha propuesta: @proposedReschedule.ToString("dd/MM/yyyy HH:mm")
                                             </small>
                                             <small class="text-info d-block">
                                                 <i class="bi bi-hourglass-split me-1"></i>Esperando confirmación del doctor

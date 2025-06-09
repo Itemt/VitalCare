@@ -188,120 +188,12 @@ build_metadata.AdditionalFiles.CssScope =
 build_metadata.AdditionalFiles.TargetPath = QXJlYXNcSWRlbnRpdHlcUGFnZXNcX1ZpZXdTdGFydC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/CristianPC/Desktop/vitalcare/Pages/About.cshtml]
-build_metadata.AdditionalFiles.TargetPath = UGFnZXNcQWJvdXQuY3NodG1s
+[C:/Users/CristianPC/Desktop/vitalcare/Pages/Admin/ConfirmEmails.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcQWRtaW5cQ29uZmlybUVtYWlscy5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/CristianPC/Desktop/vitalcare/Pages/Admin/Appointments/Create.cshtml]
-build_metadata.AdditionalFiles.TargetPath = UGFnZXNcQWRtaW5cQXBwb2ludG1lbnRzXENyZWF0ZS5jc2h0bWw=
-build_metadata.AdditionalFiles.CssScope = 
-
-[C:/Users/CristianPC/Desktop/vitalcare/Pages/Admin/Appointments/Delete.cshtml]
-build_metadata.AdditionalFiles.TargetPath = UGFnZXNcQWRtaW5cQXBwb2ludG1lbnRzXERlbGV0ZS5jc2h0bWw=
-build_metadata.AdditionalFiles.CssScope = 
-
-[C:/Users/CristianPC/Desktop/vitalcare/Pages/Admin/Appointments/Details.cshtml]
-build_metadata.AdditionalFiles.TargetPath = UGFnZXNcQWRtaW5cQXBwb2ludG1lbnRzXERldGFpbHMuY3NodG1s
-build_metadata.AdditionalFiles.CssScope = 
-
-[C:/Users/CristianPC/Desktop/vitalcare/Pages/Admin/Appointments/SetCancelled.cshtml]
-build_metadata.AdditionalFiles.TargetPath = UGFnZXNcQWRtaW5cQXBwb2ludG1lbnRzXFNldENhbmNlbGxlZC5jc2h0bWw=
-build_metadata.AdditionalFiles.CssScope = 
-
-[C:/Users/CristianPC/Desktop/vitalcare/Pages/Admin/DataIntegrity.cshtml]
-build_metadata.AdditionalFiles.TargetPath = UGFnZXNcQWRtaW5cRGF0YUludGVncml0eS5jc2h0bWw=
-build_metadata.AdditionalFiles.CssScope = 
-
-[C:/Users/CristianPC/Desktop/vitalcare/Pages/Admin/Doctors/Create.cshtml]
-build_metadata.AdditionalFiles.TargetPath = UGFnZXNcQWRtaW5cRG9jdG9yc1xDcmVhdGUuY3NodG1s
-build_metadata.AdditionalFiles.CssScope = 
-
-[C:/Users/CristianPC/Desktop/vitalcare/Pages/Admin/Doctors/Delete.cshtml]
-build_metadata.AdditionalFiles.TargetPath = UGFnZXNcQWRtaW5cRG9jdG9yc1xEZWxldGUuY3NodG1s
-build_metadata.AdditionalFiles.CssScope = 
-
-[C:/Users/CristianPC/Desktop/vitalcare/Pages/Admin/Doctors/Edit.cshtml]
-build_metadata.AdditionalFiles.TargetPath = UGFnZXNcQWRtaW5cRG9jdG9yc1xFZGl0LmNzaHRtbA==
-build_metadata.AdditionalFiles.CssScope = 
-
-[C:/Users/CristianPC/Desktop/vitalcare/Pages/Admin/Index.cshtml]
-build_metadata.AdditionalFiles.TargetPath = UGFnZXNcQWRtaW5cSW5kZXguY3NodG1s
-build_metadata.AdditionalFiles.CssScope = 
-
-[C:/Users/CristianPC/Desktop/vitalcare/Pages/Admin/ManageAppointments.cshtml]
-build_metadata.AdditionalFiles.TargetPath = UGFnZXNcQWRtaW5cTWFuYWdlQXBwb2ludG1lbnRzLmNzaHRtbA==
-build_metadata.AdditionalFiles.CssScope = 
-
-[C:/Users/CristianPC/Desktop/vitalcare/Pages/Admin/ManageDoctors.cshtml]
-build_metadata.AdditionalFiles.TargetPath = UGFnZXNcQWRtaW5cTWFuYWdlRG9jdG9ycy5jc2h0bWw=
-build_metadata.AdditionalFiles.CssScope = 
-
-[C:/Users/CristianPC/Desktop/vitalcare/Pages/Admin/ManagePatients.cshtml]
-build_metadata.AdditionalFiles.TargetPath = UGFnZXNcQWRtaW5cTWFuYWdlUGF0aWVudHMuY3NodG1s
-build_metadata.AdditionalFiles.CssScope = 
-
-[C:/Users/CristianPC/Desktop/vitalcare/Pages/Admin/ManageSpecialties.cshtml]
-build_metadata.AdditionalFiles.TargetPath = UGFnZXNcQWRtaW5cTWFuYWdlU3BlY2lhbHRpZXMuY3NodG1s
-build_metadata.AdditionalFiles.CssScope = 
-
-[C:/Users/CristianPC/Desktop/vitalcare/Pages/Admin/ManageUsers.cshtml]
-build_metadata.AdditionalFiles.TargetPath = UGFnZXNcQWRtaW5cTWFuYWdlVXNlcnMuY3NodG1s
-build_metadata.AdditionalFiles.CssScope = 
-
-[C:/Users/CristianPC/Desktop/vitalcare/Pages/Admin/Medications/Create.cshtml]
-build_metadata.AdditionalFiles.TargetPath = UGFnZXNcQWRtaW5cTWVkaWNhdGlvbnNcQ3JlYXRlLmNzaHRtbA==
-build_metadata.AdditionalFiles.CssScope = 
-
-[C:/Users/CristianPC/Desktop/vitalcare/Pages/Admin/Medications/Delete.cshtml]
-build_metadata.AdditionalFiles.TargetPath = UGFnZXNcQWRtaW5cTWVkaWNhdGlvbnNcRGVsZXRlLmNzaHRtbA==
-build_metadata.AdditionalFiles.CssScope = 
-
-[C:/Users/CristianPC/Desktop/vitalcare/Pages/Admin/Medications/Details.cshtml]
-build_metadata.AdditionalFiles.TargetPath = UGFnZXNcQWRtaW5cTWVkaWNhdGlvbnNcRGV0YWlscy5jc2h0bWw=
-build_metadata.AdditionalFiles.CssScope = 
-
-[C:/Users/CristianPC/Desktop/vitalcare/Pages/Admin/Medications/Edit.cshtml]
-build_metadata.AdditionalFiles.TargetPath = UGFnZXNcQWRtaW5cTWVkaWNhdGlvbnNcRWRpdC5jc2h0bWw=
-build_metadata.AdditionalFiles.CssScope = 
-
-[C:/Users/CristianPC/Desktop/vitalcare/Pages/Admin/Medications/Index.cshtml]
-build_metadata.AdditionalFiles.TargetPath = UGFnZXNcQWRtaW5cTWVkaWNhdGlvbnNcSW5kZXguY3NodG1s
-build_metadata.AdditionalFiles.CssScope = 
-
-[C:/Users/CristianPC/Desktop/vitalcare/Pages/Admin/Patients/Create.cshtml]
-build_metadata.AdditionalFiles.TargetPath = UGFnZXNcQWRtaW5cUGF0aWVudHNcQ3JlYXRlLmNzaHRtbA==
-build_metadata.AdditionalFiles.CssScope = 
-
-[C:/Users/CristianPC/Desktop/vitalcare/Pages/Admin/Patients/Delete.cshtml]
-build_metadata.AdditionalFiles.TargetPath = UGFnZXNcQWRtaW5cUGF0aWVudHNcRGVsZXRlLmNzaHRtbA==
-build_metadata.AdditionalFiles.CssScope = 
-
-[C:/Users/CristianPC/Desktop/vitalcare/Pages/Admin/Patients/Edit.cshtml]
-build_metadata.AdditionalFiles.TargetPath = UGFnZXNcQWRtaW5cUGF0aWVudHNcRWRpdC5jc2h0bWw=
-build_metadata.AdditionalFiles.CssScope = 
-
-[C:/Users/CristianPC/Desktop/vitalcare/Pages/Admin/Specialties/Create.cshtml]
-build_metadata.AdditionalFiles.TargetPath = UGFnZXNcQWRtaW5cU3BlY2lhbHRpZXNcQ3JlYXRlLmNzaHRtbA==
-build_metadata.AdditionalFiles.CssScope = 
-
-[C:/Users/CristianPC/Desktop/vitalcare/Pages/Admin/Specialties/Delete.cshtml]
-build_metadata.AdditionalFiles.TargetPath = UGFnZXNcQWRtaW5cU3BlY2lhbHRpZXNcRGVsZXRlLmNzaHRtbA==
-build_metadata.AdditionalFiles.CssScope = 
-
-[C:/Users/CristianPC/Desktop/vitalcare/Pages/Admin/Specialties/Edit.cshtml]
-build_metadata.AdditionalFiles.TargetPath = UGFnZXNcQWRtaW5cU3BlY2lhbHRpZXNcRWRpdC5jc2h0bWw=
-build_metadata.AdditionalFiles.CssScope = 
-
-[C:/Users/CristianPC/Desktop/vitalcare/Pages/Admin/Users/Create.cshtml]
-build_metadata.AdditionalFiles.TargetPath = UGFnZXNcQWRtaW5cVXNlcnNcQ3JlYXRlLmNzaHRtbA==
-build_metadata.AdditionalFiles.CssScope = 
-
-[C:/Users/CristianPC/Desktop/vitalcare/Pages/Admin/Users/Delete.cshtml]
-build_metadata.AdditionalFiles.TargetPath = UGFnZXNcQWRtaW5cVXNlcnNcRGVsZXRlLmNzaHRtbA==
-build_metadata.AdditionalFiles.CssScope = 
-
-[C:/Users/CristianPC/Desktop/vitalcare/Pages/Admin/Users/Edit.cshtml]
-build_metadata.AdditionalFiles.TargetPath = UGFnZXNcQWRtaW5cVXNlcnNcRWRpdC5jc2h0bWw=
+[C:/Users/CristianPC/Desktop/vitalcare/Pages/Admin/DiagnosticData.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcQWRtaW5cRGlhZ25vc3RpY0RhdGEuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
 [C:/Users/CristianPC/Desktop/vitalcare/Pages/Appointments/Create.cshtml]
@@ -336,76 +228,64 @@ build_metadata.AdditionalFiles.CssScope =
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcQXBwb2ludG1lbnRzXFJldmlld0RvY3RvclByb3Bvc2FsLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/CristianPC/Desktop/vitalcare/Pages/Contact.cshtml]
-build_metadata.AdditionalFiles.TargetPath = UGFnZXNcQ29udGFjdC5jc2h0bWw=
+[C:/Users/CristianPC/Desktop/vitalcare/Pages/Debug/FixNotifications.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcRGVidWdcRml4Tm90aWZpY2F0aW9ucy5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/CristianPC/Desktop/vitalcare/Pages/Doctor/Agenda.cshtml]
-build_metadata.AdditionalFiles.TargetPath = UGFnZXNcRG9jdG9yXEFnZW5kYS5jc2h0bWw=
+[C:/Users/CristianPC/Desktop/vitalcare/Pages/Debug/Notifications.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcRGVidWdcTm90aWZpY2F0aW9ucy5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/CristianPC/Desktop/vitalcare/Pages/Doctor/ConfirmRescheduleProposal.cshtml]
-build_metadata.AdditionalFiles.TargetPath = UGFnZXNcRG9jdG9yXENvbmZpcm1SZXNjaGVkdWxlUHJvcG9zYWwuY3NodG1s
-build_metadata.AdditionalFiles.CssScope = 
-
-[C:/Users/CristianPC/Desktop/vitalcare/Pages/Doctor/DeletePrescription.cshtml]
-build_metadata.AdditionalFiles.TargetPath = UGFnZXNcRG9jdG9yXERlbGV0ZVByZXNjcmlwdGlvbi5jc2h0bWw=
-build_metadata.AdditionalFiles.CssScope = 
-
-[C:/Users/CristianPC/Desktop/vitalcare/Pages/Doctor/EditPrescription.cshtml]
-build_metadata.AdditionalFiles.TargetPath = UGFnZXNcRG9jdG9yXEVkaXRQcmVzY3JpcHRpb24uY3NodG1s
-build_metadata.AdditionalFiles.CssScope = 
-
-[C:/Users/CristianPC/Desktop/vitalcare/Pages/Doctor/GenerateRecipe.cshtml]
-build_metadata.AdditionalFiles.TargetPath = UGFnZXNcRG9jdG9yXEdlbmVyYXRlUmVjaXBlLmNzaHRtbA==
-build_metadata.AdditionalFiles.CssScope = 
-
-[C:/Users/CristianPC/Desktop/vitalcare/Pages/Doctor/MyRatings.cshtml]
-build_metadata.AdditionalFiles.TargetPath = UGFnZXNcRG9jdG9yXE15UmF0aW5ncy5jc2h0bWw=
-build_metadata.AdditionalFiles.CssScope = 
-
-[C:/Users/CristianPC/Desktop/vitalcare/Pages/Doctor/PatientHistory.cshtml]
-build_metadata.AdditionalFiles.TargetPath = UGFnZXNcRG9jdG9yXFBhdGllbnRIaXN0b3J5LmNzaHRtbA==
-build_metadata.AdditionalFiles.CssScope = 
-
-[C:/Users/CristianPC/Desktop/vitalcare/Pages/Doctor/Patients.cshtml]
-build_metadata.AdditionalFiles.TargetPath = UGFnZXNcRG9jdG9yXFBhdGllbnRzLmNzaHRtbA==
-build_metadata.AdditionalFiles.CssScope = 
-
-[C:/Users/CristianPC/Desktop/vitalcare/Pages/Doctor/Prescribe.cshtml]
-build_metadata.AdditionalFiles.TargetPath = UGFnZXNcRG9jdG9yXFByZXNjcmliZS5jc2h0bWw=
-build_metadata.AdditionalFiles.CssScope = 
-
-[C:/Users/CristianPC/Desktop/vitalcare/Pages/Doctor/ProposeDoctorReschedule.cshtml]
-build_metadata.AdditionalFiles.TargetPath = UGFnZXNcRG9jdG9yXFByb3Bvc2VEb2N0b3JSZXNjaGVkdWxlLmNzaHRtbA==
-build_metadata.AdditionalFiles.CssScope = 
-
-[C:/Users/CristianPC/Desktop/vitalcare/Pages/Emergency.cshtml]
-build_metadata.AdditionalFiles.TargetPath = UGFnZXNcRW1lcmdlbmN5LmNzaHRtbA==
+[C:/Users/CristianPC/Desktop/vitalcare/Pages/Debug/TestNotificationReschedule.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcRGVidWdcVGVzdE5vdGlmaWNhdGlvblJlc2NoZWR1bGUuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
 [C:/Users/CristianPC/Desktop/vitalcare/Pages/Error.cshtml]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcRXJyb3IuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/CristianPC/Desktop/vitalcare/Pages/FAQ.cshtml]
-build_metadata.AdditionalFiles.TargetPath = UGFnZXNcRkFRLmNzaHRtbA==
-build_metadata.AdditionalFiles.CssScope = 
-
 [C:/Users/CristianPC/Desktop/vitalcare/Pages/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcSW5kZXguY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/CristianPC/Desktop/vitalcare/Pages/Mission.cshtml]
-build_metadata.AdditionalFiles.TargetPath = UGFnZXNcTWlzc2lvbi5jc2h0bWw=
+[C:/Users/CristianPC/Desktop/vitalcare/Pages/Public/About.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcUHVibGljXEFib3V0LmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/CristianPC/Desktop/vitalcare/Pages/Patient/RateAppointment.cshtml]
-build_metadata.AdditionalFiles.TargetPath = UGFnZXNcUGF0aWVudFxSYXRlQXBwb2ludG1lbnQuY3NodG1s
+[C:/Users/CristianPC/Desktop/vitalcare/Pages/Public/Contact.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcUHVibGljXENvbnRhY3QuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/CristianPC/Desktop/vitalcare/Pages/Servicios.cshtml]
-build_metadata.AdditionalFiles.TargetPath = UGFnZXNcU2VydmljaW9zLmNzaHRtbA==
+[C:/Users/CristianPC/Desktop/vitalcare/Pages/Public/Emergency.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcUHVibGljXEVtZXJnZW5jeS5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/CristianPC/Desktop/vitalcare/Pages/Public/FAQ.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcUHVibGljXEZBUS5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/CristianPC/Desktop/vitalcare/Pages/Public/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcUHVibGljXEluZGV4LmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/CristianPC/Desktop/vitalcare/Pages/Public/Mission.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcUHVibGljXE1pc3Npb24uY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/CristianPC/Desktop/vitalcare/Pages/Public/Servicios.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcUHVibGljXFNlcnZpY2lvcy5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/CristianPC/Desktop/vitalcare/Pages/Public/Support.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcUHVibGljXFN1cHBvcnQuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/CristianPC/Desktop/vitalcare/Pages/Public/Team.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcUHVibGljXFRlYW0uY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/CristianPC/Desktop/vitalcare/Pages/Public/Testimonials.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcUHVibGljXFRlc3RpbW9uaWFscy5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
 [C:/Users/CristianPC/Desktop/vitalcare/Pages/Shared/_Footer.cshtml]
@@ -428,16 +308,168 @@ build_metadata.AdditionalFiles.CssScope =
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcU2hhcmVkXF9WYWxpZGF0aW9uU2NyaXB0c1BhcnRpYWwuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/CristianPC/Desktop/vitalcare/Pages/Support.cshtml]
-build_metadata.AdditionalFiles.TargetPath = UGFnZXNcU3VwcG9ydC5jc2h0bWw=
+[C:/Users/CristianPC/Desktop/vitalcare/Pages/UserDashboards/Admin/Appointments/Create.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcVXNlckRhc2hib2FyZHNcQWRtaW5cQXBwb2ludG1lbnRzXENyZWF0ZS5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/CristianPC/Desktop/vitalcare/Pages/Team.cshtml]
-build_metadata.AdditionalFiles.TargetPath = UGFnZXNcVGVhbS5jc2h0bWw=
+[C:/Users/CristianPC/Desktop/vitalcare/Pages/UserDashboards/Admin/Appointments/Delete.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcVXNlckRhc2hib2FyZHNcQWRtaW5cQXBwb2ludG1lbnRzXERlbGV0ZS5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/CristianPC/Desktop/vitalcare/Pages/Testimonials.cshtml]
-build_metadata.AdditionalFiles.TargetPath = UGFnZXNcVGVzdGltb25pYWxzLmNzaHRtbA==
+[C:/Users/CristianPC/Desktop/vitalcare/Pages/UserDashboards/Admin/Appointments/Details.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcVXNlckRhc2hib2FyZHNcQWRtaW5cQXBwb2ludG1lbnRzXERldGFpbHMuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/CristianPC/Desktop/vitalcare/Pages/UserDashboards/Admin/Appointments/SetCancelled.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcVXNlckRhc2hib2FyZHNcQWRtaW5cQXBwb2ludG1lbnRzXFNldENhbmNlbGxlZC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/CristianPC/Desktop/vitalcare/Pages/UserDashboards/Admin/DataIntegrity.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcVXNlckRhc2hib2FyZHNcQWRtaW5cRGF0YUludGVncml0eS5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/CristianPC/Desktop/vitalcare/Pages/UserDashboards/Admin/Doctors/Create.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcVXNlckRhc2hib2FyZHNcQWRtaW5cRG9jdG9yc1xDcmVhdGUuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/CristianPC/Desktop/vitalcare/Pages/UserDashboards/Admin/Doctors/Delete.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcVXNlckRhc2hib2FyZHNcQWRtaW5cRG9jdG9yc1xEZWxldGUuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/CristianPC/Desktop/vitalcare/Pages/UserDashboards/Admin/Doctors/Edit.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcVXNlckRhc2hib2FyZHNcQWRtaW5cRG9jdG9yc1xFZGl0LmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/CristianPC/Desktop/vitalcare/Pages/UserDashboards/Admin/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcVXNlckRhc2hib2FyZHNcQWRtaW5cSW5kZXguY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/CristianPC/Desktop/vitalcare/Pages/UserDashboards/Admin/ManageAppointments.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcVXNlckRhc2hib2FyZHNcQWRtaW5cTWFuYWdlQXBwb2ludG1lbnRzLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/CristianPC/Desktop/vitalcare/Pages/UserDashboards/Admin/ManageDoctors.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcVXNlckRhc2hib2FyZHNcQWRtaW5cTWFuYWdlRG9jdG9ycy5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/CristianPC/Desktop/vitalcare/Pages/UserDashboards/Admin/ManagePatients.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcVXNlckRhc2hib2FyZHNcQWRtaW5cTWFuYWdlUGF0aWVudHMuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/CristianPC/Desktop/vitalcare/Pages/UserDashboards/Admin/ManageSpecialties.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcVXNlckRhc2hib2FyZHNcQWRtaW5cTWFuYWdlU3BlY2lhbHRpZXMuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/CristianPC/Desktop/vitalcare/Pages/UserDashboards/Admin/ManageUsers.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcVXNlckRhc2hib2FyZHNcQWRtaW5cTWFuYWdlVXNlcnMuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/CristianPC/Desktop/vitalcare/Pages/UserDashboards/Admin/Medications/Create.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcVXNlckRhc2hib2FyZHNcQWRtaW5cTWVkaWNhdGlvbnNcQ3JlYXRlLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/CristianPC/Desktop/vitalcare/Pages/UserDashboards/Admin/Medications/Delete.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcVXNlckRhc2hib2FyZHNcQWRtaW5cTWVkaWNhdGlvbnNcRGVsZXRlLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/CristianPC/Desktop/vitalcare/Pages/UserDashboards/Admin/Medications/Details.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcVXNlckRhc2hib2FyZHNcQWRtaW5cTWVkaWNhdGlvbnNcRGV0YWlscy5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/CristianPC/Desktop/vitalcare/Pages/UserDashboards/Admin/Medications/Edit.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcVXNlckRhc2hib2FyZHNcQWRtaW5cTWVkaWNhdGlvbnNcRWRpdC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/CristianPC/Desktop/vitalcare/Pages/UserDashboards/Admin/Medications/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcVXNlckRhc2hib2FyZHNcQWRtaW5cTWVkaWNhdGlvbnNcSW5kZXguY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/CristianPC/Desktop/vitalcare/Pages/UserDashboards/Admin/Patients/Create.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcVXNlckRhc2hib2FyZHNcQWRtaW5cUGF0aWVudHNcQ3JlYXRlLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/CristianPC/Desktop/vitalcare/Pages/UserDashboards/Admin/Patients/Delete.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcVXNlckRhc2hib2FyZHNcQWRtaW5cUGF0aWVudHNcRGVsZXRlLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/CristianPC/Desktop/vitalcare/Pages/UserDashboards/Admin/Patients/Edit.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcVXNlckRhc2hib2FyZHNcQWRtaW5cUGF0aWVudHNcRWRpdC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/CristianPC/Desktop/vitalcare/Pages/UserDashboards/Admin/Specialties/Create.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcVXNlckRhc2hib2FyZHNcQWRtaW5cU3BlY2lhbHRpZXNcQ3JlYXRlLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/CristianPC/Desktop/vitalcare/Pages/UserDashboards/Admin/Specialties/Delete.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcVXNlckRhc2hib2FyZHNcQWRtaW5cU3BlY2lhbHRpZXNcRGVsZXRlLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/CristianPC/Desktop/vitalcare/Pages/UserDashboards/Admin/Specialties/Edit.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcVXNlckRhc2hib2FyZHNcQWRtaW5cU3BlY2lhbHRpZXNcRWRpdC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/CristianPC/Desktop/vitalcare/Pages/UserDashboards/Admin/Users/Create.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcVXNlckRhc2hib2FyZHNcQWRtaW5cVXNlcnNcQ3JlYXRlLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/CristianPC/Desktop/vitalcare/Pages/UserDashboards/Admin/Users/Delete.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcVXNlckRhc2hib2FyZHNcQWRtaW5cVXNlcnNcRGVsZXRlLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/CristianPC/Desktop/vitalcare/Pages/UserDashboards/Admin/Users/Edit.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcVXNlckRhc2hib2FyZHNcQWRtaW5cVXNlcnNcRWRpdC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/CristianPC/Desktop/vitalcare/Pages/UserDashboards/Doctor/Agenda.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcVXNlckRhc2hib2FyZHNcRG9jdG9yXEFnZW5kYS5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/CristianPC/Desktop/vitalcare/Pages/UserDashboards/Doctor/ConfirmRescheduleProposal.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcVXNlckRhc2hib2FyZHNcRG9jdG9yXENvbmZpcm1SZXNjaGVkdWxlUHJvcG9zYWwuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/CristianPC/Desktop/vitalcare/Pages/UserDashboards/Doctor/DeletePrescription.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcVXNlckRhc2hib2FyZHNcRG9jdG9yXERlbGV0ZVByZXNjcmlwdGlvbi5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/CristianPC/Desktop/vitalcare/Pages/UserDashboards/Doctor/EditPrescription.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcVXNlckRhc2hib2FyZHNcRG9jdG9yXEVkaXRQcmVzY3JpcHRpb24uY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/CristianPC/Desktop/vitalcare/Pages/UserDashboards/Doctor/GenerateRecipe.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcVXNlckRhc2hib2FyZHNcRG9jdG9yXEdlbmVyYXRlUmVjaXBlLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/CristianPC/Desktop/vitalcare/Pages/UserDashboards/Doctor/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcVXNlckRhc2hib2FyZHNcRG9jdG9yXEluZGV4LmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/CristianPC/Desktop/vitalcare/Pages/UserDashboards/Doctor/MyRatings.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcVXNlckRhc2hib2FyZHNcRG9jdG9yXE15UmF0aW5ncy5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/CristianPC/Desktop/vitalcare/Pages/UserDashboards/Doctor/PatientHistory.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcVXNlckRhc2hib2FyZHNcRG9jdG9yXFBhdGllbnRIaXN0b3J5LmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/CristianPC/Desktop/vitalcare/Pages/UserDashboards/Doctor/Patients.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcVXNlckRhc2hib2FyZHNcRG9jdG9yXFBhdGllbnRzLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/CristianPC/Desktop/vitalcare/Pages/UserDashboards/Doctor/Prescribe.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcVXNlckRhc2hib2FyZHNcRG9jdG9yXFByZXNjcmliZS5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/CristianPC/Desktop/vitalcare/Pages/UserDashboards/Doctor/ProposeDoctorReschedule.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcVXNlckRhc2hib2FyZHNcRG9jdG9yXFByb3Bvc2VEb2N0b3JSZXNjaGVkdWxlLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/CristianPC/Desktop/vitalcare/Pages/UserDashboards/Patient/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcVXNlckRhc2hib2FyZHNcUGF0aWVudFxJbmRleC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/CristianPC/Desktop/vitalcare/Pages/UserDashboards/Patient/RateAppointment.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcVXNlckRhc2hib2FyZHNcUGF0aWVudFxSYXRlQXBwb2ludG1lbnQuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
 [C:/Users/CristianPC/Desktop/vitalcare/Pages/_ViewImports.cshtml]

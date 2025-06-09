@@ -1,0 +1,620 @@
+@page
+@model CitasEPS.Pages.ServiciosModel
+@{
+    ViewData["Title"] = "Servicios - VitalCare";
+}
+
+<!-- Enhanced Hero Section for Services -->
+<div class="container-fluid text-white text-center py-5 mb-4 shadow-lg hero-section services-hero position-relative overflow-hidden" style="background: linear-gradient(135deg, #001122 0%, #002244 50%, #003366 100%); min-height: 80vh; display: flex; align-items: center;">
+    
+    <!-- Animated Background Elements -->
+    <div class="position-absolute w-100 h-100" style="top: 0; left: 0; z-index: 1;">
+        <div class="floating-medical-shapes">
+            <div class="medical-shape medical-shape-1"></div>
+            <div class="medical-shape medical-shape-2"></div>
+            <div class="medical-shape medical-shape-3"></div>
+            <div class="medical-shape medical-shape-4"></div>
+            <div class="medical-shape medical-shape-5"></div>
+        </div>
+    </div>
+    
+    <!-- Gradient Overlay -->
+    <div class="position-absolute w-100 h-100" style="background: linear-gradient(135deg, rgba(0,17,34,0.95) 0%, rgba(0,34,68,0.85) 50%, rgba(0,51,102,0.95) 100%); top: 0; left: 0; z-index: 2;"></div>
+    
+    <!-- Hero Content -->
+    <div class="container position-relative" style="z-index: 10;">
+        <div class="row justify-content-center">
+            <div class="col-lg-10 col-xl-8">
+                <div class="hero-content-wrapper">
+                    <!-- Medical Icon -->
+                    <div class="hero-medical-icon mb-4">
+                        <div class="medical-icon-wrapper">
+                            <i class="bi bi-hospital-fill" style="font-size: 4rem; color: #22c55e; filter: drop-shadow(0 0 20px rgba(34, 197, 94, 0.5));"></i>
+                        </div>
+                    </div>
+                    
+                    <!-- Title with Animation -->
+                    <h1 class="display-1 fw-bolder text-shadow-custom mb-4 hero-title-animated">
+                        <span class="hero-title-vital" style="color: #22c55e; text-shadow: 0 0 30px rgba(34, 197, 94, 0.3);">Servicios</span> 
+                        <span class="hero-title-care" style="color: #ffffff; text-shadow: 0 0 30px rgba(255, 255, 255, 0.3);">Médicos</span>
+                    </h1>
+                    
+                    <!-- Subtitle -->
+                    <p class="lead fs-3 mb-5 text-shadow-custom hero-subtitle-animated" style="max-width: 800px; margin: 0 auto;">
+                        IPS habilitada por Supersalud en Barrancabermeja, Santander. 
+                        <span style="color: #22c55e; font-weight: 600;">Atención médica integral</span> 
+                        con citas programadas las 24 horas.
+                    </p>
+                    
+                    <!-- Enhanced Service Badges -->
+                    <div class="service-badges-enhanced mb-5">
+                        <div class="row g-3 justify-content-center">
+                            <div class="col-md-4">
+                                <div class="service-badge-premium">
+                                    <i class="bi bi-check-circle-fill me-2"></i>
+                                    <span>Habilitación Supersalud</span>
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="service-badge-premium">
+                                    <i class="bi bi-award-fill me-2"></i>
+                                    <span>ISO 9001:2015</span>
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="service-badge-premium">
+                                    <i class="bi bi-shield-check-fill me-2"></i>
+                                    <span>Datos Protegidos</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Scroll Indicator -->
+    <div class="position-absolute bottom-0 start-50 translate-middle-x mb-4" style="z-index: 10;">
+        <div class="scroll-indicator-medical" onclick="scrollToNextSection()">
+            <i class="bi bi-chevron-down text-white"></i>
+        </div>
+    </div>
+</div>
+
+<!-- Custom Styles for Enhanced Hero -->
+<style>
+    .medical-shape {
+        position: absolute;
+        opacity: 0.1;
+        animation: float 3s ease-in-out infinite;
+    }
+    
+    .medical-shape-1 {
+        top: 10%;
+        left: 10%;
+        font-size: 3rem;
+        animation-delay: 0s;
+    }
+    
+    .medical-shape-2 {
+        top: 20%;
+        right: 15%;
+        font-size: 2rem;
+        animation-delay: 1s;
+    }
+    
+    .medical-shape-3 {
+        bottom: 30%;
+        left: 20%;
+        font-size: 2.5rem;
+        animation-delay: 2s;
+    }
+    
+    .medical-shape-4 {
+        bottom: 20%;
+        right: 10%;
+        font-size: 3.5rem;
+        animation-delay: 3s;
+    }
+    
+    .medical-shape-5 {
+        top: 50%;
+        left: 5%;
+        font-size: 2rem;
+        animation-delay: 4s;
+    }
+    
+    .medical-shape::before {
+        content: "🏥";
+    }
+    
+    .medical-shape-2::before {
+        content: "⚕️";
+    }
+    
+    .medical-shape-3::before {
+        content: "🩺";
+    }
+    
+    .medical-shape-4::before {
+        content: "💊";
+    }
+    
+    .medical-shape-5::before {
+        content: "🔬";
+    }
+    
+    @@keyframes float {
+        0%, 100% { transform: translateY(0px) rotate(0deg); }
+        50% { transform: translateY(-20px) rotate(5deg); }
+    }
+    
+    .hero-title-animated {
+        animation: slideInUp 0.6s ease-out;
+    }
+    
+    .hero-subtitle-animated {
+        animation: slideInUp 0.6s ease-out 0.15s both;
+    }
+    
+    .service-badge-premium {
+        background: rgba(255, 255, 255, 0.15);
+        backdrop-filter: blur(10px);
+        border: 1px solid rgba(255, 255, 255, 0.2);
+        border-radius: 50px;
+        padding: 12px 20px;
+        color: white;
+        font-weight: 600;
+        transition: all 0.3s ease;
+        animation: slideInUp 0.6s ease-out 0.3s both;
+    }
+    
+    .service-badge-premium:hover {
+        background: rgba(255, 255, 255, 0.25);
+        transform: translateY(-2px);
+    }
+    
+    .hero-btn-premium {
+        padding: 15px 30px;
+        border-radius: 50px;
+        font-weight: 600;
+        transition: all 0.3s ease;
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+        animation: slideInUp 0.6s ease-out 0.45s both;
+    }
+    
+    .hero-btn-premium:hover {
+        transform: translateY(-3px);
+        box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
+    }
+    
+    .scroll-indicator-medical {
+        animation: bounce 2s infinite;
+        cursor: pointer;
+    }
+    
+    @@keyframes slideInUp {
+        from {
+            opacity: 0;
+            transform: translateY(30px);
+        }
+        to {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    }
+    
+    @@keyframes bounce {
+        0%, 20%, 50%, 80%, 100% { transform: translateY(0); }
+        40% { transform: translateY(-10px); }
+        60% { transform: translateY(-5px); }
+    }
+    
+    .medical-icon-wrapper {
+        animation: pulse 1s infinite;
+    }
+    
+    @@keyframes pulse {
+        0% { transform: scale(1); }
+        50% { transform: scale(1.1); }
+        100% { transform: scale(1); }
+    }
+</style>
+
+<!-- Scroll Functionality Script -->
+<script>
+function scrollToNextSection() {
+    console.log('Scroll function triggered'); // Debug
+    // Simple scroll down by viewport height
+    window.scrollBy({
+        top: window.innerHeight * 0.8,
+        behavior: 'smooth'
+    });
+}
+
+// Also add a click event listener as backup
+document.addEventListener('DOMContentLoaded', function() {
+    const scrollBtn = document.querySelector('.scroll-indicator-medical');
+    if (scrollBtn) {
+        scrollBtn.addEventListener('click', function() {
+            console.log('Backup click triggered'); // Debug
+            window.scrollBy({
+                top: window.innerHeight * 0.8,
+                behavior: 'smooth'
+            });
+        });
+    }
+});
+</script>
+
+<!-- Services Statistics -->
+<div class="container mb-5">
+    <div class="row text-center">
+        <div class="col-lg-12">
+            <h2 class="display-6 fw-bold mb-4" style="color: #003366;">Estadísticas de Atención</h2>
+            <div class="row g-4">
+                <div class="col-md-3">
+                    <div class="stat-card-premium p-4 rounded-3 shadow-lg h-100 feature-card-hover">
+                        <div class="feature-icon-wrapper">
+                            <i class="bi bi-people-fill feature-icon-main fs-1 text-primary"></i>
+                        </div>
+                        <h3 class="fw-bold text-primary mb-1 counter-number" data-target="15000">0</h3>
+                        <p class="text-muted mb-0">Pacientes Atendidos</p>
+                        <small class="text-success"><i class="bi bi-graph-up-arrow me-1"></i>+12% este año</small>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="stat-card-premium p-4 rounded-3 shadow-lg h-100 feature-card-hover">
+                        <div class="feature-icon-wrapper">
+                            <i class="bi bi-hospital feature-icon-main fs-1 text-success"></i>
+                        </div>
+                        <h3 class="fw-bold text-success mb-1 counter-number" data-target="45">0</h3>
+                        <p class="text-muted mb-0">Especialistas</p>
+                        <small class="text-info"><i class="bi bi-geo-alt-fill me-1"></i>Barrancabermeja</small>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="stat-card-premium p-4 rounded-3 shadow-lg h-100 feature-card-hover">
+                        <div class="feature-icon-wrapper">
+                            <i class="bi bi-clock-history feature-icon-main fs-1 text-info"></i>
+                        </div>
+                        <h3 class="fw-bold text-info mb-1"><span class="counter-number" data-target="12">0</span>h</h3>
+                        <p class="text-muted mb-0">Horario Diario</p>
+                        <small class="text-warning"><i class="bi bi-telephone-fill me-1"></i>Urgencias 24h</small>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="stat-card-premium p-4 rounded-3 shadow-lg h-100 feature-card-hover">
+                        <div class="feature-icon-wrapper">
+                            <i class="bi bi-star-fill feature-icon-main fs-1 text-warning"></i>
+                        </div>
+                        <h3 class="fw-bold text-warning mb-1"><span class="counter-number" data-target="96">0</span>%</h3>
+                        <p class="text-muted mb-0">Satisfacción</p>
+                        <small class="text-success"><i class="bi bi-heart-fill me-1"></i>Calidad Humana</small>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Medical Services Grid -->
+<div class="container mb-5">
+    <div class="row text-center mb-5">
+        <div class="col-lg-8 mx-auto">
+            <h2 class="display-5 fw-bold mb-3" style="color: #003366;">Servicios Médicos</h2>
+            <p class="lead text-muted fs-5">Atención integral en salud para toda la familia</p>
+        </div>
+    </div>
+    
+    <div class="row g-4 mb-5">
+        <div class="col-lg-4 col-md-6">
+            <div class="card h-100 shadow-lg features-card-premium border-0 bg-white feature-card-hover">
+                <div class="card-body p-4 text-center">
+                    <div class="feature-icon-wrapper mb-4">
+                        <i class="bi bi-heart-pulse feature-icon-main" style="font-size: 4rem; color: #003366;"></i>
+                    </div>
+                    <h5 class="card-title fw-bold mb-3" style="color: #003366;">Medicina General</h5>
+                    <p class="card-text text-muted mb-3">Primera consulta médica con médicos generales titulados. Control de enfermedades crónicas, medicina preventiva y programas de promoción de la salud.</p>
+                    <div class="feature-benefits mb-3">
+                        <small class="d-block text-success mb-1"><i class="bi bi-check-circle-fill me-2"></i>Consulta médica general y urgencias</small>
+                        <small class="d-block text-success mb-1"><i class="bi bi-check-circle-fill me-2"></i>Control diabetes, hipertensión y tiroides</small>
+                        <small class="d-block text-success"><i class="bi bi-check-circle-fill me-2"></i>Certificados médicos y incapacidades</small>
+                    </div>
+                    <div class="tech-specs mt-3">
+                        <div class="row text-center">
+                            <div class="col-4">
+                                <strong style="color: #003366;">30min</strong>
+                                <br><small class="text-muted">Consulta</small>
+                            </div>
+                            <div class="col-4">
+                                <strong class="text-success">L-V</strong>
+                                <br><small class="text-muted">Disponible</small>
+                            </div>
+                            <div class="col-4">
+                                <strong class="text-info">Agenda</strong>
+                                <br><small class="text-muted">Online</small>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="col-lg-4 col-md-6">
+            <div class="card h-100 shadow-lg features-card-premium border-0 bg-white feature-card-hover">
+                <div class="card-body p-4 text-center">
+                    <div class="feature-icon-wrapper mb-4">
+                        <i class="bi bi-activity feature-icon-main" style="font-size: 4rem; color: #003366;"></i>
+                    </div>
+                    <h5 class="card-title fw-bold mb-3" style="color: #003366;">Especialidades Médicas</h5>
+                    <p class="card-text text-muted mb-3">Atención especializada con médicos especialistas certificados: cardiología, dermatología, ginecología, pediatría, medicina interna, psicología y más.</p>
+                    <div class="feature-benefits mb-3">
+                        <small class="d-block text-success mb-1"><i class="bi bi-check-circle-fill me-2"></i>Cardiología y electrocardiogramas</small>
+                        <small class="d-block text-success mb-1"><i class="bi bi-check-circle-fill me-2"></i>Ginecología y planificación familiar</small>
+                        <small class="d-block text-success"><i class="bi bi-check-circle-fill me-2"></i>Pediatría y control de crecimiento</small>
+                    </div>
+                    <div class="tech-specs mt-3">
+                        <div class="row text-center">
+                            <div class="col-4">
+                                <strong style="color: #003366;">45min</strong>
+                                <br><small class="text-muted">Consulta</small>
+                            </div>
+                            <div class="col-4">
+                                <strong class="text-success">15+</strong>
+                                <br><small class="text-muted">Especialidades</small>
+                            </div>
+                            <div class="col-4">
+                                <strong class="text-info">Cita</strong>
+                                <br><small class="text-muted">Programada</small>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="col-lg-4 col-md-6">
+            <div class="card h-100 shadow-lg features-card-premium border-0 bg-white feature-card-hover">
+                <div class="card-body p-4 text-center">
+                    <div class="feature-icon-wrapper mb-4">
+                        <i class="bi bi-prescription2 feature-icon-main" style="font-size: 4rem; color: #003366;"></i>
+                    </div>
+                    <h5 class="card-title fw-bold mb-3" style="color: #003366;">Laboratorio Clínico</h5>
+                    <p class="card-text text-muted mb-3">Laboratorio clínico certificado con tecnología automatizada. Toma de muestras, análisis completos y resultados digitales entregados por portal web seguro.</p>
+                    <div class="feature-benefits mb-3">
+                        <small class="d-block text-success mb-1"><i class="bi bi-check-circle-fill me-2"></i>Hemograma, química sanguínea, perfil lipídico</small>
+                        <small class="d-block text-success mb-1"><i class="bi bi-check-circle-fill me-2"></i>Uroanálisis, coprocultivo, parasitología</small>
+                        <small class="d-block text-success"><i class="bi bi-check-circle-fill me-2"></i>Resultados digitales certificados</small>
+                    </div>
+                    <div class="tech-specs mt-3">
+                        <div class="row text-center">
+                            <div class="col-4">
+                                <strong style="color: #003366;">24h</strong>
+                                <br><small class="text-muted">Resultados</small>
+                            </div>
+                            <div class="col-4">
+                                <strong class="text-success">7:00AM</strong>
+                                <br><small class="text-muted">Toma muestra</small>
+                            </div>
+                            <div class="col-4">
+                                <strong class="text-info">Digital</strong>
+                                <br><small class="text-muted">Entrega</small>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Additional Services Section -->
+<section class="py-5 additional-services-section">
+    <div class="container">
+        <div class="row text-center mb-5">
+            <div class="col-lg-8 mx-auto">
+                <h2 class="display-5 fw-bold mb-3" style="color: #003366;">Servicios Adicionales</h2>
+                <p class="lead text-muted fs-5">Complementamos tu atención con servicios de apoyo</p>
+            </div>
+        </div>
+        
+        <div class="row g-4">
+            <div class="col-lg-6 col-md-6">
+                <div class="card advanced-service-card p-4 rounded-3 shadow-lg h-100 bg-white border-0 feature-card-hover">
+                    <div class="d-flex align-items-center mb-3">
+                        <div class="feature-icon-wrapper me-3">
+                            <i class="bi bi-camera feature-icon-main fs-2" style="color: #003366;"></i>
+                        </div>
+                        <div>
+                            <h5 class="fw-bold mb-1" style="color: #003366;">Imágenes Diagnósticas</h5>
+                            <small class="text-muted">Radiología y ecografía</small>
+                        </div>
+                    </div>
+                    <p class="text-muted mb-3">Radiografías, ecografías, mamografías y otros estudios de imágenes con equipos de alta tecnología.</p>
+                    <div class="feature-metrics">
+                        <span class="badge bg-primary text-white me-2"><i class="bi bi-shield-check me-1"></i>Alta resolución</span>
+                        <span class="badge bg-success text-white"><i class="bi bi-clock me-1"></i>Mismo día</span>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="col-lg-6 col-md-6">
+                <div class="card advanced-service-card p-4 rounded-3 shadow-lg h-100 bg-white border-0 feature-card-hover">
+                    <div class="d-flex align-items-center mb-3">
+                        <div class="feature-icon-wrapper me-3">
+                            <i class="bi bi-phone feature-icon-main fs-2" style="color: #22816b;"></i>
+                        </div>
+                        <div>
+                            <h5 class="fw-bold mb-1 text-success">Telemedicina</h5>
+                            <small class="text-muted">Consulta virtual</small>
+                        </div>
+                    </div>
+                    <p class="text-muted mb-3">Consultas médicas virtuales por videollamada, seguimiento de tratamientos y orientación médica remota.</p>
+                    <div class="feature-metrics">
+                        <span class="badge bg-primary text-white me-2"><i class="bi bi-wifi me-1"></i>HD Video</span>
+                        <span class="badge bg-success text-white"><i class="bi bi-house me-1"></i>Desde casa</span>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="col-lg-6 col-md-6">
+                <div class="card advanced-service-card p-4 rounded-3 shadow-lg h-100 bg-white border-0 feature-card-hover">
+                    <div class="d-flex align-items-center mb-3">
+                        <div class="feature-icon-wrapper me-3">
+                            <i class="bi bi-truck feature-icon-main fs-2" style="color: #17a2b8;"></i>
+                        </div>
+                        <div>
+                            <h5 class="fw-bold mb-1 text-info">Domicilios</h5>
+                            <small class="text-muted">Atención en casa</small>
+                        </div>
+                    </div>
+                    <p class="text-muted mb-3">Toma de muestras, aplicación de medicamentos y consultas médicas a domicilio en Barrancabermeja.</p>
+                    <div class="feature-metrics">
+                        <span class="badge bg-primary text-white me-2"><i class="bi bi-geo-alt me-1"></i>Zona urbana</span>
+                        <span class="badge bg-success text-white"><i class="bi bi-calendar me-1"></i>Programado</span>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="col-lg-6 col-md-6">
+                <div class="card advanced-service-card p-4 rounded-3 shadow-lg h-100 bg-white border-0 feature-card-hover">
+                    <div class="d-flex align-items-center mb-3">
+                        <div class="feature-icon-wrapper me-3">
+                            <i class="bi bi-shield-plus feature-icon-main fs-2" style="color: #dc3545;"></i>
+                        </div>
+                        <div>
+                            <h5 class="fw-bold mb-1" style="color: #dc3545;">Urgencias</h5>
+                            <small class="text-muted">Atención inmediata</small>
+                        </div>
+                    </div>
+                    <p class="text-muted mb-3">Servicio de urgencias las 24 horas con personal especializado para atención de emergencias médicas.</p>
+                    <div class="feature-metrics">
+                        <span class="badge bg-danger text-white me-2"><i class="bi bi-clock-fill me-1"></i>24/7</span>
+                        <span class="badge bg-warning text-white"><i class="bi bi-lightning me-1"></i>Inmediato</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- EPS and Insurance Partners -->
+<div class="container py-5">
+    <div class="row text-center mb-5">
+        <div class="col-lg-10 mx-auto">
+            <h2 class="display-6 fw-bold mb-3" style="color: #003366;">Convenios EPS</h2>
+            <p class="lead text-muted fs-5">Atendemos usuarios de las principales EPS del país</p>
+            <div class="divider-primary mx-auto mb-4"></div>
+        </div>
+    </div>
+    
+    <div class="row g-4 justify-content-center align-items-stretch">
+        <div class="col-lg-2 col-md-4 col-6">
+            <div class="partner-logo-container feature-card-hover">
+                <div class="feature-icon-wrapper">
+                    <i class="bi bi-shield-plus feature-icon-main" style="color: #003366;"></i>
+                </div>
+                <div class="partner-name">Nueva EPS</div>
+            </div>
+        </div>
+        <div class="col-lg-2 col-md-4 col-6">
+            <div class="partner-logo-container feature-card-hover">
+                <div class="feature-icon-wrapper">
+                    <i class="bi bi-heart-pulse feature-icon-main" style="color: #22816b;"></i>
+                </div>
+                <div class="partner-name">Sanitas</div>
+            </div>
+        </div>
+        <div class="col-lg-2 col-md-4 col-6">
+            <div class="partner-logo-container feature-card-hover">
+                <div class="feature-icon-wrapper">
+                    <i class="bi bi-plus-circle feature-icon-main" style="color: #17a2b8;"></i>
+                </div>
+                <div class="partner-name">Compensar</div>
+            </div>
+        </div>
+        <div class="col-lg-2 col-md-4 col-6">
+            <div class="partner-logo-container feature-card-hover">
+                <div class="feature-icon-wrapper">
+                    <i class="bi bi-hospital feature-icon-main" style="color: #dc3545;"></i>
+                </div>
+                <div class="partner-name">Coomeva</div>
+            </div>
+        </div>
+        <div class="col-lg-2 col-md-4 col-6">
+            <div class="partner-logo-container feature-card-hover">
+                <div class="feature-icon-wrapper">
+                    <i class="bi bi-clipboard-heart feature-icon-main" style="color: #ffc107;"></i>
+                </div>
+                <div class="partner-name">Sura</div>
+            </div>
+        </div>
+        <div class="col-lg-2 col-md-4 col-6">
+            <div class="partner-logo-container feature-card-hover">
+                <div class="feature-icon-wrapper">
+                    <i class="bi bi-bandaid feature-icon-main" style="color: #6f42c1;"></i>
+                </div>
+                <div class="partner-name">Salud Total</div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            // Counter Animation
+            const counters = document.querySelectorAll('.counter-number');
+            const observerOptions = {
+                threshold: 0.7
+            };
+            
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        const counter = entry.target;
+                        const target = parseInt(counter.getAttribute('data-target'));
+                        const duration = 2000;
+                        const step = target / (duration / 16);
+                        let current = 0;
+                        
+                        const timer = setInterval(() => {
+                            current += step;
+                            if (current >= target) {
+                                counter.textContent = target;
+                                clearInterval(timer);
+                            } else {
+                                counter.textContent = Math.floor(current);
+                            }
+                        }, 16);
+                        
+                        observer.unobserve(counter);
+                    }
+                });
+            }, observerOptions);
+            
+            counters.forEach(counter => {
+                observer.observe(counter);
+            });
+            
+            // Service Badge Animation
+            const serviceBadges = document.querySelectorAll('.service-badge');
+            serviceBadges.forEach((badge, index) => {
+                setTimeout(() => {
+                    badge.style.opacity = '0';
+                    badge.style.transform = 'translateY(20px)';
+                    badge.style.transition = 'all 0.5s ease';
+                    
+                    setTimeout(() => {
+                        badge.style.opacity = '1';
+                        badge.style.transform = 'translateY(0)';
+                    }, 100);
+                }, index * 200);
+            });
+        });
+    </script>
+} 

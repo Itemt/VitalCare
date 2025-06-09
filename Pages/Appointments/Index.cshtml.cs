@@ -1,5 +1,5 @@
 using CitasEPS.Data;
-using CitasEPS.Models;
+using CitasEPS.Models; using CitasEPS.Models.Modules.Users; using CitasEPS.Models.Modules.Medical; using CitasEPS.Models.Modules.Appointments; using CitasEPS.Models.Modules.Core;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
@@ -10,6 +10,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using CitasEPS.Services;
+using CitasEPS.Services.Modules.Common;
 
 namespace CitasEPS.Pages.Appointments
 {
@@ -21,14 +22,16 @@ namespace CitasEPS.Pages.Appointments
         private readonly ILogger<IndexModel> _logger;
         private readonly IAppointmentPolicyService _appointmentPolicyService;
         private readonly INotificationService _notificationService;
+        private readonly IAppointmentEmailService _appointmentEmailService;
 
-        public IndexModel(ApplicationDbContext context, UserManager<User> userManager, ILogger<IndexModel> logger, IAppointmentPolicyService appointmentPolicyService, INotificationService notificationService)
+        public IndexModel(ApplicationDbContext context, UserManager<User> userManager, ILogger<IndexModel> logger, IAppointmentPolicyService appointmentPolicyService, INotificationService notificationService, IAppointmentEmailService appointmentEmailService)
         {
             _context = context;
             _userManager = userManager;
             _logger = logger;
             _appointmentPolicyService = appointmentPolicyService;
             _notificationService = notificationService;
+            _appointmentEmailService = appointmentEmailService;
         }
 
         public IList<Appointment> Appointment { get; set; } = new List<Appointment>();
@@ -76,7 +79,7 @@ namespace CitasEPS.Pages.Appointments
                     {
                         _logger.LogInformation($"Attempting to create missing Patient record for user {user.Email} (ID: {user.Id}) on Index page");
                         
-                        var newPatient = new CitasEPS.Models.Patient
+                        var newPatient = new Patient
                         {
                             UserId = user.Id,
                             FirstName = user.FirstName ?? "Sin nombre",
@@ -85,7 +88,7 @@ namespace CitasEPS.Pages.Appointments
                             PhoneNumber = user.PhoneNumber,
                             DateOfBirth = user.DateOfBirth,
                             DocumentId = user.DocumentId,
-                            Gender = user.Gender ?? Models.Enums.Gender.Otro
+                            Gender = user.Gender ?? CitasEPS.Models.Modules.Common.Gender.Otro
                         };
                         
                         _context.Patients.Add(newPatient);
@@ -153,8 +156,21 @@ namespace CitasEPS.Pages.Appointments
             }
 
             var appointment = await _context.Appointments
-                .Include(a => a.Doctor).ThenInclude(d => d.User)
+                .Include(a => a.Doctor.User)
+                .Include(a => a.Doctor.Specialty) 
+                .Include(a => a.Patient.User)
                 .FirstOrDefaultAsync(a => a.Id == id);
+
+            // Verificar que se cargaron las entidades relacionadas correctamente
+            _logger.LogInformation($"Appointment loaded: ID={appointment?.Id}, Doctor loaded: {appointment?.Doctor != null}");
+            if (appointment?.Doctor != null)
+            {
+                _logger.LogInformation($"Doctor ID: {appointment.Doctor.Id}, UserId: {appointment.Doctor.UserId}, User loaded: {appointment.Doctor.User != null}");
+                if (appointment.Doctor.User != null)
+                {
+                    _logger.LogInformation($"Doctor User details: ID={appointment.Doctor.User.Id}, Email={appointment.Doctor.User.Email}");
+                }
+            }
 
             if (appointment == null)
             {
@@ -185,15 +201,69 @@ namespace CitasEPS.Pages.Appointments
                 TempData["SuccessMessage"] = "Solicitud de reagendamiento enviada correctamente.";
 
                 // --- START: Notify Doctor of Reschedule Request ---
+                _logger.LogInformation($"Attempting to notify doctor for reschedule request - Appointment ID: {appointment.Id}");
+                
+                // Asegurar que el usuario del doctor esté cargado
+                if (appointment.Doctor != null && appointment.Doctor.User == null && appointment.Doctor.UserId.HasValue)
+                {
+                    _logger.LogInformation($"Doctor.User is null, loading User manually with UserId: {appointment.Doctor.UserId}");
+                    appointment.Doctor.User = await _context.Users.FindAsync(appointment.Doctor.UserId.Value);
+                    _logger.LogInformation($"Manual User load result: {appointment.Doctor.User != null}");
+                    
+                    if (appointment.Doctor.User != null)
+                    {
+                        _logger.LogInformation($"Successfully loaded Doctor User: ID={appointment.Doctor.User.Id}, Email={appointment.Doctor.User.Email}");
+                    }
+                    else
+                    {
+                        _logger.LogError($"Failed to load User for Doctor UserId: {appointment.Doctor.UserId}");
+                        
+                        // Buscar si el usuario existe en la base de datos
+                        var userExists = await _context.Users.AnyAsync(u => u.Id == appointment.Doctor.UserId.Value);
+                        _logger.LogError($"User with ID {appointment.Doctor.UserId} exists in database: {userExists}");
+                    }
+                }
+                
                 if (appointment.Doctor?.User != null)
                 {
                     var patientName = patientRecord?.FullName ?? user.Email;
-                    var doctorMessage = $"El paciente {patientName} ha solicitado reagendar la cita del {appointment.AppointmentDateTime:dd/MM/yyyy HH:mm}.";
-                    await _notificationService.CreateNotificationAsync(appointment.Doctor.User.Id, doctorMessage, NotificationType.RescheduleRequestedByPatient, appointment.Id);
+                    
+                    // Usar el servicio de zona horaria para formatear la fecha en hora de Colombia
+                    var appointmentFormatted = ColombiaTimeZoneService.FormatInColombia(appointment.AppointmentDateTime);
+                    
+                    var doctorMessage = $"El paciente {patientName} ha solicitado reagendar la cita del {appointmentFormatted}.";
+                    _logger.LogInformation($"Creating reschedule notification for Doctor User ID: {appointment.Doctor.User.Id}");
+                    
+                    try
+                    {
+                        await _notificationService.CreateNotificationAsync(appointment.Doctor.User.Id, doctorMessage, NotificationType.RescheduleRequestedByPatient, appointment.Id);
+                        _logger.LogInformation($"✅ Reschedule notification created successfully for Doctor User ID: {appointment.Doctor.User.Id}");
+                        _logger.LogInformation($"✅ Notification message: {doctorMessage}");
+                    }
+                    catch (Exception notifEx)
+                    {
+                        _logger.LogError(notifEx, "❌ Failed to create notification for Doctor User ID: {DoctorUserId}", appointment.Doctor.User.Id);
+                    }
+                    
+                    // Enviar correo al paciente confirmando que la solicitud fue enviada
+                    try
+                    {
+                        _logger.LogInformation($"Sending reschedule request confirmation email to patient {user.Email}");
+                        await _appointmentEmailService.SendRescheduleRequestedEmailAsync(appointment, user, appointment.Doctor.User);
+                        _logger.LogInformation($"Reschedule request confirmation email sent successfully to patient {user.Email}");
+                    }
+                    catch (Exception emailEx)
+                    {
+                        _logger.LogError(emailEx, "Error sending reschedule request confirmation email to patient {PatientEmail}", user.Email);
+                    }
                 }
                 else
                 {
                      _logger.LogWarning($"No se pudo notificar al doctor sobre la solicitud de reagendamiento para la cita {appointment.Id} porque el usuario del doctor no fue encontrado.");
+                     if (appointment.Doctor != null && appointment.Doctor.UserId.HasValue)
+                     {
+                         _logger.LogWarning($"Doctor exists (ID: {appointment.Doctor.Id}) with UserId: {appointment.Doctor.UserId}, but Doctor.User navigation property is null even after manual load attempt.");
+                     }
                 }
                 // --- END: Notify Doctor of Reschedule Request ---
             }
@@ -326,3 +396,7 @@ namespace CitasEPS.Pages.Appointments
         }
     }
 }
+
+
+
+

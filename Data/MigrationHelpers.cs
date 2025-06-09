@@ -1,4 +1,4 @@
-using CitasEPS.Models;
+using CitasEPS.Models; using CitasEPS.Models.Modules.Users; using CitasEPS.Models.Modules.Medical; using CitasEPS.Models.Modules.Appointments; using CitasEPS.Models.Modules.Core;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
@@ -51,7 +51,7 @@ namespace CitasEPS.Data
                         PhoneNumber = user.PhoneNumber,
                         DateOfBirth = user.DateOfBirth,
                         DocumentId = user.DocumentId,
-                        Gender = user.Gender ?? Models.Enums.Gender.Otro
+                        Gender = user.Gender ?? CitasEPS.Models.Modules.Common.Gender.Otro
                     };
 
                     context.Patients.Add(patient);
@@ -120,3 +120,7 @@ namespace CitasEPS.Data
         }
     }
 } 
+
+
+
+

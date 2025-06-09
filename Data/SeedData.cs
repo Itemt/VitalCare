@@ -1,8 +1,13 @@
 using CitasEPS.Models;
+using CitasEPS.Models.Modules.Users;
+using CitasEPS.Models.Modules.Medical;
+using CitasEPS.Models.Modules.Appointments;
+using CitasEPS.Models.Modules.Core;
+using CitasEPS.Models.Modules.Common;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using System.Security.Claims;
-using CitasEPS.Models.Enums;
+using CitasEPS.Models.Modules.Common;
 
 namespace CitasEPS.Data
 {
@@ -174,22 +179,13 @@ namespace CitasEPS.Data
             int doctorsCreatedCount = 0;
             foreach (var docData in doctorsData)
             {
-                // Crear el registro Doctor primero
-                var newDoctor = new Doctor
-                {
-                    FirstName = docData.FirstName,
-                    LastName = docData.LastName,
-                    SpecialtyId = docData.SpecialtyId,
-                    MedicalLicenseNumber = docData.MedicalLicense,
-                    Email = docData.Email,
-                    PhoneNumber = docData.Phone
-                };
-                context.Doctors.Add(newDoctor); // Añadir a la base de datos
-
-                // Ahora crear el User asociado
+                // Check if user already exists first
                 var userExists = await userManager.FindByEmailAsync(docData.Email);
+                User doctorUser;
+                
                 if (userExists == null)
                 {
+                    // Create the User first
                     var newUser = new User 
                     {
                          UserName = docData.Email, 
@@ -206,13 +202,13 @@ namespace CitasEPS.Data
                     {
                         await userManager.AddToRoleAsync(newUser, "Doctor");
                         logger.LogInformation($"Usuario Doctor '{docData.Email}' creado y añadido al rol Doctor.");
+                        doctorUser = newUser;
                         doctorsCreatedCount++;
                     }
                     else
                     {
                         logger.LogError($"Error creando usuario Doctor '{docData.Email}'. Errores: {string.Join(", ", result.Errors.Select(e => e.Description))}");
-                        // Consider removing the Doctor record if User creation fails?
-                        context.Doctors.Remove(newDoctor);
+                        continue; // Skip this doctor if user creation failed
                     }
                 }
                 else
@@ -222,6 +218,29 @@ namespace CitasEPS.Data
                       {
                           await userManager.AddToRoleAsync(userExists, "Doctor"); // Ensure role
                       }
+                      doctorUser = userExists;
+                }
+
+                // Now create the Doctor record linked to the User
+                var existingDoctor = await context.Doctors.FirstOrDefaultAsync(d => d.UserId == doctorUser.Id);
+                if (existingDoctor == null)
+                {
+                    var newDoctor = new Doctor 
+                    {
+                        UserId = doctorUser.Id, // Link to the User
+                        FirstName = docData.FirstName,
+                        LastName = docData.LastName,
+                        SpecialtyId = docData.SpecialtyId,
+                        LicenseNumber = docData.MedicalLicense,
+
+                        IsAvailable = true // Default value
+                    };
+                    context.Doctors.Add(newDoctor);
+                    logger.LogInformation($"Registro Doctor para usuario '{docData.Email}' creado.");
+                }
+                else
+                {
+                    logger.LogInformation($"Registro Doctor para usuario '{docData.Email}' ya existe.");
                 }
             }
 
@@ -432,3 +451,7 @@ namespace CitasEPS.Data
         }
     }
 } 
+
+
+
+

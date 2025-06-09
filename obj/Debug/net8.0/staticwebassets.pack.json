@@ -2,7 +2,7 @@
   "Files": [
     {
       "Id": "C:\\Users\\CristianPC\\Desktop\\vitalcare\\obj\\Debug\\net8.0\\scopedcss\\projectbundle\\CitasEPS.bundle.scp.css",
-      "PackagePath": "staticwebassets\\CitasEPS.ut2vjzp850.bundle.scp.css"
+      "PackagePath": "staticwebassets\\CitasEPS.buihgm8de4.bundle.scp.css"
     },
     {
       "Id": "C:\\Users\\CristianPC\\Desktop\\vitalcare\\wwwroot\\css\\base.css",
@@ -23,6 +23,22 @@
     {
       "Id": "C:\\Users\\CristianPC\\Desktop\\vitalcare\\wwwroot\\css\\layout.css",
       "PackagePath": "staticwebassets\\css\\layout.css"
+    },
+    {
+      "Id": "C:\\Users\\CristianPC\\Desktop\\vitalcare\\wwwroot\\css\\modules\\admin\\admin-dashboard.css",
+      "PackagePath": "staticwebassets\\css\\modules\\admin\\admin-dashboard.css"
+    },
+    {
+      "Id": "C:\\Users\\CristianPC\\Desktop\\vitalcare\\wwwroot\\css\\modules\\common\\common-styles.css",
+      "PackagePath": "staticwebassets\\css\\modules\\common\\common-styles.css"
+    },
+    {
+      "Id": "C:\\Users\\CristianPC\\Desktop\\vitalcare\\wwwroot\\css\\modules\\doctor\\doctor-dashboard.css",
+      "PackagePath": "staticwebassets\\css\\modules\\doctor\\doctor-dashboard.css"
+    },
+    {
+      "Id": "C:\\Users\\CristianPC\\Desktop\\vitalcare\\wwwroot\\css\\modules\\patient\\patient-dashboard.css",
+      "PackagePath": "staticwebassets\\css\\modules\\patient\\patient-dashboard.css"
     },
     {
       "Id": "C:\\Users\\CristianPC\\Desktop\\vitalcare\\wwwroot\\css\\performance-optimizations.css",
@@ -83,6 +99,14 @@
     {
       "Id": "C:\\Users\\CristianPC\\Desktop\\vitalcare\\wwwroot\\images\\patient-dashboard-bg.svg",
       "PackagePath": "staticwebassets\\images\\patient-dashboard-bg.svg"
+    },
+    {
+      "Id": "C:\\Users\\CristianPC\\Desktop\\vitalcare\\wwwroot\\js\\modules\\doctor\\doctor-dashboard.js",
+      "PackagePath": "staticwebassets\\js\\modules\\doctor\\doctor-dashboard.js"
+    },
+    {
+      "Id": "C:\\Users\\CristianPC\\Desktop\\vitalcare\\wwwroot\\js\\modules\\module-config.js",
+      "PackagePath": "staticwebassets\\js\\modules\\module-config.js"
     },
     {
       "Id": "C:\\Users\\CristianPC\\Desktop\\vitalcare\\wwwroot\\js\\navbarResponsive.js",

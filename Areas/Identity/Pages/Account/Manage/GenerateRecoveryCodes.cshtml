@@ -1,7 +1,7 @@
-锘緻page
+@page
 @model GenerateRecoveryCodesModel
 @{
-    ViewData["Title"] = "Generar c贸digos de recuperaci贸n de autenticaci贸n de dos factores (2FA)";
+    ViewData["Title"] = "Generar c骴igos de recuperaci髇 de autenticaci髇 de dos factores (2FA)";
     ViewData["ActivePage"] = ManageNavPages.TwoFactorAuthentication;
 }
 
@@ -10,18 +10,18 @@
 <div class="alert alert-warning" role="alert">
     <p>
         <span class="glyphicon glyphicon-warning-sign"></span>
-        <strong>Guarda estos c贸digos en un lugar seguro.</strong>
+        <strong>Guarda estos c骴igos en un lugar seguro.</strong>
     </p>
     <p>
-        Si pierdes tu dispositivo y no tienes los c贸digos de recuperaci贸n, perder谩s el acceso a tu cuenta.
+        Si pierdes tu dispositivo y no tienes los c骴igos de recuperaci髇, perder醩 el acceso a tu cuenta.
     </p>
     <p>
-        Generar nuevos c贸digos de recuperaci贸n no cambia las claves utilizadas en las aplicaciones de autenticaci贸n. Si deseas cambiar la clave
-        utilizada en una aplicaci贸n de autenticaci贸n, deber铆as <a asp-page="./ResetAuthenticator">restablecer tus claves de autenticaci贸n.</a>
+        Generar nuevos c骴igos de recuperaci髇 no cambia las claves utilizadas en las aplicaciones de autenticaci髇. Si deseas cambiar la clave
+        utilizada en una aplicaci髇 de autenticaci髇, deber韆s <a asp-page="./ResetAuthenticator">restablecer tus claves de autenticaci髇.</a>
     </p>
 </div>
 <div>
     <form method="post">
-        <button class="btn btn-danger" type="submit">Generar C贸digos de Recuperaci贸n</button>
+        <button class="btn btn-danger" type="submit">Generar C骴igos de Recuperaci髇</button>
     </form>
 </div>

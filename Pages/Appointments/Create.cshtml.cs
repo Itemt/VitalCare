@@ -7,11 +7,17 @@ using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using CitasEPS.Data;
 using CitasEPS.Models;
-using Microsoft.AspNetCore.Authorization; // Add for authorization
-using Microsoft.EntityFrameworkCore; // Required for ToListAsync
-using Microsoft.AspNetCore.Identity; // Required for UserManager
+using CitasEPS.Models.Modules.Users;
+using CitasEPS.Models.Modules.Medical;
+using CitasEPS.Models.Modules.Appointments;
+using CitasEPS.Models.Modules.Core;
+using CitasEPS.Models.Modules.Common;
+using CitasEPS.Services.Modules.Common;
+using Microsoft.AspNetCore.Authorization;
+using Microsoft.EntityFrameworkCore;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.Extensions.Logging;
-using CitasEPS.Services; // <<< Add this using
+using CitasEPS.Services;
 
 namespace CitasEPS.Pages.Appointments
 {
@@ -68,7 +74,7 @@ namespace CitasEPS.Pages.Appointments
                 {
                     _logger.LogInformation($"Attempting to create missing Patient record for user {user.Email} (ID: {user.Id})");
                     
-                    patient = new CitasEPS.Models.Patient
+                    patient = new Patient
                     {
                         UserId = user.Id,
                         FirstName = user.FirstName ?? "Sin nombre",
@@ -77,7 +83,7 @@ namespace CitasEPS.Pages.Appointments
                         PhoneNumber = user.PhoneNumber,
                         DateOfBirth = user.DateOfBirth,
                         DocumentId = user.DocumentId,
-                        Gender = user.Gender ?? Models.Enums.Gender.Otro
+                        Gender = user.Gender ?? Gender.Otro
                     };
                     
                     _context.Patients.Add(patient);
@@ -142,7 +148,7 @@ namespace CitasEPS.Pages.Appointments
                 {
                     _logger.LogInformation($"Attempting to create missing Patient record for user {user.Email} (ID: {user.Id}) during POST");
                     
-                    patient = new CitasEPS.Models.Patient
+                    patient = new Patient
                     {
                         UserId = user.Id,
                         FirstName = user.FirstName ?? "Sin nombre",
@@ -151,7 +157,7 @@ namespace CitasEPS.Pages.Appointments
                         PhoneNumber = user.PhoneNumber,
                         DateOfBirth = user.DateOfBirth,
                         DocumentId = user.DocumentId,
-                        Gender = user.Gender ?? Models.Enums.Gender.Otro
+                        Gender = user.Gender ?? Gender.Otro
                     };
                     
                     _context.Patients.Add(patient);
@@ -209,24 +215,59 @@ namespace CitasEPS.Pages.Appointments
             _logger.LogInformation($"Early converted AppointmentDateTime (for DB): '{Appointment.AppointmentDateTime}', Kind: '{Appointment.AppointmentDateTime.Kind}'.");
             // --- END: Convert AppointmentDateTime to UTC EARLY ---
 
-            // --- START: Add Past Date Validation (using local time for user feedback) ---
-            if (localAppointmentDateTime < DateTime.Now) // Compare with current local time
+            // --- START: Add Past Date Validation (SIMPLIFIED) ---
+            // Usar hora de Colombia directamente (UTC-5)
+            var utcNow = DateTime.UtcNow;
+            var colombiaCurrentTime = utcNow.AddHours(-5); // UTC-5 para Colombia
+            
+            // La fecha viene del formulario como local time, asumir que es hora de Colombia
+            var requestedDateTime = localAppointmentDateTime;
+            
+            _logger.LogInformation($"[DEBUG] UTC Actual: {utcNow:dd/MM/yyyy HH:mm:ss}");
+            _logger.LogInformation($"[DEBUG] Colombia Actual: {colombiaCurrentTime:dd/MM/yyyy HH:mm:ss}");
+            _logger.LogInformation($"[DEBUG] Fecha Solicitada: {requestedDateTime:dd/MM/yyyy HH:mm:ss}");
+            _logger.LogInformation($"[DEBUG] Fecha Kind: {requestedDateTime.Kind}");
+            
+            // Verificar si la fecha solicitada es futura (comparar con hora de Colombia)
+            if (requestedDateTime <= colombiaCurrentTime)
             {
-                 ModelState.AddModelError("Appointment.AppointmentDateTime", "No puede seleccionar una fecha u hora en el pasado.");
+                var timezoneDiff = colombiaCurrentTime - requestedDateTime;
+                _logger.LogWarning($"[ERROR] Fecha inválida. Diferencia: {timezoneDiff.TotalMinutes} minutos en el pasado");
+                
+                ModelState.AddModelError("Appointment.AppointmentDateTime", 
+                    $"No puede seleccionar una fecha en el pasado. " +
+                    $"Fecha actual (Colombia): {colombiaCurrentTime:dd/MM/yyyy HH:mm}. " +
+                    $"Fecha solicitada: {requestedDateTime:dd/MM/yyyy HH:mm}");
+            }
+            else
+            {
+                // Verificar margen mínimo de 15 minutos
+                var timeDifference = requestedDateTime - colombiaCurrentTime;
+                if (timeDifference.TotalMinutes < 15)
+                {
+                    _logger.LogWarning($"[ERROR] Fecha muy cercana. Diferencia: {timeDifference.TotalMinutes} minutos");
+                    ModelState.AddModelError("Appointment.AppointmentDateTime", 
+                        $"Debe seleccionar una fecha con al menos 15 minutos de anticipación. " +
+                        $"Hora actual (Colombia): {colombiaCurrentTime:HH:mm}");
+                }
+                else
+                {
+                    _logger.LogInformation($"[SUCCESS] Fecha válida. Diferencia: {timeDifference.TotalMinutes} minutos en el futuro");
+                }
             }
             // --- END: Add Past Date Validation ---
 
-            // --- START: Working Hours Validation (Mon-Fri, 8 AM - 6 PM) - USING LOCAL TIME ---
-            var localAppTime = localAppointmentDateTime.TimeOfDay;
-            var localAppDay = localAppointmentDateTime.DayOfWeek;
+            // --- START: Working Hours Validation (Mon-Fri, 8 AM - 6 PM) - USING COLOMBIA TIME ---
+            var colombiaAppTime = requestedDateTime.TimeOfDay;
+            var colombiaAppDay = requestedDateTime.DayOfWeek;
 
-            if (localAppDay == DayOfWeek.Saturday || localAppDay == DayOfWeek.Sunday)
+            if (colombiaAppDay == DayOfWeek.Saturday || colombiaAppDay == DayOfWeek.Sunday)
             {
-                ModelState.AddModelError("Appointment.AppointmentDateTime", "Las citas solo pueden agendarse de Lunes a Viernes.");
+                ModelState.AddModelError("Appointment.AppointmentDateTime", "Las citas solo pueden agendarse de Lunes a Viernes (horario de Colombia).");
             }
-            else if (localAppTime < new TimeSpan(8, 0, 0) || localAppTime >= new TimeSpan(18, 0, 0)) // 8 AM to 5:59 PM
+            else if (colombiaAppTime < new TimeSpan(8, 0, 0) || colombiaAppTime >= new TimeSpan(18, 0, 0)) // 8 AM to 5:59 PM
             {
-                ModelState.AddModelError("Appointment.AppointmentDateTime", "Las citas solo pueden agendarse entre las 8:00 AM y las 5:59 PM.");
+                ModelState.AddModelError("Appointment.AppointmentDateTime", "Las citas solo pueden agendarse entre las 8:00 AM y las 5:59 PM (horario de Colombia).");
             }
             // --- END: Working Hours Validation ---
 
@@ -263,18 +304,37 @@ namespace CitasEPS.Pages.Appointments
                      ModelState.AddModelError("Appointment.DoctorId", "Debe seleccionar un doctor.");
                  }
 
+                _logger.LogInformation($"Validación falló. Repoblando dropdowns. SelectedSpecialtyId: {SelectedSpecialtyId}, Appointment.DoctorId: {Appointment.DoctorId}");
+
                 // Repopulate using the SelectedSpecialtyId property
                 await PopulateDropdownsAsync(SelectedSpecialtyId);
+                
+                // IMPORTANT: Mantener la selección del doctor si existe una especialidad válida
                 if (SelectedSpecialtyId.HasValue && SelectedSpecialtyId > 0)
                 {
                     var doctors = await _context.Doctors
                                               .Where(d => d.SpecialtyId == SelectedSpecialtyId.Value)
                                               .OrderBy(d => d.LastName).ThenBy(d => d.FirstName)
-                                              .Select(d => new { d.Id, d.FullName })
+                                              .Select(d => new { 
+                                                  d.Id, 
+                                                  FullName = d.FirstName + " " + d.LastName 
+                                              })
                                               .ToListAsync();
-                     // Use ViewData to pass the list back if validation fails
-                     ViewData["DoctorNameSL"] = new SelectList(doctors, "Id", "FullName", Appointment.DoctorId);
+                    
+                    _logger.LogInformation($"Encontrados {doctors.Count} doctores para especialidad {SelectedSpecialtyId}. Doctor seleccionado: {Appointment.DoctorId}");
+                    
+                    // Use ViewData to pass the list back if validation fails, manteniendo la selección del doctor
+                    ViewData["DoctorNameSL"] = new SelectList(doctors, "Id", "FullName", Appointment.DoctorId);
+                    
+                    // NUEVO: Agregar información adicional para el JavaScript del frontend
+                    ViewData["PreselectedDoctorId"] = Appointment.DoctorId;
+                    ViewData["PreselectedSpecialtyId"] = SelectedSpecialtyId;
                 }
+                else
+                {
+                    _logger.LogWarning("No hay especialidad seleccionada válida para repoblar doctores");
+                }
+                
                 return Page();
             }
 
@@ -320,9 +380,14 @@ namespace CitasEPS.Pages.Appointments
                 if (patientUser != null)
                 {
                     _logger.LogInformation($"Intentando notificación para Paciente User ID: {patientUser.Id} para cita ID: {Appointment.Id}");
+                    
+                    // Convertir fecha UTC a hora local de Colombia (UTC-5) para mostrar al paciente
+                    var colombiaTimeZone = TimeZoneInfo.CreateCustomTimeZone("Colombia", TimeSpan.FromHours(-5), "Colombia Standard Time", "Colombia Standard Time");
+                    var appointmentColombia = TimeZoneInfo.ConvertTimeFromUtc(Appointment.AppointmentDateTime, colombiaTimeZone);
+                    
                     await _notificationService.CreateNotificationAsync(
                         patientUser.Id,
-                        $"Su cita para el {Appointment.AppointmentDateTime:dd/MM/yyyy 'a las' HH:mm} ha sido agendada y está pendiente de confirmación por el consultorio.",
+                        $"Su cita para el {appointmentColombia:dd/MM/yyyy 'a las' HH:mm} ha sido agendada y está pendiente de confirmación por el consultorio.",
                         NotificationType.NewAppointment,
                         Appointment.Id
                     );
@@ -342,9 +407,14 @@ namespace CitasEPS.Pages.Appointments
                 if (doctorForNotification?.User != null)
                 {
                     _logger.LogInformation($"Intentando notificación para Doctor User ID: {doctorForNotification.User.Id} para cita ID: {Appointment.Id}");
+                    
+                    // Convertir fecha UTC a hora local de Colombia (UTC-5) para mostrar al doctor
+                    var colombiaTimeZone = TimeZoneInfo.CreateCustomTimeZone("Colombia", TimeSpan.FromHours(-5), "Colombia Standard Time", "Colombia Standard Time");
+                    var appointmentColombia = TimeZoneInfo.ConvertTimeFromUtc(Appointment.AppointmentDateTime, colombiaTimeZone);
+                    
                     await _notificationService.CreateNotificationAsync(
                         doctorForNotification.User.Id,
-                        $"Tiene una nueva cita agendada con {LoggedInPatientName} para el {Appointment.AppointmentDateTime:dd/MM/yyyy 'a las' HH:mm}.",
+                        $"Tiene una nueva cita agendada con {LoggedInPatientName} para el {appointmentColombia:dd/MM/yyyy 'a las' HH:mm}.",
                         NotificationType.NewAppointment,
                         Appointment.Id
                     );
@@ -381,13 +451,30 @@ namespace CitasEPS.Pages.Appointments
         // Handler to get doctors based on specialtyId - called via AJAX
         public async Task<JsonResult> OnGetDoctorsBySpecialtyAsync(int specialtyId)
         {
-            var doctors = await _context.Doctors
-                                      .Where(d => d.SpecialtyId == specialtyId)
-                                      .OrderBy(d => d.LastName)
-                                      .ThenBy(d => d.FirstName)
-                                      .Select(d => new { d.Id, d.FullName }) // Select only needed data
-                                      .ToListAsync();
-            return new JsonResult(doctors);
+            try
+            {
+                _logger.LogInformation($"[AJAX] Buscando doctores para especialidad ID: {specialtyId}");
+                
+                // SIMPLIFICADO: Buscar todos los doctores de la especialidad especificando solo campos que existen
+                var doctors = await _context.Doctors
+                                          .Where(d => d.SpecialtyId == specialtyId)
+                                          .OrderBy(d => d.LastName)
+                                          .ThenBy(d => d.FirstName)
+                                          .Select(d => new { 
+                                              d.Id, 
+                                              FullName = d.FirstName + " " + d.LastName 
+                                          })
+                                          .ToListAsync();
+                
+                _logger.LogInformation($"[AJAX SUCCESS] Encontrados {doctors.Count} doctores para especialidad {specialtyId}");
+                
+                return new JsonResult(doctors);
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError(ex, $"[AJAX ERROR] Error al buscar doctores para especialidad {specialtyId}: {ex.Message}");
+                return new JsonResult(new { error = "Error al cargar médicos", message = ex.Message });
+            }
         }
 
         // Helper method to load data for static dropdowns
@@ -404,3 +491,6 @@ namespace CitasEPS.Pages.Appointments
         }
     }
 } 
+
+
+

@@ -1,0 +1,111 @@
+@page
+@model CitasEPS.Pages.Debug.TestNotificationRescheduleModel
+@{
+    ViewData["Title"] = "Test Reagendamiento Notificaciones";
+}
+
+<div class="container">
+    <h2>🔍 Diagnóstico de Notificaciones de Reagendamiento</h2>
+    
+    <div class="row">
+        <div class="col-md-6">
+            <div class="card">
+                <div class="card-header">
+                    <h5>Probar Notificación de Reagendamiento</h5>
+                </div>
+                <div class="card-body">
+                    <form method="post">
+                        <div class="form-group mb-3">
+                            <label for="appointmentId">ID de Cita:</label>
+                            <input type="number" id="appointmentId" name="appointmentId" class="form-control" required />
+                        </div>
+                        <button type="submit" class="btn btn-primary">Probar Notificación</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+        
+        <div class="col-md-6">
+            <div class="card">
+                <div class="card-header">
+                    <h5>Resultados del Test</h5>
+                </div>
+                <div class="card-body">
+                    @if (Model.TestResults != null)
+                    {
+                        <pre>@Model.TestResults</pre>
+                    }
+                    else
+                    {
+                        <p class="text-muted">No hay resultados aún. Ejecute el test.</p>
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <div class="row mt-4">
+        <div class="col-12">
+            <div class="card">
+                <div class="card-header">
+                    <h5>Información de Debugging</h5>
+                </div>
+                <div class="card-body">
+                    <h6>Citas disponibles para testing:</h6>
+                    @if (Model.AvailableAppointments?.Any() == true)
+                    {
+                        <div class="table-responsive">
+                            <table class="table table-sm">
+                                <thead>
+                                    <tr>
+                                        <th>ID</th>
+                                        <th>Paciente</th>
+                                        <th>Doctor</th>
+                                        <th>Fecha</th>
+                                        <th>Estado</th>
+                                        <th>Doctor.User</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @foreach (var appointment in Model.AvailableAppointments)
+                                    {
+                                        <tr>
+                                            <td>@appointment.Id</td>
+                                            <td>@(appointment.Patient?.FullName ?? "N/A")</td>
+                                            <td>@(appointment.Doctor?.FullName ?? "N/A")</td>
+                                            <td>@appointment.AppointmentDateTime.ToString("dd/MM/yyyy HH:mm")</td>
+                                            <td>
+                                                @if (appointment.IsCancelled) { <span class="badge bg-danger">Cancelada</span> }
+                                                else if (appointment.IsCompleted) { <span class="badge bg-success">Completada</span> }
+                                                else if (appointment.RescheduleRequested) { <span class="badge bg-warning">Reagendamiento Solicitado</span> }
+                                                else { <span class="badge bg-primary">Activa</span> }
+                                            </td>
+                                            <td>
+                                                @if (appointment.Doctor?.User != null)
+                                                {
+                                                    <span class="text-success">✅ Cargado (ID: @appointment.Doctor.User.Id)</span>
+                                                }
+                                                else if (appointment.Doctor?.UserId != null)
+                                                {
+                                                    <span class="text-warning">⚠️ UserId: @appointment.Doctor.UserId (User no cargado)</span>
+                                                }
+                                                else
+                                                {
+                                                    <span class="text-danger">❌ Sin UserId</span>
+                                                }
+                                            </td>
+                                        </tr>
+                                    }
+                                </tbody>
+                            </table>
+                        </div>
+                    }
+                    else
+                    {
+                        <p class="text-muted">No hay citas disponibles para testing.</p>
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
+</div> 

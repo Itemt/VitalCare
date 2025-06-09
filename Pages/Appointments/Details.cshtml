@@ -28,7 +28,7 @@
                     <hr />
                     <dl class="row">
                         <dt class="col-sm-4">Fecha y Hora</dt>
-                        <dd class="col-sm-8">@Html.DisplayFor(model => model.Appointment.AppointmentDateTime)</dd>
+                        <dd class="col-sm-8">@CitasEPS.Services.ColombiaTimeZoneService.FormatInColombia(Model.Appointment.AppointmentDateTime, "dddd, dd 'de' MMMM 'de' yyyy, HH:mm")</dd>
 
                         <dt class="col-sm-4">Paciente</dt>
                         <dd class="col-sm-8">
@@ -82,7 +82,7 @@
                                         <td>@Html.DisplayFor(modelItem => prescription.Medication.Name)</td>
                                         <td>@Html.DisplayFor(modelItem => prescription.Dosage)</td>
                                         <td>@Html.DisplayFor(modelItem => prescription.Instructions)</td>
-                                        <td>@Html.DisplayFor(modelItem => prescription.PrescriptionDate)</td>
+                                        <td>@CitasEPS.Services.ColombiaTimeZoneService.FormatInColombia(prescription.PrescriptionDate, "dd/MM/yyyy")</td>
                                         @if (User.IsInRole("Doctor"))
                                         {
                                             <td>

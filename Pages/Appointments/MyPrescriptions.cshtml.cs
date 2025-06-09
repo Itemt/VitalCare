@@ -3,7 +3,7 @@ using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using CitasEPS.Data;
-using CitasEPS.Models;
+using CitasEPS.Models; using CitasEPS.Models.Modules.Users; using CitasEPS.Models.Modules.Medical; using CitasEPS.Models.Modules.Appointments; using CitasEPS.Models.Modules.Core;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -57,3 +57,7 @@ namespace CitasEPS.Pages.Appointments
         }
     }
 } 
+
+
+
+

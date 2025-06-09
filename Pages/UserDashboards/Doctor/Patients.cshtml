@@ -1,0 +1,234 @@
+@page
+@model CitasEPS.Pages.UserDashboards.Doctor.PatientsModel
+
+@{
+    ViewData["Title"] = "Mis Pacientes";
+}
+
+<style>
+    /* Forzar el fondo azul independientemente del modo */
+    html, body {
+        background: linear-gradient(135deg, #1e293b 0%, #0f172a 100%) !important;
+        min-height: 100vh !important;
+        color: white !important;
+    }
+    
+    .container-fluid {
+        background: transparent;
+        color: white;
+    }
+    
+    .patients-header {
+        text-align: center;
+        padding: 3rem 0 2rem 0;
+        color: white !important;
+    }
+    
+    .patients-title {
+        font-size: 2.5rem;
+        font-weight: 700;
+        margin-bottom: 0.5rem;
+        text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+        color: white !important;
+    }
+    
+    .patients-subtitle {
+        color: rgba(255, 255, 255, 0.8) !important;
+        font-size: 1.2rem;
+        margin: 0;
+    }
+    
+    .alert-no-patients {
+        background: rgba(59, 130, 246, 0.2) !important;
+        border: 2px solid rgba(59, 130, 246, 0.5) !important;
+        border-radius: 15px;
+        color: white !important;
+        padding: 2rem;
+        text-align: center;
+        margin-bottom: 2rem;
+    }
+    
+    .patient-card {
+        background: rgba(255, 255, 255, 0.1) !important;
+        backdrop-filter: blur(10px);
+        border: 1px solid rgba(255, 255, 255, 0.2) !important;
+        border-radius: 20px;
+        padding: 2rem;
+        transition: all 0.3s ease;
+        height: 100%;
+        display: flex;
+        flex-direction: column;
+    }
+    
+    .patient-card:hover {
+        background: rgba(255, 255, 255, 0.15) !important;
+        transform: translateY(-5px);
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+    }
+    
+    .patient-avatar {
+        background: linear-gradient(135deg, #3b82f6 0%, #1d4ed8 100%) !important;
+        color: white !important;
+        width: 80px;
+        height: 80px;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 2rem;
+        margin: 0 auto 1.5rem auto;
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+    }
+    
+    .patient-name {
+        color: white !important;
+        font-size: 1.5rem;
+        font-weight: 700;
+        text-align: center;
+        margin-bottom: 1rem;
+    }
+    
+    .patient-info {
+        color: rgba(255, 255, 255, 0.8) !important;
+        margin-bottom: 0.8rem;
+        display: flex;
+        align-items: center;
+        font-size: 1rem;
+    }
+    
+    .patient-info i {
+        width: 20px;
+        margin-right: 1rem;
+        color: #60a5fa !important;
+    }
+    
+    .btn-view-history {
+        background: linear-gradient(135deg, #3b82f6 0%, #1d4ed8 100%) !important;
+        border: none !important;
+        border-radius: 12px;
+        color: white !important;
+        font-weight: 600;
+        padding: 1rem 1.5rem;
+        transition: all 0.3s ease;
+        text-decoration: none;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin-top: auto;
+    }
+    
+    .btn-view-history:hover {
+        color: white !important;
+        transform: translateY(-2px);
+        box-shadow: 0 8px 25px rgba(59, 130, 246, 0.4);
+        text-decoration: none;
+    }
+    
+    .btn-back {
+        background: rgba(255, 255, 255, 0.2) !important;
+        border: 1px solid rgba(255, 255, 255, 0.3) !important;
+        color: white !important;
+        font-weight: 600;
+        padding: 1rem 2rem;
+        border-radius: 12px;
+        transition: all 0.3s ease;
+        text-decoration: none;
+        display: inline-flex;
+        align-items: center;
+        margin-top: 2rem;
+    }
+    
+    .btn-back:hover {
+        background: rgba(255, 255, 255, 0.3) !important;
+        color: white !important;
+        transform: translateY(-2px);
+        text-decoration: none;
+    }
+
+    /* Asegurar que todos los textos sean legibles */
+    h1, h2, h3, h4, h5, h6, p, span, div {
+        color: inherit;
+    }
+
+    /* Modo oscuro - mantener consistencia */
+    [data-bs-theme="dark"] body {
+        background: linear-gradient(135deg, #1e293b 0%, #0f172a 100%) !important;
+        color: white !important;
+    }
+    
+    [data-bs-theme="dark"] .patient-card {
+        background: rgba(15, 23, 42, 0.3) !important;
+        border-color: rgba(59, 130, 246, 0.3) !important;
+    }
+    
+    [data-bs-theme="dark"] .patient-card:hover {
+        background: rgba(15, 23, 42, 0.5) !important;
+    }
+</style>
+
+<div class="container-fluid">
+    <div class="patients-header">
+        <h1 class="patients-title">
+            <i class="bi bi-people-fill me-3"></i>Mis Pacientes
+        </h1>
+        @if (Model.CurrentDoctor != null)
+        {
+            <p class="patients-subtitle">
+                Dr(a). @Model.CurrentDoctor.FullName - Pacientes Atendidos
+            </p>
+        }
+    </div>
+
+    <div class="container">
+        @if (!Model.DoctorPatients.Any())
+        {
+            <div class="alert-no-patients">
+                <i class="bi bi-people" style="font-size: 3rem; margin-bottom: 1rem;"></i>
+                <h4>Sin pacientes registrados</h4>
+                <p class="mb-0">Aún no tiene pacientes registrados a través de citas completadas o actuales.</p>
+            </div>
+        }
+        else
+        {
+            <div class="row g-4">
+                @foreach (var patient in Model.DoctorPatients)
+                {
+                    <div class="col-lg-4 col-md-6">
+                        <div class="patient-card">
+                            <div class="patient-avatar">
+                                <i class="bi bi-person-fill"></i>
+                            </div>
+                            
+                            <h5 class="patient-name">@patient.FullName</h5>
+                            
+                            <div class="patient-info">
+                                <i class="bi bi-card-text"></i>
+                                <span>ID: @(patient.DocumentId ?? "No especificado")</span>
+                            </div>
+                            
+                            <div class="patient-info">
+                                <i class="bi bi-envelope-fill"></i>
+                                <span>@(patient.Email ?? "Sin email registrado")</span>
+                            </div>
+                            
+                            <div class="patient-info">
+                                <i class="bi bi-telephone-fill"></i>
+                                <span>@(patient.PhoneNumber ?? "Sin teléfono registrado")</span>
+                            </div>
+                            
+                            <a asp-page="./PatientHistory" asp-route-patientId="@patient.Id" class="btn-view-history">
+                                <i class="bi bi-person-lines-fill me-2"></i>Ver Historial Clínico
+                            </a>
+                        </div>
+                    </div>
+                }
+            </div>
+        }
+        
+        <div class="text-center">
+            <a asp-page="/Doctor/Agenda" class="btn-back">
+                <i class="bi bi-arrow-left-circle me-2"></i>Volver a Mi Agenda
+            </a>
+        </div>
+    </div>
+</div> 

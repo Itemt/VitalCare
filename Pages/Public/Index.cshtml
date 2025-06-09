@@ -1,0 +1,167 @@
+@page
+@model CitasEPS.Pages.Public.PublicIndexModel
+@{
+    ViewData["Title"] = "Inicio - VitalCare";
+}
+
+<!-- Enhanced Hero Section - Solo para usuarios no logueados -->
+<div class="container-fluid bg-dark text-white text-center py-5 mb-4 shadow-lg hero-section-enhanced" style="background-image: linear-gradient(135deg, rgba(0,20,40,0.95), rgba(0,40,80,0.9)), url('/images/INDEX.png'); background-size: cover; background-position: center center; background-attachment: fixed; position: relative; overflow: hidden; border-radius: 2rem; margin: 1rem;">
+    
+    <!-- Floating Icons - Optimized Performance -->
+    <div class="floating-medical-icons">
+        <i class="bi bi-heart-pulse floating-icon icon-1"></i>
+        <i class="bi bi-shield-check floating-icon icon-2"></i>
+        <i class="bi bi-calendar-plus floating-icon icon-3"></i>
+        <i class="bi bi-graph-up floating-icon icon-4"></i>
+        <i class="bi bi-people floating-icon icon-5"></i>
+        <i class="bi bi-clock floating-icon icon-6"></i>
+    </div>
+    
+    <!-- Hero Content Container -->
+    <div class="hero-content-container mx-auto d-flex flex-column justify-content-center align-items-center" style="background: linear-gradient(135deg, rgba(0, 40, 80, 0.9), rgba(0, 60, 120, 0.85)); padding: 3rem 1.5rem; border-radius: 1.5rem; max-width: 1000px; width: 90%; position: relative; z-index: 10; backdrop-filter: blur(20px); border: 1px solid rgba(255,255,255,0.1);">
+        <!-- Glowing Border Effect - Only on Hover -->
+        <div class="hero-glow-border"></div>
+        
+        <h1 class="display-2 fw-bolder text-shadow-custom mb-3 hero-title text-center">
+            <span class="hero-title-vital" style="color: #22c55e;">Vital</span><span class="hero-title-care" style="color: #0f172a;">Care</span>
+        </h1>
+        
+        <p class="lead fs-4 mb-4 text-shadow-custom hero-subtitle text-center">IPS autorizada en <span class="hero-highlight-text">Barrancabermeja, Santander</span>. Agendamiento de citas médicas las 24 horas.</p>
+        
+        <!-- Enhanced Stats Row - Individual Cards -->
+        <div class="row g-3 mb-4 hero-stats w-100 justify-content-center">
+            <div class="col-md-4 col-lg-3">
+                <div class="hero-stat-card text-center">
+                    <div class="hero-stat-icon">
+                        <i class="bi bi-people-fill"></i>
+                    </div>
+                    <div class="hero-stat-number fs-3 fw-bold" data-target="15000">0</div>
+                    <div class="hero-stat-label small">Pacientes Atendidos</div>
+                </div>
+            </div>
+            <div class="col-md-4 col-lg-3">
+                <div class="hero-stat-card text-center">
+                    <div class="hero-stat-icon">
+                        <i class="bi bi-hospital"></i>
+                    </div>
+                    <div class="hero-stat-number fs-3 fw-bold" data-target="45">0</div>
+                    <div class="hero-stat-label small">Médicos Especialistas</div>
+                </div>
+            </div>
+            <div class="col-md-4 col-lg-3">
+                <div class="hero-stat-card text-center">
+                    <div class="hero-stat-icon">
+                        <i class="bi bi-star-fill"></i>
+                    </div>
+                    <div class="hero-stat-number fs-3 fw-bold" data-target="96">0</div>
+                    <div class="hero-stat-label small">% Satisfacción Pacientes</div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Enhanced Action Buttons -->
+        <div class="d-grid gap-3 d-sm-flex justify-content-sm-center">
+            <a class="btn btn-light btn-lg px-4 py-2 me-sm-3 hero-btn hero-btn-light" asp-area="Identity" asp-page="/Account/Login" role="button">
+                <i class="bi bi-box-arrow-in-right me-2"></i> 
+                <span>Iniciar Sesión</span>
+                <div class="btn-ripple"></div>
+            </a>
+            <a class="btn btn-dark-blue btn-lg px-4 py-2 hero-btn hero-btn-dark" asp-area="Identity" asp-page="/Account/Register" role="button">
+                <i class="bi bi-person-plus me-2"></i> 
+                <span>Registrarse Gratis</span>
+                <div class="btn-ripple"></div>
+            </a>
+        </div>
+        
+        <!-- Divider Line after buttons -->
+        <hr style="border: 0.5px solid white; width: 60%; margin: 30px auto;">
+        
+        <!-- Trust Badges - Individual Cards with Icons -->
+        <div class="row g-3 mt-3 justify-content-center">
+            <div class="col-md-4 col-lg-3">
+                <div class="trust-badge-item">
+                    <i class="bi bi-award-fill me-2"></i>
+                    <span>Habilitación Supersalud</span>
+                </div>
+            </div>
+            <div class="col-md-4 col-lg-3">
+                <div class="trust-badge-item">
+                    <i class="bi bi-shield-fill-check me-2"></i>
+                    <span>ISO 9001:2015</span>
+                </div>
+            </div>
+            <div class="col-md-4 col-lg-3">
+                <div class="trust-badge-item">
+                    <i class="bi bi-patch-check-fill me-2"></i>
+                    <span>Datos Protegidos</span>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Scroll Indicator - Positioned Lower -->
+    <div class="scroll-indicator" style="bottom: 15px;">
+        <i class="bi bi-chevron-down"></i>
+    </div>
+</div>
+
+<!-- Public Information Sections -->
+<div class="container mt-5 py-2">
+    <!-- About Us Section -->
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="text-center mb-5">
+                <h2 class="display-5 fw-bold text-primary">
+                    <i class="bi bi-hospital me-2"></i>
+                    Sobre VitalCare
+                </h2>
+                <p class="lead text-muted">Comprometidos con su salud y bienestar desde 1998</p>
+                <hr class="w-25 mx-auto">
+            </div>
+        </div>
+    </div>
+    
+    <!-- Quick Access for Visitors -->
+    <div class="row g-4 mt-4">
+        <div class="col-md-6 col-lg-3">
+            <div class="card h-100 shadow-sm border-0 text-center hover-card">
+                <div class="card-body">
+                    <i class="bi bi-info-circle fs-1 text-primary mb-3"></i>
+                    <h5 class="card-title">Acerca de Nosotros</h5>
+                    <p class="card-text">Conoce nuestra historia, misión y valores.</p>
+                    <a asp-page="/Public/About" class="btn btn-outline-primary">Ver más</a>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-6 col-lg-3">
+            <div class="card h-100 shadow-sm border-0 text-center hover-card">
+                <div class="card-body">
+                    <i class="bi bi-clipboard-pulse fs-1 text-success mb-3"></i>
+                    <h5 class="card-title">Servicios</h5>
+                    <p class="card-text">Descubre todos nuestros servicios médicos.</p>
+                    <a asp-page="/Public/Servicios" class="btn btn-outline-success">Ver servicios</a>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-6 col-lg-3">
+            <div class="card h-100 shadow-sm border-0 text-center hover-card">
+                <div class="card-body">
+                    <i class="bi bi-people fs-1 text-warning mb-3"></i>
+                    <h5 class="card-title">Nuestro Equipo</h5>
+                    <p class="card-text">Conoce a nuestros especialistas médicos.</p>
+                    <a asp-page="/Public/Team" class="btn btn-outline-warning">Ver equipo</a>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-6 col-lg-3">
+            <div class="card h-100 shadow-sm border-0 text-center hover-card">
+                <div class="card-body">
+                    <i class="bi bi-telephone fs-1 text-info mb-3"></i>
+                    <h5 class="card-title">Contacto</h5>
+                    <p class="card-text">Información de contacto y ubicación.</p>
+                    <a asp-page="/Public/Contact" class="btn btn-outline-info">Contactar</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div> 

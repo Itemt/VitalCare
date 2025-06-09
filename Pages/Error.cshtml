@@ -1,11 +1,11 @@
-ï»¿@page
-@model ErrorModel
+@page
+@model CitasEPS.Pages.ErrorModel
 @{
     ViewData["Title"] = "Error";
 }
 
 <h1 class="text-danger">Error.</h1>
-<h2 class="text-danger">OcurriÃ³ un error al procesar su solicitud.</h2>
+<h2 class="text-danger">Ocurrió un error al procesar su solicitud.</h2>
 
 @if (Model.ShowRequestId)
 {
@@ -16,11 +16,11 @@
 
 <h3>Modo de Desarrollo</h3>
 <p>
-    Cambiar al entorno de <strong>Desarrollo</strong> muestra informaciÃ³n detallada sobre el error ocurrido.
+    Cambiar al entorno de <strong>Desarrollo</strong> muestra información detallada sobre el error ocurrido.
 </p>
 <p>
-    <strong>El entorno de Desarrollo no deberÃ­a estar habilitado para aplicaciones desplegadas.</strong>
-    Puede resultar en la visualizaciÃ³n de informaciÃ³n sensible de excepciones a los usuarios finales.
-    Para depuraciÃ³n local, habilite el entorno de <strong>Desarrollo</strong> estableciendo la variable de entorno <strong>ASPNETCORE_ENVIRONMENT</strong> a <strong>Development</strong>
-    y reiniciando la aplicaciÃ³n.
+    <strong>El entorno de Desarrollo no debería estar habilitado para aplicaciones desplegadas.</strong>
+    Puede resultar en la visualización de información sensible de excepciones a los usuarios finales.
+    Para depuración local, habilite el entorno de <strong>Desarrollo</strong> estableciendo la variable de entorno <strong>ASPNETCORE_ENVIRONMENT</strong> a <strong>Development</strong>
+    y reiniciando la aplicación.
 </p>

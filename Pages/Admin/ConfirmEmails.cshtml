@@ -1,0 +1,126 @@
+@page "/admin/confirm-emails"
+@model CitasEPS.Pages.Admin.ConfirmEmailsModel
+@{
+    ViewData["Title"] = "Confirmar Emails - Admin";
+    Layout = "_Layout";
+}
+
+<div class="container mt-5">
+    <div class="row justify-content-center">
+        <div class="col-lg-8">
+            <div class="card shadow border-0">
+                <div class="card-header bg-warning text-dark">
+                    <h4 class="mb-0">
+                        <i class="bi bi-tools me-2"></i>
+                        Panel de Administración - Confirmar Emails
+                    </h4>
+                    <small class="text-muted">⚠️ Herramienta temporal para confirmar emails mientras se arregla el sistema automático</small>
+                </div>
+                <div class="card-body">
+                    @if (!string.IsNullOrEmpty(Model.StatusMessage))
+                    {
+                        <div class="alert alert-info alert-dismissible fade show" role="alert">
+                            @Model.StatusMessage
+                            <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+                        </div>
+                    }
+
+                    <h5 class="mb-4">
+                        <i class="bi bi-people me-2"></i>
+                        Usuarios Sin Confirmar Email
+                    </h5>
+
+                    @if (Model.UnconfirmedUsers?.Any() == true)
+                    {
+                        <div class="table-responsive">
+                            <table class="table table-striped table-hover">
+                                <thead class="table-dark">
+                                    <tr>
+                                        <th>ID</th>
+                                        <th>Nombre</th>
+                                        <th>Email</th>
+                                        <th>Fecha Registro</th>
+                                        <th>Acciones</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @foreach (var user in Model.UnconfirmedUsers)
+                                    {
+                                        <tr>
+                                            <td><span class="badge bg-secondary">@user.Id</span></td>
+                                            <td>
+                                                <strong>@user.FirstName @user.LastName</strong>
+                                                <br>
+                                                <small class="text-muted">@user.DocumentId</small>
+                                            </td>
+                                            <td>
+                                                <i class="bi bi-envelope me-1"></i>@user.Email
+                                            </td>
+                                            <td>
+                                                <small class="text-muted">
+                                                    @user.DateOfBirth.ToString("dd/MM/yyyy")
+                                                </small>
+                                            </td>
+                                            <td>
+                                                <form method="post" style="display: inline;">
+                                                    <input type="hidden" name="userId" value="@user.Id" />
+                                                    <button type="submit" class="btn btn-success btn-sm" 
+                                                            onclick="return confirm('¿Confirmar email para @user.Email?')">
+                                                        <i class="bi bi-check-circle me-1"></i>
+                                                        Confirmar Email
+                                                    </button>
+                                                </form>
+                                            </td>
+                                        </tr>
+                                    }
+                                </tbody>
+                            </table>
+                        </div>
+                    }
+                    else
+                    {
+                        <div class="alert alert-success d-flex align-items-center">
+                            <i class="bi bi-check-circle-fill me-3 fs-4"></i>
+                            <div>
+                                <strong>¡Excelente!</strong> Todos los usuarios tienen sus emails confirmados.
+                            </div>
+                        </div>
+                    }
+
+                    <hr>
+                    
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="card bg-light">
+                                <div class="card-body text-center">
+                                    <i class="bi bi-info-circle fs-1 text-info mb-2"></i>
+                                    <h6>Usuarios Totales</h6>
+                                    <span class="badge bg-info fs-6">@Model.TotalUsers</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="card bg-light">
+                                <div class="card-body text-center">
+                                    <i class="bi bi-envelope-check fs-1 text-success mb-2"></i>
+                                    <h6>Emails Confirmados</h6>
+                                    <span class="badge bg-success fs-6">@Model.ConfirmedUsers</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="mt-4 p-3 bg-warning bg-opacity-10 border border-warning rounded">
+                        <h6 class="text-warning">
+                            <i class="bi bi-exclamation-triangle-fill me-2"></i>
+                            Nota Importante
+                        </h6>
+                        <p class="mb-0 small">
+                            Esta es una herramienta temporal para desarrollo. En producción, los emails deberían confirmarse automáticamente a través del enlace enviado por correo.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div> 

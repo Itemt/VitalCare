@@ -1,0 +1,195 @@
+@page
+@model CitasEPS.Pages.UserDashboards.Admin.AdminIndexModel
+@using Microsoft.AspNetCore.Identity
+@using CitasEPS.Models
+@inject SignInManager<User> UserManagerAccessor
+@inject UserManager<User> AspNetUserManager
+
+@{
+    ViewData["Title"] = "Panel de Administración - VitalCare";
+    var currentUser = await AspNetUserManager.GetUserAsync(User);
+    var userFirstName = currentUser?.FirstName;
+}
+
+<!-- Hero para Admin -->
+<div class="container-fluid text-center py-4 mb-4">
+    <div class="row justify-content-center align-items-center">
+        <div class="col-lg-12">
+            <div class="admin-welcome-content">
+                <h2 class="welcome-title mb-3 text-dark">
+                    <i class="bi bi-person-gear me-2 text-primary"></i>
+                    @if (!string.IsNullOrEmpty(userFirstName))
+                    {
+                        <span>Bienvenido Administrator <strong>@userFirstName</strong></span>
+                    }
+                    else
+                    {
+                        <span>Panel de Administración</span>
+                    }
+                </h2>
+                <p class="welcome-subtitle text-muted">Gestione las entidades clave y configuraciones del sistema VitalCare IPS</p>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Main Admin Dashboard Content -->
+<div class="container mt-5 py-2">
+    <div id="adminPanelDashboard" class="row justify-content-center">
+        <div class="col-lg-10 col-xl-9">
+            <div class="card shadow-lg modern-card-hover">
+                <div class="card-header bg-primary text-white text-center">
+                    <h2 class="my-2"><i class="bi bi-person-gear"></i> Panel de Administración</h2>
+                </div>
+                <div class="card-body p-4">
+                    <p class="lead text-center mb-4">Gestione las entidades clave y configuraciones del sistema.</p>
+                    <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4">
+                        <div class="col">
+                            <div class="card h-100 shadow-lg border-primary action-card-hover feature-card-hover">
+                                <div class="card-body d-flex flex-column align-items-center">
+                                    <div class="feature-icon-wrapper mb-3">
+                                        <i class="bi bi-people-fill fs-1 text-primary feature-icon-main rotating-icon"></i>
+                                        <div class="feature-sparkles">
+                                            <span class="sparkle sparkle-1"></span>
+                                            <span class="sparkle sparkle-2"></span>
+                                            <span class="sparkle sparkle-3"></span>
+                                            <span class="sparkle sparkle-4"></span>
+                                        </div>
+                                    </div>
+                                    <h5 class="card-title">Usuarios</h5>
+                                    <p class="card-text flex-grow-1">Administrar cuentas de todos los usuarios.</p>
+                                    <a asp-page="/Admin/ManageUsers" class="btn btn-primary mt-auto w-100"><i class="bi bi-arrow-right-circle"></i> Ir</a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col">
+                            <div class="card h-100 shadow-lg border-primary action-card-hover feature-card-hover">
+                                <div class="card-body d-flex flex-column align-items-center">
+                                    <div class="feature-icon-wrapper mb-3">
+                                        <i class="bi bi-calendar-check-fill fs-1 text-primary feature-icon-main"></i>
+                                        <div class="feature-sparkles">
+                                            <span class="sparkle sparkle-1"></span>
+                                            <span class="sparkle sparkle-2"></span>
+                                            <span class="sparkle sparkle-3"></span>
+                                        </div>
+                                    </div>
+                                    <h5 class="card-title">Citas</h5>
+                                    <p class="card-text flex-grow-1">Ver y administrar todas las citas.</p>
+                                    <a asp-page="/Admin/ManageAppointments" class="btn btn-primary mt-auto w-100"><i class="bi bi-arrow-right-circle"></i> Ir</a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col">
+                            <div class="card h-100 shadow-lg border-primary action-card-hover feature-card-hover">
+                                <div class="card-body d-flex flex-column align-items-center">
+                                    <div class="feature-icon-wrapper mb-3">
+                                        <i class="bi bi-file-medical-fill fs-1 text-primary feature-icon-main"></i>
+                                        <div class="feature-sparkles">
+                                            <span class="sparkle sparkle-1"></span>
+                                            <span class="sparkle sparkle-2"></span>
+                                            <span class="sparkle sparkle-3"></span>
+                                        </div>
+                                    </div>
+                                    <h5 class="card-title">Médicos</h5>
+                                    <p class="card-text flex-grow-1">Gestionar perfiles de médicos.</p>
+                                    <a asp-page="/Admin/ManageDoctors" class="btn btn-primary mt-auto w-100"><i class="bi bi-arrow-right-circle"></i> Ir</a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col">
+                            <div class="card h-100 shadow-lg border-primary action-card-hover feature-card-hover">
+                                <div class="card-body d-flex flex-column align-items-center">
+                                    <div class="feature-icon-wrapper mb-3">
+                                        <i class="bi bi-bookmark-star-fill fs-1 text-primary feature-icon-main"></i>
+                                        <div class="feature-sparkles">
+                                            <span class="sparkle sparkle-1"></span>
+                                            <span class="sparkle sparkle-2"></span>
+                                            <span class="sparkle sparkle-3"></span>
+                                        </div>
+                                    </div>
+                                    <h5 class="card-title">Especialidades</h5>
+                                    <p class="card-text flex-grow-1">Añadir o editar especialidades.</p>
+                                    <a asp-page="/Admin/ManageSpecialties" class="btn btn-primary mt-auto w-100"><i class="bi bi-arrow-right-circle"></i> Ir</a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col">
+                            <div class="card h-100 shadow-lg border-primary action-card-hover feature-card-hover">
+                                <div class="card-body d-flex flex-column align-items-center">
+                                    <div class="feature-icon-wrapper mb-3 mx-auto">
+                                        <i class="bi bi-capsule fs-1 feature-icon-main" style="color: #0f172a;"></i>
+                                        <div class="feature-sparkles">
+                                            <span class="sparkle sparkle-1"></span>
+                                            <span class="sparkle sparkle-2"></span>
+                                            <span class="sparkle sparkle-3"></span>
+                                        </div>
+                                    </div>
+                                    <h5 class="card-title">Medicamentos</h5>
+                                    <p class="card-text flex-grow-1">Gestionar listado de medicamentos.</p>
+                                    <a asp-page="/Admin/Medications/Index" class="btn btn-primary mt-auto w-100"><i class="bi bi-arrow-right-circle"></i> Ir</a>
+                                </div>
+                            </div>
+                        </div>
+                         <div class="col">
+                            <div class="card h-100 shadow-lg border-secondary action-card-hover feature-card-hover">
+                                <div class="card-body d-flex flex-column align-items-center">
+                                    <div class="feature-icon-wrapper mb-3">
+                                        <i class="bi bi-person-lines-fill fs-1 text-secondary feature-icon-main"></i>
+                                        <div class="feature-sparkles">
+                                            <span class="sparkle sparkle-1"></span>
+                                            <span class="sparkle sparkle-2"></span>
+                                            <span class="sparkle sparkle-3"></span>
+                                        </div>
+                                    </div>
+                                    <h5 class="card-title">Pacientes</h5>
+                                    <p class="card-text flex-grow-1">Administrar información de pacientes.</p>
+                                    <a asp-page="/Admin/ManagePatients" class="btn btn-outline-secondary mt-auto w-100"><i class="bi bi-arrow-right-circle"></i> Ir</a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col">
+                            <div class="card h-100 shadow-lg border-info action-card-hover feature-card-hover">
+                                <div class="card-body d-flex flex-column align-items-center">
+                                    <div class="feature-icon-wrapper mb-3">
+                                        <i class="bi bi-database-check fs-1 text-info feature-icon-main"></i>
+                                        <div class="feature-sparkles">
+                                            <span class="sparkle sparkle-1"></span>
+                                            <span class="sparkle sparkle-2"></span>
+                                            <span class="sparkle sparkle-3"></span>
+                                        </div>
+                                    </div>
+                                    <h5 class="card-title">Integridad de Datos</h5>
+                                    <p class="card-text flex-grow-1">Verificar y corregir datos del sistema.</p>
+                                    <a asp-page="/Admin/DataIntegrity" class="btn btn-outline-info mt-auto w-100"><i class="bi bi-arrow-right-circle"></i> Ir</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Trust Indicators for Admin -->
+                <div class="card-footer bg-light text-center">
+                    <div class="row align-items-center text-muted">
+                        <div class="col-md-3 mb-2 mb-md-0">
+                            <i class="bi bi-award-fill fs-5 text-warning"></i>
+                            <div class="small">Certificado ISO 9001</div>
+                        </div>
+                        <div class="col-md-3 mb-2 mb-md-0">
+                            <i class="bi bi-shield-check fs-5 text-success"></i>
+                            <div class="small">Ministerio de Salud</div>
+                        </div>
+                        <div class="col-md-3 mb-2 mb-md-0">
+                            <i class="bi bi-star-fill fs-5 text-info"></i>
+                            <div class="small">Premio Innovación 2024</div>
+                        </div>
+                        <div class="col-md-3">
+                            <i class="bi bi-globe fs-5 text-primary"></i>
+                            <div class="small">Red Internacional</div>
+                        </div>
+                    </div>
+                    <p class="mb-0 text-muted small mt-2">Panel de Control Administrativo - Reconocido por Instituciones Líderes</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div> 

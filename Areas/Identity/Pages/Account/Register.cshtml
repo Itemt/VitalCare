@@ -1,6 +1,6 @@
-锘緻page
+@page
 @model RegisterModel
-@using CitasEPS.Models.Enums
+@using CitasEPS.Models.Modules.Common
 @{
     ViewData["Title"] = "Registrarse";
 }
@@ -65,9 +65,9 @@
                                         class="auth-select" 
                                         asp-items="Html.GetEnumSelectList<Gender>()"
                                         required>
-                                    <option value="" disabled selected>Seleccione G茅nero...</option>
+                                    <option value="" disabled selected>Seleccione G閚ero...</option>
                                 </select>
-                                <label asp-for="Input.Gender" class="auth-form-label">G茅nero</label>
+                                <label asp-for="Input.Gender" class="auth-form-label">G閚ero</label>
                                 <span asp-validation-for="Input.Gender" class="auth-validation-error"></span>
                             </div>
 
@@ -79,7 +79,7 @@
                                        autocomplete="username" 
                                        aria-required="true" 
                                        placeholder=" " />
-                                <label asp-for="Input.Email" class="auth-form-label">Correo Electr贸nico</label>
+                                <label asp-for="Input.Email" class="auth-form-label">Correo Electr髇ico</label>
                                 <span asp-validation-for="Input.Email" class="auth-validation-error"></span>
                             </div>
 
@@ -94,7 +94,7 @@
                                            placeholder=" " 
                                            type="password"
                                            id="registerPasswordInput" />
-                                    <label asp-for="Input.Password" class="auth-form-label">Contrase帽a</label>
+                                    <label asp-for="Input.Password" class="auth-form-label">Contrase馻</label>
                                     <button type="button" class="password-toggle" id="toggleRegisterPassword">
                                         <i class="bi bi-eye-slash"></i>
                                     </button>
@@ -113,7 +113,7 @@
                                            placeholder=" " 
                                            type="password"
                                            id="confirmPasswordInput" />
-                                    <label asp-for="Input.ConfirmPassword" class="auth-form-label">Confirmar Contrase帽a</label>
+                                    <label asp-for="Input.ConfirmPassword" class="auth-form-label">Confirmar Contrase馻</label>
                                     <button type="button" class="password-toggle" id="toggleConfirmPassword">
                                         <i class="bi bi-eye-slash"></i>
                                     </button>
@@ -129,7 +129,7 @@
                                         <input asp-for="Input.PhoneNumber" 
                                                class="auth-form-control" 
                                                placeholder=" " />
-                                        <label asp-for="Input.PhoneNumber" class="auth-form-label">Tel茅fono</label>
+                                        <label asp-for="Input.PhoneNumber" class="auth-form-label">Tel閒ono</label>
                                         <span asp-validation-for="Input.PhoneNumber" class="auth-validation-error"></span>
                                     </div>
                                 </div>
@@ -157,7 +157,7 @@
                                 <div>
                                     <a asp-page="./Login" asp-route-returnUrl="@Model.ReturnUrl" class="auth-link">
                                         <i class="bi bi-box-arrow-in-right me-1"></i>
-                                        驴Ya tienes cuenta? Iniciar sesi贸n
+                                        縔a tienes cuenta? Iniciar sesi髇
                                     </a>
                                 </div>
                             </div>
@@ -168,7 +168,7 @@
                             if ((Model.ExternalLogins?.Count ?? 0) > 0)
                             {
                                 <div class="auth-divider">
-                                    <span>O reg铆strate con</span>
+                                    <span>O reg韘trate con</span>
                                 </div>
                                 <section>
                                     <form id="external-account" asp-page="./ExternalLogin" asp-route-returnUrl="@Model.ReturnUrl" method="post">
@@ -322,14 +322,14 @@
                 });
             }
 
-            // Password visibility toggles - mejorado con verificaci贸n de existencia
+            // Password visibility toggles - mejorado con verificaci髇 de existencia
             const toggleRegisterPassword = document.getElementById('toggleRegisterPassword');
             const registerPasswordInput = document.getElementById('registerPasswordInput');
             
             if (toggleRegisterPassword && registerPasswordInput) {
                 toggleRegisterPassword.addEventListener('click', function(e) {
                     e.preventDefault(); // Prevenir cualquier comportamiento por defecto
-                    e.stopPropagation(); // Detener propagaci贸n del evento
+                    e.stopPropagation(); // Detener propagaci髇 del evento
                     
                     const icon = this.querySelector('i');
                     
@@ -349,7 +349,7 @@
             if (toggleConfirmPassword && confirmPasswordInput) {
                 toggleConfirmPassword.addEventListener('click', function(e) {
                     e.preventDefault(); // Prevenir cualquier comportamiento por defecto
-                    e.stopPropagation(); // Detener propagaci贸n del evento
+                    e.stopPropagation(); // Detener propagaci髇 del evento
                     
                     const icon = this.querySelector('i');
                     

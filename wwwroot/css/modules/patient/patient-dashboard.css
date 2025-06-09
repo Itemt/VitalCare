@@ -1,0 +1,178 @@
+/* Patient Dashboard Specific Styles */
+
+.patient-dashboard {
+    background: linear-gradient(135deg, #e8f5e8 0%, #f0f8f0 100%);
+    min-height: 100vh;
+    padding: 20px 0;
+}
+
+.patient-dashboard .dashboard-card {
+    background: white;
+    border-radius: 15px;
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+    border: none;
+    margin-bottom: 20px;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.patient-dashboard .dashboard-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.15);
+}
+
+.patient-dashboard .card-header {
+    background: linear-gradient(135deg, #28a745 0%, #20c997 100%);
+    color: white;
+    border-radius: 15px 15px 0 0 !important;
+    border: none;
+    padding: 15px 20px;
+}
+
+.patient-dashboard .health-status-card {
+    background: linear-gradient(135deg, #17a2b8 0%, #138496 100%);
+    color: white;
+    border-radius: 15px;
+    padding: 25px;
+    text-align: center;
+    margin-bottom: 20px;
+    box-shadow: 0 8px 25px rgba(23, 162, 184, 0.3);
+}
+
+.patient-dashboard .health-indicator {
+    font-size: 3rem;
+    margin-bottom: 15px;
+}
+
+.patient-dashboard .health-status {
+    font-size: 1.2rem;
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+
+.patient-dashboard .health-description {
+    font-size: 0.9rem;
+    opacity: 0.9;
+}
+
+.patient-dashboard .appointment-form-card {
+    background: linear-gradient(135deg, #f8f9fa 0%, #ffffff 100%);
+    border: 2px solid #28a745;
+    border-radius: 15px;
+    padding: 25px;
+    margin-bottom: 20px;
+}
+
+.patient-dashboard .appointment-form-title {
+    color: #28a745;
+    font-weight: bold;
+    font-size: 1.3rem;
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+.patient-dashboard .form-control {
+    border-radius: 25px;
+    border: 2px solid #e9ecef;
+    padding: 12px 20px;
+    margin-bottom: 15px;
+    transition: all 0.3s ease;
+}
+
+.patient-dashboard .form-control:focus {
+    border-color: #28a745;
+    box-shadow: 0 0 0 0.2rem rgba(40, 167, 69, 0.25);
+}
+
+.patient-dashboard .btn-schedule {
+    background: linear-gradient(135deg, #28a745 0%, #20c997 100%);
+    border: none;
+    color: white;
+    padding: 15px 30px;
+    border-radius: 25px;
+    font-weight: bold;
+    width: 100%;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 15px rgba(40, 167, 69, 0.3);
+}
+
+.patient-dashboard .btn-schedule:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 25px rgba(40, 167, 69, 0.4);
+    color: white;
+}
+
+.patient-dashboard .prescription-card {
+    border-left: 4px solid #17a2b8;
+    background: #f8f9fa;
+    padding: 20px;
+    border-radius: 8px;
+    margin-bottom: 15px;
+}
+
+.patient-dashboard .prescription-header {
+    color: #17a2b8;
+    font-weight: bold;
+    font-size: 1.1rem;
+    margin-bottom: 10px;
+}
+
+.patient-dashboard .prescription-details {
+    color: #666;
+    font-size: 0.9rem;
+}
+
+.patient-dashboard .upcoming-appointment {
+    background: linear-gradient(135deg, #ffc107 0%, #e0a800 100%);
+    color: #212529;
+    border-radius: 15px;
+    padding: 20px;
+    margin-bottom: 20px;
+    box-shadow: 0 8px 25px rgba(255, 193, 7, 0.3);
+}
+
+.patient-dashboard .appointment-date {
+    font-size: 1.3rem;
+    font-weight: bold;
+    margin-bottom: 5px;
+}
+
+.patient-dashboard .appointment-doctor {
+    font-size: 1rem;
+    opacity: 0.9;
+}
+
+.patient-dashboard .accordion-button {
+    background: linear-gradient(135deg, #28a745 0%, #20c997 100%);
+    color: white;
+    border: none;
+    border-radius: 10px !important;
+    font-weight: bold;
+}
+
+.patient-dashboard .accordion-button:not(.collapsed) {
+    background: linear-gradient(135deg, #20c997 0%, #28a745 100%);
+    color: white;
+}
+
+.patient-dashboard .accordion-body {
+    background: #f8f9fa;
+    border-radius: 0 0 10px 10px;
+}
+
+@media (max-width: 768px) {
+    .patient-dashboard .health-status-card {
+        margin-bottom: 15px;
+    }
+    
+    .patient-dashboard .dashboard-card {
+        margin-bottom: 15px;
+    }
+    
+    .patient-dashboard .appointment-form-card {
+        padding: 20px;
+    }
+    
+    .patient-dashboard .health-indicator {
+        font-size: 2.5rem;
+    }
+} 

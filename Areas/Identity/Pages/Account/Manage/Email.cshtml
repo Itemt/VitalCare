@@ -1,7 +1,7 @@
-ï»¿@page
+@page
 @model EmailModel
 @{
-    ViewData["Title"] = "Gestionar Correo ElectrÃ³nico";
+    ViewData["Title"] = "Gestionar Correo Electrónico";
     ViewData["ActivePage"] = ManageNavPages.Email;
     var cardHeaderClass = "bg-vitalcare-doctor text-white text-center";
     var buttonClass = "btn-vitalcare-dark"; // Default for doctor
@@ -30,24 +30,24 @@
                             @if (Model.IsEmailConfirmed)
                             {
                                 <div class="form-floating mb-3 input-group">
-                                    <input asp-for="Email" class="form-control" placeholder="Tu correo electrÃ³nico" disabled />
+                                    <input asp-for="Email" class="form-control" placeholder="Tu correo electrónico" disabled />
                                     <div class="input-group-append">
-                                        <span class="h-100 input-group-text text-success font-weight-bold">âœ“</span>
+                                        <span class="h-100 input-group-text text-success font-weight-bold">?</span>
                                     </div>
-                                    <label asp-for="Email" class="form-label">Correo ElectrÃ³nico</label>
+                                    <label asp-for="Email" class="form-label">Correo Electrónico</label>
                                 </div>
                             }
                             else
                             {
                                 <div class="form-floating mb-3">
-                                    <input asp-for="Email" class="form-control" placeholder="Tu correo electrÃ³nico" disabled />
-                                    <label asp-for="Email" class="form-label">Correo ElectrÃ³nico</label>
+                                    <input asp-for="Email" class="form-control" placeholder="Tu correo electrónico" disabled />
+                                    <label asp-for="Email" class="form-label">Correo Electrónico</label>
                                 </div>
-                                <button id="email-verification" type="submit" asp-page-handler="SendVerificationEmail" class="btn btn-link mb-3">Enviar correo de verificaciÃ³n</button>
+                                <button id="email-verification" type="submit" asp-page-handler="SendVerificationEmail" class="btn btn-link mb-3">Enviar correo de verificación</button>
                             }
                             <div class="form-floating mb-3">
-                                <input asp-for="Input.NewEmail" class="form-control" autocomplete="email" aria-required="true" placeholder="Nuevo correo electrÃ³nico" />
-                                <label asp-for="Input.NewEmail" class="form-label">Nuevo Correo ElectrÃ³nico</label>
+                                <input asp-for="Input.NewEmail" class="form-control" autocomplete="email" aria-required="true" placeholder="Nuevo correo electrónico" />
+                                <label asp-for="Input.NewEmail" class="form-label">Nuevo Correo Electrónico</label>
                                 <span asp-validation-for="Input.NewEmail" class="text-danger"></span>
                             </div>
                             <button id="change-email-button" type="submit" asp-page-handler="ChangeEmail" class="w-100 btn btn-lg @buttonClass"><i class="bi bi-envelope-check-fill"></i> Cambiar Correo</button>

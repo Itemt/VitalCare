@@ -1,0 +1,73 @@
+@page "/debug/notifications"
+@model CitasEPS.Pages.Debug.NotificationsModel
+@{
+    ViewData["Title"] = "Debug - Notificaciones";
+}
+
+<div class="container mt-4">
+    <h2>Debug - Notificaciones en Base de Datos</h2>
+    
+    <div class="row mt-4">
+        <div class="col-md-12">
+            <h4>Últimas 20 Notificaciones</h4>
+            <div class="table-responsive">
+                <table class="table table-striped">
+                    <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>User ID</th>
+                            <th>Mensaje</th>
+                            <th>Tipo</th>
+                            <th>Appointment ID</th>
+                            <th>Leída</th>
+                            <th>Fecha Creación</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var notification in Model.Notifications)
+                        {
+                            <tr class="@(notification.IsRead ? "table-secondary" : "table-info")">
+                                <td>@notification.Id</td>
+                                <td>@notification.UserId</td>
+                                <td>@notification.Message</td>
+                                <td>@notification.NotificationType</td>
+                                <td>@notification.AppointmentId</td>
+                                <td>@(notification.IsRead ? "Sí" : "No")</td>
+                                <td>@notification.CreatedAt.ToString("dd/MM/yyyy HH:mm:ss")</td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+    <div class="row mt-4">
+        <div class="col-md-12">
+            <h4>Doctores y sus User IDs</h4>
+            <div class="table-responsive">
+                <table class="table table-striped">
+                    <thead>
+                        <tr>
+                            <th>Doctor ID</th>
+                            <th>Nombre</th>
+                            <th>User ID</th>
+                            <th>Email Usuario</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var doctor in Model.Doctors)
+                        {
+                            <tr>
+                                <td>@doctor.Id</td>
+                                <td>@doctor.FullName</td>
+                                <td>@doctor.UserId</td>
+                                <td>@doctor.User?.Email</td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div> 
