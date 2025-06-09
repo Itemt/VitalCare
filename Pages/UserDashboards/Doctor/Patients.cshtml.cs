@@ -39,10 +39,24 @@ namespace CitasEPS.Pages.UserDashboards.Doctor
             // Encontrar todos los pacientes únicos que han tenido citas con este Doctor
             DoctorPatients = await _context.Appointments
                 .Where(a => a.DoctorId == CurrentDoctor.Id)
-                .Select(a => a.Patient) // Seleccionar solo el paciente de cada cita
-                .Distinct() // Obtener solo pacientes únicos
-                .OrderBy(p => p.LastName).ThenBy(p => p.FirstName) // Ordenar por apellido, luego nombre
-                .ToListAsync();
+                .Select(a => a.Patient)
+                .Where(p => p != null)
+                .Distinct()
+                .OrderBy(p => p.LastName).ThenBy(p => p.FirstName)
+                .Select(p => new PatientModel
+                {
+                    Id = p.Id,
+                    FirstName = p.FirstName,
+                    LastName = p.LastName,
+                    Email = p.Email,
+                    PhoneNumber = p.PhoneNumber,
+                    DocumentId = p.DocumentId,
+                    DateOfBirth = p.DateOfBirth,
+                    Gender = p.Gender,
+                    UserId = p.UserId,
+                    User = p.User,
+                    Appointments = p.Appointments
+                }).ToListAsync();
 
             return Page();
         }

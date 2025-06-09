@@ -38,7 +38,7 @@ namespace CitasEPS.Pages.Appointments
         [BindProperty]
         public InputModel Input { get; set; } = default!;
 
-        public Appointment CurrentAppointment { get; set; } = default!;
+        public Appointment? CurrentAppointment { get; set; } = default!;
         public string DoctorName { get; set; } = default!;
         public string CurrentDateTime { get; set; } = default!;
 

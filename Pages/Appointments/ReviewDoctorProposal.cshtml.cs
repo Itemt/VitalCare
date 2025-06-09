@@ -28,7 +28,7 @@ namespace CitasEPS.Pages.Appointments
         [BindProperty(SupportsGet = true)]
         public int Id { get; set; } // Appointment ID
 
-        public Appointment AppointmentToReview { get; set; } = default!;
+        public Appointment? AppointmentToReview { get; set; } = default!;
         public string DoctorName { get; set; } = default!;
         public string CurrentDateTime { get; set; } = default!;
         public string ProposedDateTime { get; set; } = default!;

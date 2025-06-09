@@ -202,7 +202,7 @@ namespace CitasEPS.Services.Modules.Common
         {
             var html = new StringBuilder();
             var localOriginalTime = ColombiaTimeZoneService.ConvertUtcToColombia(appointment.AppointmentDateTime);
-            var localProposedTime = ColombiaTimeZoneService.ConvertUtcToColombia(appointment.ProposedNewDateTime.Value);
+            var localProposedTime = ColombiaTimeZoneService.ConvertUtcToColombia(appointment.ProposedNewDateTime ?? DateTime.MinValue);
 
             html.AppendLine("<!DOCTYPE html>");
             html.AppendLine("<html lang='es'>");

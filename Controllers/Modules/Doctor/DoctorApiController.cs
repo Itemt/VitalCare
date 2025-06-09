@@ -133,9 +133,9 @@ namespace CitasEPS.Controllers
                     .Where(a => a.DoctorId == doctor.Id)
                     .Select(a => a.Patient)
                     .Distinct()
-                    .Where(p => p.FirstName.Contains(term) || 
+                    .Where(p => p != null && (p.FirstName.Contains(term) || 
                                p.LastName.Contains(term) ||
-                               p.DocumentId.Contains(term))
+                               (p.DocumentId != null && p.DocumentId.Contains(term))))
                     .Select(p => new
                     {
                         id = p.Id,
@@ -181,7 +181,7 @@ namespace CitasEPS.Controllers
                     .Select(a => new
                     {
                         id = a.Id,
-                        patientName = a.Patient.FullName,
+                        patientName = a.Patient != null ? a.Patient.FullName : "N/A",
                         appointmentDateTime = a.AppointmentDateTime,
                         isConfirmed = a.IsConfirmed,
                         isCompleted = a.IsCompleted,

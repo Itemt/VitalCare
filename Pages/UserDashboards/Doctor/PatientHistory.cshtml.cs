@@ -55,7 +55,7 @@ namespace CitasEPS.Pages.UserDashboards.Doctor
             AppointmentHistory = await _context.Appointments
                 .Where(a => a.DoctorId == CurrentDoctor.Id && a.PatientId == patientId)
                 .Include(a => a.Prescriptions)
-                    .ThenInclude(p => p.Medication)
+                    .ThenInclude(p => p!.Medication)
                 .OrderByDescending(a => a.AppointmentDateTime) // Mostrar más recientes primero
                 .ToListAsync();
 

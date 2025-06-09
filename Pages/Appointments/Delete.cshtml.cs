@@ -30,7 +30,7 @@ namespace CitasEPS.Pages.Appointments
         }
 
         [BindProperty]
-        public Appointment Appointment { get; set; } = default!;
+        public Appointment? Appointment { get; set; } = default!;
         public string ErrorMessage { get; set; } = string.Empty;
 
         public async Task<IActionResult> OnGetAsync(int? id, bool? saveChangesError = false)
@@ -78,8 +78,8 @@ namespace CitasEPS.Pages.Appointments
 
             // Fetch full appointment details for notification purposes BEFORE deleting
             var appointmentToNotify = await _context.Appointments
-                .Include(a => a.Patient).ThenInclude(p => p.User)
-                .Include(a => a.Doctor).ThenInclude(d => d.User)
+                .Include(a => a.Patient).ThenInclude(p => p!.User)
+                .Include(a => a.Doctor).ThenInclude(d => d!.User)
                 .FirstOrDefaultAsync(m => m.Id == id);
 
             if (appointmentToNotify == null)

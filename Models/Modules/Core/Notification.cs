@@ -17,6 +17,7 @@ namespace CitasEPS.Models.Modules.Core
         RescheduleAcceptedByPatient,
         RescheduleRejectedByPatient,
         RescheduleAcceptedByDoctor, // If a doctor accepts a patient's proposal (if that flow exists)
+        RescheduleRejectedByDoctor, // Doctor rejects patient's proposal
         RescheduleProposedByDoctor, // Doctor proposes a new time
         Generic
     }

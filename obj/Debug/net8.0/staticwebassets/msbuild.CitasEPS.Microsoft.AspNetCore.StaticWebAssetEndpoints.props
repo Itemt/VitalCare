@@ -336,17 +336,17 @@
       <EndpointProperties><![CDATA[[{"Name":"fingerprint","Value":"oy5hrrjl9r"},{"Name":"integrity","Value":"sha256-kBBC/fdGVkHyEhvd/0Ejn/58EiCJWBxqhYdPLvaEonQ="},{"Name":"label","Value":"_content/CitasEPS/js/navbarResponsive.js"}]]]></EndpointProperties>
       <ResponseHeaders><![CDATA[[{"Name":"Accept-Ranges","Value":"bytes"},{"Name":"Cache-Control","Value":"max-age=31536000, immutable"},{"Name":"Content-Length","Value":"3336"},{"Name":"Content-Type","Value":"text/javascript"},{"Name":"ETag","Value":"\u0022kBBC/fdGVkHyEhvd/0Ejn/58EiCJWBxqhYdPLvaEonQ=\u0022"},{"Name":"Last-Modified","Value":"Sun, 08 Jun 2025 09:30:41 GMT"}]]]></ResponseHeaders>
     </StaticWebAssetEndpoint>
+    <StaticWebAssetEndpoint Include="_content/CitasEPS/js/notifications.9prt4is121.js">
+      <AssetFile>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\js\notifications.js'))</AssetFile>
+      <Selectors><![CDATA[[]]]></Selectors>
+      <EndpointProperties><![CDATA[[{"Name":"fingerprint","Value":"9prt4is121"},{"Name":"integrity","Value":"sha256-fT3lftqMnZRx7\u002BP6eun4nF4eeDwUOJlwCjvkCV3Y7O8="},{"Name":"label","Value":"_content/CitasEPS/js/notifications.js"}]]]></EndpointProperties>
+      <ResponseHeaders><![CDATA[[{"Name":"Accept-Ranges","Value":"bytes"},{"Name":"Cache-Control","Value":"max-age=31536000, immutable"},{"Name":"Content-Length","Value":"10713"},{"Name":"Content-Type","Value":"text/javascript"},{"Name":"ETag","Value":"\u0022fT3lftqMnZRx7\u002BP6eun4nF4eeDwUOJlwCjvkCV3Y7O8=\u0022"},{"Name":"Last-Modified","Value":"Mon, 09 Jun 2025 18:02:22 GMT"}]]]></ResponseHeaders>
+    </StaticWebAssetEndpoint>
     <StaticWebAssetEndpoint Include="_content/CitasEPS/js/notifications.js">
       <AssetFile>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\js\notifications.js'))</AssetFile>
       <Selectors><![CDATA[[]]]></Selectors>
-      <EndpointProperties><![CDATA[[{"Name":"integrity","Value":"sha256-kM8W5AUuaqXSoOzYZNNwkwX5Q3GgGAI4akcc99KKhhA="}]]]></EndpointProperties>
-      <ResponseHeaders><![CDATA[[{"Name":"Accept-Ranges","Value":"bytes"},{"Name":"Cache-Control","Value":"no-cache"},{"Name":"Content-Length","Value":"10993"},{"Name":"Content-Type","Value":"text/javascript"},{"Name":"ETag","Value":"\u0022kM8W5AUuaqXSoOzYZNNwkwX5Q3GgGAI4akcc99KKhhA=\u0022"},{"Name":"Last-Modified","Value":"Mon, 09 Jun 2025 06:09:53 GMT"}]]]></ResponseHeaders>
-    </StaticWebAssetEndpoint>
-    <StaticWebAssetEndpoint Include="_content/CitasEPS/js/notifications.kjffsyt88u.js">
-      <AssetFile>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\js\notifications.js'))</AssetFile>
-      <Selectors><![CDATA[[]]]></Selectors>
-      <EndpointProperties><![CDATA[[{"Name":"fingerprint","Value":"kjffsyt88u"},{"Name":"integrity","Value":"sha256-kM8W5AUuaqXSoOzYZNNwkwX5Q3GgGAI4akcc99KKhhA="},{"Name":"label","Value":"_content/CitasEPS/js/notifications.js"}]]]></EndpointProperties>
-      <ResponseHeaders><![CDATA[[{"Name":"Accept-Ranges","Value":"bytes"},{"Name":"Cache-Control","Value":"max-age=31536000, immutable"},{"Name":"Content-Length","Value":"10993"},{"Name":"Content-Type","Value":"text/javascript"},{"Name":"ETag","Value":"\u0022kM8W5AUuaqXSoOzYZNNwkwX5Q3GgGAI4akcc99KKhhA=\u0022"},{"Name":"Last-Modified","Value":"Mon, 09 Jun 2025 06:09:53 GMT"}]]]></ResponseHeaders>
+      <EndpointProperties><![CDATA[[{"Name":"integrity","Value":"sha256-fT3lftqMnZRx7\u002BP6eun4nF4eeDwUOJlwCjvkCV3Y7O8="}]]]></EndpointProperties>
+      <ResponseHeaders><![CDATA[[{"Name":"Accept-Ranges","Value":"bytes"},{"Name":"Cache-Control","Value":"no-cache"},{"Name":"Content-Length","Value":"10713"},{"Name":"Content-Type","Value":"text/javascript"},{"Name":"ETag","Value":"\u0022fT3lftqMnZRx7\u002BP6eun4nF4eeDwUOJlwCjvkCV3Y7O8=\u0022"},{"Name":"Last-Modified","Value":"Mon, 09 Jun 2025 18:02:22 GMT"}]]]></ResponseHeaders>
     </StaticWebAssetEndpoint>
     <StaticWebAssetEndpoint Include="_content/CitasEPS/js/passwordToggle.js">
       <AssetFile>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\js\passwordToggle.js'))</AssetFile>

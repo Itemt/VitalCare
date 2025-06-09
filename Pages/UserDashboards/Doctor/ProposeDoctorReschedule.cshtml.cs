@@ -35,7 +35,7 @@ namespace CitasEPS.Pages.UserDashboards.Doctor
         [BindProperty]
         public InputModel Input { get; set; } = default!;
 
-        public Appointment CurrentAppointment { get; set; } = default!;
+        public Appointment? CurrentAppointment { get; set; } = default!;
         public string PatientName { get; set; } = default!;
         public string CurrentDateTime { get; set; } = default!;
 
@@ -101,7 +101,7 @@ namespace CitasEPS.Pages.UserDashboards.Doctor
 
             var appointmentToUpdate = await _context.Appointments
                                             .Include(a => a.Patient) // Needed for validation checks potentially
-                                            .ThenInclude(p => p.User) // Para notificaciones
+                                                .ThenInclude(p => p.User) // Para notificaciones
                                             .FirstOrDefaultAsync(a => a.Id == Id && a.DoctorId == doctor.Id);
 
             if (appointmentToUpdate == null) return NotFound("Appointment not found or not assigned to you.");
@@ -187,7 +187,10 @@ namespace CitasEPS.Pages.UserDashboards.Doctor
             if (!ModelState.IsValid)
             {
                 // Repopulate needed view data
-                PatientName = appointmentToUpdate.Patient?.FullName ?? "Paciente Desconocido";
+                if (appointmentToUpdate.Patient != null)
+                {
+                    PatientName = appointmentToUpdate.Patient.FullName ?? "Paciente Desconocido";
+                }
                 var currentAppointmentColombia = ColombiaTimeZoneService.ConvertUtcToColombia(appointmentToUpdate.AppointmentDateTime);
                 CurrentDateTime = currentAppointmentColombia.ToString("g");
                 return Page();
@@ -237,7 +240,10 @@ namespace CitasEPS.Pages.UserDashboards.Doctor
             }
             
             // Repopulate needed view data if save fails
-            PatientName = appointmentToUpdate.Patient?.FullName ?? "Paciente Desconocido";
+            if (appointmentToUpdate.Patient != null)
+            {
+                PatientName = appointmentToUpdate.Patient.FullName ?? "Paciente Desconocido";
+            }
             var finalAppointmentColombia = ColombiaTimeZoneService.ConvertUtcToColombia(appointmentToUpdate.AppointmentDateTime);
             CurrentDateTime = finalAppointmentColombia.ToString("g");
             return Page();

@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "RvOBmv5NYX3i8yaPosPHDIEzb5V5AdcKd44l2aqwy7o=",
+  "Hash": "MPN9Hp4fnhkvE8eUArr8YkEyxf1IJaGjzSAKPVdCJcM=",
   "Source": "CitasEPS",
   "BasePath": "_content/CitasEPS",
   "Mode": "Default",
@@ -1900,8 +1900,8 @@
       "RelatedAsset": "",
       "AssetTraitName": "",
       "AssetTraitValue": "",
-      "Fingerprint": "kjffsyt88u",
-      "Integrity": "kM8W5AUuaqXSoOzYZNNwkwX5Q3GgGAI4akcc99KKhhA=",
+      "Fingerprint": "9prt4is121",
+      "Integrity": "fT3lftqMnZRx7+P6eun4nF4eeDwUOJlwCjvkCV3Y7O8=",
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\js\\notifications.js"
@@ -7851,6 +7851,51 @@
       ]
     },
     {
+      "Route": "js/notifications.9prt4is121.js",
+      "AssetFile": "C:\\Users\\CristianPC\\Desktop\\vitalcare\\wwwroot\\js\\notifications.js",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "10713"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "text/javascript"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"fT3lftqMnZRx7+P6eun4nF4eeDwUOJlwCjvkCV3Y7O8=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Mon, 09 Jun 2025 18:02:22 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=31536000, immutable"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "fingerprint",
+          "Value": "9prt4is121"
+        },
+        {
+          "Name": "label",
+          "Value": "js/notifications.js"
+        },
+        {
+          "Name": "integrity",
+          "Value": "sha256-fT3lftqMnZRx7+P6eun4nF4eeDwUOJlwCjvkCV3Y7O8="
+        }
+      ]
+    },
+    {
       "Route": "js/notifications.js",
       "AssetFile": "C:\\Users\\CristianPC\\Desktop\\vitalcare\\wwwroot\\js\\notifications.js",
       "Selectors": [],
@@ -7861,7 +7906,7 @@
         },
         {
           "Name": "Content-Length",
-          "Value": "10993"
+          "Value": "10713"
         },
         {
           "Name": "Content-Type",
@@ -7869,11 +7914,11 @@
         },
         {
           "Name": "ETag",
-          "Value": "\"kM8W5AUuaqXSoOzYZNNwkwX5Q3GgGAI4akcc99KKhhA=\""
+          "Value": "\"fT3lftqMnZRx7+P6eun4nF4eeDwUOJlwCjvkCV3Y7O8=\""
         },
         {
           "Name": "Last-Modified",
-          "Value": "Mon, 09 Jun 2025 06:09:53 GMT"
+          "Value": "Mon, 09 Jun 2025 18:02:22 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -7883,52 +7928,7 @@
       "EndpointProperties": [
         {
           "Name": "integrity",
-          "Value": "sha256-kM8W5AUuaqXSoOzYZNNwkwX5Q3GgGAI4akcc99KKhhA="
-        }
-      ]
-    },
-    {
-      "Route": "js/notifications.kjffsyt88u.js",
-      "AssetFile": "C:\\Users\\CristianPC\\Desktop\\vitalcare\\wwwroot\\js\\notifications.js",
-      "Selectors": [],
-      "ResponseHeaders": [
-        {
-          "Name": "Accept-Ranges",
-          "Value": "bytes"
-        },
-        {
-          "Name": "Content-Length",
-          "Value": "10993"
-        },
-        {
-          "Name": "Content-Type",
-          "Value": "text/javascript"
-        },
-        {
-          "Name": "ETag",
-          "Value": "\"kM8W5AUuaqXSoOzYZNNwkwX5Q3GgGAI4akcc99KKhhA=\""
-        },
-        {
-          "Name": "Last-Modified",
-          "Value": "Mon, 09 Jun 2025 06:09:53 GMT"
-        },
-        {
-          "Name": "Cache-Control",
-          "Value": "max-age=31536000, immutable"
-        }
-      ],
-      "EndpointProperties": [
-        {
-          "Name": "fingerprint",
-          "Value": "kjffsyt88u"
-        },
-        {
-          "Name": "label",
-          "Value": "js/notifications.js"
-        },
-        {
-          "Name": "integrity",
-          "Value": "sha256-kM8W5AUuaqXSoOzYZNNwkwX5Q3GgGAI4akcc99KKhhA="
+          "Value": "sha256-fT3lftqMnZRx7+P6eun4nF4eeDwUOJlwCjvkCV3Y7O8="
         }
       ]
     },

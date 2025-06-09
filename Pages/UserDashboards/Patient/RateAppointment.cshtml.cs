@@ -168,7 +168,7 @@ namespace CitasEPS.Pages.UserDashboards.Patient
                 TempData["SuccessMessage"] = "¡Gracias por su calificación! Su opinión es muy valiosa para nosotros.";
                 return RedirectToPage("/Appointments/Index");
             }
-            catch (Exception ex)
+            catch (Exception)
             {
                 ModelState.AddModelError("", "Error al guardar la calificación. Por favor, inténtelo de nuevo.");
                 await OnGetAsync(Input.AppointmentId);
