@@ -85,35 +85,39 @@
 
                             <!-- Password -->
                             <div class="auth-form-floating">
-                                <i class="auth-form-icon bi bi-lock-fill"></i>
-                                <input asp-for="Input.Password" 
-                                       class="auth-form-control" 
-                                       autocomplete="new-password" 
-                                       aria-required="true" 
-                                       placeholder=" " 
-                                       type="password"
-                                       id="registerPasswordInput" />
-                                <label asp-for="Input.Password" class="auth-form-label">Contraseña</label>
-                                <button type="button" class="password-toggle" id="toggleRegisterPassword">
-                                    <i class="bi bi-eye-slash"></i>
-                                </button>
+                                <div class="password-input-wrapper">
+                                    <i class="auth-form-icon bi bi-lock-fill"></i>
+                                    <input asp-for="Input.Password" 
+                                           class="auth-form-control" 
+                                           autocomplete="new-password" 
+                                           aria-required="true" 
+                                           placeholder=" " 
+                                           type="password"
+                                           id="registerPasswordInput" />
+                                    <label asp-for="Input.Password" class="auth-form-label">Contraseña</label>
+                                    <button type="button" class="password-toggle" id="toggleRegisterPassword">
+                                        <i class="bi bi-eye-slash"></i>
+                                    </button>
+                                </div>
                                 <span asp-validation-for="Input.Password" class="auth-validation-error"></span>
                             </div>
 
                             <!-- Confirm Password -->
                             <div class="auth-form-floating">
-                                <i class="auth-form-icon bi bi-shield-lock-fill"></i>
-                                <input asp-for="Input.ConfirmPassword" 
-                                       class="auth-form-control" 
-                                       autocomplete="new-password" 
-                                       aria-required="true" 
-                                       placeholder=" " 
-                                       type="password"
-                                       id="confirmPasswordInput" />
-                                <label asp-for="Input.ConfirmPassword" class="auth-form-label">Confirmar Contraseña</label>
-                                <button type="button" class="password-toggle" id="toggleConfirmPassword">
-                                    <i class="bi bi-eye-slash"></i>
-                                </button>
+                                <div class="password-input-wrapper">
+                                    <i class="auth-form-icon bi bi-shield-lock-fill"></i>
+                                    <input asp-for="Input.ConfirmPassword" 
+                                           class="auth-form-control" 
+                                           autocomplete="new-password" 
+                                           aria-required="true" 
+                                           placeholder=" " 
+                                           type="password"
+                                           id="confirmPasswordInput" />
+                                    <label asp-for="Input.ConfirmPassword" class="auth-form-label">Confirmar Contraseña</label>
+                                    <button type="button" class="password-toggle" id="toggleConfirmPassword">
+                                        <i class="bi bi-eye-slash"></i>
+                                    </button>
+                                </div>
                                 <span asp-validation-for="Input.ConfirmPassword" class="auth-validation-error"></span>
                             </div>
 
@@ -245,7 +249,7 @@
                 });
             });
 
-            // Password visibility toggles
+            // Password visibility toggles - ESTRUCTURA AISLADA
             const toggleRegisterPassword = document.getElementById('toggleRegisterPassword');
             const registerPasswordInput = document.getElementById('registerPasswordInput');
             

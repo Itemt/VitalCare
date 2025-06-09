@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "FD3iGamWxN3ygajNA0wEYZ7mjW9TFk0CfZum3uKCxDg=",
+  "Hash": "nmzXvKrc26UJsipMrwJ//tiR3dTbP4TZrqw2QykmmFY=",
   "Source": "CitasEPS",
   "BasePath": "_content/CitasEPS",
   "Mode": "Default",
@@ -1396,8 +1396,8 @@
       "RelatedAsset": "",
       "AssetTraitName": "",
       "AssetTraitValue": "",
-      "Fingerprint": "zdbz4bzdjl",
-      "Integrity": "mdvro+3E+CCOQY/++ZwGYeKoDFznYPKCvkWtK446DaE=",
+      "Fingerprint": "2clyq99nr5",
+      "Integrity": "fvG+OTTZMCWZGw3GG5i1qu2DW6AsZd92JMTGpGcGusQ=",
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\css\\enhanced-features.css"
@@ -3537,6 +3537,51 @@
       ]
     },
     {
+      "Route": "css/enhanced-features.2clyq99nr5.css",
+      "AssetFile": "C:\\Users\\CristianPC\\Desktop\\vitalcare\\wwwroot\\css\\enhanced-features.css",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "84745"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "text/css"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"fvG+OTTZMCWZGw3GG5i1qu2DW6AsZd92JMTGpGcGusQ=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Mon, 09 Jun 2025 05:24:55 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=31536000, immutable"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "fingerprint",
+          "Value": "2clyq99nr5"
+        },
+        {
+          "Name": "label",
+          "Value": "css/enhanced-features.css"
+        },
+        {
+          "Name": "integrity",
+          "Value": "sha256-fvG+OTTZMCWZGw3GG5i1qu2DW6AsZd92JMTGpGcGusQ="
+        }
+      ]
+    },
+    {
       "Route": "css/enhanced-features.css",
       "AssetFile": "C:\\Users\\CristianPC\\Desktop\\vitalcare\\wwwroot\\css\\enhanced-features.css",
       "Selectors": [],
@@ -3547,7 +3592,7 @@
         },
         {
           "Name": "Content-Length",
-          "Value": "73039"
+          "Value": "84745"
         },
         {
           "Name": "Content-Type",
@@ -3555,11 +3600,11 @@
         },
         {
           "Name": "ETag",
-          "Value": "\"mdvro+3E+CCOQY/++ZwGYeKoDFznYPKCvkWtK446DaE=\""
+          "Value": "\"fvG+OTTZMCWZGw3GG5i1qu2DW6AsZd92JMTGpGcGusQ=\""
         },
         {
           "Name": "Last-Modified",
-          "Value": "Mon, 09 Jun 2025 03:59:42 GMT"
+          "Value": "Mon, 09 Jun 2025 05:24:55 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -3569,52 +3614,7 @@
       "EndpointProperties": [
         {
           "Name": "integrity",
-          "Value": "sha256-mdvro+3E+CCOQY/++ZwGYeKoDFznYPKCvkWtK446DaE="
-        }
-      ]
-    },
-    {
-      "Route": "css/enhanced-features.zdbz4bzdjl.css",
-      "AssetFile": "C:\\Users\\CristianPC\\Desktop\\vitalcare\\wwwroot\\css\\enhanced-features.css",
-      "Selectors": [],
-      "ResponseHeaders": [
-        {
-          "Name": "Accept-Ranges",
-          "Value": "bytes"
-        },
-        {
-          "Name": "Content-Length",
-          "Value": "73039"
-        },
-        {
-          "Name": "Content-Type",
-          "Value": "text/css"
-        },
-        {
-          "Name": "ETag",
-          "Value": "\"mdvro+3E+CCOQY/++ZwGYeKoDFznYPKCvkWtK446DaE=\""
-        },
-        {
-          "Name": "Last-Modified",
-          "Value": "Mon, 09 Jun 2025 03:59:42 GMT"
-        },
-        {
-          "Name": "Cache-Control",
-          "Value": "max-age=31536000, immutable"
-        }
-      ],
-      "EndpointProperties": [
-        {
-          "Name": "fingerprint",
-          "Value": "zdbz4bzdjl"
-        },
-        {
-          "Name": "label",
-          "Value": "css/enhanced-features.css"
-        },
-        {
-          "Name": "integrity",
-          "Value": "sha256-mdvro+3E+CCOQY/++ZwGYeKoDFznYPKCvkWtK446DaE="
+          "Value": "sha256-fvG+OTTZMCWZGw3GG5i1qu2DW6AsZd92JMTGpGcGusQ="
         }
       ]
     },

@@ -1749,7 +1749,7 @@ body {
 /* === MODERN LOGIN AND REGISTER PAGES === */
 .auth-page-wrapper {
     min-height: 100vh;
-    background: #f8f9fa;
+    background: transparent;
     position: relative;
     display: flex;
     align-items: center;
@@ -1768,31 +1768,23 @@ body {
 }
 
 .auth-card {
-    background: rgba(255, 255, 255, 0.95);
-    backdrop-filter: blur(20px);
-    border: 1px solid rgba(255, 255, 255, 0.2);
+    background: transparent;
+    border: none;
     border-radius: 20px;
     box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
-    overflow: hidden;
+    overflow: visible;
     position: relative;
-    transition: all 0.4s ease;
+    transition: none;
     margin: 0 auto;
 }
 
 .auth-card:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 30px 60px rgba(0, 0, 0, 0.15);
+    /* Sin efectos hover */
 }
 
 .auth-card::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    height: 5px;
-    background: linear-gradient(90deg, #003366, #002244);
-    z-index: 3;
+    /* Sin barra superior */
+    display: none;
 }
 
 .auth-header {
@@ -1854,25 +1846,31 @@ body {
 /* Asegurar que el contenedor auth-form-floating mantenga su estructura */
 .auth-form-floating {
     position: relative;
-    margin-bottom: 1.5rem; /* Volver al margen original */
+    margin-bottom: 1.2rem; /* Espaciado reducido y consistente */
 }
 
 /* ESPACIADO ESPECÍFICO PARA AUTH-ROW */
 .auth-row {
     display: flex !important;
     gap: 0.25rem !important;
-    margin-bottom: 1.5rem !important; /* IGUAL que otros campos */
+    margin-bottom: 1.2rem !important; /* IGUAL que otros campos */
+}
+
+/* Asegurar que los auth-col dentro del row no tengan margin extra */
+.auth-row .auth-col .auth-form-floating {
+    margin-bottom: 0 !important; /* Los elementos dentro del row NO tienen margin propio */
 }
 
 /* ELIMINAR espacio extra después de auth-row */
 .auth-row + .auth-form-floating {
-    margin-top: 0 !important; /* CERO espacio extra */
+    margin-top: 0 !important; /* CERO espacio extra entre auth-row y siguiente campo */
 }
 
 .auth-form-control {
     width: 100%;
     padding: 1rem 1rem 1rem 3.5rem;
     font-size: 1rem;
+    font-weight: 500;
     background: rgba(255, 255, 255, 0.9);
     border: 2px solid rgba(0, 51, 102, 0.15);
     border-radius: 12px;
@@ -1946,7 +1944,8 @@ body {
 .password-toggle {
     position: absolute !important;
     right: 1rem !important;
-    top: 1rem !important; /* FIJO desde arriba, no se mueve NUNCA */
+    top: 50% !important; /* CENTRADO VERTICAL PERFECTO */
+    transform: translateY(-50%) !important; /* CENTRADO VERTICAL */
     background: none !important;
     border: none !important;
     color: #003366 !important;
@@ -1964,13 +1963,12 @@ body {
     min-width: 40px !important;
     min-height: 40px !important;
     margin: 0 !important; /* CERO márgenes */
-    transform: none !important; /* NUNCA transformar */
 }
 
 .password-toggle:hover {
     background: rgba(0, 51, 102, 0.1) !important;
     color: #002244 !important;
-    transform: none !important; /* NO mover NUNCA */
+    transform: translateY(-50%) scale(1.05) !important; /* CENTRADO + efecto hover */
 }
 
 .password-toggle i {
@@ -2224,16 +2222,20 @@ body {
 
 /* Dark mode support */
 [data-bs-theme="dark"] .auth-page-wrapper {
-    background: #121212;
+    background: transparent;
 }
 
 [data-bs-theme="dark"] .auth-card {
-    background: rgba(45, 55, 72, 0.95);
-    border-color: rgba(255, 255, 255, 0.1);
+    background: transparent;
+    border: none;
 }
 
 [data-bs-theme="dark"] .auth-title {
-    color: #e2e8f0;
+    color: #ffffff !important;
+    background: #ffffff !important;
+    -webkit-background-clip: text !important;
+    -webkit-text-fill-color: #ffffff !important;
+    background-clip: text !important;
 }
 
 [data-bs-theme="dark"] .auth-subtitle {
@@ -2574,9 +2576,34 @@ body {
     background: rgba(45, 55, 72, 0.9) !important;
 } 
 
-/* Estilos específicos para datepicker */
-.datepicker-register {
-    cursor: pointer;
+/* Estilos específicos para datepicker - FORZAR que use los mismos estilos que auth-form-control */
+.datepicker-register,
+input.datepicker-register,
+.flatpickr-input {
+    width: 100% !important;
+    padding: 1rem 1rem 1rem 3.5rem !important;
+    font-size: 1rem !important;
+    font-weight: 500 !important;
+    background: rgba(255, 255, 255, 0.9) !important;
+    border: 2px solid rgba(0, 51, 102, 0.15) !important;
+    border-radius: 12px !important;
+    transition: all 0.3s ease !important;
+    position: relative !important;
+    z-index: 2 !important;
+    color: #2d3748 !important;
+    cursor: pointer !important;
+    box-sizing: border-box !important;
+}
+
+.datepicker-register:focus,
+input.datepicker-register:focus,
+.flatpickr-input:focus {
+    outline: none !important;
+    border-color: #003366 !important;
+    background: rgba(255, 255, 255, 1) !important;
+    box-shadow: 0 0 0 0.2rem rgba(0, 51, 102, 0.25) !important;
+    transform: translateY(-2px) !important;
+    color: #1a202c !important;
 }
 
 /* Asegurar que el datepicker se vea correctamente */
@@ -2654,6 +2681,7 @@ body {
     width: 100% !important;
     padding: 1rem 1rem 1rem 3.5rem !important;
     font-size: 1rem !important;
+    font-weight: 500 !important;
     box-sizing: border-box !important;
 }
 
@@ -2826,8 +2854,12 @@ input[type="password"].auth-form-control {
 
 /* ========== SOBREESCRIBIR TODO LO ANTERIOR PARA BOTONES DE PASSWORD ========== */
 
-/* NUEVO estilo para botón de password que sobrescribe todo */
-button.password-toggle {
+/* NUEVO estilo para botón de password que sobrescribe todo - MÁS ESPECÍFICO */
+.auth-form-floating button.password-toggle,
+.auth-form-floating .password-toggle,
+#toggleLoginPassword,
+#toggleRegisterPassword,
+#toggleConfirmPassword {
     position: absolute !important;
     right: 1rem !important;
     top: 50% !important;
@@ -2850,13 +2882,21 @@ button.password-toggle {
     outline: none !important;
 }
 
-button.password-toggle:hover {
+.auth-form-floating button.password-toggle:hover,
+.auth-form-floating .password-toggle:hover,
+#toggleLoginPassword:hover,
+#toggleRegisterPassword:hover,
+#toggleConfirmPassword:hover {
     background: rgba(0, 51, 102, 0.1) !important;
     color: #002244 !important;
     transform: translateY(-50%) scale(1.05) !important;
 }
 
-button.password-toggle:active {
+.auth-form-floating button.password-toggle:active,
+.auth-form-floating .password-toggle:active,
+#toggleLoginPassword:active,
+#toggleRegisterPassword:active,
+#toggleConfirmPassword:active {
     transform: translateY(-50%) scale(0.95) !important;
 }
 
@@ -2888,24 +2928,24 @@ input#confirmPasswordInput {
     margin-bottom: 1.5rem !important;
 }
 
-/* SOLUCIÓN SIMPLE: BOTÓN CENTRADO + VALIDATION COMO OVERLAY */
+/* BOTÓN INMUNE A VALIDATION MESSAGES - CENTRADO PERFECTO EN EL INPUT */
 .password-toggle,
 #toggleLoginPassword,
 #toggleRegisterPassword,
 #toggleConfirmPassword {
     position: absolute !important;
     right: 1rem !important;
-    top: 50% !important; /* CENTRADO en el input */
-    transform: translateY(-50%) !important; /* Centrado perfecto */
+    top: 50% !important; /* CENTRO ABSOLUTO del contenedor */
+    transform: translateY(-50%) !important; /* CENTRADO PERFECTO */
     background: none !important;
     border: none !important;
     color: #003366 !important;
     font-size: 1.1rem !important;
     cursor: pointer !important;
-    z-index: 999 !important;
+    z-index: 1000 !important; /* Por encima de validation messages */
     padding: 0.5rem !important;
     border-radius: 50% !important;
-    transition: color 0.3s ease !important;
+    transition: all 0.3s ease !important;
     display: flex !important;
     align-items: center !important;
     justify-content: center !important;
@@ -2917,22 +2957,35 @@ input#confirmPasswordInput {
     user-select: none !important;
 }
 
-/* VALIDATION MESSAGES SIN EMPUJAR CONTENIDO */
-.auth-form-floating {
-    position: relative !important;
-    margin-bottom: 1.5rem !important; /* Espaciado normal */
-    padding-bottom: 0.5rem !important; /* Pequeño padding para messages */
+/* HACER que el botón se posicione respecto al INPUT específicamente */
+.auth-form-control:focus ~ .password-toggle,
+.auth-form-control ~ .password-toggle,
+#loginPasswordInput ~ .password-toggle,
+#registerPasswordInput ~ .password-toggle,
+#confirmPasswordInput ~ .password-toggle {
+    position: absolute !important;
+    top: 50% !important; /* CENTRO ABSOLUTO del input */
+    transform: translateY(-50%) !important; /* CENTRADO PERFECTO */
 }
 
-/* Validation messages como overlay absoluto */
+/* VALIDATION MESSAGES QUE EMPUJAN CONTENIDO CORRECTAMENTE */
+.auth-form-floating {
+    position: relative !important;
+    margin-bottom: 1.2rem !important; /* Espaciado reducido */
+}
+
+/* Validation messages en flujo normal - empujan contenido */
 .auth-form-floating .auth-validation-error {
-    position: absolute !important;
-    top: calc(100% + 0.25rem) !important; /* Justo debajo con pequeño gap */
-    left: 0 !important;
-    right: 0 !important;
-    z-index: 999 !important; /* Por encima de todo */
-    margin: 0 !important;
-    /* NO empuja contenido - es overlay puro */
+    position: relative !important; /* Flujo normal, no overlay */
+    margin-top: 0.25rem !important;
+    margin-bottom: 0 !important;
+    z-index: 1 !important;
+    /* SÍ empuja contenido hacia abajo cuando aparece */
+}
+
+/* OCULTAR validation messages vacíos */
+.auth-validation-error:empty {
+    display: none !important;
 }
 
 .password-toggle:hover,
@@ -2941,14 +2994,14 @@ input#confirmPasswordInput {
 #toggleConfirmPassword:hover {
     background: rgba(0, 51, 102, 0.1) !important;
     color: #002244 !important;
-    transform: translateY(-50%) scale(1.05) !important; /* Mantener centrado + hover */
+    transform: translateY(-50%) scale(1.05) !important; /* Centrado + efecto hover */
 }
 
 .password-toggle:active,
 #toggleLoginPassword:active,
 #toggleRegisterPassword:active,
 #toggleConfirmPassword:active {
-    transform: translateY(-50%) scale(0.95) !important; /* Mantener centrado + click */
+    transform: translateY(-50%) scale(0.95) !important; /* Centrado + efecto click */
 }
 
 /* Inputs de password SIEMPRE con espacio para botón */
@@ -2976,4 +3029,207 @@ input[asp-for="Input.ConfirmPassword"] {
     -webkit-text-security: disc !important;
     text-security: disc !important;
 }
+
+/* ========== REGLA FINAL ULTRA ESPECÍFICA PARA BOTONES DE PASSWORD ========== */
+
+/* Esta regla tiene la máxima especificidad y debe sobreescribir todo */
+div.auth-form-floating button.password-toggle[id*="toggle"],
+div.auth-form-floating button[class*="password-toggle"],
+button#toggleLoginPassword,
+button#toggleRegisterPassword,
+button#toggleConfirmPassword {
+    position: absolute !important;
+    right: 1rem !important;
+    top: 50% !important;
+    transform: translateY(-50%) !important;
+    background: none !important;
+    border: none !important;
+    color: #003366 !important;
+    font-size: 1.1rem !important;
+    cursor: pointer !important;
+    z-index: 9999 !important;
+    padding: 0.5rem !important;
+    border-radius: 50% !important;
+    transition: all 0.3s ease !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    width: 40px !important;
+    height: 40px !important;
+    pointer-events: auto !important;
+    outline: none !important;
+    margin: 0 !important;
+    left: auto !important;
+    bottom: auto !important;
+}
+
+div.auth-form-floating button.password-toggle[id*="toggle"]:hover,
+div.auth-form-floating button[class*="password-toggle"]:hover,
+button#toggleLoginPassword:hover,
+button#toggleRegisterPassword:hover,
+button#toggleConfirmPassword:hover {
+    background: rgba(0, 51, 102, 0.1) !important;
+    color: #002244 !important;
+    transform: translateY(-50%) scale(1.05) !important;
+}
+
+div.auth-form-floating button.password-toggle[id*="toggle"]:active,
+div.auth-form-floating button[class*="password-toggle"]:active,
+button#toggleLoginPassword:active,
+button#toggleRegisterPassword:active,
+button#toggleConfirmPassword:active {
+    transform: translateY(-50%) scale(0.95) !important;
+}
+
+/* ========== WRAPPER PARA AISLAR BOTÓN DE VALIDACIONES ========== */
+
+/* Contenedor que aísla el input y botón de las validaciones */
+.password-input-wrapper {
+    position: relative !important;
+    display: block !important;
+    width: 100% !important;
+    height: auto !important;
+}
+
+/* El botón debe posicionarse relativo al wrapper, no al auth-form-floating */
+.password-input-wrapper .password-toggle,
+.password-input-wrapper button.password-toggle,
+.password-input-wrapper #toggleRegisterPassword,
+.password-input-wrapper #toggleConfirmPassword {
+    position: absolute !important;
+    right: 1rem !important;
+    top: 50% !important;
+    transform: translateY(-50%) !important;
+    background: none !important;
+    border: none !important;
+    color: #003366 !important;
+    font-size: 1.1rem !important;
+    cursor: pointer !important;
+    z-index: 9999 !important;
+    padding: 0.5rem !important;
+    border-radius: 50% !important;
+    transition: all 0.3s ease !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    width: 40px !important;
+    height: 40px !important;
+    pointer-events: auto !important;
+    outline: none !important;
+    margin: 0 !important;
+}
+
+.password-input-wrapper .password-toggle:hover,
+.password-input-wrapper button.password-toggle:hover,
+.password-input-wrapper #toggleRegisterPassword:hover,
+.password-input-wrapper #toggleConfirmPassword:hover {
+    background: rgba(0, 51, 102, 0.1) !important;
+    color: #002244 !important;
+    transform: translateY(-50%) scale(1.05) !important;
+}
+
+.password-input-wrapper .password-toggle:active,
+.password-input-wrapper button.password-toggle:active,
+.password-input-wrapper #toggleRegisterPassword:active,
+.password-input-wrapper #toggleConfirmPassword:active {
+    transform: translateY(-50%) scale(0.95) !important;
+}
+
+/* ========== MODO OSCURO PARA BOTONES DE PASSWORD EN WRAPPER ========== */
+
+[data-bs-theme="dark"] .password-input-wrapper .password-toggle,
+[data-bs-theme="dark"] .password-input-wrapper button.password-toggle,
+[data-bs-theme="dark"] .password-input-wrapper #toggleRegisterPassword,
+[data-bs-theme="dark"] .password-input-wrapper #toggleConfirmPassword {
+    color: #ffffff !important;
+}
+
+[data-bs-theme="dark"] .password-input-wrapper .password-toggle:hover,
+[data-bs-theme="dark"] .password-input-wrapper button.password-toggle:hover,
+[data-bs-theme="dark"] .password-input-wrapper #toggleRegisterPassword:hover,
+[data-bs-theme="dark"] .password-input-wrapper #toggleConfirmPassword:hover {
+    background: rgba(255, 255, 255, 0.1) !important;
+    color: #e0e0e0 !important;
+}
+
+/* ========== MODO OSCURO PARA DATEPICKER ========== */
+
+[data-bs-theme="dark"] .datepicker-register,
+[data-bs-theme="dark"] input.datepicker-register,
+[data-bs-theme="dark"] .flatpickr-input {
+    background: rgba(26, 32, 44, 0.8) !important;
+    border-color: rgba(0, 51, 102, 0.3) !important;
+    color: #e2e8f0 !important;
+}
+
+[data-bs-theme="dark"] .datepicker-register:focus,
+[data-bs-theme="dark"] input.datepicker-register:focus,
+[data-bs-theme="dark"] .flatpickr-input:focus {
+    background: rgba(26, 32, 44, 1) !important;
+    color: #ffffff !important;
+    border-color: #003366 !important;
+}
+
+/* ========== REGLA FINAL ULTRA ESPECÍFICA PARA UNIFICAR TODAS LAS FUENTES ========== */
+
+/* Forzar que TODOS los inputs tengan exactamente la misma fuente que el SELECT */
+.auth-form-floating input[type="text"],
+.auth-form-floating input[type="email"], 
+.auth-form-floating input[type="password"],
+.auth-form-floating input[readonly],
+.auth-form-floating select,
+input[asp-for="Input.FirstName"],
+input[asp-for="Input.LastName"],
+input[asp-for="Input.DocumentId"],
+input[asp-for="Input.Email"],
+input[asp-for="Input.Password"],
+input[asp-for="Input.ConfirmPassword"],
+input[asp-for="Input.PhoneNumber"],
+input[asp-for="Input.DateOfBirth"],
+select[asp-for="Input.Gender"],
+input.datepicker-register,
+.flatpickr-input,
+input.flatpickr-input,
+.flatpickr-input[readonly] {
+    font-weight: 500 !important;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif !important;
+    font-style: normal !important;
+    font-variant: normal !important;
+    text-transform: none !important;
+}
+
+/* Regla específica para el input alternativo de Flatpickr */
+.flatpickr-input.form-control,
+.flatpickr-input.auth-form-control,
+input[data-input],
+input[readonly].flatpickr-input {
+    font-weight: 500 !important;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif !important;
+    font-style: normal !important;
+}
+
+/* Sobrescribir cualquier estilo de Flatpickr específicamente */
+div.auth-form-floating input.flatpickr-input,
+div.auth-form-floating input[readonly],
+div.auth-row div.auth-col input.datepicker-register,
+div.auth-row div.auth-col input.flatpickr-input {
+    font-weight: 500 !important;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif !important;
+    font-style: normal !important;
+}
+
+/* Para móviles y tablets */
+@media (max-width: 1024px) {
+    .auth-form-floating input,
+    .auth-form-floating select,
+    .flatpickr-input,
+    input.flatpickr-input,
+    input.datepicker-register {
+        font-weight: 500 !important;
+        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif !important;
+        font-style: normal !important;
+    }
+}
+
+
 
