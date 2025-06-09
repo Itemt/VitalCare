@@ -1,7 +1,7 @@
 @page
 @model ConfirmEmailChangeModel
 @{
-    ViewData["Title"] = "Confirmación de Cambio de Correo";
+    ViewData["Title"] = "ConfirmaciÃ³n de Cambio de Correo";
     // Determine card header class based on success or error for StatusMessage
     bool isSuccess = Model.StatusMessage != null && Model.StatusMessage.ToLower().Contains("thank you"); // Check for "thank you"
     var cardHeaderClass = isSuccess ? "bg-success text-white" : "bg-danger text-white";
@@ -22,13 +22,13 @@
                     }
                     else
                     {
-                        <p class="lead">Procesando tu solicitud de cambio de correo electrónico...</p>
+                        <p class="lead">Procesando tu solicitud de cambio de correo electrÃ³nico...</p>
                     }
 
                     @if (isSuccess)
                     {
                         <div class="mt-4">
-                            <p>Tu correo electrónico ha sido actualizado.</p>
+                            <p>Tu correo electrÃ³nico ha sido actualizado.</p>
                             <a asp-area="Identity" asp-page="/Account/Manage/Index" class="btn btn-success">
                                 <i class="bi bi-person-fill"></i> Ir a mi Perfil
                             </a>

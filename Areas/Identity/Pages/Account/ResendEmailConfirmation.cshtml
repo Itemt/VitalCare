@@ -1,7 +1,7 @@
 @page
 @model ResendEmailConfirmationModel
 @{
-    ViewData["Title"] = "Reenviar Correo de Confirmaci髇";
+    ViewData["Title"] = "Reenviar Correo de Confirmaci贸n";
 }
 
 <div class="container text-center mt-5">
@@ -11,7 +11,7 @@
             
             <h1>@ViewData["Title"]</h1>
             <p class="lead mb-4">
-                Ingresa tu direcci髇 de correo electr髇ico y te enviaremos nuevamente el enlace de confirmaci髇.
+                Ingresa tu direcci贸n de correo electr贸nico y te enviaremos nuevamente el enlace de confirmaci贸n.
             </p>
             
             <form method="post">
@@ -19,7 +19,7 @@
                 
                 <div class="form-floating mb-3">
                     <input asp-for="Input.Email" class="form-control" aria-required="true" placeholder="tuCorreo@ejemplo.com" />
-                    <label asp-for="Input.Email">Correo Electr髇ico</label>
+                    <label asp-for="Input.Email">Correo Electr贸nico</label>
                     <span asp-validation-for="Input.Email" class="text-danger"></span>
                 </div>
                 
@@ -27,7 +27,7 @@
             </form>
             <hr class="my-4">
             <p>
-                <a asp-page="./Login" class="text-secondary">Volver a Iniciar Sesi髇</a>
+                <a asp-page="./Login" class="text-secondary">Volver a Iniciar Sesi贸n</a>
             </p>
         </div>
     </div>

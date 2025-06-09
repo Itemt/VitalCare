@@ -267,11 +267,11 @@
                         <div> @* Back Button on the right *@
                             @if (User.IsInRole("Doctor"))
                             {
-                                <a asp-page="/Doctor/Agenda" class="btn btn-secondary"><i class="bi bi-arrow-left-circle"></i> Volver a la Agenda</a>
+                                <a asp-page="/UserDashboards/Doctor/Agenda" class="btn btn-secondary"><i class="bi bi-arrow-left-circle"></i> Volver a la Agenda</a>
                             }
                             else // Patient or Admin
                             {
-                                <a asp-page="/Appointments/Index" class="btn btn-secondary"><i class="bi bi-arrow-left-circle"></i> Volver al Listado</a>
+                                <a asp-page="/Appointments/Index" class="btn btn-secondary"><i class="bi bi-arrow-left-circle"></i> Volver a Mis Citas</a>
                             }
                         </div>
                     </div>
