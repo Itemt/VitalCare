@@ -21,13 +21,17 @@ namespace CitasEPS.Pages.Appointments
         private readonly ILogger<DetailsModel> _logger;
         private readonly UserManager<User> _userManager;
         private readonly IAppointmentPolicyService _appointmentPolicyService;
+        private readonly IAppointmentEmailService _appointmentEmailService;
+        private readonly INotificationService _notificationService;
 
-        public DetailsModel(ApplicationDbContext context, ILogger<DetailsModel> logger, UserManager<User> userManager, IAppointmentPolicyService appointmentPolicyService)
+        public DetailsModel(ApplicationDbContext context, ILogger<DetailsModel> logger, UserManager<User> userManager, IAppointmentPolicyService appointmentPolicyService, IAppointmentEmailService appointmentEmailService, INotificationService notificationService)
         {
             _context = context;
             _logger = logger;
             _userManager = userManager;
             _appointmentPolicyService = appointmentPolicyService;
+            _appointmentEmailService = appointmentEmailService;
+            _notificationService = notificationService;
         }
 
         public Appointment Appointment { get; set; } = default!;
@@ -101,7 +105,12 @@ namespace CitasEPS.Pages.Appointments
         // Nuevo método para confirmar la cita
         public async Task<IActionResult> OnPostConfirmAsync(int id)
         {
-            var appointmentToUpdate = await _context.Appointments.FindAsync(id);
+            var appointmentToUpdate = await _context.Appointments
+                .Include(a => a.Patient)
+                .ThenInclude(p => p.User)
+                .Include(a => a.Doctor)
+                .ThenInclude(d => d.User)
+                .FirstOrDefaultAsync(a => a.Id == id);
 
             if (appointmentToUpdate == null)
             {
@@ -113,6 +122,37 @@ namespace CitasEPS.Pages.Appointments
             {
                 appointmentToUpdate.IsConfirmed = true;
                 await _context.SaveChangesAsync();
+
+                try
+                {
+                    // Enviar notificación al paciente
+                    if (appointmentToUpdate.Patient?.User != null)
+                    {
+                        await _notificationService.CreateNotificationAsync(
+                            appointmentToUpdate.Patient.User.Id,
+                            $"Su cita para el {appointmentToUpdate.AppointmentDateTime:dd/MM/yyyy 'a las' HH:mm} ha sido confirmada por el médico.",
+                            NotificationType.AppointmentConfirmed,
+                            appointmentToUpdate.Id
+                        );
+
+                        // Enviar correo de confirmación al paciente
+                        if (appointmentToUpdate.Doctor?.User != null)
+                        {
+                            _logger.LogInformation($"Enviando correo de confirmación al paciente {appointmentToUpdate.Patient.User.Email}");
+                            await _appointmentEmailService.SendAppointmentConfirmedEmailAsync(
+                                appointmentToUpdate, 
+                                appointmentToUpdate.Patient.User, 
+                                appointmentToUpdate.Doctor.User
+                            );
+                            _logger.LogInformation($"Correo de confirmación enviado exitosamente al paciente {appointmentToUpdate.Patient.User.Email}");
+                        }
+                    }
+                }
+                catch (Exception ex)
+                {
+                    _logger.LogError(ex, "Error al enviar notificación o correo de confirmación para la cita {AppointmentId}.", id);
+                }
+
                 TempData["SuccessMessage"] = "Cita confirmada exitosamente.";
             }
             else

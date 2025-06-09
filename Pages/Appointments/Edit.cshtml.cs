@@ -11,6 +11,7 @@ using CitasEPS.Models;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.Extensions.Logging;
 using Microsoft.AspNetCore.Identity;
+using CitasEPS.Services;
 
 namespace CitasEPS.Pages.Appointments
 {
@@ -22,12 +23,16 @@ namespace CitasEPS.Pages.Appointments
         private readonly ApplicationDbContext _context;
         private readonly ILogger<EditModel> _logger;
         private readonly UserManager<User> _userManager; // Inject UserManager for role checks
+        private readonly IAppointmentEmailService _appointmentEmailService;
+        private readonly INotificationService _notificationService;
 
-        public EditModel(ApplicationDbContext context, ILogger<EditModel> logger, UserManager<User> userManager) // Add UserManager
+        public EditModel(ApplicationDbContext context, ILogger<EditModel> logger, UserManager<User> userManager, IAppointmentEmailService appointmentEmailService, INotificationService notificationService) // Add UserManager
         {
             _context = context;
             _logger = logger;
             _userManager = userManager; // Store UserManager
+            _appointmentEmailService = appointmentEmailService;
+            _notificationService = notificationService;
         }
 
         [BindProperty]
@@ -199,6 +204,47 @@ namespace CitasEPS.Pages.Appointments
             try
             {
                 await _context.SaveChangesAsync();
+
+                // Enviar notificación y correo si la fecha/hora cambió
+                if (originalAppointment.AppointmentDateTime != Appointment.AppointmentDateTime)
+                {
+                    try
+                    {
+                        // Obtener información completa de la cita para envío de correos
+                        var updatedAppointment = await _context.Appointments
+                            .Include(a => a.Patient)
+                            .ThenInclude(p => p.User)
+                            .Include(a => a.Doctor)
+                            .ThenInclude(d => d.User)
+                            .FirstOrDefaultAsync(a => a.Id == Appointment.Id);
+
+                        if (updatedAppointment?.Patient?.User != null && updatedAppointment?.Doctor?.User != null)
+                        {
+                            // Enviar notificación al paciente
+                            await _notificationService.CreateNotificationAsync(
+                                updatedAppointment.Patient.User.Id,
+                                $"Su cita ha sido modificada. Nueva fecha y hora: {updatedAppointment.AppointmentDateTime:dd/MM/yyyy 'a las' HH:mm}",
+                                NotificationType.AppointmentModified,
+                                updatedAppointment.Id
+                            );
+
+                            // Enviar correo al paciente
+                            _logger.LogInformation($"Enviando correo de modificación al paciente {updatedAppointment.Patient.User.Email}");
+                            await _appointmentEmailService.SendAppointmentModifiedEmailAsync(
+                                updatedAppointment, 
+                                updatedAppointment.Patient.User, 
+                                updatedAppointment.Doctor.User,
+                                "Cambio de fecha y hora"
+                            );
+                            _logger.LogInformation($"Correo de modificación enviado exitosamente al paciente {updatedAppointment.Patient.User.Email}");
+                        }
+                    }
+                    catch (Exception emailEx)
+                    {
+                        _logger.LogError(emailEx, "Error al enviar notificación o correo de modificación para la cita {AppointmentId}.", Appointment.Id);
+                    }
+                }
+
                 TempData["SuccessMessage"] = "Cita actualizada exitosamente.";
                  _logger.LogInformation("Cita con ID: {AppointmentId} actualizada.", Appointment.Id);
             }

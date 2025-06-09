@@ -364,7 +364,12 @@
 
 /* For navbar dropdowns specifically */
 .navbar .dropdown-menu-end {
+    inset: auto 0px auto auto !important;
+    transform: translate3d(-10px, 40px, 0px) !important;
     margin-right: -0.25rem !important;
+    max-width: 240px !important;
+    right: 10px !important;
+    left: auto !important;
 }
 
 @keyframes dropdownFadeIn {
@@ -477,6 +482,35 @@
     justify-content: center !important;
 }
 
+/* Notification dropdown specific styling */
+#notificationDropdown + .dropdown-menu {
+    width: 350px !important;
+    max-width: 90vw !important;
+}
+
+.notification-item .dropdown-item {
+    white-space: normal !important;
+    word-wrap: break-word !important;
+    overflow-wrap: break-word !important;
+    padding: 0.75rem 1rem !important;
+    min-height: auto !important;
+}
+
+.notification-item .dropdown-item p {
+    margin-bottom: 0.25rem !important;
+    font-size: 0.875rem !important;
+    line-height: 1.4 !important;
+    white-space: normal !important;
+    word-wrap: break-word !important;
+    overflow-wrap: break-word !important;
+}
+
+.notification-item .dropdown-item small {
+    font-size: 0.75rem !important;
+    opacity: 0.8 !important;
+    white-space: normal !important;
+}
+
 /* Mobile adjustments */
 @media (max-width: 991.98px) {
     .navbar-nav .nav-link {
@@ -509,6 +543,28 @@
         padding: 0.3rem 0.5rem !important;
         font-size: 0.85rem !important;
     }
+    
+    /* Notification dropdown mobile styling */
+    #notificationDropdown + .dropdown-menu {
+        width: 320px !important;
+        max-width: 95vw !important;
+        right: 5px !important;
+        left: auto !important;
+    }
+    
+    .notification-item .dropdown-item {
+        padding: 0.6rem 0.8rem !important;
+        font-size: 0.8rem !important;
+    }
+    
+    .notification-item .dropdown-item p {
+        font-size: 0.8rem !important;
+        line-height: 1.3 !important;
+    }
+    
+    .notification-item .dropdown-item small {
+        font-size: 0.7rem !important;
+    }
 }
 
 /* Dark mode adjustments */
@@ -524,8 +580,41 @@
     box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.5) !important;
 }
 
-[data-bs-theme="dark"] .dropdown-item:hover {
+[data-bs-theme="dark"] .dropdown-item {
+    color: #ffffff !important;
+}
+
+[data-bs-theme="dark"] .dropdown-item:hover,
+[data-bs-theme="dark"] .dropdown-item:focus {
     background-color: rgba(255, 255, 255, 0.2) !important;
+    color: #ffffff !important;
+}
+
+[data-bs-theme="dark"] .dropdown-item i {
+    color: #ffffff !important;
+}
+
+[data-bs-theme="dark"] .dropdown-item:hover i,
+[data-bs-theme="dark"] .dropdown-item:focus i {
+    color: #ffffff !important;
+}
+
+/* Override Bootstrap default hover colors with higher specificity */
+[data-bs-theme="dark"] .navbar .dropdown-menu .dropdown-item:hover,
+[data-bs-theme="dark"] .navbar .dropdown-menu .dropdown-item:focus {
+    background-color: rgba(255, 255, 255, 0.2) !important;
+    color: #ffffff !important;
+}
+
+/* Force white text on hover with maximum specificity */
+[data-bs-theme="dark"] .navbar .dropdown-menu .dropdown-item:hover *,
+[data-bs-theme="dark"] .navbar .dropdown-menu .dropdown-item:focus * {
+    color: #ffffff !important;
+}
+
+/* Additional specificity for text content */
+html[data-bs-theme="dark"] .navbar .dropdown-menu .dropdown-item:hover,
+html[data-bs-theme="dark"] .navbar .dropdown-menu .dropdown-item:focus {
     color: #ffffff !important;
 }
 

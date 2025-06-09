@@ -82,6 +82,9 @@ document.addEventListener('DOMContentLoaded', function () {
                 const link = document.createElement('a');
                 link.classList.add('dropdown-item', 'text-wrap');
                 link.href = notification.navigationPath ? notification.navigationPath : '#';
+                link.style.whiteSpace = 'normal';
+                link.style.wordWrap = 'break-word';
+                link.style.overflowWrap = 'break-word';
 
                 const messageP = document.createElement('p');
                 messageP.classList.add('mb-0');

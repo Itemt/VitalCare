@@ -18,7 +18,7 @@
             @* LOGO *@
             <a class="navbar-brand d-flex align-items-center" asp-area="" asp-page="/Index" style="font-size: 1.3rem; font-weight: 700;">
                 <i class="bi bi-heart-pulse-fill me-2 brand-icon" style="font-size: 1.4rem; color: #dc3545;"></i> 
-                <span class="brand-text">Vital<span class="text-info" style="color: #17a2b8;">Care</span></span>
+                <span class="brand-text" style="color: white;">Vital<span class="text-info brand-care-text" style="color: rgba(255, 255, 255, 0.8);">Care</span></span>
             </a>
             
             @* CONTROLES MÓVILES (HAMBURGUESA + TEMA) *@
@@ -38,7 +38,7 @@
             @* MENÚ PRINCIPAL *@
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 @* NAVEGACIÓN PRINCIPAL *@
-                <ul class="navbar-nav me-auto mb-2 mb-xl-0">
+                <ul class="navbar-nav me-auto mb-2 mb-xl-0 ms-4">
                     @* INICIO SIEMPRE VISIBLE *@
                     <li class="nav-item nav-item-important">
                         <a class="nav-link d-flex align-items-center" asp-area="" asp-page="/Index">
@@ -196,9 +196,9 @@
                     else
                     {
                         @* TEMA PARA USUARIOS NO LOGUEADOS - DESKTOP *@
-                        <button class="btn btn-theme-toggle me-3 d-none d-xl-flex align-items-center" type="button" id="themeToggleBtn" title="Cambiar tema">
-                            <i class="bi bi-sun-fill" id="themeIconSun"></i>
-                            <i class="bi bi-moon-stars-fill" id="themeIconMoon" style="display:none;"></i>
+                        <button class="btn btn-theme-toggle me-3 d-none d-xl-flex align-items-center" type="button" id="themeToggleBtnGuest" title="Cambiar tema">
+                            <i class="bi bi-sun-fill" id="themeIconSunGuest"></i>
+                            <i class="bi bi-moon-stars-fill" id="themeIconMoonGuest" style="display:none;"></i>
                         </button>
                     }
 
@@ -213,14 +213,17 @@
 
                         @* NOTIFICACIONES *@
                         <div class="dropdown me-3">
-                            <button class="btn btn-medical position-relative" type="button" id="notificationDropdown" data-bs-toggle="dropdown">
-                                <i class="bi bi-bell-fill"></i>
-                                <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger" id="notificationBadge" style="display: none;">1</span>
+                            <button class="btn btn-medical position-relative" type="button" id="notificationDropdown" data-bs-toggle="dropdown" style="width: 60px; height: 42px; display: flex; align-items: center; justify-content: center; overflow: visible;">
+                                <i class="bi bi-bell-fill" style="font-size: 1rem; line-height: 1;"></i>
+                                <span class="position-absolute badge rounded-pill bg-danger" id="notificationBadge" style="display: none; min-width: 22px; height: 22px; line-height: 22px; font-size: 0.75rem; padding: 0; top: -5px; right: -8px; font-weight: 700; border: 2px solid white; box-shadow: 0 2px 8px rgba(0,0,0,0.3);">1</span>
                             </button>
-                            <ul class="dropdown-menu dropdown-menu-end" style="width: 300px;">
+                            <ul class="dropdown-menu dropdown-menu-end" style="width: 350px; max-width: 90vw; max-height: 400px; overflow-y: auto;">
                                 <li><h6 class="dropdown-header">Notificaciones</h6></li>
-                                <li><hr class="dropdown-divider"></li>
-                                <li><div class="text-center p-3 text-muted">Sin notificaciones</div></li>
+                                <li><hr class="dropdown-divider" id="notificationItemsDivider"></li>
+                                <li id="notificationItemsList" style="display: none;"></li>
+                                <li><div class="text-center p-3 text-muted" id="noNotificationsMessageDisplay">Sin notificaciones</div></li>
+                                <li><hr class="dropdown-divider" style="display: none;" id="markAllReadDivider"></li>
+                                <li><a class="dropdown-item text-center text-primary" href="#" id="markAllAsReadLink" style="display: none; font-size: 0.875rem;">Marcar todas como leídas</a></li>
                             </ul>
                         </div>
 
@@ -365,8 +368,8 @@
         overflow: hidden !important;
     }
     
-    /* Efecto shimmer idéntico al del hero */
-    .navbar .btn::before {
+    /* Efecto shimmer solo para botones que no son de notificaciones */
+    .navbar .btn:not(#notificationDropdown)::before {
         content: '' !important;
         position: absolute !important;
         top: 0 !important;
@@ -379,8 +382,17 @@
         transform: translateZ(0) !important;
     }
     
-    .navbar .btn:hover::before {
+    .navbar .btn:not(#notificationDropdown):hover::before {
         left: 100% !important;
+    }
+    
+    /* Botón de notificaciones sin efecto shimmer */
+    #notificationDropdown {
+        overflow: visible !important;
+    }
+    
+    #notificationDropdown::before {
+        display: none !important;
     }
     
     .navbar .btn:hover {
@@ -470,6 +482,96 @@
         line-height: 1.2 !important;
     }
     
+    /* Logo siempre blanco en panel del doctor - FORZADO */
+    body.doctor-body-bg .navbar-brand,
+    body.doctor-body-bg .navbar-brand .brand-text,
+    body.doctor-body-bg .navbar-brand span {
+        color: white !important;
+    }
+    
+    body.doctor-body-bg .navbar-brand .brand-text .text-info,
+    body.doctor-body-bg .navbar-brand .text-info {
+        color: rgba(255, 255, 255, 0.8) !important;
+    }
+    
+    /* Logo también blanco en paneles de admin y paciente - FORZADO */
+    body.admin-body-bg .navbar-brand,
+    body.admin-body-bg .navbar-brand .brand-text,
+    body.admin-body-bg .navbar-brand span,
+    body.patient-body-bg .navbar-brand,
+    body.patient-body-bg .navbar-brand .brand-text,
+    body.patient-body-bg .navbar-brand span {
+        color: white !important;
+    }
+    
+    body.admin-body-bg .navbar-brand .brand-text .text-info,
+    body.admin-body-bg .navbar-brand .text-info,
+    body.patient-body-bg .navbar-brand .brand-text .text-info,
+    body.patient-body-bg .navbar-brand .text-info {
+        color: rgba(255, 255, 255, 0.8) !important;
+    }
+    
+    /* Clase específica para "Care" - MÁXIMA PRIORIDAD */
+    body.doctor-body-bg .brand-care-text,
+    body.admin-body-bg .brand-care-text,
+    body.patient-body-bg .brand-care-text {
+        color: rgba(255, 255, 255, 0.8) !important;
+    }
+    
+    /* OVERRIDE COMPLETO para logo blanco - DEBE SER LO ÚLTIMO */
+    .doctor-body-bg .navbar-brand,
+    .admin-body-bg .navbar-brand,
+    .patient-body-bg .navbar-brand {
+        color: white !important;
+    }
+    
+    .doctor-body-bg .navbar-brand *,
+    .admin-body-bg .navbar-brand *,
+    .patient-body-bg .navbar-brand * {
+        color: inherit !important;
+    }
+    
+    .doctor-body-bg .navbar-brand .brand-care-text,
+    .admin-body-bg .navbar-brand .brand-care-text,
+    .patient-body-bg .navbar-brand .brand-care-text {
+        color: rgba(255, 255, 255, 0.8) !important;
+    }
+</style>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        // Forzar el color blanco del logo en paneles específicos
+        function forceLogoWhite() {
+            const body = document.body;
+            const brandText = document.querySelector('.navbar-brand .brand-text');
+            const careText = document.querySelector('.navbar-brand .brand-care-text');
+            
+            if (body.classList.contains('doctor-body-bg') || 
+                body.classList.contains('admin-body-bg') || 
+                body.classList.contains('patient-body-bg')) {
+                
+                if (brandText) {
+                    brandText.style.color = 'white';
+                    brandText.style.setProperty('color', 'white', 'important');
+                }
+                
+                if (careText) {
+                    careText.style.color = 'rgba(255, 255, 255, 0.8)';
+                    careText.style.setProperty('color', 'rgba(255, 255, 255, 0.8)', 'important');
+                }
+            }
+        }
+        
+        // Aplicar inmediatamente
+        forceLogoWhite();
+        
+        // Aplicar después de un breve delay para asegurar que otros CSS han cargado
+        setTimeout(forceLogoWhite, 100);
+        setTimeout(forceLogoWhite, 500);
+    });
+</script>
+
+<style>    
     /* Aplicar estilos base inmediatamente para evitar que Bootswatch cause reajustes */
     .navbar-expand-xl .navbar-nav .nav-item .nav-link {
         padding: 0.4rem 0.6rem !important;
@@ -528,6 +630,78 @@
         0%, 100% { transform: scale(1.1) rotate(5deg); }
         25% { transform: scale(1.2) rotate(-5deg); }
         75% { transform: scale(1.2) rotate(10deg); }
+    }
+
+    /* === ESTILOS PARA NOTIFICACIONES === */
+    .notification-item {
+        border-bottom: 1px solid rgba(0,0,0,0.1);
+        transition: background-color 0.2s ease;
+    }
+
+    .notification-item:last-child {
+        border-bottom: none;
+    }
+
+    .notification-item.notification-unread {
+        background-color: rgba(0, 123, 255, 0.05);
+        border-left: 3px solid #007bff;
+    }
+
+    .notification-item.notification-read {
+        background-color: transparent;
+        opacity: 0.7;
+    }
+
+    .notification-item:hover {
+        background-color: rgba(0, 123, 255, 0.1) !important;
+    }
+
+    .notification-item .dropdown-item {
+        white-space: normal !important;
+        padding: 0.75rem 1rem !important;
+        word-wrap: break-word !important;
+        overflow-wrap: break-word !important;
+        min-height: auto !important;
+    }
+
+    .notification-item .dropdown-item p {
+        margin-bottom: 0.25rem !important;
+        font-size: 0.875rem !important;
+        line-height: 1.4 !important;
+        white-space: normal !important;
+        word-wrap: break-word !important;
+        overflow-wrap: break-word !important;
+    }
+
+    .notification-item .dropdown-item small {
+        font-size: 0.75rem !important;
+        opacity: 0.8 !important;
+        white-space: normal !important;
+    }
+
+    #notificationBadge {
+        font-size: 0.75rem !important;
+        min-width: 22px !important;
+        height: 22px !important;
+        line-height: 22px !important;
+        text-align: center !important;
+        padding: 0 !important;
+        display: flex !important;
+        align-items: center !important;
+        justify-content: center !important;
+        font-weight: 700 !important;
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3) !important;
+        border: 2px solid white !important;
+        position: absolute !important;
+        top: -5px !important;
+        right: -8px !important;
+        z-index: 10 !important;
+    }
+    
+    /* Asegurar que el contenedor del botón de notificaciones no corte el badge */
+    .dropdown .btn-medical {
+        overflow: visible !important;
+        position: relative !important;
     }
     
     /* === ANIMACIONES DE HAMBURGUESA PERSONALIZADAS === */

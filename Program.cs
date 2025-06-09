@@ -66,6 +66,7 @@ builder.Services.AddDataProtection()
 builder.Services.AddScoped<IDateTimeService, DateTimeService>();
 builder.Services.AddScoped<IAppointmentPolicyService, AppointmentPolicyService>();
 builder.Services.AddScoped<INotificationService, NotificationService>();
+builder.Services.AddScoped<IAppointmentEmailService, AppointmentEmailService>();
 
 builder.Services.AddControllers(); // <<< Add this for API controllers
 

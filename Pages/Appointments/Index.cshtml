@@ -12,206 +12,639 @@
     }
 }
 
+<style>
+    /* Forzar el fondo azul independientemente del modo */
+    html, body {
+        background: linear-gradient(135deg, #1e293b 0%, #0f172a 100%) !important;
+        min-height: 100vh !important;
+        color: white !important;
+    }
+    
+    .container-fluid {
+        background: transparent;
+        color: white;
+    }
+    
+    .appointments-header {
+        text-align: center;
+        padding: 3rem 0 2rem 0;
+        color: white !important;
+    }
+    
+    .appointments-title {
+        font-size: 2.5rem;
+        font-weight: 700;
+        margin-bottom: 0.5rem;
+        text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+        color: white !important;
+    }
+    
+    .appointments-subtitle {
+        color: rgba(255, 255, 255, 0.8) !important;
+        font-size: 1.2rem;
+        margin: 0;
+    }
+    
+    .stats-section {
+        background: rgba(255, 255, 255, 0.1) !important;
+        backdrop-filter: blur(10px);
+        border-radius: 15px;
+        padding: 1.5rem;
+        margin-bottom: 2rem;
+        border: 1px solid rgba(255, 255, 255, 0.2);
+    }
+    
+    .stats-header {
+        color: white !important;
+        font-weight: 600;
+        margin-bottom: 1rem;
+        font-size: 1.1rem;
+    }
+    
+    .alert-section {
+        background: rgba(59, 130, 246, 0.2) !important;
+        border: 2px solid rgba(59, 130, 246, 0.5) !important;
+        border-radius: 15px;
+        color: white !important;
+        padding: 1.5rem;
+        margin-bottom: 1rem;
+    }
+    
+    .alert-warning {
+        background: rgba(245, 158, 11, 0.2) !important;
+        border-color: rgba(245, 158, 11, 0.5) !important;
+    }
+    
+    .alert-danger {
+        background: rgba(239, 68, 68, 0.2) !important;
+        border-color: rgba(239, 68, 68, 0.5) !important;
+    }
+    
+    .dashboard-image {
+        border-radius: 15px;
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+        transition: all 0.3s ease;
+        max-height: 200px;
+    }
+    
+    .dashboard-image:hover {
+        transform: scale(1.05);
+        box-shadow: 0 15px 40px rgba(0, 0, 0, 0.4);
+    }
+    
+    .section-title {
+        color: white !important;
+        font-size: 2rem;
+        font-weight: 700;
+        margin-bottom: 1.5rem;
+    }
+    
+    .btn-create {
+        background: linear-gradient(135deg, #10b981 0%, #059669 100%) !important;
+        border: none !important;
+        border-radius: 12px;
+        color: white !important;
+        font-weight: 600;
+        padding: 1rem 2rem;
+        transition: all 0.3s ease;
+        text-decoration: none;
+        display: inline-flex;
+        align-items: center;
+    }
+    
+    .btn-create:hover {
+        color: white !important;
+        transform: translateY(-2px);
+        box-shadow: 0 8px 25px rgba(16, 185, 129, 0.4);
+        text-decoration: none;
+    }
+    
+    .appointments-table {
+        background: rgba(255, 255, 255, 0.98) !important;
+        border-radius: 15px;
+        overflow: hidden;
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+        margin-bottom: 2rem;
+    }
+    
+    .table {
+        margin: 0;
+        color: #1e293b !important;
+    }
+    
+    .table thead {
+        background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%) !important;
+        color: white !important;
+    }
+    
+    .table thead th {
+        border: none;
+        padding: 1.2rem 1rem;
+        font-weight: 600;
+        text-transform: uppercase;
+        font-size: 0.85rem;
+        letter-spacing: 1px;
+        color: white !important;
+    }
+    
+    .table tbody td {
+        padding: 1.2rem 1rem;
+        border-bottom: 1px solid rgba(30, 41, 59, 0.1);
+        vertical-align: middle;
+        color: #1e293b !important;
+    }
+    
+    .table tbody tr:hover {
+        background: rgba(30, 41, 59, 0.05) !important;
+    }
+    
+    .table tbody td strong {
+        color: #0f172a !important;
+    }
+    
+    .table tbody td small {
+        color: #64748b !important;
+    }
+    
+    .alert-no-appointments {
+        background: rgba(59, 130, 246, 0.2) !important;
+        border: 2px solid rgba(59, 130, 246, 0.5) !important;
+        border-radius: 15px;
+        color: white !important;
+        padding: 2rem;
+        text-align: center;
+        margin-bottom: 2rem;
+    }
+    
+    .btn-action {
+        background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%) !important;
+        border: none !important;
+        color: white !important;
+        padding: 0.5rem 1rem;
+        border-radius: 8px;
+        font-weight: 600;
+        transition: all 0.3s ease;
+        text-decoration: none;
+        margin: 0.2rem;
+        display: inline-flex;
+        align-items: center;
+    }
+    
+    .btn-action:hover {
+        color: white !important;
+        transform: translateY(-2px);
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+        text-decoration: none;
+    }
+    
+    .btn-action.warning {
+        background: linear-gradient(135deg, #f59e0b 0%, #d97706 100%) !important;
+    }
+    
+    .btn-action.danger {
+        background: linear-gradient(135deg, #ef4444 0%, #dc2626 100%) !important;
+    }
+    
+    .status-badge {
+        padding: 0.5rem 1rem;
+        border-radius: 10px;
+        font-weight: 600;
+        font-size: 0.85rem;
+        text-transform: uppercase;
+        letter-spacing: 0.5px;
+    }
+    
+    .status-confirmed {
+        background: linear-gradient(135deg, #10b981 0%, #059669 100%) !important;
+        color: white !important;
+    }
+    
+    .status-pending {
+        background: linear-gradient(135deg, #f59e0b 0%, #d97706 100%) !important;
+        color: white !important;
+    }
+    
+    .status-cancelled {
+        background: linear-gradient(135deg, #ef4444 0%, #dc2626 100%) !important;
+        color: white !important;
+    }
+    
+    .status-completed {
+        background: linear-gradient(135deg, #10b981 0%, #059669 100%) !important;
+        color: white !important;
+    }
+    
+    .status-expired {
+        background: linear-gradient(135deg, #64748b 0%, #475569 100%) !important;
+        color: white !important;
+    }
+    
+    .status-info {
+        background: linear-gradient(135deg, #3b82f6 0%, #2563eb 100%) !important;
+        color: white !important;
+    }
+    
+    .btn-back {
+        background: rgba(255, 255, 255, 0.2) !important;
+        border: 1px solid rgba(255, 255, 255, 0.3) !important;
+        color: white !important;
+        font-weight: 600;
+        padding: 1rem 2rem;
+        border-radius: 12px;
+        transition: all 0.3s ease;
+        text-decoration: none;
+        display: inline-flex;
+        align-items: center;
+    }
+    
+    .btn-back:hover {
+        background: rgba(255, 255, 255, 0.3) !important;
+        color: white !important;
+        transform: translateY(-2px);
+        text-decoration: none;
+    }
+
+    /* Asegurar que todos los textos sean legibles */
+    h1, h2, h3, h4, h5, h6, p, span, div {
+        color: inherit;
+    }
+    
+    /* Icons con colores apropiados */
+    .text-primary {
+        color: #3b82f6 !important;
+    }
+    
+    .text-success {
+        color: #10b981 !important;
+    }
+    
+    .text-warning {
+        color: #f59e0b !important;
+    }
+
+    /* Modo oscuro - mantener consistencia */
+    [data-bs-theme="dark"] body {
+        background: linear-gradient(135deg, #1e293b 0%, #0f172a 100%) !important;
+        color: white !important;
+    }
+    
+    [data-bs-theme="dark"] .appointments-table {
+        background: rgba(30, 41, 59, 0.9) !important;
+    }
+    
+    [data-bs-theme="dark"] .table {
+        color: #e2e8f0 !important;
+    }
+    
+    [data-bs-theme="dark"] .table tbody td {
+        color: #e2e8f0 !important;
+    }
+    
+    [data-bs-theme="dark"] .table tbody td strong {
+        color: white !important;
+    }
+    
+    [data-bs-theme="dark"] .table tbody tr:hover {
+        background: rgba(59, 130, 246, 0.1) !important;
+    }
+</style>
+
 @if (Model.UserRole == "Admin")
 {
-    <div class="row justify-content-center">
-        <div class="col-lg-10 col-xl-12"> @* Wider for Admin table view *@
-            <div class="card shadow-sm">
-                <div class="card-header bg-primary text-white text-center">
-                    <h3 class="mb-0"><i class="bi bi-calendar-week"></i> @ViewData["Title"]</h3>
+    <div class="container-fluid">
+        <div class="appointments-header">
+            <h1 class="appointments-title">
+                <i class="bi bi-calendar-week me-3"></i>Panel Administrativo
+            </h1>
+            <p class="appointments-subtitle">
+                Gestión Completa de Citas Médicas
+            </p>
+        </div>
+
+        <div class="container">
+            @if (Model.Appointment == null || !Model.Appointment.Any())
+            {
+                <div class="alert-no-appointments">
+                    <i class="bi bi-calendar-x" style="font-size: 3rem; margin-bottom: 1rem;"></i>
+                    <h4>Sin citas registradas</h4>
+                    <p class="mb-0">No hay citas registradas en el sistema actualmente.</p>
                 </div>
-                <div class="card-body">
-                    @if (Model.Appointment == null || !Model.Appointment.Any())
-                    {
-                        <div class="alert alert-info" role="alert">
-                            <i class="bi bi-info-circle-fill"></i> No hay citas registradas en el sistema.
-                        </div>
-                    }
-                    else
-                    {
-                        <p class="mb-3">A continuación se muestra el listado completo de citas médicas:</p>
-                        <div class="table-responsive">
-                            <table class="table table-striped table-hover table-bordered table-sm small">
-                                <thead class="table-light">
-                                    <tr>
-                                        <th>ID</th>
-                                        <th>Fecha y Hora</th>
-                                        <th>Paciente</th>
-                                        <th>Médico</th>
-                                        <th>Especialidad</th>
-                                        <th>Estado</th>
-                                        <th>Acciones</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    @foreach (var item in Model.Appointment.OrderByDescending(a => a.AppointmentDateTime))
-                                    {
-                                        <tr>
-                                            <td>@item.Id</td>
-                                            <td>@item.AppointmentDateTime.ToString("g")</td>
-                                            <td>@(item.Patient?.FullName ?? "N/A")</td>
-                                            <td>@(item.Doctor?.FullName ?? "N/A")</td>
-                                            <td>@(item.Doctor?.Specialty?.Name ?? "N/A")</td>
-                                            <td>
-                                                @if (item.IsCancelled) { <span class="badge bg-danger text-white">Cancelada</span> }
-                                                else if (item.WasNoShow) { <span class="badge bg-danger text-white">No Presentó</span> }
-                                                else if (item.IsCompleted) { <span class="badge bg-success text-white">Completada</span> }
-                                                else if (item.AppointmentDateTime < DateTime.Now && !item.IsCompleted) { <span class="badge bg-secondary text-dark">Expirada</span> }
-                                                else if (item.DoctorProposedReschedule && item.ProposedNewDateTime.HasValue) { <span class="badge bg-primary text-white">Prop. Doctor</span> }
-                                                else if (item.RescheduleRequested && item.ProposedNewDateTime.HasValue) { <span class="badge bg-warning text-dark">Prop. Paciente</span> }
-                                                else if (item.IsConfirmed) { <span class="badge bg-info text-white">Confirmada</span> }
-                                                else { <span class="badge bg-warning text-dark">Pendiente</span> }
-                                            </td>
-                                            <td>
-                                                <a asp-page="./Details" asp-route-id="@item.Id" class="btn btn-sm btn-info" title="Detalles"><i class="bi bi-eye"></i></a>
-                                                @if (!item.IsCompleted && !item.IsCancelled && item.AppointmentDateTime >= DateTime.Now) // Admins can edit future, non-cancelled, non-completed appointments
-                                                {
-                                                    <a asp-page="./Edit" asp-route-id="@item.Id" class="btn btn-sm btn-warning ms-1" title="Editar"><i class="bi bi-pencil"></i></a>
-                                                }
-                                            </td>
-                                        </tr>
-                                    }
-                                </tbody>
-                            </table>
-                        </div>
-                    }
+            }
+            else
+            {
+                <div class="appointments-table">
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th><i class="bi bi-hash me-2"></i>ID</th>
+                                <th><i class="bi bi-calendar-event me-2"></i>Fecha y Hora</th>
+                                <th><i class="bi bi-person me-2"></i>Paciente</th>
+                                <th><i class="bi bi-person-badge me-2"></i>Médico</th>
+                                <th><i class="bi bi-hospital me-2"></i>Especialidad</th>
+                                <th><i class="bi bi-check2-circle me-2"></i>Estado</th>
+                                <th><i class="bi bi-gear me-2"></i>Acciones</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var item in Model.Appointment.OrderByDescending(a => a.AppointmentDateTime))
+                            {
+                                <tr>
+                                    <td><strong class="text-primary">#@item.Id</strong></td>
+                                    <td>
+                                        <strong>@item.AppointmentDateTime.ToString("dddd, dd MMM yyyy")</strong><br/>
+                                        <small class="text-muted">@item.AppointmentDateTime.ToString("HH:mm")</small>
+                                    </td>
+                                    <td>
+                                        <div class="d-flex align-items-center">
+                                            <i class="bi bi-person-circle me-2 text-success" style="font-size: 1.5rem;"></i>
+                                            <strong>@(item.Patient?.FullName ?? "N/A")</strong>
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <div class="d-flex align-items-center">
+                                            <i class="bi bi-person-badge me-2 text-primary" style="font-size: 1.5rem;"></i>
+                                            <strong>@(item.Doctor?.FullName ?? "N/A")</strong>
+                                        </div>
+                                    </td>
+                                    <td>@(item.Doctor?.Specialty?.Name ?? "N/A")</td>
+                                    <td>
+                                        @if (item.IsCancelled) 
+                                        { 
+                                            <span class="status-badge status-cancelled">
+                                                <i class="bi bi-x-circle-fill me-1"></i>Cancelada
+                                            </span> 
+                                        }
+                                        else if (item.WasNoShow) 
+                                        { 
+                                            <span class="status-badge status-cancelled">
+                                                <i class="bi bi-person-x-fill me-1"></i>No Presentó
+                                            </span> 
+                                        }
+                                        else if (item.IsCompleted) 
+                                        { 
+                                            <span class="status-badge status-completed">
+                                                <i class="bi bi-check-circle-fill me-1"></i>Completada
+                                            </span> 
+                                        }
+                                        else if (item.AppointmentDateTime < DateTime.Now && !item.IsCompleted) 
+                                        { 
+                                            <span class="status-badge status-expired">
+                                                <i class="bi bi-clock-history me-1"></i>Expirada
+                                            </span> 
+                                        }
+                                        else if (item.DoctorProposedReschedule && item.ProposedNewDateTime.HasValue) 
+                                        { 
+                                            <span class="status-badge status-info">
+                                                <i class="bi bi-calendar-event me-1"></i>Prop. Doctor
+                                            </span> 
+                                        }
+                                        else if (item.RescheduleRequested && item.ProposedNewDateTime.HasValue) 
+                                        { 
+                                            <span class="status-badge status-pending">
+                                                <i class="bi bi-calendar-week me-1"></i>Prop. Paciente
+                                            </span> 
+                                        }
+                                        else if (item.IsConfirmed) 
+                                        { 
+                                            <span class="status-badge status-info">
+                                                <i class="bi bi-check-circle me-1"></i>Confirmada
+                                            </span> 
+                                        }
+                                        else 
+                                        { 
+                                            <span class="status-badge status-pending">
+                                                <i class="bi bi-hourglass-split me-1"></i>Pendiente
+                                            </span> 
+                                        }
+                                    </td>
+                                    <td>
+                                        <a asp-page="./Details" asp-route-id="@item.Id" class="btn-action" title="Ver Detalles">
+                                            <i class="bi bi-eye me-1"></i>Ver
+                                        </a>
+                                        @if (!item.IsCompleted && !item.IsCancelled && item.AppointmentDateTime >= DateTime.Now)
+                                        {
+                                            <a asp-page="./Edit" asp-route-id="@item.Id" class="btn-action warning" title="Editar">
+                                                <i class="bi bi-pencil me-1"></i>Editar
+                                            </a>
+                                        }
+                                    </td>
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
                 </div>
-                <div class="card-footer bg-light">
-                    <a asp-area="" asp-page="/Index" class="btn btn-secondary"><i class="bi bi-arrow-left-circle"></i> Volver al Panel Principal</a>
-                </div>
+            }
+            
+            <div class="text-center">
+                <a asp-area="" asp-page="/Index" class="btn-back">
+                    <i class="bi bi-arrow-left-circle me-2"></i>Volver al Panel Principal
+                </a>
             </div>
         </div>
     </div>
 }
-else // Patient View (Doctor is redirected from OnGetAsync if they land here)
+else // Patient View
 {
-    <div class="row justify-content-center mt-4"> @* Added justify-content-center and mt-4 *@
-        <div class="col-lg-10 col-xl-12"> @* Control overall width *@
-            <div class="card shadow-sm">
-                <div class="card-header bg-success text-white text-center"> @* Added text-center *@
-                    <h3 class="mb-0"><i class="bi bi-calendar-check"></i> @ViewData["Title"]</h3>
-                </div>
-                <div class="card-body">
-                    @if (Model.PatientWeeklyStats != null)
-                    {
-                        <div class="card mb-4 shadow-sm border">
-                            <div class="card-header fw-bold bg-light">
-                                <i class="bi bi-bar-chart-line-fill"></i> Resumen Semanal (Lunes @Model.PatientWeeklyStats.WeekStartDate.ToString("dd/MM") - Domingo @Model.PatientWeeklyStats.WeekEndDate.ToString("dd/MM"))
-                            </div>
-                            <div class="card-body">
-                                <div class="row">
-                                    <div class="col-md-6 mb-2 mb-md-0">
-                                        Citas programadas/pendientes: 
-                                        <strong class='@(Model.PatientWeeklyStats.PendingOrConfirmedForDisplayInWeek >= Model.PatientWeeklyStats.MaxWeeklyAppointments ? "text-danger" : "")'>
-                                            @Model.PatientWeeklyStats.PendingOrConfirmedForDisplayInWeek de @Model.PatientWeeklyStats.MaxWeeklyAppointments
-                                        </strong>
-                                    </div>
-                                    <div class="col-md-6">
-                                        Citas canceladas esta semana: 
-                                        <strong class='@(Model.PatientWeeklyStats.CancelledInWeek >= Model.PatientWeeklyStats.MaxWeeklyCancellations ? "text-danger" : "")'>
-                                            @Model.PatientWeeklyStats.CancelledInWeek de @Model.PatientWeeklyStats.MaxWeeklyCancellations
-                                        </strong>
-                                    </div>
-                                </div>
-                                @if (Model.PatientWeeklyStats.PendingOrConfirmedForDisplayInWeek >= Model.PatientWeeklyStats.MaxWeeklyAppointments)
-                                {
-                                    <div class="alert alert-info mt-2 py-2 small"><i class="bi bi-info-circle-fill"></i> Ha alcanzado el límite de @Model.PatientWeeklyStats.MaxWeeklyAppointments citas programadas para esta semana.</div>
-                                }
-                                @if (Model.PatientWeeklyStats.CancelledInWeek >= Model.PatientWeeklyStats.MaxWeeklyCancellations)
-                                {
-                                    <div class="alert alert-warning mt-2 py-2 small"><i class="bi bi-exclamation-triangle-fill"></i> Ha alcanzado el límite de @Model.PatientWeeklyStats.MaxWeeklyCancellations cancelaciones para esta semana.</div>
-                                }
-                            </div>
-                        </div>
-                    }
+    <div class="container-fluid">
+        <div class="appointments-header">
+            <h1 class="appointments-title">
+                <i class="bi bi-calendar-check me-3"></i>Portal del Paciente
+            </h1>
+            <p class="appointments-subtitle">
+                Gestión de Mis Citas Médicas
+            </p>
+        </div>
 
-                    @if (TempData["ErrorMessage"] != null)
-                    {
-                        <div class="alert alert-danger" role="alert">
-                            @TempData["ErrorMessage"]
-                        </div>
-                    }
-                    
-                    <div class="text-center my-4">
-                        <img src="~/images/patient_dashboard_image.png" alt="Mis Citas" class="img-fluid rounded shadow" style="max-height: 180px;" />
+        <div class="container">
+            @if (Model.PatientWeeklyStats != null)
+            {
+                <div class="stats-section">
+                    <div class="stats-header">
+                        <i class="bi bi-bar-chart-line-fill me-2"></i>
+                        Resumen Semanal (Lunes @Model.PatientWeeklyStats.WeekStartDate.ToString("dd/MM") - Domingo @Model.PatientWeeklyStats.WeekEndDate.ToString("dd/MM"))
                     </div>
-
-                    <div class="d-flex justify-content-between align-items-center mb-3">
-                        <h4 class="mb-0">Listado de Citas</h4>
-                        <a asp-page="Create" class="btn btn-success"><i class="bi bi-calendar-plus"></i> Agendar Nueva Cita</a> @* Changed to btn-success for primary action on this view *@
+                    <div class="row">
+                        <div class="col-md-6 mb-2 mb-md-0">
+                            <strong style="color: white;">Citas programadas:</strong>
+                            <span class='@(Model.PatientWeeklyStats.PendingOrConfirmedForDisplayInWeek >= Model.PatientWeeklyStats.MaxWeeklyAppointments ? "text-warning fw-bold" : "text-success fw-bold")'>
+                                @Model.PatientWeeklyStats.PendingOrConfirmedForDisplayInWeek de @Model.PatientWeeklyStats.MaxWeeklyAppointments
+                            </span>
+                        </div>
+                        <div class="col-md-6">
+                            <strong style="color: white;">Citas canceladas:</strong>
+                            <span class='@(Model.PatientWeeklyStats.CancelledInWeek >= Model.PatientWeeklyStats.MaxWeeklyCancellations ? "text-warning fw-bold" : "text-success fw-bold")'>
+                                @Model.PatientWeeklyStats.CancelledInWeek de @Model.PatientWeeklyStats.MaxWeeklyCancellations
+                            </span>
+                        </div>
                     </div>
-
-                    @if (Model.Appointment == null || !Model.Appointment.Any())
+                    @if (Model.PatientWeeklyStats.PendingOrConfirmedForDisplayInWeek >= Model.PatientWeeklyStats.MaxWeeklyAppointments)
                     {
-                        <div class="alert alert-info" role="alert">
-                            <p class="mb-0">No tienes citas programadas actualmente.</p>
+                        <div class="alert-section mt-3">
+                            <i class="bi bi-info-circle-fill me-2"></i>
+                            Ha alcanzado el límite de @Model.PatientWeeklyStats.MaxWeeklyAppointments citas programadas para esta semana.
                         </div>
                     }
-                    else
+                    @if (Model.PatientWeeklyStats.CancelledInWeek >= Model.PatientWeeklyStats.MaxWeeklyCancellations)
                     {
-                        <div class="table-responsive">
-                            <table class="table table-striped table-hover table-bordered table-sm small">
-                                <thead class="table-light">
-                                    <tr>
-                                        <th>Fecha y Hora</th>
-                                        <th>Médico</th>
-                                        <th>Especialidad</th>
-                                        <th>Estado</th>
-                                        <th>Acciones</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    @foreach (var item in Model.Appointment.OrderBy(a => a.AppointmentDateTime))
-                                    {
-                                        <tr>
-                                            <td>@item.AppointmentDateTime.ToString("g")</td>
-                                            <td>@(item.Doctor?.FullName ?? "N/A")</td>
-                                            <td>@(item.Doctor?.Specialty?.Name ?? "N/A")</td>
-                                            <td>
-                                                @if (item.IsCancelled) { <span class="badge bg-danger text-white">Cancelada</span> }
-                                                else if (item.WasNoShow) { <span class="badge bg-danger text-white">No Presentó</span> }
-                                                else if (item.IsCompleted) { <span class="badge bg-success text-white">Completada</span> }
-                                                else if (item.AppointmentDateTime < DateTime.Now && !item.IsCompleted) { <span class="badge bg-secondary text-dark">Expirada</span> }
-                                                else if (item.DoctorProposedReschedule && item.ProposedNewDateTime.HasValue) { <span class="badge bg-primary text-white">Prop. Doctor</span> }
-                                                else if (item.RescheduleRequested && item.ProposedNewDateTime.HasValue) { <span class="badge bg-warning text-dark">Prop. Paciente</span> }
-                                                else if (item.IsConfirmed) { <span class="badge bg-info text-white">Confirmada</span> }
-                                                else { <span class="badge bg-warning text-dark">Pendiente</span> }
-                                            </td>
-                                            <td>
-                                                <a asp-page="./Details" asp-route-id="@item.Id" class="btn btn-sm btn-info" title="Detalles"><i class="bi bi-eye"></i></a>
-                                                
-                                                @if (item.DoctorProposedReschedule && item.ProposedNewDateTime.HasValue && !item.IsCompleted && !item.IsCancelled && item.AppointmentDateTime >= DateTime.Now)
-                                                {
-                                                    <a asp-page="./ReviewDoctorProposal" asp-route-id="@item.Id" class="btn btn-sm btn-primary ms-1" title="Revisar propuesta de reagendamiento del doctor"><i class="bi bi-calendar-event"></i> Rev. Prop.</a>
-                                                }
-                                                else if (!item.IsCompleted && !item.IsCancelled && item.AppointmentDateTime >= DateTime.Now && !item.RescheduleRequested && !item.DoctorProposedReschedule)
-                                                {
-                                                    <a asp-page="./ProposeReschedule" asp-route-id="@item.Id" class="btn btn-sm btn-outline-warning ms-1" title="Proponer cambio de fecha/hora"><i class="bi bi-clock-history"></i> Reagendar</a>
-                                                }
-                                                
-                                                @if (!item.IsCompleted && !item.IsCancelled && item.AppointmentDateTime >= DateTime.Now)
-                                                { 
-                                                    <form method="post" asp-page-handler="CancelAppointment" asp-route-appointmentId="@item.Id" class="d-inline" 
-                                                          onsubmit="return confirm('¿Está seguro de que desea cancelar su cita? Esta acción no se puede deshacer.');">
-                                                        <button type="submit" class="btn btn-danger btn-sm ms-1" title="Cancelar Cita">
-                                                            <i class="bi bi-x-lg"></i> Cancelar
-                                                        </button>
-                                                    </form>
-                                                }
-                                            </td>
-                                        </tr>
-                                    }
-                                </tbody>
-                            </table>
+                        <div class="alert-section alert-warning mt-3">
+                            <i class="bi bi-exclamation-triangle-fill me-2"></i>
+                            Ha alcanzado el límite de @Model.PatientWeeklyStats.MaxWeeklyCancellations cancelaciones para esta semana.
                         </div>
                     }
-                </div> @* End Main Card Body *@
-                 <div class="card-footer bg-light">
-                    <a asp-area="" asp-page="/Index" class="btn btn-secondary"><i class="bi bi-arrow-left-circle"></i> Volver al Inicio</a>
                 </div>
-            </div> @* End Main Card *@
-        </div> @* End Col *@
-    </div> @* End Row *@
+            }
+
+            @if (TempData["ErrorMessage"] != null)
+            {
+                <div class="alert-section alert-danger">
+                    <i class="bi bi-exclamation-triangle-fill me-2"></i>
+                    @TempData["ErrorMessage"]
+                </div>
+            }
+            
+            <div class="text-center my-4">
+                <img src="~/images/patient_dashboard_image.png" alt="Mis Citas" class="dashboard-image img-fluid" />
+            </div>
+
+            <div class="d-flex justify-content-between align-items-center mb-4">
+                <h2 class="section-title">
+                    <i class="bi bi-calendar-check me-2"></i>Mis Citas Médicas
+                </h2>
+                <a asp-page="Create" class="btn-create">
+                    <i class="bi bi-calendar-plus me-2"></i>Agendar Nueva Cita
+                </a>
+            </div>
+
+            @if (Model.Appointment == null || !Model.Appointment.Any())
+            {
+                <div class="alert-no-appointments">
+                    <i class="bi bi-calendar-x" style="font-size: 3rem; margin-bottom: 1rem;"></i>
+                    <h4>Sin citas programadas</h4>
+                    <p class="mb-0">No tienes citas programadas actualmente. ¡Agenda tu primera cita!</p>
+                </div>
+            }
+            else
+            {
+                <div class="appointments-table">
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th><i class="bi bi-calendar-event me-2"></i>Fecha y Hora</th>
+                                <th><i class="bi bi-person-badge me-2"></i>Médico</th>
+                                <th><i class="bi bi-hospital me-2"></i>Especialidad</th>
+                                <th><i class="bi bi-check2-circle me-2"></i>Estado</th>
+                                <th><i class="bi bi-gear me-2"></i>Acciones</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var item in Model.Appointment.OrderBy(a => a.AppointmentDateTime))
+                            {
+                                <tr>
+                                    <td>
+                                        <strong>@item.AppointmentDateTime.ToString("dddd, dd MMM yyyy")</strong><br/>
+                                        <small class="text-muted">@item.AppointmentDateTime.ToString("HH:mm")</small>
+                                    </td>
+                                    <td>
+                                        <div class="d-flex align-items-center">
+                                            <i class="bi bi-person-badge me-2 text-primary" style="font-size: 1.5rem;"></i>
+                                            <strong>@(item.Doctor?.FullName ?? "N/A")</strong>
+                                        </div>
+                                    </td>
+                                    <td>@(item.Doctor?.Specialty?.Name ?? "N/A")</td>
+                                    <td>
+                                        @if (item.IsCancelled) 
+                                        { 
+                                            <span class="status-badge status-cancelled">
+                                                <i class="bi bi-x-circle-fill me-1"></i>Cancelada
+                                            </span> 
+                                        }
+                                        else if (item.WasNoShow) 
+                                        { 
+                                            <span class="status-badge status-cancelled">
+                                                <i class="bi bi-person-x-fill me-1"></i>No Presentó
+                                            </span> 
+                                        }
+                                        else if (item.IsCompleted) 
+                                        { 
+                                            <span class="status-badge status-completed">
+                                                <i class="bi bi-check-circle-fill me-1"></i>Completada
+                                            </span> 
+                                        }
+                                        else if (item.AppointmentDateTime < DateTime.Now && !item.IsCompleted) 
+                                        { 
+                                            <span class="status-badge status-expired">
+                                                <i class="bi bi-clock-history me-1"></i>Expirada
+                                            </span> 
+                                        }
+                                        else if (item.DoctorProposedReschedule && item.ProposedNewDateTime.HasValue) 
+                                        { 
+                                            <span class="status-badge status-info">
+                                                <i class="bi bi-calendar-event me-1"></i>Prop. Doctor
+                                            </span> 
+                                        }
+                                        else if (item.RescheduleRequested && item.ProposedNewDateTime.HasValue) 
+                                        { 
+                                            <span class="status-badge status-pending">
+                                                <i class="bi bi-calendar-week me-1"></i>Prop. Paciente
+                                            </span> 
+                                        }
+                                        else if (item.IsConfirmed) 
+                                        { 
+                                            <span class="status-badge status-info">
+                                                <i class="bi bi-check-circle me-1"></i>Confirmada
+                                            </span> 
+                                        }
+                                        else 
+                                        { 
+                                            <span class="status-badge status-pending">
+                                                <i class="bi bi-hourglass-split me-1"></i>Pendiente
+                                            </span> 
+                                        }
+                                    </td>
+                                    <td>
+                                        <div class="d-flex flex-wrap">
+                                            <a asp-page="./Details" asp-route-id="@item.Id" class="btn-action" title="Ver Detalles">
+                                                <i class="bi bi-eye me-1"></i>Ver
+                                            </a>
+                                            
+                                            @if (item.DoctorProposedReschedule && item.ProposedNewDateTime.HasValue && !item.IsCompleted && !item.IsCancelled && item.AppointmentDateTime >= DateTime.Now)
+                                            {
+                                                <a asp-page="./ReviewDoctorProposal" asp-route-id="@item.Id" class="btn-action" title="Revisar propuesta del doctor">
+                                                    <i class="bi bi-calendar-event me-1"></i>Rev. Prop.
+                                                </a>
+                                            }
+                                            else if (!item.IsCompleted && !item.IsCancelled && item.AppointmentDateTime >= DateTime.Now && !item.RescheduleRequested && !item.DoctorProposedReschedule)
+                                            {
+                                                <a asp-page="./ProposeReschedule" asp-route-id="@item.Id" class="btn-action warning" title="Proponer cambio de fecha/hora">
+                                                    <i class="bi bi-clock-history me-1"></i>Reagendar
+                                                </a>
+                                            }
+                                            
+                                            @if (!item.IsCompleted && !item.IsCancelled && item.AppointmentDateTime >= DateTime.Now)
+                                            { 
+                                                <form method="post" asp-page-handler="CancelAppointment" asp-route-appointmentId="@item.Id" class="d-inline" 
+                                                      onsubmit="return confirm('¿Está seguro de que desea cancelar su cita? Esta acción no se puede deshacer.');">
+                                                    <button type="submit" class="btn-action danger" title="Cancelar Cita">
+                                                        <i class="bi bi-x-lg me-1"></i>Cancelar
+                                                    </button>
+                                                </form>
+                                            }
+                                        </div>
+                                    </td>
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+                </div>
+            }
+            
+            <div class="text-center">
+                <a asp-area="" asp-page="/Index" class="btn-back">
+                    <i class="bi bi-arrow-left-circle me-2"></i>Volver al Inicio
+                </a>
+            </div>
+        </div>
+    </div>
 }
 
 @section Scripts {

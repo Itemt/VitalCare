@@ -23,14 +23,16 @@ namespace CitasEPS.Pages.Appointments
         private readonly ILogger<CreateModel> _logger;
         private readonly IAppointmentPolicyService _appointmentPolicyService; // <<< Inject service
         private readonly INotificationService _notificationService; // <<< Inject NotificationService
+        private readonly IAppointmentEmailService _appointmentEmailService; // <<< Inject AppointmentEmailService
 
-        public CreateModel(CitasEPS.Data.ApplicationDbContext context, UserManager<User> userManager, ILogger<CreateModel> logger, IAppointmentPolicyService appointmentPolicyService, INotificationService notificationService)
+        public CreateModel(CitasEPS.Data.ApplicationDbContext context, UserManager<User> userManager, ILogger<CreateModel> logger, IAppointmentPolicyService appointmentPolicyService, INotificationService notificationService, IAppointmentEmailService appointmentEmailService)
         {
             _context = context;
             _userManager = userManager;
             _logger = logger;
             _appointmentPolicyService = appointmentPolicyService; // <<< Assign service
             _notificationService = notificationService; // <<< Assign NotificationService
+            _appointmentEmailService = appointmentEmailService; // <<< Assign AppointmentEmailService
         }
 
         // Store the logged-in patient's ID and name
@@ -356,10 +358,18 @@ namespace CitasEPS.Pages.Appointments
                         _logger.LogWarning($"Doctor ID {doctorForNotification.Id} tiene UserId {doctorForNotification.UserId} pero doctor.User no fue cargado. REVISAR .Include(d => d.User).");
                     }
                 }
+
+                // Envío de correo electrónico al paciente
+                if (patientUser != null && doctorForNotification?.User != null)
+                {
+                    _logger.LogInformation($"Enviando correo de cita agendada al paciente {patientUser.Email}");
+                    await _appointmentEmailService.SendAppointmentCreatedEmailAsync(Appointment, patientUser, doctorForNotification.User);
+                    _logger.LogInformation($"Correo de cita agendada enviado exitosamente al paciente {patientUser.Email}");
+                }
             }
             catch (Exception ex)
             {
-                _logger.LogError(ex, "Error al crear notificaciones para la cita {AppointmentId}.", Appointment.Id);
+                _logger.LogError(ex, "Error al crear notificaciones o enviar correos para la cita {AppointmentId}.", Appointment.Id);
                 // Optionally, inform the user that notifications might have failed, though the main operation (appointment creation) succeeded.
             }
 

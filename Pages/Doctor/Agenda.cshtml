@@ -5,88 +5,293 @@
     ViewData["Title"] = "Agenda del Médico";
 }
 
-<div class="container-fluid mt-4">
-    <div class="card shadow-sm">
-        <div class="card-header bg-info text-white text-center">
-            <div class="d-flex justify-content-center align-items-center">
-                <h4 class="my-0 font-weight-normal">
-                    <i class="bi bi-calendar-week-fill me-2"></i>Agenda Médica
-                </h4>
-            </div>
-        </div>
-        <div class="card-body">
-            <p class="lead">
-                Bienvenido, Dr. @Model.CurrentDoctor?.LastName. Aquí puede ver sus citas programadas.
-            </p>
-            <hr />
+<style>
+    /* Solo afectar el fondo del body */
+    body { 
+        background: linear-gradient(135deg, #1e293b 0%, #0f172a 100%) !important; 
+        min-height: 100vh !important;
+    }
+    
+    /* Asegurar colores correctos para el contenido de la agenda */
+    .agenda-header { text-align: center; padding: 3rem 0 2rem 0; }
+    .agenda-title { font-size: 2.5rem; color: white !important; }
+    .agenda-subtitle { color: rgba(255, 255, 255, 0.8) !important; }
+    
+    .appointments-table { 
+        background: white !important; 
+        border-radius: 15px; 
+        overflow: hidden; 
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+        margin: 2rem auto;
+        width: 100%;
+        max-width: 1200px;
+    }
+    
+    .table { 
+        color: #1e293b !important; 
+        margin: 0; 
+        width: 100%;
+    }
+    
+    .table thead { 
+        background: #1e293b !important; 
+    }
+    
+    .table thead th { 
+        color: white !important; 
+        padding: 1rem; 
+        border: none; 
+        font-weight: 600; 
+        background: #1e293b !important;
+        vertical-align: middle !important;
+        text-align: center !important;
+    }
+    
+    .table tbody td { 
+        color: #1e293b !important; 
+        padding: 1rem; 
+        background: white !important;
+        border-bottom: 1px solid rgba(30, 41, 59, 0.1);
+        vertical-align: middle !important;
+        text-align: center !important;
+    }
+    
+    .table tbody td .d-flex {
+        justify-content: center !important;
+    }
+    
+    .table tbody td div {
+        text-align: center !important;
+    }
+    
+    .table tbody tr:hover { 
+        background: rgba(30, 41, 59, 0.05) !important; 
+    }
+    
+    .table tbody tr:hover td {
+        background: rgba(30, 41, 59, 0.05) !important;
+    }
+    
+    /* Modo oscuro */
+    [data-bs-theme="dark"] .appointments-table {
+        background: rgba(30, 41, 59, 0.9) !important;
+    }
+    
+    [data-bs-theme="dark"] .table tbody td {
+        background: rgba(30, 41, 59, 0.9) !important;
+        color: #e2e8f0 !important;
+        vertical-align: middle !important;
+        text-align: center !important;
+    }
+    
+    [data-bs-theme="dark"] .table tbody td .d-flex {
+        justify-content: center !important;
+    }
+    
+    [data-bs-theme="dark"] .table tbody td div {
+        text-align: center !important;
+    }
+    
+    [data-bs-theme="dark"] .table tbody td strong {
+        color: white !important;
+    }
+    
+    [data-bs-theme="dark"] .table tbody tr:hover td {
+        background: rgba(59, 130, 246, 0.2) !important;
+        color: white !important;
+    }
+    
+    .alert-no-appointments { 
+        background: rgba(59, 130, 246, 0.2) !important; 
+        border: 2px solid rgba(59, 130, 246, 0.5) !important; 
+        border-radius: 15px; 
+        color: white !important; 
+        padding: 2rem; 
+        text-align: center; 
+        margin: 2rem auto;
+        max-width: 1200px;
+    }
+    
+    .btn-action { 
+        background: #1e293b !important; 
+        color: white !important; 
+        padding: 0.5rem 1rem; 
+        border-radius: 8px; 
+        text-decoration: none;
+        border: none;
+    }
+    
+    .btn-action:hover {
+        background: #0f172a !important;
+        color: white !important;
+        text-decoration: none;
+    }
+    
+    .status-confirmed { background: #10b981 !important; color: white !important; padding: 0.5rem 1rem; border-radius: 10px; }
+    .status-pending { background: #f59e0b !important; color: white !important; padding: 0.5rem 1rem; border-radius: 10px; }
+    .status-cancelled { background: #ef4444 !important; color: white !important; padding: 0.5rem 1rem; border-radius: 10px; }
+    
+    .date-indicator {
+        background: rgba(59, 130, 246, 0.2) !important;
+        border: 1px solid rgba(59, 130, 246, 0.5) !important;
+        border-radius: 10px;
+        padding: 1rem;
+        margin: 1rem auto;
+        color: white !important;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-weight: 600;
+        max-width: 1200px;
+    }
+    
+    /* Asegurar visibilidad de todos los textos */
+    .agenda-header h1, .agenda-header p { color: white !important; }
+    
+    /* Estilos para modo claro */
+    .table tbody td strong { color: #1e293b !important; }
+    .table tbody td small { color: #64748b !important; }
+    .table tbody .text-muted { color: #64748b !important; }
+    .table tbody .text-primary { color: #3b82f6 !important; }
+    
+    /* Estilos para modo oscuro */
+    [data-bs-theme="dark"] .table tbody td small {
+        color: #94a3b8 !important;
+    }
+    
+    [data-bs-theme="dark"] .table tbody .text-muted {
+        color: #94a3b8 !important;
+    }
+    
+    [data-bs-theme="dark"] .table tbody .text-primary {
+        color: #60a5fa !important;
+    }
+    
+    /* Asegurar que el contenido del body sea visible */
+    [data-bs-theme="dark"] body {
+        color: white !important;
+    }
+</style>
 
-            <form method="get" class="mb-3" id="dateFilterForm">
-                <div class="row g-2 align-items-end">
-                    <div class="col-md-4">
-                        <label for="selectedDate" class="form-label fw-semibold">Filtrar por Fecha:</label>
-                        <input type="date" asp-for="SelectedDate" class="form-control" id="selectedDate" onchange="document.getElementById('dateFilterForm').submit();" />
+<div style="padding: 2rem; max-width: 1200px; margin: 0 auto;">
+    <div class="agenda-header">
+        <h1 class="agenda-title">
+            <i class="bi bi-calendar-week-fill me-3"></i>Agenda Médica
+        </h1>
+        <p class="agenda-subtitle">
+            Bienvenido, Dr. @Model.CurrentDoctor?.LastName - Gestión de Citas
+        </p>
+    </div>
+        <div style="background: rgba(255, 255, 255, 0.1); backdrop-filter: blur(10px); border-radius: 15px; padding: 2rem; margin-bottom: 2rem; border: 1px solid rgba(255, 255, 255, 0.2);">
+            <form method="get" id="dateFilterForm">
+                <div style="display: flex; align-items: end; gap: 1rem; flex-wrap: wrap;">
+                    <div style="flex: 1; min-width: 250px;">
+                        <label for="selectedDate" style="color: white; font-weight: 600; margin-bottom: 0.5rem; display: block;">
+                            <i class="bi bi-calendar3 me-2"></i>Filtrar por Fecha:
+                        </label>
+                        <input type="date" asp-for="SelectedDate" 
+                               style="background: rgba(255, 255, 255, 0.95); border: 2px solid rgba(59, 130, 246, 0.3); border-radius: 12px; padding: 0.75rem 1rem; font-size: 1rem; color: #1e293b; height: 48px; width: 100%; box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); transition: all 0.3s ease;"
+                               id="selectedDate" onchange="this.form.submit()" 
+                               onfocus="this.style.borderColor='#3b82f6'; this.style.boxShadow='0 0 0 3px rgba(59, 130, 246, 0.2)'"
+                               onblur="this.style.borderColor='rgba(59, 130, 246, 0.3)'; this.style.boxShadow='0 4px 6px rgba(0, 0, 0, 0.1)'" />
                     </div>
-                    <div class="col-md-auto">
-                        <a asp-page="/Doctor/Agenda" class="btn btn-outline-secondary"><i class="bi bi-arrow-clockwise"></i> Mostrar Todas</a>
+                    <div style="display: flex; gap: 0.5rem; align-items: end;">
+                        <a asp-page="/Doctor/Agenda" 
+                           style="background: rgba(255, 255, 255, 0.2); border: 1px solid rgba(255, 255, 255, 0.3); color: white; font-weight: 600; padding: 0.75rem 1.5rem; border-radius: 10px; text-decoration: none; height: 48px; display: flex; align-items: center; white-space: nowrap;">
+                            <i class="bi bi-arrow-clockwise me-2"></i>Mostrar Todas
+                        </a>
                     </div>
                 </div>
             </form>
+        </div>
 
-            @if (Model.Appointments == null || !Model.Appointments.Any())
-            {
-                <div class="alert alert-info">
-                    <i class="bi bi-info-circle-fill"></i> No hay citas para la fecha seleccionada o no tiene citas programadas.
-                </div>
-            }
-            else
-            {
-                <div class="table-responsive">
-                    <table class="table table-hover table-striped">
-                        <thead class="table-light">
+        @if (Model.SelectedDate.HasValue)
+        {
+            <div class="date-indicator">
+                <i class="bi bi-calendar-check me-2"></i>
+                Mostrando citas para: @Model.SelectedDate.Value.ToString("dddd, dd 'de' MMMM 'de' yyyy", new System.Globalization.CultureInfo("es-ES"))
+            </div>
+        }
+
+        @if (Model.Appointments == null || !Model.Appointments.Any())
+        {
+            <div class="alert-no-appointments">
+                <i class="bi bi-calendar-x" style="font-size: 3rem; margin-bottom: 1rem;"></i>
+                <h4>Sin citas programadas</h4>
+                @if (Model.SelectedDate.HasValue)
+                {
+                    <p class="mb-0">No hay citas programadas para la fecha seleccionada.</p>
+                }
+                else
+                {
+                    <p class="mb-0">No hay citas programadas actualmente.</p>
+                }
+            </div>
+        }
+        else
+        {
+            <div class="appointments-table">
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th><i class="bi bi-calendar-event me-2"></i>Fecha y Hora</th>
+                            <th><i class="bi bi-person me-2"></i>Paciente</th>
+                            <th><i class="bi bi-info-circle me-2"></i>Notas</th>
+                            <th><i class="bi bi-check2-circle me-2"></i>Estado</th>
+                            <th><i class="bi bi-gear me-2"></i>Acciones</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var appointment in Model.Appointments)
+                        {
                             <tr>
-                                <th><i class="bi bi-calendar-event"></i> Fecha y Hora</th>
-                                <th><i class="bi bi-person"></i> Paciente</th>
-                                <th><i class="bi bi-info-circle"></i> Notas</th>
-                                <th><i class="bi bi-check2-circle"></i> Confirmada</th>
-                                <th><i class="bi bi-pencil-square"></i> Acciones</th>
+                                <td>
+                                    <strong>@appointment.AppointmentDateTime.ToString("dddd, dd MMM yyyy", new System.Globalization.CultureInfo("es-ES"))</strong><br/>
+                                    <small class="text-muted">@appointment.AppointmentDateTime.ToString("HH:mm")</small>
+                                </td>
+                                <td>
+                                    <div class="d-flex align-items-center">
+                                        <i class="bi bi-person-circle me-2 text-primary" style="font-size: 1.5rem;"></i>
+                                        <div>
+                                            <strong>@(appointment.Patient?.FullName ?? "N/A")</strong>
+                                        </div>
+                                    </div>
+                                </td>
+                                <td>
+                                    <span>@(appointment.Notes ?? "Sin notas")</span>
+                                </td>
+                                <td>
+                                    @if (appointment.IsCancelled)
+                                    {
+                                        <span class="status-badge status-cancelled">
+                                            <i class="bi bi-x-circle-fill me-1"></i>Cancelada
+                                        </span>
+                                    }
+                                    else if (appointment.IsConfirmed)
+                                    {
+                                        <span class="status-badge status-confirmed">
+                                            <i class="bi bi-check-circle-fill me-1"></i>Confirmada
+                                        </span>
+                                    }
+                                    else
+                                    {
+                                        <span class="status-badge status-pending">
+                                            <i class="bi bi-hourglass-split me-1"></i>Pendiente
+                                        </span>
+                                    }
+                                </td>
+                                <td>
+                                    <a asp-page="/Appointments/Details" asp-route-id="@appointment.Id" 
+                                       class="btn-action" title="Ver Detalles">
+                                        <i class="bi bi-eye-fill me-2"></i>Ver Detalles
+                                    </a>
+                                </td>
                             </tr>
-                        </thead>
-                        <tbody>
-                            @foreach (var appointment in Model.Appointments)
-                            {
-                                <tr>
-                                    <td>@appointment.AppointmentDateTime.ToString("g")</td>
-                                    <td>@(appointment.Patient?.FullName ?? "N/A")</td>
-                                    <td>@appointment.Notes</td>
-                                    <td>
-                                        @if (appointment.IsCancelled)
-                                        {
-                                            <span class="badge bg-danger"><i class="bi bi-x-circle-fill"></i> Cancelada</span>
-                                        }
-                                        else if (appointment.IsConfirmed)
-                                        {
-                                            <span class="badge bg-success"><i class="bi bi-check-circle-fill"></i> Confirmada</span>
-                                        }
-                                        else
-                                        {
-                                            <span class="badge bg-warning text-dark"><i class="bi bi-hourglass-split"></i> Pendiente</span>
-                                        }
-                                    </td>
-                                    <td>
-                                        <a asp-page="/Appointments/Details" asp-route-id="@appointment.Id" class="btn btn-sm btn-info me-1" title="Ver Detalles">
-                                            <i class="bi bi-eye-fill"></i>
-                                        </a>
-                                        @* Consider adding Edit link for admins/doctors if they can edit directly from agenda *
-                                        @* <a asp-page="/Appointments/Edit" asp-route-id="@appointment.Id" class="btn btn-sm btn-warning" title="Editar">
-                                            <i class="bi bi-pencil-fill"></i>
-                                        </a> *@
-                                    </td>
-                                </tr>
-                            }
-                        </tbody>
-                    </table>
-                </div>
-            }
-        </div> @* End card-body *@
-    </div> @* End card *@
-</div> @* End container *@ 
+                        }
+                    </tbody>
+                </table>
+            </div>
+        }
+</div>
+
+ 

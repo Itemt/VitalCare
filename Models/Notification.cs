@@ -7,6 +7,8 @@ namespace CitasEPS.Models
     public enum NotificationType
     {
         NewAppointment,
+        AppointmentConfirmed,
+        AppointmentModified,
         AppointmentCancelled,
         AppointmentRescheduled, // Doctor proposes, patient needs to accept/reject
         RescheduleRequestedByPatient, // Patient requests, doctor needs to review
