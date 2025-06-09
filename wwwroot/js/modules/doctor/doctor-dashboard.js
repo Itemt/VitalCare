@@ -33,7 +33,10 @@ class DoctorDashboard {
 
     async loadDashboardData() {
         try {
-            const response = await fetch('/api/doctor/dashboard-data');
+            const response = await fetch('/api/doctor/dashboard-stats');
+            if (!response.ok) {
+                throw new Error(`HTTP error! status: ${response.status}`);
+            }
             const data = await response.json();
             this.updateDashboardStats(data);
         } catch (error) {
@@ -44,22 +47,21 @@ class DoctorDashboard {
 
     updateDashboardStats(data) {
         // Update today's appointments
-        const todayAppointments = document.getElementById('today-appointments');
+        const todayAppointments = document.getElementById('doctorCitasHoyStat');
         if (todayAppointments) {
             todayAppointments.textContent = data.todayAppointments || 0;
         }
 
         // Update pending confirmations
-        const pendingConfirmations = document.getElementById('pending-confirmations');
+        const pendingConfirmations = document.getElementById('doctorCitasConfirmadasStat');
         if (pendingConfirmations) {
-            pendingConfirmations.textContent = data.pendingConfirmations || 0;
+            pendingConfirmations.textContent = data.confirmedAppointments || 0;
         }
 
         // Update rating
-        const avgRating = document.getElementById('avg-rating');
+        const avgRating = document.getElementById('doctorSatisfaccionStat');
         if (avgRating) {
-            avgRating.textContent = data.averageRating || '0.0';
-            this.updateRatingStars(data.averageRating || 0);
+            avgRating.textContent = `${data.satisfactionPercentage || 0}%`;
         }
 
         // Update total patients

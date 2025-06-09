@@ -8,7 +8,7 @@
 <style>
     /* Forzar el fondo azul independientemente del modo */
     html, body {
-        background: linear-gradient(135deg, #1e293b 0%, #0f172a 100%) !important;
+        background: linear-gradient(135deg, #1e293b 0%, #0f172a 100%), url('/images/doctor-dashboard-bg-transparent.svg') !important;
         min-height: 100vh !important;
         color: white !important;
     }
@@ -226,7 +226,7 @@
         }
         
         <div class="text-center">
-            <a asp-page="/Doctor/Agenda" class="btn-back">
+            <a asp-page="/UserDashboards/Doctor/Agenda" class="btn-back">
                 <i class="bi bi-arrow-left-circle me-2"></i>Volver a Mi Agenda
             </a>
         </div>

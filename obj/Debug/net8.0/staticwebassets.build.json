@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "MPN9Hp4fnhkvE8eUArr8YkEyxf1IJaGjzSAKPVdCJcM=",
+  "Hash": "eA9/5EQxh5dvI0mNDY0+LNzMGIIvVaGtj90msLckQjE=",
   "Source": "CitasEPS",
   "BasePath": "_content/CitasEPS",
   "Mode": "Default",
@@ -1480,8 +1480,8 @@
       "RelatedAsset": "",
       "AssetTraitName": "",
       "AssetTraitValue": "",
-      "Fingerprint": "03t7j29iv8",
-      "Integrity": "/NkYKrlvKuA0tlmt+KtPg/EiOiwaMru5SVTVJ5D4jy0=",
+      "Fingerprint": "e7jtlildfg",
+      "Integrity": "elMzMUR6P7JJKF5shAaW6l2/tXKAMfl5vZJeK5kXwjA=",
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\css\\modules\\doctor\\doctor-dashboard.css"
@@ -1697,6 +1697,27 @@
       "OriginalItemSpec": "wwwroot\\images\\doctor-dashboard-bg-subtle.svg"
     },
     {
+      "Identity": "C:\\Users\\CristianPC\\Desktop\\vitalcare\\wwwroot\\images\\doctor-dashboard-bg-transparent.svg",
+      "SourceId": "CitasEPS",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\CristianPC\\Desktop\\vitalcare\\wwwroot\\",
+      "BasePath": "_content/CitasEPS",
+      "RelativePath": "images/doctor-dashboard-bg-transparent#[.{fingerprint}]?.svg",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "Fingerprint": "n2g8pie0zz",
+      "Integrity": "odsn4ILlydGi5XastLANCjcFiIT9uD7K6f0GnhAiSo4=",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\images\\doctor-dashboard-bg-transparent.svg"
+    },
+    {
       "Identity": "C:\\Users\\CristianPC\\Desktop\\vitalcare\\wwwroot\\images\\doctor-dashboard-bg.svg",
       "SourceId": "CitasEPS",
       "SourceType": "Discovered",
@@ -1837,8 +1858,8 @@
       "RelatedAsset": "",
       "AssetTraitName": "",
       "AssetTraitValue": "",
-      "Fingerprint": "02zo4m03oc",
-      "Integrity": "eCMV/25sqgosdUF+JBeU3Ve1cM4t/7XqhoetqaVjwiA=",
+      "Fingerprint": "1t5f02plw1",
+      "Integrity": "JeP35tGPU7QfIQVlNwIz7Wani+Tojf/IXW5S1ZJxO38=",
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\js\\modules\\doctor\\doctor-dashboard.js"
@@ -3991,51 +4012,6 @@
       ]
     },
     {
-      "Route": "css/modules/doctor/doctor-dashboard.03t7j29iv8.css",
-      "AssetFile": "C:\\Users\\CristianPC\\Desktop\\vitalcare\\wwwroot\\css\\modules\\doctor\\doctor-dashboard.css",
-      "Selectors": [],
-      "ResponseHeaders": [
-        {
-          "Name": "Accept-Ranges",
-          "Value": "bytes"
-        },
-        {
-          "Name": "Content-Length",
-          "Value": "2715"
-        },
-        {
-          "Name": "Content-Type",
-          "Value": "text/css"
-        },
-        {
-          "Name": "ETag",
-          "Value": "\"/NkYKrlvKuA0tlmt+KtPg/EiOiwaMru5SVTVJ5D4jy0=\""
-        },
-        {
-          "Name": "Last-Modified",
-          "Value": "Mon, 09 Jun 2025 06:58:37 GMT"
-        },
-        {
-          "Name": "Cache-Control",
-          "Value": "max-age=31536000, immutable"
-        }
-      ],
-      "EndpointProperties": [
-        {
-          "Name": "fingerprint",
-          "Value": "03t7j29iv8"
-        },
-        {
-          "Name": "label",
-          "Value": "css/modules/doctor/doctor-dashboard.css"
-        },
-        {
-          "Name": "integrity",
-          "Value": "sha256-/NkYKrlvKuA0tlmt+KtPg/EiOiwaMru5SVTVJ5D4jy0="
-        }
-      ]
-    },
-    {
       "Route": "css/modules/doctor/doctor-dashboard.css",
       "AssetFile": "C:\\Users\\CristianPC\\Desktop\\vitalcare\\wwwroot\\css\\modules\\doctor\\doctor-dashboard.css",
       "Selectors": [],
@@ -4046,7 +4022,7 @@
         },
         {
           "Name": "Content-Length",
-          "Value": "2715"
+          "Value": "2625"
         },
         {
           "Name": "Content-Type",
@@ -4054,11 +4030,11 @@
         },
         {
           "Name": "ETag",
-          "Value": "\"/NkYKrlvKuA0tlmt+KtPg/EiOiwaMru5SVTVJ5D4jy0=\""
+          "Value": "\"elMzMUR6P7JJKF5shAaW6l2/tXKAMfl5vZJeK5kXwjA=\""
         },
         {
           "Name": "Last-Modified",
-          "Value": "Mon, 09 Jun 2025 06:58:37 GMT"
+          "Value": "Mon, 09 Jun 2025 18:23:58 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -4068,7 +4044,52 @@
       "EndpointProperties": [
         {
           "Name": "integrity",
-          "Value": "sha256-/NkYKrlvKuA0tlmt+KtPg/EiOiwaMru5SVTVJ5D4jy0="
+          "Value": "sha256-elMzMUR6P7JJKF5shAaW6l2/tXKAMfl5vZJeK5kXwjA="
+        }
+      ]
+    },
+    {
+      "Route": "css/modules/doctor/doctor-dashboard.e7jtlildfg.css",
+      "AssetFile": "C:\\Users\\CristianPC\\Desktop\\vitalcare\\wwwroot\\css\\modules\\doctor\\doctor-dashboard.css",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "2625"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "text/css"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"elMzMUR6P7JJKF5shAaW6l2/tXKAMfl5vZJeK5kXwjA=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Mon, 09 Jun 2025 18:23:58 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=31536000, immutable"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "fingerprint",
+          "Value": "e7jtlildfg"
+        },
+        {
+          "Name": "label",
+          "Value": "css/modules/doctor/doctor-dashboard.css"
+        },
+        {
+          "Name": "integrity",
+          "Value": "sha256-elMzMUR6P7JJKF5shAaW6l2/tXKAMfl5vZJeK5kXwjA="
         }
       ]
     },
@@ -4341,7 +4362,7 @@
         },
         {
           "Name": "Last-Modified",
-          "Value": "Sun, 08 Jun 2025 06:47:02 GMT"
+          "Value": "Mon, 09 Jun 2025 18:32:22 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -4378,7 +4399,7 @@
         },
         {
           "Name": "Last-Modified",
-          "Value": "Sun, 08 Jun 2025 06:47:02 GMT"
+          "Value": "Mon, 09 Jun 2025 18:32:22 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -7113,6 +7134,88 @@
       ]
     },
     {
+      "Route": "images/doctor-dashboard-bg-transparent.n2g8pie0zz.svg",
+      "AssetFile": "C:\\Users\\CristianPC\\Desktop\\vitalcare\\wwwroot\\images\\doctor-dashboard-bg-transparent.svg",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "2154"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "image/svg+xml"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"odsn4ILlydGi5XastLANCjcFiIT9uD7K6f0GnhAiSo4=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Mon, 09 Jun 2025 18:29:34 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=31536000, immutable"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "fingerprint",
+          "Value": "n2g8pie0zz"
+        },
+        {
+          "Name": "label",
+          "Value": "images/doctor-dashboard-bg-transparent.svg"
+        },
+        {
+          "Name": "integrity",
+          "Value": "sha256-odsn4ILlydGi5XastLANCjcFiIT9uD7K6f0GnhAiSo4="
+        }
+      ]
+    },
+    {
+      "Route": "images/doctor-dashboard-bg-transparent.svg",
+      "AssetFile": "C:\\Users\\CristianPC\\Desktop\\vitalcare\\wwwroot\\images\\doctor-dashboard-bg-transparent.svg",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "2154"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "image/svg+xml"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"odsn4ILlydGi5XastLANCjcFiIT9uD7K6f0GnhAiSo4=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Mon, 09 Jun 2025 18:29:34 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=3600, must-revalidate"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "integrity",
+          "Value": "sha256-odsn4ILlydGi5XastLANCjcFiIT9uD7K6f0GnhAiSo4="
+        }
+      ]
+    },
+    {
       "Route": "images/doctor-dashboard-bg.0et2yl89r1.svg",
       "AssetFile": "C:\\Users\\CristianPC\\Desktop\\vitalcare\\wwwroot\\images\\doctor-dashboard-bg.svg",
       "Selectors": [],
@@ -7605,7 +7708,7 @@
       ]
     },
     {
-      "Route": "js/modules/doctor/doctor-dashboard.02zo4m03oc.js",
+      "Route": "js/modules/doctor/doctor-dashboard.1t5f02plw1.js",
       "AssetFile": "C:\\Users\\CristianPC\\Desktop\\vitalcare\\wwwroot\\js\\modules\\doctor\\doctor-dashboard.js",
       "Selectors": [],
       "ResponseHeaders": [
@@ -7615,7 +7718,7 @@
         },
         {
           "Name": "Content-Length",
-          "Value": "7951"
+          "Value": "8043"
         },
         {
           "Name": "Content-Type",
@@ -7623,11 +7726,11 @@
         },
         {
           "Name": "ETag",
-          "Value": "\"eCMV/25sqgosdUF+JBeU3Ve1cM4t/7XqhoetqaVjwiA=\""
+          "Value": "\"JeP35tGPU7QfIQVlNwIz7Wani+Tojf/IXW5S1ZJxO38=\""
         },
         {
           "Name": "Last-Modified",
-          "Value": "Mon, 09 Jun 2025 07:00:03 GMT"
+          "Value": "Mon, 09 Jun 2025 18:23:31 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -7637,7 +7740,7 @@
       "EndpointProperties": [
         {
           "Name": "fingerprint",
-          "Value": "02zo4m03oc"
+          "Value": "1t5f02plw1"
         },
         {
           "Name": "label",
@@ -7645,7 +7748,7 @@
         },
         {
           "Name": "integrity",
-          "Value": "sha256-eCMV/25sqgosdUF+JBeU3Ve1cM4t/7XqhoetqaVjwiA="
+          "Value": "sha256-JeP35tGPU7QfIQVlNwIz7Wani+Tojf/IXW5S1ZJxO38="
         }
       ]
     },
@@ -7660,7 +7763,7 @@
         },
         {
           "Name": "Content-Length",
-          "Value": "7951"
+          "Value": "8043"
         },
         {
           "Name": "Content-Type",
@@ -7668,11 +7771,11 @@
         },
         {
           "Name": "ETag",
-          "Value": "\"eCMV/25sqgosdUF+JBeU3Ve1cM4t/7XqhoetqaVjwiA=\""
+          "Value": "\"JeP35tGPU7QfIQVlNwIz7Wani+Tojf/IXW5S1ZJxO38=\""
         },
         {
           "Name": "Last-Modified",
-          "Value": "Mon, 09 Jun 2025 07:00:03 GMT"
+          "Value": "Mon, 09 Jun 2025 18:23:31 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -7682,7 +7785,7 @@
       "EndpointProperties": [
         {
           "Name": "integrity",
-          "Value": "sha256-eCMV/25sqgosdUF+JBeU3Ve1cM4t/7XqhoetqaVjwiA="
+          "Value": "sha256-JeP35tGPU7QfIQVlNwIz7Wani+Tojf/IXW5S1ZJxO38="
         }
       ]
     },
