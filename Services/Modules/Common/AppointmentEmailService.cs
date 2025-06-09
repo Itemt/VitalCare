@@ -95,7 +95,7 @@ namespace CitasEPS.Services.Modules.Common
         public async Task SendRescheduleRequestedEmailAsync(Appointment appointment, User patient, User doctor)
         {
             var subject = "Solicitud de Reagendamiento Enviada - VitalCare";
-            var htmlMessage = GenerateAppointmentEmailHtml(
+            var htmlMessage = GenerateRescheduleRequestEmailHtml(
                 "Solicitud de Reagendamiento Enviada",
                 $"Su solicitud de reagendamiento ha sido enviada al Dr. {doctor.FirstName} {doctor.LastName}.",
                 appointment,
@@ -141,6 +141,7 @@ namespace CitasEPS.Services.Modules.Common
         private string GenerateAppointmentEmailHtml(string title, string message, Appointment appointment, User patient, User doctor, string additionalInfo)
         {
             var html = new StringBuilder();
+            var localAppointmentTime = ColombiaTimeZoneService.ConvertUtcToColombia(appointment.AppointmentDateTime);
             
             html.AppendLine("<!DOCTYPE html>");
             html.AppendLine("<html lang='es'>");
@@ -177,8 +178,8 @@ namespace CitasEPS.Services.Modules.Common
             html.AppendLine($"            <p class='message'>{message}</p>");
             html.AppendLine("            <div class='appointment-details'>");
             html.AppendLine("                <h3 style='margin-top: 0; color: #007bff;'>Detalles de la Cita</h3>");
-            html.AppendLine($"                <div class='detail-item'><span class='detail-label'>Fecha:</span> {appointment.AppointmentDateTime:dddd, dd 'de' MMMM 'de' yyyy}</div>");
-            html.AppendLine($"                <div class='detail-item'><span class='detail-label'>Hora:</span> {appointment.AppointmentDateTime:HH:mm}</div>");
+            html.AppendLine($"                <div class='detail-item'><span class='detail-label'>Fecha:</span> {localAppointmentTime:dddd, dd 'de' MMMM 'de' yyyy}</div>");
+            html.AppendLine($"                <div class='detail-item'><span class='detail-label'>Hora:</span> {localAppointmentTime:HH:mm}</div>");
             html.AppendLine($"                <div class='detail-item'><span class='detail-label'>Médico:</span> Dr. {doctor.FirstName} {doctor.LastName}</div>");
             html.AppendLine($"                <div class='detail-item'><span class='detail-label'>Estado:</span> {GetStatusText(appointment)}</div>");
             html.AppendLine($"                <div class='detail-item'><span class='detail-label'>Motivo:</span> {appointment.Notes ?? "No especificado"}</div>");
@@ -197,10 +198,64 @@ namespace CitasEPS.Services.Modules.Common
             return html.ToString();
         }
 
+        private string GenerateRescheduleRequestEmailHtml(string title, string message, Appointment appointment, User patient, User doctor, string additionalInfo)
+        {
+            var html = new StringBuilder();
+            var localOriginalTime = ColombiaTimeZoneService.ConvertUtcToColombia(appointment.AppointmentDateTime);
+            var localProposedTime = ColombiaTimeZoneService.ConvertUtcToColombia(appointment.ProposedNewDateTime.Value);
+
+            html.AppendLine("<!DOCTYPE html>");
+            html.AppendLine("<html lang='es'>");
+            html.AppendLine("<head>");
+            html.AppendLine("    <meta charset='UTF-8'>");
+            html.AppendLine("    <meta name='viewport' content='width=device-width, initial-scale=1.0'>");
+            html.AppendLine($"    <title>{title}</title>");
+            html.AppendLine("    <style>");
+            html.AppendLine("        body { font-family: Arial, sans-serif; line-height: 1.6; color: #333; margin: 0; padding: 0; background-color: #f4f4f4; }");
+            html.AppendLine("        .container { max-width: 600px; margin: 0 auto; background-color: #ffffff; box-shadow: 0 0 10px rgba(0,0,0,0.1); }");
+            html.AppendLine("        .header { background: linear-gradient(135deg, #ffc107 0%, #e0a800 100%); color: #212529; padding: 20px; text-align: center; }");
+            html.AppendLine("        .header h1 { margin: 0; font-size: 24px; }");
+            html.AppendLine("        .content { padding: 30px; }");
+            html.AppendLine("        .message { font-size: 16px; margin-bottom: 20px; }");
+            html.AppendLine("        .appointment-details { background-color: #f8f9fa; border-left: 4px solid #ffc107; padding: 20px; margin: 20px 0; }");
+            html.AppendLine("        .detail-item { margin-bottom: 10px; }");
+            html.AppendLine("        .detail-label { font-weight: bold; color: #e0a800; }");
+            html.AppendLine("        .original-time { text-decoration: line-through; color: #6c757d; }");
+            html.AppendLine("        .footer { background-color: #f8f9fa; padding: 20px; text-align: center; font-size: 14px; color: #666; }");
+            html.AppendLine("    </style>");
+            html.AppendLine("</head>");
+            html.AppendLine("<body>");
+            html.AppendLine("    <div class='container'>");
+            html.AppendLine("        <div class='header'>");
+            html.AppendLine($"            <h1>{title}</h1>");
+            html.AppendLine("        </div>");
+            html.AppendLine("        <div class='content'>");
+            html.AppendLine($"            <p class='message'>Estimado/a {patient.FirstName} {patient.LastName},</p>");
+            html.AppendLine($"            <p class='message'>{message}</p>");
+            html.AppendLine("            <div class='appointment-details'>");
+            html.AppendLine("                <h3 style='margin-top: 0; color: #e0a800;'>Detalles de la Solicitud</h3>");
+            html.AppendLine($"                <div class='detail-item'><span class='detail-label'>Horario Original:</span> <span class='original-time'>{localOriginalTime:dddd, dd MMM yyyy 'a las' HH:mm}</span></div>");
+            html.AppendLine($"                <div class='detail-item'><span class='detail-label'>Nuevo Horario Propuesto:</span> <strong>{localProposedTime:dddd, dd MMM yyyy 'a las' HH:mm}</strong></div>");
+            html.AppendLine($"                <div class='detail-item'><span class='detail-label'>Médico:</span> Dr. {doctor.FirstName} {doctor.LastName}</div>");
+            html.AppendLine("            </div>");
+            html.AppendLine($"            <p class='message'>{additionalInfo}</p>");
+            html.AppendLine("        </div>");
+            html.AppendLine("        <div class='footer'>");
+            html.AppendLine("            <p><strong>VitalCare - Sistema de Gestión de Citas Médicas</strong></p>");
+            html.AppendLine("            <p>Este es un mensaje automático, por favor no responda a este correo.</p>");
+            html.AppendLine("        </div>");
+            html.AppendLine("    </div>");
+            html.AppendLine("</body>");
+            html.AppendLine("</html>");
+
+            return html.ToString();
+        }
+
         private string GenerateRescheduleRejectedEmailHtml(string title, string message, Appointment appointment, User patient, User doctor, DateTime originalDateTime, string additionalInfo)
         {
             var html = new StringBuilder();
-            
+            var localOriginalTime = ColombiaTimeZoneService.ConvertUtcToColombia(originalDateTime);
+
             html.AppendLine("<!DOCTYPE html>");
             html.AppendLine("<html lang='es'>");
             html.AppendLine("<head>");
@@ -236,8 +291,8 @@ namespace CitasEPS.Services.Modules.Common
             html.AppendLine($"            <p class='message'>{message}</p>");
             html.AppendLine("            <div class='appointment-details'>");
             html.AppendLine("                <h3 style='margin-top: 0; color: #dc3545;'>Detalles de la Cita (Horario Original Mantenido)</h3>");
-            html.AppendLine($"                <div class='detail-item'><span class='detail-label'>Fecha:</span> {originalDateTime:dddd, dd 'de' MMMM 'de' yyyy}</div>");
-            html.AppendLine($"                <div class='detail-item'><span class='detail-label'>Hora:</span> {originalDateTime:HH:mm}</div>");
+            html.AppendLine($"                <div class='detail-item'><span class='detail-label'>Fecha:</span> {localOriginalTime:dddd, dd 'de' MMMM 'de' yyyy}</div>");
+            html.AppendLine($"                <div class='detail-item'><span class='detail-label'>Hora:</span> {localOriginalTime:HH:mm}</div>");
             html.AppendLine($"                <div class='detail-item'><span class='detail-label'>Médico:</span> Dr. {doctor.FirstName} {doctor.LastName}</div>");
             html.AppendLine($"                <div class='detail-item'><span class='detail-label'>Estado:</span> Pendiente de Confirmación</div>");
             html.AppendLine($"                <div class='detail-item'><span class='detail-label'>Motivo:</span> {appointment.Notes ?? "No especificado"}</div>");

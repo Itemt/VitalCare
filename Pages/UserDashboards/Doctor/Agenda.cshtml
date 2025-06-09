@@ -1,5 +1,6 @@
 @page
 @model CitasEPS.Pages.UserDashboards.Doctor.AgendaModel
+@using CitasEPS.Services
 
 @{
     ViewData["Title"] = "Agenda del Médico";
@@ -258,6 +259,10 @@
                         {
                             <tr>
                                 <td>
+                                    <strong>@ColombiaTimeZoneService.FormatInColombia(appointment.AppointmentDateTime, "dddd, dd MMM yyyy")</strong><br/>
+                                    <small class="text-muted">@ColombiaTimeZoneService.FormatInColombia(appointment.AppointmentDateTime, "HH:mm")</small>
+                                </td>
+                                <td>
                                     <div class="d-flex align-items-center">
                                         <i class="bi bi-person-circle me-2 text-primary" style="font-size: 1.5rem;"></i>
                                         <div>
@@ -265,10 +270,6 @@
                                             <small class="text-muted">ID: @(appointment.Patient?.DocumentId ?? "N/A")</small>
                                         </div>
                                     </div>
-                                </td>
-                                <td>
-                                    <strong>@CitasEPS.Services.ColombiaTimeZoneService.FormatInColombia(appointment.AppointmentDateTime, "dddd, dd MMM yyyy")</strong><br/>
-                                    <small class="text-muted">@CitasEPS.Services.ColombiaTimeZoneService.FormatInColombia(appointment.AppointmentDateTime, "HH:mm")</small>
                                 </td>
                                 <td>
                                     <span>@(appointment.Notes ?? "Sin notas")</span>
@@ -293,7 +294,7 @@
                                         </span>
                                         <small class="d-block mt-1 text-muted">
                                             @{
-                                                var proposedColombia = CitasEPS.Services.ColombiaTimeZoneService.ConvertUtcToColombia(appointment.ProposedNewDateTime.Value);
+                                                var proposedColombia = ColombiaTimeZoneService.ConvertUtcToColombia(appointment.ProposedNewDateTime.Value);
                                             }
                                             Nueva fecha propuesta: @proposedColombia.ToString("dd/MM/yyyy HH:mm")
                                         </small>
@@ -305,14 +306,14 @@
                                         </span>
                                         <small class="d-block mt-1 text-muted">
                                             @{
-                                                var proposedByDoc = CitasEPS.Services.ColombiaTimeZoneService.ConvertUtcToColombia(appointment.ProposedNewDateTime.Value);
+                                                var proposedByDoc = ColombiaTimeZoneService.ConvertUtcToColombia(appointment.ProposedNewDateTime.Value);
                                             }
                                             Propuesta para: @proposedByDoc.ToString("dd/MM/yyyy HH:mm")
                                         </small>
                                     }
                                     else if (appointment.IsConfirmed)
                                     {
-                                        @if (appointment.AppointmentDateTime < DateTime.Now)
+                                        @if (appointment.AppointmentDateTime < DateTime.UtcNow)
                                         {
                                             <span class="status-badge" style="background: #dc2626 !important; color: white !important; padding: 0.5rem 1rem; border-radius: 10px;">
                                                 <i class="bi bi-exclamation-triangle-fill me-1"></i>No Asistió
@@ -385,7 +386,7 @@
                                         }
                                         
                                         @* Mostrar botón de proponer reagendamiento si es elegible *@
-                                        @if (!appointment.IsCompleted && !appointment.IsCancelled && appointment.AppointmentDateTime >= DateTime.Now && !appointment.RescheduleRequested && !appointment.DoctorProposedReschedule)
+                                        @if (!appointment.IsCompleted && !appointment.IsCancelled && appointment.AppointmentDateTime >= DateTime.UtcNow && !appointment.RescheduleRequested && !appointment.DoctorProposedReschedule)
                                         {
                                             <a asp-page="/UserDashboards/Doctor/ProposeDoctorReschedule" asp-route-id="@appointment.Id" 
                                                class="btn-action" style="background: #3b82f6 !important; font-size: 0.875rem;" title="Proponer nuevo horario al paciente">

@@ -91,12 +91,7 @@ document.addEventListener('DOMContentLoaded', function () {
                 messageP.classList.add('mb-0');
                 messageP.textContent = notification.message;
 
-                const timeSmall = document.createElement('small');
-                timeSmall.classList.add('text-muted');
-                timeSmall.textContent = new Date(notification.createdAt).toLocaleString();
-                
                 link.appendChild(messageP);
-                link.appendChild(timeSmall);
                 listItem.appendChild(link);
 
                 if (notification.isRead) {

@@ -1,5 +1,6 @@
 @page
 @model CitasEPS.Pages.Appointments.IndexModel
+@using CitasEPS.Services
 
 @{
     if (Model.UserRole == "Admin")
@@ -651,8 +652,8 @@ else // Patient View
                             {
                                 <tr>
                                     <td>
-                                        <strong>@item.AppointmentDateTime.ToString("dddd, dd MMM yyyy")</strong><br/>
-                                        <small class="text-muted">@item.AppointmentDateTime.ToString("HH:mm")</small>
+                                        <strong>@ColombiaTimeZoneService.FormatInColombia(item.AppointmentDateTime, "dddd, dd MMM yyyy")</strong><br/>
+                                        <small class="text-muted">@ColombiaTimeZoneService.FormatInColombia(item.AppointmentDateTime, "HH:mm")</small>
                                     </td>
                                     <td>
                                         <div class="d-flex align-items-center">

@@ -2,6 +2,7 @@
 @model CitasEPS.Pages.Appointments.DetailsModel
 @using Microsoft.AspNetCore.Identity
 @using CitasEPS.Models
+@using CitasEPS.Services
 @inject UserManager<User> UserManager
 @inject SignInManager<User> SignInManager
 
@@ -118,17 +119,19 @@
                             {
                                 <span class="badge bg-success">Completada</span>
                             }
-                            else if (Model.Appointment.AppointmentDateTime < DateTime.Now)
+                            else if (Model.Appointment.AppointmentDateTime < DateTime.UtcNow)
                             {
                                  <span class="badge bg-secondary text-dark">Expirada</span>
                             }
                             else if (Model.Appointment.DoctorProposedReschedule && Model.Appointment.ProposedNewDateTime.HasValue)
                             {
                                  <span class="badge bg-primary text-white">Propuesto por Doctor</span>
+                                 <p><small>Nueva fecha propuesta: @ColombiaTimeZoneService.FormatInColombia(Model.Appointment.ProposedNewDateTime.Value)</small></p>
                             }
                             else if (Model.Appointment.RescheduleRequested && Model.Appointment.ProposedNewDateTime.HasValue)
                             {
                                  <span class="badge bg-warning text-dark">Propuesto por Paciente</span>
+                                 <p><small>Nueva fecha propuesta: @ColombiaTimeZoneService.FormatInColombia(Model.Appointment.ProposedNewDateTime.Value)</small></p>
                             }
                             else if (Model.Appointment.IsConfirmed)
                             {
@@ -198,7 +201,7 @@
                                 }
                                 
                                 @* Botón para Marcar No Presentó *@
-                                @if (Model.Appointment.AppointmentDateTime < DateTime.Now && Model.Appointment.IsConfirmed && !Model.Appointment.IsCompleted && !Model.Appointment.WasNoShow)
+                                @if (Model.Appointment.AppointmentDateTime < DateTime.UtcNow && Model.Appointment.IsConfirmed && !Model.Appointment.IsCompleted && !Model.Appointment.WasNoShow)
                                 {
                                     <form method="post" asp-page-handler="MarkNoShow" asp-route-id="@Model.Appointment.Id" class="d-inline ms-2">
                                         <button type="submit" class="btn btn-outline-danger">Marcar No Presentó</button>
@@ -221,7 +224,7 @@
                     {
                         @if (!Model.Appointment.IsCompleted && 
                              !Model.Appointment.IsCancelled && 
-                             Model.Appointment.AppointmentDateTime >= DateTime.Now && 
+                             Model.Appointment.AppointmentDateTime >= DateTime.UtcNow && 
                              !Model.Appointment.RescheduleRequested && 
                              !Model.Appointment.DoctorProposedReschedule)
                         {
@@ -251,7 +254,7 @@
                             @* --- END: Cancel Button (Details View) --- *@
 
                             @* --- START: Doctor Propose Reschedule Button (Details View) --- *@
-                            @if (User.IsInRole("Doctor") && !Model.Appointment.IsCompleted && !Model.Appointment.IsCancelled && Model.Appointment.AppointmentDateTime >= DateTime.Now && !Model.Appointment.RescheduleRequested && !Model.Appointment.DoctorProposedReschedule)
+                            @if (User.IsInRole("Doctor") && !Model.Appointment.IsCompleted && !Model.Appointment.IsCancelled && Model.Appointment.AppointmentDateTime >= DateTime.UtcNow && !Model.Appointment.RescheduleRequested && !Model.Appointment.DoctorProposedReschedule)
                             {
                                  <a asp-page="/Doctor/ProposeDoctorReschedule" asp-route-id="@Model.Appointment.Id" class="btn btn-outline-primary me-2" title="Proponer nuevo horario al paciente">
                                      <i class="bi bi-arrow-repeat"></i> Proponer Reag.

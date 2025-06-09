@@ -190,7 +190,7 @@ namespace CitasEPS.Pages.UserDashboards.Doctor
                     var appointmentFormatted = ColombiaTimeZoneService.FormatInColombia(appointmentToUpdate.AppointmentDateTime, "dd/MM/yyyy 'a las' HH:mm");
                     
                     var patientMessage = $"El Dr. {doctorName} ha rechazado su propuesta de reagendamiento. Su cita mantiene el horario original: {appointmentFormatted}.";
-                    await _notificationService.CreateNotificationAsync(appointmentToUpdate.Patient.User.Id, patientMessage, NotificationType.RescheduleRejectedByPatient, appointmentToUpdate.Id);
+                    await _notificationService.CreateNotificationAsync(appointmentToUpdate.Patient.User.Id, patientMessage, NotificationType.RescheduleRejectedByDoctor, appointmentToUpdate.Id);
                     
                     // Enviar correo de rechazo al paciente
                     try
