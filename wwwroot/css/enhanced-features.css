@@ -3398,5 +3398,121 @@ div.auth-row div.auth-col input.flatpickr-input {
     }
 }
 
+/* ========== ESTILOS PARA PÁGINA DE EQUIPO MÉDICO - ICONOS SIN FONDO ========== */
+
+/* Quitar fondos de colores de los avatares de médicos */
+.team-card .team-avatar {
+    background: none !important;
+    background-color: transparent !important;
+    border: none !important;
+    box-shadow: none !important;
+    padding: 0 !important;
+    margin: 1.5rem auto 1rem auto !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    width: auto !important;
+    height: auto !important;
+    border-radius: 0 !important;
+}
+
+/* Iconos de médicos - solo el icono sin fondo */
+.team-card .team-avatar .feature-icon-main {
+    font-size: 5rem !important;
+    color: #003366 !important;
+    background: none !important;
+    border: none !important;
+    border-radius: 0 !important;
+    padding: 0 !important;
+    margin: 0 !important;
+    display: block !important;
+    line-height: 1 !important;
+    transition: all 0.3s ease !important;
+    text-shadow: 0 2px 4px rgba(0,0,0,0.1) !important;
+}
+
+/* Efectos hover para iconos de médicos */
+.team-card:hover .team-avatar .feature-icon-main {
+    transform: scale(1.1) !important;
+    color: #002244 !important;
+    text-shadow: 0 4px 8px rgba(0,0,0,0.2) !important;
+}
+
+/* Colores específicos por especialidad - solo para el icono */
+.team-card .team-avatar .bi-heart-pulse-fill {
+    color: #dc3545 !important; /* Rojo para cardiología */
+}
+
+.team-card .team-avatar .bi-activity {
+    color: #28a745 !important; /* Verde para cardiología */
+}
+
+.team-card .team-avatar .bi-gender-female {
+    color: #17a2b8 !important; /* Azul para ginecología */
+}
+
+.team-card .team-avatar .bi-emoji-smile {
+    color: #ffc107 !important; /* Amarillo para pediatría */
+}
+
+.team-card .team-avatar .bi-bandaid {
+    color: #dc3545 !important; /* Rojo para dermatología */
+}
+
+.team-card .team-avatar .bi-brain {
+    color: #6c757d !important; /* Gris para psicología */
+}
+
+/* Hover específico por especialidad */
+.team-card:hover .team-avatar .bi-heart-pulse-fill {
+    color: #c82333 !important;
+}
+
+.team-card:hover .team-avatar .bi-activity {
+    color: #218838 !important;
+}
+
+.team-card:hover .team-avatar .bi-gender-female {
+    color: #138496 !important;
+}
+
+.team-card:hover .team-avatar .bi-emoji-smile {
+    color: #e0a800 !important;
+}
+
+.team-card:hover .team-avatar .bi-bandaid {
+    color: #c82333 !important;
+}
+
+.team-card:hover .team-avatar .bi-brain {
+    color: #5a6268 !important;
+}
+
+/* Ajustar el contenedor de la tarjeta para mejor espaciado */
+.team-card .position-relative {
+    text-align: center !important;
+    padding-top: 1rem !important;
+}
+
+/* Ajustes responsive para móviles */
+@media (max-width: 768px) {
+    .team-card .team-avatar .feature-icon-main {
+        font-size: 4rem !important;
+    }
+    
+    .team-card .team-avatar {
+        margin: 1rem auto 0.75rem auto !important;
+    }
+}
+
+/* Tema oscuro para iconos de médicos */
+[data-bs-theme="dark"] .team-card .team-avatar .feature-icon-main {
+    text-shadow: 0 2px 4px rgba(255,255,255,0.1) !important;
+}
+
+[data-bs-theme="dark"] .team-card:hover .team-avatar .feature-icon-main {
+    text-shadow: 0 4px 8px rgba(255,255,255,0.2) !important;
+}
+
 
 
