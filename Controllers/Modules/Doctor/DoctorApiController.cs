@@ -198,7 +198,7 @@ namespace CitasEPS.Controllers
                 var user = await _userManager.GetUserAsync(User);
                 if (user == null)
                 {
-                    return Unauthorized(new { error = "Usuario no encontrado" });
+                    return Ok(new { appointment = (object)null, message = "Usuario no encontrado" });
                 }
 
                 var doctor = await _context.Doctors
@@ -206,23 +206,29 @@ namespace CitasEPS.Controllers
 
                 if (doctor == null)
                 {
-                    return NotFound(new { error = "Doctor no encontrado" });
+                    return Ok(new { appointment = (object)null, message = "Doctor no encontrado" });
                 }
 
-                var now = DateTime.Now;
+                // Usar UTC para comparación consistente, igual que el paciente
+                var now = DateTime.UtcNow;
                 
                 try
                 {
-                    var nextAppointment = await _context.Appointments
-                        .Where(a => a.DoctorId == doctor.Id && 
-                                   a.AppointmentDateTime > now &&
-                                   a.IsCancelled == false)
+                    // Obtener todas las citas del doctor y filtrar en memoria para evitar problemas de zona horaria
+                    var allAppointments = await _context.Appointments
+                        .Where(a => a.DoctorId == doctor.Id && !a.IsCancelled)
                         .Include(a => a.Patient)
                         .OrderBy(a => a.AppointmentDateTime)
-                        .FirstOrDefaultAsync();
+                        .ToListAsync();
 
-                    if (nextAppointment != null)
+                    // Filtrar en memoria las citas futuras
+                    var futureAppointments = allAppointments
+                        .Where(a => a.AppointmentDateTime > now)
+                        .ToList();
+
+                    if (futureAppointments.Any())
                     {
+                        var nextAppointment = futureAppointments.First();
                         var statusClass = "bg-primary";
                         var statusText = "Programada";
 
@@ -264,7 +270,7 @@ namespace CitasEPS.Controllers
             catch (Exception ex)
             {
                 Console.WriteLine($"Next appointment error: {ex.Message}");
-                return StatusCode(500, new { error = "Error interno del servidor", details = ex.Message, stackTrace = ex.StackTrace });
+                return Ok(new { appointment = (object)null, message = $"Error interno: {ex.Message}" });
             }
         }
 
@@ -277,7 +283,7 @@ namespace CitasEPS.Controllers
                 var user = await _userManager.GetUserAsync(User);
                 if (user == null)
                 {
-                    return Unauthorized(new { error = "Usuario no encontrado" });
+                    return Ok(new { appointments = new List<object>(), message = "Usuario no encontrado" });
                 }
 
                 var doctor = await _context.Doctors
@@ -285,23 +291,27 @@ namespace CitasEPS.Controllers
 
                 if (doctor == null)
                 {
-                    return NotFound(new { error = "Doctor no encontrado" });
+                    return Ok(new { appointments = new List<object>(), message = "Doctor no encontrado" });
                 }
 
-                var now = DateTime.Now;
+                var now = DateTime.UtcNow;
                 
                 try
                 {
-                    var appointments = await _context.Appointments
-                        .Where(a => a.DoctorId == doctor.Id && 
-                                   a.AppointmentDateTime > now &&
-                                   a.IsCancelled == false)
+                    // Obtener todas las citas del doctor y filtrar en memoria
+                    var allAppointments = await _context.Appointments
+                        .Where(a => a.DoctorId == doctor.Id && !a.IsCancelled)
                         .Include(a => a.Patient)
                         .OrderBy(a => a.AppointmentDateTime)
-                        .Take(20)
                         .ToListAsync();
 
-                    var appointmentsList = appointments.Select(a =>
+                    // Filtrar en memoria las citas futuras y tomar las primeras 20
+                    var futureAppointments = allAppointments
+                        .Where(a => a.AppointmentDateTime > now)
+                        .Take(20)
+                        .ToList();
+
+                    var appointmentsList = futureAppointments.Select(a =>
                     {
                         var statusClass = "bg-primary";
                         var statusText = "Programada";
@@ -335,13 +345,13 @@ namespace CitasEPS.Controllers
                 catch (Exception queryEx)
                 {
                     Console.WriteLine($"Query error in upcoming appointments: {queryEx.Message}");
-                    return Ok(new { appointments = new List<object>() });
+                    return Ok(new { appointments = new List<object>(), message = "Error al cargar citas" });
                 }
             }
             catch (Exception ex)
             {
                 Console.WriteLine($"Upcoming appointments error: {ex.Message}");
-                return StatusCode(500, new { error = "Error interno del servidor", details = ex.Message, stackTrace = ex.StackTrace });
+                return Ok(new { appointments = new List<object>(), message = $"Error interno: {ex.Message}" });
             }
         }
 

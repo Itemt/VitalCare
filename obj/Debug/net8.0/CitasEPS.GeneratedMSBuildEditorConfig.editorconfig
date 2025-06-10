@@ -17,481 +17,481 @@ build_property._SupportedPlatformList = Linux,macOS,Windows
 build_property._SupportedPlatformList = Linux,macOS,Windows
 build_property.RootNamespace = CitasEPS
 build_property.RootNamespace = CitasEPS
-build_property.ProjectDir = C:\Users\CristianPC\Desktop\vitalcare\
+build_property.ProjectDir = /Users/cristianramos/Desktop/Proyectos/AplicativosWeb/CitasEPS/
 build_property.EnableComHosting = 
 build_property.EnableGeneratedComInterfaceComImportInterop = 
 build_property.RazorLangVersion = 8.0
 build_property.SupportLocalizedComponentNames = 
 build_property.GenerateRazorMetadataSourceChecksumAttributes = 
-build_property.MSBuildProjectDirectory = C:\Users\CristianPC\Desktop\vitalcare
+build_property.MSBuildProjectDirectory = /Users/cristianramos/Desktop/Proyectos/AplicativosWeb/CitasEPS
 build_property._RazorSourceGeneratorDebug = 
 build_property.EffectiveAnalysisLevelStyle = 8.0
 build_property.EnableCodeStyleSeverity = 
 
-[C:/Users/CristianPC/Desktop/vitalcare/Areas/Identity/Pages/Account/AccessDenied.cshtml]
-build_metadata.AdditionalFiles.TargetPath = QXJlYXNcSWRlbnRpdHlcUGFnZXNcQWNjb3VudFxBY2Nlc3NEZW5pZWQuY3NodG1s
+[/Users/cristianramos/Desktop/Proyectos/AplicativosWeb/CitasEPS/Areas/Identity/Pages/Account/AccessDenied.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXMvSWRlbnRpdHkvUGFnZXMvQWNjb3VudC9BY2Nlc3NEZW5pZWQuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/CristianPC/Desktop/vitalcare/Areas/Identity/Pages/Account/ConfirmEmail.cshtml]
-build_metadata.AdditionalFiles.TargetPath = QXJlYXNcSWRlbnRpdHlcUGFnZXNcQWNjb3VudFxDb25maXJtRW1haWwuY3NodG1s
+[/Users/cristianramos/Desktop/Proyectos/AplicativosWeb/CitasEPS/Areas/Identity/Pages/Account/ConfirmEmail.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXMvSWRlbnRpdHkvUGFnZXMvQWNjb3VudC9Db25maXJtRW1haWwuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/CristianPC/Desktop/vitalcare/Areas/Identity/Pages/Account/ConfirmEmailChange.cshtml]
-build_metadata.AdditionalFiles.TargetPath = QXJlYXNcSWRlbnRpdHlcUGFnZXNcQWNjb3VudFxDb25maXJtRW1haWxDaGFuZ2UuY3NodG1s
+[/Users/cristianramos/Desktop/Proyectos/AplicativosWeb/CitasEPS/Areas/Identity/Pages/Account/ConfirmEmailChange.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXMvSWRlbnRpdHkvUGFnZXMvQWNjb3VudC9Db25maXJtRW1haWxDaGFuZ2UuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/CristianPC/Desktop/vitalcare/Areas/Identity/Pages/Account/ExternalLogin.cshtml]
-build_metadata.AdditionalFiles.TargetPath = QXJlYXNcSWRlbnRpdHlcUGFnZXNcQWNjb3VudFxFeHRlcm5hbExvZ2luLmNzaHRtbA==
+[/Users/cristianramos/Desktop/Proyectos/AplicativosWeb/CitasEPS/Areas/Identity/Pages/Account/ExternalLogin.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXMvSWRlbnRpdHkvUGFnZXMvQWNjb3VudC9FeHRlcm5hbExvZ2luLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/CristianPC/Desktop/vitalcare/Areas/Identity/Pages/Account/ForgotPassword.cshtml]
-build_metadata.AdditionalFiles.TargetPath = QXJlYXNcSWRlbnRpdHlcUGFnZXNcQWNjb3VudFxGb3Jnb3RQYXNzd29yZC5jc2h0bWw=
+[/Users/cristianramos/Desktop/Proyectos/AplicativosWeb/CitasEPS/Areas/Identity/Pages/Account/ForgotPassword.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXMvSWRlbnRpdHkvUGFnZXMvQWNjb3VudC9Gb3Jnb3RQYXNzd29yZC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/CristianPC/Desktop/vitalcare/Areas/Identity/Pages/Account/ForgotPasswordConfirmation.cshtml]
-build_metadata.AdditionalFiles.TargetPath = QXJlYXNcSWRlbnRpdHlcUGFnZXNcQWNjb3VudFxGb3Jnb3RQYXNzd29yZENvbmZpcm1hdGlvbi5jc2h0bWw=
+[/Users/cristianramos/Desktop/Proyectos/AplicativosWeb/CitasEPS/Areas/Identity/Pages/Account/ForgotPasswordConfirmation.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXMvSWRlbnRpdHkvUGFnZXMvQWNjb3VudC9Gb3Jnb3RQYXNzd29yZENvbmZpcm1hdGlvbi5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/CristianPC/Desktop/vitalcare/Areas/Identity/Pages/Account/Lockout.cshtml]
-build_metadata.AdditionalFiles.TargetPath = QXJlYXNcSWRlbnRpdHlcUGFnZXNcQWNjb3VudFxMb2Nrb3V0LmNzaHRtbA==
+[/Users/cristianramos/Desktop/Proyectos/AplicativosWeb/CitasEPS/Areas/Identity/Pages/Account/Lockout.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXMvSWRlbnRpdHkvUGFnZXMvQWNjb3VudC9Mb2Nrb3V0LmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/CristianPC/Desktop/vitalcare/Areas/Identity/Pages/Account/Login.cshtml]
-build_metadata.AdditionalFiles.TargetPath = QXJlYXNcSWRlbnRpdHlcUGFnZXNcQWNjb3VudFxMb2dpbi5jc2h0bWw=
+[/Users/cristianramos/Desktop/Proyectos/AplicativosWeb/CitasEPS/Areas/Identity/Pages/Account/Login.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXMvSWRlbnRpdHkvUGFnZXMvQWNjb3VudC9Mb2dpbi5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/CristianPC/Desktop/vitalcare/Areas/Identity/Pages/Account/LoginWith2fa.cshtml]
-build_metadata.AdditionalFiles.TargetPath = QXJlYXNcSWRlbnRpdHlcUGFnZXNcQWNjb3VudFxMb2dpbldpdGgyZmEuY3NodG1s
+[/Users/cristianramos/Desktop/Proyectos/AplicativosWeb/CitasEPS/Areas/Identity/Pages/Account/LoginWith2fa.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXMvSWRlbnRpdHkvUGFnZXMvQWNjb3VudC9Mb2dpbldpdGgyZmEuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/CristianPC/Desktop/vitalcare/Areas/Identity/Pages/Account/LoginWithRecoveryCode.cshtml]
-build_metadata.AdditionalFiles.TargetPath = QXJlYXNcSWRlbnRpdHlcUGFnZXNcQWNjb3VudFxMb2dpbldpdGhSZWNvdmVyeUNvZGUuY3NodG1s
+[/Users/cristianramos/Desktop/Proyectos/AplicativosWeb/CitasEPS/Areas/Identity/Pages/Account/LoginWithRecoveryCode.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXMvSWRlbnRpdHkvUGFnZXMvQWNjb3VudC9Mb2dpbldpdGhSZWNvdmVyeUNvZGUuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/CristianPC/Desktop/vitalcare/Areas/Identity/Pages/Account/Logout.cshtml]
-build_metadata.AdditionalFiles.TargetPath = QXJlYXNcSWRlbnRpdHlcUGFnZXNcQWNjb3VudFxMb2dvdXQuY3NodG1s
+[/Users/cristianramos/Desktop/Proyectos/AplicativosWeb/CitasEPS/Areas/Identity/Pages/Account/Logout.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXMvSWRlbnRpdHkvUGFnZXMvQWNjb3VudC9Mb2dvdXQuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/CristianPC/Desktop/vitalcare/Areas/Identity/Pages/Account/Manage/ChangePassword.cshtml]
-build_metadata.AdditionalFiles.TargetPath = QXJlYXNcSWRlbnRpdHlcUGFnZXNcQWNjb3VudFxNYW5hZ2VcQ2hhbmdlUGFzc3dvcmQuY3NodG1s
+[/Users/cristianramos/Desktop/Proyectos/AplicativosWeb/CitasEPS/Areas/Identity/Pages/Account/Manage/ChangePassword.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXMvSWRlbnRpdHkvUGFnZXMvQWNjb3VudC9NYW5hZ2UvQ2hhbmdlUGFzc3dvcmQuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/CristianPC/Desktop/vitalcare/Areas/Identity/Pages/Account/Manage/DeletePersonalData.cshtml]
-build_metadata.AdditionalFiles.TargetPath = QXJlYXNcSWRlbnRpdHlcUGFnZXNcQWNjb3VudFxNYW5hZ2VcRGVsZXRlUGVyc29uYWxEYXRhLmNzaHRtbA==
+[/Users/cristianramos/Desktop/Proyectos/AplicativosWeb/CitasEPS/Areas/Identity/Pages/Account/Manage/DeletePersonalData.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXMvSWRlbnRpdHkvUGFnZXMvQWNjb3VudC9NYW5hZ2UvRGVsZXRlUGVyc29uYWxEYXRhLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/CristianPC/Desktop/vitalcare/Areas/Identity/Pages/Account/Manage/Disable2fa.cshtml]
-build_metadata.AdditionalFiles.TargetPath = QXJlYXNcSWRlbnRpdHlcUGFnZXNcQWNjb3VudFxNYW5hZ2VcRGlzYWJsZTJmYS5jc2h0bWw=
+[/Users/cristianramos/Desktop/Proyectos/AplicativosWeb/CitasEPS/Areas/Identity/Pages/Account/Manage/Disable2fa.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXMvSWRlbnRpdHkvUGFnZXMvQWNjb3VudC9NYW5hZ2UvRGlzYWJsZTJmYS5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/CristianPC/Desktop/vitalcare/Areas/Identity/Pages/Account/Manage/DownloadPersonalData.cshtml]
-build_metadata.AdditionalFiles.TargetPath = QXJlYXNcSWRlbnRpdHlcUGFnZXNcQWNjb3VudFxNYW5hZ2VcRG93bmxvYWRQZXJzb25hbERhdGEuY3NodG1s
+[/Users/cristianramos/Desktop/Proyectos/AplicativosWeb/CitasEPS/Areas/Identity/Pages/Account/Manage/DownloadPersonalData.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXMvSWRlbnRpdHkvUGFnZXMvQWNjb3VudC9NYW5hZ2UvRG93bmxvYWRQZXJzb25hbERhdGEuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/CristianPC/Desktop/vitalcare/Areas/Identity/Pages/Account/Manage/Email.cshtml]
-build_metadata.AdditionalFiles.TargetPath = QXJlYXNcSWRlbnRpdHlcUGFnZXNcQWNjb3VudFxNYW5hZ2VcRW1haWwuY3NodG1s
+[/Users/cristianramos/Desktop/Proyectos/AplicativosWeb/CitasEPS/Areas/Identity/Pages/Account/Manage/Email.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXMvSWRlbnRpdHkvUGFnZXMvQWNjb3VudC9NYW5hZ2UvRW1haWwuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/CristianPC/Desktop/vitalcare/Areas/Identity/Pages/Account/Manage/EnableAuthenticator.cshtml]
-build_metadata.AdditionalFiles.TargetPath = QXJlYXNcSWRlbnRpdHlcUGFnZXNcQWNjb3VudFxNYW5hZ2VcRW5hYmxlQXV0aGVudGljYXRvci5jc2h0bWw=
+[/Users/cristianramos/Desktop/Proyectos/AplicativosWeb/CitasEPS/Areas/Identity/Pages/Account/Manage/EnableAuthenticator.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXMvSWRlbnRpdHkvUGFnZXMvQWNjb3VudC9NYW5hZ2UvRW5hYmxlQXV0aGVudGljYXRvci5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/CristianPC/Desktop/vitalcare/Areas/Identity/Pages/Account/Manage/ExternalLogins.cshtml]
-build_metadata.AdditionalFiles.TargetPath = QXJlYXNcSWRlbnRpdHlcUGFnZXNcQWNjb3VudFxNYW5hZ2VcRXh0ZXJuYWxMb2dpbnMuY3NodG1s
+[/Users/cristianramos/Desktop/Proyectos/AplicativosWeb/CitasEPS/Areas/Identity/Pages/Account/Manage/ExternalLogins.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXMvSWRlbnRpdHkvUGFnZXMvQWNjb3VudC9NYW5hZ2UvRXh0ZXJuYWxMb2dpbnMuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/CristianPC/Desktop/vitalcare/Areas/Identity/Pages/Account/Manage/GenerateRecoveryCodes.cshtml]
-build_metadata.AdditionalFiles.TargetPath = QXJlYXNcSWRlbnRpdHlcUGFnZXNcQWNjb3VudFxNYW5hZ2VcR2VuZXJhdGVSZWNvdmVyeUNvZGVzLmNzaHRtbA==
+[/Users/cristianramos/Desktop/Proyectos/AplicativosWeb/CitasEPS/Areas/Identity/Pages/Account/Manage/GenerateRecoveryCodes.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXMvSWRlbnRpdHkvUGFnZXMvQWNjb3VudC9NYW5hZ2UvR2VuZXJhdGVSZWNvdmVyeUNvZGVzLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/CristianPC/Desktop/vitalcare/Areas/Identity/Pages/Account/Manage/Index.cshtml]
-build_metadata.AdditionalFiles.TargetPath = QXJlYXNcSWRlbnRpdHlcUGFnZXNcQWNjb3VudFxNYW5hZ2VcSW5kZXguY3NodG1s
+[/Users/cristianramos/Desktop/Proyectos/AplicativosWeb/CitasEPS/Areas/Identity/Pages/Account/Manage/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXMvSWRlbnRpdHkvUGFnZXMvQWNjb3VudC9NYW5hZ2UvSW5kZXguY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/CristianPC/Desktop/vitalcare/Areas/Identity/Pages/Account/Manage/PersonalData.cshtml]
-build_metadata.AdditionalFiles.TargetPath = QXJlYXNcSWRlbnRpdHlcUGFnZXNcQWNjb3VudFxNYW5hZ2VcUGVyc29uYWxEYXRhLmNzaHRtbA==
+[/Users/cristianramos/Desktop/Proyectos/AplicativosWeb/CitasEPS/Areas/Identity/Pages/Account/Manage/PersonalData.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXMvSWRlbnRpdHkvUGFnZXMvQWNjb3VudC9NYW5hZ2UvUGVyc29uYWxEYXRhLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/CristianPC/Desktop/vitalcare/Areas/Identity/Pages/Account/Manage/ResetAuthenticator.cshtml]
-build_metadata.AdditionalFiles.TargetPath = QXJlYXNcSWRlbnRpdHlcUGFnZXNcQWNjb3VudFxNYW5hZ2VcUmVzZXRBdXRoZW50aWNhdG9yLmNzaHRtbA==
+[/Users/cristianramos/Desktop/Proyectos/AplicativosWeb/CitasEPS/Areas/Identity/Pages/Account/Manage/ResetAuthenticator.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXMvSWRlbnRpdHkvUGFnZXMvQWNjb3VudC9NYW5hZ2UvUmVzZXRBdXRoZW50aWNhdG9yLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/CristianPC/Desktop/vitalcare/Areas/Identity/Pages/Account/Manage/SetPassword.cshtml]
-build_metadata.AdditionalFiles.TargetPath = QXJlYXNcSWRlbnRpdHlcUGFnZXNcQWNjb3VudFxNYW5hZ2VcU2V0UGFzc3dvcmQuY3NodG1s
+[/Users/cristianramos/Desktop/Proyectos/AplicativosWeb/CitasEPS/Areas/Identity/Pages/Account/Manage/SetPassword.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXMvSWRlbnRpdHkvUGFnZXMvQWNjb3VudC9NYW5hZ2UvU2V0UGFzc3dvcmQuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/CristianPC/Desktop/vitalcare/Areas/Identity/Pages/Account/Manage/ShowRecoveryCodes.cshtml]
-build_metadata.AdditionalFiles.TargetPath = QXJlYXNcSWRlbnRpdHlcUGFnZXNcQWNjb3VudFxNYW5hZ2VcU2hvd1JlY292ZXJ5Q29kZXMuY3NodG1s
+[/Users/cristianramos/Desktop/Proyectos/AplicativosWeb/CitasEPS/Areas/Identity/Pages/Account/Manage/ShowRecoveryCodes.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXMvSWRlbnRpdHkvUGFnZXMvQWNjb3VudC9NYW5hZ2UvU2hvd1JlY292ZXJ5Q29kZXMuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/CristianPC/Desktop/vitalcare/Areas/Identity/Pages/Account/Manage/TwoFactorAuthentication.cshtml]
-build_metadata.AdditionalFiles.TargetPath = QXJlYXNcSWRlbnRpdHlcUGFnZXNcQWNjb3VudFxNYW5hZ2VcVHdvRmFjdG9yQXV0aGVudGljYXRpb24uY3NodG1s
+[/Users/cristianramos/Desktop/Proyectos/AplicativosWeb/CitasEPS/Areas/Identity/Pages/Account/Manage/TwoFactorAuthentication.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXMvSWRlbnRpdHkvUGFnZXMvQWNjb3VudC9NYW5hZ2UvVHdvRmFjdG9yQXV0aGVudGljYXRpb24uY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/CristianPC/Desktop/vitalcare/Areas/Identity/Pages/Account/Manage/_Layout.cshtml]
-build_metadata.AdditionalFiles.TargetPath = QXJlYXNcSWRlbnRpdHlcUGFnZXNcQWNjb3VudFxNYW5hZ2VcX0xheW91dC5jc2h0bWw=
+[/Users/cristianramos/Desktop/Proyectos/AplicativosWeb/CitasEPS/Areas/Identity/Pages/Account/Manage/_Layout.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXMvSWRlbnRpdHkvUGFnZXMvQWNjb3VudC9NYW5hZ2UvX0xheW91dC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/CristianPC/Desktop/vitalcare/Areas/Identity/Pages/Account/Manage/_ManageNav.cshtml]
-build_metadata.AdditionalFiles.TargetPath = QXJlYXNcSWRlbnRpdHlcUGFnZXNcQWNjb3VudFxNYW5hZ2VcX01hbmFnZU5hdi5jc2h0bWw=
+[/Users/cristianramos/Desktop/Proyectos/AplicativosWeb/CitasEPS/Areas/Identity/Pages/Account/Manage/_ManageNav.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXMvSWRlbnRpdHkvUGFnZXMvQWNjb3VudC9NYW5hZ2UvX01hbmFnZU5hdi5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/CristianPC/Desktop/vitalcare/Areas/Identity/Pages/Account/Manage/_StatusMessage.cshtml]
-build_metadata.AdditionalFiles.TargetPath = QXJlYXNcSWRlbnRpdHlcUGFnZXNcQWNjb3VudFxNYW5hZ2VcX1N0YXR1c01lc3NhZ2UuY3NodG1s
+[/Users/cristianramos/Desktop/Proyectos/AplicativosWeb/CitasEPS/Areas/Identity/Pages/Account/Manage/_StatusMessage.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXMvSWRlbnRpdHkvUGFnZXMvQWNjb3VudC9NYW5hZ2UvX1N0YXR1c01lc3NhZ2UuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/CristianPC/Desktop/vitalcare/Areas/Identity/Pages/Account/Manage/_ViewImports.cshtml]
-build_metadata.AdditionalFiles.TargetPath = QXJlYXNcSWRlbnRpdHlcUGFnZXNcQWNjb3VudFxNYW5hZ2VcX1ZpZXdJbXBvcnRzLmNzaHRtbA==
+[/Users/cristianramos/Desktop/Proyectos/AplicativosWeb/CitasEPS/Areas/Identity/Pages/Account/Manage/_ViewImports.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXMvSWRlbnRpdHkvUGFnZXMvQWNjb3VudC9NYW5hZ2UvX1ZpZXdJbXBvcnRzLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/CristianPC/Desktop/vitalcare/Areas/Identity/Pages/Account/Register.cshtml]
-build_metadata.AdditionalFiles.TargetPath = QXJlYXNcSWRlbnRpdHlcUGFnZXNcQWNjb3VudFxSZWdpc3Rlci5jc2h0bWw=
+[/Users/cristianramos/Desktop/Proyectos/AplicativosWeb/CitasEPS/Areas/Identity/Pages/Account/Register.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXMvSWRlbnRpdHkvUGFnZXMvQWNjb3VudC9SZWdpc3Rlci5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/CristianPC/Desktop/vitalcare/Areas/Identity/Pages/Account/RegisterConfirmation.cshtml]
-build_metadata.AdditionalFiles.TargetPath = QXJlYXNcSWRlbnRpdHlcUGFnZXNcQWNjb3VudFxSZWdpc3RlckNvbmZpcm1hdGlvbi5jc2h0bWw=
+[/Users/cristianramos/Desktop/Proyectos/AplicativosWeb/CitasEPS/Areas/Identity/Pages/Account/RegisterConfirmation.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXMvSWRlbnRpdHkvUGFnZXMvQWNjb3VudC9SZWdpc3RlckNvbmZpcm1hdGlvbi5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/CristianPC/Desktop/vitalcare/Areas/Identity/Pages/Account/ResendEmailConfirmation.cshtml]
-build_metadata.AdditionalFiles.TargetPath = QXJlYXNcSWRlbnRpdHlcUGFnZXNcQWNjb3VudFxSZXNlbmRFbWFpbENvbmZpcm1hdGlvbi5jc2h0bWw=
+[/Users/cristianramos/Desktop/Proyectos/AplicativosWeb/CitasEPS/Areas/Identity/Pages/Account/ResendEmailConfirmation.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXMvSWRlbnRpdHkvUGFnZXMvQWNjb3VudC9SZXNlbmRFbWFpbENvbmZpcm1hdGlvbi5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/CristianPC/Desktop/vitalcare/Areas/Identity/Pages/Account/ResetPassword.cshtml]
-build_metadata.AdditionalFiles.TargetPath = QXJlYXNcSWRlbnRpdHlcUGFnZXNcQWNjb3VudFxSZXNldFBhc3N3b3JkLmNzaHRtbA==
+[/Users/cristianramos/Desktop/Proyectos/AplicativosWeb/CitasEPS/Areas/Identity/Pages/Account/ResetPassword.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXMvSWRlbnRpdHkvUGFnZXMvQWNjb3VudC9SZXNldFBhc3N3b3JkLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/CristianPC/Desktop/vitalcare/Areas/Identity/Pages/Account/ResetPasswordConfirmation.cshtml]
-build_metadata.AdditionalFiles.TargetPath = QXJlYXNcSWRlbnRpdHlcUGFnZXNcQWNjb3VudFxSZXNldFBhc3N3b3JkQ29uZmlybWF0aW9uLmNzaHRtbA==
+[/Users/cristianramos/Desktop/Proyectos/AplicativosWeb/CitasEPS/Areas/Identity/Pages/Account/ResetPasswordConfirmation.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXMvSWRlbnRpdHkvUGFnZXMvQWNjb3VudC9SZXNldFBhc3N3b3JkQ29uZmlybWF0aW9uLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/CristianPC/Desktop/vitalcare/Areas/Identity/Pages/Account/_StatusMessage.cshtml]
-build_metadata.AdditionalFiles.TargetPath = QXJlYXNcSWRlbnRpdHlcUGFnZXNcQWNjb3VudFxfU3RhdHVzTWVzc2FnZS5jc2h0bWw=
+[/Users/cristianramos/Desktop/Proyectos/AplicativosWeb/CitasEPS/Areas/Identity/Pages/Account/_StatusMessage.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXMvSWRlbnRpdHkvUGFnZXMvQWNjb3VudC9fU3RhdHVzTWVzc2FnZS5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/CristianPC/Desktop/vitalcare/Areas/Identity/Pages/Account/_ViewImports.cshtml]
-build_metadata.AdditionalFiles.TargetPath = QXJlYXNcSWRlbnRpdHlcUGFnZXNcQWNjb3VudFxfVmlld0ltcG9ydHMuY3NodG1s
+[/Users/cristianramos/Desktop/Proyectos/AplicativosWeb/CitasEPS/Areas/Identity/Pages/Account/_ViewImports.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXMvSWRlbnRpdHkvUGFnZXMvQWNjb3VudC9fVmlld0ltcG9ydHMuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/CristianPC/Desktop/vitalcare/Areas/Identity/Pages/Error.cshtml]
-build_metadata.AdditionalFiles.TargetPath = QXJlYXNcSWRlbnRpdHlcUGFnZXNcRXJyb3IuY3NodG1s
+[/Users/cristianramos/Desktop/Proyectos/AplicativosWeb/CitasEPS/Areas/Identity/Pages/Error.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXMvSWRlbnRpdHkvUGFnZXMvRXJyb3IuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/CristianPC/Desktop/vitalcare/Areas/Identity/Pages/_ValidationScriptsPartial.cshtml]
-build_metadata.AdditionalFiles.TargetPath = QXJlYXNcSWRlbnRpdHlcUGFnZXNcX1ZhbGlkYXRpb25TY3JpcHRzUGFydGlhbC5jc2h0bWw=
+[/Users/cristianramos/Desktop/Proyectos/AplicativosWeb/CitasEPS/Areas/Identity/Pages/_ValidationScriptsPartial.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXMvSWRlbnRpdHkvUGFnZXMvX1ZhbGlkYXRpb25TY3JpcHRzUGFydGlhbC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/CristianPC/Desktop/vitalcare/Areas/Identity/Pages/_ViewImports.cshtml]
-build_metadata.AdditionalFiles.TargetPath = QXJlYXNcSWRlbnRpdHlcUGFnZXNcX1ZpZXdJbXBvcnRzLmNzaHRtbA==
+[/Users/cristianramos/Desktop/Proyectos/AplicativosWeb/CitasEPS/Areas/Identity/Pages/_ViewImports.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXMvSWRlbnRpdHkvUGFnZXMvX1ZpZXdJbXBvcnRzLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/CristianPC/Desktop/vitalcare/Areas/Identity/Pages/_ViewStart.cshtml]
-build_metadata.AdditionalFiles.TargetPath = QXJlYXNcSWRlbnRpdHlcUGFnZXNcX1ZpZXdTdGFydC5jc2h0bWw=
+[/Users/cristianramos/Desktop/Proyectos/AplicativosWeb/CitasEPS/Areas/Identity/Pages/_ViewStart.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXMvSWRlbnRpdHkvUGFnZXMvX1ZpZXdTdGFydC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/CristianPC/Desktop/vitalcare/Pages/Admin/ConfirmEmails.cshtml]
-build_metadata.AdditionalFiles.TargetPath = UGFnZXNcQWRtaW5cQ29uZmlybUVtYWlscy5jc2h0bWw=
+[/Users/cristianramos/Desktop/Proyectos/AplicativosWeb/CitasEPS/Pages/Admin/ConfirmEmails.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXMvQWRtaW4vQ29uZmlybUVtYWlscy5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/CristianPC/Desktop/vitalcare/Pages/Admin/DiagnosticData.cshtml]
-build_metadata.AdditionalFiles.TargetPath = UGFnZXNcQWRtaW5cRGlhZ25vc3RpY0RhdGEuY3NodG1s
+[/Users/cristianramos/Desktop/Proyectos/AplicativosWeb/CitasEPS/Pages/Admin/DiagnosticData.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXMvQWRtaW4vRGlhZ25vc3RpY0RhdGEuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/CristianPC/Desktop/vitalcare/Pages/Appointments/Create.cshtml]
-build_metadata.AdditionalFiles.TargetPath = UGFnZXNcQXBwb2ludG1lbnRzXENyZWF0ZS5jc2h0bWw=
+[/Users/cristianramos/Desktop/Proyectos/AplicativosWeb/CitasEPS/Pages/Appointments/Create.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXMvQXBwb2ludG1lbnRzL0NyZWF0ZS5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/CristianPC/Desktop/vitalcare/Pages/Appointments/Delete.cshtml]
-build_metadata.AdditionalFiles.TargetPath = UGFnZXNcQXBwb2ludG1lbnRzXERlbGV0ZS5jc2h0bWw=
+[/Users/cristianramos/Desktop/Proyectos/AplicativosWeb/CitasEPS/Pages/Appointments/Delete.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXMvQXBwb2ludG1lbnRzL0RlbGV0ZS5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/CristianPC/Desktop/vitalcare/Pages/Appointments/Details.cshtml]
-build_metadata.AdditionalFiles.TargetPath = UGFnZXNcQXBwb2ludG1lbnRzXERldGFpbHMuY3NodG1s
+[/Users/cristianramos/Desktop/Proyectos/AplicativosWeb/CitasEPS/Pages/Appointments/Details.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXMvQXBwb2ludG1lbnRzL0RldGFpbHMuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/CristianPC/Desktop/vitalcare/Pages/Appointments/Edit.cshtml]
-build_metadata.AdditionalFiles.TargetPath = UGFnZXNcQXBwb2ludG1lbnRzXEVkaXQuY3NodG1s
+[/Users/cristianramos/Desktop/Proyectos/AplicativosWeb/CitasEPS/Pages/Appointments/Edit.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXMvQXBwb2ludG1lbnRzL0VkaXQuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/CristianPC/Desktop/vitalcare/Pages/Appointments/Index.cshtml]
-build_metadata.AdditionalFiles.TargetPath = UGFnZXNcQXBwb2ludG1lbnRzXEluZGV4LmNzaHRtbA==
+[/Users/cristianramos/Desktop/Proyectos/AplicativosWeb/CitasEPS/Pages/Appointments/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXMvQXBwb2ludG1lbnRzL0luZGV4LmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/CristianPC/Desktop/vitalcare/Pages/Appointments/MyPrescriptions.cshtml]
-build_metadata.AdditionalFiles.TargetPath = UGFnZXNcQXBwb2ludG1lbnRzXE15UHJlc2NyaXB0aW9ucy5jc2h0bWw=
+[/Users/cristianramos/Desktop/Proyectos/AplicativosWeb/CitasEPS/Pages/Appointments/MyPrescriptions.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXMvQXBwb2ludG1lbnRzL015UHJlc2NyaXB0aW9ucy5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/CristianPC/Desktop/vitalcare/Pages/Appointments/ProposeReschedule.cshtml]
-build_metadata.AdditionalFiles.TargetPath = UGFnZXNcQXBwb2ludG1lbnRzXFByb3Bvc2VSZXNjaGVkdWxlLmNzaHRtbA==
+[/Users/cristianramos/Desktop/Proyectos/AplicativosWeb/CitasEPS/Pages/Appointments/ProposeReschedule.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXMvQXBwb2ludG1lbnRzL1Byb3Bvc2VSZXNjaGVkdWxlLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/CristianPC/Desktop/vitalcare/Pages/Appointments/ReviewDoctorProposal.cshtml]
-build_metadata.AdditionalFiles.TargetPath = UGFnZXNcQXBwb2ludG1lbnRzXFJldmlld0RvY3RvclByb3Bvc2FsLmNzaHRtbA==
+[/Users/cristianramos/Desktop/Proyectos/AplicativosWeb/CitasEPS/Pages/Appointments/ReviewDoctorProposal.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXMvQXBwb2ludG1lbnRzL1Jldmlld0RvY3RvclByb3Bvc2FsLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/CristianPC/Desktop/vitalcare/Pages/Debug/FixNotifications.cshtml]
-build_metadata.AdditionalFiles.TargetPath = UGFnZXNcRGVidWdcRml4Tm90aWZpY2F0aW9ucy5jc2h0bWw=
+[/Users/cristianramos/Desktop/Proyectos/AplicativosWeb/CitasEPS/Pages/Debug/FixNotifications.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXMvRGVidWcvRml4Tm90aWZpY2F0aW9ucy5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/CristianPC/Desktop/vitalcare/Pages/Debug/Notifications.cshtml]
-build_metadata.AdditionalFiles.TargetPath = UGFnZXNcRGVidWdcTm90aWZpY2F0aW9ucy5jc2h0bWw=
+[/Users/cristianramos/Desktop/Proyectos/AplicativosWeb/CitasEPS/Pages/Debug/Notifications.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXMvRGVidWcvTm90aWZpY2F0aW9ucy5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/CristianPC/Desktop/vitalcare/Pages/Debug/TestNotificationReschedule.cshtml]
-build_metadata.AdditionalFiles.TargetPath = UGFnZXNcRGVidWdcVGVzdE5vdGlmaWNhdGlvblJlc2NoZWR1bGUuY3NodG1s
+[/Users/cristianramos/Desktop/Proyectos/AplicativosWeb/CitasEPS/Pages/Debug/TestNotificationReschedule.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXMvRGVidWcvVGVzdE5vdGlmaWNhdGlvblJlc2NoZWR1bGUuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/CristianPC/Desktop/vitalcare/Pages/Error.cshtml]
-build_metadata.AdditionalFiles.TargetPath = UGFnZXNcRXJyb3IuY3NodG1s
+[/Users/cristianramos/Desktop/Proyectos/AplicativosWeb/CitasEPS/Pages/Error.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXMvRXJyb3IuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/CristianPC/Desktop/vitalcare/Pages/Index.cshtml]
-build_metadata.AdditionalFiles.TargetPath = UGFnZXNcSW5kZXguY3NodG1s
+[/Users/cristianramos/Desktop/Proyectos/AplicativosWeb/CitasEPS/Pages/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXMvSW5kZXguY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/CristianPC/Desktop/vitalcare/Pages/Public/About.cshtml]
-build_metadata.AdditionalFiles.TargetPath = UGFnZXNcUHVibGljXEFib3V0LmNzaHRtbA==
+[/Users/cristianramos/Desktop/Proyectos/AplicativosWeb/CitasEPS/Pages/Public/About.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXMvUHVibGljL0Fib3V0LmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/CristianPC/Desktop/vitalcare/Pages/Public/Contact.cshtml]
-build_metadata.AdditionalFiles.TargetPath = UGFnZXNcUHVibGljXENvbnRhY3QuY3NodG1s
+[/Users/cristianramos/Desktop/Proyectos/AplicativosWeb/CitasEPS/Pages/Public/Contact.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXMvUHVibGljL0NvbnRhY3QuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/CristianPC/Desktop/vitalcare/Pages/Public/Emergency.cshtml]
-build_metadata.AdditionalFiles.TargetPath = UGFnZXNcUHVibGljXEVtZXJnZW5jeS5jc2h0bWw=
+[/Users/cristianramos/Desktop/Proyectos/AplicativosWeb/CitasEPS/Pages/Public/Emergency.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXMvUHVibGljL0VtZXJnZW5jeS5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/CristianPC/Desktop/vitalcare/Pages/Public/FAQ.cshtml]
-build_metadata.AdditionalFiles.TargetPath = UGFnZXNcUHVibGljXEZBUS5jc2h0bWw=
+[/Users/cristianramos/Desktop/Proyectos/AplicativosWeb/CitasEPS/Pages/Public/FAQ.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXMvUHVibGljL0ZBUS5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/CristianPC/Desktop/vitalcare/Pages/Public/Index.cshtml]
-build_metadata.AdditionalFiles.TargetPath = UGFnZXNcUHVibGljXEluZGV4LmNzaHRtbA==
+[/Users/cristianramos/Desktop/Proyectos/AplicativosWeb/CitasEPS/Pages/Public/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXMvUHVibGljL0luZGV4LmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/CristianPC/Desktop/vitalcare/Pages/Public/Mission.cshtml]
-build_metadata.AdditionalFiles.TargetPath = UGFnZXNcUHVibGljXE1pc3Npb24uY3NodG1s
+[/Users/cristianramos/Desktop/Proyectos/AplicativosWeb/CitasEPS/Pages/Public/Mission.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXMvUHVibGljL01pc3Npb24uY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/CristianPC/Desktop/vitalcare/Pages/Public/Servicios.cshtml]
-build_metadata.AdditionalFiles.TargetPath = UGFnZXNcUHVibGljXFNlcnZpY2lvcy5jc2h0bWw=
+[/Users/cristianramos/Desktop/Proyectos/AplicativosWeb/CitasEPS/Pages/Public/Servicios.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXMvUHVibGljL1NlcnZpY2lvcy5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/CristianPC/Desktop/vitalcare/Pages/Public/Support.cshtml]
-build_metadata.AdditionalFiles.TargetPath = UGFnZXNcUHVibGljXFN1cHBvcnQuY3NodG1s
+[/Users/cristianramos/Desktop/Proyectos/AplicativosWeb/CitasEPS/Pages/Public/Support.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXMvUHVibGljL1N1cHBvcnQuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/CristianPC/Desktop/vitalcare/Pages/Public/Team.cshtml]
-build_metadata.AdditionalFiles.TargetPath = UGFnZXNcUHVibGljXFRlYW0uY3NodG1s
+[/Users/cristianramos/Desktop/Proyectos/AplicativosWeb/CitasEPS/Pages/Public/Team.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXMvUHVibGljL1RlYW0uY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/CristianPC/Desktop/vitalcare/Pages/Public/Testimonials.cshtml]
-build_metadata.AdditionalFiles.TargetPath = UGFnZXNcUHVibGljXFRlc3RpbW9uaWFscy5jc2h0bWw=
+[/Users/cristianramos/Desktop/Proyectos/AplicativosWeb/CitasEPS/Pages/Public/Testimonials.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXMvUHVibGljL1Rlc3RpbW9uaWFscy5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/CristianPC/Desktop/vitalcare/Pages/Shared/_Footer.cshtml]
-build_metadata.AdditionalFiles.TargetPath = UGFnZXNcU2hhcmVkXF9Gb290ZXIuY3NodG1s
+[/Users/cristianramos/Desktop/Proyectos/AplicativosWeb/CitasEPS/Pages/Shared/_Footer.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXMvU2hhcmVkL19Gb290ZXIuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/CristianPC/Desktop/vitalcare/Pages/Shared/_LoginPartial.cshtml]
-build_metadata.AdditionalFiles.TargetPath = UGFnZXNcU2hhcmVkXF9Mb2dpblBhcnRpYWwuY3NodG1s
+[/Users/cristianramos/Desktop/Proyectos/AplicativosWeb/CitasEPS/Pages/Shared/_LoginPartial.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXMvU2hhcmVkL19Mb2dpblBhcnRpYWwuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/CristianPC/Desktop/vitalcare/Pages/Shared/_Navbar.cshtml]
-build_metadata.AdditionalFiles.TargetPath = UGFnZXNcU2hhcmVkXF9OYXZiYXIuY3NodG1s
+[/Users/cristianramos/Desktop/Proyectos/AplicativosWeb/CitasEPS/Pages/Shared/_Navbar.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXMvU2hhcmVkL19OYXZiYXIuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/CristianPC/Desktop/vitalcare/Pages/Shared/_Styles.cshtml]
-build_metadata.AdditionalFiles.TargetPath = UGFnZXNcU2hhcmVkXF9TdHlsZXMuY3NodG1s
+[/Users/cristianramos/Desktop/Proyectos/AplicativosWeb/CitasEPS/Pages/Shared/_Styles.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXMvU2hhcmVkL19TdHlsZXMuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/CristianPC/Desktop/vitalcare/Pages/Shared/_ValidationScriptsPartial.cshtml]
-build_metadata.AdditionalFiles.TargetPath = UGFnZXNcU2hhcmVkXF9WYWxpZGF0aW9uU2NyaXB0c1BhcnRpYWwuY3NodG1s
+[/Users/cristianramos/Desktop/Proyectos/AplicativosWeb/CitasEPS/Pages/Shared/_ValidationScriptsPartial.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXMvU2hhcmVkL19WYWxpZGF0aW9uU2NyaXB0c1BhcnRpYWwuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/CristianPC/Desktop/vitalcare/Pages/UserDashboards/Admin/Appointments/Create.cshtml]
-build_metadata.AdditionalFiles.TargetPath = UGFnZXNcVXNlckRhc2hib2FyZHNcQWRtaW5cQXBwb2ludG1lbnRzXENyZWF0ZS5jc2h0bWw=
+[/Users/cristianramos/Desktop/Proyectos/AplicativosWeb/CitasEPS/Pages/UserDashboards/Admin/Appointments/Create.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXMvVXNlckRhc2hib2FyZHMvQWRtaW4vQXBwb2ludG1lbnRzL0NyZWF0ZS5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/CristianPC/Desktop/vitalcare/Pages/UserDashboards/Admin/Appointments/Delete.cshtml]
-build_metadata.AdditionalFiles.TargetPath = UGFnZXNcVXNlckRhc2hib2FyZHNcQWRtaW5cQXBwb2ludG1lbnRzXERlbGV0ZS5jc2h0bWw=
+[/Users/cristianramos/Desktop/Proyectos/AplicativosWeb/CitasEPS/Pages/UserDashboards/Admin/Appointments/Delete.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXMvVXNlckRhc2hib2FyZHMvQWRtaW4vQXBwb2ludG1lbnRzL0RlbGV0ZS5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/CristianPC/Desktop/vitalcare/Pages/UserDashboards/Admin/Appointments/Details.cshtml]
-build_metadata.AdditionalFiles.TargetPath = UGFnZXNcVXNlckRhc2hib2FyZHNcQWRtaW5cQXBwb2ludG1lbnRzXERldGFpbHMuY3NodG1s
+[/Users/cristianramos/Desktop/Proyectos/AplicativosWeb/CitasEPS/Pages/UserDashboards/Admin/Appointments/Details.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXMvVXNlckRhc2hib2FyZHMvQWRtaW4vQXBwb2ludG1lbnRzL0RldGFpbHMuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/CristianPC/Desktop/vitalcare/Pages/UserDashboards/Admin/Appointments/SetCancelled.cshtml]
-build_metadata.AdditionalFiles.TargetPath = UGFnZXNcVXNlckRhc2hib2FyZHNcQWRtaW5cQXBwb2ludG1lbnRzXFNldENhbmNlbGxlZC5jc2h0bWw=
+[/Users/cristianramos/Desktop/Proyectos/AplicativosWeb/CitasEPS/Pages/UserDashboards/Admin/Appointments/SetCancelled.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXMvVXNlckRhc2hib2FyZHMvQWRtaW4vQXBwb2ludG1lbnRzL1NldENhbmNlbGxlZC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/CristianPC/Desktop/vitalcare/Pages/UserDashboards/Admin/DataIntegrity.cshtml]
-build_metadata.AdditionalFiles.TargetPath = UGFnZXNcVXNlckRhc2hib2FyZHNcQWRtaW5cRGF0YUludGVncml0eS5jc2h0bWw=
+[/Users/cristianramos/Desktop/Proyectos/AplicativosWeb/CitasEPS/Pages/UserDashboards/Admin/DataIntegrity.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXMvVXNlckRhc2hib2FyZHMvQWRtaW4vRGF0YUludGVncml0eS5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/CristianPC/Desktop/vitalcare/Pages/UserDashboards/Admin/Doctors/Create.cshtml]
-build_metadata.AdditionalFiles.TargetPath = UGFnZXNcVXNlckRhc2hib2FyZHNcQWRtaW5cRG9jdG9yc1xDcmVhdGUuY3NodG1s
+[/Users/cristianramos/Desktop/Proyectos/AplicativosWeb/CitasEPS/Pages/UserDashboards/Admin/Doctors/Create.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXMvVXNlckRhc2hib2FyZHMvQWRtaW4vRG9jdG9ycy9DcmVhdGUuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/CristianPC/Desktop/vitalcare/Pages/UserDashboards/Admin/Doctors/Delete.cshtml]
-build_metadata.AdditionalFiles.TargetPath = UGFnZXNcVXNlckRhc2hib2FyZHNcQWRtaW5cRG9jdG9yc1xEZWxldGUuY3NodG1s
+[/Users/cristianramos/Desktop/Proyectos/AplicativosWeb/CitasEPS/Pages/UserDashboards/Admin/Doctors/Delete.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXMvVXNlckRhc2hib2FyZHMvQWRtaW4vRG9jdG9ycy9EZWxldGUuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/CristianPC/Desktop/vitalcare/Pages/UserDashboards/Admin/Doctors/Edit.cshtml]
-build_metadata.AdditionalFiles.TargetPath = UGFnZXNcVXNlckRhc2hib2FyZHNcQWRtaW5cRG9jdG9yc1xFZGl0LmNzaHRtbA==
+[/Users/cristianramos/Desktop/Proyectos/AplicativosWeb/CitasEPS/Pages/UserDashboards/Admin/Doctors/Edit.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXMvVXNlckRhc2hib2FyZHMvQWRtaW4vRG9jdG9ycy9FZGl0LmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/CristianPC/Desktop/vitalcare/Pages/UserDashboards/Admin/Index.cshtml]
-build_metadata.AdditionalFiles.TargetPath = UGFnZXNcVXNlckRhc2hib2FyZHNcQWRtaW5cSW5kZXguY3NodG1s
+[/Users/cristianramos/Desktop/Proyectos/AplicativosWeb/CitasEPS/Pages/UserDashboards/Admin/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXMvVXNlckRhc2hib2FyZHMvQWRtaW4vSW5kZXguY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/CristianPC/Desktop/vitalcare/Pages/UserDashboards/Admin/ManageAppointments.cshtml]
-build_metadata.AdditionalFiles.TargetPath = UGFnZXNcVXNlckRhc2hib2FyZHNcQWRtaW5cTWFuYWdlQXBwb2ludG1lbnRzLmNzaHRtbA==
+[/Users/cristianramos/Desktop/Proyectos/AplicativosWeb/CitasEPS/Pages/UserDashboards/Admin/ManageAppointments.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXMvVXNlckRhc2hib2FyZHMvQWRtaW4vTWFuYWdlQXBwb2ludG1lbnRzLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/CristianPC/Desktop/vitalcare/Pages/UserDashboards/Admin/ManageDoctors.cshtml]
-build_metadata.AdditionalFiles.TargetPath = UGFnZXNcVXNlckRhc2hib2FyZHNcQWRtaW5cTWFuYWdlRG9jdG9ycy5jc2h0bWw=
+[/Users/cristianramos/Desktop/Proyectos/AplicativosWeb/CitasEPS/Pages/UserDashboards/Admin/ManageDoctors.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXMvVXNlckRhc2hib2FyZHMvQWRtaW4vTWFuYWdlRG9jdG9ycy5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/CristianPC/Desktop/vitalcare/Pages/UserDashboards/Admin/ManagePatients.cshtml]
-build_metadata.AdditionalFiles.TargetPath = UGFnZXNcVXNlckRhc2hib2FyZHNcQWRtaW5cTWFuYWdlUGF0aWVudHMuY3NodG1s
+[/Users/cristianramos/Desktop/Proyectos/AplicativosWeb/CitasEPS/Pages/UserDashboards/Admin/ManagePatients.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXMvVXNlckRhc2hib2FyZHMvQWRtaW4vTWFuYWdlUGF0aWVudHMuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/CristianPC/Desktop/vitalcare/Pages/UserDashboards/Admin/ManageSpecialties.cshtml]
-build_metadata.AdditionalFiles.TargetPath = UGFnZXNcVXNlckRhc2hib2FyZHNcQWRtaW5cTWFuYWdlU3BlY2lhbHRpZXMuY3NodG1s
+[/Users/cristianramos/Desktop/Proyectos/AplicativosWeb/CitasEPS/Pages/UserDashboards/Admin/ManageSpecialties.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXMvVXNlckRhc2hib2FyZHMvQWRtaW4vTWFuYWdlU3BlY2lhbHRpZXMuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/CristianPC/Desktop/vitalcare/Pages/UserDashboards/Admin/ManageUsers.cshtml]
-build_metadata.AdditionalFiles.TargetPath = UGFnZXNcVXNlckRhc2hib2FyZHNcQWRtaW5cTWFuYWdlVXNlcnMuY3NodG1s
+[/Users/cristianramos/Desktop/Proyectos/AplicativosWeb/CitasEPS/Pages/UserDashboards/Admin/ManageUsers.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXMvVXNlckRhc2hib2FyZHMvQWRtaW4vTWFuYWdlVXNlcnMuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/CristianPC/Desktop/vitalcare/Pages/UserDashboards/Admin/Medications/Create.cshtml]
-build_metadata.AdditionalFiles.TargetPath = UGFnZXNcVXNlckRhc2hib2FyZHNcQWRtaW5cTWVkaWNhdGlvbnNcQ3JlYXRlLmNzaHRtbA==
+[/Users/cristianramos/Desktop/Proyectos/AplicativosWeb/CitasEPS/Pages/UserDashboards/Admin/Medications/Create.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXMvVXNlckRhc2hib2FyZHMvQWRtaW4vTWVkaWNhdGlvbnMvQ3JlYXRlLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/CristianPC/Desktop/vitalcare/Pages/UserDashboards/Admin/Medications/Delete.cshtml]
-build_metadata.AdditionalFiles.TargetPath = UGFnZXNcVXNlckRhc2hib2FyZHNcQWRtaW5cTWVkaWNhdGlvbnNcRGVsZXRlLmNzaHRtbA==
+[/Users/cristianramos/Desktop/Proyectos/AplicativosWeb/CitasEPS/Pages/UserDashboards/Admin/Medications/Delete.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXMvVXNlckRhc2hib2FyZHMvQWRtaW4vTWVkaWNhdGlvbnMvRGVsZXRlLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/CristianPC/Desktop/vitalcare/Pages/UserDashboards/Admin/Medications/Details.cshtml]
-build_metadata.AdditionalFiles.TargetPath = UGFnZXNcVXNlckRhc2hib2FyZHNcQWRtaW5cTWVkaWNhdGlvbnNcRGV0YWlscy5jc2h0bWw=
+[/Users/cristianramos/Desktop/Proyectos/AplicativosWeb/CitasEPS/Pages/UserDashboards/Admin/Medications/Details.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXMvVXNlckRhc2hib2FyZHMvQWRtaW4vTWVkaWNhdGlvbnMvRGV0YWlscy5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/CristianPC/Desktop/vitalcare/Pages/UserDashboards/Admin/Medications/Edit.cshtml]
-build_metadata.AdditionalFiles.TargetPath = UGFnZXNcVXNlckRhc2hib2FyZHNcQWRtaW5cTWVkaWNhdGlvbnNcRWRpdC5jc2h0bWw=
+[/Users/cristianramos/Desktop/Proyectos/AplicativosWeb/CitasEPS/Pages/UserDashboards/Admin/Medications/Edit.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXMvVXNlckRhc2hib2FyZHMvQWRtaW4vTWVkaWNhdGlvbnMvRWRpdC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/CristianPC/Desktop/vitalcare/Pages/UserDashboards/Admin/Medications/Index.cshtml]
-build_metadata.AdditionalFiles.TargetPath = UGFnZXNcVXNlckRhc2hib2FyZHNcQWRtaW5cTWVkaWNhdGlvbnNcSW5kZXguY3NodG1s
+[/Users/cristianramos/Desktop/Proyectos/AplicativosWeb/CitasEPS/Pages/UserDashboards/Admin/Medications/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXMvVXNlckRhc2hib2FyZHMvQWRtaW4vTWVkaWNhdGlvbnMvSW5kZXguY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/CristianPC/Desktop/vitalcare/Pages/UserDashboards/Admin/Patients/Create.cshtml]
-build_metadata.AdditionalFiles.TargetPath = UGFnZXNcVXNlckRhc2hib2FyZHNcQWRtaW5cUGF0aWVudHNcQ3JlYXRlLmNzaHRtbA==
+[/Users/cristianramos/Desktop/Proyectos/AplicativosWeb/CitasEPS/Pages/UserDashboards/Admin/Patients/Create.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXMvVXNlckRhc2hib2FyZHMvQWRtaW4vUGF0aWVudHMvQ3JlYXRlLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/CristianPC/Desktop/vitalcare/Pages/UserDashboards/Admin/Patients/Delete.cshtml]
-build_metadata.AdditionalFiles.TargetPath = UGFnZXNcVXNlckRhc2hib2FyZHNcQWRtaW5cUGF0aWVudHNcRGVsZXRlLmNzaHRtbA==
+[/Users/cristianramos/Desktop/Proyectos/AplicativosWeb/CitasEPS/Pages/UserDashboards/Admin/Patients/Delete.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXMvVXNlckRhc2hib2FyZHMvQWRtaW4vUGF0aWVudHMvRGVsZXRlLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/CristianPC/Desktop/vitalcare/Pages/UserDashboards/Admin/Patients/Edit.cshtml]
-build_metadata.AdditionalFiles.TargetPath = UGFnZXNcVXNlckRhc2hib2FyZHNcQWRtaW5cUGF0aWVudHNcRWRpdC5jc2h0bWw=
+[/Users/cristianramos/Desktop/Proyectos/AplicativosWeb/CitasEPS/Pages/UserDashboards/Admin/Patients/Edit.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXMvVXNlckRhc2hib2FyZHMvQWRtaW4vUGF0aWVudHMvRWRpdC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/CristianPC/Desktop/vitalcare/Pages/UserDashboards/Admin/Specialties/Create.cshtml]
-build_metadata.AdditionalFiles.TargetPath = UGFnZXNcVXNlckRhc2hib2FyZHNcQWRtaW5cU3BlY2lhbHRpZXNcQ3JlYXRlLmNzaHRtbA==
+[/Users/cristianramos/Desktop/Proyectos/AplicativosWeb/CitasEPS/Pages/UserDashboards/Admin/Specialties/Create.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXMvVXNlckRhc2hib2FyZHMvQWRtaW4vU3BlY2lhbHRpZXMvQ3JlYXRlLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/CristianPC/Desktop/vitalcare/Pages/UserDashboards/Admin/Specialties/Delete.cshtml]
-build_metadata.AdditionalFiles.TargetPath = UGFnZXNcVXNlckRhc2hib2FyZHNcQWRtaW5cU3BlY2lhbHRpZXNcRGVsZXRlLmNzaHRtbA==
+[/Users/cristianramos/Desktop/Proyectos/AplicativosWeb/CitasEPS/Pages/UserDashboards/Admin/Specialties/Delete.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXMvVXNlckRhc2hib2FyZHMvQWRtaW4vU3BlY2lhbHRpZXMvRGVsZXRlLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/CristianPC/Desktop/vitalcare/Pages/UserDashboards/Admin/Specialties/Edit.cshtml]
-build_metadata.AdditionalFiles.TargetPath = UGFnZXNcVXNlckRhc2hib2FyZHNcQWRtaW5cU3BlY2lhbHRpZXNcRWRpdC5jc2h0bWw=
+[/Users/cristianramos/Desktop/Proyectos/AplicativosWeb/CitasEPS/Pages/UserDashboards/Admin/Specialties/Edit.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXMvVXNlckRhc2hib2FyZHMvQWRtaW4vU3BlY2lhbHRpZXMvRWRpdC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/CristianPC/Desktop/vitalcare/Pages/UserDashboards/Admin/Users/Create.cshtml]
-build_metadata.AdditionalFiles.TargetPath = UGFnZXNcVXNlckRhc2hib2FyZHNcQWRtaW5cVXNlcnNcQ3JlYXRlLmNzaHRtbA==
+[/Users/cristianramos/Desktop/Proyectos/AplicativosWeb/CitasEPS/Pages/UserDashboards/Admin/Users/Create.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXMvVXNlckRhc2hib2FyZHMvQWRtaW4vVXNlcnMvQ3JlYXRlLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/CristianPC/Desktop/vitalcare/Pages/UserDashboards/Admin/Users/Delete.cshtml]
-build_metadata.AdditionalFiles.TargetPath = UGFnZXNcVXNlckRhc2hib2FyZHNcQWRtaW5cVXNlcnNcRGVsZXRlLmNzaHRtbA==
+[/Users/cristianramos/Desktop/Proyectos/AplicativosWeb/CitasEPS/Pages/UserDashboards/Admin/Users/Delete.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXMvVXNlckRhc2hib2FyZHMvQWRtaW4vVXNlcnMvRGVsZXRlLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/CristianPC/Desktop/vitalcare/Pages/UserDashboards/Admin/Users/Edit.cshtml]
-build_metadata.AdditionalFiles.TargetPath = UGFnZXNcVXNlckRhc2hib2FyZHNcQWRtaW5cVXNlcnNcRWRpdC5jc2h0bWw=
+[/Users/cristianramos/Desktop/Proyectos/AplicativosWeb/CitasEPS/Pages/UserDashboards/Admin/Users/Edit.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXMvVXNlckRhc2hib2FyZHMvQWRtaW4vVXNlcnMvRWRpdC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/CristianPC/Desktop/vitalcare/Pages/UserDashboards/Doctor/Agenda.cshtml]
-build_metadata.AdditionalFiles.TargetPath = UGFnZXNcVXNlckRhc2hib2FyZHNcRG9jdG9yXEFnZW5kYS5jc2h0bWw=
+[/Users/cristianramos/Desktop/Proyectos/AplicativosWeb/CitasEPS/Pages/UserDashboards/Doctor/Agenda.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXMvVXNlckRhc2hib2FyZHMvRG9jdG9yL0FnZW5kYS5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/CristianPC/Desktop/vitalcare/Pages/UserDashboards/Doctor/ConfirmRescheduleProposal.cshtml]
-build_metadata.AdditionalFiles.TargetPath = UGFnZXNcVXNlckRhc2hib2FyZHNcRG9jdG9yXENvbmZpcm1SZXNjaGVkdWxlUHJvcG9zYWwuY3NodG1s
+[/Users/cristianramos/Desktop/Proyectos/AplicativosWeb/CitasEPS/Pages/UserDashboards/Doctor/ConfirmRescheduleProposal.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXMvVXNlckRhc2hib2FyZHMvRG9jdG9yL0NvbmZpcm1SZXNjaGVkdWxlUHJvcG9zYWwuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/CristianPC/Desktop/vitalcare/Pages/UserDashboards/Doctor/DeletePrescription.cshtml]
-build_metadata.AdditionalFiles.TargetPath = UGFnZXNcVXNlckRhc2hib2FyZHNcRG9jdG9yXERlbGV0ZVByZXNjcmlwdGlvbi5jc2h0bWw=
+[/Users/cristianramos/Desktop/Proyectos/AplicativosWeb/CitasEPS/Pages/UserDashboards/Doctor/DeletePrescription.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXMvVXNlckRhc2hib2FyZHMvRG9jdG9yL0RlbGV0ZVByZXNjcmlwdGlvbi5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/CristianPC/Desktop/vitalcare/Pages/UserDashboards/Doctor/EditPrescription.cshtml]
-build_metadata.AdditionalFiles.TargetPath = UGFnZXNcVXNlckRhc2hib2FyZHNcRG9jdG9yXEVkaXRQcmVzY3JpcHRpb24uY3NodG1s
+[/Users/cristianramos/Desktop/Proyectos/AplicativosWeb/CitasEPS/Pages/UserDashboards/Doctor/EditPrescription.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXMvVXNlckRhc2hib2FyZHMvRG9jdG9yL0VkaXRQcmVzY3JpcHRpb24uY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/CristianPC/Desktop/vitalcare/Pages/UserDashboards/Doctor/GenerateRecipe.cshtml]
-build_metadata.AdditionalFiles.TargetPath = UGFnZXNcVXNlckRhc2hib2FyZHNcRG9jdG9yXEdlbmVyYXRlUmVjaXBlLmNzaHRtbA==
+[/Users/cristianramos/Desktop/Proyectos/AplicativosWeb/CitasEPS/Pages/UserDashboards/Doctor/GenerateRecipe.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXMvVXNlckRhc2hib2FyZHMvRG9jdG9yL0dlbmVyYXRlUmVjaXBlLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/CristianPC/Desktop/vitalcare/Pages/UserDashboards/Doctor/Index.cshtml]
-build_metadata.AdditionalFiles.TargetPath = UGFnZXNcVXNlckRhc2hib2FyZHNcRG9jdG9yXEluZGV4LmNzaHRtbA==
+[/Users/cristianramos/Desktop/Proyectos/AplicativosWeb/CitasEPS/Pages/UserDashboards/Doctor/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXMvVXNlckRhc2hib2FyZHMvRG9jdG9yL0luZGV4LmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/CristianPC/Desktop/vitalcare/Pages/UserDashboards/Doctor/MyRatings.cshtml]
-build_metadata.AdditionalFiles.TargetPath = UGFnZXNcVXNlckRhc2hib2FyZHNcRG9jdG9yXE15UmF0aW5ncy5jc2h0bWw=
+[/Users/cristianramos/Desktop/Proyectos/AplicativosWeb/CitasEPS/Pages/UserDashboards/Doctor/MyRatings.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXMvVXNlckRhc2hib2FyZHMvRG9jdG9yL015UmF0aW5ncy5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/CristianPC/Desktop/vitalcare/Pages/UserDashboards/Doctor/PatientDetails.cshtml]
-build_metadata.AdditionalFiles.TargetPath = UGFnZXNcVXNlckRhc2hib2FyZHNcRG9jdG9yXFBhdGllbnREZXRhaWxzLmNzaHRtbA==
+[/Users/cristianramos/Desktop/Proyectos/AplicativosWeb/CitasEPS/Pages/UserDashboards/Doctor/PatientDetails.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXMvVXNlckRhc2hib2FyZHMvRG9jdG9yL1BhdGllbnREZXRhaWxzLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/CristianPC/Desktop/vitalcare/Pages/UserDashboards/Doctor/PatientHistory.cshtml]
-build_metadata.AdditionalFiles.TargetPath = UGFnZXNcVXNlckRhc2hib2FyZHNcRG9jdG9yXFBhdGllbnRIaXN0b3J5LmNzaHRtbA==
+[/Users/cristianramos/Desktop/Proyectos/AplicativosWeb/CitasEPS/Pages/UserDashboards/Doctor/PatientHistory.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXMvVXNlckRhc2hib2FyZHMvRG9jdG9yL1BhdGllbnRIaXN0b3J5LmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/CristianPC/Desktop/vitalcare/Pages/UserDashboards/Doctor/Patients.cshtml]
-build_metadata.AdditionalFiles.TargetPath = UGFnZXNcVXNlckRhc2hib2FyZHNcRG9jdG9yXFBhdGllbnRzLmNzaHRtbA==
+[/Users/cristianramos/Desktop/Proyectos/AplicativosWeb/CitasEPS/Pages/UserDashboards/Doctor/Patients.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXMvVXNlckRhc2hib2FyZHMvRG9jdG9yL1BhdGllbnRzLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/CristianPC/Desktop/vitalcare/Pages/UserDashboards/Doctor/Prescribe.cshtml]
-build_metadata.AdditionalFiles.TargetPath = UGFnZXNcVXNlckRhc2hib2FyZHNcRG9jdG9yXFByZXNjcmliZS5jc2h0bWw=
+[/Users/cristianramos/Desktop/Proyectos/AplicativosWeb/CitasEPS/Pages/UserDashboards/Doctor/Prescribe.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXMvVXNlckRhc2hib2FyZHMvRG9jdG9yL1ByZXNjcmliZS5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/CristianPC/Desktop/vitalcare/Pages/UserDashboards/Doctor/Prescriptions.cshtml]
-build_metadata.AdditionalFiles.TargetPath = UGFnZXNcVXNlckRhc2hib2FyZHNcRG9jdG9yXFByZXNjcmlwdGlvbnMuY3NodG1s
+[/Users/cristianramos/Desktop/Proyectos/AplicativosWeb/CitasEPS/Pages/UserDashboards/Doctor/Prescriptions.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXMvVXNlckRhc2hib2FyZHMvRG9jdG9yL1ByZXNjcmlwdGlvbnMuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/CristianPC/Desktop/vitalcare/Pages/UserDashboards/Doctor/ProposeDoctorReschedule.cshtml]
-build_metadata.AdditionalFiles.TargetPath = UGFnZXNcVXNlckRhc2hib2FyZHNcRG9jdG9yXFByb3Bvc2VEb2N0b3JSZXNjaGVkdWxlLmNzaHRtbA==
+[/Users/cristianramos/Desktop/Proyectos/AplicativosWeb/CitasEPS/Pages/UserDashboards/Doctor/ProposeDoctorReschedule.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXMvVXNlckRhc2hib2FyZHMvRG9jdG9yL1Byb3Bvc2VEb2N0b3JSZXNjaGVkdWxlLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/CristianPC/Desktop/vitalcare/Pages/UserDashboards/Patient/HealthStatus.cshtml]
-build_metadata.AdditionalFiles.TargetPath = UGFnZXNcVXNlckRhc2hib2FyZHNcUGF0aWVudFxIZWFsdGhTdGF0dXMuY3NodG1s
+[/Users/cristianramos/Desktop/Proyectos/AplicativosWeb/CitasEPS/Pages/UserDashboards/Patient/HealthStatus.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXMvVXNlckRhc2hib2FyZHMvUGF0aWVudC9IZWFsdGhTdGF0dXMuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/CristianPC/Desktop/vitalcare/Pages/UserDashboards/Patient/Index.cshtml]
-build_metadata.AdditionalFiles.TargetPath = UGFnZXNcVXNlckRhc2hib2FyZHNcUGF0aWVudFxJbmRleC5jc2h0bWw=
+[/Users/cristianramos/Desktop/Proyectos/AplicativosWeb/CitasEPS/Pages/UserDashboards/Patient/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXMvVXNlckRhc2hib2FyZHMvUGF0aWVudC9JbmRleC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/CristianPC/Desktop/vitalcare/Pages/UserDashboards/Patient/RateAppointment.cshtml]
-build_metadata.AdditionalFiles.TargetPath = UGFnZXNcVXNlckRhc2hib2FyZHNcUGF0aWVudFxSYXRlQXBwb2ludG1lbnQuY3NodG1s
+[/Users/cristianramos/Desktop/Proyectos/AplicativosWeb/CitasEPS/Pages/UserDashboards/Patient/RateAppointment.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXMvVXNlckRhc2hib2FyZHMvUGF0aWVudC9SYXRlQXBwb2ludG1lbnQuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/CristianPC/Desktop/vitalcare/Pages/_ViewImports.cshtml]
-build_metadata.AdditionalFiles.TargetPath = UGFnZXNcX1ZpZXdJbXBvcnRzLmNzaHRtbA==
+[/Users/cristianramos/Desktop/Proyectos/AplicativosWeb/CitasEPS/Pages/_ViewImports.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXMvX1ZpZXdJbXBvcnRzLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/CristianPC/Desktop/vitalcare/Pages/_ViewStart.cshtml]
-build_metadata.AdditionalFiles.TargetPath = UGFnZXNcX1ZpZXdTdGFydC5jc2h0bWw=
+[/Users/cristianramos/Desktop/Proyectos/AplicativosWeb/CitasEPS/Pages/_ViewStart.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXMvX1ZpZXdTdGFydC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/CristianPC/Desktop/vitalcare/Pages/Shared/_Layout.cshtml]
-build_metadata.AdditionalFiles.TargetPath = UGFnZXNcU2hhcmVkXF9MYXlvdXQuY3NodG1s
-build_metadata.AdditionalFiles.CssScope = b-n5gepcuqzt
+[/Users/cristianramos/Desktop/Proyectos/AplicativosWeb/CitasEPS/Pages/Shared/_Layout.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXMvU2hhcmVkL19MYXlvdXQuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = b-ninv6zq12q
