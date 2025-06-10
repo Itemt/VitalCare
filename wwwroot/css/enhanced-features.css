@@ -2805,6 +2805,23 @@ input.datepicker-register:not(:placeholder-shown) + .auth-form-label {
     }
 }
 
+/* Estilos específicos para input type="date" */
+.auth-form-control[type="date"] {
+    position: relative;
+}
+
+/* Asegurar que el label funcione correctamente con input date */
+.auth-form-control[type="date"]:focus + .auth-form-label,
+.auth-form-control[type="date"]:valid + .auth-form-label {
+    top: -0.5rem;
+    left: 1rem;
+    font-size: 0.8rem;
+    color: #003366;
+    background: rgba(255, 255, 255, 0.9);
+    padding: 0 0.5rem;
+    border-radius: 4px;
+}
+
 /* El input de Flatpickr ahora usa la clase auth-form-control, no necesita estilos especiales */
 
 /* Estilos para modo oscuro de password-toggle */
@@ -3089,6 +3106,20 @@ button#toggleConfirmPassword:active {
     display: block !important;
     width: 100% !important;
     height: auto !important;
+}
+
+/* Asegurar que los botones sean completamente clickeables */
+.password-toggle, .password-toggle * {
+    pointer-events: auto !important;
+    cursor: pointer !important;
+}
+
+.password-toggle:hover {
+    background: rgba(0, 51, 102, 0.1) !important;
+}
+
+.password-toggle:active {
+    background: rgba(0, 51, 102, 0.2) !important;
 }
 
 /* El botón debe posicionarse relativo al wrapper, no al auth-form-floating */

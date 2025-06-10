@@ -140,8 +140,7 @@
                                                class="auth-form-control" 
                                                type="date" 
                                                asp-format="{0:yyyy-MM-dd}"
-                                               max="@DateTime.Today.AddYears(-18).ToString("yyyy-MM-dd")"
-                                               placeholder=" " />
+                                               max="@DateTime.Today.AddYears(-18).ToString("yyyy-MM-dd")" />
                                         <label asp-for="Input.DateOfBirth" class="auth-form-label">Fecha de Nacimiento</label>
                                         <span asp-validation-for="Input.DateOfBirth" class="auth-validation-error"></span>
                                     </div>
@@ -251,45 +250,115 @@
                 });
             });
 
-            // Password visibility toggles - ESTRUCTURA AISLADA
+            // Password visibility toggles - SOLUCIÓN EXTREMA: REEMPLAZAR INPUT COMPLETO (COMO EN LOGIN)
             const toggleRegisterPassword = document.getElementById('toggleRegisterPassword');
-            const registerPasswordInput = document.getElementById('registerPasswordInput');
+            let registerPasswordInput = document.getElementById('registerPasswordInput');
             
             if (toggleRegisterPassword && registerPasswordInput) {
+                let isPasswordVisible = false;
+                console.log('Register password toggle found and initialized');
+                
                 toggleRegisterPassword.addEventListener('click', function(e) {
                     e.preventDefault();
                     e.stopPropagation();
+                    console.log('Register password toggle clicked');
                     
                     const icon = this.querySelector('i');
+                    const currentValue = registerPasswordInput.value;
+                    const parent = registerPasswordInput.parentNode;
                     
-                    if (registerPasswordInput.type === 'password') {
-                        registerPasswordInput.type = 'text';
+                    // Crear nuevo input
+                    const newInput = document.createElement('input');
+                    
+                    // Copiar todos los atributos del input original
+                    newInput.className = registerPasswordInput.className;
+                    newInput.id = registerPasswordInput.id;
+                    newInput.name = registerPasswordInput.name;
+                    newInput.placeholder = registerPasswordInput.placeholder;
+                    newInput.setAttribute('asp-for', 'Input.Password');
+                    newInput.setAttribute('aria-required', 'true');
+                    newInput.setAttribute('autocomplete', 'new-password');
+                    newInput.value = currentValue;
+                    
+                    if (!isPasswordVisible) {
+                        // Cambiar a texto visible
+                        newInput.type = 'text';
                         if (icon) icon.className = 'bi bi-eye';
+                        isPasswordVisible = true;
+                        console.log('Register password shown');
                     } else {
-                        registerPasswordInput.type = 'password';
+                        // Cambiar a password oculto
+                        newInput.type = 'password';
                         if (icon) icon.className = 'bi bi-eye-slash';
+                        isPasswordVisible = false;
+                        console.log('Register password hidden');
                     }
+                    
+                    // Reemplazar el input en el DOM
+                    parent.replaceChild(newInput, registerPasswordInput);
+                    registerPasswordInput = newInput;
+                    
+                    // Enfocar el nuevo input
+                    newInput.focus();
+                    newInput.setSelectionRange(currentValue.length, currentValue.length);
                 });
+            } else {
+                console.error('Register password toggle elements not found:', { toggleRegisterPassword, registerPasswordInput });
             }
 
             const toggleConfirmPassword = document.getElementById('toggleConfirmPassword');
-            const confirmPasswordInput = document.getElementById('confirmPasswordInput');
+            let confirmPasswordInput = document.getElementById('confirmPasswordInput');
             
             if (toggleConfirmPassword && confirmPasswordInput) {
+                let isConfirmPasswordVisible = false;
+                console.log('Confirm password toggle found and initialized');
+                
                 toggleConfirmPassword.addEventListener('click', function(e) {
                     e.preventDefault();
                     e.stopPropagation();
+                    console.log('Confirm password toggle clicked');
                     
                     const icon = this.querySelector('i');
+                    const currentValue = confirmPasswordInput.value;
+                    const parent = confirmPasswordInput.parentNode;
                     
-                    if (confirmPasswordInput.type === 'password') {
-                        confirmPasswordInput.type = 'text';
+                    // Crear nuevo input
+                    const newInput = document.createElement('input');
+                    
+                    // Copiar todos los atributos del input original
+                    newInput.className = confirmPasswordInput.className;
+                    newInput.id = confirmPasswordInput.id;
+                    newInput.name = confirmPasswordInput.name;
+                    newInput.placeholder = confirmPasswordInput.placeholder;
+                    newInput.setAttribute('asp-for', 'Input.ConfirmPassword');
+                    newInput.setAttribute('aria-required', 'true');
+                    newInput.setAttribute('autocomplete', 'new-password');
+                    newInput.value = currentValue;
+                    
+                    if (!isConfirmPasswordVisible) {
+                        // Cambiar a texto visible
+                        newInput.type = 'text';
                         if (icon) icon.className = 'bi bi-eye';
+                        isConfirmPasswordVisible = true;
+                        console.log('Confirm password shown');
                     } else {
-                        confirmPasswordInput.type = 'password';
+                        // Cambiar a password oculto
+                        newInput.type = 'password';
                         if (icon) icon.className = 'bi bi-eye-slash';
+                        isConfirmPasswordVisible = false;
+                        console.log('Confirm password hidden');
                     }
+                    
+                    // Reemplazar el input en el DOM
+                    parent.replaceChild(newInput, confirmPasswordInput);
+                    confirmPasswordInput = newInput;
+                    
+                    // Enfocar el nuevo input
+                    newInput.focus();
+                    newInput.setSelectionRange(currentValue.length, currentValue.length);
                 });
+            } else {
+                console.error('Confirm password toggle elements not found:', { toggleConfirmPassword, confirmPasswordInput });
             }
 
             // Loading state for submit button
