@@ -3514,5 +3514,178 @@ div.auth-row div.auth-col input.flatpickr-input {
     text-shadow: 0 4px 8px rgba(255,255,255,0.2) !important;
 }
 
+/* ========== ESTILOS PARA TARJETAS DE CONTACTO EN PÁGINA DE CONTACTO ========== */
+
+/* Centrado perfecto de las tarjetas de información de contacto */
+.office-info {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+}
+
+.office-details {
+    width: 100%;
+    max-width: 500px;
+    margin: 0 auto;
+}
+
+.office-details .d-flex {
+    justify-content: center !important;
+    align-items: center !important;
+    flex-direction: column !important;
+    padding: 1.5rem 1rem !important;
+    margin-bottom: 1.5rem !important;
+    border-radius: 1rem !important;
+    background: linear-gradient(135deg, #f8f9fa 0%, #ffffff 100%) !important;
+    box-shadow: 0 6px 20px rgba(0,0,0,0.08) !important;
+    transition: all 0.4s ease !important;
+    border: 1px solid rgba(0,51,102,0.1) !important;
+}
+
+.office-details .d-flex:hover {
+    transform: translateY(-8px) !important;
+    box-shadow: 0 12px 35px rgba(0,51,102,0.15) !important;
+    background: linear-gradient(135deg, #ffffff 0%, #f0f8ff 100%) !important;
+}
+
+/* Iconos de contacto centrados */
+.office-details .feature-icon-wrapper {
+    background: rgba(0,51,102,0.1) !important;
+    border-radius: 50% !important;
+    width: 80px !important;
+    height: 80px !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    margin: 0 auto 1rem auto !important;
+    transition: all 0.3s ease !important;
+    border: 2px solid rgba(0,51,102,0.2) !important;
+}
+
+.office-details .d-flex:hover .feature-icon-wrapper {
+    background: rgba(0,51,102,0.15) !important;
+    transform: scale(1.1) !important;
+    border-color: rgba(0,51,102,0.3) !important;
+}
+
+.office-details .feature-icon-main {
+    font-size: 2rem !important;
+    transition: all 0.3s ease !important;
+}
+
+.office-details .d-flex:hover .feature-icon-main {
+    font-size: 2.2rem !important;
+}
+
+/* Texto de contacto centrado */
+.office-details .text-center h6 {
+    color: #003366 !important;
+    font-size: 1.1rem !important;
+    margin-bottom: 0.8rem !important;
+    font-weight: 700 !important;
+    text-transform: uppercase !important;
+    letter-spacing: 0.5px !important;
+}
+
+.office-details .text-center p {
+    color: #666 !important;
+    font-size: 0.95rem !important;
+    line-height: 1.6 !important;
+    margin: 0 !important;
+}
+
+/* Colores específicos para cada tipo de contacto */
+.office-details .d-flex:nth-child(1) .feature-icon-wrapper {
+    background: rgba(0,51,102,0.1) !important;
+}
+
+.office-details .d-flex:nth-child(1):hover .feature-icon-wrapper {
+    background: rgba(0,51,102,0.2) !important;
+}
+
+.office-details .d-flex:nth-child(2) .feature-icon-wrapper {
+    background: rgba(34,129,107,0.1) !important;
+}
+
+.office-details .d-flex:nth-child(2):hover .feature-icon-wrapper {
+    background: rgba(34,129,107,0.2) !important;
+}
+
+.office-details .d-flex:nth-child(3) .feature-icon-wrapper {
+    background: rgba(23,162,184,0.1) !important;
+}
+
+.office-details .d-flex:nth-child(3):hover .feature-icon-wrapper {
+    background: rgba(23,162,184,0.2) !important;
+}
+
+.office-details .d-flex:nth-child(4) .feature-icon-wrapper {
+    background: rgba(220,53,69,0.1) !important;
+}
+
+.office-details .d-flex:nth-child(4):hover .feature-icon-wrapper {
+    background: rgba(220,53,69,0.2) !important;
+}
+
+/* Animaciones de entrada */
+.office-details .d-flex:nth-child(1) {
+    animation: slideInLeft 0.8s ease-out;
+}
+
+.office-details .d-flex:nth-child(2) {
+    animation: slideInLeft 0.8s ease-out 0.1s backwards;
+}
+
+.office-details .d-flex:nth-child(3) {
+    animation: slideInLeft 0.8s ease-out 0.2s backwards;
+}
+
+.office-details .d-flex:nth-child(4) {
+    animation: slideInLeft 0.8s ease-out 0.3s backwards;
+}
+
+@keyframes slideInLeft {
+    from {
+        opacity: 0;
+        transform: translateX(-50px);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+/* Responsive para móviles */
+@media (max-width: 768px) {
+    .office-details .d-flex {
+        padding: 1rem 0.5rem !important;
+        margin-bottom: 1rem !important;
+    }
+    
+    .office-details .feature-icon-wrapper {
+        width: 70px !important;
+        height: 70px !important;
+        margin-bottom: 0.8rem !important;
+    }
+    
+    .office-details .feature-icon-main {
+        font-size: 1.8rem !important;
+    }
+    
+    .office-details .d-flex:hover .feature-icon-main {
+        font-size: 2rem !important;
+    }
+    
+    .office-details .text-center h6 {
+        font-size: 1rem !important;
+    }
+    
+    .office-details .text-center p {
+        font-size: 0.9rem !important;
+    }
+}
+
 
 
