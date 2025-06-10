@@ -3262,5 +3262,141 @@ div.auth-row div.auth-col input.flatpickr-input {
     }
 }
 
+/* ========== ESTILOS PARA CONVENIOS EPS - ICONOS CENTRADOS ========== */
+
+/* Partner Logos Container - Centrado perfecto */
+.partner-logo-container {
+    padding: 2rem 1rem;
+    border-radius: 1rem;
+    background: linear-gradient(135deg, #fff 0%, #f8f9fa 100%);
+    box-shadow: 0 4px 8px rgba(0,0,0,0.05);
+    transition: all 0.4s ease;
+    position: relative;
+    overflow: hidden;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: 140px;
+}
+
+.partner-logo-container::before {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: linear-gradient(45deg, transparent, rgba(255,255,255,0.3), transparent);
+    transform: rotate(-45deg) translateX(-100%);
+    transition: transform 0.4s ease;
+}
+
+.partner-logo-container:hover::before {
+    transform: rotate(-45deg) translateX(100%);
+}
+
+.partner-logo-container:hover {
+    transform: translateY(-8px) scale(1.05);
+    box-shadow: 0 15px 30px rgba(0,0,0,0.1);
+}
+
+/* Wrapper del icono - centrado perfecto */
+.partner-logo-container .feature-icon-wrapper {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto 0.75rem auto;
+    padding: 1rem;
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    background: rgba(255,255,255,0.8);
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    transition: all 0.3s ease;
+}
+
+.partner-logo-container:hover .feature-icon-wrapper {
+    transform: scale(1.1) rotate(5deg);
+    box-shadow: 0 4px 15px rgba(0,0,0,0.15);
+}
+
+/* Icono principal - centrado y tamaño correcto */
+.partner-logo-container .feature-icon-main {
+    font-size: 2.5rem !important;
+    margin: 0 !important;
+    display: block;
+    line-height: 1;
+    transition: all 0.3s ease;
+}
+
+.partner-logo-container:hover .feature-icon-main {
+    transform: scale(1.15);
+    filter: drop-shadow(0 2px 4px rgba(0,0,0,0.2));
+}
+
+/* Nombre de la EPS - centrado */
+.partner-name {
+    font-size: 0.9rem;
+    font-weight: 600;
+    color: #495057;
+    margin: 0;
+    text-align: center;
+    transition: all 0.3s ease;
+    line-height: 1.2;
+}
+
+.partner-logo-container:hover .partner-name {
+    color: #212529;
+    transform: translateY(-2px);
+    font-weight: 700;
+}
+
+/* Tema oscuro para convenios EPS */
+[data-bs-theme="dark"] .partner-logo-container {
+    background: linear-gradient(135deg, #212529 0%, #2d3748 100%);
+    border: 1px solid rgba(255,255,255,0.1);
+}
+
+[data-bs-theme="dark"] .partner-logo-container .feature-icon-wrapper {
+    background: rgba(255,255,255,0.1);
+    backdrop-filter: blur(10px);
+}
+
+[data-bs-theme="dark"] .partner-name {
+    color: rgba(255,255,255,0.8);
+}
+
+[data-bs-theme="dark"] .partner-logo-container:hover .partner-name {
+    color: #ffffff;
+}
+
+/* Responsive para móviles */
+@media (max-width: 768px) {
+    .partner-logo-container {
+        min-height: 120px;
+        padding: 1.5rem 0.75rem;
+    }
+    
+    .partner-logo-container .feature-icon-wrapper {
+        width: 70px;
+        height: 70px;
+        margin-bottom: 0.5rem;
+    }
+    
+    .partner-logo-container .feature-icon-main {
+        font-size: 2rem !important;
+    }
+    
+    .partner-name {
+        font-size: 0.85rem;
+    }
+    
+    .partner-logo-container:hover {
+        transform: translateY(-4px) scale(1.02);
+    }
+}
+
 
 

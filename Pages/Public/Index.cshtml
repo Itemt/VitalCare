@@ -61,14 +61,14 @@
         
         <!-- Action Buttons -->
         <div class="d-grid gap-3 d-sm-flex justify-content-sm-center">
-            <a class="btn btn-success btn-lg px-4 py-2 me-sm-3 hero-btn" asp-page="/Appointments/Create" role="button">
-                <i class="bi bi-calendar-plus me-2"></i> 
-                <span>Agendar Cita</span>
+            <a class="btn btn-primary btn-lg px-4 py-2 me-sm-3 hero-btn" asp-area="Identity" asp-page="/Account/Login" role="button">
+                <i class="bi bi-box-arrow-in-right me-2"></i> 
+                <span>Iniciar Sesión</span>
                 <div class="btn-ripple"></div>
             </a>
-            <a class="btn btn-info btn-lg px-4 py-2 hero-btn" asp-page="/Appointments/Search" role="button">
-                <i class="bi bi-search me-2"></i> 
-                <span>Consultar Cita</span>
+            <a class="btn btn-success btn-lg px-4 py-2 hero-btn" asp-area="Identity" asp-page="/Account/Register" role="button">
+                <i class="bi bi-person-plus me-2"></i> 
+                <span>Registrarse</span>
                 <div class="btn-ripple"></div>
             </a>
         </div>
