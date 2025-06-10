@@ -25,6 +25,7 @@ namespace CitasEPS.Data
         public DbSet<Prescription> Prescriptions { get; set; } = default!;
         public DbSet<Notification> Notifications { get; set; } = default!;
         public DbSet<Rating> Ratings { get; set; } = default!;
+        public DbSet<HealthData> HealthData { get; set; } = default!;
         // DbSet<User> se hereda de IdentityDbContext
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)

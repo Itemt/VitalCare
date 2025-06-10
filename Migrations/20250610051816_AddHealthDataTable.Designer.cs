@@ -3,6 +3,7 @@ using System;
 using CitasEPS.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 
@@ -11,9 +12,11 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 namespace CitasEPS.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20250610051816_AddHealthDataTable")]
+    partial class AddHealthDataTable
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -180,7 +183,7 @@ namespace CitasEPS.Migrations
                         .HasMaxLength(50)
                         .HasColumnType("character varying(50)");
 
-                    b.Property<int?>("DiastolicPressure")
+                    b.Property<int>("DiastolicPressure")
                         .HasColumnType("integer");
 
                     b.Property<string>("HealthStatus")
@@ -199,8 +202,7 @@ namespace CitasEPS.Migrations
                     b.Property<DateTime>("RecordedDate")
                         .HasColumnType("timestamp with time zone");
 
-                    b.Property<int?>("SystolicPressure")
-                        .IsRequired()
+                    b.Property<int>("SystolicPressure")
                         .HasColumnType("integer");
 
                     b.Property<decimal>("Weight")

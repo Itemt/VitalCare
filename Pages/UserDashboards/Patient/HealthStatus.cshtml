@@ -1,0 +1,605 @@
+@page
+@model CitasEPS.Pages.UserDashboards.Patient.HealthStatusModel
+@using Microsoft.AspNetCore.Identity
+@using CitasEPS.Models
+@inject SignInManager<User> UserManagerAccessor
+@inject UserManager<User> AspNetUserManager
+
+@{
+    ViewData["Title"] = "Estado de Salud - VitalCare";
+    var currentUser = await AspNetUserManager.GetUserAsync(User);
+    var userFirstName = currentUser?.FirstName;
+}
+
+<!-- Header Section -->
+<div class="container-fluid bg-gradient-primary text-white text-center py-4 mb-4" style="background: linear-gradient(135deg, #134e4a 0%, #065f46 50%, #064e3b 100%); border-radius: 0 0 1.5rem 1.5rem;">
+    <div class="container">
+        <div class="row justify-content-center align-items-center">
+            <div class="col-lg-8">
+                <h1 class="display-6 fw-bold mb-2" style="color: white; text-shadow: 2px 2px 4px rgba(0,0,0,0.5);">
+                    <i class="bi bi-heart-pulse me-2"></i>
+                    Estado de Salud
+                </h1>
+                <p class="lead mb-0 opacity-90" style="color: white; text-shadow: 1px 1px 2px rgba(0,0,0,0.3);">Monitoree y actualice sus datos de salud</p>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Main Content -->
+<div class="container py-4">
+    <!-- Navigation breadcrumb -->
+    <nav aria-label="breadcrumb" class="mb-4">
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item">
+                <a asp-page="/UserDashboards/Patient/Index" class="text-decoration-none">
+                    <i class="bi bi-house-door me-1"></i>Inicio
+                </a>
+            </li>
+            <li class="breadcrumb-item active" aria-current="page">Estado de Salud</li>
+        </ol>
+    </nav>
+
+    <div class="row g-4">
+        <!-- Health Status Form -->
+        <div class="col-lg-8">
+            <div class="card border-0 shadow-lg">
+                <div class="card-header bg-transparent border-0 py-3">
+                    <h5 class="mb-0 fw-bold text-dark">
+                        <i class="bi bi-clipboard-heart me-2" style="color: #134e4a;"></i>
+                        Actualizar Datos de Salud
+                    </h5>
+                </div>
+                <div class="card-body p-4">
+                    <form id="healthStatusForm">
+                        @Html.AntiForgeryToken()
+                        <div class="row g-4">
+                            <!-- Weight and Height for BMI -->
+                            <div class="col-md-6">
+                                <div class="form-floating">
+                                    <input type="number" class="form-control" id="weight" placeholder="Peso" step="0.1" min="1" max="300" required>
+                                    <label for="weight">Peso (kg)</label>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-floating">
+                                    <input type="number" class="form-control" id="height" placeholder="Altura" step="0.01" min="0.5" max="2.5" required>
+                                    <label for="height">Altura (m)</label>
+                                </div>
+                            </div>
+
+                            <!-- Heart Rate - Optional -->
+                            <div class="col-md-6">
+                                <div class="form-floating">
+                                    <input type="number" class="form-control" id="heartRate" placeholder="Frecuencia Cardíaca" min="40" max="200">
+                                    <label for="heartRate">Frecuencia Cardíaca (bpm) - Opcional</label>
+                                </div>
+                            </div>
+                            
+                            <!-- Activity Level -->
+                            <div class="col-md-6">
+                                <div class="form-floating">
+                                    <select class="form-select" id="activityLevel">
+                                        <option value="">Seleccione nivel de actividad</option>
+                                        <option value="sedentary">Sedentario</option>
+                                        <option value="light">Actividad ligera</option>
+                                        <option value="moderate">Actividad moderada</option>
+                                        <option value="active">Muy activo</option>
+                                    </select>
+                                    <label for="activityLevel">Nivel de Actividad Física</label>
+                                </div>
+                            </div>
+
+                            <!-- Submit Button -->
+                            <div class="col-12">
+                                <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+                                    <a asp-page="/UserDashboards/Patient/Index" class="btn btn-outline-secondary me-md-2">
+                                        <i class="bi bi-arrow-left me-1"></i>Volver
+                                    </a>
+                                    <button type="submit" class="btn btn-primary" style="background: #134e4a; border-color: #134e4a;">
+                                        <i class="bi bi-check-circle me-1"></i>Actualizar Estado de Salud
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+        <!-- Health Status Display -->
+        <div class="col-lg-4">
+            <div class="card border-0 shadow-lg h-100">
+                <div class="card-header bg-transparent border-0 py-3">
+                    <h6 class="mb-0 fw-bold text-dark">
+                        <i class="bi bi-bar-chart me-2 text-info"></i>
+                        Análisis de Salud
+                    </h6>
+                </div>
+                <div class="card-body">
+                    <!-- BMI Display -->
+                    <div class="mb-4">
+                        <div class="d-flex justify-content-between align-items-center mb-2">
+                            <span class="fw-bold">IMC</span>
+                            <span class="badge bg-secondary" id="bmiValue">--</span>
+                        </div>
+                        <div class="progress mb-2" style="height: 8px;">
+                            <div class="progress-bar" id="bmiProgress" role="progressbar" style="width: 0%"></div>
+                        </div>
+                        <small class="text-muted" id="bmiCategory">Ingrese sus datos para calcular</small>
+                    </div>
+
+                    <!-- Blood Pressure Display -->
+                    <div class="mb-4">
+                        <div class="d-flex justify-content-between align-items-center mb-2">
+                            <span class="fw-bold">Frecuencia Cardíaca</span>
+                            <span class="badge bg-secondary" id="bpValue">--</span>
+                        </div>
+                        <div class="progress mb-2" style="height: 8px;">
+                            <div class="progress-bar" id="bpProgress" role="progressbar" style="width: 0%"></div>
+                        </div>
+                        <small class="text-muted" id="bpCategory">Ingrese sus datos para evaluar</small>
+                    </div>
+
+                    <!-- Overall Health Status -->
+                    <div class="text-center mt-4">
+                        <h6 class="fw-bold">Estado General</h6>
+                        <span class="badge fs-6" id="overallStatus" style="background: #6c757d;">Pendiente</span>
+                    </div>
+
+                    <!-- Heart Rate Measurement Tips -->
+                    <div class="mt-4 p-3" style="background-color: #f8f9fa; border-radius: 8px; border-left: 4px solid #134e4a;">
+                        <h6 class="fw-bold mb-3" style="color: #134e4a;">
+                            <i class="bi bi-info-circle me-2"></i>¿Cómo medir tu frecuencia cardíaca?
+                        </h6>
+                        <div class="row g-3">
+                            <div class="col-12">
+                                <div class="d-flex align-items-center mb-2">
+                                    <i class="bi bi-smartwatch text-primary me-2"></i>
+                                    <strong>Dispositivos inteligentes:</strong>
+                                </div>
+                                <small class="text-muted">Reloj inteligente, anillo fitness o pulsera de actividad</small>
+                            </div>
+                            <div class="col-12">
+                                <div class="d-flex align-items-center mb-2">
+                                    <i class="bi bi-hand-index text-success me-2"></i>
+                                    <strong>Método manual:</strong>
+                                </div>
+                                <small class="text-muted">Coloca 2 dedos en tu muñeca o cuello, cuenta 15 segundos y multiplica por 4</small>
+                            </div>
+                            <div class="col-12">
+                                <div class="d-flex align-items-center mb-2">
+                                    <i class="bi bi-activity text-warning me-2"></i>
+                                    <strong>Monitor de pecho:</strong>
+                                </div>
+                                <small class="text-muted">Banda pectoral para mediciones más precisas durante ejercicio</small>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Health Recommendations -->
+                    <div class="mt-4" id="recommendationsSection" style="display: none;">
+                        <h6 class="fw-bold mb-3">Recomendaciones</h6>
+                        <div id="recommendationsList">
+                            <!-- Recommendations will be populated by JavaScript -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Health History Section -->
+    <div class="row mt-5">
+        <div class="col-12">
+            <div class="card border-0 shadow-lg">
+                <div class="card-header bg-transparent border-0 py-3">
+                    <h5 class="mb-0 fw-bold text-dark">
+                        <i class="bi bi-graph-up me-2" style="color: #134e4a;"></i>
+                        Historial de Salud
+                    </h5>
+                </div>
+                <div class="card-body">
+                    <div id="healthHistory" class="text-center py-4">
+                        <i class="bi bi-clock-history fs-1 text-muted"></i>
+                        <p class="text-muted mt-2">No hay registros de salud anteriores</p>
+                        <small class="text-muted">Los registros aparecerán aquí después de guardar sus datos</small>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<style>
+.progress-bar {
+    transition: all 0.3s ease;
+}
+
+.card:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 1rem 3rem rgba(0,0,0,.175) !important;
+}
+
+.card {
+    transition: all 0.3s ease;
+}
+
+.form-floating input:focus,
+.form-floating select:focus {
+    border-color: #134e4a;
+    box-shadow: 0 0 0 0.2rem rgba(19, 78, 74, 0.25);
+}
+
+.recommendation-item {
+    border-left: 3px solid #134e4a;
+    background: #f8f9fa;
+    margin-bottom: 0.5rem;
+}
+</style>
+
+@section Scripts {
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const form = document.getElementById('healthStatusForm');
+            const weightInput = document.getElementById('weight');
+            const heightInput = document.getElementById('height');
+            const heartRateInput = document.getElementById('heartRate');
+
+            // Add event listeners for real-time calculation
+            [weightInput, heightInput, heartRateInput].forEach(input => {
+                input.addEventListener('input', calculateHealthMetrics);
+            });
+
+            form.addEventListener('submit', function(e) {
+                e.preventDefault();
+                saveHealthData();
+            });
+
+            loadExistingData();
+        });
+
+        function calculateHealthMetrics() {
+            const weight = parseFloat(document.getElementById('weight').value);
+            const height = parseFloat(document.getElementById('height').value);
+            const heartRate = parseInt(document.getElementById('heartRate').value);
+
+            if (weight > 0 && height > 0) {
+                calculateBMI(weight, height);
+            }
+
+            if (heartRate > 0) {
+                calculateHeartRate(heartRate);
+            }
+
+            updateOverallHealthStatus();
+        }
+
+        function calculateBMI(weight, height) {
+            const bmi = weight / (height * height);
+            const bmiElement = document.getElementById('bmiValue');
+            const bmiProgress = document.getElementById('bmiProgress');
+            const bmiCategory = document.getElementById('bmiCategory');
+
+            bmiElement.textContent = bmi.toFixed(1);
+
+            let category, color, percentage;
+
+            if (bmi < 18.5) {
+                category = 'Bajo peso';
+                color = '#17a2b8';
+                percentage = (bmi / 18.5) * 25;
+            } else if (bmi < 25) {
+                category = 'Peso normal';
+                color = '#28a745';
+                percentage = 25 + ((bmi - 18.5) / (25 - 18.5)) * 25;
+            } else if (bmi < 30) {
+                category = 'Sobrepeso';
+                color = '#ffc107';
+                percentage = 50 + ((bmi - 25) / (30 - 25)) * 25;
+            } else {
+                category = 'Obesidad';
+                color = '#dc3545';
+                percentage = 75 + Math.min(((bmi - 30) / 10), 1) * 25;
+            }
+
+            bmiCategory.textContent = category;
+            bmiElement.className = `badge`;
+            bmiElement.style.backgroundColor = color;
+            bmiProgress.style.width = Math.min(percentage, 100) + '%';
+            bmiProgress.style.backgroundColor = color;
+        }
+
+        function calculateHeartRate(heartRate) {
+            const bpValue = document.getElementById('bpValue');
+            const bpProgress = document.getElementById('bpProgress');
+            const bpCategory = document.getElementById('bpCategory');
+
+            bpValue.textContent = `${heartRate} bpm`;
+
+            let category, color, percentage;
+
+            if (heartRate < 60) {
+                category = 'Bajo';
+                color = '#28a745';
+                percentage = 30;
+            } else if (heartRate < 100) {
+                category = 'Normal';
+                color = '#28a745';
+                percentage = 30 + ((heartRate - 60) / (100 - 60)) * 30;
+            } else if (heartRate < 140) {
+                category = 'Elevado';
+                color = '#ffc107';
+                percentage = 60 + ((heartRate - 100) / (140 - 100)) * 30;
+            } else {
+                category = 'Crisis';
+                color = '#dc3545';
+                percentage = 90 + Math.min(((heartRate - 140) / 10), 1) * 30;
+            }
+
+            bpCategory.textContent = category;
+            bpValue.className = `badge`;
+            bpValue.style.backgroundColor = color;
+            bpProgress.style.width = percentage + '%';
+            bpProgress.style.backgroundColor = color;
+        }
+
+        function updateOverallHealthStatus() {
+            const bmiText = document.getElementById('bmiCategory').textContent;
+            const bpText = document.getElementById('bpCategory').textContent;
+            const overallStatus = document.getElementById('overallStatus');
+            const recommendationsSection = document.getElementById('recommendationsSection');
+            const recommendationsList = document.getElementById('recommendationsList');
+
+            if (bmiText === 'Ingrese sus datos para calcular' || bpText === 'Ingrese sus datos para evaluar') {
+                return;
+            }
+
+            let status, color;
+            const recommendations = [];
+
+            // Determine overall status
+            if (bmiText === 'Peso normal' && bpText === 'Normal') {
+                status = 'Excelente';
+                color = '#28a745';
+                recommendations.push({
+                    icon: 'bi-check-circle',
+                    text: 'Mantenga sus hábitos saludables actuales',
+                    color: 'success'
+                });
+            } else if (bmiText === 'Peso normal' && bpText === 'Elevado') {
+                status = 'Bueno';
+                color = '#17a2b8';
+                recommendations.push({
+                    icon: 'bi-exclamation-triangle',
+                    text: 'Monitoree su presión arterial regularmente',
+                    color: 'warning'
+                });
+            } else if (bmiText === 'Sobrepeso' || bpText === 'Elevado') {
+                status = 'Aceptable';
+                color = '#ffc107';
+                recommendations.push({
+                    icon: 'bi-activity',
+                    text: 'Aumente su actividad física a 150 minutos por semana',
+                    color: 'info'
+                });
+                recommendations.push({
+                    icon: 'bi-apple',
+                    text: 'Adopte una dieta balanceada rica en frutas y verduras',
+                    color: 'success'
+                });
+            } else {
+                status = 'Requiere Atención';
+                color = '#dc3545';
+                recommendations.push({
+                    icon: 'bi-hospital',
+                    text: 'Consulte con su médico lo antes posible',
+                    color: 'danger'
+                });
+                recommendations.push({
+                    icon: 'bi-heart-pulse',
+                    text: 'Monitoree diariamente su presión arterial',
+                    color: 'warning'
+                });
+            }
+
+            // Add general recommendations based on specific conditions
+            if (bmiText === 'Bajo peso') {
+                recommendations.push({
+                    icon: 'bi-plus-circle',
+                    text: 'Considere incrementar su ingesta calórica saludable',
+                    color: 'info'
+                });
+            }
+
+            if (bmiText === 'Obesidad') {
+                recommendations.push({
+                    icon: 'bi-person-check',
+                    text: 'Consulte con un nutricionista para un plan personalizado',
+                    color: 'primary'
+                });
+            }
+
+            overallStatus.textContent = status;
+            overallStatus.style.backgroundColor = color;
+
+            // Show recommendations
+            recommendationsList.innerHTML = recommendations.map(rec => `
+                <div class="recommendation-item p-2 rounded">
+                    <i class="bi ${rec.icon} text-${rec.color} me-2"></i>
+                    <small>${rec.text}</small>
+                </div>
+            `).join('');
+
+            recommendationsSection.style.display = 'block';
+        }
+
+        function saveHealthData() {
+            const data = {
+                weight: document.getElementById('weight').value,
+                height: document.getElementById('height').value,
+                heartRate: document.getElementById('heartRate').value,
+                activityLevel: document.getElementById('activityLevel').value
+            };
+
+            // Send data to backend API
+            fetch('/api/patient/save-health-data', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'RequestVerificationToken': document.querySelector('input[name="__RequestVerificationToken"]')?.value
+                },
+                body: JSON.stringify(data)
+            })
+            .then(response => response.json())
+            .then(result => {
+                if (result.success) {
+                    showSuccessMessage();
+                    loadHealthHistory();
+                    // Redirect back to dashboard
+                    setTimeout(() => {
+                        window.location.href = '/UserDashboards/Patient/Index';
+                    }, 2000);
+                } else {
+                    showErrorMessage(result.error || 'Error al guardar los datos');
+                }
+            })
+            .catch(error => {
+                console.error('Error saving health data:', error);
+                showErrorMessage('Error de conexión. Intente nuevamente.');
+            });
+        }
+
+        function loadExistingData() {
+            fetch('/api/patient/health-status')
+                .then(response => response.json())
+                .then(data => {
+                    if (data.success && data.healthData) {
+                        const health = data.healthData;
+                        document.getElementById('weight').value = health.weight || '';
+                        document.getElementById('height').value = health.height || '';
+                        document.getElementById('heartRate').value = health.heartRate || '';
+                        document.getElementById('activityLevel').value = health.activityLevel || '';
+                        
+                        calculateHealthMetrics();
+                    }
+                    loadHealthHistory();
+                })
+                .catch(error => {
+                    console.error('Error loading existing data:', error);
+                    loadHealthHistory();
+                });
+        }
+
+        function loadHealthHistory() {
+            fetch('/api/patient/health-history')
+                .then(response => response.json())
+                .then(data => {
+                    const historyContainer = document.getElementById('healthHistory');
+                    
+                    if (!data.success || !data.history || data.history.length === 0) {
+                        historyContainer.innerHTML = `
+                            <div class="text-center py-4">
+                                <i class="bi bi-clock-history fs-1 text-muted"></i>
+                                <p class="text-muted mt-2">No hay registros de salud anteriores</p>
+                                <small class="text-muted">Los registros aparecerán aquí después de guardar sus datos</small>
+                            </div>
+                        `;
+                        return;
+                    }
+
+                    historyContainer.innerHTML = `
+                        <div class="row g-3">
+                            ${data.history.slice(0, 5).map((record, index) => {
+                                const date = new Date(record.timestamp).toLocaleDateString('es-ES');
+                                const bmi = (parseFloat(record.weight) / (parseFloat(record.height) * parseFloat(record.height))).toFixed(1);
+                                return `
+                                    <div class="col-md-6 col-lg-4">
+                                        <div class="card border-light">
+                                            <div class="card-body p-3">
+                                                <div class="d-flex justify-content-between align-items-center mb-2">
+                                                    <small class="text-muted">${date}</small>
+                                                    ${index === 0 ? '<span class="badge bg-primary">Más reciente</span>' : ''}
+                                                </div>
+                                                <div class="row text-center">
+                                                    <div class="col-6">
+                                                        <small class="text-muted d-block">IMC</small>
+                                                        <strong>${bmi}</strong>
+                                                    </div>
+                                                    <div class="col-6">
+                                                        <small class="text-muted d-block">F.C.</small>
+                                                        <strong>${record.heartRate} bpm</strong>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                `;
+                            }).join('')}
+                        </div>
+                    `;
+                })
+                .catch(error => {
+                    console.error('Error loading health history:', error);
+                    const historyContainer = document.getElementById('healthHistory');
+                    historyContainer.innerHTML = `
+                        <div class="text-center py-4">
+                            <i class="bi bi-exclamation-triangle fs-1 text-warning"></i>
+                            <p class="text-muted mt-2">Error al cargar el historial</p>
+                            <small class="text-muted">Intente recargar la página</small>
+                        </div>
+                    `;
+                });
+        }
+
+        function showSuccessMessage() {
+            // Create a toast notification
+            const toast = document.createElement('div');
+            toast.className = 'position-fixed top-0 end-0 p-3';
+            toast.style.zIndex = '1055';
+            toast.innerHTML = `
+                <div class="toast show" role="alert">
+                    <div class="toast-header">
+                        <i class="bi bi-check-circle text-success me-2"></i>
+                        <strong class="me-auto">Éxito</strong>
+                        <button type="button" class="btn-close" data-bs-dismiss="toast"></button>
+                    </div>
+                    <div class="toast-body">
+                        Sus datos de salud han sido actualizados correctamente.
+                    </div>
+                </div>
+            `;
+            
+            document.body.appendChild(toast);
+            
+            setTimeout(() => {
+                toast.remove();
+            }, 5000);
+        }
+
+        function showErrorMessage(message) {
+            // Create a toast notification for errors
+            const toast = document.createElement('div');
+            toast.className = 'position-fixed top-0 end-0 p-3';
+            toast.style.zIndex = '1055';
+            toast.innerHTML = `
+                <div class="toast show" role="alert">
+                    <div class="toast-header">
+                        <i class="bi bi-exclamation-triangle text-danger me-2"></i>
+                        <strong class="me-auto">Error</strong>
+                        <button type="button" class="btn-close" data-bs-dismiss="toast"></button>
+                    </div>
+                    <div class="toast-body">
+                        ${message}
+                    </div>
+                </div>
+            `;
+            
+            document.body.appendChild(toast);
+            
+            setTimeout(() => {
+                toast.remove();
+            }, 5000);
+        }
+    </script>
+} 

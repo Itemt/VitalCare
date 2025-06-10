@@ -74,6 +74,16 @@ builder.Services.AddAuthorization(options =>
     options.AddPolicy("Admin", policy => policy.RequireClaim("IsAdmin", "true"));
 });
 
+// <<< INICIO: Configuración de Cookie Authentication >>>
+builder.Services.ConfigureApplicationCookie(options =>
+{
+    // Asegurar que las rutas de redirección sean correctas
+    options.LoginPath = "/Identity/Account/Login";
+    options.LogoutPath = "/Identity/Account/Logout";
+    options.AccessDeniedPath = "/Identity/Account/AccessDenied";
+});
+// <<< FIN: Configuración de Cookie Authentication >>>
+
 // Configurar opciones de Razor Pages para soportar áreas de Identity
 builder.Services.AddRazorPages(options =>
 {

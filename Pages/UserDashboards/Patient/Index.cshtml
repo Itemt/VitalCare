@@ -11,23 +11,44 @@
     var userFirstName = currentUser?.FirstName;
 }
 
-<!-- Compact Hero Section for Patient -->
-<div class="container-fluid bg-gradient-primary text-white text-center py-4 mb-4" style="background: linear-gradient(135deg, #134e4a 0%, #065f46 50%, #064e3b 100%); border-radius: 0 0 1.5rem 1.5rem;">
+<!-- Hero Section with Patient Image -->
+<div class="container-fluid py-5 mb-4" style="background: linear-gradient(135deg, #134e4a 0%, #065f46 50%, #064e3b 100%); border-radius: 0 0 1.5rem 1.5rem;">
     <div class="container">
-        <div class="row justify-content-center align-items-center">
+        <div class="row align-items-center">
+            <!-- Welcome Text Column -->
             <div class="col-lg-8">
-                <h1 class="display-5 fw-bold mb-2">
+                <h1 class="display-5 fw-bold mb-3" style="color: white; text-shadow: 2px 2px 4px rgba(0,0,0,0.5);">
                     <i class="bi bi-person-heart me-2"></i>
                     @if (!string.IsNullOrEmpty(userFirstName))
                     {
-                        <span>Bienvenido, <strong>@userFirstName</strong></span>
+                        <span>Bienvenido, <strong style="color: #10b981;">@userFirstName</strong></span>
                     }
                     else
                     {
                         <span>Portal del Paciente</span>
                     }
                 </h1>
-                <p class="lead mb-0 opacity-90">Su salud en sus manos - VitalCare IPS</p>
+                <p class="lead mb-0" style="color: white; text-shadow: 1px 1px 2px rgba(0,0,0,0.3);">
+                    Su salud en sus manos - VitalCare IPS
+                </p>
+                <p class="mt-2 mb-0" style="color: #86efac; text-shadow: 1px 1px 2px rgba(0,0,0,0.3);">
+                    <i class="bi bi-shield-check me-2"></i>
+                    Cuidando su bienestar con tecnología y dedicación
+                </p>
+            </div>
+            
+            <!-- Patient Image Column -->
+            <div class="col-lg-4 text-center">
+                <div class="position-relative">
+                    <img src="/images/Pacientes.png" alt="Paciente VitalCare" 
+                         class="img-fluid rounded-circle shadow-lg" 
+                         style="max-width: 200px; border: 4px solid white; box-shadow: 0 8px 32px rgba(0,0,0,0.3);">
+                    <div class="position-absolute top-0 start-100 translate-middle">
+                        <span class="badge rounded-pill bg-success p-2">
+                            <i class="bi bi-heart-pulse"></i>
+                        </span>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
@@ -36,20 +57,24 @@
 <!-- Main Dashboard Content -->
 <div class="container py-4" style="background-color: white;">
     
-    <!-- Dynamic Health Status Row -->
+    <!-- Extended Next Appointment Section -->
     <div class="row g-4 mb-5">
-        <!-- Next Appointment Card -->
-        <div class="col-lg-8">
+        <div class="col-12">
             <div class="card border-0 shadow-lg" style="background: linear-gradient(135deg, #f0fdf4 0%, #dcfce7 100%); border-left: 5px solid #134e4a !important;">
                 <div class="card-body p-4">
                     <div class="row align-items-center">
                         <div class="col-md-8">
-                            <h5 class="card-title text-dark fw-bold mb-2">
+                            <h5 class="card-title text-dark fw-bold mb-3">
                                 <i class="bi bi-calendar-event me-2" style="color: #134e4a;"></i>
                                 Próxima Cita Médica
                             </h5>
                             <div id="nextAppointmentDetails">
-                                <p class="mb-1 text-muted">Cargando información de su próxima cita...</p>
+                                <div class="text-center py-4">
+                                    <div class="spinner-border text-primary" role="status">
+                                        <span class="visually-hidden">Cargando...</span>
+                                    </div>
+                                    <p class="text-muted mt-2 mb-0">Cargando información de citas...</p>
+                                </div>
                             </div>
                         </div>
                         <div class="col-md-4 text-end">
@@ -57,23 +82,6 @@
                                 <i class="bi bi-plus-circle me-2"></i>Nueva Cita
                             </a>
                         </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <!-- Quick Actions -->
-        <div class="col-lg-4">
-            <div class="card border-0 shadow-lg h-100" style="background: linear-gradient(135deg, #eff6ff 0%, #dbeafe 100%); border-left: 5px solid #1e40af !important;">
-                <div class="card-body p-4 text-center">
-                    <h6 class="card-title text-dark fw-bold mb-3">Acciones Rápidas</h6>
-                    <div class="d-grid gap-2">
-                        <a asp-page="/Appointments/Index" class="btn btn-primary btn-sm">
-                            <i class="bi bi-list-check me-1"></i>Ver Mis Citas
-                        </a>
-                        <a asp-page="/Appointments/MyPrescriptions" class="btn btn-outline-primary btn-sm">
-                            <i class="bi bi-file-text me-1"></i>Mis Recetas
-                        </a>
                     </div>
                 </div>
             </div>
@@ -88,141 +96,62 @@
                     <div class="text-warning mb-3">
                         <i class="bi bi-prescription2 fs-1"></i>
                     </div>
-                    <h6 class="card-title text-dark fw-bold">Recetas Activas</h6>
+                    <h6 class="card-title text-dark fw-bold">Mis Recetas</h6>
                     <h4 class="text-warning fw-bold" id="patientPrescriptionsCount">0</h4>
-                    <p class="card-text text-muted small mb-0">medicamentos prescritos</p>
+                    <p class="card-text text-muted small mb-2">recetas asignadas</p>
+                    <a asp-page="/Appointments/MyPrescriptions" class="btn btn-sm btn-warning">Ver Recetas</a>
                 </div>
             </div>
         </div>
         
-        <div class="col-lg-4">
-            <div class="card border-0 shadow-sm h-100" style="background: linear-gradient(135deg, #f3e8ff 0%, #e9d5ff 100%);">
-                <div class="card-body text-center p-4">
-                    <div class="text-purple mb-3" style="color: #7c3aed;">
-                        <i class="bi bi-heart-pulse fs-1"></i>
-                    </div>
-                    <h6 class="card-title text-dark fw-bold">Estado de Salud</h6>
-                    <span class="badge bg-success fs-6" id="healthStatus">Estable</span>
-                    <p class="card-text text-muted small mb-0 mt-2">última consulta</p>
-                </div>
-            </div>
-        </div>
-        
-        <div class="col-lg-4">
-            <div class="card border-0 shadow-sm h-100" style="background: linear-gradient(135deg, #fef2f2 0%, #fecaca 100%);">
-                <div class="card-body text-center p-4">
-                    <div class="text-danger mb-3">
-                        <i class="bi bi-bell fs-1"></i>
-                    </div>
-                    <h6 class="card-title text-dark fw-bold">Recordatorios</h6>
-                    <h4 class="text-danger fw-bold" id="activeRemindersCount">0</h4>
-                    <p class="card-text text-muted small mb-0">pendientes</p>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <!-- Medical History & Profile Row -->
-    <div class="row g-4 mb-4">
         <div class="col-lg-8">
-            <div class="card border-0 shadow-lg">
-                <div class="card-header bg-transparent border-0 py-3">
-                    <h5 class="mb-0 fw-bold text-dark">
-                        <i class="bi bi-clipboard-data me-2" style="color: #134e4a;"></i>
-                        Historial Médico Reciente
-                    </h5>
-                </div>
-                <div class="card-body">
-                    <div id="recentMedicalHistory">
-                        <div class="d-flex justify-content-between align-items-center py-2 border-bottom">
-                            <div>
-                                <strong>Consulta General</strong>
-                                <small class="text-muted d-block">Dr. María González</small>
+            <div class="card border-0 shadow-sm h-100" style="background: linear-gradient(135deg, #f3e8ff 0%, #e9d5ff 100%);">
+                <div class="card-body p-4">
+                    <div class="row align-items-center h-100">
+                        <div class="col-md-3 text-center">
+                            <div class="text-purple mb-3" style="color: #7c3aed;">
+                                <i class="bi bi-heart-pulse fs-1"></i>
                             </div>
-                            <div class="text-end">
-                                <small class="text-muted">15 Jul 2024</small>
-                                <div><span class="badge bg-success">Completada</span></div>
-                            </div>
+                            <h6 class="card-title text-dark fw-bold">Estado de Salud</h6>
+                            <span class="badge bg-secondary fs-6" id="healthStatus">Sin datos</span>
                         </div>
-                        <div class="d-flex justify-content-between align-items-center py-2 border-bottom">
-                            <div>
-                                <strong>Exámenes de Laboratorio</strong>
-                                <small class="text-muted d-block">Resultados disponibles</small>
-                            </div>
-                            <div class="text-end">
-                                <small class="text-muted">10 Jul 2024</small>
-                                <div><span class="badge bg-info">Ver Resultados</span></div>
+                        <div class="col-md-6">
+                            <div id="healthMetrics">
+                                <div class="text-center py-3">
+                                    <i class="bi bi-clipboard-heart fs-2 text-muted mb-2"></i>
+                                    <p class="text-muted mb-1">Por ingresar</p>
+                                    <small class="text-muted">¿Cómo te sientes hoy?</small>
+                                </div>
                             </div>
                         </div>
-                    </div>
-                    <div class="text-center mt-3">
-                        <a href="/Patient/MedicalHistory" class="btn btn-outline-dark">
-                            <i class="bi bi-folder2-open me-2"></i>Ver Historial Completo
-                        </a>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <div class="col-lg-4">
-            <div class="card border-0 shadow-lg h-100">
-                <div class="card-header bg-transparent border-0 py-3">
-                    <h6 class="mb-0 fw-bold text-dark">
-                        <i class="bi bi-person-gear me-2 text-secondary"></i>
-                        Mi Perfil
-                    </h6>
-                </div>
-                <div class="card-body">
-                    <div class="text-center mb-3">
-                        <div class="bg-secondary bg-opacity-10 rounded-circle d-inline-flex align-items-center justify-content-center" style="width: 60px; height: 60px;">
-                            <i class="bi bi-person fs-2 text-secondary"></i>
+                        <div class="col-md-3 text-end">
+                            <a asp-page="/UserDashboards/Patient/HealthStatus" class="btn btn-primary">
+                                <i class="bi bi-pencil-square me-1"></i>Actualizar
+                            </a>
                         </div>
-                    </div>
-                    <div class="list-group list-group-flush">
-                        <div class="list-group-item d-flex justify-content-between px-0 py-2 border-0">
-                            <small class="text-muted">Edad:</small>
-                            <small class="fw-bold">32 años</small>
-                        </div>
-                        <div class="list-group-item d-flex justify-content-between px-0 py-2 border-0">
-                            <small class="text-muted">Tipo de sangre:</small>
-                            <small class="fw-bold">O+</small>
-                        </div>
-                        <div class="list-group-item d-flex justify-content-between px-0 py-2 border-0">
-                            <small class="text-muted">EPS:</small>
-                            <small class="fw-bold">Sanitas</small>
-                        </div>
-                    </div>
-                    <div class="d-grid mt-3">
-                        <a asp-area="Identity" asp-page="/Account/Manage/Index" class="btn btn-secondary btn-sm">
-                            <i class="bi bi-gear me-1"></i>Editar Perfil
-                        </a>
                     </div>
                 </div>
             </div>
         </div>
     </div>
 
-    <!-- Upcoming Appointments Section -->
+    <!-- Health Tips and Curiosities Section -->
     <div class="row">
         <div class="col-12">
             <div class="card border-0 shadow-sm">
-                <div class="card-header bg-transparent border-0 py-3">
-                    <div class="d-flex justify-content-between align-items-center">
-                        <h5 class="mb-0 fw-bold text-dark">
-                            <i class="bi bi-calendar-week me-2" style="color: #134e4a;"></i>
-                            Próximas Citas
-                        </h5>
-                        <a asp-page="/Appointments/Index" class="btn btn-sm btn-outline-primary">Ver Todas</a>
-                    </div>
+                <div class="card-header border-0 py-3" style="background: linear-gradient(135deg, #134e4a 0%, #065f46 100%);">
+                    <h5 class="mb-0 fw-bold text-white health-tips-title">
+                        <i class="bi bi-lightbulb me-2"></i>
+                        Consejos de Salud y Curiosidades
+                    </h5>
                 </div>
                 <div class="card-body">
-                    <div id="upcomingAppointmentsList">
+                    <div id="healthTipsContainer">
                         <div class="text-center py-4">
-                            <i class="bi bi-calendar-x fs-1 text-muted"></i>
-                            <p class="text-muted mt-2">No hay citas programadas</p>
-                            <a asp-page="/Appointments/Create" class="btn btn-sm" style="background: #134e4a; color: white;">
-                                <i class="bi bi-plus-circle me-1"></i>Agendar Primera Cita
-                            </a>
+                            <div class="spinner-border text-primary" role="status">
+                                <span class="visually-hidden">Cargando consejos...</span>
+                            </div>
+                            <p class="text-muted mt-2 mb-0">Cargando consejos de salud...</p>
                         </div>
                     </div>
                 </div>
@@ -258,66 +187,331 @@
     padding: 0.5rem 0.75rem;
 }
 
-/* List styling */
-.list-group-item {
-    background: transparent !important;
+/* Health tips animation */
+@@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.health-tip-animated {
+    animation: fadeInUp 0.5s ease-out;
+}
+
+/* Title shadows */
+.health-tips-title {
+    text-shadow: 0 2px 4px rgba(0,0,0,0.3);
+}
+
+h5.fw-bold, h6.fw-bold {
+    text-shadow: 0 1px 3px rgba(0,0,0,0.2);
 }
 </style>
 
 @section Scripts {
     <script>
+        let currentTipIndex = 0;
+        const healthTips = [
+            {
+                icon: 'bi-droplet',
+                color: 'success',
+                title: 'Hidratación',
+                tip: 'Beba al menos 8 vasos de agua al día para mantener su cuerpo hidratado.'
+            },
+            {
+                icon: 'bi-moon',
+                color: 'info',
+                title: 'Descanso',
+                tip: 'Duerma entre 7-9 horas diarias para una recuperación óptima.'
+            },
+            {
+                icon: 'bi-heart',
+                color: 'danger',
+                title: 'Ejercicio',
+                tip: '30 minutos de actividad física moderada al día mejoran su salud cardiovascular.'
+            },
+            {
+                icon: 'bi-apple',
+                color: 'success',
+                title: 'Alimentación',
+                tip: 'Incluya 5 porciones de frutas y verduras en su dieta diaria.'
+            },
+            {
+                icon: 'bi-sun',
+                color: 'warning',
+                title: 'Vitamina D',
+                tip: 'Exponerse al sol por 15-20 minutos al día ayuda a producir vitamina D natural.'
+            },
+            {
+                icon: 'bi-emoji-smile',
+                color: 'primary',
+                title: 'Salud Mental',
+                tip: 'Practique técnicas de relajación como la meditación para reducir el estrés.'
+            },
+            {
+                icon: 'bi-shield-check',
+                color: 'success',
+                title: 'Prevención',
+                tip: 'Realice chequeos médicos regulares para detectar problemas de salud temprano.'
+            },
+            {
+                icon: 'bi-lungs',
+                color: 'info',
+                title: 'Respiración',
+                tip: 'Practique respiración profunda para oxigenar mejor su cuerpo y reducir el estrés.'
+            }
+        ];
+
         // Load patient dashboard data
         document.addEventListener('DOMContentLoaded', function() {
             loadPatientDashboardData();
+            startHealthTipsRotation();
         });
 
         function loadPatientDashboardData() {
-            // Simulate loading patient data
-            setTimeout(function() {
-                // Update next appointment
-                document.getElementById('nextAppointmentDetails').innerHTML = `
-                    <h6 class="mb-1 fw-bold" style="color: #134e4a;">Mañana, 15 Jul - 10:00 AM</h6>
-                    <p class="mb-1">Dr. María González - Consulta General</p>
-                    <small class="text-muted">Consultorio 201, 2do Piso</small>
-                `;
-                
-                // Update counters
-                document.getElementById('patientPrescriptionsCount').textContent = '3';
-                document.getElementById('activeRemindersCount').textContent = '2';
-                
-                // Update upcoming appointments
-                const appointmentsList = document.getElementById('upcomingAppointmentsList');
-                appointmentsList.innerHTML = `
-                    <div class="row g-3">
-                        <div class="col-md-6">
-                            <div class="d-flex align-items-center p-3 bg-light rounded">
-                                <div class="me-3">
-                                    <div class="bg-primary bg-opacity-10 rounded-circle d-flex align-items-center justify-content-center" style="width: 40px; height: 40px;">
-                                        <i class="bi bi-calendar-event text-primary"></i>
+            // Load real data from backend
+            loadNextAppointment();
+            loadPrescriptionsCount();
+            loadHealthStatus();
+        }
+
+        function loadNextAppointment() {
+            console.log('Cargando próxima cita...');
+            
+            // Primero probar el endpoint simple para debuggear
+            fetch('/api/patient/simple-appointment')
+                .then(response => {
+                    console.log('Respuesta recibida:', response.status);
+                    if (!response.ok) {
+                        throw new Error(`HTTP error! status: ${response.status}`);
+                    }
+                    return response.json();
+                })
+                .then(data => {
+                    console.log('Datos de debug recibidos:', data);
+                    
+                    // Ahora probar el endpoint principal
+                    return fetch('/api/patient/next-appointment');
+                })
+                .then(response => {
+                    console.log('Respuesta principal:', response.status);
+                    return response.json();
+                })
+                .then(data => {
+                    console.log('Datos principales recibidos:', data);
+                    const appointmentDetails = document.getElementById('nextAppointmentDetails');
+                    
+                    if (data.success && data.appointment) {
+                        const appointment = data.appointment;
+                        const appointmentDate = new Date(appointment.dateTime);
+                        const formattedDate = appointmentDate.toLocaleDateString('es-ES', {
+                            weekday: 'long',
+                            year: 'numeric',
+                            month: 'long',
+                            day: 'numeric'
+                        });
+                        const formattedTime = appointmentDate.toLocaleTimeString('es-ES', {
+                            hour: '2-digit',
+                            minute: '2-digit'
+                        });
+
+                        appointmentDetails.innerHTML = `
+                            <div class="row align-items-center">
+                                <div class="col-md-8">
+                                    <h6 class="mb-1 fw-bold" style="color: #134e4a;">${formattedDate} - ${formattedTime}</h6>
+                                    <p class="mb-1">${appointment.doctorName} - ${appointment.appointmentType}</p>
+                                    <small class="text-muted">${appointment.location || 'Consultorio por confirmar'}</small>
+                                    <div class="mt-2">
+                                        <span class="badge ${getStatusBadgeClass(appointment.status)} me-2">${appointment.status}</span>
+                                        <small class="text-muted">Recuerde llegar 15 minutos antes</small>
                                     </div>
                                 </div>
-                                <div class="flex-grow-1">
-                                    <h6 class="mb-1 fw-bold">Consulta General</h6>
-                                    <small class="text-muted">Mañana 10:00 AM</small>
+                                <div class="col-md-4 text-end">
+                                    <a href="/Appointments/Details/${appointment.id}" class="btn btn-sm btn-outline-primary mb-1">Ver Detalles</a>
+                                    <a href="/Appointments/Edit/${appointment.id}" class="btn btn-sm btn-outline-secondary">Reprogramar</a>
                                 </div>
                             </div>
+                        `;
+                    } else {
+                        console.log('No hay citas o error:', data.message || 'Sin mensaje');
+                        appointmentDetails.innerHTML = `
+                            <div class="text-center py-4">
+                                <i class="bi bi-calendar-x fs-1 text-muted"></i>
+                                <p class="text-muted mt-2 mb-0">No hay citas próximas programadas</p>
+                                <small class="text-muted">${data.message || 'Programe su próxima cita para mantener un seguimiento de su salud'}</small>
+                            </div>
+                        `;
+                    }
+                })
+                .catch(error => {
+                    console.error('Error cargando cita:', error);
+                    const appointmentDetails = document.getElementById('nextAppointmentDetails');
+                    appointmentDetails.innerHTML = `
+                        <div class="text-center py-4">
+                            <i class="bi bi-exclamation-triangle fs-1 text-warning"></i>
+                            <p class="text-muted mt-2 mb-0">Error al cargar información de citas</p>
+                            <small class="text-muted">Intente recargar la página - Error: ${error.message}</small>
                         </div>
-                        <div class="col-md-6">
-                            <div class="d-flex align-items-center p-3 bg-light rounded">
-                                <div class="me-3">
-                                    <div class="bg-success bg-opacity-10 rounded-circle d-flex align-items-center justify-content-center" style="width: 40px; height: 40px;">
-                                        <i class="bi bi-heart-pulse text-success"></i>
-                                    </div>
+                    `;
+                });
+        }
+
+        function loadPrescriptionsCount() {
+            fetch('/api/patient/prescriptions-count')
+                .then(response => response.json())
+                .then(data => {
+                    const countElement = document.getElementById('patientPrescriptionsCount');
+                    if (data.success) {
+                        countElement.textContent = data.count || '0';
+                    } else {
+                        countElement.textContent = '0';
+                    }
+                })
+                .catch(error => {
+                    console.error('Error loading prescriptions count:', error);
+                    document.getElementById('patientPrescriptionsCount').textContent = '0';
+                });
+        }
+
+        function getStatusBadgeClass(status) {
+            switch(status?.toLowerCase()) {
+                case 'confirmada':
+                case 'confirmed':
+                    return 'bg-success';
+                case 'pendiente':
+                case 'pending':
+                    return 'bg-warning';
+                case 'cancelada':
+                case 'cancelled':
+                    return 'bg-danger';
+                default:
+                    return 'bg-info';
+            }
+        }
+
+        function loadHealthStatus() {
+            fetch('/api/patient/health-status')
+                .then(response => response.json())
+                .then(data => {
+                    const healthMetrics = document.getElementById('healthMetrics');
+                    const statusElement = document.getElementById('healthStatus');
+                    
+                    if (data.success && data.healthData) {
+                        const health = data.healthData;
+                        
+                        // Update health metrics display
+                        healthMetrics.innerHTML = `
+                            <div class="mb-2">
+                                <small class="text-muted">IMC:</small>
+                                <span class="fw-bold ms-2">${health.bmi || 'Sin datos'}</span>
+                            </div>
+                            <div class="mb-2">
+                                <small class="text-muted">Presión Arterial:</small>
+                                <span class="fw-bold ms-2">${health.bloodPressure || 'Sin datos'}</span>
+                            </div>
+                            <div>
+                                <small class="text-muted">Última actualización:</small>
+                                <span class="fw-bold ms-2">${formatDate(health.lastUpdate)}</span>
+                            </div>
+                        `;
+                        
+                        // Update status badge
+                        statusElement.textContent = health.status || 'Sin evaluar';
+                        statusElement.className = `badge ${getHealthStatusClass(health.status)} fs-6`;
+                    } else {
+                        // No health data available - keep default empty state
+                        statusElement.textContent = 'Sin datos';
+                        statusElement.className = 'badge bg-secondary fs-6';
+                    }
+                })
+                .catch(error => {
+                    console.error('Error loading health status:', error);
+                    // Keep default empty state on error
+                    const statusElement = document.getElementById('healthStatus');
+                    statusElement.textContent = 'Sin datos';
+                    statusElement.className = 'badge bg-secondary fs-6';
+                });
+        }
+
+        function getHealthStatusClass(status) {
+            switch(status?.toLowerCase()) {
+                case 'excelente':
+                    return 'bg-success';
+                case 'bueno':
+                case 'saludable':
+                    return 'bg-info';
+                case 'aceptable':
+                    return 'bg-warning';
+                case 'requiere atención':
+                case 'malo':
+                    return 'bg-danger';
+                default:
+                    return 'bg-secondary';
+            }
+        }
+
+        function formatDate(dateString) {
+            if (!dateString) return 'Nunca';
+            
+            const date = new Date(dateString);
+            return date.toLocaleDateString('es-ES', {
+                year: 'numeric',
+                month: 'short',
+                day: 'numeric'
+            });
+        }
+
+        function startHealthTipsRotation() {
+            // Change tips every 15 seconds
+            setInterval(function() {
+                currentTipIndex = (currentTipIndex + 1) % healthTips.length;
+                updateHealthTips();
+            }, 15000); // 15 seconds
+            
+            // Initial load
+            updateHealthTips();
+        }
+
+        function updateHealthTips() {
+            const container = document.getElementById('healthTipsContainer');
+            const tip1 = healthTips[currentTipIndex];
+            const tip2 = healthTips[(currentTipIndex + 1) % healthTips.length];
+            
+            container.innerHTML = `
+                <div class="row g-4 health-tip-animated">
+                    <div class="col-md-6">
+                        <div class="d-flex align-items-start p-3 bg-light rounded">
+                            <div class="me-3">
+                                <div class="bg-${tip1.color} bg-opacity-10 rounded-circle d-flex align-items-center justify-content-center" style="width: 40px; height: 40px;">
+                                    <i class="bi ${tip1.icon} text-${tip1.color}"></i>
                                 </div>
-                                <div class="flex-grow-1">
-                                    <h6 class="mb-1 fw-bold">Cardiología</h6>
-                                    <small class="text-muted">20 Jul 2:00 PM</small>
-                                </div>
+                            </div>
+                            <div class="flex-grow-1">
+                                <h6 class="mb-1 fw-bold">${tip1.title}</h6>
+                                <small class="text-muted">${tip1.tip}</small>
                             </div>
                         </div>
                     </div>
-                `;
-            }, 1000);
+                    <div class="col-md-6">
+                        <div class="d-flex align-items-start p-3 bg-light rounded">
+                            <div class="me-3">
+                                <div class="bg-${tip2.color} bg-opacity-10 rounded-circle d-flex align-items-center justify-content-center" style="width: 40px; height: 40px;">
+                                    <i class="bi ${tip2.icon} text-${tip2.color}"></i>
+                                </div>
+                            </div>
+                            <div class="flex-grow-1">
+                                <h6 class="mb-1 fw-bold">${tip2.title}</h6>
+                                <small class="text-muted">${tip2.tip}</small>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            `;
         }
     </script>
 } 
