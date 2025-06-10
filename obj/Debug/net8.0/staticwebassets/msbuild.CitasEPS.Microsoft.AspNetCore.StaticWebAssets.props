@@ -534,8 +534,8 @@
       <RelatedAsset></RelatedAsset>
       <AssetTraitName></AssetTraitName>
       <AssetTraitValue></AssetTraitValue>
-      <Fingerprint>9prt4is121</Fingerprint>
-      <Integrity>fT3lftqMnZRx7+P6eun4nF4eeDwUOJlwCjvkCV3Y7O8=</Integrity>
+      <Fingerprint>dv56j79f2j</Fingerprint>
+      <Integrity>x91Oot6DI6jjKhuwRsE34w8dvoD2zyEUEmVscgCHYW4=</Integrity>
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
       <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
       <OriginalItemSpec>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\js\notifications.js'))</OriginalItemSpec>
@@ -642,8 +642,8 @@
       <RelatedAsset></RelatedAsset>
       <AssetTraitName></AssetTraitName>
       <AssetTraitValue></AssetTraitValue>
-      <Fingerprint>rf4l7q2t6i</Fingerprint>
-      <Integrity>SYdPwDzvdKSDyM9uiSZlFT5jKPmJKTtK8S9Ezsyyrlk=</Integrity>
+      <Fingerprint>8zou3tu4e4</Fingerprint>
+      <Integrity>9DCSKXg5MMsWSvEVcLKeEQZ6Z4fWRXykyBl1ELQ9Qd8=</Integrity>
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
       <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
       <OriginalItemSpec>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\js\site.flatpickr.js'))</OriginalItemSpec>

@@ -37,131 +37,50 @@
     </div>
 </div>
 
-<!-- Main Dashboard Content -->
-<div class="container py-4" style="background-color: white;">
+<!-- Main Dashboard Content without container background -->
+<div class="container-fluid py-4">
     
-    <!-- Today's Overview Row -->
+    <!-- Top Row: Medical Tools and Performance -->
     <div class="row g-4 mb-5">
-        <!-- Today's Schedule -->
-        <div class="col-lg-8">
-            <div class="card border-0 shadow-lg" style="background: linear-gradient(135deg, #eff6ff 0%, #dbeafe 100%); border-left: 5px solid #1e40af !important;">
-                <div class="card-body p-4">
-                    <div class="d-flex justify-content-between align-items-center mb-3">
-                        <h5 class="card-title text-dark fw-bold mb-0">
-                            <i class="bi bi-calendar-week me-2" style="color: #1e40af;"></i>
-                            Agenda de Hoy
-                        </h5>
-                        <a asp-page="/UserDashboards/Doctor/Agenda" class="btn btn-primary">
-                            <i class="bi bi-calendar-check me-1"></i>Ver Agenda Completa
-                        </a>
-                    </div>
-                    <div id="todaySchedule">
-                        <div class="text-center py-3">
-                            <i class="bi bi-clock fs-3 text-muted"></i>
-                            <p class="text-muted mt-2">Cargando agenda del día...</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <!-- Quick Stats -->
-        <div class="col-lg-4">
-            <div class="row g-3">
-                <div class="col-12">
-                    <div class="card border-0 shadow-sm" style="background: linear-gradient(135deg, #134e4a 0%, #065f46 100%);">
-                        <div class="card-body text-center p-3 text-white">
-                            <h4 class="fw-bold mb-1">@Model.TodayAppointments</h4>
-                            <small class="opacity-90">Citas Hoy</small>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-6">
-                    <div class="card border-0 shadow-sm" style="background: linear-gradient(135deg, #f0fdf4 0%, #dcfce7 100%);">
-                        <div class="card-body text-center p-3">
-                            <h5 class="fw-bold text-success mb-1">@Model.ConfirmedAppointments</h5>
-                            <small class="text-muted">Confirmadas</small>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-6">
-                    <div class="card border-0 shadow-sm" style="background: linear-gradient(135deg, #fef3c7 0%, #fde68a 100%);">
-                        <div class="card-body text-center p-3">
-                            <h5 class="fw-bold text-warning mb-1">@Model.SatisfactionPercentage%</h5>
-                            <small class="text-muted">Satisfacción</small>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <!-- Main Tools Row -->
-    <div class="row g-4 mb-5">
-        <!-- Patient Management -->
-        <div class="col-lg-6">
-            <div class="card border-0 shadow-lg h-100">
-                <div class="card-header bg-transparent border-0 py-3">
-                    <h5 class="mb-0 fw-bold text-dark">
-                        <i class="bi bi-people me-2" style="color: #134e4a;"></i>
-                        Gestión de Pacientes
-                    </h5>
-                </div>
-                <div class="card-body">
-                    <!-- Patient Search -->
-                    <div class="mb-4">
-                        <form id="doctorPatientSearchForm" class="d-flex">
-                            <input type="text" id="doctorPatientSearchInput" class="form-control me-2" placeholder="Buscar paciente por nombre, cédula...">
-                            <button type="submit" class="btn btn-primary">
-                                <i class="bi bi-search"></i>
-                            </button>
-                        </form>
-                    </div>
-                    
-                    <!-- Quick Actions */
-                    <div class="row g-2">
-                        <div class="col-6">
-                            <a asp-page="/UserDashboards/Doctor/Patients" class="btn btn-outline-success w-100 btn-sm">
-                                <i class="bi bi-person-lines-fill me-1"></i>
-                                Ver Pacientes
-                            </a>
-                        </div>
-                        <div class="col-6">
-                            <a asp-page="/UserDashboards/Doctor/PatientHistory" class="btn btn-outline-secondary w-100 btn-sm">
-                                <i class="bi bi-journal-medical me-1"></i>
-                                Historiales
-                            </a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-
         <!-- Medical Tools -->
         <div class="col-lg-6">
             <div class="card border-0 shadow-lg h-100">
-                <div class="card-header bg-transparent border-0 py-3">
-                    <h5 class="mb-0 fw-bold text-dark">
-                        <i class="bi bi-file-earmark-medical me-2 text-warning"></i>
+                <div class="card-header border-0 py-3" style="background: linear-gradient(135deg, #1e40af 0%, #3b82f6 100%);">
+                    <h5 class="mb-0 fw-bold text-white">
+                        <i class="bi bi-file-earmark-medical me-2 text-white"></i>
                         Herramientas Médicas
                     </h5>
                 </div>
                 <div class="card-body">
-                    <div class="d-grid gap-2">
-                        <a asp-page="/UserDashboards/Doctor/Prescriptions" class="btn btn-warning">
+                    <div class="d-grid gap-3">
+                        <a asp-page="/UserDashboards/Doctor/Prescriptions" class="btn btn-medical-primary">
                             <i class="bi bi-prescription2 me-2"></i>
                             Gestionar Prescripciones (@Model.TotalPrescriptions)
                         </a>
-                        <div class="row g-2">
+                        <div class="row g-3">
                             <div class="col-6">
-                                <a asp-page="/UserDashboards/Doctor/MyRatings" class="btn btn-outline-info w-100 btn-sm">
-                                    <i class="bi bi-star me-1"></i>
+                                <a asp-page="/UserDashboards/Doctor/Patients" class="btn btn-medical-secondary w-100">
+                                    <i class="bi bi-person-lines-fill me-2"></i>
+                                    Ver Pacientes
+                                </a>
+                            </div>
+                            <div class="col-6">
+                                <a asp-page="/UserDashboards/Doctor/PatientHistory" class="btn btn-medical-secondary w-100">
+                                    <i class="bi bi-journal-medical me-2"></i>
+                                    Historiales
+                                </a>
+                            </div>
+                        </div>
+                        <div class="row g-3">
+                            <div class="col-6">
+                                <a asp-page="/UserDashboards/Doctor/MyRatings" class="btn btn-medical-secondary w-100">
+                                    <i class="bi bi-star me-2"></i>
                                     Calificaciones
                                 </a>
                             </div>
                             <div class="col-6">
-                                <a asp-area="Identity" asp-page="/Account/Manage/Index" class="btn btn-outline-dark w-100 btn-sm">
-                                    <i class="bi bi-gear me-1"></i>
+                                <a asp-area="Identity" asp-page="/Account/Manage/Index" class="btn btn-medical-secondary w-100">
+                                    <i class="bi bi-gear me-2"></i>
                                     Mi Perfil
                                 </a>
                             </div>
@@ -170,116 +89,134 @@
                 </div>
             </div>
         </div>
-    </div>
 
-    <!-- Recent Prescriptions & Performance -->
-    <div class="row g-4 mb-4">
-        <div class="col-lg-8">
-            <div class="card border-0 shadow-lg">
-                <div class="card-header bg-transparent border-0 py-3">
-                    <div class="d-flex justify-content-between align-items-center">
-                        <h5 class="mb-0 fw-bold text-dark">
-                            <i class="bi bi-clock-history me-2" style="color: #134e4a;"></i>
-                            Actividad Reciente
-                        </h5>
-                        <small class="text-muted">Últimas 24 horas</small>
-                    </div>
-                </div>
-                <div class="card-body">
-                    @if (Model.RecentPrescriptions != null && Model.RecentPrescriptions.Any())
-                    {
-                        <div class="table-responsive">
-                            <table class="table table-sm table-borderless">
-                                <tbody>
-                                    @foreach (var prescription in Model.RecentPrescriptions.Take(5))
-                                    {
-                                        <tr>
-                                            <td class="py-2">
-                                                <div class="d-flex align-items-center">
-                                                    <div class="bg-primary bg-opacity-10 rounded-circle me-3 d-flex align-items-center justify-content-center" style="width: 35px; height: 35px;">
-                                                        <i class="bi bi-prescription2 text-primary"></i>
-                                                    </div>
-                                                    <div>
-                                                        <strong class="d-block">@prescription.Medication?.Name</strong>
-                                                        <small class="text-muted">@prescription.Patient?.FullName</small>
-                                                    </div>
-                                                </div>
-                                            </td>
-                                            <td class="py-2 text-end">
-                                                <span class="badge bg-success">@prescription.Dosage</span>
-                                            </td>
-                                        </tr>
-                                    }
-                                </tbody>
-                            </table>
-                        </div>
-                    }
-                    else
-                    {
-                        <div class="text-center py-3">
-                            <i class="bi bi-prescription2 fs-3 text-muted"></i>
-                            <p class="text-muted mt-2">No hay prescripciones recientes</p>
-                        </div>
-                    }
-                </div>
-            </div>
-        </div>
-
-        <div class="col-lg-4">
+        <!-- Performance -->
+        <div class="col-lg-6">
             <div class="card border-0 shadow-lg h-100">
-                <div class="card-header bg-transparent border-0 py-3">
-                    <h6 class="mb-0 fw-bold text-dark">
-                        <i class="bi bi-graph-up me-2 text-success"></i>
+                <div class="card-header border-0 py-3" style="background: linear-gradient(135deg, #059669 0%, #10b981 100%);">
+                    <h5 class="mb-0 fw-bold text-white">
+                        <i class="bi bi-graph-up me-2 text-white"></i>
                         Rendimiento
-                    </h6>
+                    </h5>
                 </div>
                 <div class="card-body">
-                    <div class="mb-3">
-                        <div class="d-flex justify-content-between mb-1">
-                            <small class="text-muted">Citas Completadas</small>
-                            <small class="fw-bold">95%</small>
+                    <div class="row g-3 mb-4">
+                        <div class="col-4">
+                            <div class="stat-card stat-card-primary">
+                                <div class="stat-icon">
+                                    <i class="bi bi-calendar-day"></i>
+                                </div>
+                                <div class="stat-content">
+                                    <h3 class="stat-number" id="todayAppointmentsStat">@Model.TodayAppointments</h3>
+                                    <p class="stat-label">Citas Hoy</p>
+                                </div>
+                            </div>
                         </div>
-                        <div class="progress" style="height: 6px;">
-                            <div class="progress-bar" style="width: 95%; background: #134e4a;"></div>
+                        <div class="col-4">
+                            <div class="stat-card stat-card-success">
+                                <div class="stat-icon">
+                                    <i class="bi bi-check-circle"></i>
+                                </div>
+                                <div class="stat-content">
+                                    <h3 class="stat-number" id="confirmedAppointmentsStat">@Model.ConfirmedAppointments</h3>
+                                    <p class="stat-label">Confirmadas</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-4">
+                            <div class="stat-card stat-card-warning">
+                                <div class="stat-icon">
+                                    <i class="bi bi-clipboard-check"></i>
+                                </div>
+                                <div class="stat-content">
+                                    <h3 class="stat-number" id="completedAppointmentsStat">0</h3>
+                                    <p class="stat-label">Completadas</p>
+                                </div>
+                            </div>
                         </div>
                     </div>
                     
-                    <div class="mb-3">
-                        <div class="d-flex justify-content-between mb-1">
-                            <small class="text-muted">Satisfacción Pacientes</small>
-                            <small class="fw-bold">@Model.SatisfactionPercentage%</small>
+                    <div class="satisfaction-section">
+                        <div class="satisfaction-card">
+                            <h6 class="satisfaction-title">Satisfacción de Pacientes</h6>
+                            <div class="satisfaction-stars" id="satisfactionStars">
+                                <i class="bi bi-star star-rating"></i>
+                                <i class="bi bi-star star-rating"></i>
+                                <i class="bi bi-star star-rating"></i>
+                                <i class="bi bi-star star-rating"></i>
+                                <i class="bi bi-star star-rating"></i>
+                            </div>
+                            <p class="satisfaction-text" id="satisfactionText">0% de satisfacción</p>
                         </div>
-                        <div class="progress" style="height: 6px;">
-                            <div class="progress-bar bg-warning" style="width: @Model.SatisfactionPercentage%;"></div>
-                        </div>
-                    </div>
-                    
-                    <div class="text-center mt-3">
-                        <span class="badge bg-success">⭐ Doctor Destacado</span>
                     </div>
                 </div>
             </div>
         </div>
     </div>
 
-    <!-- Upcoming Appointments -->
+    <!-- Patient Search Section -->
+    <div class="row g-4 mb-5">
+        <div class="col-12">
+            <div class="card border-0 shadow-lg">
+                <div class="card-header border-0 py-3" style="background: linear-gradient(135deg, #7c3aed 0%, #a855f7 100%);">
+                    <h5 class="mb-0 fw-bold text-white">
+                        <i class="bi bi-search me-2 text-white"></i>
+                        Buscar Paciente
+                    </h5>
+                </div>
+                <div class="card-body">
+                    <form id="doctorPatientSearchForm" class="d-flex">
+                        <input type="text" id="doctorPatientSearchInput" class="form-control me-2" placeholder="Buscar paciente por cédula...">
+                        <button type="submit" class="btn btn-primary">
+                            <i class="bi bi-search"></i> Buscar
+                        </button>
+                    </form>
+                    <div id="searchResults" class="mt-3"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Next Appointment Section -->
+    <div class="row g-4 mb-5">
+        <div class="col-12">
+            <div class="card border-0 shadow-lg">
+                <div class="card-header border-0 py-3" style="background: linear-gradient(135deg, #dc2626 0%, #ef4444 100%);">
+                    <h5 class="mb-0 fw-bold text-white">
+                        <i class="bi bi-calendar-event me-2 text-white"></i>
+                        Próxima Cita
+                    </h5>
+                </div>
+                <div class="card-body">
+                    <div id="nextAppointment">
+                        <div class="text-center py-3">
+                            <i class="bi bi-clock fs-3 text-muted"></i>
+                            <p class="text-muted mt-2">Cargando próxima cita...</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- All Appointments Section -->
     <div class="row">
         <div class="col-12">
-            <div class="card border-0 shadow-sm">
-                <div class="card-header bg-transparent border-0 py-3">
+            <div class="card border-0 shadow-lg">
+                <div class="card-header border-0 py-3" style="background: linear-gradient(135deg, #0891b2 0%, #06b6d4 100%);">
                     <div class="d-flex justify-content-between align-items-center">
-                        <h5 class="mb-0 fw-bold text-dark">
-                            <i class="bi bi-calendar-event me-2" style="color: #1e40af;"></i>
-                            Próximas Citas
+                        <h5 class="mb-0 fw-bold text-white">
+                            <i class="bi bi-calendar-check me-2 text-white"></i>
+                            Todas las Citas
                         </h5>
-                        <a asp-page="/UserDashboards/Doctor/Agenda" class="btn btn-sm btn-outline-primary">Ver Agenda</a>
+                        <a asp-page="/UserDashboards/Doctor/Agenda" class="btn btn-sm btn-outline-light">Ver Agenda Completa</a>
                     </div>
                 </div>
                 <div class="card-body">
-                    <div id="upcomingAppointmentsList">
+                    <div id="allAppointmentsList">
                         <div class="text-center py-4">
                             <i class="bi bi-calendar-check fs-1 text-muted"></i>
-                            <p class="text-muted mt-2">Cargando próximas citas...</p>
+                            <p class="text-muted mt-2">Cargando citas...</p>
                         </div>
                     </div>
                 </div>
@@ -319,15 +256,198 @@
     border-radius: 10px;
 }
 
-/* Table styling */
-.table-borderless td {
-    border: none;
+/* Appointment card styling */
+.appointment-item {
+    border-left: 4px solid #007bff;
+    background: #f8f9fa;
+    border-radius: 8px;
+    margin-bottom: 15px;
+    transition: all 0.3s ease;
 }
 
-/* Badge styling */
-.badge {
-    font-size: 0.75rem;
-    padding: 0.4rem 0.6rem;
+.appointment-item:hover {
+    transform: translateX(5px);
+    box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+}
+
+.appointment-time {
+    color: #007bff;
+    font-weight: bold;
+    font-size: 1.1rem;
+}
+
+.patient-name {
+    color: #333;
+    font-weight: 500;
+    margin-top: 5px;
+}
+
+/* Search results styling */
+.search-result-item {
+    padding: 10px;
+    border: 1px solid #dee2e6;
+    border-radius: 8px;
+    margin-bottom: 10px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.search-result-item:hover {
+    background-color: #f8f9fa;
+    border-color: #007bff;
+}
+
+/* Medical Buttons */
+.btn-medical-primary {
+    background: linear-gradient(135deg, #dc2626 0%, #ef4444 100%);
+    border: none;
+    color: white;
+    padding: 12px 20px;
+    border-radius: 10px;
+    font-weight: 600;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 15px rgba(220, 38, 38, 0.3);
+}
+
+.btn-medical-primary:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 25px rgba(220, 38, 38, 0.4);
+    color: white;
+}
+
+.btn-medical-secondary {
+    background: linear-gradient(135deg, #1e40af 0%, #3b82f6 100%);
+    border: none;
+    color: white;
+    padding: 10px 16px;
+    border-radius: 8px;
+    font-weight: 500;
+    transition: all 0.3s ease;
+    font-size: 0.9rem;
+    box-shadow: 0 3px 10px rgba(30, 64, 175, 0.3);
+}
+
+.btn-medical-secondary:hover {
+    transform: translateY(-1px);
+    box-shadow: 0 6px 20px rgba(30, 64, 175, 0.4);
+    color: white;
+}
+
+/* Stat Cards */
+.stat-card {
+    background: white;
+    border-radius: 15px;
+    padding: 20px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+    transition: all 0.3s ease;
+    border-left: 5px solid;
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+.stat-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
+}
+
+.stat-card-primary {
+    border-left-color: #1e40af;
+}
+
+.stat-card-success {
+    border-left-color: #059669;
+}
+
+.stat-card-warning {
+    border-left-color: #d97706;
+}
+
+.stat-icon {
+    width: 50px;
+    height: 50px;
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.5rem;
+    color: white;
+}
+
+.stat-card-primary .stat-icon {
+    background: linear-gradient(135deg, #1e40af 0%, #3b82f6 100%);
+}
+
+.stat-card-success .stat-icon {
+    background: linear-gradient(135deg, #059669 0%, #10b981 100%);
+}
+
+.stat-card-warning .stat-icon {
+    background: linear-gradient(135deg, #d97706 0%, #f59e0b 100%);
+}
+
+.stat-content {
+    flex: 1;
+}
+
+.stat-number {
+    font-size: 2rem;
+    font-weight: bold;
+    margin: 0;
+    color: #1f2937;
+}
+
+.stat-label {
+    margin: 0;
+    color: #6b7280;
+    font-size: 0.9rem;
+    font-weight: 500;
+}
+
+/* Satisfaction Section */
+.satisfaction-section {
+    background: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%);
+    border-radius: 15px;
+    padding: 25px;
+    text-align: center;
+    border: 2px solid #e2e8f0;
+}
+
+.satisfaction-card {
+    background: white;
+    border-radius: 12px;
+    padding: 20px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
+}
+
+.satisfaction-title {
+    color: #374151;
+    font-weight: 600;
+    margin-bottom: 15px;
+    font-size: 1rem;
+}
+
+.satisfaction-stars {
+    margin-bottom: 10px;
+}
+
+.star-rating {
+    font-size: 1.8rem;
+    margin: 0 3px;
+    color: #d1d5db;
+    transition: all 0.3s ease;
+}
+
+.star-rating.filled {
+    color: #fbbf24;
+    text-shadow: 0 2px 4px rgba(251, 191, 36, 0.3);
+}
+
+.satisfaction-text {
+    color: #6b7280;
+    font-size: 0.9rem;
+    font-weight: 500;
+    margin: 0;
 }
 </style>
 
@@ -340,17 +460,16 @@
         });
 
         function initializeDoctorDashboard() {
-            // Patient search functionality
+            // Patient search functionality by cedula only
             const searchForm = document.getElementById('doctorPatientSearchForm');
             const searchInput = document.getElementById('doctorPatientSearchInput');
 
             if (searchForm) {
                 searchForm.addEventListener('submit', function(e) {
                     e.preventDefault();
-                    const searchTerm = searchInput.value.trim();
-                    if (searchTerm) {
-                        // Redirect to patients page with search term
-                        window.location.href = `/UserDashboards/Doctor/Patients?search=${encodeURIComponent(searchTerm)}`;
+                    const cedula = searchInput.value.trim();
+                    if (cedula) {
+                        searchPatientByCedula(cedula);
                     }
                 });
             }
@@ -363,83 +482,280 @@
                 }
             });
         }
-        
-        function loadDoctorDashboardData() {
-            // Simulate loading doctor data
-            setTimeout(function() {
-                // Update today's schedule
-                document.getElementById('todaySchedule').innerHTML = `
-                    <div class="row g-2">
-                        <div class="col-md-6">
-                            <div class="d-flex align-items-center p-2 bg-white rounded">
-                                <div class="me-2">
-                                    <small class="text-primary fw-bold">10:00</small>
+
+        async function searchPatientByCedula(cedula) {
+            const resultsDiv = document.getElementById('searchResults');
+            resultsDiv.innerHTML = '<div class="text-center"><i class="bi bi-hourglass-split"></i> Buscando...</div>';
+
+            try {
+                const response = await fetch(`/api/doctor/search-patients-by-cedula?cedula=${encodeURIComponent(cedula)}`);
+                const data = await response.json();
+
+                if (response.ok && data.length > 0) {
+                    resultsDiv.innerHTML = data.map(patient => `
+                        <div class="search-result-item" onclick="viewPatientDetails(${patient.id})">
+                            <div class="d-flex justify-content-between align-items-center">
+                                <div>
+                                    <strong>${patient.fullName}</strong>
+                                    <br>
+                                    <small class="text-muted">Cédula: ${patient.documentId}</small>
                                 </div>
                                 <div>
-                                    <small class="fw-bold d-block">Juan Pérez</small>
-                                    <small class="text-muted">Consulta General</small>
+                                    <small class="text-muted">${patient.phoneNumber || 'Sin teléfono'}</small>
                                 </div>
                             </div>
                         </div>
-                        <div class="col-md-6">
-                            <div class="d-flex align-items-center p-2 bg-white rounded">
-                                <div class="me-2">
-                                    <small class="text-warning fw-bold">14:30</small>
-                                </div>
-                                <div>
-                                    <small class="fw-bold d-block">Ana García</small>
-                                    <small class="text-muted">Control</small>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                `;
+                    `).join('');
+                } else {
+                    resultsDiv.innerHTML = '<div class="text-center text-muted">No se encontraron pacientes con esa cédula</div>';
+                }
+            } catch (error) {
+                console.error('Error searching patient:', error);
+                resultsDiv.innerHTML = '<div class="text-center text-danger">Error al buscar paciente</div>';
+            }
+        }
+
+        function viewPatientDetails(patientId) {
+            window.location.href = `/UserDashboards/Doctor/PatientDetails/${patientId}`;
+        }
+
+        async function loadDoctorDashboardData() {
+            try {
+                // Test authentication first
+                await testAuthentication();
                 
-                // Update upcoming appointments
-                document.getElementById('upcomingAppointmentsList').innerHTML = `
-                    <div class="row g-3">
-                        <div class="col-md-4">
-                            <div class="d-flex align-items-center p-3 bg-light rounded">
-                                <div class="me-3">
-                                    <div class="bg-primary bg-opacity-10 rounded-circle d-flex align-items-center justify-content-center" style="width: 40px; height: 40px;">
-                                        <i class="bi bi-calendar-event text-primary"></i>
-                                    </div>
+                // Debug data to see what's in the database
+                await debugData();
+                
+                // Load next appointment
+                await loadNextAppointment();
+                
+                // Load all appointments
+                await loadAllAppointments();
+                
+                // Update dashboard statistics
+                await updateDashboardStats();
+            } catch (error) {
+                console.error('Error loading dashboard data:', error);
+            }
+        }
+
+        // Debug data function
+        async function debugData() {
+            try {
+                console.log('=== INICIANDO DEBUG DE DATOS ===');
+                const response = await fetch('/api/doctor/debug-data');
+                const data = await response.json();
+                console.log('Debug data:', data);
+                
+                // Show detailed information
+                if (data.allAppointments) {
+                    console.log('=== TODAS LAS CITAS EN LA BASE DE DATOS ===');
+                    console.log(`Total de citas encontradas: ${data.allAppointments.length}`);
+                    data.allAppointments.forEach((apt, index) => {
+                        console.log(`Cita ${index + 1}:`, {
+                            id: apt.id,
+                            fecha: apt.appointmentDateTime,
+                            confirmada: apt.isConfirmed,
+                            completada: apt.isCompleted,
+                            cancelada: apt.isCancelled,
+                            paciente: apt.patientName,
+                            esFutura: apt.isFutureAppointment,
+                            diasDiferencia: apt.daysDifference
+                        });
+                    });
+                }
+                
+                if (data.futureAppointments && data.futureAppointments.length > 0) {
+                    console.log('=== CITAS FUTURAS (que deberían aparecer) ===');
+                    data.futureAppointments.forEach((apt, index) => {
+                        console.log(`Futura ${index + 1}:`, apt);
+                    });
+                } else {
+                    console.log('❌ NO HAY CITAS FUTURAS - Por eso no aparecen en el dashboard');
+                }
+                
+                if (data.confirmedAppointments && data.confirmedAppointments.length > 0) {
+                    console.log('=== CITAS CONFIRMADAS (que deberían aparecer) ===');
+                    data.confirmedAppointments.forEach((apt, index) => {
+                        console.log(`Confirmada ${index + 1}:`, apt);
+                    });
+                } else {
+                    console.log('❌ NO HAY CITAS CONFIRMADAS - Por eso no aparecen las estadísticas');
+                }
+
+                console.log('=== INFORMACIÓN DEL DOCTOR ===');
+                console.log('Doctor ID:', data.doctorId);
+                console.log('Doctor Name:', data.doctorName);
+                console.log('Hora actual:', data.currentTime);
+                
+                console.log('=== RESUMEN ===');
+                console.log(`Total citas: ${data.totalAppointments}`);
+                console.log(`Citas futuras: ${data.futureAppointmentsCount}`);
+                console.log(`Citas confirmadas: ${data.confirmedAppointmentsCount}`);
+                
+            } catch (error) {
+                console.error('Error en debug data:', error);
+            }
+        }
+
+        async function testAuthentication() {
+            try {
+                console.log('Testing authentication...');
+                const response = await fetch('/api/doctor/test-auth');
+                const data = await response.json();
+                console.log('Auth test result:', data);
+                
+                if (!response.ok || !data.authenticated || !data.doctorFound) {
+                    console.warn('Authentication issue detected:', data);
+                }
+            } catch (error) {
+                console.error('Error testing authentication:', error);
+            }
+        }
+
+        async function loadNextAppointment() {
+            try {
+                console.log('Loading next appointment...');
+                const response = await fetch('/api/doctor/next-appointment');
+                const data = await response.json();
+                console.log('Next appointment response:', response.status, data);
+
+                const nextAppointmentDiv = document.getElementById('nextAppointment');
+
+                if (response.ok && data.appointment) {
+                    const appointment = data.appointment;
+                    nextAppointmentDiv.innerHTML = `
+                        <div class="appointment-item p-3">
+                            <div class="row align-items-center">
+                                <div class="col-md-3">
+                                    <div class="appointment-time">${appointment.time}</div>
+                                    <small class="text-muted">${appointment.date}</small>
                                 </div>
-                                <div>
-                                    <h6 class="mb-1 fw-bold">Carlos Ruiz</h6>
-                                    <small class="text-muted">Mañana 9:00 AM</small>
+                                <div class="col-md-6">
+                                    <div class="patient-name">${appointment.patientName}</div>
+                                    <small class="text-muted">Cédula: ${appointment.patientDocument}</small>
+                                </div>
+                                <div class="col-md-3 text-end">
+                                    <span class="badge ${appointment.statusClass}">${appointment.status}</span>
                                 </div>
                             </div>
                         </div>
-                        <div class="col-md-4">
-                            <div class="d-flex align-items-center p-3 bg-light rounded">
-                                <div class="me-3">
-                                    <div class="bg-success bg-opacity-10 rounded-circle d-flex align-items-center justify-content-center" style="width: 40px; height: 40px;">
-                                        <i class="bi bi-heart-pulse text-success"></i>
-                                    </div>
-                                </div>
-                                <div>
-                                    <h6 class="mb-1 fw-bold">María López</h6>
-                                    <small class="text-muted">Mañana 11:30 AM</small>
-                                </div>
-                            </div>
+                    `;
+                } else {
+                    console.log('No next appointment found');
+                    nextAppointmentDiv.innerHTML = `
+                        <div class="text-center py-4">
+                            <i class="bi bi-calendar-x fs-1 text-muted"></i>
+                            <p class="text-muted mt-2 mb-0">No hay próximas citas programadas</p>
                         </div>
-                        <div class="col-md-4">
-                            <div class="d-flex align-items-center p-3 bg-light rounded">
-                                <div class="me-3">
-                                    <div class="bg-warning bg-opacity-10 rounded-circle d-flex align-items-center justify-content-center" style="width: 40px; height: 40px;">
-                                        <i class="bi bi-clipboard-check text-warning"></i>
-                                    </div>
-                                </div>
-                                <div>
-                                    <h6 class="mb-1 fw-bold">Luis Martín</h6>
-                                    <small class="text-muted">Mañana 3:00 PM</small>
-                                </div>
-                            </div>
-                        </div>
+                    `;
+                }
+            } catch (error) {
+                console.error('Error loading next appointment:', error);
+                document.getElementById('nextAppointment').innerHTML = `
+                    <div class="text-center py-4">
+                        <i class="bi bi-exclamation-triangle fs-1 text-warning"></i>
+                        <p class="text-muted mt-2 mb-0">Error al cargar próxima cita: ${error.message}</p>
                     </div>
                 `;
-            }, 1000);
+            }
+        }
+
+        async function loadAllAppointments() {
+            try {
+                console.log('Loading all appointments...');
+                const response = await fetch('/api/doctor/upcoming-appointments');
+                const data = await response.json();
+                console.log('All appointments response:', response.status, data);
+
+                const appointmentsListDiv = document.getElementById('allAppointmentsList');
+
+                if (response.ok && data.appointments && data.appointments.length > 0) {
+                    appointmentsListDiv.innerHTML = data.appointments.map(appointment => `
+                        <div class="appointment-item p-3">
+                            <div class="row align-items-center">
+                                <div class="col-md-2">
+                                    <div class="appointment-time">${appointment.time}</div>
+                                    <small class="text-muted">${appointment.date}</small>
+                                </div>
+                                <div class="col-md-4">
+                                    <div class="patient-name">${appointment.patientName}</div>
+                                    <small class="text-muted">Cédula: ${appointment.patientDocument}</small>
+                                </div>
+                                <div class="col-md-3">
+                                    <small class="text-muted">${appointment.notes || 'Sin notas'}</small>
+                                </div>
+                                <div class="col-md-2 text-end">
+                                    <span class="badge ${appointment.statusClass}">${appointment.status}</span>
+                                </div>
+                                <div class="col-md-1 text-end">
+                                    <button class="btn btn-sm btn-outline-primary" onclick="viewAppointmentDetails(${appointment.id})">
+                                        <i class="bi bi-eye"></i>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    `).join('');
+                } else {
+                    console.log('No appointments found');
+                    appointmentsListDiv.innerHTML = `
+                        <div class="text-center py-4">
+                            <i class="bi bi-calendar-x fs-1 text-muted"></i>
+                            <p class="text-muted mt-2 mb-0">No hay citas programadas</p>
+                        </div>
+                    `;
+                }
+            } catch (error) {
+                console.error('Error loading appointments:', error);
+                document.getElementById('allAppointmentsList').innerHTML = `
+                    <div class="text-center py-4">
+                        <i class="bi bi-exclamation-triangle fs-1 text-warning"></i>
+                        <p class="text-muted mt-2 mb-0">Error al cargar citas: ${error.message}</p>
+                    </div>
+                `;
+            }
+        }
+
+        async function updateDashboardStats() {
+            try {
+                const response = await fetch('/api/doctor/dashboard-stats');
+                const data = await response.json();
+
+                if (response.ok) {
+                    console.log('Dashboard stats loaded:', data);
+                    
+                    // Update statistics
+                    document.getElementById('todayAppointmentsStat').textContent = data.todayAppointments || 0;
+                    document.getElementById('confirmedAppointmentsStat').textContent = data.confirmedAppointments || 0;
+                    document.getElementById('completedAppointmentsStat').textContent = data.completedAppointments || 0;
+                    
+                    // Update satisfaction stars (each star = 20%)
+                    const satisfactionPercentage = data.satisfactionPercentage || 0;
+                    updateSatisfactionStars(satisfactionPercentage);
+                }
+            } catch (error) {
+                console.error('Error updating dashboard stats:', error);
+            }
+        }
+
+        function updateSatisfactionStars(percentage) {
+            const stars = document.querySelectorAll('#satisfactionStars i');
+            const filledStars = Math.floor(percentage / 20); // Each star = 20%
+            
+            stars.forEach((star, index) => {
+                if (index < filledStars) {
+                    star.className = 'bi bi-star-fill star-rating filled';
+                } else {
+                    star.className = 'bi bi-star star-rating';
+                }
+            });
+            
+            document.getElementById('satisfactionText').textContent = `${percentage}% de satisfacción`;
+        }
+
+        function viewAppointmentDetails(appointmentId) {
+            window.location.href = `/Appointments/Details/${appointmentId}`;
         }
     </script>
 } 

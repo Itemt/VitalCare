@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "USSoU0RHdMDpKRUgrOKVDTuggjvLNanDPVaM4slJEME=",
+  "Hash": "QbLfCDHav1i+foeyOgpeztciod1+hWvIVWNnlh9mAI4=",
   "Source": "CitasEPS",
   "BasePath": "_content/CitasEPS",
   "Mode": "Default",
@@ -1921,8 +1921,8 @@
       "RelatedAsset": "",
       "AssetTraitName": "",
       "AssetTraitValue": "",
-      "Fingerprint": "9prt4is121",
-      "Integrity": "fT3lftqMnZRx7+P6eun4nF4eeDwUOJlwCjvkCV3Y7O8=",
+      "Fingerprint": "dv56j79f2j",
+      "Integrity": "x91Oot6DI6jjKhuwRsE34w8dvoD2zyEUEmVscgCHYW4=",
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\js\\notifications.js"
@@ -2026,8 +2026,8 @@
       "RelatedAsset": "",
       "AssetTraitName": "",
       "AssetTraitValue": "",
-      "Fingerprint": "rf4l7q2t6i",
-      "Integrity": "SYdPwDzvdKSDyM9uiSZlFT5jKPmJKTtK8S9Ezsyyrlk=",
+      "Fingerprint": "8zou3tu4e4",
+      "Integrity": "9DCSKXg5MMsWSvEVcLKeEQZ6Z4fWRXykyBl1ELQ9Qd8=",
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\js\\site.flatpickr.js"
@@ -7954,7 +7954,7 @@
       ]
     },
     {
-      "Route": "js/notifications.9prt4is121.js",
+      "Route": "js/notifications.dv56j79f2j.js",
       "AssetFile": "C:\\Users\\CristianPC\\Desktop\\vitalcare\\wwwroot\\js\\notifications.js",
       "Selectors": [],
       "ResponseHeaders": [
@@ -7964,7 +7964,7 @@
         },
         {
           "Name": "Content-Length",
-          "Value": "10713"
+          "Value": "10496"
         },
         {
           "Name": "Content-Type",
@@ -7972,11 +7972,11 @@
         },
         {
           "Name": "ETag",
-          "Value": "\"fT3lftqMnZRx7+P6eun4nF4eeDwUOJlwCjvkCV3Y7O8=\""
+          "Value": "\"x91Oot6DI6jjKhuwRsE34w8dvoD2zyEUEmVscgCHYW4=\""
         },
         {
           "Name": "Last-Modified",
-          "Value": "Mon, 09 Jun 2025 18:02:22 GMT"
+          "Value": "Tue, 10 Jun 2025 08:41:03 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -7986,7 +7986,7 @@
       "EndpointProperties": [
         {
           "Name": "fingerprint",
-          "Value": "9prt4is121"
+          "Value": "dv56j79f2j"
         },
         {
           "Name": "label",
@@ -7994,7 +7994,7 @@
         },
         {
           "Name": "integrity",
-          "Value": "sha256-fT3lftqMnZRx7+P6eun4nF4eeDwUOJlwCjvkCV3Y7O8="
+          "Value": "sha256-x91Oot6DI6jjKhuwRsE34w8dvoD2zyEUEmVscgCHYW4="
         }
       ]
     },
@@ -8009,7 +8009,7 @@
         },
         {
           "Name": "Content-Length",
-          "Value": "10713"
+          "Value": "10496"
         },
         {
           "Name": "Content-Type",
@@ -8017,11 +8017,11 @@
         },
         {
           "Name": "ETag",
-          "Value": "\"fT3lftqMnZRx7+P6eun4nF4eeDwUOJlwCjvkCV3Y7O8=\""
+          "Value": "\"x91Oot6DI6jjKhuwRsE34w8dvoD2zyEUEmVscgCHYW4=\""
         },
         {
           "Name": "Last-Modified",
-          "Value": "Mon, 09 Jun 2025 18:02:22 GMT"
+          "Value": "Tue, 10 Jun 2025 08:41:03 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -8031,7 +8031,7 @@
       "EndpointProperties": [
         {
           "Name": "integrity",
-          "Value": "sha256-fT3lftqMnZRx7+P6eun4nF4eeDwUOJlwCjvkCV3Y7O8="
+          "Value": "sha256-x91Oot6DI6jjKhuwRsE34w8dvoD2zyEUEmVscgCHYW4="
         }
       ]
     },
@@ -8364,6 +8364,51 @@
       ]
     },
     {
+      "Route": "js/site.flatpickr.8zou3tu4e4.js",
+      "AssetFile": "C:\\Users\\CristianPC\\Desktop\\vitalcare\\wwwroot\\js\\site.flatpickr.js",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "1003"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "text/javascript"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"9DCSKXg5MMsWSvEVcLKeEQZ6Z4fWRXykyBl1ELQ9Qd8=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Tue, 10 Jun 2025 08:12:42 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=31536000, immutable"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "fingerprint",
+          "Value": "8zou3tu4e4"
+        },
+        {
+          "Name": "label",
+          "Value": "js/site.flatpickr.js"
+        },
+        {
+          "Name": "integrity",
+          "Value": "sha256-9DCSKXg5MMsWSvEVcLKeEQZ6Z4fWRXykyBl1ELQ9Qd8="
+        }
+      ]
+    },
+    {
       "Route": "js/site.flatpickr.js",
       "AssetFile": "C:\\Users\\CristianPC\\Desktop\\vitalcare\\wwwroot\\js\\site.flatpickr.js",
       "Selectors": [],
@@ -8374,7 +8419,7 @@
         },
         {
           "Name": "Content-Length",
-          "Value": "2139"
+          "Value": "1003"
         },
         {
           "Name": "Content-Type",
@@ -8382,11 +8427,11 @@
         },
         {
           "Name": "ETag",
-          "Value": "\"SYdPwDzvdKSDyM9uiSZlFT5jKPmJKTtK8S9Ezsyyrlk=\""
+          "Value": "\"9DCSKXg5MMsWSvEVcLKeEQZ6Z4fWRXykyBl1ELQ9Qd8=\""
         },
         {
           "Name": "Last-Modified",
-          "Value": "Tue, 10 Jun 2025 08:03:38 GMT"
+          "Value": "Tue, 10 Jun 2025 08:12:42 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -8396,52 +8441,7 @@
       "EndpointProperties": [
         {
           "Name": "integrity",
-          "Value": "sha256-SYdPwDzvdKSDyM9uiSZlFT5jKPmJKTtK8S9Ezsyyrlk="
-        }
-      ]
-    },
-    {
-      "Route": "js/site.flatpickr.rf4l7q2t6i.js",
-      "AssetFile": "C:\\Users\\CristianPC\\Desktop\\vitalcare\\wwwroot\\js\\site.flatpickr.js",
-      "Selectors": [],
-      "ResponseHeaders": [
-        {
-          "Name": "Accept-Ranges",
-          "Value": "bytes"
-        },
-        {
-          "Name": "Content-Length",
-          "Value": "2139"
-        },
-        {
-          "Name": "Content-Type",
-          "Value": "text/javascript"
-        },
-        {
-          "Name": "ETag",
-          "Value": "\"SYdPwDzvdKSDyM9uiSZlFT5jKPmJKTtK8S9Ezsyyrlk=\""
-        },
-        {
-          "Name": "Last-Modified",
-          "Value": "Tue, 10 Jun 2025 08:03:38 GMT"
-        },
-        {
-          "Name": "Cache-Control",
-          "Value": "max-age=31536000, immutable"
-        }
-      ],
-      "EndpointProperties": [
-        {
-          "Name": "fingerprint",
-          "Value": "rf4l7q2t6i"
-        },
-        {
-          "Name": "label",
-          "Value": "js/site.flatpickr.js"
-        },
-        {
-          "Name": "integrity",
-          "Value": "sha256-SYdPwDzvdKSDyM9uiSZlFT5jKPmJKTtK8S9Ezsyyrlk="
+          "Value": "sha256-9DCSKXg5MMsWSvEVcLKeEQZ6Z4fWRXykyBl1ELQ9Qd8="
         }
       ]
     },

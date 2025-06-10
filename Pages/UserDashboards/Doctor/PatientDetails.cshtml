@@ -1,0 +1,117 @@
+@page "{patientId:int}"
+@model CitasEPS.Pages.UserDashboards.Doctor.PatientDetailsModel
+@{
+    ViewData["Title"] = "Detalles del Paciente";
+}
+
+<div class="container py-4">
+    <div class="row">
+        <div class="col-12">
+            <div class="d-flex justify-content-between align-items-center mb-4">
+                <h2><i class="bi bi-person-lines-fill me-2"></i>Detalles del Paciente</h2>
+                <a asp-page="Index" class="btn btn-outline-secondary">
+                    <i class="bi bi-arrow-left me-1"></i>Volver al Dashboard
+                </a>
+            </div>
+
+            @if (Model.Patient != null)
+            {
+                <div class="card border-0 shadow-lg">
+                    <div class="card-header bg-primary text-white">
+                        <h5 class="mb-0">
+                            <i class="bi bi-person-circle me-2"></i>
+                            @Model.Patient.FullName
+                        </h5>
+                    </div>
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col-md-6">
+                                <p><strong>Cédula:</strong> @Model.Patient.DocumentId</p>
+                                <p><strong>Teléfono:</strong> @(Model.Patient.PhoneNumber ?? "No especificado")</p>
+                                <p><strong>Email:</strong> @(Model.Patient.User?.Email ?? "No especificado")</p>
+                            </div>
+                            <div class="col-md-6">
+                                <p><strong>Fecha de Nacimiento:</strong> @Model.Patient.DateOfBirth.ToString("dd/MM/yyyy")</p>
+                                <p><strong>Género:</strong> @Model.Patient.Gender.ToString()</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="mt-4">
+                    <div class="card border-0 shadow-lg">
+                        <div class="card-header bg-transparent">
+                            <h5 class="mb-0">
+                                <i class="bi bi-calendar-check me-2"></i>
+                                Historial de Citas
+                            </h5>
+                        </div>
+                        <div class="card-body">
+                            @if (Model.PatientAppointments != null && Model.PatientAppointments.Any())
+                            {
+                                <div class="table-responsive">
+                                    <table class="table table-hover">
+                                        <thead>
+                                            <tr>
+                                                <th>Fecha</th>
+                                                <th>Estado</th>
+                                                <th>Notas</th>
+                                                <th>Acciones</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            @foreach (var appointment in Model.PatientAppointments)
+                                            {
+                                                <tr>
+                                                    <td>@appointment.AppointmentDateTime.ToString("dd/MM/yyyy HH:mm")</td>
+                                                    <td>
+                                                        @if (appointment.IsCancelled)
+                                                        {
+                                                            <span class="badge bg-danger">Cancelada</span>
+                                                        }
+                                                        else if (appointment.IsCompleted)
+                                                        {
+                                                            <span class="badge bg-success">Completada</span>
+                                                        }
+                                                        else if (appointment.IsConfirmed)
+                                                        {
+                                                            <span class="badge bg-info">Confirmada</span>
+                                                        }
+                                                        else
+                                                        {
+                                                            <span class="badge bg-primary">Programada</span>
+                                                        }
+                                                    </td>
+                                                    <td>@(appointment.Notes ?? "Sin notas")</td>
+                                                    <td>
+                                                        <a href="/Appointments/Details/@appointment.Id" class="btn btn-sm btn-outline-primary">
+                                                            <i class="bi bi-eye"></i>
+                                                        </a>
+                                                    </td>
+                                                </tr>
+                                            }
+                                        </tbody>
+                                    </table>
+                                </div>
+                            }
+                            else
+                            {
+                                <div class="text-center py-4">
+                                    <i class="bi bi-calendar-x fs-1 text-muted"></i>
+                                    <p class="text-muted mt-2">No hay citas registradas para este paciente</p>
+                                </div>
+                            }
+                        </div>
+                    </div>
+                </div>
+            }
+            else
+            {
+                <div class="alert alert-warning">
+                    <i class="bi bi-exclamation-triangle me-2"></i>
+                    Paciente no encontrado
+                </div>
+            }
+        </div>
+    </div>
+</div> 
