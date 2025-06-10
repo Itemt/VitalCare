@@ -2,11 +2,13 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.AspNetCore.Authorization;
 using CitasEPS.Models.Modules.Users;
 using CitasEPS.Data;
 
 namespace CitasEPS.Pages.Admin
 {
+    [Authorize(Roles = "Admin")]
     public class ConfirmEmailsModel : PageModel
     {
         private readonly UserManager<User> _userManager;
@@ -75,6 +77,74 @@ namespace CitasEPS.Pages.Admin
             {
                 _logger.LogError(ex, "Exception occurred while confirming email for user {UserId}", user.Id);
                 StatusMessage = $"❌ Error inesperado: {ex.Message}";
+            }
+
+            return RedirectToPage();
+        }
+
+        public async Task<IActionResult> OnPostConfirmAllAsync()
+        {
+            try
+            {
+                var unconfirmedUsers = await _context.Users
+                    .Where(u => !u.EmailConfirmed)
+                    .ToListAsync();
+
+                if (!unconfirmedUsers.Any())
+                {
+                    StatusMessage = "ℹ️ No hay usuarios con emails pendientes de confirmación.";
+                    return RedirectToPage();
+                }
+
+                int successCount = 0;
+                int errorCount = 0;
+                var errors = new List<string>();
+
+                foreach (var user in unconfirmedUsers)
+                {
+                    try
+                    {
+                        user.EmailConfirmed = true;
+                        var result = await _userManager.UpdateAsync(user);
+
+                        if (result.Succeeded)
+                        {
+                            successCount++;
+                            _logger.LogInformation("Admin bulk confirmed email for user {UserId} ({Email})", user.Id, user.Email);
+                        }
+                        else
+                        {
+                            errorCount++;
+                            var userErrors = string.Join(", ", result.Errors.Select(e => e.Description));
+                            errors.Add($"{user.Email}: {userErrors}");
+                            _logger.LogError("Failed to bulk confirm email for user {UserId}: {Errors}", user.Id, userErrors);
+                        }
+                    }
+                    catch (Exception ex)
+                    {
+                        errorCount++;
+                        errors.Add($"{user.Email}: {ex.Message}");
+                        _logger.LogError(ex, "Exception during bulk email confirmation for user {UserId}", user.Id);
+                    }
+                }
+
+                if (errorCount == 0)
+                {
+                    StatusMessage = $"✅ {successCount} emails confirmados exitosamente.";
+                }
+                else if (successCount > 0)
+                {
+                    StatusMessage = $"⚠️ {successCount} emails confirmados, {errorCount} errores: {string.Join("; ", errors.Take(3))}";
+                }
+                else
+                {
+                    StatusMessage = $"❌ Error confirmando todos los emails: {string.Join("; ", errors.Take(3))}";
+                }
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError(ex, "Exception occurred during bulk email confirmation");
+                StatusMessage = $"❌ Error inesperado durante confirmación masiva: {ex.Message}";
             }
 
             return RedirectToPage();

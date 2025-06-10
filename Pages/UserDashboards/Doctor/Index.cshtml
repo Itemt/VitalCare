@@ -15,308 +15,431 @@
     <link rel="stylesheet" href="~/css/modules/doctor/doctor-dashboard.css" />
 }
 
-<!-- Hero para Doctor con Imagen -->
-<div class="container-fluid text-center py-4 mb-4">
-    <div class="row justify-content-center align-items-center">
-        <div class="col-lg-6">
-            <div class="doctor-welcome-content">
-                <h2 class="welcome-title mb-3 text-dark">
-                    <i class="bi bi-clipboard-pulse me-2 text-primary"></i>
+<!-- Compact Hero Section for Doctor -->
+<div class="container-fluid bg-gradient-primary text-white text-center py-4 mb-4" style="background: linear-gradient(135deg, #1e3a8a 0%, #1e40af 50%, #1d4ed8 100%); border-radius: 0 0 1.5rem 1.5rem;">
+    <div class="container">
+        <div class="row justify-content-center align-items-center">
+            <div class="col-lg-8">
+                <h1 class="display-5 fw-bold mb-2">
+                    <i class="bi bi-clipboard-pulse me-2"></i>
                     @if (!string.IsNullOrEmpty(userFirstName))
                     {
-                        <span>Bienvenido Dr(a). <strong>@userFirstName</strong></span>
+                        <span>Bienvenido, Dr(a). <strong>@userFirstName</strong></span>
                     }
                     else
                     {
                         <span>Portal Médico</span>
                     }
-                </h2>
-                <p class="welcome-subtitle text-muted">Gestione sus citas médicas, historias clínicas y consulte la agenda del día en VitalCare IPS</p>
-            </div>
-        </div>
-        <div class="col-lg-6">
-            <div class="doctor-image-container">
-                <img src="~/images/doctor.png" alt="Portal Médico" class="img-fluid rounded-3 shadow-lg" style="max-height: 300px; width: auto;">
+                </h1>
+                <p class="lead mb-0 opacity-90">Gestión profesional de pacientes - VitalCare IPS</p>
             </div>
         </div>
     </div>
 </div>
 
-<!-- Main Doctor Dashboard Content -->
-<div class="container mt-5 py-2 doctor-dashboard">
-    <div id="doctorPanelDashboard" class="row justify-content-center">
-        <div class="col-lg-10 col-xl-9">
-            <div class="card shadow-lg modern-card-hover">
-                <div class="card-header bg-info text-white text-center text-shadow-custom">
-                    <h2 class="my-2"><i class="bi bi-clipboard-pulse"></i> Portal Médico</h2>
-                </div>
+<!-- Main Dashboard Content -->
+<div class="container py-4" style="background-color: white;">
+    
+    <!-- Today's Overview Row -->
+    <div class="row g-4 mb-5">
+        <!-- Today's Schedule -->
+        <div class="col-lg-8">
+            <div class="card border-0 shadow-lg" style="background: linear-gradient(135deg, #eff6ff 0%, #dbeafe 100%); border-left: 5px solid #1e40af !important;">
                 <div class="card-body p-4">
-                    @if (!string.IsNullOrEmpty(userFirstName))
-                    {
-                        <p class="lead text-center mb-4">Bienvenido Dr(a). <span class="fw-semibold">@userFirstName</span>. Acceda a su agenda y gestione pacientes.</p>
-                    } else {
-                        <p class="lead text-center mb-4">Acceda a su agenda y gestione pacientes.</p>
-                    }
-
-                    <!-- Quick Stats Row -->
-                    <div class="row g-3 mb-4 text-center">
-                        <div class="col-md-3">
-                            <div class="stat-card p-3 border border-info-subtle rounded bg-info-subtle modern-card-hover">
-                                <h5 class="stat-value mb-1 fs-2 fw-bold text-info text-shadow-custom">@Model.TodayAppointments</h5>
-                                <p class="stat-label mb-0 text-muted small text-uppercase">Citas Hoy</p>
-                            </div>
-                        </div>
-                        <div class="col-md-3">
-                            <div class="stat-card p-3 border border-info-subtle rounded bg-info-subtle modern-card-hover">
-                                <h5 class="stat-value mb-1 fs-2 fw-bold text-info text-shadow-custom">@Model.ConfirmedAppointments</h5>
-                                <p class="stat-label mb-0 text-muted small text-uppercase">Citas Confirmadas</p>
-                            </div>
-                        </div>
-                        <div class="col-md-3">
-                            <div class="stat-card p-3 border border-info-subtle rounded bg-info-subtle modern-card-hover">
-                                <h5 class="stat-value mb-1 fs-2 fw-bold text-info text-shadow-custom">@Model.TotalPrescriptions</h5>
-                                <p class="stat-label mb-0 text-muted small text-uppercase">Prescripciones</p>
-                            </div>
-                        </div>
-                        <div class="col-md-3">
-                            <div class="stat-card p-3 border border-info-subtle rounded bg-info-subtle modern-card-hover">
-                                <h5 class="stat-value mb-1 fs-2 fw-bold text-info text-shadow-custom">@Model.SatisfactionPercentage%</h5>
-                                <p class="stat-label mb-0 text-muted small text-uppercase">Satisfacción</p>
-                            </div>
+                    <div class="d-flex justify-content-between align-items-center mb-3">
+                        <h5 class="card-title text-dark fw-bold mb-0">
+                            <i class="bi bi-calendar-week me-2" style="color: #1e40af;"></i>
+                            Agenda de Hoy
+                        </h5>
+                        <a asp-page="/UserDashboards/Doctor/Agenda" class="btn btn-primary">
+                            <i class="bi bi-calendar-check me-1"></i>Ver Agenda Completa
+                        </a>
+                    </div>
+                    <div id="todaySchedule">
+                        <div class="text-center py-3">
+                            <i class="bi bi-clock fs-3 text-muted"></i>
+                            <p class="text-muted mt-2">Cargando agenda del día...</p>
                         </div>
                     </div>
-                    <!-- End Quick Stats Row -->
-
-                    <hr class="my-4">
-
-                    <h4 class="mb-3 text-center fw-normal text-info-emphasis">Acciones Principales</h4>
-                    <div class="row justify-content-center text-center g-4 mb-4">
-                        <div class="col-md-6 col-lg-4">
-                            <div class="card h-100 shadow-lg border-info action-card-hover feature-card-hover">
-                                <div class="card-body d-flex flex-column align-items-center p-4">
-                                    <div class="feature-icon-wrapper mb-3">
-                                        <i class="bi bi-calendar-week-fill fs-1 text-info feature-icon-main rotating-icon"></i>
-                                        <div class="feature-sparkles">
-                                            <span class="sparkle sparkle-1"></span>
-                                            <span class="sparkle sparkle-2"></span>
-                                            <span class="sparkle sparkle-3"></span>
-                                            <span class="sparkle sparkle-4"></span>
-                                        </div>
-                                    </div>
-                                    <h5 class="card-title">Mi Agenda</h5>
-                                    <p class="card-text flex-grow-1 small text-muted">Vea sus citas, detalles y añada prescripciones.</p>
-                                    <a asp-page="/UserDashboards/Doctor/Agenda" class="btn btn-info mt-auto w-100 fw-semibold"><i class="bi bi-arrow-right-circle me-1"></i> Ver Agenda</a>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-md-6 col-lg-4">
-                            <div class="card h-100 shadow-lg border-info action-card-hover feature-card-hover">
-                                <div class="card-body d-flex flex-column align-items-center p-4">
-                                    <div class="feature-icon-wrapper mb-3">
-                                        <i class="bi bi-people-fill fs-1 text-info feature-icon-main rotating-icon"></i>
-                                        <div class="feature-sparkles">
-                                            <span class="sparkle sparkle-1"></span>
-                                            <span class="sparkle sparkle-2"></span>
-                                            <span class="sparkle sparkle-3"></span>
-                                            <span class="sparkle sparkle-4"></span>
-                                        </div>
-                                    </div>
-                                    <h5 class="card-title">Mis Pacientes</h5>
-                                    <p class="card-text flex-grow-1 small text-muted">Consulte pacientes atendidos y vea su historial.</p>
-                                    <a asp-page="/UserDashboards/Doctor/Patients" class="btn btn-info mt-auto w-100 fw-semibold"><i class="bi bi-list-check me-1"></i> Ver Pacientes</a>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-md-6 col-lg-4">
-                            <div class="card h-100 shadow-lg border-info action-card-hover feature-card-hover">
-                                <div class="card-body d-flex flex-column align-items-center p-4">
-                                    <div class="feature-icon-wrapper mb-3">
-                                        <i class="bi bi-star-fill fs-1 text-info feature-icon-main rotating-icon"></i>
-                                        <div class="feature-sparkles">
-                                            <span class="sparkle sparkle-1"></span>
-                                            <span class="sparkle sparkle-2"></span>
-                                            <span class="sparkle sparkle-3"></span>
-                                            <span class="sparkle sparkle-4"></span>
-                                        </div>
-                                    </div>
-                                    <h5 class="card-title">Mis Calificaciones</h5>
-                                    <p class="card-text flex-grow-1 small text-muted">Vea las opiniones y calificaciones de sus pacientes.</p>
-                                    <a asp-page="/UserDashboards/Doctor/MyRatings" class="btn btn-info mt-auto w-100 fw-semibold"><i class="bi bi-star-half me-1"></i> Ver Calificaciones</a>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-md-6 col-lg-4">
-                            <div class="card h-100 shadow-lg border-info action-card-hover feature-card-hover">
-                                <div class="card-body d-flex flex-column align-items-center p-4">
-                                    <div class="feature-icon-wrapper mb-3">
-                                        <i class="bi bi-file-earmark-medical-fill fs-1 text-info feature-icon-main rotating-icon"></i>
-                                        <div class="feature-sparkles">
-                                            <span class="sparkle sparkle-1"></span>
-                                            <span class="sparkle sparkle-2"></span>
-                                            <span class="sparkle sparkle-3"></span>
-                                            <span class="sparkle sparkle-4"></span>
-                                        </div>
-                                    </div>
-                                    <h5 class="card-title">Mis Prescripciones</h5>
-                                    <p class="card-text flex-grow-1 small text-muted">Gestione y revise todas las prescripciones generadas.</p>
-                                    <a asp-page="/UserDashboards/Doctor/Prescriptions" class="btn btn-info mt-auto w-100 fw-semibold"><i class="bi bi-file-earmark-medical me-1"></i> Ver Prescripciones</a>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-md-6 col-lg-4">
-                            <div class="card h-100 shadow-lg border-info action-card-hover feature-card-hover">
-                                <div class="card-body d-flex flex-column align-items-center p-4">
-                                    <div class="feature-icon-wrapper mb-3">
-                                        <i class="bi bi-person-fill-gear fs-1 text-info feature-icon-main rotating-icon"></i>
-                                        <div class="feature-sparkles">
-                                            <span class="sparkle sparkle-1"></span>
-                                            <span class="sparkle sparkle-2"></span>
-                                            <span class="sparkle sparkle-3"></span>
-                                            <span class="sparkle sparkle-4"></span>
-                                        </div>
-                                    </div>
-                                    <h5 class="card-title">Mi Perfil</h5>
-                                    <p class="card-text flex-grow-1 small text-muted">Actualice su información profesional.</p>
-                                    <a asp-area="Identity" asp-page="/Account/Manage/Index" class="btn btn-info mt-auto w-100 fw-semibold"><i class="bi bi-pencil-square me-1"></i> Actualizar Perfil</a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <hr class="my-4">
-
-                    <div class="row g-4">
-                        <div class="col-lg-6">
-                            <h5 class="mb-3 text-info-emphasis"><i class="bi bi-tools me-2"></i>Herramientas Rápidas</h5>
-                            <div class="list-group shadow-sm quick-links-widget">
-                                <div class="list-group-item p-0">
-                                    <form id="doctorPatientSearchForm" class="d-flex p-2">
-                                        <input type="text" id="doctorPatientSearchInput" class="form-control form-control-sm me-2" placeholder="Buscar Paciente...">
-                                        <button type="submit" class="btn btn-sm btn-outline-info"><i class="bi bi-search"></i></button>
-                                    </form>
-                                </div>
-                                <a href="#" class="list-group-item list-group-item-action d-flex justify-content-between align-items-center">
-                                    Configurar Notificaciones
-                                    <i class="bi bi-bell-slash text-muted"></i>
-                                </a>
-                                <a href="#" class="list-group-item list-group-item-action d-flex justify-content-between align-items-center">
-                                    Base de Conocimiento Médico
-                                    <i class="bi bi-book text-muted"></i>
-                                </a>
-                                <a href="#" class="list-group-item list-group-item-action d-flex justify-content-between align-items-center">
-                                    Ver Estadísticas Completas
-                                    <i class="bi bi-graph-up text-muted"></i>
-                                </a>
-                            </div>
-                        </div>
-                        <div class="col-lg-6">
-                            <h5 class="mb-3 text-info-emphasis"><i class="bi bi-newspaper me-2"></i>Novedades y Anuncios</h5>
-                            <div class="card shadow-sm announcements-widget">
-                                <div class="card-body">
-                                    <p class="card-text text-muted small">
-                                        <strong>15 Julio, 2024:</strong> Nueva actualización del sistema de agendamiento. Revise el manual actualizado.
-                                    </p>
-                                    <hr class="my-2">
-                                    <p class="card-text text-muted small">
-                                        <strong>10 Julio, 2024:</strong> Próxima jornada de capacitación sobre CIE-11 el 1 de Agosto. ¡Inscríbase!
-                                    </p>
-                                    <a href="#" class="btn btn-sm btn-outline-info mt-2 float-end">Ver todos</a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <hr class="my-4">
-
-                    <!-- Sección de Últimas Prescripciones -->
-                    <div class="row">
-                        <div class="col-12">
-                            <h5 class="mb-3 text-info-emphasis"><i class="bi bi-file-earmark-medical me-2"></i>Últimas Prescripciones</h5>
-                            @if (Model.RecentPrescriptions != null && Model.RecentPrescriptions.Any())
-                            {
-                                <div class="card shadow-sm">
-                                    <div class="card-body">
-                                        <div class="table-responsive">
-                                            <table class="table table-sm table-hover">
-                                                <thead class="table-light">
-                                                    <tr>
-                                                        <th>Medicamento</th>
-                                                        <th>Dosis</th>
-                                                        <th>Paciente</th>
-                                                        <th>Cita</th>
-                                                    </tr>
-                                                </thead>
-                                                <tbody>
-                                                    @foreach (var prescription in Model.RecentPrescriptions)
-                                                    {
-                                                        <tr>
-                                                            <td><span class="badge bg-primary bg-opacity-75">@prescription.Medication?.Name</span></td>
-                                                            <td><strong>@prescription.Dosage</strong></td>
-                                                            <td><strong>@prescription.Patient?.FullName</strong></td>
-                                                            <td>
-                                                                <a asp-page="/Appointments/Details" asp-route-id="@prescription.AppointmentId" 
-                                                                   class="btn btn-sm btn-outline-info">
-                                                                    <i class="bi bi-calendar-event"></i> Ver
-                                                                </a>
-                                                            </td>
-                                                        </tr>
-                                                    }
-                                                </tbody>
-                                            </table>
-                                        </div>
-                                        <div class="text-center mt-3">
-                                            <a asp-page="/UserDashboards/Doctor/Prescriptions" class="btn btn-info">
-                                                <i class="bi bi-file-earmark-medical me-2"></i>Ver todas las prescripciones
-                                            </a>
-                                        </div>
-                                    </div>
-                                </div>
-                            }
-                            else
-                            {
-                                <div class="card shadow-sm">
-                                    <div class="card-body text-center py-4">
-                                        <i class="bi bi-file-earmark-medical display-4 text-muted"></i>
-                                        <h6 class="text-muted mt-2">No hay prescripciones recientes</h6>
-                                        <p class="text-muted small">Las prescripciones se generan desde las citas médicas</p>
-                                        <a asp-page="/UserDashboards/Doctor/Agenda" class="btn btn-info btn-sm">
-                                            <i class="bi bi-calendar-week me-1"></i>Ver mi agenda
-                                        </a>
-                                    </div>
-                                </div>
-                            }
-                        </div>
-                    </div>
-
                 </div>
-                
-                <!-- Trust Indicators for Doctor -->
-                <div class="card-footer bg-light text-center py-4">
-                    <div class="row align-items-center text-muted">
-                        <div class="col-md-3 mb-3 mb-md-0">
-                            <i class="bi bi-award-fill fs-4 text-info mb-2 d-block"></i>
-                            <div class="small">Certificado ISO 9001</div>
-                        </div>
-                        <div class="col-md-3 mb-3 mb-md-0">
-                            <i class="bi bi-shield-check fs-4 text-info mb-2 d-block"></i>
-                            <div class="small">Ministerio de Salud</div>
-                        </div>
-                        <div class="col-md-3 mb-3 mb-md-0">
-                            <i class="bi bi-star-fill fs-4 text-info mb-2 d-block"></i>
-                            <div class="small">Premio Innovación 2024</div>
-                        </div>
-                        <div class="col-md-3 mb-3 mb-md-0">
-                            <i class="bi bi-globe fs-4 text-info mb-2 d-block"></i>
-                            <div class="small">Red Internacional</div>
+            </div>
+        </div>
+
+        <!-- Quick Stats -->
+        <div class="col-lg-4">
+            <div class="row g-3">
+                <div class="col-12">
+                    <div class="card border-0 shadow-sm" style="background: linear-gradient(135deg, #134e4a 0%, #065f46 100%);">
+                        <div class="card-body text-center p-3 text-white">
+                            <h4 class="fw-bold mb-1">@Model.TodayAppointments</h4>
+                            <small class="opacity-90">Citas Hoy</small>
                         </div>
                     </div>
-                    <p class="mb-0 text-muted small mt-3">Herramientas para Profesionales de la Salud - Reconocido por Instituciones Líderes</p>
+                </div>
+                <div class="col-6">
+                    <div class="card border-0 shadow-sm" style="background: linear-gradient(135deg, #f0fdf4 0%, #dcfce7 100%);">
+                        <div class="card-body text-center p-3">
+                            <h5 class="fw-bold text-success mb-1">@Model.ConfirmedAppointments</h5>
+                            <small class="text-muted">Confirmadas</small>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-6">
+                    <div class="card border-0 shadow-sm" style="background: linear-gradient(135deg, #fef3c7 0%, #fde68a 100%);">
+                        <div class="card-body text-center p-3">
+                            <h5 class="fw-bold text-warning mb-1">@Model.SatisfactionPercentage%</h5>
+                            <small class="text-muted">Satisfacción</small>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Main Tools Row -->
+    <div class="row g-4 mb-5">
+        <!-- Patient Management -->
+        <div class="col-lg-6">
+            <div class="card border-0 shadow-lg h-100">
+                <div class="card-header bg-transparent border-0 py-3">
+                    <h5 class="mb-0 fw-bold text-dark">
+                        <i class="bi bi-people me-2" style="color: #134e4a;"></i>
+                        Gestión de Pacientes
+                    </h5>
+                </div>
+                <div class="card-body">
+                    <!-- Patient Search -->
+                    <div class="mb-4">
+                        <form id="doctorPatientSearchForm" class="d-flex">
+                            <input type="text" id="doctorPatientSearchInput" class="form-control me-2" placeholder="Buscar paciente por nombre, cédula...">
+                            <button type="submit" class="btn btn-primary">
+                                <i class="bi bi-search"></i>
+                            </button>
+                        </form>
+                    </div>
+                    
+                    <!-- Quick Actions */
+                    <div class="row g-2">
+                        <div class="col-6">
+                            <a asp-page="/UserDashboards/Doctor/Patients" class="btn btn-outline-success w-100 btn-sm">
+                                <i class="bi bi-person-lines-fill me-1"></i>
+                                Ver Pacientes
+                            </a>
+                        </div>
+                        <div class="col-6">
+                            <a asp-page="/UserDashboards/Doctor/PatientHistory" class="btn btn-outline-secondary w-100 btn-sm">
+                                <i class="bi bi-journal-medical me-1"></i>
+                                Historiales
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Medical Tools -->
+        <div class="col-lg-6">
+            <div class="card border-0 shadow-lg h-100">
+                <div class="card-header bg-transparent border-0 py-3">
+                    <h5 class="mb-0 fw-bold text-dark">
+                        <i class="bi bi-file-earmark-medical me-2 text-warning"></i>
+                        Herramientas Médicas
+                    </h5>
+                </div>
+                <div class="card-body">
+                    <div class="d-grid gap-2">
+                        <a asp-page="/UserDashboards/Doctor/Prescriptions" class="btn btn-warning">
+                            <i class="bi bi-prescription2 me-2"></i>
+                            Gestionar Prescripciones (@Model.TotalPrescriptions)
+                        </a>
+                        <div class="row g-2">
+                            <div class="col-6">
+                                <a asp-page="/UserDashboards/Doctor/MyRatings" class="btn btn-outline-info w-100 btn-sm">
+                                    <i class="bi bi-star me-1"></i>
+                                    Calificaciones
+                                </a>
+                            </div>
+                            <div class="col-6">
+                                <a asp-area="Identity" asp-page="/Account/Manage/Index" class="btn btn-outline-dark w-100 btn-sm">
+                                    <i class="bi bi-gear me-1"></i>
+                                    Mi Perfil
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Recent Prescriptions & Performance -->
+    <div class="row g-4 mb-4">
+        <div class="col-lg-8">
+            <div class="card border-0 shadow-lg">
+                <div class="card-header bg-transparent border-0 py-3">
+                    <div class="d-flex justify-content-between align-items-center">
+                        <h5 class="mb-0 fw-bold text-dark">
+                            <i class="bi bi-clock-history me-2" style="color: #134e4a;"></i>
+                            Actividad Reciente
+                        </h5>
+                        <small class="text-muted">Últimas 24 horas</small>
+                    </div>
+                </div>
+                <div class="card-body">
+                    @if (Model.RecentPrescriptions != null && Model.RecentPrescriptions.Any())
+                    {
+                        <div class="table-responsive">
+                            <table class="table table-sm table-borderless">
+                                <tbody>
+                                    @foreach (var prescription in Model.RecentPrescriptions.Take(5))
+                                    {
+                                        <tr>
+                                            <td class="py-2">
+                                                <div class="d-flex align-items-center">
+                                                    <div class="bg-primary bg-opacity-10 rounded-circle me-3 d-flex align-items-center justify-content-center" style="width: 35px; height: 35px;">
+                                                        <i class="bi bi-prescription2 text-primary"></i>
+                                                    </div>
+                                                    <div>
+                                                        <strong class="d-block">@prescription.Medication?.Name</strong>
+                                                        <small class="text-muted">@prescription.Patient?.FullName</small>
+                                                    </div>
+                                                </div>
+                                            </td>
+                                            <td class="py-2 text-end">
+                                                <span class="badge bg-success">@prescription.Dosage</span>
+                                            </td>
+                                        </tr>
+                                    }
+                                </tbody>
+                            </table>
+                        </div>
+                    }
+                    else
+                    {
+                        <div class="text-center py-3">
+                            <i class="bi bi-prescription2 fs-3 text-muted"></i>
+                            <p class="text-muted mt-2">No hay prescripciones recientes</p>
+                        </div>
+                    }
+                </div>
+            </div>
+        </div>
+
+        <div class="col-lg-4">
+            <div class="card border-0 shadow-lg h-100">
+                <div class="card-header bg-transparent border-0 py-3">
+                    <h6 class="mb-0 fw-bold text-dark">
+                        <i class="bi bi-graph-up me-2 text-success"></i>
+                        Rendimiento
+                    </h6>
+                </div>
+                <div class="card-body">
+                    <div class="mb-3">
+                        <div class="d-flex justify-content-between mb-1">
+                            <small class="text-muted">Citas Completadas</small>
+                            <small class="fw-bold">95%</small>
+                        </div>
+                        <div class="progress" style="height: 6px;">
+                            <div class="progress-bar" style="width: 95%; background: #134e4a;"></div>
+                        </div>
+                    </div>
+                    
+                    <div class="mb-3">
+                        <div class="d-flex justify-content-between mb-1">
+                            <small class="text-muted">Satisfacción Pacientes</small>
+                            <small class="fw-bold">@Model.SatisfactionPercentage%</small>
+                        </div>
+                        <div class="progress" style="height: 6px;">
+                            <div class="progress-bar bg-warning" style="width: @Model.SatisfactionPercentage%;"></div>
+                        </div>
+                    </div>
+                    
+                    <div class="text-center mt-3">
+                        <span class="badge bg-success">⭐ Doctor Destacado</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Upcoming Appointments -->
+    <div class="row">
+        <div class="col-12">
+            <div class="card border-0 shadow-sm">
+                <div class="card-header bg-transparent border-0 py-3">
+                    <div class="d-flex justify-content-between align-items-center">
+                        <h5 class="mb-0 fw-bold text-dark">
+                            <i class="bi bi-calendar-event me-2" style="color: #1e40af;"></i>
+                            Próximas Citas
+                        </h5>
+                        <a asp-page="/UserDashboards/Doctor/Agenda" class="btn btn-sm btn-outline-primary">Ver Agenda</a>
+                    </div>
+                </div>
+                <div class="card-body">
+                    <div id="upcomingAppointmentsList">
+                        <div class="text-center py-4">
+                            <i class="bi bi-calendar-check fs-1 text-muted"></i>
+                            <p class="text-muted mt-2">Cargando próximas citas...</p>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
     </div>
 </div>
+
+<style>
+/* Card hover effects */
+.card:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 1rem 3rem rgba(0,0,0,.175) !important;
+}
+
+.card {
+    transition: all 0.3s ease;
+}
+
+/* Button hover effects */
+.btn {
+    transition: all 0.3s ease;
+}
+
+.btn:hover {
+    transform: translateY(-1px);
+    box-shadow: 0 0.5rem 1rem rgba(0,0,0,.15);
+}
+
+/* Progress bar styling */
+.progress {
+    border-radius: 10px;
+    background-color: #e9ecef;
+}
+
+.progress-bar {
+    border-radius: 10px;
+}
+
+/* Table styling */
+.table-borderless td {
+    border: none;
+}
+
+/* Badge styling */
+.badge {
+    font-size: 0.75rem;
+    padding: 0.4rem 0.6rem;
+}
+</style>
 
 @section Scripts {
-    <script src="~/js/modules/doctor/doctor-dashboard.js"></script>
+    <script>
+        // Doctor dashboard functionality
+        document.addEventListener('DOMContentLoaded', function() {
+            initializeDoctorDashboard();
+            loadDoctorDashboardData();
+        });
+
+        function initializeDoctorDashboard() {
+            // Patient search functionality
+            const searchForm = document.getElementById('doctorPatientSearchForm');
+            const searchInput = document.getElementById('doctorPatientSearchInput');
+
+            if (searchForm) {
+                searchForm.addEventListener('submit', function(e) {
+                    e.preventDefault();
+                    const searchTerm = searchInput.value.trim();
+                    if (searchTerm) {
+                        // Redirect to patients page with search term
+                        window.location.href = `/UserDashboards/Doctor/Patients?search=${encodeURIComponent(searchTerm)}`;
+                    }
+                });
+            }
+
+            // Add keyboard shortcut for search (Ctrl+F)
+            document.addEventListener('keydown', function(e) {
+                if (e.ctrlKey && e.key === 'f') {
+                    e.preventDefault();
+                    searchInput.focus();
+                }
+            });
+        }
+        
+        function loadDoctorDashboardData() {
+            // Simulate loading doctor data
+            setTimeout(function() {
+                // Update today's schedule
+                document.getElementById('todaySchedule').innerHTML = `
+                    <div class="row g-2">
+                        <div class="col-md-6">
+                            <div class="d-flex align-items-center p-2 bg-white rounded">
+                                <div class="me-2">
+                                    <small class="text-primary fw-bold">10:00</small>
+                                </div>
+                                <div>
+                                    <small class="fw-bold d-block">Juan Pérez</small>
+                                    <small class="text-muted">Consulta General</small>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="d-flex align-items-center p-2 bg-white rounded">
+                                <div class="me-2">
+                                    <small class="text-warning fw-bold">14:30</small>
+                                </div>
+                                <div>
+                                    <small class="fw-bold d-block">Ana García</small>
+                                    <small class="text-muted">Control</small>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                `;
+                
+                // Update upcoming appointments
+                document.getElementById('upcomingAppointmentsList').innerHTML = `
+                    <div class="row g-3">
+                        <div class="col-md-4">
+                            <div class="d-flex align-items-center p-3 bg-light rounded">
+                                <div class="me-3">
+                                    <div class="bg-primary bg-opacity-10 rounded-circle d-flex align-items-center justify-content-center" style="width: 40px; height: 40px;">
+                                        <i class="bi bi-calendar-event text-primary"></i>
+                                    </div>
+                                </div>
+                                <div>
+                                    <h6 class="mb-1 fw-bold">Carlos Ruiz</h6>
+                                    <small class="text-muted">Mañana 9:00 AM</small>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="d-flex align-items-center p-3 bg-light rounded">
+                                <div class="me-3">
+                                    <div class="bg-success bg-opacity-10 rounded-circle d-flex align-items-center justify-content-center" style="width: 40px; height: 40px;">
+                                        <i class="bi bi-heart-pulse text-success"></i>
+                                    </div>
+                                </div>
+                                <div>
+                                    <h6 class="mb-1 fw-bold">María López</h6>
+                                    <small class="text-muted">Mañana 11:30 AM</small>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="d-flex align-items-center p-3 bg-light rounded">
+                                <div class="me-3">
+                                    <div class="bg-warning bg-opacity-10 rounded-circle d-flex align-items-center justify-content-center" style="width: 40px; height: 40px;">
+                                        <i class="bi bi-clipboard-check text-warning"></i>
+                                    </div>
+                                </div>
+                                <div>
+                                    <h6 class="mb-1 fw-bold">Luis Martín</h6>
+                                    <small class="text-muted">Mañana 3:00 PM</small>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                `;
+            }, 1000);
+        }
+    </script>
 } 

@@ -44,8 +44,8 @@ public class IndexModel : PageModel
             }
         }
         
-        // Si no está logueado o no tiene rol específico, mostrar la página principal
-        return Page();
+        // Si no está logueado o no tiene rol específico, redirigir a la página principal pública
+        return RedirectToPage("/Public/Index");
     }
 }
 
