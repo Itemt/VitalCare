@@ -109,10 +109,10 @@
 <div class="container mt-5 py-4">
     
     <!-- Servicios Principales Section -->
-    <div class="row justify-content-center mb-5">
+    <div class="row justify-content-center mb-4">
         <div class="col-lg-10">
-            <div class="text-center mb-5">
-                <h2 class="display-5 fw-bold text-primary">
+            <div class="text-center mb-4">
+                <h2 class="display-5 fw-bold title-primary-custom">
                     <i class="bi bi-clipboard-pulse me-2"></i>
                     Servicios de Gestión de Citas
                 </h2>
@@ -125,12 +125,17 @@
     <!-- Cards de Servicios Principales -->
     <div class="row g-4 mb-5">
         <div class="col-md-6 col-lg-4">
-            <div class="card h-100 shadow-sm border-0 text-center hover-card service-card">
+            <div class="card h-100 shadow-sm border-0 text-center service-card-custom">
                 <div class="card-body">
-                    <div class="feature-icon-round bg-success text-white mb-3 mx-auto">
-                        <i class="bi bi-calendar-plus fs-2"></i>
+                    <div class="feature-icon-custom mb-3 mx-auto">
+                        <div class="feature-sparkles">
+                            <div class="sparkle sparkle-1"></div>
+                            <div class="sparkle sparkle-2"></div>
+                            <div class="sparkle sparkle-3"></div>
+                        </div>
+                        <i class="bi bi-calendar-plus fs-2 text-success"></i>
                     </div>
-                    <h5 class="card-title">Agendar Cita Médica</h5>
+                    <h5 class="card-title title-primary-custom">Agendar Cita Médica</h5>
                     <p class="card-text">Reserve su cita con nuestros especialistas de forma rápida y sencilla.</p>
                     <a asp-page="/Appointments/Create" class="btn btn-success">Agendar Ahora</a>
                 </div>
@@ -138,12 +143,17 @@
         </div>
         
         <div class="col-md-6 col-lg-4">
-            <div class="card h-100 shadow-sm border-0 text-center hover-card service-card">
+            <div class="card h-100 shadow-sm border-0 text-center service-card-custom">
                 <div class="card-body">
-                    <div class="feature-icon-round bg-info text-white mb-3 mx-auto">
-                        <i class="bi bi-search fs-2"></i>
+                    <div class="feature-icon-custom mb-3 mx-auto">
+                        <div class="feature-sparkles">
+                            <div class="sparkle sparkle-1"></div>
+                            <div class="sparkle sparkle-2"></div>
+                            <div class="sparkle sparkle-3"></div>
+                        </div>
+                        <i class="bi bi-search fs-2 text-info"></i>
                     </div>
-                    <h5 class="card-title">Consultar Citas</h5>
+                    <h5 class="card-title title-primary-custom">Consultar Citas</h5>
                     <p class="card-text">Revise el estado de sus citas médicas programadas.</p>
                     <a asp-page="/Appointments/Search" class="btn btn-info">Consultar</a>
                 </div>
@@ -151,12 +161,17 @@
         </div>
         
         <div class="col-md-6 col-lg-4">
-            <div class="card h-100 shadow-sm border-0 text-center hover-card service-card">
+            <div class="card h-100 shadow-sm border-0 text-center service-card-custom">
                 <div class="card-body">
-                    <div class="feature-icon-round bg-warning text-white mb-3 mx-auto">
-                        <i class="bi bi-calendar-x fs-2"></i>
+                    <div class="feature-icon-custom mb-3 mx-auto">
+                        <div class="feature-sparkles">
+                            <div class="sparkle sparkle-1"></div>
+                            <div class="sparkle sparkle-2"></div>
+                            <div class="sparkle sparkle-3"></div>
+                        </div>
+                        <i class="bi bi-calendar-x fs-2 text-warning"></i>
                     </div>
-                    <h5 class="card-title">Reprogramar/Cancelar</h5>
+                    <h5 class="card-title title-primary-custom">Reprogramar/Cancelar</h5>
                     <p class="card-text">Modifique o cancele sus citas médicas cuando lo necesite.</p>
                     <a asp-page="/Appointments/Manage" class="btn btn-warning">Gestionar</a>
                 </div>
@@ -165,10 +180,10 @@
     </div>
     
     <!-- Especialidades Médicas Section -->
-    <div class="row justify-content-center mb-5">
+    <div class="row justify-content-center mb-4">
         <div class="col-lg-10">
-            <div class="text-center mb-5">
-                <h2 class="display-5 fw-bold text-primary">
+            <div class="text-center mb-4">
+                <h2 class="display-5 fw-bold title-primary-custom">
                     <i class="bi bi-hospital me-2"></i>
                     Especialidades Médicas Disponibles
                 </h2>
@@ -181,81 +196,121 @@
     <!-- Grid de Especialidades -->
     <div class="row g-4 mb-5">
         <div class="col-md-6 col-lg-3">
-            <div class="card h-100 shadow-sm border-0 text-center specialty-card">
+            <div class="card h-100 shadow-sm border-0 text-center unified-card">
+                <div class="unified-sparkles">
+                    <div class="sparkle sparkle-1"></div>
+                    <div class="sparkle sparkle-2"></div>
+                    <div class="sparkle sparkle-3"></div>
+                </div>
                 <div class="card-body">
-                    <i class="bi bi-heart-pulse fs-1 text-danger mb-3"></i>
-                    <h6 class="card-title">Cardiología</h6>
-                    <p class="card-text small">Especialistas en salud cardiovascular</p>
+                    <i class="bi bi-bandaid-fill fs-1 text-primary mb-3"></i>
+                    <h6 class="card-title title-primary-custom">Medicina General</h6>
+                    <p class="card-text small">Atención médica general y preventiva</p>
                 </div>
             </div>
         </div>
         
         <div class="col-md-6 col-lg-3">
-            <div class="card h-100 shadow-sm border-0 text-center specialty-card">
+            <div class="card h-100 shadow-sm border-0 text-center unified-card">
+                <div class="unified-sparkles">
+                    <div class="sparkle sparkle-1"></div>
+                    <div class="sparkle sparkle-2"></div>
+                    <div class="sparkle sparkle-3"></div>
+                </div>
                 <div class="card-body">
-                    <i class="bi bi-bandaid fs-1 text-primary mb-3"></i>
-                    <h6 class="card-title">Medicina General</h6>
-                    <p class="card-text small">Atención médica integral</p>
+                    <i class="bi bi-heart-pulse-fill fs-1 text-danger mb-3"></i>
+                    <h6 class="card-title title-primary-custom">Cardiología</h6>
+                    <p class="card-text small">Especialidad del corazón y sistema circulatorio</p>
                 </div>
             </div>
         </div>
         
         <div class="col-md-6 col-lg-3">
-            <div class="card h-100 shadow-sm border-0 text-center specialty-card">
+            <div class="card h-100 shadow-sm border-0 text-center unified-card">
+                <div class="unified-sparkles">
+                    <div class="sparkle sparkle-1"></div>
+                    <div class="sparkle sparkle-2"></div>
+                    <div class="sparkle sparkle-3"></div>
+                </div>
                 <div class="card-body">
-                    <i class="bi bi-person-wheelchair fs-1 text-success mb-3"></i>
-                    <h6 class="card-title">Ortopedia</h6>
-                    <p class="card-text small">Especialistas en sistema músculo-esquelético</p>
+                    <i class="bi bi-activity fs-1 text-warning mb-3"></i>
+                    <h6 class="card-title title-primary-custom">Neurología</h6>
+                    <p class="card-text small">Especialidad del sistema nervioso</p>
                 </div>
             </div>
         </div>
         
         <div class="col-md-6 col-lg-3">
-            <div class="card h-100 shadow-sm border-0 text-center specialty-card">
+            <div class="card h-100 shadow-sm border-0 text-center unified-card">
+                <div class="unified-sparkles">
+                    <div class="sparkle sparkle-1"></div>
+                    <div class="sparkle sparkle-2"></div>
+                    <div class="sparkle sparkle-3"></div>
+                </div>
                 <div class="card-body">
-                    <i class="bi bi-gender-ambiguous fs-1 text-info mb-3"></i>
-                    <h6 class="card-title">Ginecología</h6>
-                    <p class="card-text small">Salud femenina integral</p>
+                    <i class="bi bi-emoji-smile-fill fs-1 text-success mb-3"></i>
+                    <h6 class="card-title title-primary-custom">Pediatría</h6>
+                    <p class="card-text small">Medicina infantil y adolescente</p>
                 </div>
             </div>
         </div>
         
         <div class="col-md-6 col-lg-3">
-            <div class="card h-100 shadow-sm border-0 text-center specialty-card">
+            <div class="card h-100 shadow-sm border-0 text-center unified-card">
+                <div class="unified-sparkles">
+                    <div class="sparkle sparkle-1"></div>
+                    <div class="sparkle sparkle-2"></div>
+                    <div class="sparkle sparkle-3"></div>
+                </div>
                 <div class="card-body">
-                    <i class="bi bi-brain fs-1 text-warning mb-3"></i>
-                    <h6 class="card-title">Neurología</h6>
-                    <p class="card-text small">Especialistas en sistema nervioso</p>
+                    <i class="bi bi-gender-female fs-1 text-secondary mb-3"></i>
+                    <h6 class="card-title title-primary-custom">Ginecología</h6>
+                    <p class="card-text small">Salud de la mujer y sistema reproductivo</p>
                 </div>
             </div>
         </div>
         
         <div class="col-md-6 col-lg-3">
-            <div class="card h-100 shadow-sm border-0 text-center specialty-card">
+            <div class="card h-100 shadow-sm border-0 text-center unified-card">
+                <div class="unified-sparkles">
+                    <div class="sparkle sparkle-1"></div>
+                    <div class="sparkle sparkle-2"></div>
+                    <div class="sparkle sparkle-3"></div>
+                </div>
                 <div class="card-body">
-                    <i class="bi bi-eye fs-1 text-secondary mb-3"></i>
-                    <h6 class="card-title">Oftalmología</h6>
-                    <p class="card-text small">Cuidado de la salud visual</p>
+                    <i class="bi bi-droplet-fill fs-1 text-success mb-3"></i>
+                    <h6 class="card-title title-primary-custom">Dermatología</h6>
+                    <p class="card-text small">Enfermedades de la piel</p>
                 </div>
             </div>
         </div>
         
         <div class="col-md-6 col-lg-3">
-            <div class="card h-100 shadow-sm border-0 text-center specialty-card">
+            <div class="card h-100 shadow-sm border-0 text-center unified-card">
+                <div class="unified-sparkles">
+                    <div class="sparkle sparkle-1"></div>
+                    <div class="sparkle sparkle-2"></div>
+                    <div class="sparkle sparkle-3"></div>
+                </div>
                 <div class="card-body">
-                    <i class="bi bi-lungs fs-1 text-dark mb-3"></i>
-                    <h6 class="card-title">Neumología</h6>
-                    <p class="card-text small">Especialistas en sistema respiratorio</p>
+                    <i class="bi bi-eye-fill fs-1 text-dark mb-3"></i>
+                    <h6 class="card-title title-primary-custom">Oftalmología</h6>
+                    <p class="card-text small">Cuidado de los ojos y la visión</p>
                 </div>
             </div>
         </div>
         
         <div class="col-md-6 col-lg-3">
-            <div class="card h-100 shadow-sm border-0 text-center specialty-card">
+            <div class="card h-100 shadow-sm border-0 text-center unified-card">
+                <div class="unified-sparkles">
+                    <div class="sparkle sparkle-1"></div>
+                    <div class="sparkle sparkle-2"></div>
+                    <div class="sparkle sparkle-3"></div>
+                </div>
                 <div class="card-body">
-                    <i class="bi bi-plus-circle fs-1 text-success mb-3"></i>
-                    <h6 class="card-title">Más Especialidades</h6>
-                    <p class="card-text small">Ver todas nuestras especialidades</p>
+                    <i class="bi bi-person-wheelchair fs-1 text-warning mb-3"></i>
+                    <h6 class="card-title title-primary-custom">Ortopedia</h6>
+                    <p class="card-text small">Huesos, articulaciones y músculos</p>
                 </div>
             </div>
         </div>
@@ -266,7 +321,7 @@
         <div class="col-lg-6">
             <div class="card h-100 shadow border-0">
                 <div class="card-body">
-                    <h5 class="card-title text-primary">
+                    <h5 class="card-title title-primary-custom">
                         <i class="bi bi-clock me-2"></i>
                         Horarios de Atención
                     </h5>
@@ -286,7 +341,7 @@
         <div class="col-lg-6">
             <div class="card h-100 shadow border-0">
                 <div class="card-body">
-                    <h5 class="card-title text-primary">
+                    <h5 class="card-title title-primary-custom">
                         <i class="bi bi-geo-alt me-2"></i>
                         Información de Contacto
                     </h5>
@@ -305,10 +360,10 @@
     </div>
     
     <!-- Servicios Adicionales y Tecnología -->
-    <div class="row justify-content-center mb-5">
+    <div class="row justify-content-center mb-4">
         <div class="col-lg-10">
-            <div class="text-center mb-5">
-                <h2 class="display-5 fw-bold text-primary">
+            <div class="text-center mb-4">
+                <h2 class="display-5 fw-bold title-primary-custom">
                     <i class="bi bi-gear-wide-connected me-2"></i>
                     Servicios Adicionales
                 </h2>
@@ -321,51 +376,71 @@
     <!-- Servicios Tecnológicos -->
     <div class="row g-4 mb-5">
         <div class="col-md-6 col-lg-4">
-            <div class="card h-100 shadow-sm border-0 text-center tech-card">
+            <div class="card h-100 shadow-sm border-0 text-center unified-card">
+                <div class="unified-sparkles">
+                    <div class="sparkle sparkle-1"></div>
+                    <div class="sparkle sparkle-2"></div>
+                    <div class="sparkle sparkle-3"></div>
+                </div>
                 <div class="card-body">
                     <div class="tech-icon mb-3">
-                        <i class="bi bi-webcam fs-1 text-primary"></i>
+                        <i class="bi bi-webcam fs-1 text-success"></i>
                     </div>
-                    <h6 class="card-title">Telemedicina</h6>
+                    <h6 class="card-title title-primary-custom">Telemedicina</h6>
                     <p class="card-text small">Consultas médicas virtuales desde su hogar</p>
-                    <span class="badge bg-primary">Disponible 24/7</span>
+                    <span class="badge bg-success">Disponible 24/7</span>
                 </div>
             </div>
         </div>
         
         <div class="col-md-6 col-lg-4">
-            <div class="card h-100 shadow-sm border-0 text-center tech-card">
+            <div class="card h-100 shadow-sm border-0 text-center unified-card">
+                <div class="unified-sparkles">
+                    <div class="sparkle sparkle-1"></div>
+                    <div class="sparkle sparkle-2"></div>
+                    <div class="sparkle sparkle-3"></div>
+                </div>
                 <div class="card-body">
                     <div class="tech-icon mb-3">
-                        <i class="bi bi-file-medical fs-1 text-info"></i>
+                        <i class="bi bi-file-medical fs-1 text-warning"></i>
                     </div>
-                    <h6 class="card-title">Historia Clínica Digital</h6>
+                    <h6 class="card-title title-primary-custom">Historia Clínica Digital</h6>
                     <p class="card-text small">Acceso seguro a su historial médico</p>
-                    <span class="badge bg-info">Seguro y Privado</span>
+                    <span class="badge bg-warning">Seguro y Privado</span>
                 </div>
             </div>
         </div>
         
         <div class="col-md-6 col-lg-4">
-            <div class="card h-100 shadow-sm border-0 text-center tech-card">
+            <div class="card h-100 shadow-sm border-0 text-center unified-card">
+                <div class="unified-sparkles">
+                    <div class="sparkle sparkle-1"></div>
+                    <div class="sparkle sparkle-2"></div>
+                    <div class="sparkle sparkle-3"></div>
+                </div>
                 <div class="card-body">
                     <div class="tech-icon mb-3">
-                        <i class="bi bi-bell fs-1 text-warning"></i>
+                        <i class="bi bi-bell fs-1 text-danger"></i>
                     </div>
-                    <h6 class="card-title">Recordatorios</h6>
+                    <h6 class="card-title title-primary-custom">Recordatorios</h6>
                     <p class="card-text small">Notificaciones de citas y medicamentos</p>
-                    <span class="badge bg-warning">Personalizado</span>
+                    <span class="badge bg-danger">Personalizado</span>
                 </div>
             </div>
         </div>
         
         <div class="col-md-6 col-lg-4">
-            <div class="card h-100 shadow-sm border-0 text-center tech-card">
+            <div class="card h-100 shadow-sm border-0 text-center unified-card">
+                <div class="unified-sparkles">
+                    <div class="sparkle sparkle-1"></div>
+                    <div class="sparkle sparkle-2"></div>
+                    <div class="sparkle sparkle-3"></div>
+                </div>
                 <div class="card-body">
                     <div class="tech-icon mb-3">
                         <i class="bi bi-shield-lock fs-1 text-success"></i>
                     </div>
-                    <h6 class="card-title">Datos Seguros</h6>
+                    <h6 class="card-title title-primary-custom">Datos Seguros</h6>
                     <p class="card-text small">Encriptación y protección de datos</p>
                     <span class="badge bg-success">ISO 27001</span>
                 </div>
@@ -373,12 +448,17 @@
         </div>
         
         <div class="col-md-6 col-lg-4">
-            <div class="card h-100 shadow-sm border-0 text-center tech-card">
+            <div class="card h-100 shadow-sm border-0 text-center unified-card">
+                <div class="unified-sparkles">
+                    <div class="sparkle sparkle-1"></div>
+                    <div class="sparkle sparkle-2"></div>
+                    <div class="sparkle sparkle-3"></div>
+                </div>
                 <div class="card-body">
                     <div class="tech-icon mb-3">
                         <i class="bi bi-phone fs-1 text-dark"></i>
                     </div>
-                    <h6 class="card-title">App Móvil</h6>
+                    <h6 class="card-title title-primary-custom">App Móvil</h6>
                     <p class="card-text small">Gestión desde su smartphone</p>
                     <span class="badge bg-dark">iOS & Android</span>
                 </div>
@@ -386,12 +466,17 @@
         </div>
         
         <div class="col-md-6 col-lg-4">
-            <div class="card h-100 shadow-sm border-0 text-center tech-card">
+            <div class="card h-100 shadow-sm border-0 text-center unified-card">
+                <div class="unified-sparkles">
+                    <div class="sparkle sparkle-1"></div>
+                    <div class="sparkle sparkle-2"></div>
+                    <div class="sparkle sparkle-3"></div>
+                </div>
                         <div class="card-body">
                     <div class="tech-icon mb-3">
                         <i class="bi bi-credit-card fs-1 text-secondary"></i>
                     </div>
-                    <h6 class="card-title">Pagos Digitales</h6>
+                    <h6 class="card-title title-primary-custom">Pagos Digitales</h6>
                     <p class="card-text small">Múltiples métodos de pago</p>
                     <span class="badge bg-secondary">Fácil y Rápido</span>
                 </div>
@@ -400,10 +485,10 @@
     </div>
     
     <!-- Testimonios Section -->
-    <div class="row justify-content-center mb-5">
+    <div class="row justify-content-center mb-4">
         <div class="col-lg-10">
-            <div class="text-center mb-5">
-                <h2 class="display-5 fw-bold text-primary">
+            <div class="text-center mb-4">
+                <h2 class="display-5 fw-bold title-primary-custom">
                     <i class="bi bi-chat-quote me-2"></i>
                     Testimonios de Pacientes
                 </h2>
@@ -416,14 +501,19 @@
     <!-- Tarjetas de Testimonios -->
     <div class="row g-4 mb-5">
         <div class="col-lg-4">
-            <div class="card h-100 shadow border-0 testimonial-card">
+            <div class="card h-100 shadow border-0 unified-card">
+                <div class="unified-sparkles">
+                    <div class="sparkle sparkle-1"></div>
+                    <div class="sparkle sparkle-2"></div>
+                    <div class="sparkle sparkle-3"></div>
+                </div>
                 <div class="card-body p-4">
                     <div class="d-flex align-items-center mb-3">
-                        <div class="testimonial-avatar bg-primary text-white rounded-circle d-flex align-items-center justify-content-center me-3" style="width: 50px; height: 50px;">
+                        <div class="testimonial-avatar bg-success text-white rounded-circle d-flex align-items-center justify-content-center me-3" style="width: 50px; height: 50px;">
                             <i class="bi bi-person-fill"></i>
                         </div>
                         <div>
-                            <h6 class="fw-bold mb-0">María González</h6>
+                            <h6 class="fw-bold mb-0 title-primary-custom">María González</h6>
                             <small class="text-muted">Paciente desde 2020</small>
                             <div class="stars text-warning small">
                                 <i class="bi bi-star-fill"></i>
@@ -443,14 +533,19 @@
         </div>
         
         <div class="col-lg-4">
-            <div class="card h-100 shadow border-0 testimonial-card">
+            <div class="card h-100 shadow border-0 unified-card">
+                <div class="unified-sparkles">
+                    <div class="sparkle sparkle-1"></div>
+                    <div class="sparkle sparkle-2"></div>
+                    <div class="sparkle sparkle-3"></div>
+                </div>
                 <div class="card-body p-4">
                     <div class="d-flex align-items-center mb-3">
-                        <div class="testimonial-avatar bg-success text-white rounded-circle d-flex align-items-center justify-content-center me-3" style="width: 50px; height: 50px;">
+                        <div class="testimonial-avatar bg-warning text-white rounded-circle d-flex align-items-center justify-content-center me-3" style="width: 50px; height: 50px;">
                             <i class="bi bi-person-fill"></i>
                         </div>
                         <div>
-                            <h6 class="fw-bold mb-0">Carlos Mendoza</h6>
+                            <h6 class="fw-bold mb-0 title-primary-custom">Carlos Mendoza</h6>
                             <small class="text-muted">Paciente desde 2019</small>
                             <div class="stars text-warning small">
                                 <i class="bi bi-star-fill"></i>
@@ -470,14 +565,19 @@
         </div>
         
         <div class="col-lg-4">
-            <div class="card h-100 shadow border-0 testimonial-card">
+            <div class="card h-100 shadow border-0 unified-card">
+                <div class="unified-sparkles">
+                    <div class="sparkle sparkle-1"></div>
+                    <div class="sparkle sparkle-2"></div>
+                    <div class="sparkle sparkle-3"></div>
+                </div>
                 <div class="card-body p-4">
                     <div class="d-flex align-items-center mb-3">
-                        <div class="testimonial-avatar bg-info text-white rounded-circle d-flex align-items-center justify-content-center me-3" style="width: 50px; height: 50px;">
+                        <div class="testimonial-avatar bg-danger text-white rounded-circle d-flex align-items-center justify-content-center me-3" style="width: 50px; height: 50px;">
                             <i class="bi bi-person-fill"></i>
                         </div>
                         <div>
-                            <h6 class="fw-bold mb-0">Ana Rodríguez</h6>
+                            <h6 class="fw-bold mb-0 title-primary-custom">Ana Rodríguez</h6>
                             <small class="text-muted">Paciente desde 2021</small>
                             <div class="stars text-warning small">
                                 <i class="bi bi-star-fill"></i>
@@ -498,10 +598,10 @@
     </div>
     
     <!-- Nuestros Números Section -->
-    <div class="row justify-content-center mb-5">
+    <div class="row justify-content-center mb-4">
         <div class="col-lg-10">
-            <div class="text-center mb-5">
-                <h2 class="display-5 fw-bold text-primary">
+            <div class="text-center mb-4">
+                <h2 class="display-5 fw-bold title-primary-custom">
                     <i class="bi bi-graph-up me-2"></i>
                     Nuestros Números
                 </h2>
@@ -567,10 +667,10 @@
     </div>
     
     <!-- Acreditaciones y Certificaciones -->
-    <div class="row justify-content-center mb-5">
+    <div class="row justify-content-center mb-4">
         <div class="col-lg-10">
-            <div class="text-center mb-5">
-                <h2 class="display-5 fw-bold text-primary">
+            <div class="text-center mb-4">
+                <h2 class="display-5 fw-bold title-primary-custom">
                     <i class="bi bi-award me-2"></i>
                     Acreditaciones y Certificaciones
                 </h2>
@@ -583,33 +683,53 @@
     <!-- Certificaciones Grid -->
     <div class="row g-4 mb-5">
         <div class="col-md-6 col-lg-3">
-            <div class="certification-card text-center p-3">
+            <div class="unified-card text-center p-3">
+                <div class="unified-sparkles">
+                    <div class="sparkle sparkle-1"></div>
+                    <div class="sparkle sparkle-2"></div>
+                    <div class="sparkle sparkle-3"></div>
+                </div>
                 <i class="bi bi-patch-check-fill fs-1 text-success mb-2"></i>
-                <h6 class="fw-bold">Supersalud</h6>
+                <h6 class="fw-bold title-primary-custom">Supersalud</h6>
                 <p class="small text-muted">Habilitación Nacional</p>
             </div>
         </div>
         
         <div class="col-md-6 col-lg-3">
-            <div class="certification-card text-center p-3">
-                <i class="bi bi-shield-check fs-1 text-primary mb-2"></i>
-                <h6 class="fw-bold">ISO 9001:2015</h6>
+            <div class="unified-card text-center p-3">
+                <div class="unified-sparkles">
+                    <div class="sparkle sparkle-1"></div>
+                    <div class="sparkle sparkle-2"></div>
+                    <div class="sparkle sparkle-3"></div>
+                </div>
+                <i class="bi bi-shield-check fs-1 text-success mb-2"></i>
+                <h6 class="fw-bold title-primary-custom">ISO 9001:2015</h6>
                 <p class="small text-muted">Gestión de Calidad</p>
             </div>
         </div>
         
         <div class="col-md-6 col-lg-3">
-            <div class="certification-card text-center p-3">
+            <div class="unified-card text-center p-3">
+                <div class="unified-sparkles">
+                    <div class="sparkle sparkle-1"></div>
+                    <div class="sparkle sparkle-2"></div>
+                    <div class="sparkle sparkle-3"></div>
+                </div>
                 <i class="bi bi-lock-fill fs-1 text-warning mb-2"></i>
-                <h6 class="fw-bold">ISO 27001</h6>
+                <h6 class="fw-bold title-primary-custom">ISO 27001</h6>
                 <p class="small text-muted">Seguridad Información</p>
             </div>
         </div>
         
         <div class="col-md-6 col-lg-3">
-            <div class="certification-card text-center p-3">
+            <div class="unified-card text-center p-3">
+                <div class="unified-sparkles">
+                    <div class="sparkle sparkle-1"></div>
+                    <div class="sparkle sparkle-2"></div>
+                    <div class="sparkle sparkle-3"></div>
+                </div>
                 <i class="bi bi-heart-pulse fs-1 text-danger mb-2"></i>
-                <h6 class="fw-bold">ICONTEC</h6>
+                <h6 class="fw-bold title-primary-custom">ICONTEC</h6>
                 <p class="small text-muted">Normas Técnicas</p>
             </div>
         </div>
@@ -618,15 +738,20 @@
     <!-- Call to Action Final -->
     <div class="row justify-content-center">
         <div class="col-lg-8">
-            <div class="card shadow border-0 bg-primary text-white text-center">
+            <div class="card shadow border-0 unified-card text-center">
+                <div class="unified-sparkles">
+                    <div class="sparkle sparkle-1"></div>
+                    <div class="sparkle sparkle-2"></div>
+                    <div class="sparkle sparkle-3"></div>
+                </div>
                 <div class="card-body p-4">
-                    <h3 class="card-title">¿Necesita Atención Médica?</h3>
+                    <h3 class="card-title title-primary-custom">¿Necesita Atención Médica?</h3>
                     <p class="card-text">No espere más, agenda su cita médica de forma rápida y segura</p>
                     <div class="d-grid gap-2 d-md-flex justify-content-md-center">
-                        <a asp-page="/Appointments/Create" class="btn btn-light btn-lg me-md-2">
+                        <a asp-page="/Appointments/Create" class="btn btn-success btn-lg me-md-2">
                             <i class="bi bi-calendar-plus me-2"></i>Agendar Cita
                         </a>
-                        <a asp-page="/Public/Contact" class="btn btn-outline-light btn-lg">
+                        <a asp-page="/Public/Contact" class="btn btn-outline-dark btn-lg">
                             <i class="bi bi-telephone me-2"></i>Contactar
                         </a>
                     </div>
@@ -647,6 +772,26 @@
         padding: 1rem;
         backdrop-filter: blur(10px);
         border: 1px solid rgba(255, 255, 255, 0.2);
+        transition: all 0.3s ease;
+    }
+    
+    [data-bs-theme="dark"] .hero-stat-card {
+        background: rgba(0, 0, 0, 0.4) !important;
+        border: 1px solid rgba(255, 255, 255, 0.1) !important;
+        color: white !important;
+        backdrop-filter: blur(15px) !important;
+    }
+    
+    [data-bs-theme="dark"] .hero-stat-card .hero-stat-number {
+        color: white !important;
+    }
+    
+    [data-bs-theme="dark"] .hero-stat-card .hero-stat-label {
+        color: rgba(255, 255, 255, 0.8) !important;
+    }
+    
+    [data-bs-theme="dark"] .hero-stat-card .hero-stat-icon i {
+        color: #22c55e !important;
     }
     
     .hero-stat-icon i {
@@ -661,6 +806,13 @@
         font-size: 0.9rem;
         backdrop-filter: blur(10px);
         border: 1px solid rgba(255, 255, 255, 0.2);
+        transition: all 0.3s ease;
+    }
+    
+    [data-bs-theme="dark"] .trust-badge-item {
+        background: rgba(0, 0, 0, 0.3) !important;
+        border: 1px solid rgba(255, 255, 255, 0.1) !important;
+        color: rgba(255, 255, 255, 0.9) !important;
     }
     
     .hero-btn {
@@ -912,6 +1064,321 @@
         .testimonial-card {
             margin-bottom: 1rem;
         }
+    }
+
+    /* === ESTILOS CUSTOMIZADOS PARA TÍTULOS === */
+    .title-primary-custom {
+        color: #003366 !important; /* Azul oscuro en modo claro */
+        text-shadow: 0 2px 4px rgba(0, 0, 0, 0.2) !important;
+        transition: all 0.3s ease;
+    }
+
+    /* Títulos en modo oscuro - blancos con sombra */
+    [data-bs-theme="dark"] .title-primary-custom {
+        color: #ffffff !important;
+        text-shadow: 0 2px 6px rgba(0, 0, 0, 0.6) !important;
+    }
+
+    /* === ESTILOS PARA LAS 3 PRIMERAS TARJETAS === */
+    .service-card-custom {
+        transition: all 0.3s ease;
+        position: relative;
+        overflow: hidden;
+        border: 2px solid transparent !important;
+    }
+
+    .service-card-custom::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: -100%;
+        width: 100%;
+        height: 100%;
+        background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+        transition: all 0.8s ease;
+        z-index: 1;
+    }
+
+    .service-card-custom:hover::before {
+        left: 100%;
+    }
+
+    .service-card-custom:hover {
+        transform: translateY(-10px) scale(1.03);
+        box-shadow: 0 20px 50px rgba(0, 0, 0, 0.2);
+        border-color: rgba(59, 130, 246, 0.3) !important;
+    }
+
+    /* Contenedor de iconos mejorado con fondo sutil */
+    .feature-icon-custom {
+        position: relative;
+        width: 90px;
+        height: 90px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        transition: all 0.4s ease;
+        z-index: 2;
+        background: rgba(255, 255, 255, 0.1);
+        border-radius: 50%;
+        border: 2px solid rgba(255, 255, 255, 0.2);
+        backdrop-filter: blur(10px);
+    }
+
+    .feature-icon-custom i {
+        font-size: 2.5rem !important;
+        transition: all 0.4s ease;
+        z-index: 3;
+        filter: drop-shadow(0 2px 4px rgba(0,0,0,0.2));
+    }
+
+    .service-card-custom:hover .feature-icon-custom {
+        transform: scale(1.1) rotateY(15deg);
+        background: rgba(255, 255, 255, 0.2);
+        border-color: rgba(255, 255, 255, 0.4);
+        box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+    }
+
+    .service-card-custom:hover .feature-icon-custom i {
+        transform: scale(1.1);
+        filter: drop-shadow(0 4px 8px rgba(0,0,0,0.3));
+    }
+
+    /* === EFECTOS SPARKLE MEJORADOS === */
+    .feature-sparkles {
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        pointer-events: none;
+        z-index: 4;
+    }
+
+    .sparkle {
+        position: absolute;
+        width: 8px;
+        height: 8px;
+        background: radial-gradient(circle, #ffd700 20%, #ff6b6b 60%, #4ecdc4 100%);
+        border-radius: 50%;
+        opacity: 0;
+        animation: sparkleAnimation 3s infinite ease-in-out;
+        box-shadow: 0 0 10px rgba(255, 215, 0, 0.5);
+    }
+
+    .sparkle-1 {
+        top: 10%;
+        right: 15%;
+        animation-delay: 0s;
+        width: 6px;
+        height: 6px;
+    }
+
+    .sparkle-2 {
+        top: 70%;
+        right: 80%;
+        animation-delay: 1s;
+        width: 10px;
+        height: 10px;
+    }
+
+    .sparkle-3 {
+        bottom: 20%;
+        left: 20%;
+        animation-delay: 2s;
+        width: 7px;
+        height: 7px;
+    }
+
+    @@keyframes sparkleAnimation {
+        0%, 100% {
+            opacity: 0;
+            transform: scale(0) rotate(0deg);
+        }
+        25% {
+            opacity: 0.3;
+            transform: scale(0.5) rotate(90deg);
+        }
+        50% {
+            opacity: 1;
+            transform: scale(1) rotate(180deg);
+        }
+        75% {
+            opacity: 0.7;
+            transform: scale(0.8) rotate(270deg);
+        }
+    }
+
+    /* Activar sparkles solo en hover */
+    .service-card-custom:hover .sparkle {
+        animation-play-state: running;
+    }
+
+    .service-card-custom .sparkle {
+        animation-play-state: paused;
+    }
+
+    /* Modo oscuro para las tarjetas de servicios */
+    [data-bs-theme="dark"] .service-card-custom {
+        background: rgba(30, 41, 59, 0.9) !important;
+        border-color: rgba(255, 255, 255, 0.1) !important;
+    }
+
+    [data-bs-theme="dark"] .service-card-custom:hover {
+        border-color: rgba(96, 165, 250, 0.4) !important;
+        background: rgba(30, 41, 59, 0.95) !important;
+    }
+
+    [data-bs-theme="dark"] .service-card-custom::before {
+        background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.15), transparent);
+    }
+
+    [data-bs-theme="dark"] .feature-icon-custom {
+        background: rgba(255, 255, 255, 0.05);
+        border-color: rgba(255, 255, 255, 0.15);
+    }
+
+    [data-bs-theme="dark"] .service-card-custom:hover .feature-icon-custom {
+        background: rgba(255, 255, 255, 0.1);
+        border-color: rgba(255, 255, 255, 0.3);
+    }
+
+    [data-bs-theme="dark"] .sparkle {
+        background: radial-gradient(circle, #60a5fa 20%, #34d399 60%, #fbbf24 100%);
+        box-shadow: 0 0 12px rgba(96, 165, 250, 0.6);
+    }
+
+    /* === TARJETAS UNIFICADAS PARA TODO EL INDEX === */
+    .unified-card {
+        position: relative;
+        overflow: hidden;
+        transition: all 0.3s ease;
+        cursor: pointer;
+        background: linear-gradient(135deg, #ffffff 0%, #f8fafc 100%) !important;
+        border: 2px solid rgba(0, 51, 102, 0.1) !important;
+    }
+
+    .unified-card::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: -100%;
+        width: 100%;
+        height: 100%;
+        background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+        transition: all 0.8s ease;
+        z-index: 1;
+    }
+
+    .unified-card:hover::before {
+        left: 100%;
+    }
+
+    .unified-card:hover {
+        transform: translateY(-8px) scale(1.02);
+        box-shadow: 0 20px 40px rgba(0, 51, 102, 0.15);
+        border-color: rgba(0, 51, 102, 0.3) !important;
+    }
+
+    /* Sparkles unificados para todas las tarjetas */
+    .unified-sparkles {
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        pointer-events: none;
+        z-index: 2;
+    }
+
+    .unified-sparkles .sparkle {
+        position: absolute;
+        width: 8px;
+        height: 8px;
+        background: radial-gradient(circle, #ffd700 20%, #ff6b6b 60%, #4ecdc4 100%);
+        border-radius: 50%;
+        opacity: 0;
+        animation: sparkleAnimation 3s infinite ease-in-out;
+        box-shadow: 0 0 10px rgba(255, 215, 0, 0.5);
+    }
+
+    .unified-sparkles .sparkle-1 {
+        top: 10%;
+        right: 15%;
+        animation-delay: 0s;
+        width: 6px;
+        height: 6px;
+    }
+
+    .unified-sparkles .sparkle-2 {
+        top: 60%;
+        left: 10%;
+        animation-delay: 1s;
+        width: 10px;
+        height: 10px;
+    }
+
+    .unified-sparkles .sparkle-3 {
+        bottom: 20%;
+        right: 20%;
+        animation-delay: 2s;
+        width: 7px;
+        height: 7px;
+    }
+
+    /* Activar sparkles solo en hover para todas las tarjetas */
+    .unified-card:hover .sparkle {
+        animation-play-state: running;
+    }
+
+    .unified-card .sparkle {
+        animation-play-state: paused;
+    }
+
+    /* Modo oscuro para tarjetas unificadas */
+    [data-bs-theme="dark"] .unified-card {
+        background: linear-gradient(135deg, #2d3748 0%, #1a202c 100%) !important;
+        border-color: rgba(255, 255, 255, 0.1) !important;
+    }
+
+    [data-bs-theme="dark"] .unified-card:hover {
+        box-shadow: 0 20px 40px rgba(255, 255, 255, 0.1);
+        border-color: rgba(255, 255, 255, 0.3) !important;
+        background: linear-gradient(135deg, #374151 0%, #1f2937 100%) !important;
+    }
+
+    [data-bs-theme="dark"] .unified-card::before {
+        background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.15), transparent);
+    }
+
+    [data-bs-theme="dark"] .unified-sparkles .sparkle {
+        background: radial-gradient(circle, #60a5fa 20%, #34d399 60%, #fbbf24 100%);
+        box-shadow: 0 0 12px rgba(96, 165, 250, 0.6);
+    }
+
+    /* === ARREGLAR BUG DE HOVER EN ESPECIALIDADES === */
+    .specialty-card {
+        transition: all 0.3s ease;
+        cursor: pointer;
+        background: rgba(255, 255, 255, 0.95) !important;
+    }
+
+    .specialty-card:hover {
+        transform: translateY(-3px);
+        box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+        background: rgba(248, 249, 255, 0.98) !important;
+    }
+
+    /* Modo oscuro para tarjetas de especialidades */
+    [data-bs-theme="dark"] .specialty-card {
+        background: rgba(30, 41, 59, 0.8) !important;
+        border-color: rgba(255, 255, 255, 0.1) !important;
+    }
+
+    [data-bs-theme="dark"] .specialty-card:hover {
+        background: rgba(45, 55, 72, 0.9) !important;
+        box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+        border-color: rgba(255, 255, 255, 0.2) !important;
     }
 </style>
 
