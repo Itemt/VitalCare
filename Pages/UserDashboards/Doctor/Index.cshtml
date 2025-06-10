@@ -15,23 +15,38 @@
     <link rel="stylesheet" href="~/css/modules/doctor/doctor-dashboard.css" />
 }
 
-<!-- Compact Hero Section for Doctor -->
-<div class="container-fluid bg-gradient-primary text-white text-center py-4 mb-4" style="background: linear-gradient(135deg, #1e3a8a 0%, #1e40af 50%, #1d4ed8 100%); border-radius: 0 0 1.5rem 1.5rem;">
-    <div class="container">
-        <div class="row justify-content-center align-items-center">
+<!-- Enhanced Hero Section for Doctor -->
+<div class="container-fluid bg-gradient-primary text-white py-5 mb-4" style="background: linear-gradient(135deg, #0f172a 0%, #1e293b 30%, #334155 70%, #475569 100%); border-radius: 1.5rem; margin: 1rem; position: relative; overflow: hidden; color: white !important;">
+    <!-- Background pattern -->
+    <div style="position: absolute; top: 0; right: 0; bottom: 0; left: 0; background-image: url('/images/doctor-dashboard-bg-subtle.svg'); background-repeat: no-repeat; background-position: center right; background-size: contain; opacity: 0.05;"></div>
+    
+    <div class="container position-relative">
+        <div class="row align-items-center">
             <div class="col-lg-8">
-                <h1 class="display-5 fw-bold mb-2">
-                    <i class="bi bi-clipboard-pulse me-2"></i>
-                    @if (!string.IsNullOrEmpty(userFirstName))
-                    {
-                        <span>Bienvenido, Dr(a). <strong>@userFirstName</strong></span>
-                    }
-                    else
-                    {
-                        <span>Portal Médico</span>
-                    }
-                </h1>
-                <p class="lead mb-0 opacity-90">Gestión profesional de pacientes - VitalCare IPS</p>
+                <div class="hero-content">
+                    <h1 class="display-4 fw-bold mb-3" style="color: white !important; text-shadow: 2px 2px 4px rgba(0,0,0,0.8);">
+                        <i class="bi bi-clipboard-pulse me-3"></i>
+                        @if (!string.IsNullOrEmpty(userFirstName))
+                        {
+                            <span>Bienvenido, Dr(a). <strong>@userFirstName</strong></span>
+                        }
+                        else
+                        {
+                            <span>Portal Médico</span>
+                        }
+                    </h1>
+                    <p class="lead mb-4" style="color: white !important; text-shadow: 1px 1px 3px rgba(0,0,0,0.8);">Gestión profesional de pacientes y atención médica integral</p>
+                    <div class="hero-subtitle">
+                        <span class="badge px-3 py-2 rounded-pill" style="background-color: rgba(255,255,255,0.2); color: white !important; border: 1px solid rgba(255,255,255,0.4); text-shadow: 1px 1px 2px rgba(0,0,0,0.7);">
+                            <i class="bi bi-hospital me-2"></i>VitalCare IPS
+                        </span>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-4 text-center">
+                <div class="hero-image">
+                    <img src="~/images/doctor.png" alt="Doctor" class="img-fluid rounded-circle shadow-lg" style="max-width: 250px; border: 4px solid rgba(255,255,255,0.2);">
+                </div>
             </div>
         </div>
     </div>
