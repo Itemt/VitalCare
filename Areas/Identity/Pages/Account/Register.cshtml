@@ -137,10 +137,11 @@
                                     <div class="auth-form-floating">
                                         <i class="auth-form-icon bi bi-calendar-date-fill"></i>
                                         <input asp-for="Input.DateOfBirth" 
-                                               class="auth-form-control" 
-                                               type="date" 
+                                               class="auth-form-control datepicker-register" 
+                                               type="text" 
                                                asp-format="{0:yyyy-MM-dd}"
-                                               max="@DateTime.Today.AddYears(-18).ToString("yyyy-MM-dd")" />
+                                               placeholder=" " 
+                                               readonly />
                                         <label asp-for="Input.DateOfBirth" class="auth-form-label">Fecha de Nacimiento</label>
                                         <span asp-validation-for="Input.DateOfBirth" class="auth-validation-error"></span>
                                     </div>

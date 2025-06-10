@@ -70,7 +70,7 @@
                         </div>
                         <div class="col-md-6">
                             <div class="form-floating mb-3">
-                                <input asp-for="Input.DateOfBirth" type="date" class="form-control" asp-format="{0:yyyy-MM-dd}" max="@DateTime.Today.AddYears(-18).ToString("yyyy-MM-dd")" placeholder="Fecha de Nacimiento"/>
+                                <input asp-for="Input.DateOfBirth" type="text" class="form-control datepicker-manage" asp-format="{0:yyyy-MM-dd}" placeholder="Fecha de Nacimiento" readonly/>
                                 <label asp-for="Input.DateOfBirth" class="form-label"></label>
                                 <span asp-validation-for="Input.DateOfBirth" class="text-danger"></span>
                             </div>
