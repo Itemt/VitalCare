@@ -25,8 +25,9 @@ builder.Services.AddDbContext<ApplicationDbContext>(options =>
 // Añadir servicios de Identity
 builder.Services.AddIdentity<User, IdentityRole<int>>(options => 
 {
-    // En desarrollo, desactivamos la confirmación requerida para facilitar las pruebas
-    options.SignIn.RequireConfirmedAccount = !builder.Environment.IsDevelopment();
+    // SIEMPRE requerir confirmación de cuenta por email
+    options.SignIn.RequireConfirmedAccount = true;
+    options.SignIn.RequireConfirmedEmail = true;
     
     // Configuración más simple para contraseñas
     options.Password.RequireDigit = false;           // No requerir dígitos

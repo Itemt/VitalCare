@@ -84,8 +84,8 @@
       <RelatedAsset></RelatedAsset>
       <AssetTraitName></AssetTraitName>
       <AssetTraitValue></AssetTraitValue>
-      <Fingerprint>4nu0ekmwzr</Fingerprint>
-      <Integrity>4GYx1xaDykTBF3AIAH81YHrjZAp7SRm8SSm1BaPVmmY=</Integrity>
+      <Fingerprint>h0cj2kg8xy</Fingerprint>
+      <Integrity>kdUx5m/DHXB8ew+GKCs/Yp4wOVAdyIpuOImLQilC+8w=</Integrity>
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
       <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
       <OriginalItemSpec>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\css\enhanced-features.css'))</OriginalItemSpec>
@@ -642,8 +642,8 @@
       <RelatedAsset></RelatedAsset>
       <AssetTraitName></AssetTraitName>
       <AssetTraitValue></AssetTraitValue>
-      <Fingerprint>g1ijgteuok</Fingerprint>
-      <Integrity>7BkdgOpzWBj/zSAJnfUVEt0Be7MV7ekWa/C6pQ3Q/Jc=</Integrity>
+      <Fingerprint>rf4l7q2t6i</Fingerprint>
+      <Integrity>SYdPwDzvdKSDyM9uiSZlFT5jKPmJKTtK8S9Ezsyyrlk=</Integrity>
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
       <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
       <OriginalItemSpec>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\js\site.flatpickr.js'))</OriginalItemSpec>
