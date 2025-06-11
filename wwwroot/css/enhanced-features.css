@@ -321,6 +321,17 @@
     color: #17a2b8 !important;
 }
 
+/* Logo text styling - azul oscuro y verde como en el hero */
+.navbar-brand .brand-text-vital {
+    color: #003366 !important; /* Azul oscuro */
+    font-weight: 700 !important;
+}
+
+.navbar-brand .brand-text-care {
+    color: #22c55e !important; /* Verde como en el hero */
+    font-weight: 700 !important;
+}
+
 /* Navigation links styling */
 .navbar-nav .nav-link {
     display: flex !important;
@@ -642,6 +653,12 @@ html[data-bs-theme="dark"] .navbar .dropdown-menu .dropdown-item:focus {
     border-color: rgba(255,255,255,0.3) !important;
 }
 
+/* Logo text styling en modo oscuro - mantener blanco */
+[data-bs-theme="dark"] .navbar-brand .brand-text-vital,
+[data-bs-theme="dark"] .navbar-brand .brand-text-care {
+    color: #ffffff !important; /* Blanco en modo oscuro */
+}
+
 /* Role-based navbar colors */
 body.doctor-body-bg .navbar-brand .brand-icon {
     color: #ffffff !important;
@@ -705,6 +722,22 @@ body.patient-body-bg .dropdown-divider {
     box-shadow: 0 20px 40px rgba(0,0,0,0.15);
 }
 
+/* === Statistics Cards Advanced === */
+.stat-card-advanced {
+    transition: all 0.4s ease;
+    background: linear-gradient(135deg, #fff 0%, #f8f9fa 100%);
+    border: 1px solid rgba(0,0,0,0.05);
+    position: relative;
+    overflow: hidden;
+    border-radius: 15px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+}
+
+.stat-card-advanced:hover {
+    transform: translateY(-8px) scale(1.03);
+    box-shadow: 0 15px 35px rgba(0,0,0,0.15);
+}
+
 /* === Dark Mode Base === */
 body {
     background-color: #f8f9fa;
@@ -725,6 +758,29 @@ body {
 [data-bs-theme="dark"] .stat-card-premium {
     background: linear-gradient(135deg, #212529 0%, #2d3748 100%);
     border-color: #495057;
+}
+
+[data-bs-theme="dark"] .stat-card-advanced {
+    background: linear-gradient(135deg, #212529 0%, #2d3748 100%) !important;
+    border-color: #495057 !important;
+    color: #ffffff !important;
+}
+
+[data-bs-theme="dark"] .stat-card-advanced:hover {
+    background: linear-gradient(135deg, #2d3748 0%, #374151 100%) !important;
+    box-shadow: 0 15px 35px rgba(255,255,255,0.1) !important;
+}
+
+[data-bs-theme="dark"] .stat-card-advanced h3 {
+    color: inherit !important;
+}
+
+[data-bs-theme="dark"] .stat-card-advanced p {
+    color: rgba(255, 255, 255, 0.8) !important;
+}
+
+[data-bs-theme="dark"] .stat-card-advanced small {
+    color: rgba(255, 255, 255, 0.7) !important;
 }
 
 /* === Mobile Responsive === */
