@@ -13,7 +13,7 @@
 }
 
 <header class="sticky-top">
-    <nav class="navbar navbar-expand-xl">
+    <nav class="navbar navbar-expand-xl @(isAdminLoggedIn ? "bg-admin" : "")">
         <div class="container-fluid">
             @* LOGO - REDIRECCIÓN BASADA EN ROL *@
             @if (isAdminLoggedIn)
@@ -121,19 +121,19 @@
                                     <i class="bi bi-capsule-pill me-2"></i> Medicamentos
                                 </a>
                             </li>
-                            @* ENLACE TEMPORAL PARA CONFIRMACIÓN DE EMAILS *@
-                            <li class="nav-item nav-item-important">
-                                <a class="nav-link d-flex align-items-center text-warning" asp-page="/Admin/ConfirmEmails">
-                                    <i class="bi bi-envelope-exclamation me-2"></i> 
-                                    <span class="small">⚙️ Confirmar Emails</span>
+                            @* ADMIN - MENÚ MÁS *@
+                            <li class="nav-item dropdown nav-item-important">
+                                <a class="nav-link dropdown-toggle d-flex align-items-center" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                    <i class="bi bi-three-dots-vertical me-2"></i> Más
                                 </a>
-                            </li>
-                            @* ENLACE TEMPORAL PARA DIAGNÓSTICO *@
-                            <li class="nav-item nav-item-important">
-                                <a class="nav-link d-flex align-items-center text-info" asp-page="/UserDashboards/Admin/DataIntegrity">
-                                    <i class="bi bi-tools me-2"></i> 
-                                    <span class="small">🔧 Integridad de Datos</span>
-                                </a>
+                                <ul class="dropdown-menu">
+                                    <li>
+                                        <a class="dropdown-item d-flex align-items-center text-warning" asp-page="/Admin/ConfirmEmails">
+                                            <i class="bi bi-envelope-exclamation me-2"></i>
+                                            <span class="small">Confirmar Emails</span>
+                                        </a>
+                                    </li>
+                                </ul>
                             </li>
                         } 
                         else if (isDoctorLoggedIn)

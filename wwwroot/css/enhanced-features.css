@@ -3844,5 +3844,45 @@ div.auth-row div.auth-col input.flatpickr-input {
     color: #ffffff !important;
 }
 
+/* ========== ADMIN NAVBAR STYLES ========== */
+
+/* Base style for admin navbar - always dark */
+.bg-admin {
+    background: linear-gradient(135deg, #1d2a3e 0%, #111827 100%) !important;
+}
+
+.bg-admin .navbar-nav {
+    flex-wrap: nowrap !important;
+}
+
+/* Force white text for all links and text in the admin navbar */
+.bg-admin .navbar-nav .nav-link,
+.bg-admin .navbar-brand,
+.bg-admin .dropdown-toggle,
+.bg-admin .dropdown-item,
+.bg-admin #userDropdown {
+    color: rgba(255, 255, 255, 0.9) !important;
+}
+
+.bg-admin .navbar-nav .nav-link:hover,
+.bg-admin .navbar-brand:hover,
+.bg-admin .dropdown-item:hover,
+.bg-admin #userDropdown:hover {
+    color: #ffffff !important;
+}
+
+/* Adjust padding for admin nav items to prevent wrapping */
+.bg-admin .navbar-nav .nav-link {
+    padding: 0.4rem 0.5rem !important; /* Further reduced horizontal padding */
+    font-size: 0.82rem; /* Further reduced font size */
+}
+
+/* Ensure icons in admin nav are also white */
+.bg-admin .navbar-nav .nav-link i,
+.bg-admin .navbar-brand i,
+.bg-admin .dropdown-toggle i {
+    color: rgba(255, 255, 255, 0.9) !important;
+}
+
 
 
