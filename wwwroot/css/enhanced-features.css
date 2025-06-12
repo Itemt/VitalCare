@@ -701,10 +701,11 @@ body.patient-body-bg .dropdown-divider {
 /* === Feature Cards === */
 .feature-card-hover {
     transition: all 0.3s ease;
+    transform: scale(1) translateY(0);
 }
 
 .feature-card-hover:hover {
-    transform: translateY(-8px) scale(1.02);
+    transform: scale(1.02) translateY(0);
     box-shadow: 0 20px 40px rgba(0,0,0,0.15);
 }
 
@@ -721,6 +722,18 @@ body.patient-body-bg .dropdown-divider {
 .stat-card-premium:hover {
     transform: translateY(-10px) scale(1.05);
     box-shadow: 0 20px 40px rgba(0,0,0,0.15);
+}
+
+/* Override for admin dashboard cards to remove translateY */
+#adminPanelDashboard .action-card-hover:hover {
+    transform: scale(1.02) !important;
+    opacity: 1 !important;
+}
+
+#adminPanelDashboard .action-card-hover {
+    transition: all 0.3s ease;
+    transform: scale(1) !important;
+    opacity: 1 !important;
 }
 
 /* === Statistics Cards Advanced === */
