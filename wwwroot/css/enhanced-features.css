@@ -3897,5 +3897,10 @@ div.auth-row div.auth-col input.flatpickr-input {
     color: rgba(255, 255, 255, 0.9) !important;
 }
 
+/* Explicitly style the admin's user dropdown text to be white */
+.bg-admin .navbar-nav .nav-item .nav-link#userDropdown {
+    color: #ffffff !important;
+}
+
 
 
