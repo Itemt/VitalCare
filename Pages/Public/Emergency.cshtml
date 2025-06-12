@@ -1,7 +1,7 @@
 @page
 @model CitasEPS.Pages.EmergencyModel
 @{
-    ViewData["Title"] = "Emergencias - VitalCare";
+    ViewData["Title"] = "Urgencias - VitalCare";
 }
 
 <!-- Emergency Alert Banner -->
@@ -16,23 +16,29 @@
     </div>
 </div>
 
-<!-- Hero Section -->
-<div class="container-fluid bg-gradient-danger text-white text-center py-5 mb-5 shadow-lg hero-section" style="background-image: linear-gradient(135deg, rgba(220,53,69,0.9), rgba(176,42,55,0.9)), url('/images/INDEX.png'); background-size: cover; background-position: center center;">
-    <div class="hero-overlay" style="background-color: rgba(80, 0, 20, 0.85); padding: 4rem 1.5rem; display: inline-block; border-radius: 1rem; max-width: 90%; width: 800px;">
-        <h1 class="display-2 fw-bolder text-shadow-custom mb-4">Emergencias Médicas</h1>
-        <p class="lead fs-3 mb-4 text-shadow-custom">Atención inmediata las 24 horas. Tu salud no puede esperar.</p>
-        <div class="service-badges mb-4">
-            <span class="badge bg-light text-danger fs-6 me-2 service-badge"><i class="bi bi-heart-pulse-fill me-1"></i>Respuesta Inmediata</span>
-            <span class="badge bg-warning fs-6 me-2 service-badge"><i class="bi bi-telephone-fill me-1"></i>24/7 Disponible</span>
-            <span class="badge bg-success fs-6 service-badge"><i class="bi bi-hospital-fill me-1"></i>Red Nacional</span>
-        </div>
-        <div class="emergency-cta mt-4">
-            <a href="tel:+573203465135" class="btn btn-light btn-lg me-3 pulse-animation">
-                <i class="bi bi-telephone-fill me-2"></i>LLAMAR EMERGENCIAS
-            </a>
-            <button class="btn btn-outline-light btn-lg" data-bs-toggle="modal" data-bs-target="#quickAssessmentModal">
-                <i class="bi bi-clipboard-pulse me-2"></i>Evaluación Rápida
-            </button>
+<!-- Hero Section for Emergency -->
+<div class="container-fluid bg-gradient-danger text-white text-center py-5 mb-5 shadow-lg hero-section hero-rounded" style="background-image: linear-gradient(135deg, rgba(220,53,69,0.9), rgba(176,42,55,0.9)), url('/images/INDEX.png'); background-size: cover; background-position: center center;">
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-lg-10">
+                <div class="hero-overlay" style="background-color: rgba(80, 0, 20, 0.85); padding: 4rem 1.5rem; display: inline-block; border-radius: 1rem; max-width: 90%; width: 800px;">
+                    <h1 class="display-2 fw-bolder text-shadow-custom mb-4">Emergencias Médicas</h1>
+                    <p class="lead fs-3 mb-4 text-shadow-custom">Atención inmediata las 24 horas. Tu salud no puede esperar.</p>
+                    <div class="service-badges mb-4">
+                        <span class="badge bg-light text-danger fs-6 me-2 service-badge"><i class="bi bi-heart-pulse-fill me-1"></i>Respuesta Inmediata</span>
+                        <span class="badge bg-warning fs-6 me-2 service-badge"><i class="bi bi-telephone-fill me-1"></i>24/7 Disponible</span>
+                        <span class="badge bg-success fs-6 service-badge"><i class="bi bi-hospital-fill me-1"></i>Red Nacional</span>
+                    </div>
+                    <div class="emergency-cta mt-4">
+                        <a href="tel:+573203465135" class="btn btn-light btn-lg me-3 pulse-animation">
+                            <i class="bi bi-telephone-fill me-2"></i>LLAMAR EMERGENCIAS
+                        </a>
+                        <button class="btn btn-outline-light btn-lg" data-bs-toggle="modal" data-bs-target="#quickAssessmentModal">
+                            <i class="bi bi-clipboard-pulse me-2"></i>Evaluación Rápida
+                        </button>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
 </div>

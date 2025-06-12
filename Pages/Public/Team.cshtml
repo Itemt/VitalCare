@@ -4,128 +4,57 @@
     ViewData["Title"] = "Nuestro Equipo - VitalCare";
 }
 
-<!-- Enhanced Hero Section for Team -->
-<div class="container-fluid text-white text-center py-5 mb-5 shadow-lg hero-section position-relative overflow-hidden" style="background: linear-gradient(135deg, #7c3aed 0%, #6d28d9 50%, #5b21b6 100%); min-height: 80vh; display: flex; align-items: center;">
+<!-- Hero Section for Team -->
+<div class="container-fluid text-white text-center py-5 mb-5 shadow-lg hero-section position-relative overflow-hidden hero-rounded" style="background: linear-gradient(135deg, #001122 0%, #002244 50%, #003366 100%); min-height: 60vh; display: flex; align-items: center;">
     
-    <!-- Medical Team Background Pattern -->
-    <div class="position-absolute w-100 h-100" style="top: 0; left: 0; z-index: 1;">
-        <div class="medical-team-bg">
-            <div class="team-shape team-shape-1">👨‍⚕️</div>
-            <div class="team-shape team-shape-2">👩‍⚕️</div>
-            <div class="team-shape team-shape-3">🩺</div>
-            <div class="team-shape team-shape-4">💊</div>
-            <div class="team-shape team-shape-5">🏥</div>
-            <div class="team-shape team-shape-6">⚕️</div>
-        </div>
-    </div>
-    
-    <!-- Hexagonal Pattern Background -->
-    <div class="position-absolute w-100 h-100" style="top: 0; left: 0; z-index: 2; background-image: radial-gradient(circle at 30% 30%, rgba(255,255,255,0.1) 2px, transparent 2px), radial-gradient(circle at 70% 70%, rgba(255,255,255,0.05) 2px, transparent 2px); background-size: 60px 60px, 80px 80px; animation: patternShift 12s linear infinite;"></div>
+    <!-- Gradient Overlay -->
+    <div class="position-absolute w-100 h-100" style="background: linear-gradient(135deg, rgba(0,17,34,0.95) 0%, rgba(0,34,68,0.85) 50%, rgba(0,51,102,0.95) 100%); top: 0; left: 0; z-index: 2;"></div>
     
     <!-- Hero Content -->
     <div class="container position-relative" style="z-index: 10;">
         <div class="row justify-content-center">
-            <div class="col-lg-10 col-xl-9">
-                <div class="team-hero-content">
-                    
-                    <!-- Team Icon Collection -->
-                    <div class="team-icons-group mb-4">
-                        <div class="icon-cluster">
-                            <div class="team-icon-main">
-                                <i class="bi bi-people-fill" style="font-size: 4rem; color: #f59e0b;"></i>
-                            </div>
-                            <div class="orbiting-icons">
-                                <div class="orbit-icon orbit-1"><i class="bi bi-stethoscope"></i></div>
-                                <div class="orbit-icon orbit-2"><i class="bi bi-heart-pulse-fill"></i></div>
-                                <div class="orbit-icon orbit-3"><i class="bi bi-bandaid-fill"></i></div>
-                            </div>
+            <div class="col-lg-10 col-xl-8">
+                <div class="hero-content-wrapper">
+                    <!-- Icon -->
+                    <div class="hero-medical-icon mb-4">
+                        <div class="medical-icon-wrapper">
+                            <i class="bi bi-people-fill" style="font-size: 4rem; color: #22c55e; filter: drop-shadow(0 0 20px rgba(34, 197, 94, 0.5));"></i>
                         </div>
                     </div>
                     
-                    <!-- Hero Title -->
-                    <h1 class="display-1 fw-bolder text-shadow-custom mb-4 team-title-animated">
-                        <span class="hero-title-vital team-title-1" style="color: #f59e0b;">Nuestros</span> 
-                        <span class="hero-title-care team-title-2" style="color: #ffffff;">Médicos</span>
+                    <!-- Title with Animation -->
+                    <h1 class="display-1 fw-bolder text-shadow-custom mb-4 hero-title-animated">
+                        <span class="hero-title-vital" style="color: #22c55e; text-shadow: 0 0 30px rgba(34, 197, 94, 0.3);">Nuestro</span> 
+                        <span class="hero-title-care" style="color: #ffffff; text-shadow: 0 0 30px rgba(255, 255, 255, 0.3);">Equipo</span>
                     </h1>
                     
-                    <!-- Professional Badge -->
-                    <div class="professional-badge mb-4">
-                        <span class="badge-text">
-                            <i class="bi bi-award-fill me-2"></i>
-                            Especialistas Certificados
-                        </span>
-                    </div>
-                    
                     <!-- Subtitle -->
-                    <p class="lead fs-3 mb-5 text-shadow-custom team-subtitle" style="max-width: 900px; margin: 0 auto; line-height: 1.4;">
-                        Conoce a nuestro <span style="color: #f59e0b; font-weight: 700;">equipo de médicos especialistas certificados</span> 
-                        en <strong style="color: #ffffff;">VitalCare IPS</strong>
+                    <p class="lead fs-3 mb-5 text-shadow-custom hero-subtitle-animated" style="max-width: 800px; margin: 0 auto;">
+                        Conoce a los profesionales detrás de VitalCare, dedicados a la excelencia y la innovación en salud.
                     </p>
-                    
-                    <!-- Enhanced Team Statistics -->
-                    <div class="team-stats-enhanced mb-5">
-                        <div class="row g-4 justify-content-center">
-                            <div class="col-lg-3 col-md-6">
-                                <div class="stat-card-premium stat-specialists">
-                                    <div class="stat-icon-bg">
-                                        <i class="bi bi-people-fill"></i>
-                                    </div>
-                                    <div class="stat-content">
-                                        <div class="stat-number" data-target="45">45+</div>
-                                        <div class="stat-label">Especialistas</div>
-                                    </div>
-                                    <div class="stat-pulse"></div>
+
+                    <!-- Badges -->
+                    <div class="service-badges-enhanced">
+                        <div class="row g-3 justify-content-center">
+                            <div class="col-md-4">
+                                <div class="service-badge-premium">
+                                    <i class="bi bi-code-slash me-2"></i>
+                                    <span>Desarrollo de Software</span>
                                 </div>
                             </div>
-                            <div class="col-lg-3 col-md-6">
-                                <div class="stat-card-premium stat-specialties">
-                                    <div class="stat-icon-bg">
-                                        <i class="bi bi-heart-pulse-fill"></i>
-                                    </div>
-                                    <div class="stat-content">
-                                        <div class="stat-number" data-target="15">15+</div>
-                                        <div class="stat-label">Especialidades</div>
-                                    </div>
-                                    <div class="stat-pulse"></div>
+                            <div class="col-md-4">
+                                <div class="service-badge-premium">
+                                    <i class="bi bi-shield-check me-2"></i>
+                                    <span>Calidad y Pruebas</span>
                                 </div>
                             </div>
-                            <div class="col-lg-3 col-md-6">
-                                <div class="stat-card-premium stat-experience">
-                                    <div class="stat-icon-bg">
-                                        <i class="bi bi-calendar-check-fill"></i>
-                                    </div>
-                                    <div class="stat-content">
-                                        <div class="stat-number" data-target="6">6</div>
-                                        <div class="stat-label">Años Experiencia</div>
-                                    </div>
-                                    <div class="stat-pulse"></div>
-                                </div>
-                            </div>
-                            <div class="col-lg-3 col-md-6">
-                                <div class="stat-card-premium stat-satisfaction">
-                                    <div class="stat-icon-bg">
-                                        <i class="bi bi-star-fill"></i>
-                                    </div>
-                                    <div class="stat-content">
-                                        <div class="stat-number" data-target="96">96%</div>
-                                        <div class="stat-label">Satisfacción</div>
-                                    </div>
-                                    <div class="stat-pulse"></div>
+                            <div class="col-md-4">
+                                <div class="service-badge-premium">
+                                    <i class="bi bi-cloud-arrow-up-fill me-2"></i>
+                                    <span>Infraestructura y DevOps</span>
                                 </div>
                             </div>
                         </div>
-                    </div>
-                    
-                    <!-- CTA Buttons -->
-                    <div class="team-hero-actions">
-                        <a href="#team-grid" class="btn btn-light btn-lg me-3 team-btn-primary">
-                            <i class="bi bi-person-vcard me-2"></i>
-                            Conocer Equipo
-                        </a>
-                        <a href="/Contact" class="btn btn-outline-light btn-lg team-btn-secondary">
-                            <i class="bi bi-calendar-plus me-2"></i>
-                            Agendar Cita
-                        </a>
                     </div>
                 </div>
             </div>
@@ -133,245 +62,178 @@
     </div>
 </div>
 
-<!-- Team Hero Styles -->
-<style>
-    @@keyframes patternShift {
-        0% { background-position: 0% 0%, 0% 0%; }
-        100% { background-position: 100% 100%, -100% -100%; }
-    }
-    
-    .medical-team-bg {
-        position: relative;
-        width: 100%;
-        height: 100%;
-    }
-    
-    .team-shape {
-        position: absolute;
-        font-size: 2.5rem;
-        opacity: 0.15;
-        animation: floatTeamShape 4s ease-in-out infinite;
-    }
-    
-    .team-shape-1 { top: 10%; left: 15%; animation-delay: 0s; }
-    .team-shape-2 { top: 20%; right: 20%; animation-delay: 1.5s; }
-    .team-shape-3 { bottom: 25%; left: 10%; animation-delay: 3s; }
-    .team-shape-4 { bottom: 15%; right: 15%; animation-delay: 4.5s; }
-    .team-shape-5 { top: 50%; left: 5%; animation-delay: 6s; }
-    .team-shape-6 { top: 40%; right: 10%; animation-delay: 7.5s; }
-    
-    @@keyframes floatTeamShape {
-        0%, 100% { transform: translateY(0px) rotate(0deg); opacity: 0.1; }
-        50% { transform: translateY(-25px) rotate(10deg); opacity: 0.3; }
-    }
-    
-    .team-icons-group {
-        position: relative;
-    }
-    
-    .icon-cluster {
-        position: relative;
-        display: inline-block;
-    }
-    
-    .team-icon-main {
-        position: relative;
-        z-index: 2;
-    }
-    
-    .orbiting-icons {
-        position: absolute;
-        top: 50%;
-        left: 50%;
-        transform: translate(-50%, -50%);
-    }
-    
-    .orbit-icon {
-        position: absolute;
-        width: 60px;
-        height: 60px;
-        background: rgba(245, 158, 11, 0.2);
-        border: 2px solid #f59e0b;
-        border-radius: 50%;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        font-size: 1.5rem;
-        color: #f59e0b;
-        animation: orbit 3s linear infinite;
-    }
-    
-    .orbit-1 {
-        transform: translate(-50%, -50%) rotate(0deg) translateX(80px) rotate(0deg);
-    }
-    
-    .orbit-2 {
-        transform: translate(-50%, -50%) rotate(120deg) translateX(80px) rotate(-120deg);
-        animation-delay: -2s;
-    }
-    
-    .orbit-3 {
-        transform: translate(-50%, -50%) rotate(240deg) translateX(80px) rotate(-240deg);
-        animation-delay: -4s;
-    }
-    
-    @@keyframes orbit {
-        0% { transform: translate(-50%, -50%) rotate(0deg) translateX(80px) rotate(0deg); }
-        100% { transform: translate(-50%, -50%) rotate(360deg) translateX(80px) rotate(-360deg); }
-    }
-    
-    .team-title-1 {
-        animation: slideInDown 0.6s ease-out;
-    }
-    
-    .team-title-2 {
-        animation: slideInDown 0.6s ease-out 0.15s both;
-    }
-    
-    @@keyframes slideInDown {
-        from { opacity: 0; transform: translateY(-50px); }
-        to { opacity: 1; transform: translateY(0); }
-    }
-    
-    .professional-badge {
-        animation: zoomIn 0.6s ease-out 0.4s both;
-    }
-    
-    .professional-badge .badge-text {
-        background: rgba(245, 158, 11, 0.2);
-        border: 2px solid #f59e0b;
-        color: #f59e0b;
-        padding: 12px 25px;
-        border-radius: 50px;
-        font-weight: 600;
-        font-size: 1.1rem;
-        display: inline-block;
-    }
-    
-    @@keyframes zoomIn {
-        from { opacity: 0; transform: scale(0.8); }
-        to { opacity: 1; transform: scale(1); }
-    }
-    
-    .team-subtitle {
-        animation: fadeInUp 0.6s ease-out 0.6s both;
-    }
-    
-    .stat-card-premium {
-        background: rgba(255, 255, 255, 0.1);
-        backdrop-filter: blur(15px);
-        border: 1px solid rgba(255, 255, 255, 0.2);
-        border-radius: 25px;
-        padding: 30px 20px;
-        text-align: center;
-        transition: all 0.4s ease;
-        position: relative;
-        overflow: hidden;
-        animation: slideInUp 0.6s ease-out 0.8s both;
-    }
-    
-    .stat-card-premium:hover {
-        transform: translateY(-15px);
-        background: rgba(255, 255, 255, 0.15);
-        box-shadow: 0 25px 50px rgba(0, 0, 0, 0.3);
-    }
-    
-    .stat-icon-bg {
-        width: 70px;
-        height: 70px;
-        background: rgba(245, 158, 11, 0.2);
-        border-radius: 50%;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        margin: 0 auto 20px;
-        font-size: 2rem;
-        color: #f59e0b;
-        transition: all 0.3s ease;
-    }
-    
-    .stat-card-premium:hover .stat-icon-bg {
-        background: rgba(245, 158, 11, 0.3);
-        transform: scale(1.1);
-    }
-    
-    .stat-number {
-        font-size: 2.5rem;
-        font-weight: 700;
-        color: white;
-        margin-bottom: 10px;
-        text-shadow: 0 0 20px rgba(255, 255, 255, 0.3);
-    }
-    
-    .stat-label {
-        font-size: 1rem;
-        color: rgba(255, 255, 255, 0.9);
-        font-weight: 500;
-    }
-    
-    .stat-pulse {
-        position: absolute;
-        top: 0;
-        left: 0;
-        right: 0;
-        bottom: 0;
-        border-radius: 25px;
-        background: linear-gradient(45deg, transparent, rgba(245, 158, 11, 0.1), transparent);
-        opacity: 0;
-        animation: pulse 1.5s ease-in-out infinite;
-    }
-    
-    @@keyframes pulse {
-        0%, 100% { opacity: 0; transform: scale(0.9); }
-        50% { opacity: 1; transform: scale(1); }
-    }
-    
-    .team-btn-primary, .team-btn-secondary {
-        padding: 15px 35px;
-        border-radius: 50px;
-        font-weight: 600;
-        transition: all 0.3s ease;
-        animation: slideInUp 0.6s ease-out 1s both;
-    }
-    
-    .team-btn-primary {
-        background: #ffffff;
-        color: #7c3aed;
-        box-shadow: 0 5px 20px rgba(255, 255, 255, 0.3);
-    }
-    
-    .team-btn-primary:hover {
-        transform: translateY(-3px);
-        box-shadow: 0 8px 30px rgba(255, 255, 255, 0.4);
-        color: #7c3aed;
-    }
-    
-    .team-btn-secondary:hover {
-        background: rgba(255, 255, 255, 0.1);
-        transform: translateY(-3px);
-    }
-    
-    @@keyframes slideInUp {
-        from { opacity: 0; transform: translateY(30px); }
-        to { opacity: 1; transform: translateY(0); }
-    }
-    
-    @@keyframes fadeInUp {
-        from { opacity: 0; transform: translateY(30px); }
-        to { opacity: 1; transform: translateY(0); }
-    }
-</style>
+<!-- Team Members Grid -->
+<div class="container py-5 mb-5">
+    <div class="row text-center mb-5">
+        <div class="col-lg-8 mx-auto">
+            <h2 class="display-5 fw-bold mb-3 text-primary-darkblue">Equipo de Desarrollo</h2>
+            <p class="lead text-muted fs-5">Los profesionales que hacen posible nuestra plataforma.</p>
+        </div>
+    </div>
+
+    <div class="row g-4 justify-content-center">
+        <!-- Cristian Ramos -->
+        <div class="col-lg-4 col-md-6">
+            <div class="card team-card h-100 shadow-sm border-light">
+                <div class="card-body text-center p-4">
+                    <div class="position-relative mb-4">
+                        <div class="team-avatar-wrapper mx-auto" style="background-color: #0d6efd;">
+                            <i class="bi bi-person-fill fs-1 text-white"></i>
+                        </div>
+                        <span class="team-role-badge" style="background-color: #0d6efd;">Lead Developer</span>
+                    </div>
+                    <h5 class="card-title fw-bold">Cristian Ramos</h5>
+                    <p class="text-muted">Desarrollador Principal</p>
+                    <p class="card-text small text-muted px-2">Estudiante de Ingeniería de Sistemas especializado en desarrollo web con ASP.NET Core y arquitectura de software.</p>
+                    <div class="mt-3">
+                        <div class="d-block mb-2"><small class="text-muted"><i class="bi bi-code-slash me-2"></i>ASP.NET Core & C#</small></div>
+                        <div class="d-block"><small class="text-muted"><i class="bi bi-bootstrap me-2"></i>Bootstrap & Frontend</small></div>
+                    </div>
+                    <div class="mt-4">
+                        <a href="https://www.linkedin.com/in/cristian-david-ramos-parra-530263222" target="_blank" class="btn btn-outline-secondary btn-sm me-1"><i class="bi bi-linkedin"></i></a>
+                        <a href="https://github.com/CristianR22" target="_blank" class="btn btn-outline-secondary btn-sm"><i class="bi bi-github"></i></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Frey Camargo -->
+        <div class="col-lg-4 col-md-6">
+            <div class="card team-card h-100 shadow-sm border-light">
+                <div class="card-body text-center p-4">
+                    <div class="position-relative mb-4">
+                        <div class="team-avatar-wrapper mx-auto" style="background-color: #198754;">
+                            <i class="bi bi-person-fill fs-1 text-white"></i>
+                        </div>
+                        <span class="team-role-badge" style="background-color: #198754;">Backend Dev</span>
+                    </div>
+                    <h5 class="card-title fw-bold">Frey Camargo</h5>
+                    <p class="text-muted">Desarrollador Backend</p>
+                    <p class="card-text small text-muted px-2">Especialista en desarrollo backend, bases de datos y lógica de negocio para sistemas de gestión médica.</p>
+                    <div class="mt-3">
+                        <div class="d-block mb-2"><small class="text-muted"><i class="bi bi-server me-2"></i>Entity Framework & SQL</small></div>
+                        <div class="d-block"><small class="text-muted"><i class="bi bi-gear-wide-connected me-2"></i>APIs & Microservicios</small></div>
+                    </div>
+                    <div class="mt-4">
+                        <a href="#" target="_blank" class="btn btn-outline-secondary btn-sm me-1"><i class="bi bi-linkedin"></i></a>
+                        <a href="#" target="_blank" class="btn btn-outline-secondary btn-sm"><i class="bi bi-github"></i></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Angie Almeida -->
+        <div class="col-lg-4 col-md-6">
+            <div class="card team-card h-100 shadow-sm border-light">
+                <div class="card-body text-center p-4">
+                    <div class="position-relative mb-4">
+                        <div class="team-avatar-wrapper mx-auto" style="background-color: #0dcaf0;">
+                            <i class="bi bi-person-fill fs-1 text-white"></i>
+                        </div>
+                        <span class="team-role-badge" style="background-color: #0dcaf0;">UI/UX</span>
+                    </div>
+                    <h5 class="card-title fw-bold">Angie Almeida</h5>
+                    <p class="text-muted">Diseñadora UI/UX</p>
+                    <p class="card-text small text-muted px-2">Especialista en experiencia de usuario y diseño de interfaces, enfocada en la usabilidad del sistema.</p>
+                    <div class="mt-3">
+                        <div class="d-block mb-2"><small class="text-muted"><i class="bi bi-palette-fill me-2"></i>Diseño UI/UX</small></div>
+                        <div class="d-block"><small class="text-muted"><i class="bi bi-display me-2"></i>Responsive Design</small></div>
+                    </div>
+                    <div class="mt-4">
+                        <a href="#" target="_blank" class="btn btn-outline-secondary btn-sm me-1"><i class="bi bi-linkedin"></i></a>
+                        <a href="#" target="_blank" class="btn btn-outline-secondary btn-sm"><i class="bi bi-instagram"></i></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Thomas Rodriguez -->
+        <div class="col-lg-4 col-md-6">
+            <div class="card team-card h-100 shadow-sm border-light">
+                <div class="card-body text-center p-4">
+                    <div class="position-relative mb-4">
+                        <div class="team-avatar-wrapper mx-auto" style="background-color: #ffc107;">
+                            <i class="bi bi-person-fill fs-1 text-white"></i>
+                        </div>
+                        <span class="team-role-badge" style="background-color: #ffc107;">Frontend</span>
+                    </div>
+                    <h5 class="card-title fw-bold">Thomas Rodriguez</h5>
+                    <p class="text-muted">Desarrollador Frontend</p>
+                    <p class="card-text small text-muted px-2">Especialista en desarrollo frontend con JavaScript, CSS y frameworks modernos para interfaces interactivas.</p>
+                    <div class="mt-3">
+                        <div class="d-block mb-2"><small class="text-muted"><i class="bi bi-filetype-js me-2"></i>JavaScript & CSS</small></div>
+                        <div class="d-block"><small class="text-muted"><i class="bi bi-bootstrap-fill me-2"></i>Bootstrap & jQuery</small></div>
+                    </div>
+                    <div class="mt-4">
+                        <a href="#" target="_blank" class="btn btn-outline-secondary btn-sm me-1"><i class="bi bi-linkedin"></i></a>
+                        <a href="#" target="_blank" class="btn btn-outline-secondary btn-sm"><i class="bi bi-github"></i></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Pierre Molina -->
+        <div class="col-lg-4 col-md-6">
+            <div class="card team-card h-100 shadow-sm border-light">
+                <div class="card-body text-center p-4">
+                    <div class="position-relative mb-4">
+                        <div class="team-avatar-wrapper mx-auto" style="background-color: #dc3545;">
+                            <i class="bi bi-person-fill fs-1 text-white"></i>
+                        </div>
+                        <span class="team-role-badge" style="background-color: #dc3545;">QA</span>
+                    </div>
+                    <h5 class="card-title fw-bold">Pierre Molina</h5>
+                    <p class="text-muted">Quality Assurance</p>
+                    <p class="card-text small text-muted px-2">Especialista en pruebas de software y aseguramiento de calidad, garantizando el funcionamiento óptimo del sistema.</p>
+                    <div class="mt-3">
+                        <div class="d-block mb-2"><small class="text-muted"><i class="bi bi-search me-2"></i>Testing & Debugging</small></div>
+                        <div class="d-block"><small class="text-muted"><i class="bi bi-check2-circle me-2"></i>Quality Assurance</small></div>
+                    </div>
+                    <div class="mt-4">
+                        <a href="#" target="_blank" class="btn btn-outline-secondary btn-sm me-1"><i class="bi bi-linkedin"></i></a>
+                        <a href="#" target="_blank" class="btn btn-outline-secondary btn-sm"><i class="bi bi-github"></i></a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+        <!-- Juan Jimenez -->
+        <div class="col-lg-4 col-md-6">
+            <div class="card team-card h-100 shadow-sm border-light">
+                <div class="card-body text-center p-4">
+                    <div class="position-relative mb-4">
+                        <div class="team-avatar-wrapper mx-auto" style="background-color: #6c757d;">
+                            <i class="bi bi-person-fill fs-1 text-white"></i>
+                        </div>
+                        <span class="team-role-badge" style="background-color: #6c757d;">DevOps</span>
+                    </div>
+                    <h5 class="card-title fw-bold">Juan Jimenez</h5>
+                    <p class="text-muted">DevOps Engineer</p>
+                    <p class="card-text small text-muted px-2">Especialista en infraestructura, despliegue y mantenimiento de sistemas en producción.</p>
+                    <div class="mt-3">
+                        <div class="d-block mb-2"><small class="text-muted"><i class="bi bi-cloud-arrow-up-fill me-2"></i>Cloud & Deployment</small></div>
+                        <div class="d-block"><small class="text-muted"><i class="bi bi-hdd-stack-fill me-2"></i>Server Management</small></div>
+                    </div>
+                    <div class="mt-4">
+                        <a href="#" target="_blank" class="btn btn-outline-secondary btn-sm me-1"><i class="bi bi-linkedin"></i></a>
+                        <a href="#" target="_blank" class="btn btn-outline-secondary btn-sm"><i class="bi bi-github"></i></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
 
 <!-- Team Members -->
 <div class="container mb-5">
     <div class="row text-center mb-5">
         <div class="col-lg-8 mx-auto">
-            <h2 class="display-5 fw-bold mb-3" style="color: #003366;">Médicos Especialistas</h2>
+            <h2 class="display-5 fw-bold mb-3 text-primary-darkblue">Médicos Especialistas</h2>
             <p class="lead text-muted">Profesionales de la salud comprometidos con la excelencia médica y el bienestar de nuestros pacientes</p>
         </div>
     </div>
     
-    <div class="row g-4 mb-5">
+    <div class="row g-4 justify-content-center">
         <div class="col-lg-4 col-md-6">
             <div class="card h-100 shadow-lg border-0 team-card bg-white feature-card-hover">
                 <div class="position-relative">
@@ -383,16 +245,12 @@
                     </div>
                 </div>
                 <div class="card-body text-center">
-                    <h5 class="card-title fw-bold" style="color: #003366;">Dr. Carlos Mendoza</h5>
-                    <p class="fw-semibold" style="color: #003366;">Director Médico - Medicina Interna</p>
+                    <h5 class="card-title fw-bold text-primary-darkblue">Dr. Carlos Mendoza</h5>
+                    <p class="fw-semibold text-primary-darkblue">Director Médico - Medicina Interna</p>
                     <p class="card-text text-muted mb-3">Médico Internista con 15 años de experiencia. Especialista en enfermedades crónicas y medicina preventiva. Egresado Universidad Nacional de Colombia.</p>
                     <div class="team-credentials mb-3">
                         <small class="d-block text-success"><i class="bi bi-check-circle-fill me-2"></i>Medicina Interna - UN</small>
                         <small class="d-block text-success"><i class="bi bi-check-circle-fill me-2"></i>15 años experiencia</small>
-                    </div>
-                    <div class="social-links">
-                        <a href="#" class="btn btn-sm me-1" style="background: #003366; color: white;"><i class="bi bi-calendar-plus"></i> Agendar</a>
-                        <a href="#" class="btn btn-outline-secondary btn-sm"><i class="bi bi-info-circle"></i> Perfil</a>
                     </div>
                 </div>
             </div>
@@ -402,23 +260,19 @@
             <div class="card h-100 shadow-lg border-0 team-card bg-white feature-card-hover">
                 <div class="position-relative">
                     <div class="team-avatar bg-success text-white d-flex align-items-center justify-content-center mx-auto mt-4 feature-icon-wrapper" style="width: 120px; height: 120px; border-radius: 50%;">
-                        <i class="bi bi-activity feature-icon-main" style="font-size: 4rem;"></i>
+                        <i class="bi bi-heart-pulse-fill feature-icon-main" style="font-size: 4rem;"></i>
                     </div>
                     <div class="position-absolute top-0 end-0 mt-3 me-3">
                         <span class="badge bg-success">Cardiología</span>
                     </div>
                 </div>
                 <div class="card-body text-center">
-                    <h5 class="card-title fw-bold" style="color: #003366;">Dra. María Rodríguez</h5>
+                    <h5 class="card-title fw-bold text-primary-darkblue">Dra. María Rodríguez</h5>
                     <p class="text-success fw-semibold">Cardióloga</p>
                     <p class="card-text text-muted mb-3">Especialista en cardiología con 12 años de experiencia. Experta en electrocardiogramas, ecocardiogramas y prevención cardiovascular.</p>
                     <div class="team-credentials mb-3">
                         <small class="d-block text-success"><i class="bi bi-check-circle-fill me-2"></i>Cardiología - UIS</small>
                         <small class="d-block text-success"><i class="bi bi-check-circle-fill me-2"></i>12 años experiencia</small>
-                    </div>
-                    <div class="social-links">
-                        <a href="#" class="btn btn-sm me-1" style="background: #003366; color: white;"><i class="bi bi-calendar-plus"></i> Agendar</a>
-                        <a href="#" class="btn btn-outline-secondary btn-sm"><i class="bi bi-info-circle"></i> Perfil</a>
                     </div>
                 </div>
             </div>
@@ -428,23 +282,19 @@
             <div class="card h-100 shadow-lg border-0 team-card bg-white feature-card-hover">
                 <div class="position-relative">
                     <div class="team-avatar bg-info text-white d-flex align-items-center justify-content-center mx-auto mt-4 feature-icon-wrapper" style="width: 120px; height: 120px; border-radius: 50%;">
-                        <i class="bi bi-gender-female feature-icon-main" style="font-size: 4rem;"></i>
+                        <i class="bi bi-person-fill feature-icon-main" style="font-size: 4rem;"></i>
                     </div>
                     <div class="position-absolute top-0 end-0 mt-3 me-3">
                         <span class="badge bg-info">Ginecología</span>
                     </div>
                 </div>
                 <div class="card-body text-center">
-                    <h5 class="card-title fw-bold" style="color: #003366;">Dra. Ana Martínez</h5>
+                    <h5 class="card-title fw-bold text-primary-darkblue">Dra. Ana Martínez</h5>
                     <p class="text-info fw-semibold">Ginecóloga</p>
                     <p class="card-text text-muted mb-3">Especialista en ginecología y obstetricia con 10 años de experiencia. Experta en planificación familiar y salud reproductiva.</p>
                     <div class="team-credentials mb-3">
                         <small class="d-block text-success"><i class="bi bi-check-circle-fill me-2"></i>Ginecología - UNAB</small>
                         <small class="d-block text-success"><i class="bi bi-check-circle-fill me-2"></i>10 años experiencia</small>
-                    </div>
-                    <div class="social-links">
-                        <a href="#" class="btn btn-sm me-1" style="background: #003366; color: white;"><i class="bi bi-calendar-plus"></i> Agendar</a>
-                        <a href="#" class="btn btn-outline-secondary btn-sm"><i class="bi bi-info-circle"></i> Perfil</a>
                     </div>
                 </div>
             </div>
@@ -454,23 +304,19 @@
             <div class="card h-100 shadow-lg border-0 team-card bg-white feature-card-hover">
                 <div class="position-relative">
                     <div class="team-avatar bg-warning text-white d-flex align-items-center justify-content-center mx-auto mt-4 feature-icon-wrapper" style="width: 120px; height: 120px; border-radius: 50%;">
-                        <i class="bi bi-emoji-smile feature-icon-main" style="font-size: 4rem;"></i>
+                        <i class="bi bi-emoji-smile-fill feature-icon-main" style="font-size: 4rem;"></i>
                     </div>
                     <div class="position-absolute top-0 end-0 mt-3 me-3">
                         <span class="badge bg-warning text-dark">Pediatría</span>
                     </div>
                 </div>
                 <div class="card-body text-center">
-                    <h5 class="card-title fw-bold" style="color: #003366;">Dr. Luis García</h5>
+                    <h5 class="card-title fw-bold text-primary-darkblue">Dr. Luis García</h5>
                     <p class="text-warning fw-semibold">Pediatra</p>
                     <p class="card-text text-muted mb-3">Especialista en pediatría con 8 años de experiencia. Experto en control de crecimiento, vacunación y enfermedades infantiles.</p>
                     <div class="team-credentials mb-3">
                         <small class="d-block text-success"><i class="bi bi-check-circle-fill me-2"></i>Pediatría - UPB</small>
                         <small class="d-block text-success"><i class="bi bi-check-circle-fill me-2"></i>8 años experiencia</small>
-                    </div>
-                    <div class="social-links">
-                        <a href="#" class="btn btn-sm me-1" style="background: #003366; color: white;"><i class="bi bi-calendar-plus"></i> Agendar</a>
-                        <a href="#" class="btn btn-outline-secondary btn-sm"><i class="bi bi-info-circle"></i> Perfil</a>
                     </div>
                 </div>
             </div>
@@ -480,23 +326,19 @@
             <div class="card h-100 shadow-lg border-0 team-card bg-white feature-card-hover">
                 <div class="position-relative">
                     <div class="team-avatar bg-danger text-white d-flex align-items-center justify-content-center mx-auto mt-4 feature-icon-wrapper" style="width: 120px; height: 120px; border-radius: 50%;">
-                        <i class="bi bi-bandaid feature-icon-main" style="font-size: 4rem;"></i>
+                        <i class="bi bi-bandaid-fill feature-icon-main" style="font-size: 4rem;"></i>
                     </div>
                     <div class="position-absolute top-0 end-0 mt-3 me-3">
                         <span class="badge bg-danger">Dermatología</span>
                     </div>
                 </div>
                 <div class="card-body text-center">
-                    <h5 class="card-title fw-bold" style="color: #003366;">Dra. Patricia López</h5>
+                    <h5 class="card-title fw-bold text-primary-darkblue">Dra. Patricia López</h5>
                     <p class="text-danger fw-semibold">Dermatóloga</p>
                     <p class="card-text text-muted mb-3">Especialista en dermatología con 9 años de experiencia. Experta en enfermedades de la piel, tratamientos estéticos y dermatología pediátrica.</p>
                     <div class="team-credentials mb-3">
                         <small class="d-block text-success"><i class="bi bi-check-circle-fill me-2"></i>Dermatología - CES</small>
                         <small class="d-block text-success"><i class="bi bi-check-circle-fill me-2"></i>9 años experiencia</small>
-                    </div>
-                    <div class="social-links">
-                        <a href="#" class="btn btn-sm me-1" style="background: #003366; color: white;"><i class="bi bi-calendar-plus"></i> Agendar</a>
-                        <a href="#" class="btn btn-outline-secondary btn-sm"><i class="bi bi-info-circle"></i> Perfil</a>
                     </div>
                 </div>
             </div>
@@ -506,23 +348,19 @@
             <div class="card h-100 shadow-lg border-0 team-card bg-white feature-card-hover">
                 <div class="position-relative">
                     <div class="team-avatar bg-secondary text-white d-flex align-items-center justify-content-center mx-auto mt-4 feature-icon-wrapper" style="width: 120px; height: 120px; border-radius: 50%;">
-                        <i class="bi bi-brain feature-icon-main" style="font-size: 4rem;"></i>
+                        <i class="bi bi-heart-pulse-fill feature-icon-main" style="font-size: 4rem;"></i>
                     </div>
                     <div class="position-absolute top-0 end-0 mt-3 me-3">
                         <span class="badge bg-secondary">Psicología</span>
                     </div>
                 </div>
                 <div class="card-body text-center">
-                    <h5 class="card-title fw-bold" style="color: #003366;">Psic. Carmen Vega</h5>
+                    <h5 class="card-title fw-bold text-primary-darkblue">Psic. Carmen Vega</h5>
                     <p class="text-secondary fw-semibold">Psicóloga Clínica</p>
                     <p class="card-text text-muted mb-3">Especialista en psicología clínica con 7 años de experiencia. Experta en terapia individual, familiar y manejo del estrés.</p>
                     <div class="team-credentials mb-3">
                         <small class="d-block text-success"><i class="bi bi-check-circle-fill me-2"></i>Psicología - USTA</small>
                         <small class="d-block text-success"><i class="bi bi-check-circle-fill me-2"></i>7 años experiencia</small>
-                    </div>
-                    <div class="social-links">
-                        <a href="#" class="btn btn-sm me-1" style="background: #003366; color: white;"><i class="bi bi-calendar-plus"></i> Agendar</a>
-                        <a href="#" class="btn btn-outline-secondary btn-sm"><i class="bi bi-info-circle"></i> Perfil</a>
                     </div>
                 </div>
             </div>
@@ -531,7 +369,7 @@
 </div>
 
 <!-- Medical Equipment and Services -->
-<section class="py-5 bg-light" data-bs-theme-value="light">
+<section class="py-5" data-bs-theme-value="light">
     <div class="container">
         <div class="row text-center mb-5">
             <div class="col-lg-8 mx-auto">
@@ -544,11 +382,11 @@
             <div class="col-lg-3 col-md-6">
                 <div class="card text-center h-100 shadow-sm border-0 bg-white feature-card-hover">
                     <div class="card-body p-4">
-                        <div class="text-white rounded-circle mx-auto mb-3 d-flex align-items-center justify-content-center feature-icon-wrapper" style="width: 80px; height: 80px; background: linear-gradient(135deg, #003366, #002244);">
-                            <i class="bi bi-heart-pulse-fill feature-icon-main fs-1"></i>
+                        <div class="feature-icon-wrapper mb-3">
+                            <i class="bi bi-heart-pulse-fill feature-icon-main fs-1" style="color: #dc3545;"></i>
                         </div>
-                        <h6 class="fw-bold" style="color: #003366;">Electrocardiograma</h6>
-                        <p class="small fw-semibold" style="color: #003366;">Cardiología</p>
+                        <h6 class="fw-bold text-primary-darkblue">Electrocardiograma</h6>
+                        <p class="small fw-semibold text-primary-darkblue">Cardiología</p>
                         <small class="text-muted">Diagnóstico cardiovascular de última generación</small>
                     </div>
                 </div>
@@ -557,10 +395,10 @@
             <div class="col-lg-3 col-md-6">
                 <div class="card text-center h-100 shadow-sm border-0 bg-white feature-card-hover">
                     <div class="card-body p-4">
-                        <div class="bg-success text-white rounded-circle mx-auto mb-3 d-flex align-items-center justify-content-center feature-icon-wrapper" style="width: 80px; height: 80px;">
-                            <i class="bi bi-prescription2 feature-icon-main fs-1"></i>
+                        <div class="feature-icon-wrapper mb-3">
+                            <i class="bi bi-eyedropper feature-icon-main fs-1" style="color: #198754;"></i>
                         </div>
-                        <h6 class="fw-bold" style="color: #003366;">Laboratorio Automatizado</h6>
+                        <h6 class="fw-bold text-primary-darkblue">Laboratorio Automatizado</h6>
                         <p class="text-success small fw-semibold">Análisis Clínicos</p>
                         <small class="text-muted">Resultados precisos en 24 horas</small>
                     </div>
@@ -570,10 +408,10 @@
             <div class="col-lg-3 col-md-6">
                 <div class="card text-center h-100 shadow-sm border-0 bg-white feature-card-hover">
                     <div class="card-body p-4">
-                        <div class="bg-info text-white rounded-circle mx-auto mb-3 d-flex align-items-center justify-content-center feature-icon-wrapper" style="width: 80px; height: 80px;">
-                            <i class="bi bi-camera-fill feature-icon-main fs-1"></i>
+                        <div class="feature-icon-wrapper mb-3">
+                            <i class="bi bi-camera-reels-fill feature-icon-main fs-1 text-info"></i>
                         </div>
-                        <h6 class="fw-bold" style="color: #003366;">Ecografía</h6>
+                        <h6 class="fw-bold text-primary-darkblue">Ecografía</h6>
                         <p class="text-info small fw-semibold">Imagenología</p>
                         <small class="text-muted">Diagnóstico por imágenes de alta resolución</small>
                     </div>
@@ -583,10 +421,10 @@
             <div class="col-lg-3 col-md-6">
                 <div class="card text-center h-100 shadow-sm border-0 bg-white feature-card-hover">
                     <div class="card-body p-4">
-                        <div class="bg-warning text-white rounded-circle mx-auto mb-3 d-flex align-items-center justify-content-center feature-icon-wrapper" style="width: 80px; height: 80px;">
-                            <i class="bi bi-laptop feature-icon-main fs-1"></i>
+                        <div class="feature-icon-wrapper mb-3">
+                            <i class="bi bi-laptop-fill feature-icon-main fs-1" style="color: #ffc107;"></i>
                         </div>
-                        <h6 class="fw-bold" style="color: #003366;">Historia Clínica Digital</h6>
+                        <h6 class="fw-bold text-primary-darkblue">Historia Clínica Digital</h6>
                         <p class="text-warning small fw-semibold">Tecnología</p>
                         <small class="text-muted">Acceso seguro a tu información médica</small>
                     </div>
@@ -596,61 +434,62 @@
     </div>
 </section>
 
-<!-- Medical Stats -->
-<div class="container py-5">
-    <div class="row text-center">
-        <div class="col-lg-12">
-            <h2 class="display-6 fw-bold mb-4" style="color: #003366;">Nuestra Atención en Números</h2>
-            <div class="row g-4">
-                <div class="col-md-3">
-                    <div class="stat-card-premium p-4 rounded-3 shadow-lg h-100 bg-white feature-card-hover" data-bs-theme-value="light">
-                        <div class="stat-icon mb-3">
-                            <div class="feature-icon-wrapper">
-                                <i class="bi bi-people-fill feature-icon-main fs-1" style="color: #003366;"></i>
-                            </div>
-                        </div>
-                        <h3 class="fw-bold mb-1" style="color: #003366;">15K+</h3>
-                        <p class="text-muted mb-0">Pacientes Atendidos</p>
-                        <small class="text-success"><i class="bi bi-graph-up-arrow me-1"></i>Crecimiento anual</small>
-                    </div>
-                </div>
-                <div class="col-md-3">
-                    <div class="stat-card-premium p-4 rounded-3 shadow-lg h-100 bg-white feature-card-hover" data-bs-theme-value="light">
-                        <div class="stat-icon mb-3">
-                            <div class="feature-icon-wrapper">
-                                <i class="bi bi-calendar-check feature-icon-main fs-1 text-success"></i>
-                            </div>
-                        </div>
-                        <h3 class="fw-bold text-success mb-1">6</h3>
-                        <p class="text-muted mb-0">Años de Experiencia</p>
-                        <small class="text-info"><i class="bi bi-award-fill me-1"></i>Servicio continuo</small>
-                    </div>
-                </div>
-                <div class="col-md-3">
-                    <div class="stat-card-premium p-4 rounded-3 shadow-lg h-100 bg-white feature-card-hover" data-bs-theme-value="light">
-                        <div class="stat-icon mb-3">
-                            <div class="feature-icon-wrapper">
-                                <i class="bi bi-hospital feature-icon-main fs-1 text-info"></i>
-                            </div>
-                        </div>
-                        <h3 class="fw-bold text-info mb-1">15+</h3>
-                        <p class="text-muted mb-0">Especialidades Médicas</p>
-                        <small class="text-warning"><i class="bi bi-heart-pulse me-1"></i>Atención integral</small>
-                    </div>
-                </div>
-                <div class="col-md-3">
-                    <div class="stat-card-premium p-4 rounded-3 shadow-lg h-100 bg-white feature-card-hover" data-bs-theme-value="light">
-                        <div class="stat-icon mb-3">
-                            <div class="feature-icon-wrapper">
-                                <i class="bi bi-star-fill feature-icon-main fs-1 text-warning"></i>
-                            </div>
-                        </div>
-                        <h3 class="fw-bold text-warning mb-1">96%</h3>
-                        <p class="text-muted mb-0">Satisfacción Pacientes</p>
-                        <small class="text-success"><i class="bi bi-heart-fill me-1"></i>Excelencia médica</small>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-</div> 
+<style>
+.team-card {
+    transition: all 0.3s ease-in-out;
+}
+.team-card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 15px 30px rgba(0,0,0,0.1) !important;
+}
+.team-avatar-wrapper {
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: transform 0.3s ease;
+}
+.team-card:hover .team-avatar-wrapper {
+    transform: scale(1.1);
+}
+.team-role-badge {
+    position: absolute;
+    top: 0;
+    right: 0;
+    font-size: 0.75rem;
+    font-weight: bold;
+    color: white;
+    padding: 0.3em 0.6em;
+    border-radius: 0.25rem;
+}
+.service-badge-premium {
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 50px;
+    padding: 12px 20px;
+    color: white;
+    font-weight: 600;
+    transition: all 0.3s ease;
+    animation: slideInUp 0.6s ease-out 0.3s both;
+    position: relative;
+    overflow: hidden;
+    z-index: 1;
+}
+.service-badge-premium::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+    transition: left 0.4s ease;
+    z-index: -1;
+}
+.service-badge-premium:hover::before {
+    left: 100%;
+}
+</style>

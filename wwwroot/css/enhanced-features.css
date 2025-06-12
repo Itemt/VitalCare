@@ -715,6 +715,7 @@ body.patient-body-bg .dropdown-divider {
     border: 1px solid rgba(0,0,0,0.05);
     position: relative;
     overflow: hidden;
+    border-radius: 1rem; /* Added rounded corners */
 }
 
 .stat-card-premium:hover {
@@ -3354,8 +3355,8 @@ div.auth-row div.auth-col input.flatpickr-input {
 }
 
 .partner-logo-container:hover {
-    transform: translateY(-8px) scale(1.05);
-    box-shadow: 0 15px 30px rgba(0,0,0,0.1);
+    transform: translateY(-2px);
+    box-shadow: 0 8px 20px rgba(0,0,0,0.08);
 }
 
 /* Wrapper del icono - centrado perfecto */
@@ -3368,14 +3369,14 @@ div.auth-row div.auth-col input.flatpickr-input {
     width: 80px;
     height: 80px;
     border-radius: 50%;
-    background: rgba(255,255,255,0.8);
-    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    background: none;
+    box-shadow: none;
     transition: all 0.3s ease;
 }
 
 .partner-logo-container:hover .feature-icon-wrapper {
     transform: scale(1.1) rotate(5deg);
-    box-shadow: 0 4px 15px rgba(0,0,0,0.15);
+    box-shadow: none;
 }
 
 /* Icono principal - centrado y tamaño correcto */
@@ -3416,8 +3417,8 @@ div.auth-row div.auth-col input.flatpickr-input {
 }
 
 [data-bs-theme="dark"] .partner-logo-container .feature-icon-wrapper {
-    background: rgba(255,255,255,0.1);
-    backdrop-filter: blur(10px);
+    background: none;
+    backdrop-filter: none;
 }
 
 [data-bs-theme="dark"] .partner-name {
@@ -3741,6 +3742,106 @@ div.auth-row div.auth-col input.flatpickr-input {
     .office-details .text-center p {
         font-size: 0.9rem !important;
     }
+}
+
+.hero-rounded {
+    border-radius: 50px !important;
+}
+
+.text-primary-darkblue {
+    color: #003366;
+}
+
+[data-bs-theme="dark"] .text-primary-darkblue {
+    color: #fff !important;
+}
+
+/* Responsive para móviles */
+@media (max-width: 768px) {
+    .partner-logo-container {
+        min-height: 120px;
+        padding: 1.5rem 0.75rem;
+    }
+    
+    .partner-logo-container .feature-icon-wrapper {
+        width: 70px;
+        height: 70px;
+        margin-bottom: 0.5rem;
+    }
+    
+    .partner-logo-container .feature-icon-main {
+        font-size: 2rem !important;
+    }
+    
+    .partner-name {
+        font-size: 0.85rem;
+    }
+    
+    .partner-logo-container:hover {
+        transform: translateY(-4px) scale(1.02);
+    }
+}
+
+.feature-metrics {
+    display: flex;
+    justify-content: center;
+    gap: 0.5rem;
+    flex-wrap: wrap;
+}
+
+.office-details .d-flex:nth-child(1) {
+    animation-delay: 0.1s;
+}
+
+[data-bs-theme="dark"] .partner-logo-container:hover .partner-name {
+    color: #ffffff;
+}
+
+[data-bs-theme="dark"] .stat-card-premium h3.text-primary,
+[data-bs-theme="dark"] .stat-card-premium h3.text-info,
+[data-bs-theme="dark"] .stat-card-premium small.text-info,
+[data-bs-theme="dark"] .features-card-premium strong.text-info {
+    color: #fff !important;
+}
+
+.hero-rounded {
+    border-radius: 50px !important;
+}
+
+[data-bs-theme="dark"] .stat-card-premium h3.text-primary,
+[data-bs-theme="dark"] .stat-card-premium small.text-info {
+    color: #ffffff !important;
+}
+
+[data-bs-theme="dark"] .text-primary,
+[data-bs-theme="dark"] .text-info,
+[data-bs-theme="dark"] .text-primary-darkblue,
+[data-bs-theme="dark"] .feature-card-hover h6,
+[data-bs-theme="dark"] .feature-card-hover .small {
+    color: #ffffff !important;
+}
+
+.hero-rounded {
+    border-radius: 50px !important;
+}
+
+[data-bs-theme="dark"] .feature-card-hover .small {
+    color: #ffffff !important;
+}
+
+[data-bs-theme="dark"] .team-card .card-title,
+[data-bs-theme="dark"] .team-card .fw-semibold {
+    color: #ffffff !important;
+}
+
+.hero-rounded {
+    border-radius: 50px !important;
+}
+
+/* Fix for dark blue elements in dark mode on team page */
+[data-bs-theme="dark"] .team-card .text-primary-darkblue,
+[data-bs-theme="dark"] .team-card .team-avatar .feature-icon-main {
+    color: #ffffff !important;
 }
 
 
