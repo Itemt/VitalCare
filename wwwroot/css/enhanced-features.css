@@ -3902,5 +3902,29 @@ div.auth-row div.auth-col input.flatpickr-input {
     color: #ffffff !important;
 }
 
+/* Force dark theme for admin dropdown menu */
+.bg-admin .dropdown-menu {
+    background-color: #1f2937 !important;
+    border: 1px solid rgba(255, 255, 255, 0.15) !important;
+}
+
+.bg-admin .dropdown-menu .dropdown-item {
+    color: rgba(255, 255, 255, 0.9) !important;
+}
+
+.bg-admin .dropdown-menu .dropdown-item:hover {
+    background-color: rgba(255, 255, 255, 0.1) !important;
+    color: #ffffff !important;
+}
+
+.bg-admin .dropdown-menu .dropdown-divider {
+    border-top: 1px solid rgba(255, 255, 255, 0.15) !important;
+}
+
+/* Explicitly style the admin's user dropdown text to be white */
+.bg-admin .navbar-nav .nav-item .nav-link#userDropdown {
+    color: #ffffff !important;
+}
+
 
 
